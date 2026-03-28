@@ -31,6 +31,7 @@
  * @param {number[]} nums
  * @return {number[]}
  */
+function smallerNumbersThanCurrent(nums) {
   let sorted = nums.map((num, idx) => [num, idx]).sort((a, b) => a[0] - b[0]);
   const result = new Array();
   for (let i = 0; i < sortessssss.length; i++) {
@@ -42,6 +43,6 @@
     }
   }
   return result;
-};
+}
 
 console.log(smallerNumbersThanCurrent([7, 7, 7, 7]));

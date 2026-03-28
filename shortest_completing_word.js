@@ -76,3 +76,7 @@ var shortestCompletingWord = function (licensePlate, words) {
 console.log(
   shortestCompletingWord("1s3 PSt", ["step", "steps", "stripe", "stepple"]),
 );
+
+console.log(
+  shortestCompletingWord("1s3 456", ["looks", "pest", "stew", "show"]),
+);
