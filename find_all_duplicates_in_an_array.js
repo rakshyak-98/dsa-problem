@@ -28,4 +28,20 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-var findDuplicates = function (nums) {};
+var findDuplicates = function (nums) {
+  const result = [];
+  for (let i = 0; i < nums.length; i++) {
+    const val = Math.abs(nums[i]);
+    const index = val - 1;
+    if (nums[index] < 0) {
+      result.push(val);
+    } else {
+      nums[index] = -nums[index];
+    }
+  }
+  return result;
+};
+
+console.log(findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]));
+console.log(findDuplicates([1, 1, 2]));
+console.log(findDuplicates([1]));
