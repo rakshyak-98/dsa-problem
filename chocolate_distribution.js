@@ -27,5 +27,24 @@
  */
 
 class Solution {
-  findMinDiff(arr, n) {}
+  findMinDiff(arr, m) {
+    const n = arr.length;
+    if (n == 0 || m == 0) return 0;
+    if (n < m) return -1;
+
+    arr.sort((a, b) => a - b);
+
+    let minDiff = Infinity;
+
+    for (let i = 0; i + m - 1 < n; i++) {
+      let currentDiff = arr[i + m - 1] - arr[i];
+      minDiff = Math.min(currentDiff, minDiff);
+    }
+    return minDiff;
+  }
 }
+
+const solution = new Solution();
+console.log(solution.findMinDiff([3, 4, 1, 9, 56, 7, 9, 12], 5));
+console.log(solution.findMinDiff([7, 3, 2, 4, 9, 12, 56], 3));
+console.log(solution.findMinDiff([3, 4, 1, 9, 56], 5));
