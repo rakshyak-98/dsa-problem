@@ -58,5 +58,6 @@ var canBeIncreasing = function (nums) {
 
   return true;
 };
-console.log(canBeIncreasing([1, 2, 10, 5, 7]));
-console.log(canBeIncreasing([2, 3, 1, 2]));
+console.log(canBeIncreasing([1, 2, 10, 5, 7])); // true
+console.log(canBeIncreasing([2, 3, 1, 2])); // false
+console.log(canBeIncreasing([1, 1, 1])); // false
