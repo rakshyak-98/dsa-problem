@@ -32,19 +32,20 @@
 //     -109 <= nums[i] <= 109
 
 /**
- * @param {Array} nums
+ * @param {number[]} nums
+ * @return {boolean}
  */
-
-function hasDuplicates(nums) {
-  let counter = 0;
-  nums.sort((a, b) => a - b);
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === nums[i - 1]) {
-      counter++;
+var containsDuplicate = function (nums) {
+  const seen = new Set();
+  for (let num of nums) {
+    if (seen.has(num)) {
+      return true;
     }
-    if (counter > 0) return true;
+    seen.add(num);
   }
   return false;
-}
+};
 
-console.log(hasDuplicates([1, 2, 3, 4, 3]));
+console.log(containsDuplicate([1, 2, 3, 1]));
+console.log(containsDuplicate([1, 2, 3, 4]));
+console.log(containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]));
