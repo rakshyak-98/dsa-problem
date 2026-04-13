@@ -53,6 +53,6 @@ var isPalindrome = function (s) {
   return true;
 };
 
-console.log(isPalindrome("A man, a plan, a canal: Panama"));
-console.log(isPalindrome("race a car"));
-console.log(isPalindrome(" "));
+console.log(isPalindrome("A man, a plan, a canal: Panama")); // true
+console.log(isPalindrome("race a car")); // false
+console.log(isPalindrome(" ")); // true
