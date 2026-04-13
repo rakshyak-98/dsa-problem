@@ -32,4 +32,28 @@
  * @param {number} k
  * @return {number[]}
  */
-var topKFrequent = function (nums, k) {};
+var topKFrequent = function (nums, k) {
+  const map = new Map();
+  for (let num of nums) {
+    map.set(num, (map.get(num) || 0) + 1);
+  }
+  const bucket = Array.from({ length: nums.length + 1 }, () => []);
+
+  for (let [num, freq] of map.entries()) {
+    bucket[freq].push(num);
+  }
+
+  const result = [];
+
+  for (let i = bucket.length - 1; i >= 0 && result.length < k; i--) {
+    if (bucket[i].length > 0) {
+      result.push(...bucket[i]);
+    }
+  }
+
+  return result;
+};
+
+console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2));
+console.log(topKFrequent([1], 1));
+console.log(topKFrequent([1, 2, 1, 2, 1, 2, 3, 1, 3, 2], 2));
