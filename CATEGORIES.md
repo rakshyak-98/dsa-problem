@@ -4,9 +4,13 @@ Organized by topic, then difficulty (easy -> medium -> hard).
 
 ## arrays
 ### easy
+- average_value_of_even_numbers_that_are_divisible_by_three.js
 - concatenation_of_array.js
+- check_if_all_1s_are_at_least_length_k_places_away.js
 - find_all_numbers_disappeared_in_an_array.js
 - find_closest_number_to_zero.js
+- find_indices_with_index_and_value_difference_1.js
+- find_the_maximum_divisibility_score.js
 - largest_number_at_least_twice_of_others.js
 - longest_increasing_subsequence.js
 - majority_element.js
@@ -14,10 +18,12 @@ Organized by topic, then difficulty (easy -> medium -> hard).
 - max_consecutive_ones.js
 - maximum_product_of_three_number.js
 - monotonic_array.js
+- minimum_sum_of_mountain_triplets_1.js
 - number_smaller_then_current_number.js
 - plus_one.js
 - remove_one_element_to_make_the_array_strictly_increasing.js
 - shuffle_the_array.js
+- sign_of_the_product_of_an_array.js
 - temmo_attacking.js
 - third_maximum_number.js
 - valid_mountain_array.js
@@ -39,6 +45,7 @@ Organized by topic, then difficulty (easy -> medium -> hard).
 
 ## bit_manipulation
 ### easy
+- sort_integers_by_binary_reflection.js
 
 ### medium
 - minimum_operations_to_equalize_array.js
@@ -81,6 +88,7 @@ Organized by topic, then difficulty (easy -> medium -> hard).
 
 ## hashing
 ### easy
+- check_if_any_element_has_prime_frequency.js
 - contains_duplicates.js
 - degree_of_an_array.js
 - distribute_candies.js
@@ -111,9 +119,11 @@ Organized by topic, then difficulty (easy -> medium -> hard).
 
 ## matrix
 ### easy
+- cells_with_odd_values_in_a_matrix.js
 - flipping_an_image.js
 - image_smoother.js
 - reshape_matrix.js
+- row_with_maimum_ones.js
 - toeplitx_matrix.js
 - toplitz_matrix.js
 - transpose_matrix.js
@@ -126,6 +136,8 @@ Organized by topic, then difficulty (easy -> medium -> hard).
 ## simulation
 ### easy
 - baseball_game.js
+- calculate_amount_paid_taxes.js
+- fruits_into_baskets_2.js
 - number_of_lines_to_write_string.js
 - relative_ranks.js
 
@@ -144,6 +156,7 @@ Organized by topic, then difficulty (easy -> medium -> hard).
 ## strings
 ### easy
 - delete_columns_to_make_sorted.js
+- find_words_containing_character.js
 - keyboard_row.js
 - longest_common_prefix.js
 - most_common_word.js
@@ -198,4 +211,3 @@ Organized by topic, then difficulty (easy -> medium -> hard).
 - subarray_sum_divisible_by_k.js
 
 ### hard
-
