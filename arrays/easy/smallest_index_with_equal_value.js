@@ -44,3 +44,6 @@ var smallestEqual = function (nums) {
   }
   return -1;
 };
+
+console.log(smallestEqual([0, 1, 2]));
+console.log(smallestEqual([4, 3, 2, 1]));
