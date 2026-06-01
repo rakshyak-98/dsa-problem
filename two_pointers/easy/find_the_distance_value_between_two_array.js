@@ -45,4 +45,19 @@
  * @param {number} d
  * @return {number}
  */
-var findTheDistanceValue = function (arr1, arr2, d) {};
+var findTheDistanceValue = function (arr1, arr2, d) {
+  arr2.sort((a, b) => a - b);
+  let count = 0;
+
+  for(let i = 0; i < arr1.length; i++){
+    let target = arr1[i];
+    let left = 0;
+    let right = arr2.length - 1;
+    let isValid = true;
+
+
+    while(left <= right){
+      let mid = Math.floor((left + right) / 2)
+    }
+  }
+};
