@@ -47,4 +47,32 @@
  * @param {number} capacity
  * @return {number}
  */
-var latestTimeCatchTheBus = function (buses, passengers, capacity) {};
+var latestTimeCatchTheBus = function (buses, passengers, capacity) {
+  buses.sort((a, b) => a- b);
+  passengers.sort((a, b) => a- b);
+
+  let passengerIdx = 0;
+  let capacityCount = 0;
+
+  for(let bus of buses){
+    capacityCount = capacity;
+    while(capacityCount > 0 && passengerIdx < passengers.length && passengers[passengerIdx] <= bus){
+      passengerIdx++;
+      capacityCount--;
+    }
+  }
+
+  let lastBusTime = buses[buses.length - 1];
+  let candidateTime = capacityCount > 0 ? lastBusTime : passengers[passengerIdx - 1];
+
+  let passengerSet = new Set(passengers);
+
+  while(passengerSet.has(candidateTime)){
+    candidateTime--;
+  }
+
+  return candidateTime;
+};
+
+console.log(latestTimeCatchTheBus([10,20], [2,17,18,19], 2));
+console.log(latestTimeCatchTheBus([20,30,10], [19,13,26,4,25,11,21], 2));
