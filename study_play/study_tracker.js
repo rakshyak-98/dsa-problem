@@ -6,13 +6,13 @@ const FILE_HANDLE_STORE = "handles";
 const SOLVED_PROBLEMS_HANDLE_KEY = "solvedProblemsMd";
 
 const DAILY_SESSION_ITEMS = [
-  { id: "trigger-scan", label: "Run the trigger scan before coding." },
-  { id: "restate", label: "Restate input, output, constraints, and edge cases." },
-  { id: "bruteforce", label: "Write the brute-force idea before optimizing." },
-  { id: "pattern-scan", label: "Pick the likely pattern before writing code." },
-  { id: "trace", label: "Trace one small example by hand." },
-  { id: "tests", label: "Run tests or sample checks once after coding." },
-  { id: "postmortem", label: "Write one short post-mortem note and revisit date." }
+  { id: "trigger-scan", label: "Review the pattern triggers before you start coding" },
+  { id: "restate", label: "Write down the input, output, constraints, and edge cases" },
+  { id: "bruteforce", label: "Start with the brute-force idea before optimizing" },
+  { id: "pattern-scan", label: "Choose the most likely pattern before writing code" },
+  { id: "trace", label: "Trace one small example by hand" },
+  { id: "tests", label: "Run tests or sample checks after coding" },
+  { id: "postmortem", label: "Write a short lesson learned and a revisit date" }
 ];
 
 const TOPIC_ORDER = [
@@ -450,10 +450,10 @@ function renderDailySession() {
   });
 
   const currentWeek = getStudyWeekForDate(todayIso());
-  const currentWeekLabel = currentWeek ? `Current study week: ${currentWeek}` : "Current study week: not started";
+  const currentWeekLabel = currentWeek ? `You are currently in Week ${currentWeek} of the roadmap.` : "Your 12-week roadmap has not started yet.";
   setStatus(
     refs.dailySessionSummary,
-    `${completedCount}/${DAILY_SESSION_ITEMS.length} items done for ${sessionDate}. ${currentWeekLabel}.`
+    `You completed ${completedCount} of ${DAILY_SESSION_ITEMS.length} checklist steps for ${sessionDate}. ${currentWeekLabel}`
   );
 }
 
@@ -476,7 +476,7 @@ function renderRoadmap() {
     title.textContent = `Week ${week.weekNumber}: ${week.title}`;
     const meta = document.createElement("div");
     meta.className = "week-meta";
-    meta.textContent = `${week.phase}`;
+    meta.textContent = `${week.phase} study block`;
     titleWrap.appendChild(title);
     titleWrap.appendChild(meta);
 
@@ -491,7 +491,7 @@ function renderRoadmap() {
 
     const progress = document.createElement("span");
     progress.className = "week-meta";
-    progress.textContent = `${weekCompleted}/${itemCount} done`;
+    progress.textContent = `${weekCompleted}/${itemCount} completed`;
 
     summary.appendChild(titleWrap);
     summary.appendChild(progress);
@@ -500,7 +500,7 @@ function renderRoadmap() {
     const tasksBlock = document.createElement("div");
     tasksBlock.className = "week-block";
     const tasksHeading = document.createElement("h4");
-    tasksHeading.textContent = "Week tasks";
+    tasksHeading.textContent = "Checklist for this week";
     tasksBlock.appendChild(tasksHeading);
 
     week.tasks.forEach((task, index) => {
@@ -508,7 +508,7 @@ function renderRoadmap() {
       tasksBlock.appendChild(
         buildCheckboxItem({
           checked: Boolean(state.roadmapChecks[id]),
-          label: task,
+          label: formatRoadmapChecklistItem(task),
           onChange: (checked) => {
             state.roadmapChecks[id] = checked;
             saveState();
@@ -524,7 +524,7 @@ function renderRoadmap() {
       const goalsBlock = document.createElement("div");
       goalsBlock.className = "week-block";
       const goalsHeading = document.createElement("h4");
-      goalsHeading.textContent = "Milestones";
+      goalsHeading.textContent = "Success goals";
       goalsBlock.appendChild(goalsHeading);
 
       week.goals.forEach((goal, goalIndex) => {
@@ -548,8 +548,8 @@ function renderRoadmap() {
     refs.weeklyRoadmap.appendChild(details);
   });
 
-  const currentWeekText = currentWeek ? `Current week: ${currentWeek}.` : "Plan not started yet.";
-  setStatus(refs.roadmapSummary, `${completedItems}/${totalItems} roadmap items completed. ${currentWeekText}`);
+  const currentWeekText = currentWeek ? `Current focus: Week ${currentWeek}.` : "Your plan has not started yet.";
+  setStatus(refs.roadmapSummary, `You have completed ${completedItems} of ${totalItems} roadmap checklist items. ${currentWeekText}`);
 }
 
 function renderProblemLog() {
@@ -909,6 +909,61 @@ function getSortedEntries(order) {
 
 function getRoadmapCheckId(weekNumber, index) {
   return `week-${weekNumber}-item-${index}`;
+}
+
+function formatRoadmapChecklistItem(task) {
+  let formatted = task.replace(/^Mon:/, "Monday:")
+    .replace(/^Tue:/, "Tuesday:")
+    .replace(/^Wed:/, "Wednesday:")
+    .replace(/^Thu:/, "Thursday:")
+    .replace(/^Fri:/, "Friday:")
+    .replace(/^Sat:/, "Saturday:")
+    .replace(/^Sun:/, "Sunday:");
+
+  formatted = formatted.replace(/`([^`]+)`/g, (_, reference) => humanizeStudyReference(reference));
+  formatted = formatted.replace(/\s+\+\s+/g, " and ");
+
+  return formatted;
+}
+
+function humanizeStudyReference(reference) {
+  const normalized = String(reference || "").trim().replace(/\\/g, "/");
+
+  if (!normalized) {
+    return "";
+  }
+
+  if (normalized === "templates/pattern_cheat_sheet.js") {
+    return "the pattern cheat sheet";
+  }
+
+  if (normalized.startsWith("drills/")) {
+    const fileName = normalized.split("/").pop() || normalized;
+    const drillName = fileName.replace(/^\d+_/, "").replace(/_reflex\.js$/, "");
+    return `${toReadableTitle(drillName)} reflex drill`;
+  }
+
+  if (normalized.endsWith("/")) {
+    const parts = normalized.split("/").filter(Boolean);
+    return `${toReadableTitle(parts.join(" "))} problem set`;
+  }
+
+  const fileName = normalized.split("/").pop() || normalized;
+  return toReadableTitle(fileName.replace(/\.js$/, ""));
+}
+
+function toReadableTitle(value) {
+  return String(value || "")
+    .replace(/_/g, " ")
+    .replace(/\bdp\b/gi, "DP")
+    .replace(/\bbfs\b/gi, "BFS")
+    .replace(/\bdfs\b/gi, "DFS")
+    .replace(/\bii\b/gi, "II")
+    .replace(/\biii\b/gi, "III")
+    .replace(/\biv\b/gi, "IV")
+    .replace(/\bvi\b/gi, "VI")
+    .replace(/\bvii\b/gi, "VII")
+    .replace(/\b([a-z])/g, (match) => match.toUpperCase());
 }
 
 function createEntryId() {

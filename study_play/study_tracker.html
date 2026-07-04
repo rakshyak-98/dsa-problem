@@ -265,21 +265,32 @@
     }
 
     .check-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      align-items: start;
+      column-gap: 12px;
       padding: 10px 12px;
       border-radius: 10px;
       background: rgba(15, 23, 42, 0.55);
       border: 1px solid rgba(51, 65, 85, 0.5);
+      margin-bottom: 0;
     }
 
     .check-item input[type="checkbox"] {
       width: 18px;
       height: 18px;
       margin: 2px 0 0;
+      min-height: 18px;
+      padding: 0;
+      border-radius: 4px;
+      align-self: start;
       accent-color: var(--success);
-      flex: 0 0 auto;
+      box-shadow: none;
+    }
+
+    .check-item span {
+      display: block;
+      line-height: 1.45;
     }
 
     details.week-card {
@@ -442,17 +453,17 @@
         <div class="panel daily-session-panel">
           <div class="summary">
             <div>
-              <strong>Daily study session</strong>
-              <div class="muted">Use this every day before and after solving problems.</div>
+              <strong>Today's Practice Checklist</strong>
+              <div class="muted">Use this simple checklist before and after each problem-solving session.</div>
             </div>
           </div>
           <div class="controls">
             <div class="field">
-              <label for="session-date">Session date</label>
+              <label for="session-date">Practice date</label>
               <input id="session-date" type="date">
             </div>
             <div class="field">
-              <label for="plan-start-date">Plan start date</label>
+              <label for="plan-start-date">12-week plan start date</label>
               <input id="plan-start-date" type="date">
             </div>
           </div>
@@ -463,8 +474,8 @@
         <div class="panel">
           <div class="summary">
             <div>
-              <strong>Roadmap progress</strong>
-              <div class="muted">Week-by-week tasks and milestone checklists from the study plan.</div>
+              <strong>12-Week Study Roadmap</strong>
+              <div class="muted">Follow the weekly checklist and mark the goals you complete as you move through the plan.</div>
             </div>
           </div>
           <div id="roadmap-summary" class="status"></div>
