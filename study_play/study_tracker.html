@@ -366,18 +366,6 @@
       border: 1px solid rgba(56, 189, 248, 0.3);
     }
 
-    .markdown-preview {
-      white-space: pre-wrap;
-      background: #020617;
-      border-radius: 12px;
-      border: 1px solid rgba(51, 65, 85, 0.6);
-      padding: 14px;
-      min-height: 340px;
-      overflow: auto;
-      font-family: "Courier New", monospace;
-      font-size: 13px;
-    }
-
     table {
       width: 100%;
       border-collapse: collapse;
@@ -436,9 +424,9 @@
     <section class="hero">
       <h1>DSA Study Tracker</h1>
       <p>
-        Follow the full study plan with checklists, log each solved problem into a markdown-ready record,
-        and track weekly progress per topic. All data is stored in your browser with sync support for
-        `SOLVED_PROBLEMS.md`.
+        Follow the full study plan with checklists, log each solved problem, and track weekly progress
+        per topic. All data is stored in your browser.
+        <a href="visualizer/index.html">Open DSA Visualizer →</a>
       </p>
     </section>
 
@@ -485,12 +473,11 @@
     </section>
 
     <section id="problems" class="tab-panel">
-      <div class="grid two-col">
-        <div class="panel">
+      <div class="panel">
           <div class="summary">
             <div>
               <strong>Problem entry</strong>
-              <div class="muted">Each saved entry updates the markdown preview and the weekly stats.</div>
+              <div class="muted">Each saved entry updates the weekly stats.</div>
               <div class="form-note">Topic and pattern options are based on `study_play/STUDY_PLAN.md`. Common defaults are preselected where that makes sense.</div>
             </div>
           </div>
@@ -554,32 +541,20 @@
             </div>
             <div id="form-status" class="status"></div>
           </form>
-        </div>
-
-        <div class="panel">
-          <div class="summary">
-            <div>
-              <strong>Markdown output</strong>
-              <div class="muted">Sync this content into `SOLVED_PROBLEMS.md` and keep the repo log up to date.</div>
-            </div>
-          </div>
-          <div class="button-row">
-            <button id="copy-markdown" type="button">Copy markdown</button>
-            <button id="sync-markdown" type="button">Sync SOLVED_PROBLEMS.md</button>
-            <button id="clear-entries" class="danger" type="button">Clear all entries</button>
-          </div>
-          <div id="markdown-status" class="status"></div>
-          <div id="markdown-preview" class="markdown-preview"></div>
-        </div>
       </div>
 
       <div class="panel" style="margin-top: 20px;">
         <div class="summary">
           <div>
             <strong>Saved entries</strong>
-            <div class="muted">Recent problems are shown here. Remove any incorrect entry before exporting markdown.</div>
+            <div class="muted">Recent problems are shown here. Sync writes to SOLVED_PROBLEMS.md in Chrome/Edge over localhost; otherwise a download is offered.</div>
+          </div>
+          <div class="button-row" style="width: auto; flex: 0 0 auto;">
+            <button id="sync-markdown" type="button" style="width: auto; min-height: 40px; padding: 8px 14px;">Sync SOLVED_PROBLEMS.md</button>
+            <button id="clear-entries" class="danger" type="button" style="width: auto; min-height: 40px; padding: 8px 14px;">Clear all entries</button>
           </div>
         </div>
+        <div id="log-status" class="status"></div>
         <div id="problem-log-list" class="log-list"></div>
       </div>
     </section>

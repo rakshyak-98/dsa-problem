@@ -312,9 +312,7 @@ function init() {
     problemForm: document.getElementById("problem-form"),
     resetForm: document.getElementById("reset-form"),
     formStatus: document.getElementById("form-status"),
-    markdownPreview: document.getElementById("markdown-preview"),
-    markdownStatus: document.getElementById("markdown-status"),
-    copyMarkdown: document.getElementById("copy-markdown"),
+    logStatus: document.getElementById("log-status"),
     syncMarkdown: document.getElementById("sync-markdown"),
     clearEntries: document.getElementById("clear-entries"),
     problemLogList: document.getElementById("problem-log-list"),
@@ -360,7 +358,6 @@ function bindEvents() {
     refs.formStatus.textContent = "";
   });
 
-  refs.copyMarkdown.addEventListener("click", copyMarkdown);
   refs.syncMarkdown.addEventListener("click", syncMarkdownToFile);
   refs.clearEntries.addEventListener("click", clearEntries);
 
@@ -414,7 +411,6 @@ function handleProblemSubmit(event) {
   setStatus(refs.formStatus, "Problem entry saved.", "success");
 
   renderProblemLog();
-  renderMarkdown();
   renderStats();
 }
 
@@ -422,7 +418,6 @@ function renderAll() {
   renderDailySession();
   renderRoadmap();
   renderProblemLog();
-  renderMarkdown();
   renderStats();
 }
 
@@ -566,11 +561,6 @@ function renderProblemLog() {
   getSortedEntries("desc").forEach((entry) => {
     refs.problemLogList.appendChild(buildLogEntry(entry));
   });
-}
-
-function renderMarkdown() {
-  const markdown = generateMarkdown();
-  refs.markdownPreview.textContent = markdown;
 }
 
 function renderStats() {
@@ -783,42 +773,10 @@ function generateMarkdown() {
   return lines.join("\n");
 }
 
-function copyMarkdown() {
-  const markdown = generateMarkdown();
-
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(markdown)
-      .then(() => setStatus(refs.markdownStatus, "Markdown copied to clipboard.", "success"))
-      .catch(() => fallbackCopyMarkdown(markdown));
-    return;
-  }
-
-  fallbackCopyMarkdown(markdown);
-}
-
-function fallbackCopyMarkdown(markdown) {
-  const tempTextArea = document.createElement("textarea");
-  tempTextArea.value = markdown;
-  document.body.appendChild(tempTextArea);
-  tempTextArea.select();
-
-  try {
-    document.execCommand("copy");
-    setStatus(refs.markdownStatus, "Markdown copied to clipboard.", "success");
-  } catch (error) {
-    setStatus(refs.markdownStatus, "Copy failed. Use Download markdown instead.", "warning");
-  }
-
-  document.body.removeChild(tempTextArea);
-}
-
 async function syncMarkdownToFile() {
   if (!supportsFileSync()) {
-    setStatus(
-      refs.markdownStatus,
-      "Direct sync is not supported in this browser. Use Copy markdown instead.",
-      "warning"
-    );
+    downloadMarkdownFile();
+    setStatus(refs.logStatus, getSyncFallbackMessage(), "warning");
     return;
   }
 
@@ -827,15 +785,36 @@ async function syncMarkdownToFile() {
     const writable = await handle.createWritable();
     await writable.write(generateMarkdown());
     await writable.close();
-    setStatus(refs.markdownStatus, "Synced to SOLVED_PROBLEMS.md.", "success");
+    setStatus(refs.logStatus, "Synced to SOLVED_PROBLEMS.md.", "success");
   } catch (error) {
     if (error && error.name === "AbortError") {
-      setStatus(refs.markdownStatus, "Sync cancelled.", "warning");
+      setStatus(refs.logStatus, "Sync cancelled.", "warning");
       return;
     }
 
-    setStatus(refs.markdownStatus, getSyncErrorMessage(error), "warning");
+    setStatus(refs.logStatus, getSyncErrorMessage(error), "warning");
   }
+}
+
+function downloadMarkdownFile() {
+  const markdown = generateMarkdown();
+  const blob = new Blob([markdown], { type: "text/markdown;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "SOLVED_PROBLEMS.md";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+function getSyncFallbackMessage() {
+  if (window.location.protocol === "file:") {
+    return "Downloaded SOLVED_PROBLEMS.md. Replace study_play/SOLVED_PROBLEMS.md in your repo. For one-click sync, run `python3 -m http.server 8080` in study_play and open http://localhost:8080/study_tracker.html in Chrome or Edge.";
+  }
+
+  return "Downloaded SOLVED_PROBLEMS.md. Replace study_play/SOLVED_PROBLEMS.md in your repo. Direct sync requires Chrome or Edge.";
 }
 
 function clearEntries() {
@@ -846,18 +825,16 @@ function clearEntries() {
   state.problemEntries = [];
   saveState();
   renderProblemLog();
-  renderMarkdown();
   renderStats();
-  setStatus(refs.markdownStatus, "All saved entries were cleared.", "warning");
+  setStatus(refs.logStatus, "All saved entries were cleared.", "warning");
 }
 
 function deleteEntry(entryId) {
   state.problemEntries = state.problemEntries.filter((entry) => entry.id !== entryId);
   saveState();
   renderProblemLog();
-  renderMarkdown();
   renderStats();
-  setStatus(refs.markdownStatus, "Entry deleted.", "success");
+  setStatus(refs.logStatus, "Entry deleted.", "success");
 }
 
 function getStudyWeekForDate(dateString) {

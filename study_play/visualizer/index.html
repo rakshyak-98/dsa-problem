@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Visualizer — Arrays, Strings, Trees & Graphs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-top">
+        <div>
+          <h1>DSA Visualizer</h1>
+          <p>
+            Enter numbers or text, write algorithm code, and watch each step animate on arrays, strings, trees, or graphs.
+            Use <code>await viz.step()</code> to pause and record visualization frames.
+          </p>
+        </div>
+        <a class="back-link" href="../study_tracker.html">← Study Tracker</a>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <div class="structure-tabs" role="tablist">
+        <button class="tab-button active" data-structure="array" role="tab">Array</button>
+        <button class="tab-button" data-structure="string" role="tab">String</button>
+        <button class="tab-button" data-structure="tree" role="tab">Tree</button>
+        <button class="tab-button" data-structure="graph" role="tab">Graph</button>
+      </div>
+      <div class="example-picker">
+        <label for="example-select">Example</label>
+        <select id="example-select"></select>
+      </div>
+    </div>
+
+    <div class="grid main-grid">
+      <section class="panel input-panel">
+        <h2>Input</h2>
+        <div id="input-array" class="input-section">
+          <label for="array-input">Comma-separated values</label>
+          <input id="array-input" type="text" value="5, 2, 8, 1, 9, 3" placeholder="e.g. 5, 2, 8, 1, 9">
+          <div class="view-toggle" id="array-view-toggle">
+            <span class="view-label">View</span>
+            <button type="button" class="view-btn active" data-view="bars">Bars</button>
+            <button type="button" class="view-btn" data-view="cells">Cells</button>
+            <button type="button" class="view-btn" data-view="both">Both</button>
+          </div>
+          <p class="hint">Values render as indexed bars and/or cells. Use <code>parseArrayInput()</code> and <code>viz.setArrayView('bars'|'cells'|'both')</code>.</p>
+        </div>
+        <div id="input-string" class="input-section hidden">
+          <label for="string-input">Text string</label>
+          <input id="string-input" type="text" value="racecar" placeholder="e.g. abcabcbb or hello">
+          <p class="hint">Each character is shown as an indexed cell. Use <code>parseStringInput()</code> and <code>viz.setString(s)</code>.</p>
+        </div>
+        <div id="input-tree" class="input-section hidden">
+          <label for="tree-input">Level-order (use <code>null</code> for empty nodes)</label>
+          <input id="tree-input" type="text" value="1, 2, 3, 4, 5, null, null" placeholder="e.g. 1, 2, 3, null, 4">
+          <p class="hint">Build with <code>buildTreeFromLevelOrder()</code>. Highlight nodes via <code>viz.highlightNodes([ids])</code>.</p>
+        </div>
+        <div id="input-graph" class="input-section hidden">
+          <label for="graph-input">Grid matrix (one row per line, comma-separated cells)</label>
+          <textarea id="graph-input" rows="5">0, 0, 0, 1
+0, 1, 0, 0
+0, 0, 0, 0
+1, 0, 0, 0</textarea>
+          <p class="hint">0 = walkable, 1 = wall. Use <code>parseGraphInput()</code> and <code>viz.setGraph(grid)</code>.</p>
+        </div>
+        <div class="input-actions">
+          <button id="btn-build" class="btn primary">Build Visualization</button>
+          <button id="btn-run" class="btn success">▶ Run Code</button>
+        </div>
+      </section>
+
+      <section class="panel viz-panel">
+        <div class="viz-header">
+          <h2>Visualization</h2>
+          <span id="step-counter" class="step-counter">Step 0 / 0</span>
+        </div>
+        <div id="viz-canvas" class="viz-canvas" aria-live="polite">
+          <p class="placeholder">Build or run code to see the visualization.</p>
+        </div>
+        <div id="step-message" class="step-message">Ready.</div>
+        <div class="playback">
+          <button id="btn-reset" class="btn icon" title="Reset">⏮</button>
+          <button id="btn-prev" class="btn icon" title="Previous step">◀</button>
+          <button id="btn-play" class="btn icon primary" title="Play / Pause">▶</button>
+          <button id="btn-next" class="btn icon" title="Next step">▶</button>
+          <label class="speed-control">
+            Speed
+            <input id="speed-range" type="range" min="200" max="2000" value="800" step="100">
+          </label>
+        </div>
+      </section>
+    </div>
+
+    <div class="grid code-grid">
+      <section class="panel code-panel">
+        <div class="code-header">
+          <h2>Code</h2>
+          <button id="btn-format" class="btn small">Format</button>
+        </div>
+        <textarea id="code-editor"></textarea>
+        <details class="api-help">
+          <summary>Viz API reference</summary>
+          <ul>
+            <li><code>await viz.step({ message, line, highlights, pointers, variables })</code> — record &amp; pause</li>
+            <li><code>viz.setArray(arr)</code> / <code>viz.setString(s)</code> / <code>viz.setGraph(grid)</code> / <code>viz.setTree(root)</code></li>
+            <li><code>viz.setArrayView('bars'|'cells'|'both')</code> — array display mode</li>
+            <li><code>viz.highlight(indices, type)</code> — index highlights: compare, swap, found, visited, match, mismatch</li>
+            <li><code>viz.highlightRange(start, end, type)</code> — highlight a substring / subarray range</li>
+            <li><code>viz.setPointers({ left, right, i, j, ... })</code> — named pointer labels</li>
+            <li><code>viz.highlightNodes([nodeIds])</code> / <code>viz.highlightCells([[r,c],...])</code></li>
+            <li><code>viz.setVariables({ key: value })</code> — show in variables panel</li>
+            <li><code>log(...args)</code> — append to console output</li>
+          </ul>
+        </details>
+      </section>
+
+      <section class="panel side-panel">
+        <h2>Variables</h2>
+        <pre id="variables-panel" class="variables-panel">{}</pre>
+        <h2>Console</h2>
+        <pre id="console-panel" class="console-panel"></pre>
+        <div id="error-panel" class="error-panel hidden"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/renderers.js"></script>
+  <script src="js/examples.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
