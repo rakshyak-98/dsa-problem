@@ -7,6 +7,9 @@
   let engine = new VizEngine("array");
   let editor = null;
   let consoleLines = [];
+  let lastAnalysis = null;
+  let userPickedStructure = false;
+  let parseDebounce = null;
   const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
 
   const $ = (sel) => document.querySelector(sel);
@@ -18,6 +21,10 @@
   const errorPanel = $("#error-panel");
   const exampleSelect = $("#example-select");
   const playBtn = $("#btn-play");
+  const parserTypeEl = $("#parser-type");
+  const parserPatternsEl = $("#parser-patterns");
+  const parserInlineEl = $("#parser-inline");
+  const autoVizToggle = $("#auto-viz-toggle");
 
   function initEditor() {
     editor = CodeMirror.fromTextArea($("#code-editor"), {
@@ -27,6 +34,53 @@
       tabSize: 2,
       lineWrapping: true,
     });
+    editor.on("change", () => {
+      clearTimeout(parseDebounce);
+      parseDebounce = setTimeout(() => analyzeEditorCode(), 400);
+    });
+  }
+
+  function updateParserUI(analysis, instrumented) {
+    if (!analysis) return;
+    lastAnalysis = analysis;
+
+    const type = analysis.structureType || "array";
+    const pct = Math.round((analysis.confidence || 0) * 100);
+    parserTypeEl.textContent = `${type} (${pct}%)`;
+    parserPatternsEl.textContent = analysis.patterns?.length
+      ? analysis.patterns.filter((p) => p !== "manual-viz").join(" · ")
+      : "";
+
+    let inline = `Detected: <strong>${type}</strong>`;
+    if (analysis.hasManualViz) inline += " · manual viz";
+    else if (instrumented) inline += " · auto-instrumented";
+    else if (autoVizToggle.checked) inline += " · will auto-instrument on run";
+    parserInlineEl.innerHTML = inline;
+
+    if (!userPickedStructure && analysis.confidence >= 0.5 && type !== structureType) {
+      applyDetectedStructure(type, false);
+    }
+  }
+
+  function analyzeEditorCode() {
+    if (!editor || typeof CodeParser === "undefined") return;
+    const code = editor.getValue();
+    const analysis = CodeParser.analyze(code);
+    const prepared = CodeParser.prepare(code, { autoInstrument: false });
+    updateParserUI(analysis, prepared.instrumented);
+  }
+
+  function applyDetectedStructure(type, userInitiated) {
+    if (userInitiated) userPickedStructure = true;
+    structureType = type;
+    engine = new VizEngine(type);
+    engine.onStepChange = onStepChange;
+
+    document.querySelectorAll(".structure-tabs .tab-button").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.structure === type);
+    });
+
+    showInputSection();
   }
 
   function parseArrayInput() {
@@ -114,18 +168,13 @@
     else $("#graph-input").value = ex.input;
 
     editor.setValue(ex.code);
+    userPickedStructure = false;
+    setTimeout(analyzeEditorCode, 0);
   }
 
-  function setStructure(type) {
-    structureType = type;
-    engine = new VizEngine(type);
-    engine.onStepChange = onStepChange;
-
-    document.querySelectorAll(".structure-tabs .tab-button").forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.structure === type);
-    });
-
-    showInputSection();
+  function setStructure(type, userInitiated = true) {
+    if (userInitiated) userPickedStructure = true;
+    applyDetectedStructure(type, userInitiated);
     populateExamples();
     buildVisualization();
   }
@@ -191,28 +240,41 @@
     consolePanel.textContent = "";
     errorPanel.classList.add("hidden");
 
-    const data = getInputData();
-    const code = editor.getValue();
+    const rawCode = editor.getValue();
+    const autoInstrument = autoVizToggle.checked;
+    const prepared = CodeParser.prepare(rawCode, { autoInstrument });
+    const code = prepared.code;
+    const analysis = prepared.analysis;
+
+    if (prepared.instrumented) {
+      logToConsole("Auto-instrumented:", prepared.instrumentReason, `(${analysis.structureType}, ${analysis.patterns.join(", ")})`);
+    } else if (!analysis.hasManualViz && autoInstrument) {
+      logToConsole("Auto-viz:", prepared.instrumentReason || "using detected patterns");
+    }
+
+    updateParserUI(analysis, prepared.instrumented);
+
+    if (analysis.structureType && analysis.structureType !== structureType && analysis.confidence >= 0.5) {
+      applyDetectedStructure(analysis.structureType, false);
+    }
 
     engine.onStepChange = onStepChange;
     const viz = engine.createVizAPI();
-
-    const helpers = {
-      viz,
-      log: logToConsole,
-      buildTreeFromLevelOrder,
-      parseArrayInput,
-      parseTreeInput,
-      parseGraphInput,
+    const autoVizConfig = {
+      structureType: analysis.structureType || structureType,
+      primaryVar: analysis.primaryVar || "arr",
     };
+
+    const data = getInputData();
 
     try {
       const wrappedCode = `
+        const __autoViz = createAutoViz(viz, ${JSON.stringify(autoVizConfig)});
         ${code}
         return await run(viz, data);
       `;
       const fn = new AsyncFunction(
-        "viz", "data", "log", "buildTreeFromLevelOrder",
+        "viz", "data", "log", "createAutoViz", "buildTreeFromLevelOrder",
         "parseArrayInput", "parseStringInput", "parseTreeInput", "parseGraphInput",
         wrappedCode
       );
@@ -220,6 +282,7 @@
         viz,
         data,
         logToConsole,
+        createAutoViz,
         buildTreeFromLevelOrder,
         parseArrayInput,
         parseStringInput,
@@ -256,7 +319,7 @@
   }
 
   document.querySelectorAll(".structure-tabs .tab-button").forEach((btn) => {
-    btn.addEventListener("click", () => setStructure(btn.dataset.structure));
+    btn.addEventListener("click", () => setStructure(btn.dataset.structure, true));
   });
 
   document.querySelectorAll("#array-view-toggle .view-btn").forEach((btn) => {
@@ -325,5 +388,6 @@
   document.head.appendChild(style);
 
   initEditor();
-  setStructure("array");
+  setStructure("array", false);
+  analyzeEditorCode();
 })();

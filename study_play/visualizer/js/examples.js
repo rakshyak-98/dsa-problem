@@ -4,6 +4,22 @@
 const EXAMPLES = {
   array: [
     {
+      id: "bubble-auto",
+      name: "Bubble Sort (auto-detect)",
+      input: "5, 2, 8, 1, 9, 3",
+      code: `async function run(viz, data) {
+  const arr = [...data];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+    }
+  }
+  return arr;
+}`,
+    },
+    {
       id: "bubble-sort",
       name: "Bubble Sort",
       input: "5, 2, 8, 1, 9, 3",
@@ -150,6 +166,22 @@ const EXAMPLES = {
   ],
 
   string: [
+    {
+      id: "palindrome-auto",
+      name: "Palindrome (auto-detect)",
+      input: "racecar",
+      code: `async function run(viz, data) {
+  const s = String(data);
+  let left = 0;
+  let right = s.length - 1;
+  while (left < right) {
+    if (s[left] !== s[right]) return false;
+    left++;
+    right--;
+  }
+  return true;
+}`,
+    },
     {
       id: "palindrome",
       name: "Palindrome Check",

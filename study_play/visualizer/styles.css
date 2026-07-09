@@ -91,6 +91,59 @@ p {
   margin-bottom: 16px;
 }
 
+.parser-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.parser-label {
+  color: var(--muted);
+}
+
+.parser-badge {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: #dff7ff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.parser-patterns {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.auto-viz-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.code-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.parser-inline {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.parser-inline strong {
+  color: var(--accent);
+  text-transform: capitalize;
+}
+
 .structure-tabs {
   display: flex;
   gap: 8px;
