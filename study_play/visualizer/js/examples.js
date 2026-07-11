@@ -399,6 +399,47 @@ const EXAMPLES = {
 
   tree: [
     {
+      id: "inorder-auto",
+      name: "Inorder Traversal (auto-detect)",
+      input: "1, 2, 3, 4, 5, null, null",
+      code: `async function run(viz, data) {
+  const root = buildTreeFromLevelOrder(data);
+  const result = [];
+  const stack = [];
+  let current = root;
+
+  while (current || stack.length) {
+    while (current) {
+      stack.push(current);
+      current = current.left;
+    }
+    current = stack.pop();
+    result.push(current.val);
+    current = current.right;
+  }
+  return result;
+}`,
+    },
+    {
+      id: "max-depth-auto",
+      name: "Max Depth (auto-detect)",
+      input: "1, 2, 3, 4, 5, null, null",
+      code: `async function run(viz, data) {
+  const root = buildTreeFromLevelOrder(data);
+  let maxD = 0;
+  const stack = [[root, 0]];
+
+  while (stack.length) {
+    const [node, d] = stack.pop();
+    if (!node) continue;
+    maxD = Math.max(maxD, d);
+    if (node.left) stack.push([node.left, d + 1]);
+    if (node.right) stack.push([node.right, d + 1]);
+  }
+  return maxD;
+}`,
+    },
+    {
       id: "inorder",
       name: "Inorder Traversal (iterative)",
       input: "1, 2, 3, 4, 5, null, null",
@@ -517,6 +558,60 @@ const EXAMPLES = {
   ],
 
   graph: [
+    {
+      id: "bfs-auto",
+      name: "BFS Shortest Path (auto-detect)",
+      input: `0, 0, 0, 1
+0, 1, 0, 0
+0, 0, 0, 0
+1, 0, 0, 0`,
+      code: `async function run(viz, data) {
+  const grid = data.map((row) => row.map(Number));
+  const rows = grid.length;
+  const cols = grid[0].length;
+  const dirs = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+  const queue = [[0, 0, 1]];
+  const visited = new Set(["0,0"]);
+
+  while (queue.length) {
+    const [r, c, dist] = queue.shift();
+    if (r === rows - 1 && c === cols - 1) return dist;
+
+    for (const [dr, dc] of dirs) {
+      const nr = r + dr;
+      const nc = c + dc;
+      const key = nr + "," + nc;
+      if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && grid[nr][nc] === 0 && !visited.has(key)) {
+        visited.add(key);
+        queue.push([nr, nc, dist + 1]);
+      }
+    }
+  }
+  return -1;
+}`,
+    },
+    {
+      id: "flood-fill-auto",
+      name: "Flood Fill (auto-detect)",
+      input: `1, 1, 1
+1, 1, 0
+1, 0, 1`,
+      code: `async function run(viz, data) {
+  const image = data.map((row) => row.map(Number));
+  const sr = 1, sc = 1, newColor = 2;
+  const orig = image[sr][sc];
+  const stack = [[sr, sc]];
+
+  while (stack.length) {
+    const [r, c] = stack.pop();
+    if (r < 0 || c < 0 || r >= image.length || c >= image[0].length) continue;
+    if (image[r][c] !== orig) continue;
+    image[r][c] = newColor;
+    stack.push([r + 1, c], [r - 1, c], [r, c + 1], [r, c - 1]);
+  }
+  return image;
+}`,
+    },
     {
       id: "bfs-grid",
       name: "BFS Shortest Path",

@@ -256,6 +256,7 @@
 
     if (analysis.structureType && analysis.structureType !== structureType && analysis.confidence >= 0.5) {
       applyDetectedStructure(analysis.structureType, false);
+      buildVisualization();
     }
 
     engine.onStepChange = onStepChange;

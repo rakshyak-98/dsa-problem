@@ -1,4 +1,6 @@
 const STORAGE_KEY = "studyTrackerState.v1";
+const GEMINI_API_KEY_STORAGE = "studyTrackerGeminiApiKey.v1";
+const GEMINI_MODEL = "gemini-3.5-flash";
 const TOTAL_WEEKS = 12;
 const DAY_IN_MS = 24 * 60 * 60 * 1000;
 const FILE_HANDLE_DB_NAME = "studyTrackerFileHandles";
@@ -317,7 +319,16 @@ function init() {
     clearEntries: document.getElementById("clear-entries"),
     problemLogList: document.getElementById("problem-log-list"),
     statsCards: document.getElementById("stats-cards"),
-    statsMatrix: document.getElementById("stats-matrix")
+    statsMatrix: document.getElementById("stats-matrix"),
+    geminiApiKey: document.getElementById("gemini-api-key"),
+    analyzerQuestion: document.getElementById("analyzer-question"),
+    analyzerSolution: document.getElementById("analyzer-solution"),
+    generateTags: document.getElementById("generate-tags"),
+    analyzeSolution: document.getElementById("analyze-solution"),
+    tagStatus: document.getElementById("tag-status"),
+    generatedTags: document.getElementById("generated-tags"),
+    analysisStatus: document.getElementById("analysis-status"),
+    analysisMetrics: document.getElementById("analysis-metrics")
   };
 
   state.planStartDate = state.planStartDate || todayIso();
@@ -327,6 +338,7 @@ function init() {
   refs.sessionDate.value = state.activeSessionDate;
   refs.planStartDate.value = state.planStartDate;
   refs.problemDate.value = todayIso();
+  refs.geminiApiKey.value = loadGeminiApiKey();
 
   bindEvents();
   renderAll();
@@ -360,6 +372,15 @@ function bindEvents() {
 
   refs.syncMarkdown.addEventListener("click", syncMarkdownToFile);
   refs.clearEntries.addEventListener("click", clearEntries);
+
+  refs.geminiApiKey.addEventListener("change", () => {
+    saveGeminiApiKey(refs.geminiApiKey.value);
+  });
+  refs.geminiApiKey.addEventListener("blur", () => {
+    saveGeminiApiKey(refs.geminiApiKey.value);
+  });
+  refs.generateTags.addEventListener("click", handleGenerateTags);
+  refs.analyzeSolution.addEventListener("click", handleAnalyzeSolution);
 
   refs.problemLogList.addEventListener("click", (event) => {
     const deleteButton = event.target.closest("button[data-entry-id]");
@@ -987,7 +1008,10 @@ function todayIso() {
 }
 
 function setStatus(element, message, tone) {
-  element.textContent = message;
+  if (!element) {
+    return;
+  }
+  element.textContent = message || "";
   element.className = "status";
   if (tone) {
     element.classList.add(tone);
@@ -1128,4 +1152,403 @@ function getSyncErrorMessage(error) {
   }
 
   return "Sync failed.";
+}
+
+function loadGeminiApiKey() {
+  try {
+    return localStorage.getItem(GEMINI_API_KEY_STORAGE) || "";
+  } catch (error) {
+    return "";
+  }
+}
+
+function saveGeminiApiKey(value) {
+  const key = sanitizeText(value);
+  try {
+    if (key) {
+      localStorage.setItem(GEMINI_API_KEY_STORAGE, key);
+    } else {
+      localStorage.removeItem(GEMINI_API_KEY_STORAGE);
+    }
+  } catch (error) {
+    // Ignore storage failures; the in-memory input value still works for this session.
+  }
+  return key;
+}
+
+function getGeminiApiKey() {
+  const fromInput = sanitizeText(refs.geminiApiKey && refs.geminiApiKey.value);
+  if (fromInput) {
+    saveGeminiApiKey(fromInput);
+    return fromInput;
+  }
+  return loadGeminiApiKey();
+}
+
+function setButtonBusy(button, busy, busyLabel) {
+  if (!button) {
+    return;
+  }
+  if (busy) {
+    if (!button.dataset.idleLabel) {
+      button.dataset.idleLabel = button.textContent;
+    }
+    button.disabled = true;
+    button.textContent = busyLabel || "Working...";
+    return;
+  }
+  button.disabled = false;
+  button.textContent = button.dataset.idleLabel || button.textContent;
+}
+
+async function handleGenerateTags() {
+  const question = sanitizeText(refs.analyzerQuestion.value);
+  const apiKey = getGeminiApiKey();
+
+  if (!apiKey) {
+    setStatus(refs.tagStatus, "Add your Gemini API key first.", "warning");
+    refs.geminiApiKey.focus();
+    return;
+  }
+
+  if (!question) {
+    setStatus(refs.tagStatus, "Paste a question before generating tags.", "warning");
+    refs.analyzerQuestion.focus();
+    return;
+  }
+
+  setButtonBusy(refs.generateTags, true, "Generating...");
+  setStatus(refs.tagStatus, "Asking Gemini for related topics...", "");
+
+  try {
+    const topicCatalog = STUDY_PLAN_FORM_OPTIONS.topics
+      .filter((topic) => topic.value)
+      .map((topic) => topic.label)
+      .join(", ");
+
+    const prompt = [
+      "You are a DSA coach. Read the coding interview question and identify related topics and patterns.",
+      "Prefer tags from this study-plan catalog when they fit: " + topicCatalog + ".",
+      "You may also add precise pattern tags such as prefix sum, monotonic stack, BFS, DFS, union-find, etc.",
+      "Return ONLY valid JSON with this shape:",
+      '{"tags":["tag1","tag2"],"primaryTopic":"main topic","rationale":"one short sentence"}',
+      "Use 3 to 8 concise lowercase tags. No markdown fences.",
+      "",
+      "QUESTION:",
+      question
+    ].join("\n");
+
+    const data = await callGeminiJson(apiKey, prompt);
+    const tags = normalizeTagList(data.tags);
+
+    if (!tags.length) {
+      throw new Error("Gemini returned no usable tags.");
+    }
+
+    renderGeneratedTags(tags, data.primaryTopic, data.rationale);
+    setStatus(refs.tagStatus, "Tags generated.", "success");
+  } catch (error) {
+    setStatus(refs.tagStatus, getAnalyzerErrorMessage(error), "error");
+  } finally {
+    setButtonBusy(refs.generateTags, false);
+  }
+}
+
+async function handleAnalyzeSolution() {
+  const question = sanitizeText(refs.analyzerQuestion.value);
+  const solution = sanitizeText(refs.analyzerSolution.value);
+  const apiKey = getGeminiApiKey();
+
+  if (!apiKey) {
+    setStatus(refs.analysisStatus, "Add your Gemini API key first.", "warning");
+    refs.geminiApiKey.focus();
+    return;
+  }
+
+  if (!question) {
+    setStatus(refs.analysisStatus, "Paste the question above so complexity analysis has context.", "warning");
+    refs.analyzerQuestion.focus();
+    return;
+  }
+
+  if (!solution) {
+    setStatus(refs.analysisStatus, "Paste your solution before analyzing.", "warning");
+    refs.analyzerSolution.focus();
+    return;
+  }
+
+  setButtonBusy(refs.analyzeSolution, true, "Analyzing...");
+  setStatus(refs.analysisStatus, "Asking Gemini to review your solution...", "");
+
+  try {
+    const prompt = [
+      "You are a strict but helpful DSA interviewer reviewing a candidate solution.",
+      "Use the question and the candidate solution below.",
+      "Find what is wrong or incomplete in the answer (logic bugs, missing edge cases, incorrect approach, unclear reasoning, wrong complexity claims, etc.).",
+      "If the solution looks correct, say so clearly and still note any weak spots or missing proofs.",
+      "Estimate the time and space complexity of THIS submitted solution.",
+      "Also list ALL realistic time complexities with which this problem can be solved,",
+      "from brute force through better approaches to the best known practical interview target.",
+      "Do NOT only return the optimal complexity. Include multiple achievable complexities with a short approach label for each.",
+      "Mark which listed complexity is optimal and which one matches the submitted solution when possible.",
+      "Return ONLY valid JSON with this exact shape:",
+      "{",
+      '  "verdict":"correct|partially_correct|incorrect",',
+      '  "whatIsWrong":["issue 1","issue 2"],',
+      '  "whatIsCorrect":["strength 1"],',
+      '  "submittedTimeComplexity":"O(...)",',
+      '  "submittedSpaceComplexity":"O(...)",',
+      '  "possibleTimeComplexities":[',
+      '    {"complexity":"O(n^2)","approach":"brute force","isOptimal":false,"matchesSubmitted":true},',
+      '    {"complexity":"O(n)","approach":"hash map","isOptimal":true,"matchesSubmitted":false}',
+      "  ],",
+      '  "targetComplexitiesNote":"short note about which complexities are acceptable interview targets",',
+      '  "fixSuggestions":["suggestion 1"]',
+      "}",
+      "No markdown fences. Keep lists concise.",
+      "",
+      "QUESTION:",
+      question,
+      "",
+      "CANDIDATE SOLUTION:",
+      solution
+    ].join("\n");
+
+    const data = await callGeminiJson(apiKey, prompt);
+    renderAnalysisMetrics(data);
+    setStatus(refs.analysisStatus, "Analysis complete.", "success");
+  } catch (error) {
+    setStatus(refs.analysisStatus, getAnalyzerErrorMessage(error), "error");
+  } finally {
+    setButtonBusy(refs.analyzeSolution, false);
+  }
+}
+
+async function callGeminiJson(apiKey, prompt) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: prompt }]
+        }
+      ],
+      generationConfig: {
+        temperature: 0.2,
+        responseMimeType: "application/json"
+      }
+    })
+  });
+
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    const apiMessage = payload && payload.error && payload.error.message
+      ? payload.error.message
+      : `Gemini request failed (${response.status}).`;
+    throw new Error(apiMessage);
+  }
+
+  const text = extractGeminiText(payload);
+  return parseGeminiJson(text);
+}
+
+function extractGeminiText(payload) {
+  const parts = payload
+    && payload.candidates
+    && payload.candidates[0]
+    && payload.candidates[0].content
+    && payload.candidates[0].content.parts;
+
+  if (!Array.isArray(parts) || !parts.length) {
+    const blockReason = payload
+      && payload.promptFeedback
+      && payload.promptFeedback.blockReason;
+    throw new Error(blockReason ? `Gemini blocked the request: ${blockReason}` : "Gemini returned an empty response.");
+  }
+
+  return parts.map((part) => part.text || "").join("\n").trim();
+}
+
+function parseGeminiJson(text) {
+  const cleaned = String(text || "")
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/\s*```$/i, "")
+    .trim();
+
+  try {
+    return JSON.parse(cleaned);
+  } catch (error) {
+    const start = cleaned.indexOf("{");
+    const end = cleaned.lastIndexOf("}");
+    if (start >= 0 && end > start) {
+      return JSON.parse(cleaned.slice(start, end + 1));
+    }
+    throw new Error("Could not parse Gemini JSON response.");
+  }
+}
+
+function normalizeTagList(tags) {
+  if (!Array.isArray(tags)) {
+    return [];
+  }
+
+  const seen = new Set();
+  const result = [];
+
+  tags.forEach((tag) => {
+    const normalized = sanitizeText(tag).toLowerCase();
+    if (!normalized || seen.has(normalized)) {
+      return;
+    }
+    seen.add(normalized);
+    result.push(normalized);
+  });
+
+  return result;
+}
+
+function renderGeneratedTags(tags, primaryTopic, rationale) {
+  refs.generatedTags.classList.remove("empty-hint");
+  refs.generatedTags.innerHTML = "";
+
+  tags.forEach((tag) => {
+    const span = document.createElement("span");
+    span.className = "tag";
+    span.textContent = tag;
+    refs.generatedTags.appendChild(span);
+  });
+
+  if (sanitizeText(primaryTopic)) {
+    const primary = document.createElement("span");
+    primary.className = "tag";
+    primary.style.borderColor = "rgba(34, 197, 94, 0.45)";
+    primary.style.background = "rgba(34, 197, 94, 0.12)";
+    primary.style.color = "#bbf7d0";
+    primary.textContent = `primary: ${sanitizeText(primaryTopic)}`;
+    refs.generatedTags.prepend(primary);
+  }
+
+  if (sanitizeText(rationale)) {
+    const note = document.createElement("div");
+    note.className = "muted";
+    note.style.flexBasis = "100%";
+    note.style.marginTop = "4px";
+    note.textContent = sanitizeText(rationale);
+    refs.generatedTags.appendChild(note);
+  }
+}
+
+function renderAnalysisMetrics(data) {
+  const tbody = refs.analysisMetrics.querySelector("tbody") || refs.analysisMetrics;
+  tbody.innerHTML = "";
+
+  const verdict = sanitizeText(data.verdict) || "unknown";
+  const wrongItems = toStringList(data.whatIsWrong);
+  const correctItems = toStringList(data.whatIsCorrect);
+  const suggestions = toStringList(data.fixSuggestions);
+  const complexities = Array.isArray(data.possibleTimeComplexities) ? data.possibleTimeComplexities : [];
+
+  appendMetricRow(tbody, "Verdict", formatVerdict(verdict));
+  appendMetricRow(tbody, "What is wrong", renderBulletList(wrongItems.length ? wrongItems : ["Nothing major flagged."]));
+  appendMetricRow(tbody, "What looks correct", renderBulletList(correctItems.length ? correctItems : ["No strengths listed."]));
+  appendMetricRow(
+    tbody,
+    "Your solution complexity",
+    escapeHtml(`Time ${sanitizeText(data.submittedTimeComplexity) || "n/a"} · Space ${sanitizeText(data.submittedSpaceComplexity) || "n/a"}`)
+  );
+  appendMetricRow(tbody, "All possible time complexities", renderComplexityList(complexities));
+  appendMetricRow(
+    tbody,
+    "Target note",
+    escapeHtml(sanitizeText(data.targetComplexitiesNote) || "Aim for the best complexity you can explain cleanly in an interview.")
+  );
+  appendMetricRow(tbody, "Fix suggestions", renderBulletList(suggestions.length ? suggestions : ["No extra suggestions."]));
+}
+
+function appendMetricRow(tbody, label, valueHtml) {
+  const row = document.createElement("tr");
+  const th = document.createElement("th");
+  const td = document.createElement("td");
+  th.scope = "row";
+  th.textContent = label;
+  td.innerHTML = valueHtml;
+  row.appendChild(th);
+  row.appendChild(td);
+  tbody.appendChild(row);
+}
+
+function renderBulletList(items) {
+  return `<ul class="metrics-list">${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+}
+
+function renderComplexityList(items) {
+  if (!items.length) {
+    return `<span class="muted">No complexity options returned.</span>`;
+  }
+
+  return items.map((item) => {
+    const complexity = sanitizeText(item && item.complexity) || "O(?)";
+    const approach = sanitizeText(item && item.approach);
+    const classes = ["complexity-chip"];
+    if (item && item.isOptimal) {
+      classes.push("optimal");
+    }
+    if (item && item.matchesSubmitted) {
+      classes.push("yours");
+    }
+    const badges = [];
+    if (item && item.isOptimal) {
+      badges.push("optimal");
+    }
+    if (item && item.matchesSubmitted) {
+      badges.push("yours");
+    }
+    const badgeText = badges.length ? ` [${badges.join(", ")}]` : "";
+    const label = approach ? `${complexity} — ${approach}${badgeText}` : `${complexity}${badgeText}`;
+    return `<span class="${classes.join(" ")}">${escapeHtml(label)}</span>`;
+  }).join("");
+}
+
+function formatVerdict(verdict) {
+  const normalized = String(verdict || "").toLowerCase().replace(/\s+/g, "_");
+  const labels = {
+    correct: "Correct",
+    partially_correct: "Partially correct",
+    incorrect: "Incorrect",
+    unknown: "Unknown"
+  };
+  return escapeHtml(labels[normalized] || sanitizeText(verdict) || "Unknown");
+}
+
+function toStringList(value) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  return value.map((item) => sanitizeText(item)).filter(Boolean);
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function getAnalyzerErrorMessage(error) {
+  if (!error) {
+    return "Analyzer request failed.";
+  }
+  if (typeof error.message === "string" && error.message.trim()) {
+    return error.message;
+  }
+  return "Analyzer request failed.";
 }

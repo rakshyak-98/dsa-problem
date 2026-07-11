@@ -412,6 +412,83 @@
       color: #fcd34d;
     }
 
+    .status.error {
+      color: #fecaca;
+    }
+
+    .analyzer-section + .analyzer-section {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(51, 65, 85, 0.6);
+    }
+
+    .analyzer-section h3 {
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+
+    .tag-row.empty-hint {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .metrics-table {
+      text-align: left;
+    }
+
+    .metrics-table th,
+    .metrics-table td {
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .metrics-table th {
+      width: 28%;
+      white-space: nowrap;
+    }
+
+    .metrics-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .metrics-list li + li {
+      margin-top: 6px;
+    }
+
+    .complexity-chip {
+      display: inline-block;
+      margin: 2px 6px 2px 0;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: rgba(56, 189, 248, 0.12);
+      color: #dff7ff;
+    }
+
+    .complexity-chip.optimal {
+      border-color: rgba(34, 197, 94, 0.45);
+      background: rgba(34, 197, 94, 0.12);
+      color: #bbf7d0;
+    }
+
+    .complexity-chip.yours {
+      border-color: rgba(245, 158, 11, 0.45);
+      background: rgba(245, 158, 11, 0.12);
+      color: #fde68a;
+    }
+
+    .button-row button {
+      width: auto;
+      min-width: 160px;
+    }
+
+    .api-key-field input {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+    }
+
     @media (max-width: 900px) {
       .grid.two-col {
         grid-template-columns: 1fr;
@@ -434,6 +511,7 @@
       <button class="tab-button active" type="button" data-tab="daily">Daily Practice</button>
       <button class="tab-button" type="button" data-tab="problems">Problem Log</button>
       <button class="tab-button" type="button" data-tab="stats">Weekly Stats</button>
+      <button class="tab-button" type="button" data-tab="analyzer">AI Analyzer</button>
     </div>
 
     <section id="daily" class="tab-panel active">
@@ -570,6 +648,61 @@
         </div>
         <div class="table-wrap">
           <table id="stats-matrix"></table>
+        </div>
+      </div>
+    </section>
+
+    <section id="analyzer" class="tab-panel">
+      <div class="panel">
+        <div class="summary">
+          <div>
+            <strong>AI Analyzer</strong>
+            <div class="muted">Paste a problem to extract topic tags, then paste your solution for a correctness and complexity review powered by Gemini.</div>
+          </div>
+        </div>
+
+        <div class="analyzer-section api-key-field">
+          <div class="field">
+            <label for="gemini-api-key">Gemini API key</label>
+            <input id="gemini-api-key" type="password" autocomplete="off" placeholder="Paste your Google AI Studio API key">
+            <p class="form-note">Stored only in this browser. Get a key from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer">Google AI Studio</a>.</p>
+          </div>
+        </div>
+
+        <div class="analyzer-section">
+          <h3>1. Question → topic tags</h3>
+          <p class="muted" style="margin-top: 0;">Paste the full problem statement. Gemini will suggest related DSA topics and patterns.</p>
+          <div class="field">
+            <label for="analyzer-question">Question</label>
+            <textarea id="analyzer-question" placeholder="Paste the LeetCode / interview question here..."></textarea>
+          </div>
+          <div class="button-row">
+            <button id="generate-tags" class="primary" type="button">Generate tags</button>
+          </div>
+          <div id="tag-status" class="status"></div>
+          <div id="generated-tags" class="tag-row empty-hint">Tags will appear here.</div>
+        </div>
+
+        <div class="analyzer-section">
+          <h3>2. Solution → metrics</h3>
+          <p class="muted" style="margin-top: 0;">Paste your answer. Gemini will flag what is wrong and list every realistic time complexity for this problem (not only the optimal one).</p>
+          <div class="field">
+            <label for="analyzer-solution">Your solution</label>
+            <textarea id="analyzer-solution" placeholder="Paste your code or written approach here..."></textarea>
+          </div>
+          <div class="button-row">
+            <button id="analyze-solution" class="primary" type="button">Analyze solution</button>
+          </div>
+          <div id="analysis-status" class="status"></div>
+          <div class="table-wrap" style="margin-top: 12px;">
+            <table id="analysis-metrics" class="metrics-table">
+              <tbody>
+                <tr>
+                  <td colspan="2" class="muted">Run an analysis to fill this metrics table.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>

@@ -15,7 +15,7 @@
         <div>
           <h1>DSA Visualizer</h1>
           <p>
-            Write plain algorithm code — a parser auto-detects array, string, tree, or graph patterns and injects visualization calls.
+            Write plain algorithm code — the parser auto-detects array, string, tree, or graph and triggers visualization automatically. No <code>viz.step()</code> calls needed.
             Manual <code>await viz.step()</code> still works when you want full control.
           </p>
         </div>
@@ -117,7 +117,7 @@
         <textarea id="code-editor"></textarea>
         <details class="api-help">
           <summary>Viz API reference</summary>
-          <p class="hint">With <strong>Auto-visualize</strong> on, write plain loops/comparisons — the parser injects <code>__autoViz.trace()</code> calls automatically.</p>
+          <p class="hint">With <strong>Auto-visualize</strong> on, write plain loops/comparisons for any structure — visualization triggers automatically on Run.</p>
           <ul>
             <li><code>await viz.step({ message, line, highlights, pointers, variables })</code> — record &amp; pause</li>
             <li><code>viz.setArray(arr)</code> / <code>viz.setString(s)</code> / <code>viz.setGraph(grid)</code> / <code>viz.setTree(root)</code></li>
