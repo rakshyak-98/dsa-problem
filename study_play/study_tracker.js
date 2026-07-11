@@ -8,13 +8,11 @@ const FILE_HANDLE_STORE = "handles";
 const SOLVED_PROBLEMS_HANDLE_KEY = "solvedProblemsMd";
 
 const DAILY_SESSION_ITEMS = [
-  { id: "trigger-scan", label: "Review the pattern triggers before you start coding" },
-  { id: "restate", label: "Write down the input, output, constraints, and edge cases" },
-  { id: "bruteforce", label: "Start with the brute-force idea before optimizing" },
-  { id: "pattern-scan", label: "Choose the most likely pattern before writing code" },
-  { id: "trace", label: "Trace one small example by hand" },
-  { id: "tests", label: "Run tests or sample checks after coding" },
-  { id: "postmortem", label: "Write a short lesson learned and a revisit date" }
+  { id: "warmup", label: "Warm-up (easy problem, 10 min)" },
+  { id: "solve", label: "Solve today's target problem" },
+  { id: "review", label: "Review mistakes from last session" },
+  { id: "lesson", label: "Log one lesson learned" },
+  { id: "patterns", label: "Revisit a pattern you struggle with" }
 ];
 
 const TOPIC_ORDER = [
@@ -303,6 +301,9 @@ function init() {
     planStartDate: document.getElementById("plan-start-date"),
     dailySessionSummary: document.getElementById("daily-session-summary"),
     dailySessionChecklist: document.getElementById("daily-session-checklist"),
+    dailyWeekEyebrow: document.getElementById("daily-week-eyebrow"),
+    sessionProgressCount: document.getElementById("session-progress-count"),
+    sessionProgressFill: document.getElementById("session-progress-fill"),
     roadmapSummary: document.getElementById("roadmap-summary"),
     weeklyRoadmap: document.getElementById("weekly-roadmap"),
     problemDate: document.getElementById("problem-date"),
@@ -318,6 +319,7 @@ function init() {
     syncMarkdown: document.getElementById("sync-markdown"),
     clearEntries: document.getElementById("clear-entries"),
     problemLogList: document.getElementById("problem-log-list"),
+    logCount: document.getElementById("log-count"),
     statsCards: document.getElementById("stats-cards"),
     statsMatrix: document.getElementById("stats-matrix"),
     geminiApiKey: document.getElementById("gemini-api-key"),
@@ -446,6 +448,7 @@ function renderDailySession() {
   const sessionDate = state.activeSessionDate || todayIso();
   const sessionChecks = state.dailySessions?.[sessionDate] || {};
   const completedCount = DAILY_SESSION_ITEMS.filter((item) => sessionChecks[item.id]).length;
+  const totalCount = DAILY_SESSION_ITEMS.length;
 
   refs.dailySessionChecklist.innerHTML = "";
   DAILY_SESSION_ITEMS.forEach((item) => {
@@ -466,10 +469,22 @@ function renderDailySession() {
   });
 
   const currentWeek = getStudyWeekForDate(todayIso());
+  if (refs.dailyWeekEyebrow) {
+    refs.dailyWeekEyebrow.textContent = currentWeek
+      ? `Week ${currentWeek} of 12`
+      : "Week — of 12";
+  }
+  if (refs.sessionProgressCount) {
+    refs.sessionProgressCount.textContent = `${completedCount}/${totalCount}`;
+  }
+  if (refs.sessionProgressFill) {
+    refs.sessionProgressFill.style.width = `${totalCount ? (completedCount / totalCount) * 100 : 0}%`;
+  }
+
   const currentWeekLabel = currentWeek ? `You are currently in Week ${currentWeek} of the roadmap.` : "Your 12-week roadmap has not started yet.";
   setStatus(
     refs.dailySessionSummary,
-    `You completed ${completedCount} of ${DAILY_SESSION_ITEMS.length} checklist steps for ${sessionDate}. ${currentWeekLabel}`
+    `You completed ${completedCount} of ${totalCount} checklist steps for ${sessionDate}. ${currentWeekLabel}`
   );
 }
 
@@ -482,19 +497,9 @@ function renderRoadmap() {
 
   ROADMAP_WEEKS.forEach((week) => {
     const details = document.createElement("details");
+    const isCurrent = week.weekNumber === currentWeek;
     details.className = "week-card";
-    details.open = week.weekNumber === currentWeek || week.weekNumber === 1;
-
-    const summary = document.createElement("summary");
-
-    const titleWrap = document.createElement("div");
-    const title = document.createElement("span");
-    title.textContent = `Week ${week.weekNumber}: ${week.title}`;
-    const meta = document.createElement("div");
-    meta.className = "week-meta";
-    meta.textContent = `${week.phase} study block`;
-    titleWrap.appendChild(title);
-    titleWrap.appendChild(meta);
+    details.open = isCurrent || week.weekNumber === 1;
 
     const itemCount = week.tasks.length + week.goals.length;
     const weekCompleted = [...week.tasks, ...week.goals].filter((_, index) => {
@@ -502,16 +507,70 @@ function renderRoadmap() {
       return Boolean(state.roadmapChecks[id]);
     }).length;
 
+    if (isCurrent) {
+      details.classList.add("current");
+    }
+    if (itemCount > 0 && weekCompleted === itemCount) {
+      details.classList.add("is-done");
+    }
+
     totalItems += itemCount;
     completedItems += weekCompleted;
 
-    const progress = document.createElement("span");
-    progress.className = "week-meta";
-    progress.textContent = `${weekCompleted}/${itemCount} completed`;
+    const summary = document.createElement("summary");
 
+    const badge = document.createElement("span");
+    badge.className = "week-badge";
+    badge.textContent = `W${week.weekNumber}`;
+
+    const titleWrap = document.createElement("div");
+    titleWrap.className = "week-title-wrap";
+
+    const titleRow = document.createElement("div");
+    titleRow.className = "week-title-row";
+
+    const title = document.createElement("span");
+    title.className = "week-title";
+    title.textContent = week.title;
+    titleRow.appendChild(title);
+
+    if (isCurrent) {
+      const currentLabel = document.createElement("span");
+      currentLabel.className = "week-current-label";
+      currentLabel.textContent = "current";
+      titleRow.appendChild(currentLabel);
+    }
+
+    const meta = document.createElement("div");
+    meta.className = "week-meta";
+    meta.textContent = `${week.phase} study block`;
+
+    titleWrap.appendChild(titleRow);
+    titleWrap.appendChild(meta);
+
+    const progress = document.createElement("span");
+    progress.className = "week-progress";
+    progress.textContent = `${weekCompleted}/${itemCount}`;
+
+    const chevron = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    chevron.setAttribute("class", "week-chevron");
+    chevron.setAttribute("viewBox", "0 0 24 24");
+    chevron.setAttribute("fill", "none");
+    chevron.setAttribute("stroke", "currentColor");
+    chevron.setAttribute("stroke-width", "2");
+    chevron.setAttribute("aria-hidden", "true");
+    const chevronPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    chevronPath.setAttribute("d", "M6 9l6 6 6-6");
+    chevron.appendChild(chevronPath);
+
+    summary.appendChild(badge);
     summary.appendChild(titleWrap);
     summary.appendChild(progress);
+    summary.appendChild(chevron);
     details.appendChild(summary);
+
+    const body = document.createElement("div");
+    body.className = "week-body";
 
     const tasksBlock = document.createElement("div");
     tasksBlock.className = "week-block";
@@ -534,7 +593,7 @@ function renderRoadmap() {
       );
     });
 
-    details.appendChild(tasksBlock);
+    body.appendChild(tasksBlock);
 
     if (week.goals.length > 0) {
       const goalsBlock = document.createElement("div");
@@ -558,9 +617,10 @@ function renderRoadmap() {
         );
       });
 
-      details.appendChild(goalsBlock);
+      body.appendChild(goalsBlock);
     }
 
+    details.appendChild(body);
     refs.weeklyRoadmap.appendChild(details);
   });
 
@@ -571,10 +631,14 @@ function renderRoadmap() {
 function renderProblemLog() {
   refs.problemLogList.innerHTML = "";
 
+  if (refs.logCount) {
+    refs.logCount.textContent = String(state.problemEntries.length);
+  }
+
   if (state.problemEntries.length === 0) {
     const emptyState = document.createElement("div");
-    emptyState.className = "muted";
-    emptyState.textContent = "No problems logged yet.";
+    emptyState.className = "empty-card";
+    emptyState.textContent = "No problems logged yet. Add one from the form.";
     refs.problemLogList.appendChild(emptyState);
     return;
   }
@@ -585,17 +649,41 @@ function renderProblemLog() {
 }
 
 function renderStats() {
+  const today = todayIso();
+  const now = new Date(`${today}T00:00:00`).getTime();
+  const weekAgo = now - 7 * DAY_IN_MS;
   const solvedEntries = state.problemEntries.filter((entry) => entry.status === "solved");
-  const currentWeek = getStudyWeekForDate(todayIso());
-  const currentWeekSolved = solvedEntries.filter((entry) => getStudyWeekForDate(entry.date) === currentWeek).length;
+  const thisWeek = state.problemEntries.filter((entry) => {
+    return new Date(`${entry.date}T00:00:00`).getTime() >= weekAgo;
+  });
   const uniqueTopics = new Set(state.problemEntries.map((entry) => normalizeTopic(entry.topic)));
+  const revisitDue = state.problemEntries.filter((entry) => entry.revisitDate && entry.revisitDate <= today);
 
   const cards = [
-    { label: "Total entries", value: String(state.problemEntries.length) },
-    { label: "Solved entries", value: String(solvedEntries.length) },
-    { label: "Topics tracked", value: String(uniqueTopics.size) },
-    { label: "Current week", value: currentWeek ? `Week ${currentWeek}` : "Not started" },
-    { label: "Solved this week", value: String(currentWeekSolved) }
+    {
+      label: "Total solved",
+      value: String(solvedEntries.length),
+      tone: "success",
+      icon: '<path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'
+    },
+    {
+      label: "This week",
+      value: String(thisWeek.length),
+      tone: "primary",
+      icon: '<path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1.5-3-1-1.12-1-2.62 0-3.75a2.5 2.5 0 014.5 1.5c0 1.5-1 2.5-2 3.5s-1.5 2-1.5 3.5"/><path d="M12 18v.01"/>'
+    },
+    {
+      label: "Topics covered",
+      value: String(uniqueTopics.size),
+      tone: "warning",
+      icon: '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>'
+    },
+    {
+      label: "Revisit due",
+      value: String(revisitDue.length),
+      tone: "danger",
+      icon: '<polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>'
+    }
   ];
 
   refs.statsCards.innerHTML = "";
@@ -603,6 +691,11 @@ function renderStats() {
     const element = document.createElement("div");
     element.className = "stat-card";
 
+    const iconWrap = document.createElement("div");
+    iconWrap.className = `stat-icon ${card.tone}`;
+    iconWrap.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${card.icon}</svg>`;
+
+    const textWrap = document.createElement("div");
     const label = document.createElement("div");
     label.className = "stat-label";
     label.textContent = card.label;
@@ -611,17 +704,20 @@ function renderStats() {
     value.className = "stat-value";
     value.textContent = card.value;
 
-    element.appendChild(label);
-    element.appendChild(value);
+    textWrap.appendChild(label);
+    textWrap.appendChild(value);
+    element.appendChild(iconWrap);
+    element.appendChild(textWrap);
     refs.statsCards.appendChild(element);
   });
 
-  renderStatsMatrix(solvedEntries);
+  renderStatsMatrix(state.problemEntries);
 }
 
-function renderStatsMatrix(solvedEntries) {
-  const topics = getOrderedTopics(solvedEntries);
+function renderStatsMatrix(entries) {
+  const topics = getMatrixTopics(entries);
   refs.statsMatrix.innerHTML = "";
+  refs.statsMatrix.className = "heat-matrix";
 
   const headRow = document.createElement("tr");
   const topicHeader = document.createElement("th");
@@ -633,52 +729,59 @@ function renderStatsMatrix(solvedEntries) {
     header.textContent = `W${week}`;
     headRow.appendChild(header);
   }
-
-  const totalHeader = document.createElement("th");
-  totalHeader.textContent = "Total";
-  headRow.appendChild(totalHeader);
   refs.statsMatrix.appendChild(headRow);
-
-  if (topics.length === 0) {
-    const emptyRow = document.createElement("tr");
-    const emptyCell = document.createElement("td");
-    emptyCell.colSpan = TOTAL_WEEKS + 2;
-    emptyCell.textContent = "No solved problems yet. Add entries in the Problem Log tab.";
-    emptyRow.appendChild(emptyCell);
-    refs.statsMatrix.appendChild(emptyRow);
-    return;
-  }
 
   topics.forEach((topic) => {
     const row = document.createElement("tr");
     const topicCell = document.createElement("td");
-    topicCell.textContent = topic;
+    topicCell.textContent = formatTopicLabel(topic);
     row.appendChild(topicCell);
 
-    let total = 0;
-
     for (let week = 1; week <= TOTAL_WEEKS; week += 1) {
-      const count = solvedEntries.filter((entry) => {
+      const count = entries.filter((entry) => {
         return normalizeTopic(entry.topic) === topic && getStudyWeekForDate(entry.date) === week;
       }).length;
-      total += count;
 
       const cell = document.createElement("td");
-      cell.textContent = count ? String(count) : "-";
+      const heat = document.createElement("div");
+      heat.className = "heat-cell";
+      if (count === 1) {
+        heat.classList.add("c1");
+      } else if (count > 1 && count <= 3) {
+        heat.classList.add("c2");
+      } else if (count > 3) {
+        heat.classList.add("c3");
+      }
+      heat.textContent = count ? String(count) : "·";
+      cell.appendChild(heat);
       row.appendChild(cell);
     }
-
-    const totalCell = document.createElement("td");
-    totalCell.textContent = String(total);
-    row.appendChild(totalCell);
 
     refs.statsMatrix.appendChild(row);
   });
 }
 
+function getMatrixTopics(entries) {
+  const topics = new Set(TOPIC_ORDER);
+  entries.forEach((entry) => topics.add(normalizeTopic(entry.topic)));
+  return getOrderedTopics([...topics].map((topic) => ({ topic })));
+}
+
+function formatTopicLabel(topic) {
+  const match = STUDY_PLAN_FORM_OPTIONS.topics.find((item) => item.value === topic);
+  if (match && match.label) {
+    return match.label;
+  }
+  return String(topic || "")
+    .split("_")
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
 function buildCheckboxItem({ checked, label, onChange }) {
   const wrapper = document.createElement("label");
-  wrapper.className = "check-item";
+  wrapper.className = checked ? "check-item is-checked" : "check-item";
 
   const input = document.createElement("input");
   input.type = "checkbox";
@@ -698,58 +801,100 @@ function buildLogEntry(entry) {
   const card = document.createElement("article");
   card.className = "log-entry";
 
-  const header = document.createElement("div");
-  header.className = "summary";
+  const top = document.createElement("div");
+  top.className = "log-entry-top";
 
   const titleWrap = document.createElement("div");
+  titleWrap.style.minWidth = "0";
+  titleWrap.style.flex = "1";
+
+  const titleRow = document.createElement("div");
+  titleRow.className = "log-entry-title";
+
   const title = document.createElement("h4");
-  title.textContent = `${entry.date} - ${entry.problemName}`;
-  titleWrap.appendChild(title);
+  title.textContent = entry.problemName;
+  titleRow.appendChild(title);
 
   if (entry.problemLink) {
     const link = document.createElement("a");
+    link.className = "ext-link";
     link.href = entry.problemLink;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-    link.textContent = entry.problemLink;
-    titleWrap.appendChild(link);
+    link.setAttribute("aria-label", "Open problem");
+    link.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+    titleRow.appendChild(link);
   }
+
+  const date = document.createElement("div");
+  date.className = "log-date";
+  date.textContent = entry.date;
+
+  titleWrap.appendChild(titleRow);
+  titleWrap.appendChild(date);
 
   const deleteButton = document.createElement("button");
   deleteButton.type = "button";
-  deleteButton.className = "danger";
+  deleteButton.className = "icon-btn";
   deleteButton.dataset.entryId = entry.id;
-  deleteButton.textContent = "Delete";
+  deleteButton.setAttribute("aria-label", "Delete");
+  deleteButton.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>';
 
-  header.appendChild(titleWrap);
-  header.appendChild(deleteButton);
+  top.appendChild(titleWrap);
+  top.appendChild(deleteButton);
 
   const tags = document.createElement("div");
   tags.className = "tag-row";
-  [
-    entry.topic,
-    entry.difficulty,
-    entry.status,
-    entry.pattern || "pattern not set",
-    entry.mistakeType
-  ].forEach((value) => {
-    const tag = document.createElement("span");
-    tag.className = "tag";
-    tag.textContent = value;
-    tags.appendChild(tag);
-  });
 
-  const lesson = document.createElement("p");
-  lesson.textContent = entry.lesson || "No lesson recorded yet.";
+  const difficulty = document.createElement("span");
+  difficulty.className = `tag diff-${String(entry.difficulty || "").toLowerCase()}`;
+  difficulty.textContent = entry.difficulty || "n/a";
+  tags.appendChild(difficulty);
 
-  const revisit = document.createElement("div");
-  revisit.className = "muted";
-  revisit.textContent = entry.revisitDate ? `Revisit: ${entry.revisitDate}` : "Revisit date not set";
+  const status = document.createElement("span");
+  status.className = `tag status-${String(entry.status || "").toLowerCase()}`;
+  status.textContent = entry.status || "n/a";
+  tags.appendChild(status);
 
-  card.appendChild(header);
+  const topic = document.createElement("span");
+  topic.className = "tag";
+  topic.textContent = formatTopicLabel(entry.topic);
+  tags.appendChild(topic);
+
+  card.appendChild(top);
   card.appendChild(tags);
-  card.appendChild(lesson);
-  card.appendChild(revisit);
+
+  if (entry.pattern || entry.mistakeType || entry.revisitDate) {
+    const meta = document.createElement("div");
+    meta.className = "log-meta";
+
+    if (entry.pattern) {
+      const pattern = document.createElement("p");
+      pattern.innerHTML = `<span class="label">Pattern: </span>${escapeHtml(entry.pattern)}`;
+      meta.appendChild(pattern);
+    }
+
+    if (entry.mistakeType && entry.mistakeType !== "none") {
+      const mistake = document.createElement("p");
+      mistake.innerHTML = `<span class="label">Mistake: </span>${escapeHtml(entry.mistakeType)}`;
+      meta.appendChild(mistake);
+    }
+
+    if (entry.revisitDate) {
+      const revisit = document.createElement("p");
+      revisit.innerHTML = `<span class="label">Revisit: </span><span class="log-date" style="display:inline">${escapeHtml(entry.revisitDate)}</span>`;
+      meta.appendChild(revisit);
+    }
+
+    card.appendChild(meta);
+  }
+
+  if (entry.lesson) {
+    const lesson = document.createElement("p");
+    lesson.className = "log-lesson";
+    lesson.textContent = `"${entry.lesson}"`;
+    card.appendChild(lesson);
+  }
 
   return card;
 }
@@ -1416,23 +1561,27 @@ function normalizeTagList(tags) {
 
 function renderGeneratedTags(tags, primaryTopic, rationale) {
   refs.generatedTags.classList.remove("empty-hint");
+  refs.generatedTags.style.display = "flex";
   refs.generatedTags.innerHTML = "";
+
+  const hint = document.createElement("p");
+  hint.className = "hint";
+  hint.style.flexBasis = "100%";
+  hint.textContent = "Suggested topics";
+  refs.generatedTags.appendChild(hint);
 
   tags.forEach((tag) => {
     const span = document.createElement("span");
-    span.className = "tag";
+    span.className = "tag accent";
     span.textContent = tag;
     refs.generatedTags.appendChild(span);
   });
 
   if (sanitizeText(primaryTopic)) {
     const primary = document.createElement("span");
-    primary.className = "tag";
-    primary.style.borderColor = "rgba(34, 197, 94, 0.45)";
-    primary.style.background = "rgba(34, 197, 94, 0.12)";
-    primary.style.color = "#bbf7d0";
+    primary.className = "tag diff-easy";
     primary.textContent = `primary: ${sanitizeText(primaryTopic)}`;
-    refs.generatedTags.prepend(primary);
+    refs.generatedTags.appendChild(primary);
   }
 
   if (sanitizeText(rationale)) {
