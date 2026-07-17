@@ -3,8 +3,8 @@
 > Generated from `study_play/study_tracker.html`.
 
 ## Summary
-- Total entries: 3
-- Solved entries: 1
+- Total entries: 4
+- Solved entries: 2
 - Topics tracked: 1
 
 ## Entries
@@ -39,3 +39,13 @@
 - Mistake type: syntax
 - Lesson: how to create dynamic array in go lang
 - Revisit: 2026-07-06
+
+### 2026-07-13 - Merge Sorted Array
+- Status: solved
+- Topic: arrays
+- Difficulty: easy
+- Problem link: https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150
+- Pattern: two pointers
+- Mistake type: edge case
+- Lesson: Check for out of bound index access
+- Revisit: 2026-07-15
