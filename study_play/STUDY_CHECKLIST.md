@@ -4,135 +4,140 @@ Use this as the follow-through version of `study_play/STUDY_PLAN.md`. Check item
 
 ## Daily Session Checklist
 
-- [ ] Read the problem statement slowly and restate input, output, and constraints
-- [ ] Write the brute-force approach before optimizing
-- [ ] Run the pattern scan before coding
-- [ ] Trace one small example by hand
-- [ ] Code using a known template instead of improvising
-- [ ] Test edge cases: empty, single element, duplicates, max size
-- [ ] Write a short post-mortem note after finishing
+- [ ] Restate the ask in one plain sentence (translation test)
+- [ ] Fill literacy notes: input, output, example trace, edges
+- [ ] Run today's reflex drill (`node study_play/daily_drill.js`)
+- [ ] Solve **one** primary problem (stretch is optional)
+- [ ] Write brute force before optimizing (on mediums)
+- [ ] Run the pattern scan only after you understand the ask
+- [ ] Log ask + pattern + mistake type + one lesson + revisit date
 
 ## Daily Reflex Checklist
 
-- [ ] Trigger scan completed
-- [ ] Drill file implemented from memory
-- [ ] Tests run once
+- [ ] Trigger scan completed (out loud)
+- [ ] Core 5 written blind (twoSum, binarySearch, removeDuplicates, maxSumSubarrayK, frequencyMap)
+- [ ] Specialty drill file implemented from memory
+- [ ] Specialty tests run once
 - [ ] Weak spot logged for spaced repetition
 
 ## Phase 1 - Foundations
 
 ### Week 1 - Arrays and complexity
 
-- [ ] Mon: `drills/01_arrays_reflex.js` and solve `arrays/easy/plus_one.js`, `arrays/easy/concatenation_of_array.js`
-- [ ] Tue: Re-drill arrays and solve `arrays/easy/find_closest_number_to_zero.js`, `arrays/easy/max_consecutive_ones.js`
-- [ ] Wed: `drills/02_hashing_reflex.js` and solve `hashing/easy/two_sum.js`, `hashing/easy/contains_duplicates.js`
-- [ ] Thu: Re-drill hashing and solve `hashing/easy/fair_candy_swap.js`, `hashing/easy/degree_of_an_array.js`
-- [ ] Fri: Mixed review and solve `arrays/easy/majority_element.js`, `hashing/easy/summary_ranges.js`
-- [ ] Sat: Review failed problems and re-type drills blind
-- [ ] Sun: Rest
+- [ ] Mon: Reflex `01` + primary `arrays/easy/plus_one.js` (stretch: concatenation)
+- [ ] Tue: Re-drill arrays + primary `find_closest_number_to_zero` (stretch: max_consecutive_ones)
+- [ ] Wed: Reflex `02` + primary `hashing/easy/two_sum.js` (stretch: contains_duplicates)
+- [ ] Thu: Re-drill hashing + primary `fair_candy_swap` (stretch: degree_of_an_array)
+- [ ] Fri: Mixed + primary `majority_element` (stretch: summary_ranges)
+- [ ] Sat: Review failed primaries and re-type drills blind
+- [ ] Sun: Rest (optional light reflex)
 - [ ] Milestone: `reverseArray`, `maxInArray`, and `countFreq` from memory in under 3 minutes
 - [ ] Milestone: Can explain O(n) vs O(n^2) for every solution written
-- [ ] Milestone: Solved 8 or more easy problems without peeking
+- [ ] Milestone: Can restate each solved problem in one plain sentence
+- [ ] Milestone: Solved 6 or more primary easies without peeking
 
 ### Week 2 - Strings and simulation
 
-- [ ] Mon: Solve `strings/easy/find_words_containing_character.js`, `strings/easy/most_common_word.js`
-- [ ] Tue: Reflex on hashing with strings and solve `strings/easy/unique_morse_code_words.js`, `hashing/easy/find_resultant_array_after_removing_anagrams.js`
-- [ ] Wed: Simulation practice with `simulation/easy/baseball_game.js`, `simulation/easy/relative_ranks.js`
-- [ ] Thu: Solve 3 unseen `strings/easy/` problems
+- [ ] Mon: Primary `find_words_containing_character` (stretch: most_common_word)
+- [ ] Tue: Primary `unique_morse_code_words` (stretch: removing anagrams)
+- [ ] Wed: Primary `baseball_game` (stretch: relative_ranks)
+- [ ] Thu: Primary 1 unseen `strings/easy/` (stretch: 1 more)
 - [ ] Fri: Timed mock with 2 easy problems in 45 minutes
-- [ ] Sat: Re-drill `01_arrays_reflex.js` and `02_hashing_reflex.js`
+- [ ] Sat: Re-drill `01` and `02`
 - [ ] Sun: Rest
 - [ ] Milestone: Comfortable with `Map`, `Set`, and object frequency maps
-- [ ] Milestone: 16 or more easy problems solved in this repo
+- [ ] Milestone: 12 or more primary easies in this plan
+- [ ] Milestone: For simulation, list operations in order before coding
 
 ## Phase 2 - Two pointers and binary search
 
 ### Week 3 - Two pointers
 
-- [ ] Mon: `drills/03_two_pointers_reflex.js` and solve `two_pointers/easy/remove_duplicates_from_sorted_array.js`, `two_pointers/easy/move_zeroes.js`
-- [ ] Tue: Re-drill and solve `two_pointers/easy/best_time_to_buy_sell_stock.js`, `two_pointers/easy/squares_of_a_sorted_array.js`
-- [ ] Wed: Medium intro with `two_pointers/medium/container_with_most_water.js`, `two_pointers/medium/3sum.js`
-- [ ] Thu: Sliding window practice with `misc/easy/maximum_average_subarray_1.js`, `two_pointers/easy/minimum_difference_between_highest_and_lowest_of_k_score.js`
-- [ ] Fri: Timed 1 easy plus 1 medium from `two_pointers/`
+- [ ] Mon: Reflex `03` + primary `remove_duplicates_from_sorted_array` (stretch: move_zeroes)
+- [ ] Tue: Re-drill + primary `best_time_to_buy_sell_stock` (stretch: squares_of_a_sorted_array)
+- [ ] Wed: Primary `container_with_most_water` (stretch only: 3sum)
+- [ ] Thu: Primary `maximum_average_subarray_1` (stretch: min difference of k scores)
+- [ ] Fri: Timed 1 easy or 1 medium from `two_pointers/`
 - [ ] Sat: Re-type `templates/pattern_cheat_sheet.js` sections 1 to 3
 - [ ] Sun: Rest
 
 ### Week 4 - Binary search
 
-- [ ] Mon: `drills/04_binary_search_reflex.js` and solve `binary_search/easy/search_insertion_position.js`, `binary_search/easy/find_smallest_letter_greater_than_target.js`
-- [ ] Tue: Binary search on answer with `binary_search/easy/longest_subsequence_with_limited_sum.js`
-- [ ] Wed: Mixed pointers and binary search with `two_pointers/medium/find_the_duplicate_number.js`
-- [ ] Thu: Medium batch with `two_pointers/medium/sort_colors.js`, `two_pointers/medium/longest_palindromic_substring.js`
-- [ ] Fri: Mock interview with 1 medium in 45 minutes and speak or write the steps
-- [ ] Sat: Review all medium attempts and tag the mistake type
+- [ ] Mon: Reflex `04` + primary `search_insertion_position` (stretch: smallest letter)
+- [ ] Tue: Primary `longest_subsequence_with_limited_sum`
+- [ ] Wed: Primary `find_the_duplicate_number`
+- [ ] Thu: Primary `sort_colors` (stretch: longest_palindromic_substring)
+- [ ] Fri: Mock interview with 1 medium in 45 minutes
+- [ ] Sat: Review mediums and tag mistake type (include understanding)
 - [ ] Sun: Rest
 - [ ] Milestone: `left`, `right`, `while (left < right)` is muscle memory
-- [ ] Milestone: `while (left <= right)` binary search template is muscle memory
-- [ ] Milestone: Solved at least 5 medium two-pointer problems
+- [ ] Milestone: `while (left <= right)` binary search is muscle memory
+- [ ] Milestone: Pass translation test before every medium
+- [ ] Milestone: Solved at least 4 medium two-pointer primaries
 
 ## Phase 3 - Hashing mastery and medium arrays
 
 ### Week 5
 
-- [ ] Mon: Full rewrite of `drills/02_hashing_reflex.js` and solve `hashing/medium/group_anagram.js`, `hashing/medium/top_k_ferquent_element.js`
-- [ ] Tue: Prefix sum plus hash with `misc/medium/subarray_sum_divisible_by_k.js`, `misc/easy/find_pivot_index.js`
-- [ ] Wed: Array medium practice with `arrays/medium/max_product_subarray.js`, `arrays/medium/find_all_duplicates_in_an_array.js`
-- [ ] Thu: Longest consecutive and set tricks with `hashing/medium/longest_consecutive_sequence.js`
-- [ ] Fri: Solve `misc/medium/product_of_array_except_self.js`
-- [ ] Sat: Re-drill all files `01` to `04`
+- [ ] Mon: Rewrite `02` + primary `group_anagram` (stretch: top_k)
+- [ ] Tue: Primary `find_pivot_index` (stretch: subarray_sum_divisible_by_k)
+- [ ] Wed: Primary `find_all_duplicates_in_an_array` (stretch: max_product_subarray)
+- [ ] Thu: Primary `longest_consecutive_sequence`
+- [ ] Fri: Primary `product_of_array_except_self`
+- [ ] Sat: Re-drill files `01` to `04`
 - [ ] Sun: Rest
 
 ### Week 6 - Consolidation
 
-- [ ] Mon: Re-solve 2 medium problems you previously got wrong
-- [ ] Tue: Re-solve 2 medium problems you previously got wrong
-- [ ] Wed: Re-solve 2 medium problems you previously got wrong
-- [ ] Thu: Re-solve 2 medium problems you previously got wrong
-- [ ] Fri: Timed set of 3 medium problems in 2 hours
+- [ ] Mon: Re-solve 1 medium you previously got wrong
+- [ ] Tue: Re-solve 1 medium you previously got wrong
+- [ ] Wed: Re-solve 1 medium you previously got wrong
+- [ ] Thu: Re-solve 1 medium you previously got wrong
+- [ ] Fri: Timed set of 2 medium problems in 90 minutes
 - [ ] Sat: Write a one-page pattern journal
 - [ ] Sun: Rest
-- [ ] Milestone: 10 or more medium problems solved
+- [ ] Milestone: 8 or more medium primaries solved
 - [ ] Milestone: Can explain prefix sum in one sentence with an example
-- [ ] Milestone: Can solve group anagrams and top-k without notes
+- [ ] Milestone: Can solve group anagrams without notes
+- [ ] Milestone: Correctly say subarray vs subsequence for Week 5 primaries
 
 ## Phase 4 - Trees, graphs, stacks, DP
 
 ### Week 7 - Trees and stacks
 
-- [ ] Mon: `drills/05_trees_stacks_reflex.js` and solve `trees/easy/convert_sorted_array_to_binary_search_tree.js`
-- [ ] Tue: BFS and DFS tree practice
-- [ ] Wed: Stack patterns with `stack_queue/easy/last_stone_weight.js`
-- [ ] Thu: Study monotonic stack and try 1 problem
-- [ ] Fri: Matrix and graph easy practice with flood fill
-- [ ] Sat: Solve `graphs/easy/island_permeter.js` and review graph basics
+- [ ] Mon: Reflex `05` + primary `convert_sorted_array_to_binary_search_tree`
+- [ ] Tue: Primary 1 tree easy (BFS/DFS)
+- [ ] Wed: Primary `last_stone_weight`
+- [ ] Thu: Study monotonic stack + 1 next-greater style problem
+- [ ] Fri: Primary flood fill (matrix or graphs)
+- [ ] Sat: Primary `island_permeter` and graph review
 - [ ] Sun: Rest
 
 ### Week 8 - Dynamic programming
 
-- [ ] Mon: `drills/06_dp_reflex.js` and solve `dynamic_programming/easy/fibonacci_number.js`, `dynamic_programming/easy/min_cost_climbing_staris.js`
-- [ ] Tue: 1D DP with `dynamic_programming/easy/pascale_triangle_1.js`, `dynamic_programming/easy/pascale_triangle_2.js`
-- [ ] Wed: Study classic DP on strings and add examples to the repo if needed
-- [ ] Thu: Compare greedy vs DP with `greedy/easy/can_place_flower.js`, `greedy/easy/lemonade_change.js`
-- [ ] Fri: Mixed set with 1 DP easy and 1 greedy easy
+- [ ] Mon: Reflex `06` + primary `fibonacci_number` (stretch: min_cost_climbing)
+- [ ] Tue: Primary `pascale_triangle_1` (stretch: pascale_triangle_2)
+- [ ] Wed: Study classic DP on strings (understand before coding)
+- [ ] Thu: Primary `can_place_flower` (stretch: lemonade_change)
+- [ ] Fri: Mixed set with 1 DP easy (stretch: 1 greedy)
 - [ ] Sat: Re-type DP templates from memory
 - [ ] Sun: Rest
 
 ### Week 9 - Graphs BFS and DFS
 
-- [ ] Mon: `drills/07_graphs_reflex.js` BFS grid practice
-- [ ] Tue: `drills/07_graphs_reflex.js` DFS grid and visited set practice
-- [ ] Wed: Repo graph easy practice
-- [ ] Thu: Try 1 medium graph problem
-- [ ] Fri: Mock interview with 1 medium tree or graph problem
+- [ ] Mon: Reflex `07` BFS grid section
+- [ ] Tue: Reflex `07` DFS grid and visited set
+- [ ] Wed: Primary 1 repo graph easy
+- [ ] Thu: Attempt 1 medium graph (understand editorial if stuck)
+- [ ] Fri: Mock interview with 1 medium tree or graph
 - [ ] Sat: Full reflex review of all 7 drill files
 - [ ] Sun: Rest
 
 ## Phase 5 - Medium consolidation and hard intro
 
-### Week 10
+### Weeks 10–12 (same weekly rhythm)
 
-- [ ] Mon: 1 new medium, max 90 minutes
+- [ ] Mon: 1 new medium, max 90 minutes (first 5 min = question literacy only)
 - [ ] Tue: Re-solve Monday's medium from scratch
 - [ ] Wed: 1 new medium and classify the pattern
 - [ ] Thu: 1 hard study problem, 30 minute attempt plus editorial rewrite
@@ -140,36 +145,20 @@ Use this as the follow-through version of `study_play/STUDY_PLAN.md`. Check item
 - [ ] Sat: Random drill file plus `templates/pattern_cheat_sheet.js`
 - [ ] Sun: Rest
 
-### Week 11
+Repeat the week block for Week 10, 11, and 12.
 
-- [ ] Mon: 1 new medium, max 90 minutes
-- [ ] Tue: Re-solve Monday's medium from scratch
-- [ ] Wed: 1 new medium and classify the pattern
-- [ ] Thu: 1 hard study problem, 30 minute attempt plus editorial rewrite
-- [ ] Fri: Timed set of 2 medium problems in 90 minutes
-- [ ] Sat: Random drill file plus `templates/pattern_cheat_sheet.js`
-- [ ] Sun: Rest
-
-### Week 12
-
-- [ ] Mon: 1 new medium, max 90 minutes
-- [ ] Tue: Re-solve Monday's medium from scratch
-- [ ] Wed: 1 new medium and classify the pattern
-- [ ] Thu: 1 hard study problem, 30 minute attempt plus editorial rewrite
-- [ ] Fri: Timed set of 2 medium problems in 90 minutes
-- [ ] Sat: Random drill file plus `templates/pattern_cheat_sheet.js`
-- [ ] Sun: Rest
-- [ ] Milestone: 25 or more medium problems total
+- [ ] Milestone: 20 or more medium problems total
 - [ ] Milestone: 3 or more hard problems studied
-- [ ] Milestone: Can list 2 to 3 approaches for a random medium in 5 minutes
+- [ ] Milestone: Can pass translation test and list 2–3 approaches for a random medium in 5 minutes
 
 ## Post-Problem Log Reminder
 
 After every medium or hard problem, record:
 
 - [ ] Problem name
+- [ ] Ask (one sentence)
 - [ ] Topic
 - [ ] Pattern used
-- [ ] Mistake type
+- [ ] Mistake type (include `understanding` when relevant)
 - [ ] One-sentence lesson
 - [ ] Revisit date

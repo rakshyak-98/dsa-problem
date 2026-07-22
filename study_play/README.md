@@ -22,7 +22,7 @@ This tracker is the front door for the study plan in this folder: turn the plan 
 ## Features
 
 ### Daily Practice
-- Session checklist (warm-up → solve → review → log a lesson)
+- Session checklist (understand → reflex → one primary → log)
 - Plan start date so the tracker knows which week you’re in
 - Expandable **12-week roadmap** with checkable goals
 - Progress saved in `localStorage`

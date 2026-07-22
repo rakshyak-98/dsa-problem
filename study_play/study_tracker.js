@@ -8,11 +8,11 @@ const FILE_HANDLE_STORE = "handles";
 const SOLVED_PROBLEMS_HANDLE_KEY = "solvedProblemsMd";
 
 const DAILY_SESSION_ITEMS = [
-  { id: "warmup", label: "Warm-up (easy problem, 10 min)" },
-  { id: "solve", label: "Solve today's target problem" },
-  { id: "review", label: "Review mistakes from last session" },
-  { id: "lesson", label: "Log one lesson learned" },
-  { id: "patterns", label: "Revisit a pattern you struggle with" }
+  { id: "understand", label: "Understand: restate today's ask in one sentence" },
+  { id: "core5", label: "Core 5 reflex (twoSum, BS, dedupe, window, freq)" },
+  { id: "reflex", label: "Specialty drill (node study_play/daily_drill.js)" },
+  { id: "solve", label: "Primary: one problem from this week's plan" },
+  { id: "lesson", label: "Log ask + pattern + one lesson" }
 ];
 
 const TOPIC_ORDER = [
@@ -75,6 +75,7 @@ const STUDY_PLAN_FORM_OPTIONS = {
   ],
   mistakes: [
     { value: "none", label: "none" },
+    { value: "understanding", label: "understanding" },
     { value: "logic", label: "logic" },
     { value: "edge case", label: "edge case" },
     { value: "pattern miss", label: "pattern miss" },
@@ -91,18 +92,19 @@ const ROADMAP_WEEKS = [
     phase: "Phase 1",
     title: "Arrays and complexity",
     tasks: [
-      "Mon: `drills/01_arrays_reflex.js` + `arrays/easy/plus_one.js` + `arrays/easy/concatenation_of_array.js`",
-      "Tue: Re-drill arrays + `arrays/easy/find_closest_number_to_zero.js` + `arrays/easy/max_consecutive_ones.js`",
-      "Wed: `drills/02_hashing_reflex.js` + `hashing/easy/two_sum.js` + `hashing/easy/contains_duplicates.js`",
-      "Thu: Re-drill hashing + `hashing/easy/fair_candy_swap.js` + `hashing/easy/degree_of_an_array.js`",
-      "Fri: Mixed review + `arrays/easy/majority_element.js` + `hashing/easy/summary_ranges.js`",
-      "Sat: Review failed problems and re-type drills blind",
-      "Sun: Rest"
+      "Mon: Reflex `01` + primary `arrays/easy/plus_one.js` (stretch: concatenation_of_array)",
+      "Tue: Re-drill arrays + primary `find_closest_number_to_zero` (stretch: max_consecutive_ones)",
+      "Wed: Reflex `02` + primary `hashing/easy/two_sum.js` (stretch: contains_duplicates)",
+      "Thu: Re-drill hashing + primary `fair_candy_swap` (stretch: degree_of_an_array)",
+      "Fri: Mixed + primary `majority_element` (stretch: summary_ranges)",
+      "Sat: Review failed primaries and re-type drills blind",
+      "Sun: Rest (optional light reflex)"
     ],
     goals: [
       "Write `reverseArray`, `maxInArray`, and `countFreq` from memory in under 3 minutes.",
       "Explain O(n) vs O(n^2) for every solution you wrote.",
-      "Solve 8 or more easy problems without peeking."
+      "Restate each solved problem in one plain sentence.",
+      "Solve 6 or more primary easies without peeking."
     ]
   },
   {
@@ -110,17 +112,18 @@ const ROADMAP_WEEKS = [
     phase: "Phase 1",
     title: "Strings and simulation",
     tasks: [
-      "Mon: `strings/easy/find_words_containing_character.js` + `strings/easy/most_common_word.js`",
-      "Tue: Hashing on strings + `strings/easy/unique_morse_code_words.js` + `hashing/easy/find_resultant_array_after_removing_anagrams.js`",
-      "Wed: `simulation/easy/baseball_game.js` + `simulation/easy/relative_ranks.js`",
-      "Thu: Solve 3 unseen `strings/easy/` problems",
+      "Mon: Primary `find_words_containing_character` (stretch: most_common_word)",
+      "Tue: Primary `unique_morse_code_words` (stretch: find_resultant_array_after_removing_anagrams)",
+      "Wed: Primary `baseball_game` (stretch: relative_ranks)",
+      "Thu: Primary 1 unseen `strings/easy/` (stretch: 1 more)",
       "Fri: Timed mock with 2 easy problems in 45 minutes",
-      "Sat: Re-drill `01_arrays_reflex.js` and `02_hashing_reflex.js`",
+      "Sat: Re-drill `01` and `02`",
       "Sun: Rest"
     ],
     goals: [
       "Feel comfortable with `Map`, `Set`, and object frequency maps.",
-      "Reach 16 or more total easy problems solved in this repo."
+      "Reach 12 or more primary easies in this plan.",
+      "For simulation: list operations in order before coding."
     ]
   },
   {
@@ -128,11 +131,11 @@ const ROADMAP_WEEKS = [
     phase: "Phase 2",
     title: "Two pointers",
     tasks: [
-      "Mon: `drills/03_two_pointers_reflex.js` + `two_pointers/easy/remove_duplicates_from_sorted_array.js` + `two_pointers/easy/move_zeroes.js`",
-      "Tue: Re-drill + `two_pointers/easy/best_time_to_buy_sell_stock.js` + `two_pointers/easy/squares_of_a_sorted_array.js`",
-      "Wed: Medium intro with `two_pointers/medium/container_with_most_water.js` + `two_pointers/medium/3sum.js`",
-      "Thu: Sliding window with `misc/easy/maximum_average_subarray_1.js` + `two_pointers/easy/minimum_difference_between_highest_and_lowest_of_k_score.js`",
-      "Fri: Timed 1 easy + 1 medium from `two_pointers/`",
+      "Mon: Reflex `03` + primary `remove_duplicates_from_sorted_array` (stretch: move_zeroes)",
+      "Tue: Re-drill + primary `best_time_to_buy_sell_stock` (stretch: squares_of_a_sorted_array)",
+      "Wed: Primary `container_with_most_water` (stretch only: 3sum)",
+      "Thu: Primary `maximum_average_subarray_1` (stretch: min difference of k scores)",
+      "Fri: Timed 1 easy or 1 medium from `two_pointers/`",
       "Sat: Re-type `templates/pattern_cheat_sheet.js` sections 1 to 3",
       "Sun: Rest"
     ],
@@ -143,18 +146,19 @@ const ROADMAP_WEEKS = [
     phase: "Phase 2",
     title: "Binary search",
     tasks: [
-      "Mon: `drills/04_binary_search_reflex.js` + `binary_search/easy/search_insertion_position.js` + `binary_search/easy/find_smallest_letter_greater_than_target.js`",
-      "Tue: Binary search on answer with `binary_search/easy/longest_subsequence_with_limited_sum.js`",
-      "Wed: Mixed pointers and binary search with `two_pointers/medium/find_the_duplicate_number.js`",
-      "Thu: Medium batch with `two_pointers/medium/sort_colors.js` + `two_pointers/medium/longest_palindromic_substring.js`",
+      "Mon: Reflex `04` + primary `search_insertion_position` (stretch: smallest letter greater than target)",
+      "Tue: Primary `longest_subsequence_with_limited_sum`",
+      "Wed: Primary `find_the_duplicate_number`",
+      "Thu: Primary `sort_colors` (stretch: longest_palindromic_substring)",
       "Fri: Mock interview with 1 medium in 45 minutes",
-      "Sat: Review all medium attempts and tag the mistake type",
+      "Sat: Review mediums and tag mistake type (include understanding)",
       "Sun: Rest"
     ],
     goals: [
       "Make `left`, `right`, `while (left < right)` muscle memory.",
       "Make `while (left <= right)` binary search muscle memory.",
-      "Solve at least 5 medium two-pointer problems."
+      "Pass the translation test before every medium.",
+      "Solve at least 4 medium two-pointer primaries."
     ]
   },
   {
@@ -162,11 +166,11 @@ const ROADMAP_WEEKS = [
     phase: "Phase 3",
     title: "Hashing mastery and medium arrays",
     tasks: [
-      "Mon: Full rewrite of `drills/02_hashing_reflex.js` + `hashing/medium/group_anagram.js` + `hashing/medium/top_k_ferquent_element.js`",
-      "Tue: Prefix sum with `misc/medium/subarray_sum_divisible_by_k.js` + `misc/easy/find_pivot_index.js`",
-      "Wed: Array medium with `arrays/medium/max_product_subarray.js` + `arrays/medium/find_all_duplicates_in_an_array.js`",
-      "Thu: `hashing/medium/longest_consecutive_sequence.js`",
-      "Fri: `misc/medium/product_of_array_except_self.js`",
+      "Mon: Rewrite `02` + primary `group_anagram` (stretch: top_k_ferquent_element)",
+      "Tue: Primary `find_pivot_index` (stretch: subarray_sum_divisible_by_k)",
+      "Wed: Primary `find_all_duplicates_in_an_array` (stretch: max_product_subarray)",
+      "Thu: Primary `longest_consecutive_sequence`",
+      "Fri: Primary `product_of_array_except_self`",
       "Sat: Re-drill files `01` to `04`",
       "Sun: Rest"
     ],
@@ -177,18 +181,19 @@ const ROADMAP_WEEKS = [
     phase: "Phase 3",
     title: "Consolidation week",
     tasks: [
-      "Mon: Re-solve 2 medium problems you previously got wrong",
-      "Tue: Re-solve 2 medium problems you previously got wrong",
-      "Wed: Re-solve 2 medium problems you previously got wrong",
-      "Thu: Re-solve 2 medium problems you previously got wrong",
-      "Fri: Timed set of 3 medium problems in 2 hours",
+      "Mon: Re-solve 1 medium you previously got wrong (understand → blind)",
+      "Tue: Re-solve 1 medium you previously got wrong",
+      "Wed: Re-solve 1 medium you previously got wrong",
+      "Thu: Re-solve 1 medium you previously got wrong",
+      "Fri: Timed set of 2 medium problems in 90 minutes",
       "Sat: Write a one-page pattern journal",
       "Sun: Rest"
     ],
     goals: [
-      "Reach 10 or more medium problems solved.",
+      "Reach 8 or more medium primaries solved.",
       "Explain prefix sum in one sentence with an example.",
-      "Solve group anagrams and top-k without notes."
+      "Solve group anagrams without notes.",
+      "Correctly say subarray vs subsequence for Week 5 primaries."
     ]
   },
   {
@@ -241,7 +246,7 @@ const ROADMAP_WEEKS = [
     phase: "Phase 5",
     title: "Medium consolidation and hard intro",
     tasks: [
-      "Mon: 1 new medium, max 90 minutes",
+      "Mon: 1 new medium, max 90 minutes (first 5 min = question literacy)",
       "Tue: Re-solve Monday's medium from scratch",
       "Wed: 1 new medium and classify the pattern",
       "Thu: 1 hard study problem, 30 minute attempt plus editorial rewrite",
@@ -256,7 +261,7 @@ const ROADMAP_WEEKS = [
     phase: "Phase 5",
     title: "Medium consolidation and hard intro",
     tasks: [
-      "Mon: 1 new medium, max 90 minutes",
+      "Mon: 1 new medium, max 90 minutes (first 5 min = question literacy)",
       "Tue: Re-solve Monday's medium from scratch",
       "Wed: 1 new medium and classify the pattern",
       "Thu: 1 hard study problem, 30 minute attempt plus editorial rewrite",
@@ -271,7 +276,7 @@ const ROADMAP_WEEKS = [
     phase: "Phase 5",
     title: "Medium consolidation and hard intro",
     tasks: [
-      "Mon: 1 new medium, max 90 minutes",
+      "Mon: 1 new medium, max 90 minutes (first 5 min = question literacy)",
       "Tue: Re-solve Monday's medium from scratch",
       "Wed: 1 new medium and classify the pattern",
       "Thu: 1 hard study problem, 30 minute attempt plus editorial rewrite",
@@ -280,9 +285,9 @@ const ROADMAP_WEEKS = [
       "Sun: Rest"
     ],
     goals: [
-      "Reach 25 or more medium problems total.",
-      "Study at least 3 hard problems.",
-      "List 2 to 3 approaches for a random medium in 5 minutes."
+      "Reach 20 or more medium problems total.",
+      "Study 3 or more hard problems (attempt + editorial + rewrite).",
+      "Pass translation test and list 2–3 approaches for a random medium in 5 minutes."
     ]
   }
 ];

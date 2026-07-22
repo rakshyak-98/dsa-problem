@@ -1,17 +1,22 @@
 # Start Here
 
 Open **`STUDY_PLAN.md`** for the full 12-week roadmap.
+Open **`DAILY_30MIN_DRILL.md`** for the daily ritual.
 
 ## Today (Day 1)
 
-1. Read the **Problem-solving framework** section in `STUDY_PLAN.md` (10 min).
-2. Open `drills/01_arrays_reflex.js` and implement every `TODO: REFLEX` function from memory.
-3. Run tests:
+1. Read **The consistency rule** and **Understand the question first** in `STUDY_PLAN.md` (10 min).
+2. Run the daily helper:
    ```bash
-   node study_play/drills/01_arrays_reflex.js
+   node study_play/daily_drill.js
    ```
-4. Stuck after 15 min? Peek at `drills/_solutions_reference.js`, then close it and re-type.
-5. Solve one repo problem: `hashing/easy/two_sum.js` (even if done before — re-solve blind).
+3. Open today's drill and implement every `TODO: REFLEX` from memory.
+4. Run tests:
+   ```bash
+   node study_play/daily_drill.js --run
+   ```
+5. Stuck after 15 min? Peek at `drills/_solutions_reference.js`, then close it and re-type.
+6. Primary problem: `hashing/easy/two_sum.js` — **restate the ask in one sentence before coding**.
 
 ## Folder map
 
@@ -19,6 +24,8 @@ Open **`STUDY_PLAN.md`** for the full 12-week roadmap.
 study_play/
 ├── START_HERE.md          ← you are here
 ├── STUDY_PLAN.md          ← full plan + weekly schedule
+├── DAILY_30MIN_DRILL.md   ← daily ritual (tiers + clock)
+├── daily_drill.js         ← prints today's drill + prompts
 ├── drills/
 │   ├── 01_arrays_reflex.js
 │   ├── 02_hashing_reflex.js
@@ -32,17 +39,16 @@ study_play/
     └── pattern_cheat_sheet.js    ← re-type from memory weekly
 ```
 
-## Daily 30 min (reflex — do this every day)
-
-See **`DAILY_30MIN_DRILL.md`** for the full routine.
+## Every study day
 
 ```bash
-node study_play/daily_drill.js        # shows today's drill
-node study_play/daily_drill.js --run  # run tests after you implement
+node study_play/daily_drill.js           # Core 5 + today's specialty
+node study_play/daily_drill.js --run     # run specialty tests
+node study_play/daily_drill.js --micro   # Core 5 only (low energy)
+node study_play/daily_drill.js --catalog # full essential checklist
 ```
 
-## If you have extra time (45+ min)
+**Reflex tier:** Core 5 + specialty drill.  
+**Minimum tier:** Core 5 only. Still builds reflexes.
 
-Add one repo problem from `STUDY_PLAN.md` after the 30-min reflex block.
-
-Consistency beats marathon sessions. Show up daily.
+Full pack: **`DAILY_30MIN_DRILL.md`**. Consistency beats marathon sessions.
