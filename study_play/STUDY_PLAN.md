@@ -12,9 +12,9 @@
 |---------------|---------|
 | `STUDY_PLAN.md` (this file) | Full roadmap, weekly schedule, mental frameworks |
 | `DAILY_30MIN_DRILL.md` | The daily ritual you run every study day |
-| `daily_drill.js` | Prints today's drill + understanding prompts |
-| `drills/*.js` | **Reflex drills** — rewrite from memory until automatic |
-| `templates/pattern_cheat_sheet.js` | Blank skeletons; cover the answers and re-type weekly |
+| `daily_drill.go` | Prints today's drill + understanding prompts |
+| `drills/*/` | **Reflex drills** — rewrite from memory until automatic |
+| `templates/pattern_cheat_sheet.go` | Blank skeletons; cover the answers and re-type weekly |
 | `../arrays/`, `../hashing/`, etc. | Real problems from your repo |
 
 ---
@@ -45,7 +45,7 @@ Rules that protect consistency:
 1. **One primary problem per day.** The second listed problem is optional stretch — never required.
 2. **Stuck after the time cap?** Stop coding. Write what you understood, peek editorial, then re-type the core idea from memory.
 3. **Missed a day?** Do not catch up. Resume today's ritual. Consistency is forward-only.
-4. **Sunday:** Rest from new problems. Optional: light reflex (`daily_drill.js`) if you want the streak.
+4. **Sunday:** Rest from new problems. Optional: light reflex (`daily_drill.go`) if you want the streak.
 
 **Default target:** Standard tier, 6 days/week.
 
@@ -113,9 +113,9 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Reflex | Primary (understand → solve) | Stretch | Cap |
 |-----|--------|------------------------------|---------|-----|
-| Mon | `drills/01_arrays_reflex.js` | `arrays/easy/plus_one.js` | `arrays/easy/concatenation_of_array.js` | 25 min |
+| Mon | `drills/01_arrays_reflex/` | `arrays/easy/plus_one.js` | `arrays/easy/concatenation_of_array.js` | 25 min |
 | Tue | Re-drill arrays | `arrays/easy/find_closest_number_to_zero.js` | `arrays/easy/max_consecutive_ones.js` | 25 min |
-| Wed | `drills/02_hashing_reflex.js` | `hashing/easy/two_sum.js` | `hashing/easy/contains_duplicates.js` | 25 min |
+| Wed | `drills/02_hashing_reflex/` | `hashing/easy/two_sum.js` | `hashing/easy/contains_duplicates.js` | 25 min |
 | Thu | Re-drill hashing | `hashing/easy/fair_candy_swap.js` | `hashing/easy/degree_of_an_array.js` | 25 min |
 | Fri | Mixed: 1 array + 1 hash drill fn | `arrays/easy/majority_element.js` | `hashing/easy/summary_ranges.js` | 30 min |
 | Sat | Review: re-do failed primaries; blind drills | — | — | 60 min |
@@ -154,19 +154,19 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Reflex | Primary | Stretch |
 |-----|--------|---------|---------|
-| Mon | `drills/03_two_pointers_reflex.js` | `two_pointers/easy/remove_duplicates_from_sorted_array.js` | `two_pointers/easy/move_zeroes.js` |
+| Mon | `drills/03_two_pointers_reflex/` | `two_pointers/easy/remove_duplicates_from_sorted_array.js` | `two_pointers/easy/move_zeroes.js` |
 | Tue | Re-drill + opposite ends | `two_pointers/easy/best_time_to_buy_sell_stock.js` | `two_pointers/easy/squares_of_a_sorted_array.js` |
 | Wed | Medium intro | `two_pointers/medium/container_with_most_water.js` | `two_pointers/medium/3sum.js` (stretch only) |
 | Thu | Sliding window in drill | `misc/easy/maximum_average_subarray_1.js` | `two_pointers/easy/minimum_difference_between_highest_and_lowest_of_k_score.js` |
 | Fri | Timed: 1 easy **or** 1 medium | Your choice from `two_pointers/` | — |
-| Sat | Re-type `templates/pattern_cheat_sheet.js` sections 1–3 | — | — |
+| Sat | Re-type `templates/pattern_cheat_sheet.go` sections 1–3 | — | — |
 | Sun | Rest | — | — |
 
 ### Week 4 — Binary search
 
 | Day | Reflex | Primary | Stretch |
 |-----|--------|---------|---------|
-| Mon | `drills/04_binary_search_reflex.js` | `binary_search/easy/search_insertion_position.js` | `binary_search/easy/find_smallest_letter_greater_than_target.js` |
+| Mon | `drills/04_binary_search_reflex/` | `binary_search/easy/search_insertion_position.js` | `binary_search/easy/find_smallest_letter_greater_than_target.js` |
 | Tue | Binary search on answer | `binary_search/easy/longest_subsequence_with_limited_sum.js` | — |
 | Wed | Mixed pointers + BS | `two_pointers/medium/find_the_duplicate_number.js` | — |
 | Thu | Medium | `two_pointers/medium/sort_colors.js` | `two_pointers/medium/longest_palindromic_substring.js` |
@@ -190,7 +190,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Focus | Primary | Stretch |
 |-----|-------|---------|---------|
-| Mon | `drills/02_hashing_reflex.js` full rewrite | `hashing/medium/group_anagram.js` | `hashing/medium/top_k_ferquent_element.js` |
+| Mon | `drills/02_hashing_reflex/` full rewrite | `hashing/medium/group_anagram.js` | `hashing/medium/top_k_ferquent_element.js` |
 | Tue | Prefix sum + hash | `misc/easy/find_pivot_index.js` | `misc/medium/subarray_sum_divisible_by_k.js` |
 | Wed | Array medium | `arrays/medium/find_all_duplicates_in_an_array.js` | `arrays/medium/max_product_subarray.js` |
 | Thu | Set tricks | `hashing/medium/longest_consecutive_sequence.js` | — |
@@ -221,7 +221,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Reflex | Primary | Stretch |
 |-----|--------|---------|---------|
-| Mon | `drills/05_trees_stacks_reflex.js` | `trees/easy/convert_sorted_array_to_binary_search_tree.js` | — |
+| Mon | `drills/05_trees_stacks_reflex/` | `trees/easy/convert_sorted_array_to_binary_search_tree.js` | — |
 | Tue | Tree BFS/DFS | 1 tree easy (repo or LeetCode) | — |
 | Wed | Stack patterns | `stack_queue/easy/last_stone_weight.js` | — |
 | Thu | Monotonic stack (study + 1) | 1 next-greater style problem | — |
@@ -233,7 +233,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Focus | Primary | Stretch |
 |-----|-------|---------|---------|
-| Mon | `drills/06_dp_reflex.js` | `dynamic_programming/easy/fibonacci_number.js` | `dynamic_programming/easy/min_cost_climbing_staris.js` |
+| Mon | `drills/06_dp_reflex/` | `dynamic_programming/easy/fibonacci_number.js` | `dynamic_programming/easy/min_cost_climbing_staris.js` |
 | Tue | 1D DP | `dynamic_programming/easy/pascale_triangle_1.js` | `dynamic_programming/easy/pascale_triangle_2.js` |
 | Wed | DP on strings (study classic: LCS / edit distance) | Read + rewrite one idea | — |
 | Thu | Greedy vs DP | `greedy/easy/can_place_flower.js` | `greedy/easy/lemonade_change.js` |
@@ -245,7 +245,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Reflex | Focus |
 |-----|--------|-------|
-| Mon | `drills/07_graphs_reflex.js` | BFS grid — primary: finish BFS section |
+| Mon | `drills/07_graphs_reflex/` | BFS grid — primary: finish BFS section |
 | Tue | Same drill | DFS grid + visited — primary: finish DFS section |
 | Wed | — | 1 repo graph easy |
 | Thu | — | 1 medium graph (attempt + understand editorial) |
@@ -268,7 +268,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 | Wed | 1 new medium + classify pattern used |
 | Thu | 1 hard **study** problem: 30 min attempt → deep-read editorial → rewrite from memory |
 | Fri | Timed: 2 medium in 90 min |
-| Sat | Reflex: random drill file + `pattern_cheat_sheet.js` |
+| Sat | Reflex: random drill file + `pattern_cheat_sheet.go` |
 | Sun | Rest |
 
 **Suggested hard intro (add to repo or use LeetCode):**
@@ -329,7 +329,7 @@ Draw a tiny example. Trace your chosen approach by hand. If trace fails, go back
 
 ### Step 5 — Code (15–25 min)
 
-Use templates from `templates/pattern_cheat_sheet.js`. Don't invent syntax under pressure.
+Use templates from `templates/pattern_cheat_sheet.go`. Don't invent syntax under pressure.
 
 ### Step 6 — Post-mortem (5 min)
 
@@ -366,8 +366,8 @@ Revisit date: (+3 days)
 ### Daily reflex block (see `DAILY_30MIN_DRILL.md`)
 
 ```bash
-node study_play/daily_drill.js        # today's file + prompts
-node study_play/daily_drill.js --run  # run tests after implementing
+cd study_play && go run .        # today's file + prompts
+cd study_play && go run . -- --run  # run tests after implementing
 ```
 
 1. Open today's drill with answers **covered**.
@@ -426,15 +426,15 @@ If you feel overwhelmed: do **only** the reflex block that day. That is enough.
 ## Quick reference — run drills
 
 ```bash
-# From repo root
-node study_play/daily_drill.js
-node study_play/drills/01_arrays_reflex.js
-node study_play/drills/02_hashing_reflex.js
-node study_play/drills/03_two_pointers_reflex.js
-node study_play/drills/04_binary_search_reflex.js
-node study_play/drills/05_trees_stacks_reflex.js
-node study_play/drills/06_dp_reflex.js
-node study_play/drills/07_graphs_reflex.js
+# From study_play/
+go run .
+go run ./drills/01_arrays_reflex
+go run ./drills/02_hashing_reflex
+go run ./drills/03_two_pointers_reflex
+go run ./drills/04_binary_search_reflex
+go run ./drills/05_trees_stacks_reflex
+go run ./drills/06_dp_reflex
+go run ./drills/07_graphs_reflex
 ```
 
 ---
@@ -442,7 +442,7 @@ node study_play/drills/07_graphs_reflex.js
 ## After 12 weeks
 
 - Maintain: 3 problems/week (1 medium, 1 review, 1 new)
-- Monthly: re-type full `pattern_cheat_sheet.js` from memory
+- Monthly: re-type full `pattern_cheat_sheet.go` from memory
 - Expand repo: add `hard/` folders per topic as you grow
 
 You are building a skill, not racing a clock. Same ritual every day. Understand first. One primary. Log the lesson.

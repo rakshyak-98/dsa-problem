@@ -1,8 +1,8 @@
 # Daily Reflex Practice — Essential Pack
 
 > **Purpose:** Build automatic DSA reflexes so medium problems don’t stall on basics.
-> **Rule:** Blind write only. No `_solutions_reference.js` until the blind block is done.
-> **Helper:** `node study_play/daily_drill.js`
+> **Rule:** Blind write only. No `solutions_reference/` until the blind block is done.
+> **Helper:** `cd study_play && go run .`
 
 This file is the full daily practice. Same shape every day. Do the **Core 5** every session, then today’s specialty drill.
 
@@ -26,9 +26,10 @@ This file is the full daily practice. Same shape every day. Do the **Core 5** ev
 Missed a day? Do **not** catch up. Run today’s pack only.
 
 ```bash
-node study_play/daily_drill.js          # prints Core 5 + today’s specialty
-node study_play/daily_drill.js --run    # run today’s specialty tests
-node study_play/daily_drill.js --micro  # Core 5 only (paper / blank file)
+cd study_play && go run .             # prints Core 5 + today’s specialty
+cd study_play && go run . -- --run    # run today’s specialty tests
+cd study_play && go run . -- --reset  # reset today’s drill to blank TODOs
+cd study_play && go run . -- --micro  # Core 5 only (paper / blank file)
 ```
 
 ---
@@ -54,30 +55,30 @@ These five create the highest-leverage reflexes. Say the **ask** in one sentence
 
 Blank skeletons (cover answers; re-type into a scratch file):
 
-```javascript
+```go
 // 1. HASH — complement lookup
-function twoSum(nums, target) {
-  // Map value -> index; need = target - nums[i]
+func twoSum(nums []int, target int) []int {
+  // map value -> index; need = target - nums[i]
 }
 
 // 2. BINARY SEARCH — exact
-function binarySearch(nums, target) {
-  // lo = 0, hi = n-1; while (lo <= hi); mid; move lo/hi
+func binarySearch(nums []int, target int) int {
+  // lo = 0, hi = n-1; for lo <= hi; mid; move lo/hi
 }
 
 // 3. TWO POINTERS — read/write
-function removeDuplicates(nums) {
-  // write pointer; keep when nums[read] !== nums[write-1]
+func removeDuplicates(nums []int) int {
+  // write pointer; keep when nums[read] != nums[write-1]
 }
 
 // 4. SLIDING WINDOW — fixed k
-function maxSumSubarrayK(nums, k) {
+func maxSumSubarrayK(nums []int, k int) int {
   // first window sum; slide: +nums[i] - nums[i-k]
 }
 
 // 5. FREQ MAP
-function frequencyMap(arr) {
-  // Map; freq.set(x, (freq.get(x) || 0) + 1)
+func frequencyMap(arr []string) map[string]int {
+  // m[x]++
 }
 ```
 
@@ -89,23 +90,23 @@ After Core 5, open today’s file and implement every `TODO: REFLEX` from empty 
 
 | Day | File | Essential functions you must own |
 |-----|------|----------------------------------|
-| **Mon** | `drills/01_arrays_reflex.js` | `reverseInPlace`, `indexOfMax`, `arraySum`, `rotateRight`, `runningSum` |
-| **Tue** | `drills/02_hashing_reflex.js` | `twoSum`, `containsDuplicate`, `frequencyMap`, `firstUniqueChar`, `groupAnagrams` |
-| **Wed** | `drills/03_two_pointers_reflex.js` | `removeDuplicates`, `moveZeroes`, `maxArea`, `isPalindrome`, `maxSumSubarrayK` |
-| **Thu** | `drills/04_binary_search_reflex.js` | `binarySearch`, `searchInsert`, `findMinRotated`, `isTargetPresent` |
-| **Fri** | `drills/05_trees_stacks_reflex.js` | `inorderTraversal`, `maxDepth`, `isValidParentheses`, `dailyTemperatures` |
-| **Sat** | `drills/06_dp_reflex.js` | `fib`, `minCostClimbingStairs`, `rob`, `climbStairs` |
-| **Sun** | `drills/07_graphs_reflex.js` | `numIslands`, `floodFill`, `shortestPathGrid` |
+| **Mon** | `drills/01_arrays_reflex/` | `reverseInPlace`, `indexOfMax`, `arraySum`, `rotateRight`, `runningSum` |
+| **Tue** | `drills/02_hashing_reflex/` | `twoSum`, `containsDuplicate`, `frequencyMap`, `firstUniqueChar`, `groupAnagrams` |
+| **Wed** | `drills/03_two_pointers_reflex/` | `removeDuplicates`, `moveZeroes`, `maxArea`, `isPalindrome`, `maxSumSubarrayK` |
+| **Thu** | `drills/04_binary_search_reflex/` | `binarySearch`, `searchInsert`, `findMinRotated`, `isTargetPresent` |
+| **Fri** | `drills/05_trees_stacks_reflex/` | `inorderTraversal`, `maxDepth`, `isValidParentheses`, `dailyTemperatures` |
+| **Sat** | `drills/06_dp_reflex/` | `fib`, `minCostClimbingStairs`, `rob`, `climbStairs` |
+| **Sun** | `drills/07_graphs_reflex/` | `numIslands`, `floodFill`, `shortestPathGrid` |
 
 ```bash
-node study_play/drills/0X_....js
+go run ./drills/0X_...
 # or
-node study_play/daily_drill.js --run
+cd study_play && go run . -- --run
 ```
 
 **Sunday:** optional streak day (graphs). Rest from new problems is fine — still do Core 5 if you want the habit.
 
-**Every 4th Sunday:** re-type `templates/pattern_cheat_sheet.js` from memory instead of graphs (30 min).
+**Every 4th Sunday:** re-type `templates/pattern_cheat_sheet.go` from memory instead of graphs (30 min).
 
 ---
 
@@ -117,7 +118,7 @@ node study_play/daily_drill.js --run
 | 2–10 | **Core 5** | Blind write the five essentials |
 | 10–12 | **Understand warm-up** | One sentence ask for today’s hardest specialty fn |
 | 12–32 | **Specialty blind write** | All `TODO: REFLEX` in today’s file |
-| 32–37 | **Run & fix** | `node study_play/daily_drill.js --run` — one fix pass, no solutions |
+| 32–37 | **Run & fix** | `cd study_play && go run . -- --run` — one fix pass, no solutions |
 | 37–40 | **Log** | What failed + revisit date (+3 days) |
 
 Low energy? Stop after Core 5. That still counts as Minimum tier.
@@ -153,48 +154,42 @@ Scan these every day until they fire automatically:
 
 ## Part E — Essential templates (type from memory weekly)
 
-Keep these as muscle memory. Full versions live in `templates/pattern_cheat_sheet.js`.
+Keep these as muscle memory. Full versions live in `templates/pattern_cheat_sheet.go`.
 
-```javascript
+```go
 // TWO POINTERS — opposite ends
-let left = 0, right = n - 1;
-while (left < right) { /* move left++ or right-- */ }
+left, right := 0, n-1
+for left < right { /* move left++ or right-- */ }
 
 // TWO POINTERS — read/write
-let write = 0;
-for (let read = 0; read < n; read++) {
-  if (/* keep */) { nums[write++] = nums[read]; }
+write := 0
+for read := 0; read < n; read++ {
+  if true /* keep */ {
+    nums[write] = nums[read]
+    write++
+  }
 }
 
 // SLIDING WINDOW — variable
-let left = 0, best = 0;
-for (let right = 0; right < n; right++) {
+left, best := 0, 0
+for right := 0; right < n; right++ {
   // expand with right
-  while (/* invalid */) { /* shrink left++ */ }
-  best = Math.max(best, right - left + 1);
+  for false /* invalid */ { /* shrink left++ */ }
+  if right-left+1 > best {
+    best = right - left + 1
+  }
 }
 
 // BINARY SEARCH
-let lo = 0, hi = n - 1;
-while (lo <= hi) {
-  const mid = lo + Math.floor((hi - lo) / 2);
-  if (nums[mid] === target) return mid;
-  if (nums[mid] < target) lo = mid + 1;
-  else hi = mid - 1;
-}
-
-// BFS GRID
-const q = [[r, c]], seen = new Set([`${r},${c}`]);
-const dirs = [[0,1],[0,-1],[1,0],[-1,0]];
-while (q.length) {
-  const [cr, cc] = q.shift();
-  for (const [dr, dc] of dirs) { /* bounds + visit + push */ }
+lo, hi := 0, n-1
+for lo <= hi {
+  mid := lo + (hi-lo)/2
+  // compare nums[mid] with target; move lo/hi
 }
 
 // 1D DP
-const dp = Array(n + 1).fill(0);
-dp[0] = /* base */; dp[1] = /* base */;
-for (let i = 2; i <= n; i++) dp[i] = /* from dp[i-1], dp[i-2] */;
+dp := make([]int, n+1)
+// dp[0], dp[1] = bases; for i := 2; i <= n; i++ { dp[i] = ... }
 ```
 
 ---

@@ -50,12 +50,12 @@ Also includes a **DSA Visualizer** at [`visualizer/index.html`](./visualizer/ind
 | Piece | Choice |
 |--------|--------|
 | UI | HTML + CSS |
-| Logic | Vanilla JavaScript |
+| Tracker logic | Vanilla JavaScript |
 | Storage | Browser `localStorage` |
 | AI | Google Gemini (optional) |
-| Plan / drills | Markdown + JS in this folder |
+| Plan / drills | Markdown + **Go** reflex drills |
 
-No build step — open the HTML file and it runs.
+Tracker: open the HTML file (no build). Drills: `cd study_play && go run .`
 
 ---
 
@@ -94,11 +94,14 @@ Day-one practice flow: see [`START_HERE.md`](./START_HERE.md). Full roadmap: [`S
 study_play/
 ├── study_tracker.html      # tracker UI
 ├── study_tracker.js
+├── daily_drill.go          # daily helper (go run .)
+├── go.mod
 ├── START_HERE.md           # day-one instructions
 ├── STUDY_PLAN.md           # 12-week roadmap
 ├── DAILY_30MIN_DRILL.md
 ├── BLOG_POST.md            # short public write-up
-├── drills/                 # reflex drills with tests
+├── drills/                 # Go reflex drills with tests
+├── templates/              # pattern cheat sheet (Go)
 ├── visualizer/             # algorithm visualizer
 └── SOLVED_PROBLEMS.md      # optional synced log
 ```
