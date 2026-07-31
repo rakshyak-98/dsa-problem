@@ -121,7 +121,10 @@ var drills = []drill{
 var bonusDrills = []string{
 	"08_heap_reflex",
 	"09_backtrack_reflex",
+	"10_math_reflex",
 }
+
+const mathReflexFile = "10_math_reflex"
 
 var essentialCatalog = []struct {
 	group string
@@ -134,6 +137,7 @@ var essentialCatalog = []struct {
 	{"Trees & stacks", []string{"inorderTraversal", "maxDepth", "isValidParentheses", "dailyTemperatures"}},
 	{"DP", []string{"fib", "climbStairs", "minCostClimbingStairs", "rob"}},
 	{"Graphs", []string{"numIslands", "floodFill", "shortestPathGrid"}},
+	{"Math", []string{"gcd", "lcm", "modPow", "nCr", "isPrime", "powOfTwo"}},
 	{"Heaps (bonus)", []string{"kthLargest", "lastStoneWeight", "mergeKSorted"}},
 	{"Backtracking (bonus)", []string{"subsets", "permute", "combine"}},
 }
@@ -150,6 +154,8 @@ var allTriggers = []string{
 	"min cost / ways → 1D DP (define dp[i] first)",
 	"grid regions / fill → DFS or BFS + visited",
 	"shortest unweighted path → BFS",
+	"gcd / lcm / modPow → Euclidean + fast exponentiation",
+	"count combinations → nCr with symmetry k = min(k, n-k)",
 }
 
 func printBanner() {
@@ -259,6 +265,17 @@ func printToday(today drill) {
 	printProblemMap(today.file)
 	printCore5Problems()
 	printVisualizerLink(today.file)
+	printMathReflexAddon()
+}
+
+func printMathReflexAddon() {
+	fmt.Printf(`
+── MATH REFLEX (daily add-on — ~5 min) ────────────────
+  Functions: gcd, lcm, modPow, nCr, isPrime, powOfTwo
+  Open:  drills/write/reflex/%s
+  Run:   go run . -- --run-math
+  Guide: study_play/docs/MATH_CONCEPTS.md
+`, mathReflexFile)
 }
 
 func hasFlag(flag string) bool {
@@ -329,6 +346,24 @@ func main() {
 		fmt.Print(output)
 		updateLogFromOutput(repoRoot, output, []string{"twoSum", "binarySearch", "removeDuplicates", "maxSumSubarrayK", "frequencyMap"})
 		fmt.Println("Core 5 logged.")
+		return
+	}
+
+	if hasFlag("--run-math") {
+		mathPath := writeReflexDir(repoRoot, mathReflexFile)
+		fmt.Println("Running math reflex tests...")
+		fmt.Println()
+		ok, output, _ := runDrillWithLog(mathPath)
+		fmt.Print(output)
+		mathFns := []string{"gcd", "lcm", "modPow", "nCr", "isPrime", "powOfTwo"}
+		if !ok {
+			updateLogFromOutput(repoRoot, output, mathFns)
+			fmt.Println()
+			fmt.Println("Math reflex failed — fix blind, then re-run.")
+			os.Exit(1)
+		}
+		updateLogFromOutput(repoRoot, output, mathFns)
+		fmt.Println("Math reflex logged.")
 		return
 	}
 

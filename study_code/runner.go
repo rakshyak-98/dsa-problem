@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func runStudyCode(micro, run, catalog bool) int {
+func runStudyCode(micro, run, runMath, catalog bool) int {
 	if catalog {
 		printCatalog()
 		return 0
@@ -24,6 +24,16 @@ func runStudyCode(micro, run, catalog bool) int {
 
 	d := todayDrill()
 	printSpecialty(d)
+	printMathReadAddon()
+
+	if runMath {
+		fmt.Printf("── Running math read %s ──\n", mathReadFile)
+		if err := runDrill(mathReadFile); err != nil {
+			fmt.Fprintf(os.Stderr, "math read failed: %v\n", err)
+			return 1
+		}
+		return 0
+	}
 
 	if run {
 		fmt.Println("── Running Core Read 3 ──")

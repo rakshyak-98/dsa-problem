@@ -42,6 +42,15 @@ func runUnified(root string, passArgs []string, run bool) int {
 		return 1
 	}
 
+	printMathPracticeHint()
 	printUnifiedFooter()
 	return 0
+}
+
+func printMathPracticeHint() {
+	fmt.Println()
+	fmt.Println("━━━ MATH (daily add-on) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+	fmt.Println("  Write: go run -C study_play . -- --run-math")
+	fmt.Println("  Read:  go run -C study_code . -- --run-math")
+	fmt.Println("  Guide: study_play/docs/MATH_CONCEPTS.md")
 }

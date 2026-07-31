@@ -86,6 +86,20 @@ Functions: `numIslands`, `floodFill`, `shortestPathGrid`
   - **Neighbor generation:** Standard 4-direction moves with boundary checks.
   - **BFS distance layers:** First time reaching a node gives shortest path in unweighted graphs.
 
+## Drill 10: Math
+
+Functions: `gcd`, `lcm`, `modPow`, `nCr`, `isPrime`, `powOfTwo`
+
+- **Core idea:** Number-theory helpers that appear inside many DSA solutions.
+- **When this pattern appears:** Modular counting, cycle alignment, combinatorics, prime checks, bit sizing.
+- **Key concepts:**
+  - **Euclidean GCD:** `gcd(a,b) = gcd(b, a mod b)` until `b == 0`.
+  - **LCM from GCD:** `lcm(a,b) = |a*b| / gcd(a,b)`.
+  - **Modular exponentiation:** Square-and-multiply in O(log exp).
+  - **Combinations:** Use `k = min(k, n-k)` and multiplicative formula to avoid overflow.
+  - **Prime test:** Check 2, then odd divisors up to √n.
+  - **Power of two:** `n > 0 && (n & (n-1)) == 0`.
+
 ## Fast Pattern Picker
 
 Use this quick mapping when solving:
@@ -99,6 +113,8 @@ Use this quick mapping when solving:
 - Min/max ways over sequence -> **1D DP**
 - Grid region count/fill -> **DFS/BFS**
 - Shortest path in unweighted grid -> **BFS**
+- GCD / LCM / mod exponent -> **Number theory (Drill 10)**
+- Count combinations mod m -> **nCr + modPow**
 
 ## How to Study This File
 

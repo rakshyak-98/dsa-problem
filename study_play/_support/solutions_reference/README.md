@@ -17,6 +17,7 @@ Each folder mirrors `drills/write/reflex/<name>/` with working implementations:
 | [`reflex/07_graphs_reflex/`](reflex/07_graphs_reflex/) | `drills/write/reflex/07_graphs_reflex/` |
 | [`reflex/08_heap_reflex/`](reflex/08_heap_reflex/) | `drills/write/reflex/08_heap_reflex/` |
 | [`reflex/09_backtrack_reflex/`](reflex/09_backtrack_reflex/) | `drills/write/reflex/09_backtrack_reflex/` |
+| [`reflex/10_math_reflex/`](reflex/10_math_reflex/) | `drills/write/reflex/10_math_reflex/` |
 
 ```bash
 # Verify a solution passes the same self-tests as the drill
@@ -29,7 +30,7 @@ go run -C study_play/_support/solutions_reference/reflex/02_hashing_reflex .
 |------|---------|
 | `core5.md` | `drills/write/core5/` |
 | `variants.md` | `drills/write/variants/` |
-| `01_arrays_reflex.md` … `09_backtrack_reflex.md` | pattern triggers + common bugs |
+| `01_arrays_reflex.md` … `10_math_reflex.md` | pattern triggers + common bugs |
 | `reference.go` | all functions in one file (do not import) |
 
 ## Read drills

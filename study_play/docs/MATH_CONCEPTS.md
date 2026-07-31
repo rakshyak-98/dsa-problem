@@ -743,6 +743,7 @@ Shoelace area:      ½|Σ(x_i y_{i+1} - x_{i+1} y_i)|
 2. Write the key formulas on paper from memory.
 3. Solve one “count / bound / modulo” sub-step of a medium problem using only this sheet.
 4. Cross-link with `DRILL_CONCEPTS.md` for pattern triggers and `study_code/.../05_complexity_glance` for complexity drills.
-5. Log one formula you forgot and where it would have saved time.
+5. **Daily practice:** write `drills/write/reflex/10_math_reflex` (`go run . -- --run-math` in `study_play`); read `drills/read/weekday/08_math_concepts` (`go run . -- --run-math` in `study_code`).
+6. Log one formula you forgot and where it would have saved time.
 
 **Related docs:** `DRILL_CONCEPTS.md` (patterns), `STUDY_PLAN.md` (schedule), `READING_PATTERNS.md` (complexity pass in code reading).

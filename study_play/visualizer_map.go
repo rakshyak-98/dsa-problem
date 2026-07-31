@@ -12,6 +12,7 @@ var visualizerLinks = map[string]string{
 	"07_graphs_reflex":       "visualizer/index.html#num-islands",
 	"08_heap_reflex":         "visualizer/index.html#kth-largest",
 	"09_backtrack_reflex":    "visualizer/index.html#subsets",
+	"10_math_reflex":         "study_play/docs/MATH_CONCEPTS.md",
 	"core5":                  "visualizer/index.html#two-sum",
 }
 

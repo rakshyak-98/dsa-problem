@@ -39,7 +39,8 @@ cd study_play && go run . -- --run           # test + log
 ```
 
 Guide: [`study_play/docs/START_HERE.md`](../study_play/docs/START_HERE.md)  
-Math reference: [`study_play/docs/MATH_CONCEPTS.md`](../study_play/docs/MATH_CONCEPTS.md)
+Math reference: [`study_play/docs/MATH_CONCEPTS.md`](../study_play/docs/MATH_CONCEPTS.md)  
+Math write drill: [`write/reflex/10_math_reflex/`](write/reflex/10_math_reflex/) · Math read drill: [`read/weekday/08_math_concepts/`](../study_code/practice/read/weekday/08_math_concepts/)
 
 ## Read drills
 
