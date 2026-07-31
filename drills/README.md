@@ -38,7 +38,8 @@ go run -C study_play/practice/write/reflex/02_hashing_reflex . # specialty
 cd study_play && go run . -- --run           # test + log
 ```
 
-Guide: [`study_play/docs/START_HERE.md`](../study_play/docs/START_HERE.md)
+Guide: [`study_play/docs/START_HERE.md`](../study_play/docs/START_HERE.md)  
+Math reference: [`study_play/docs/MATH_CONCEPTS.md`](../study_play/docs/MATH_CONCEPTS.md)
 
 ## Read drills
 

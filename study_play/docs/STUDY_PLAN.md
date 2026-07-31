@@ -11,6 +11,8 @@
 | File / folder | Purpose |
 |---------------|---------|
 | `STUDY_PLAN.md` (this file) | Full roadmap, weekly schedule, mental frameworks |
+| `MATH_CONCEPTS.md` | Math formulas & theory for complexity, counting, number theory, graphs, geometry |
+| `DRILL_CONCEPTS.md` | Pattern concepts behind each reflex drill |
 | `DAILY_30MIN_DRILL.md` | The daily ritual you run every study day |
 | `daily_drill.go` | Prints today's drill + understanding prompts |
 | `drills/*/` | **Reflex drills** — rewrite from memory until automatic |
