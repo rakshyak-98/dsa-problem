@@ -163,56 +163,8 @@ func runDrill(file string) error {
 }
 
 func main() {
-	args := os.Args[1:]
-	// allow `go run . -- --run`
-	if len(args) > 0 && args[0] == "--" {
-		args = args[1:]
-	}
-
-	micro := false
-	run := false
-	catalog := false
-	for _, a := range args {
-		switch a {
-		case "--micro":
-			micro = true
-		case "--run":
-			run = true
-		case "--catalog":
-			catalog = true
-		}
-	}
-
-	if catalog {
-		printCatalog()
-		return
-	}
-
-	fmt.Println()
-	fmt.Println("study_code — code reading drills")
-	fmt.Println("Fill TODO: READ answers, then go run . -- --run")
-	fmt.Println()
-
-	printCore()
-	if micro {
-		fmt.Println("(--micro) Specialty skipped. Still counts as Minimum tier.")
-		return
-	}
-
-	d := todayDrill()
-	printSpecialty(d)
-
-	if run {
-		fmt.Println("── Running Core Read 3 ──")
-		if err := runDrill("00_core_read"); err != nil {
-			fmt.Fprintf(os.Stderr, "core failed: %v\n", err)
-			os.Exit(1)
-		}
-		fmt.Println()
-		fmt.Printf("── Running specialty %s ──\n", d.file)
-		if err := runDrill(d.file); err != nil {
-			fmt.Fprintf(os.Stderr, "specialty failed: %v\n", err)
-			os.Exit(1)
-		}
+	micro, run, catalog := parseReadArgs(os.Args[1:])
+	if code := runStudyCode(micro, run, catalog); code != 0 {
+		os.Exit(code)
 	}
 }

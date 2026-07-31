@@ -6,7 +6,6 @@
 package main
 
 import (
-	"container/heap"
 	"fmt"
 )
 
@@ -41,8 +40,21 @@ func main() {
 
 	got := mergeKSorted([][]int{{1, 4, 5}, {1, 3, 4}, {2, 6}})
 	assert("mergeKSorted", len(got) == 8 && got[0] == 1 && got[len(got)-1] == 6)
+	assert("mergeKSorted empty", len(mergeKSorted([][]int{})) == 0)
+	assert("mergeKSorted one list", reflectDeepEqual(mergeKSorted([][]int{{1, 2}}), []int{1, 2}))
 
-	_ = heap.IntHeap{} // ensure container/heap import is valid for solutions
 	fmt.Println("\nAll heap reflex drills passed.")
 	fmt.Println("Primary: heaps/medium/kth_largest_element_in_an_array.js")
+}
+
+func reflectDeepEqual(a, b []int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
 }

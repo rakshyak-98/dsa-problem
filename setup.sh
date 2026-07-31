@@ -21,6 +21,10 @@ echo "==> Verifying helpers"
 (cd study_play/variants && go build -o /dev/null .)
 
 echo
+echo "==> Running coverage gate (80%)"
+"$ROOT/scripts/test-coverage.sh"
+
+echo
 echo "Setup complete."
 echo
 echo "Next steps:"
