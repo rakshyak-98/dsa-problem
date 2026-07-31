@@ -7,14 +7,15 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 )
 
 func TestTodayDrillFromWeekday(t *testing.T) {
-	mon := todayDrillFromWeekday(monday)
+	mon := todayDrillFromWeekday(time.Monday)
 	if mon.file != "01_arrays_reflex" {
 		t.Fatalf("monday: %s", mon.file)
 	}
-	sun := todayDrillFromWeekday(sunday)
+	sun := todayDrillFromWeekday(time.Sunday)
 	if sun.file != "07_graphs_reflex" {
 		t.Fatalf("sunday: %s", sun.file)
 	}
@@ -87,7 +88,7 @@ func TestWriteReflexDirFallback(t *testing.T) {
 }
 
 func TestPrintTodaySunday(t *testing.T) {
-	sun := todayDrillFromWeekday(sunday)
+	sun := todayDrillFromWeekday(time.Sunday)
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
@@ -100,8 +101,3 @@ func TestPrintTodaySunday(t *testing.T) {
 		t.Fatal("expected sunday note")
 	}
 }
-
-const (
-	monday = 1
-	sunday = 0
-)
