@@ -28,4 +28,8 @@ echo "  study_play (write drills):  cd study_play && go run ."
 echo "  study_code (read drills):   cd study_code && go run ."
 echo "  study tracker (browser):    open study_play/study_tracker.html"
 echo "  visualizer (browser):       open visualizer/index.html"
+<<<<<<< HEAD
 echo "  problem index:              problems/CATEGORIES.md"
+=======
+echo "  problem index:              CATEGORIES.md"
+>>>>>>> 849da68 (Add repository setup script and initialize reflex drills)
