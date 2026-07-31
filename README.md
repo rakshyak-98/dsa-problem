@@ -66,6 +66,14 @@ cd study_play && go run ./variants
 
 **8. Visualize**: `visualizer/index.html` (link printed in daily output)
 
+## Testing
+
+```bash
+./scripts/test-coverage.sh
+```
+
+Runs Go tests across `study_play`, `study_play/templates`, `daily`, and `study_code` with an **80% average coverage** gate. Reference implementations in `study_play/templates/` are fully tested; student drill stubs in `drills/` are excluded (they start as `panic` stubs).
+
 ## Repository map
 
 ```

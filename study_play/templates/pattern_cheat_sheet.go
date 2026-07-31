@@ -8,7 +8,10 @@
 // This file is reference only (not meant to be run).
 package templates
 
-import "sort"
+import (
+	"container/heap"
+	"sort"
+)
 
 // =============================================================================
 // DRILL 01 — ARRAYS
@@ -502,4 +505,249 @@ func ShortestPathGridTemplate(grid [][]int) int {
 		}
 	}
 	return -1
+}
+
+// =============================================================================
+// VARIANTS — medium pattern recognition
+// =============================================================================
+
+func TwoSumSortedTemplate(nums []int, target int) []int {
+	left, right := 0, len(nums)-1
+	for left < right {
+		sum := nums[left] + nums[right]
+		if sum == target {
+			return []int{left, right}
+		}
+		if sum < target {
+			left++
+		} else {
+			right--
+		}
+	}
+	return nil
+}
+
+func MaxSubarraySumTemplate(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+	best, cur := nums[0], nums[0]
+	for i := 1; i < len(nums); i++ {
+		if cur+nums[i] > nums[i] {
+			cur = cur + nums[i]
+		} else {
+			cur = nums[i]
+		}
+		if cur > best {
+			best = cur
+		}
+	}
+	return best
+}
+
+func LengthOfLongestSubstringTemplate(s string) int {
+	last := make(map[byte]int)
+	left, best := 0, 0
+	for right := 0; right < len(s); right++ {
+		ch := s[right]
+		if idx, ok := last[ch]; ok && idx >= left {
+			left = idx + 1
+		}
+		last[ch] = right
+		if right-left+1 > best {
+			best = right - left + 1
+		}
+	}
+	return best
+}
+
+func ProductExceptSelfTemplate(nums []int) []int {
+	n := len(nums)
+	out := make([]int, n)
+	for i := range out {
+		out[i] = 1
+	}
+	prefix := 1
+	for i := 0; i < n; i++ {
+		out[i] = prefix
+		prefix *= nums[i]
+	}
+	suffix := 1
+	for i := n - 1; i >= 0; i-- {
+		out[i] *= suffix
+		suffix *= nums[i]
+	}
+	return out
+}
+
+// =============================================================================
+// DRILL 08 — HEAPS
+// =============================================================================
+
+func KthLargestTemplate(nums []int, k int) int {
+	h := &intMinHeap{}
+	heap.Init(h)
+	for _, n := range nums {
+		heap.Push(h, n)
+		if h.Len() > k {
+			heap.Pop(h)
+		}
+	}
+	return (*h)[0]
+}
+
+type intMinHeap []int
+
+func (h intMinHeap) Len() int            { return len(h) }
+func (h intMinHeap) Less(i, j int) bool  { return h[i] < h[j] }
+func (h intMinHeap) Swap(i, j int)       { h[i], h[j] = h[j], h[i] }
+func (h *intMinHeap) Push(x interface{}) { *h = append(*h, x.(int)) }
+func (h *intMinHeap) Pop() interface{} {
+	old := *h
+	n := len(old)
+	v := old[n-1]
+	*h = old[:n-1]
+	return v
+}
+
+func LastStoneWeightTemplate(stones []int) int {
+	h := &intMaxHeap{}
+	heap.Init(h)
+	for _, s := range stones {
+		heap.Push(h, s)
+	}
+	for h.Len() > 1 {
+		a := heap.Pop(h).(int)
+		b := heap.Pop(h).(int)
+		if a > b {
+			heap.Push(h, a-b)
+		}
+	}
+	if h.Len() == 0 {
+		return 0
+	}
+	return heap.Pop(h).(int)
+}
+
+type intMaxHeap []int
+
+func (h intMaxHeap) Len() int            { return len(h) }
+func (h intMaxHeap) Less(i, j int) bool  { return h[i] > h[j] }
+func (h intMaxHeap) Swap(i, j int)       { h[i], h[j] = h[j], h[i] }
+func (h *intMaxHeap) Push(x interface{}) { *h = append(*h, x.(int)) }
+func (h *intMaxHeap) Pop() interface{} {
+	old := *h
+	n := len(old)
+	v := old[n-1]
+	*h = old[:n-1]
+	return v
+}
+
+type mergeItem struct {
+	val int
+	i   int
+	j   int
+}
+
+func MergeKSortedTemplate(lists [][]int) []int {
+	h := &mergeItemHeap{}
+	heap.Init(h)
+	for i, list := range lists {
+		if len(list) > 0 {
+			heap.Push(h, mergeItem{list[0], i, 0})
+		}
+	}
+	out := []int{}
+	for h.Len() > 0 {
+		cur := heap.Pop(h).(mergeItem)
+		out = append(out, cur.val)
+		if cur.j+1 < len(lists[cur.i]) {
+			heap.Push(h, mergeItem{lists[cur.i][cur.j+1], cur.i, cur.j + 1})
+		}
+	}
+	return out
+}
+
+type mergeItemHeap []mergeItem
+
+func (h mergeItemHeap) Len() int            { return len(h) }
+func (h mergeItemHeap) Less(i, j int) bool  { return h[i].val < h[j].val }
+func (h mergeItemHeap) Swap(i, j int)       { h[i], h[j] = h[j], h[i] }
+func (h *mergeItemHeap) Push(x interface{}) { *h = append(*h, x.(mergeItem)) }
+func (h *mergeItemHeap) Pop() interface{} {
+	old := *h
+	n := len(old)
+	v := old[n-1]
+	*h = old[:n-1]
+	return v
+}
+
+// =============================================================================
+// DRILL 09 — BACKTRACKING
+// =============================================================================
+
+func SubsetsTemplate(nums []int) [][]int {
+	var out [][]int
+	var path []int
+	var dfs func(int)
+	dfs = func(start int) {
+		cp := append([]int(nil), path...)
+		out = append(out, cp)
+		for i := start; i < len(nums); i++ {
+			path = append(path, nums[i])
+			dfs(i + 1)
+			path = path[:len(path)-1]
+		}
+	}
+	dfs(0)
+	return out
+}
+
+func PermuteTemplate(nums []int) [][]int {
+	var out [][]int
+	path := make([]int, len(nums))
+	used := make([]bool, len(nums))
+	var dfs func(int)
+	dfs = func(depth int) {
+		if depth == len(nums) {
+			cp := append([]int(nil), path...)
+			out = append(out, cp)
+			return
+		}
+		for i := 0; i < len(nums); i++ {
+			if used[i] {
+				continue
+			}
+			used[i] = true
+			path[depth] = nums[i]
+			dfs(depth + 1)
+			used[i] = false
+		}
+	}
+	dfs(0)
+	return out
+}
+
+func CombineTemplate(n, k int) [][]int {
+	var out [][]int
+	path := []int{}
+	var dfs func(start int)
+	dfs = func(start int) {
+		if len(path) == k {
+			cp := append([]int(nil), path...)
+			out = append(out, cp)
+			return
+		}
+		need := k - len(path)
+		for i := start; i <= n; i++ {
+			if n-i+1 < need {
+				break
+			}
+			path = append(path, i)
+			dfs(i + 1)
+			path = path[:len(path)-1]
+		}
+	}
+	dfs(1)
+	return out
 }
