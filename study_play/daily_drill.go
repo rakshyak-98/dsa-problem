@@ -11,7 +11,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"time"
 )
@@ -120,6 +119,11 @@ var drills = []drill{
 	},
 }
 
+var bonusDrills = []string{
+	"08_heap_reflex",
+	"09_backtrack_reflex",
+}
+
 var essentialCatalog = []struct {
 	group string
 	fns   []string
@@ -131,6 +135,8 @@ var essentialCatalog = []struct {
 	{"Trees & stacks", []string{"inorderTraversal", "maxDepth", "isValidParentheses", "dailyTemperatures"}},
 	{"DP", []string{"fib", "climbStairs", "minCostClimbingStairs", "rob"}},
 	{"Graphs", []string{"numIslands", "floodFill", "shortestPathGrid"}},
+	{"Heaps (bonus)", []string{"kthLargest", "lastStoneWeight", "mergeKSorted"}},
+	{"Backtracking (bonus)", []string{"subsets", "permute", "combine"}},
 }
 
 var allTriggers = []string{
@@ -234,13 +240,23 @@ func printToday(today drill) {
   %s
 
 ── COMMANDS ────────────────────────────────────────────
+  Core 5 drill:    go run ./core5
   Open specialty:  study_play/drills/%s
   Run specialty:   go run . -- --run
+  Run Core 5:      go run . -- --run-core5
   Reset specialty: go run . -- --reset
+  Weak functions:  go run . -- --weak
+  Variants:        go run ./variants
+  Solutions:       study_play/solutions_reference/ (after honest attempt)
   Core 5 only:     go run . -- --micro
   Full catalog:    go run . -- --catalog
   Full guide:      study_play/DAILY_30MIN_DRILL.md
 `, today.understandWarmup, today.file)
+
+	printAskWarmup(today.day)
+	printProblemMap(today.file)
+	printCore5Problems()
+	printVisualizerLink(today.file)
 }
 
 func hasFlag(flag string) bool {
@@ -275,6 +291,10 @@ func main() {
 		}
 	}
 
+	if hasFlag("--weak") {
+		printWeakFunctions(root, 5)
+		return
+	}
 	if hasFlag("--setup") {
 		fmt.Println("Setting up study_play reflex drills from blanks/ ...\n")
 		if err := setupAllDrills(root); err != nil {
@@ -302,16 +322,32 @@ func main() {
 
 	printToday(today)
 
+	if hasFlag("--run-core5") {
+		core5Path := filepath.Join(root, "core5")
+		fmt.Println("Running Core 5 tests...\n")
+		ok, output, _ := runDrillWithLog(core5Path)
+		if !ok {
+			fmt.Print(output)
+			fmt.Println("\nCore 5 failed — fix blind, then re-run.")
+			os.Exit(1)
+		}
+		fmt.Print(output)
+		updateLogFromOutput(root, output, []string{"twoSum", "binarySearch", "removeDuplicates", "maxSumSubarrayK", "frequencyMap"})
+		fmt.Println("Core 5 logged.")
+		return
+	}
+
 	if hasFlag("--run") {
 		fmt.Println("Running specialty tests...\n")
-		cmd := exec.Command("go", "run", ".")
-		cmd.Dir = drillPath
-		cmd.Stdout = os.Stdout
-		cmd.Stderr = os.Stderr
-		if err := cmd.Run(); err != nil {
+		ok, output, _ := runDrillWithLog(drillPath)
+		fmt.Print(output)
+		if !ok {
+			updateLogFromOutput(root, output, today.functions)
 			fmt.Println("\nTests failed — good data. Fix blind, then re-run.")
 			os.Exit(1)
 		}
+		updateLogFromOutput(root, output, today.functions)
+		fmt.Println("Specialty logged. Next: solve today's primary problem (see map above).")
 	} else {
 		fmt.Println("Tip: after Core 5 + specialty, run  go run . -- --run\n")
 	}

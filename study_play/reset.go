@@ -48,6 +48,13 @@ func setupAllDrills(root string) error {
 		}
 		fmt.Printf("  ✓ study_play/drills/%s/main.go\n", d.file)
 	}
+	for _, file := range bonusDrills {
+		drillDir := filepath.Join(root, "drills", file)
+		if err := writeDrillFromBlank(file, drillDir); err != nil {
+			return err
+		}
+		fmt.Printf("  ✓ study_play/drills/%s/main.go (bonus)\n", file)
+	}
 	return nil
 }
 

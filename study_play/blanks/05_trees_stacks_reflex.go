@@ -3,6 +3,8 @@
 // REFLEX DRILL 05 — Trees & Stacks
 //
 // RUN: go run ./drills/05_trees_stacks_reflex
+//
+// AFTER PASSING: stacks/easy/valid_parentheses.js
 package main
 
 import (
@@ -50,13 +52,22 @@ func main() {
 		Right: &TreeNode{Val: 3, Left: &TreeNode{Val: 4}},
 	}
 	assert("inorderTraversal", reflect.DeepEqual(inorderTraversal(tree), []int{2, 1, 4, 3}))
+	assert("inorderTraversal nil", reflect.DeepEqual(inorderTraversal(nil), []int{}))
+
 	assert("maxDepth", maxDepth(tree) == 3)
+	assert("maxDepth nil", maxDepth(nil) == 0)
+
 	assert("isValidParentheses true", isValidParentheses("()[]{}") == true)
 	assert("isValidParentheses false", isValidParentheses("(]") == false)
+	assert("isValidParentheses empty", isValidParentheses("") == true)
+	assert("isValidParentheses open only", isValidParentheses("(") == false)
+
 	assert("dailyTemperatures", reflect.DeepEqual(
 		dailyTemperatures([]int{73, 74, 75, 71, 69, 72, 76, 73}),
 		[]int{1, 1, 4, 2, 1, 1, 0, 0},
 	))
+	assert("dailyTemperatures single", reflect.DeepEqual(dailyTemperatures([]int{50}), []int{0}))
 
 	fmt.Println("\nAll trees/stacks reflex drills passed.")
+	fmt.Println("Primary: stacks/easy/valid_parentheses.js")
 }
