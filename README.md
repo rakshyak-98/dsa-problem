@@ -67,6 +67,7 @@ dsa-problem/
 ├── drills/                  # ★ PRACTICE (front door)
 │   ├── write/               # reflex drills: core5, reflex, variants
 │   ├── read/                # reading drills: core, weekday, answers
+│   ├── solutions/           # write drill solutions (after attempt)
 │   └── tracker/             # browser study tracker
 ├── daily/                   # unified read + write command
 ├── study_play/              # write-drill CLI + internal support

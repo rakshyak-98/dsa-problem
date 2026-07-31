@@ -14,6 +14,11 @@ drills/
 │   ├── core/              # Core Read 3 (every day)
 │   ├── weekday/           # specialty reading drills
 │   └── answers/           # peek only after honest attempt
+├── solutions/             → study_play/_support/solutions_reference/
+│   ├── core5.md           # Core 5 write solutions
+│   ├── variants.md        # variant drill solutions
+│   ├── 01_arrays_reflex.md … 09_backtrack_reflex.md
+│   └── reference.go       # full Go reference (do not import)
 └── tracker/               → study_play/practice/tracker/
     └── study_tracker.html
 ```
@@ -47,6 +52,11 @@ cd study_code && go run . -- --run
 
 Guide: [`study_code/docs/START_HERE.md`](../study_code/docs/START_HERE.md)
 
+## Solutions (after honest attempt)
+
+Write reflex solutions: [`solutions/`](solutions/)  
+Read answer keys: [`read/answers/`](read/answers/)
+
 ## Track progress
 
 Open [`tracker/study_tracker.html`](tracker/study_tracker.html).
@@ -56,7 +66,7 @@ Open [`tracker/study_tracker.html`](tracker/study_tracker.html).
 | What | Where |
 |------|--------|
 | CLI tooling | `study_play/`, `study_code/`, `daily/` |
-| Templates & solutions | `study_play/_support/` |
+| Templates & blanks | `study_play/_support/` (solutions exposed at `drills/solutions/`) |
 | Study plans | `study_play/docs/`, `study_code/docs/` |
 | Problem catalog | `problems/CATEGORIES.md` |
 | Visualizer | `visualizer/` |

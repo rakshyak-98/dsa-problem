@@ -17,7 +17,7 @@ go run . -- --setup   # scaffold drills from blank templates
 |------|---------|
 | `_support/blanks/` | source templates for `--setup` |
 | `_support/templates/` | reference implementations (tested) |
-| `_support/solutions_reference/` | annotated solutions (peek after attempt) |
+| `drills/solutions/` | annotated solutions (peek after attempt) |
 | `_support/asks/` | question literacy prompts |
 | `docs/` | study plans and guides |
 

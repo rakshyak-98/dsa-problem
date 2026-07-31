@@ -77,6 +77,20 @@ func TestWriteDrillPathHelpers(t *testing.T) {
 	if trackerDir(fallback) != filepath.Join(fallback, "study_play", "practice", "tracker") {
 		t.Fatal("tracker fallback")
 	}
+	if solutionsDir(fallback) != filepath.Join(fallback, "study_play", "_support", "solutions_reference") {
+		t.Fatal("solutions fallback")
+	}
+}
+
+func TestSolutionsDir(t *testing.T) {
+	repo := t.TempDir()
+	solutions := filepath.Join(repo, "drills", "solutions")
+	if err := os.MkdirAll(solutions, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if solutionsDir(repo) != solutions {
+		t.Fatalf("solutions: %s", solutionsDir(repo))
+	}
 }
 
 func TestWriteReflexDirFallback(t *testing.T) {

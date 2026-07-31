@@ -1,7 +1,7 @@
 # Daily Reflex Practice — Essential Pack
 
 > **Purpose:** Build automatic DSA reflexes so medium problems don’t stall on basics.
-> **Rule:** Blind write only. No `_support/solutions_reference/` until the blind block is done.
+> **Rule:** Blind write only. No `drills/solutions/` until the blind block is done.
 > **Helper:** `cd study_play && go run .`
 
 This file is the full daily practice. Same shape every day. Do the **Core 5** every session, then today’s specialty drill.

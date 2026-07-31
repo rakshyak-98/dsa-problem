@@ -12,6 +12,7 @@ import (
 //   drills/write/variants/ — medium variants
 //   drills/read/core/      — core reading drill
 //   drills/read/weekday/   — reading specialty drills
+//   drills/solutions/     — write drill solutions (peek after attempt)
 //   drills/tracker/        — browser study tracker
 
 func findRepoRoot(from string) string {
@@ -66,6 +67,14 @@ func trackerDir(repoRoot string) string {
 	p := filepath.Join(repoRoot, "drills", "tracker")
 	if _, err := os.Stat(p); err != nil {
 		return filepath.Join(repoRoot, "study_play", "practice", "tracker")
+	}
+	return p
+}
+
+func solutionsDir(repoRoot string) string {
+	p := filepath.Join(repoRoot, "drills", "solutions")
+	if _, err := os.Stat(p); err != nil {
+		return filepath.Join(repoRoot, "study_play", "_support", "solutions_reference")
 	}
 	return p
 }
