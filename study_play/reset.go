@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 )
 
-//go:embed blanks/*
+//go:embed _support/blanks/*
 var blankFS embed.FS
 
 func blankContent(file string) ([]byte, error) {
@@ -58,6 +58,6 @@ func resetTodayDrill(today drill, drillDir string) error {
 
 	fmt.Printf("Reset today's drill → %s\n", filepath.Join(drillDir, "main.go"))
 	fmt.Println("All TODO: REFLEX functions restored to panic(\"Implement from memory\").")
-	fmt.Printf("Open: study_play/drills/%s\n", today.file)
+	fmt.Printf("Open: drills/write/reflex/%s\n", today.file)
 	return nil
 }

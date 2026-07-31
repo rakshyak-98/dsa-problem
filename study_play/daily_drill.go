@@ -11,8 +11,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"os/exec"
-	"path/filepath"
 	"time"
 )
 
@@ -120,6 +118,11 @@ var drills = []drill{
 	},
 }
 
+var bonusDrills = []string{
+	"08_heap_reflex",
+	"09_backtrack_reflex",
+}
+
 var essentialCatalog = []struct {
 	group string
 	fns   []string
@@ -131,6 +134,8 @@ var essentialCatalog = []struct {
 	{"Trees & stacks", []string{"inorderTraversal", "maxDepth", "isValidParentheses", "dailyTemperatures"}},
 	{"DP", []string{"fib", "climbStairs", "minCostClimbingStairs", "rob"}},
 	{"Graphs", []string{"numIslands", "floodFill", "shortestPathGrid"}},
+	{"Heaps (bonus)", []string{"kthLargest", "lastStoneWeight", "mergeKSorted"}},
+	{"Backtracking (bonus)", []string{"subsets", "permute", "combine"}},
 }
 
 var allTriggers = []string{
@@ -155,8 +160,9 @@ func printBanner() {
 }
 
 func printCore5() {
-	fmt.Println(`── CORE 5 (every day — target < 8 min) ───────────────
+	fmt.Print(`── CORE 5 (every day — target < 8 min) ───────────────
   Say the ask, then write blind.
+
 `)
 	for i, fn := range core5 {
 		fmt.Printf("  %d. %s\n", i+1, fn.name)
@@ -168,7 +174,8 @@ func printCore5() {
 
 func printCatalog() {
 	printBanner()
-	fmt.Println("Essential catalog — own every function blind.\n")
+	fmt.Println("Essential catalog — own every function blind.")
+	fmt.Println()
 	for _, entry := range essentialCatalog {
 		fmt.Printf("  %s\n", entry.group)
 		for _, fn := range entry.fns {
@@ -176,7 +183,7 @@ func printCatalog() {
 		}
 		fmt.Println()
 	}
-	fmt.Println("Guide: study_play/DAILY_30MIN_DRILL.md\n")
+	fmt.Println("Guide: study_play/docs/DAILY_30MIN_DRILL.md")
 }
 
 func printMicro(today drill) {
@@ -184,21 +191,22 @@ func printMicro(today drill) {
 	fmt.Printf("Minimum / micro day (%s) — Core 5 only.\n\n", today.day)
 	printCore5()
 	fmt.Printf(`When ready for specialty:
-  Open: study_play/drills/%s
+  Open: drills/write/reflex/%s
   Run:  go run . -- --run
 `, today.file)
 }
 
 func printToday(today drill) {
 	printBanner()
-	fmt.Printf("Today: %s\nSpecialty file: study_play/drills/%s\nSpecialty set:  %s\n\n",
+	fmt.Printf("Today: %s\nSpecialty file: drills/write/reflex/%s\nSpecialty set:  %s\n\n",
 		today.day, today.file, today.patterns)
 
 	if today.day == "Sunday" {
-		fmt.Println("Note: Sunday is rest from new problems. Graphs specialty is optional; still do Core 5.\n")
+		fmt.Println("Note: Sunday is rest from new problems. Graphs specialty is optional; still do Core 5.")
+		fmt.Println()
 	}
 
-	fmt.Println(`── TIERS ──────────────────────────────────────────────
+	fmt.Print(`── TIERS ──────────────────────────────────────────────
   Minimum   ~20-30 min   Core 5 + log
   Reflex    ~30-40 min   Core 5 + today's specialty drill
   Standard  45-60 min    Reflex + ONE primary from STUDY_PLAN.md
@@ -210,7 +218,7 @@ func printToday(today drill) {
 		fmt.Printf("  • %s\n", fn)
 	}
 
-	fmt.Println(`
+	fmt.Print(`
 ── REFLEX CLOCK ────────────────────────────────────────
   0-2 min    Full trigger scan (out loud)
   2-10 min   Core 5 blind write
@@ -234,13 +242,23 @@ func printToday(today drill) {
   %s
 
 ── COMMANDS ────────────────────────────────────────────
-  Open specialty:  study_play/drills/%s
+  Core 5 drill:    go run -C study_play/practice/write/core5 .
+  Open specialty:  drills/write/reflex/%s
   Run specialty:   go run . -- --run
+  Run Core 5:      go run . -- --run-core5
   Reset specialty: go run . -- --reset
+  Weak functions:  go run . -- --weak
+  Variants:        go run -C study_play/practice/write/variants .
+  Solutions:       drills/solutions/ (after honest attempt)
   Core 5 only:     go run . -- --micro
   Full catalog:    go run . -- --catalog
-  Full guide:      study_play/DAILY_30MIN_DRILL.md
+  Full guide:      study_play/docs/DAILY_30MIN_DRILL.md
 `, today.understandWarmup, today.file)
+
+	printAskWarmup(today.day)
+	printProblemMap(today.file)
+	printCore5Problems()
+	printVisualizerLink(today.file)
 }
 
 func hasFlag(flag string) bool {
@@ -253,26 +271,30 @@ func hasFlag(flag string) bool {
 }
 
 func main() {
-	dayIndex := int(time.Now().Weekday()) // 0 = Sunday
-	drillIndex := dayIndex - 1
-	if dayIndex == 0 {
-		drillIndex = 6
-	}
-	today := drills[drillIndex]
+	today := todayDrillFromWeekday(time.Now().Weekday())
 
 	root, err := os.Getwd()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
-	// Allow running from study_play/ or repo root
-	drillPath := filepath.Join(root, "drills", today.file)
-	if _, err := os.Stat(drillPath); err != nil {
-		alt := filepath.Join(root, "study_play", "drills", today.file)
-		if _, err2 := os.Stat(alt); err2 == nil {
-			drillPath = alt
-			root = filepath.Join(root, "study_play")
+	repoRoot := findRepoRoot(root)
+	_, drillPath := resolvePlayPaths(root, today.file)
+
+	if hasFlag("--weak") {
+		printWeakFunctions(repoRoot, 5)
+		return
+	}
+	if hasFlag("--setup") {
+		fmt.Println("Setting up study_play reflex drills from blanks/ ...")
+		fmt.Println()
+		if err := setupAllDrills(repoRoot); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
 		}
+		fmt.Println()
+		fmt.Println("Setup complete. Start with: go run .")
+		return
 	}
 
 	if hasFlag("--setup") {
@@ -302,17 +324,38 @@ func main() {
 
 	printToday(today)
 
-	if hasFlag("--run") {
-		fmt.Println("Running specialty tests...\n")
-		cmd := exec.Command("go", "run", ".")
-		cmd.Dir = drillPath
-		cmd.Stdout = os.Stdout
-		cmd.Stderr = os.Stderr
-		if err := cmd.Run(); err != nil {
-			fmt.Println("\nTests failed — good data. Fix blind, then re-run.")
+	if hasFlag("--run-core5") {
+		core5Path := writeCore5Dir(repoRoot)
+		fmt.Println("Running Core 5 tests...")
+		fmt.Println()
+		ok, output, _ := runDrillWithLog(core5Path)
+		if !ok {
+			fmt.Print(output)
+			fmt.Println()
+			fmt.Println("Core 5 failed — fix blind, then re-run.")
 			os.Exit(1)
 		}
+		fmt.Print(output)
+		updateLogFromOutput(repoRoot, output, []string{"twoSum", "binarySearch", "removeDuplicates", "maxSumSubarrayK", "frequencyMap"})
+		fmt.Println("Core 5 logged.")
+		return
+	}
+
+	if hasFlag("--run") {
+		fmt.Println("Running specialty tests...")
+		fmt.Println()
+		ok, output, _ := runDrillWithLog(drillPath)
+		fmt.Print(output)
+		if !ok {
+			updateLogFromOutput(repoRoot, output, today.functions)
+			fmt.Println()
+			fmt.Println("Tests failed — good data. Fix blind, then re-run.")
+			os.Exit(1)
+		}
+		updateLogFromOutput(repoRoot, output, today.functions)
+		fmt.Println("Specialty logged. Next: solve today's primary problem (see map above).")
 	} else {
-		fmt.Println("Tip: after Core 5 + specialty, run  go run . -- --run\n")
+		fmt.Println("Tip: after Core 5 + specialty, run  go run . -- --run")
+		fmt.Println()
 	}
 }
