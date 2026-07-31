@@ -296,6 +296,16 @@ func main() {
 		fmt.Println("Setup complete. Start with: go run .")
 		return
 	}
+
+	if hasFlag("--setup") {
+		fmt.Println("Setting up study_play reflex drills from blanks/ ...\n")
+		if err := setupAllDrills(root); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+		fmt.Println("\nSetup complete. Start with: go run .")
+		return
+	}
 	if hasFlag("--catalog") {
 		printCatalog()
 		return

@@ -1,95 +1,73 @@
 # dsa-problem
 
-Interview prep workspace for DSA drills, problem practice, and progress tracking.
+Interview prep workspace: problem catalog, reflex drills, code-reading drills, study tracker, and algorithm visualizer.
 
-## Start here
+## Prerequisites
+
+| Tool | Version | Used for |
+|------|---------|----------|
+| [Go](https://go.dev/dl/) | 1.22+ | `study_play` and `study_code` drill helpers |
+| Browser | any modern | study tracker + visualizer |
+| Node.js (optional) | 18+ | `npx serve` for local tracker hosting |
+
+## Quick setup
 
 ```bash
+git clone https://github.com/rakshyak-98/dsa-problem.git
+cd dsa-problem
 ./setup.sh
 ```
 
-Then open **[`drills/README.md`](drills/README.md)** — all practice files live under `drills/`.
+`setup.sh` creates `study_play/drills/` from the embedded blank templates and verifies both Go helpers run.
 
-## Quick commands
+Manual setup (equivalent):
 
 ```bash
-cd daily && go run .                    # unified daily plan
-go run -C study_play/practice/write/core5 .  # Core 5 reflex
-cd study_play && go run . -- --run        # test today's write drill
-cd study_code && go run . -- --run      # check reading answers
-open drills/tracker/study_tracker.html  # progress tracker
+cd study_play && go run . -- --setup
+```
+
+## Repository map
+
+```
+dsa-problem/
+├── setup.sh              # first-time setup
+├── CATEGORIES.md         # problem catalog by topic
+├── study_play/           # write reflex drills + study tracker
+│   ├── START_HERE.md
+│   ├── study_tracker.html
+│   └── drills/           # created by setup (from blanks/)
+├── study_code/           # read drills (answers in drills/)
+│   └── START_HERE.md
+├── simulation/           # JS simulation problems
+└── visualizer/           # algorithm visualizer (static HTML/JS)
 ```
 
 ## Daily workflow
 
-**1. Question literacy** — printed in `study_play` daily output (`_support/asks/`)
-
-**2. Core 5** (every day, under 8 min):
-
-```bash
-go run -C study_play/practice/write/core5 .
-cd study_play && go run . -- --run-core5   # test + log progress
-```
-
-**3. Write reflexes** (`study_play`):
+**Write reflexes** (`study_play`):
 
 ```bash
 cd study_play
-go run .              # today's drill plan + problem map + visualizer link
-go run . -- --run     # run specialty tests + spaced-repetition log
-go run . -- --weak    # show your weakest functions
+go run .              # today's drill plan
+go run . -- --run     # run today's specialty tests
 go run . -- --reset   # restore today's drill to TODO stubs
 ```
 
-**4. Read code** (`study_code`):
+**Read code fluently** (`study_code`):
 
 ```bash
-cd study_code && go run .
-cd study_code && go run . -- --run
+cd study_code
+go run .              # today's reading drill
+go run . -- --run     # check filled answers
 ```
 
-**5. Variants** (medium prep):
+**Track progress**: open `study_play/study_tracker.html` in a browser.
 
-```bash
-go run -C study_play/practice/write/variants .
-```
-
-**6. Primary problem** — mapped in daily output (e.g. `hashing/easy/two_sum.js`)
-
-**7. Track progress**: `drills/tracker/study_tracker.html`
-
-**8. Visualize**: `visualizer/index.html` (link printed in daily output)
-
-## Repository layout
-
-```
-dsa-problem/
-├── drills/                  # ★ PRACTICE (front door)
-│   ├── write/               # reflex drills: core5, reflex, variants
-│   ├── read/                # reading drills: core, weekday, answers
-│   ├── solutions/           # write drill solutions (after attempt)
-│   └── tracker/             # browser study tracker
-├── daily/                   # unified read + write command
-├── study_play/              # write-drill CLI + internal support
-│   ├── _support/            # blanks, templates, solutions (hidden)
-│   └── docs/                # study plans and guides
-├── study_code/              # read-drill CLI
-│   └── docs/
-├── problems/                # problem catalog + simulation
-├── visualizer/              # algorithm visualizer
-└── tools/scripts/           # test coverage gate
-```
-
-## Testing
-
-```bash
-./tools/scripts/test-coverage.sh
-```
-
-Runs Go tests across `study_play`, `study_play/_support/templates`, `daily`, and `study_code` with an **80% average coverage** gate. Reference implementations in `_support/templates/` are fully tested; student drill stubs in `drills/` are excluded (they start as `panic` stubs).
+**Visualize algorithms**: open `visualizer/index.html`.
 
 ## More docs
 
-- [`study_play/docs/START_HERE.md`](study_play/docs/START_HERE.md) — writing reflex flow
-- [`study_code/docs/START_HERE.md`](study_code/docs/START_HERE.md) — reading drill flow
-- [`problems/CATEGORIES.md`](problems/CATEGORIES.md) — problem index by topic
+- [`study_play/README.md`](study_play/README.md) — tracker, 12-week plan, reflex drills
+- [`study_play/START_HERE.md`](study_play/START_HERE.md) — day-one writing flow
+- [`study_code/README.md`](study_code/README.md) — code-reading drills
+- [`study_code/START_HERE.md`](study_code/START_HERE.md) — day-one reading flow
