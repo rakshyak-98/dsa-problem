@@ -14,7 +14,7 @@
 | `DAILY_30MIN_DRILL.md` | The daily ritual you run every study day |
 | `daily_drill.go` | Prints today's drill + understanding prompts |
 | `drills/*/` | **Reflex drills** — rewrite from memory until automatic |
-| `templates/pattern_cheat_sheet.go` | Blank skeletons; cover the answers and re-type weekly |
+| `_support/templates/pattern_cheat_sheet.go` | Blank skeletons; cover the answers and re-type weekly |
 | `../arrays/`, `../hashing/`, etc. | Real problems from your repo |
 
 ---
@@ -159,7 +159,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 | Wed | Medium intro | `two_pointers/medium/container_with_most_water.js` | `two_pointers/medium/3sum.js` (stretch only) |
 | Thu | Sliding window in drill | `misc/easy/maximum_average_subarray_1.js` | `two_pointers/easy/minimum_difference_between_highest_and_lowest_of_k_score.js` |
 | Fri | Timed: 1 easy **or** 1 medium | Your choice from `two_pointers/` | — |
-| Sat | Re-type `templates/pattern_cheat_sheet.go` sections 1–3 | — | — |
+| Sat | Re-type `_support/templates/pattern_cheat_sheet.go` sections 1–3 | — | — |
 | Sun | Rest | — | — |
 
 ### Week 4 — Binary search
@@ -329,7 +329,7 @@ Draw a tiny example. Trace your chosen approach by hand. If trace fails, go back
 
 ### Step 5 — Code (15–25 min)
 
-Use templates from `templates/pattern_cheat_sheet.go`. Don't invent syntax under pressure.
+Use templates from `_support/templates/pattern_cheat_sheet.go`. Don't invent syntax under pressure.
 
 ### Step 6 — Post-mortem (5 min)
 

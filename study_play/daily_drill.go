@@ -11,7 +11,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 	"time"
 )
 
@@ -184,7 +183,7 @@ func printCatalog() {
 		}
 		fmt.Println()
 	}
-	fmt.Println("Guide: study_play/DAILY_30MIN_DRILL.md")
+	fmt.Println("Guide: study_play/docs/DAILY_30MIN_DRILL.md")
 }
 
 func printMicro(today drill) {
@@ -192,14 +191,14 @@ func printMicro(today drill) {
 	fmt.Printf("Minimum / micro day (%s) — Core 5 only.\n\n", today.day)
 	printCore5()
 	fmt.Printf(`When ready for specialty:
-  Open: study_play/drills/%s
+  Open: drills/write/reflex/%s
   Run:  go run . -- --run
 `, today.file)
 }
 
 func printToday(today drill) {
 	printBanner()
-	fmt.Printf("Today: %s\nSpecialty file: study_play/drills/%s\nSpecialty set:  %s\n\n",
+	fmt.Printf("Today: %s\nSpecialty file: drills/write/reflex/%s\nSpecialty set:  %s\n\n",
 		today.day, today.file, today.patterns)
 
 	if today.day == "Sunday" {
@@ -243,17 +242,17 @@ func printToday(today drill) {
   %s
 
 ── COMMANDS ────────────────────────────────────────────
-  Core 5 drill:    go run ./core5
-  Open specialty:  study_play/drills/%s
+  Core 5 drill:    go run -C study_play/practice/write/core5 .
+  Open specialty:  drills/write/reflex/%s
   Run specialty:   go run . -- --run
   Run Core 5:      go run . -- --run-core5
   Reset specialty: go run . -- --reset
   Weak functions:  go run . -- --weak
-  Variants:        go run ./variants
-  Solutions:       study_play/solutions_reference/ (after honest attempt)
+  Variants:        go run -C study_play/practice/write/variants .
+  Solutions:       study_play/_support/solutions_reference/ (after honest attempt)
   Core 5 only:     go run . -- --micro
   Full catalog:    go run . -- --catalog
-  Full guide:      study_play/DAILY_30MIN_DRILL.md
+  Full guide:      study_play/docs/DAILY_30MIN_DRILL.md
 `, today.understandWarmup, today.file)
 
 	printAskWarmup(today.day)
@@ -279,17 +278,17 @@ func main() {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
-	playRoot, drillPath := resolvePlayPaths(root, today.file)
-	root = playRoot
+	repoRoot := findRepoRoot(root)
+	_, drillPath := resolvePlayPaths(root, today.file)
 
 	if hasFlag("--weak") {
-		printWeakFunctions(root, 5)
+		printWeakFunctions(repoRoot, 5)
 		return
 	}
 	if hasFlag("--setup") {
 		fmt.Println("Setting up study_play reflex drills from blanks/ ...")
 		fmt.Println()
-		if err := setupAllDrills(root); err != nil {
+		if err := setupAllDrills(repoRoot); err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
@@ -316,7 +315,7 @@ func main() {
 	printToday(today)
 
 	if hasFlag("--run-core5") {
-		core5Path := filepath.Join(root, "core5")
+		core5Path := writeCore5Dir(repoRoot)
 		fmt.Println("Running Core 5 tests...")
 		fmt.Println()
 		ok, output, _ := runDrillWithLog(core5Path)
@@ -327,7 +326,7 @@ func main() {
 			os.Exit(1)
 		}
 		fmt.Print(output)
-		updateLogFromOutput(root, output, []string{"twoSum", "binarySearch", "removeDuplicates", "maxSumSubarrayK", "frequencyMap"})
+		updateLogFromOutput(repoRoot, output, []string{"twoSum", "binarySearch", "removeDuplicates", "maxSumSubarrayK", "frequencyMap"})
 		fmt.Println("Core 5 logged.")
 		return
 	}
@@ -338,12 +337,12 @@ func main() {
 		ok, output, _ := runDrillWithLog(drillPath)
 		fmt.Print(output)
 		if !ok {
-			updateLogFromOutput(root, output, today.functions)
+			updateLogFromOutput(repoRoot, output, today.functions)
 			fmt.Println()
 			fmt.Println("Tests failed — good data. Fix blind, then re-run.")
 			os.Exit(1)
 		}
-		updateLogFromOutput(root, output, today.functions)
+		updateLogFromOutput(repoRoot, output, today.functions)
 		fmt.Println("Specialty logged. Next: solve today's primary problem (see map above).")
 	} else {
 		fmt.Println("Tip: after Core 5 + specialty, run  go run . -- --run")

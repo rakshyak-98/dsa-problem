@@ -15,29 +15,18 @@ Open **`DAILY_30MIN_DRILL.md`** for the daily ritual.
    ```bash
    cd study_play && go run . -- --run
    ```
-5. Stuck after 15 min? Peek at `drills/solutions_reference/`, then close it and re-type.
+5. Stuck after 15 min? Peek at `study_play/_support/solutions_reference/`, then close it and re-type.
 6. Primary problem: `hashing/easy/two_sum.js` — **restate the ask in one sentence before coding**.
 
 ## Folder map
 
 ```
+drills/write/              ← practice files (start here)
 study_play/
-├── START_HERE.md          ← you are here
-├── STUDY_PLAN.md          ← full plan + weekly schedule
-├── DAILY_30MIN_DRILL.md   ← daily ritual (tiers + clock)
-├── daily_drill.go         ← prints today's drill + prompts
-├── go.mod
-├── drills/
-│   ├── 01_arrays_reflex/
-│   ├── 02_hashing_reflex/
-│   ├── 03_two_pointers_reflex/
-│   ├── 04_binary_search_reflex/
-│   ├── 05_trees_stacks_reflex/
-│   ├── 06_dp_reflex/
-│   ├── 07_graphs_reflex/
-│   └── solutions_reference/   ← only after honest attempt
-└── templates/
-    └── pattern_cheat_sheet.go ← re-type from memory weekly
+├── docs/                  ← START_HERE, STUDY_PLAN, DAILY_30MIN_DRILL
+├── practice/write/        ← core5, reflex/, variants (actual Go files)
+├── _support/              ← blanks, templates, solutions_reference
+└── daily_drill.go         ← prints today's drill + prompts
 ```
 
 ## Every study day
