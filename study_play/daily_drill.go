@@ -5,6 +5,7 @@
 // Core 5 only:      go run . -- --micro
 // Full catalog:     go run . -- --catalog
 // Reset today:      go run . -- --reset
+// First-time setup: go run . -- --setup
 package main
 
 import (
@@ -274,6 +275,15 @@ func main() {
 		}
 	}
 
+	if hasFlag("--setup") {
+		fmt.Println("Setting up study_play reflex drills from blanks/ ...\n")
+		if err := setupAllDrills(root); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+		fmt.Println("\nSetup complete. Start with: go run .")
+		return
+	}
 	if hasFlag("--catalog") {
 		printCatalog()
 		return
