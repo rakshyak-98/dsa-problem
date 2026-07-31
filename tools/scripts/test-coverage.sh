@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 THRESHOLD="${COVERAGE_THRESHOLD:-80}"
 
 echo "==> Running tests with coverage (threshold: ${THRESHOLD}%)"
@@ -9,7 +9,7 @@ echo "==> Running tests with coverage (threshold: ${THRESHOLD}%)"
 OUT=$(mktemp)
 trap 'rm -f "$OUT"' EXIT
 
-(cd "$ROOT/study_play" && go test . ./templates -covermode=atomic) | tee -a "$OUT"
+(cd "$ROOT/study_play" && go test . ./_support/templates -covermode=atomic) | tee -a "$OUT"
 (cd "$ROOT/daily" && go test . -covermode=atomic) | tee -a "$OUT"
 (cd "$ROOT/study_code" && go test . -covermode=atomic) | tee -a "$OUT"
 

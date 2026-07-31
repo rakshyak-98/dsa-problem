@@ -58,7 +58,7 @@ Use this as the follow-through version of `study_play/STUDY_PLAN.md`. Check item
 - [ ] Wed: Primary `container_with_most_water` (stretch only: 3sum)
 - [ ] Thu: Primary `maximum_average_subarray_1` (stretch: min difference of k scores)
 - [ ] Fri: Timed 1 easy or 1 medium from `two_pointers/`
-- [ ] Sat: Re-type `templates/pattern_cheat_sheet.go` sections 1 to 3
+- [ ] Sat: Re-type `_support/templates/pattern_cheat_sheet.go` sections 1 to 3
 - [ ] Sun: Rest
 
 ### Week 4 - Binary search
@@ -142,7 +142,7 @@ Use this as the follow-through version of `study_play/STUDY_PLAN.md`. Check item
 - [ ] Wed: 1 new medium and classify the pattern
 - [ ] Thu: 1 hard study problem, 30 minute attempt plus editorial rewrite
 - [ ] Fri: Timed set of 2 medium problems in 90 minutes
-- [ ] Sat: Random drill file plus `templates/pattern_cheat_sheet.go`
+- [ ] Sat: Random drill file plus `_support/templates/pattern_cheat_sheet.go`
 - [ ] Sun: Rest
 
 Repeat the week block for Week 10, 11, and 12.

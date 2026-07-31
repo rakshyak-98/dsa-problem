@@ -10,7 +10,6 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"path/filepath"
 	"time"
 )
 
@@ -21,11 +20,11 @@ type coreItem struct {
 }
 
 type drill struct {
-	day     string
-	file    string
-	skill   string
-	focus   []string
-	warmup  string
+	day    string
+	file   string
+	skill  string
+	focus  []string
+	warmup string
 }
 
 var core3 = []coreItem{
@@ -108,10 +107,23 @@ var drills = []drill{
 }
 
 func todayDrill() drill {
-	// Go weekday: Sunday=0 … Saturday=6 → map to our table Mon=0…Sun=6
 	wd := int(time.Now().Weekday())
-	idx := (wd + 6) % 7 // Mon→0 … Sun→6
+	idx := (wd + 6) % 7
 	return drills[idx]
+}
+
+func drillOpenPath(file string) string {
+	if file == "00_core_read" {
+		return "drills/read/core/00_core_read/main.go"
+	}
+	return fmt.Sprintf("drills/read/weekday/%s/main.go", file)
+}
+
+func drillRunHint(file string) string {
+	if file == "00_core_read" {
+		return "go run -C study_code/practice/read/core/00_core_read ."
+	}
+	return fmt.Sprintf("go run -C study_code/practice/read/weekday/%s .", file)
 }
 
 func printCore() {
@@ -122,8 +134,8 @@ func printCore() {
 		fmt.Printf("  %d. [%ds] %s\n     → %s\n", i+1, c.sec, c.skill, c.prompt)
 	}
 	fmt.Println()
-	fmt.Println("  File: drills/00_core_read/")
-	fmt.Println("  Method: READING_PATTERNS.md (6 passes)")
+	fmt.Println("  File: drills/read/core/00_core_read/")
+	fmt.Println("  Method: study_code/docs/READING_PATTERNS.md (6 passes)")
 	fmt.Println()
 }
 
@@ -137,9 +149,9 @@ func printSpecialty(d drill) {
 	for _, f := range d.focus {
 		fmt.Printf("    • %s\n", f)
 	}
-	fmt.Printf("\n  Open:  drills/%s/main.go\n", d.file)
-	fmt.Printf("  Run:   go run ./drills/%s\n", d.file)
-	fmt.Println("  Answers only after fails: drills/answers/")
+	fmt.Printf("\n  Open:  %s\n", drillOpenPath(d.file))
+	fmt.Printf("  Run:   %s\n", drillRunHint(d.file))
+	fmt.Println("  Answers only after fails: drills/read/answers/")
 	fmt.Println()
 }
 
@@ -150,11 +162,15 @@ func printCatalog() {
 		fmt.Printf("%-9s  %-22s  %s\n", d.day, d.file, d.skill)
 	}
 	fmt.Println()
-	fmt.Println("Core: drills/00_core_read/  |  Method: READING_PATTERNS.md")
+	fmt.Println("Core: drills/read/core/00_core_read/  |  Method: study_code/docs/READING_PATTERNS.md")
 }
 
 func runDrill(file string) error {
-	dir := filepath.Join("drills", file)
+	cwd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	dir := readDrillDir(findRepoRoot(cwd), file)
 	cmd := exec.Command("go", "run", ".")
 	cmd.Dir = dir
 	cmd.Stdout = os.Stdout

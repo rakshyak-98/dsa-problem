@@ -35,25 +35,25 @@ func TestWriteDrillFromBlank(t *testing.T) {
 }
 
 func TestSetupAllDrills(t *testing.T) {
-	dir := t.TempDir()
-	if err := setupAllDrills(dir); err != nil {
+	repo := t.TempDir()
+	if err := setupAllDrills(repo); err != nil {
 		t.Fatal(err)
 	}
 	for _, d := range drills {
-		if _, err := os.Stat(filepath.Join(dir, "drills", d.file, "main.go")); err != nil {
+		if _, err := os.Stat(writeReflexDir(repo, d.file)); err != nil {
 			t.Fatalf("missing %s: %v", d.file, err)
 		}
 	}
 	for _, file := range bonusDrills {
-		if _, err := os.Stat(filepath.Join(dir, "drills", file, "main.go")); err != nil {
+		if _, err := os.Stat(writeReflexDir(repo, file)); err != nil {
 			t.Fatalf("missing bonus %s: %v", file, err)
 		}
 	}
 }
 
 func TestResetTodayDrill(t *testing.T) {
-	dir := t.TempDir()
-	drillDir := filepath.Join(dir, "drills", "01_arrays_reflex")
+	repo := t.TempDir()
+	drillDir := writeReflexDir(repo, "01_arrays_reflex")
 	today := drills[0]
 	if err := resetTodayDrill(today, drillDir); err != nil {
 		t.Fatal(err)

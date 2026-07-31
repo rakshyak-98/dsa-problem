@@ -20,10 +20,10 @@ func printUnifiedHeader() {
 func printUnifiedFooter() {
 	fmt.Println()
 	fmt.Println("━━━ 3/3  VARIANTS (optional stretch) ━━━━━━━━━━━━━━━━━")
-	fmt.Println("  go run ./study_play/variants")
+	fmt.Println("  go run -C study_play/practice/write/variants .")
 	fmt.Println()
 	fmt.Println("━━━ TRACK & VISUALIZE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-	fmt.Println("  Tracker:    study_play/study_tracker.html")
+	fmt.Println("  Tracker:    drills/tracker/study_tracker.html")
 	fmt.Println("  Visualizer: visualizer/index.html")
 	fmt.Println()
 }

@@ -91,5 +91,5 @@ func printAskWarmup(day string) {
 	for _, h := range ask.hints {
 		fmt.Printf("    • %s\n", h)
 	}
-	fmt.Println("\n  Full asks pack: study_play/asks/README.md")
+	fmt.Println("\n  Full asks pack: study_play/_support/asks/README.md")
 }

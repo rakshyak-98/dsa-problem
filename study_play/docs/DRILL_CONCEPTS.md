@@ -1,6 +1,6 @@
 # Drill Concepts Guide
 
-This file explains the concepts behind each reflex drill in `study_play/drills/`.
+This file explains the concepts behind each reflex drill in `drills/write/reflex/` (source: `study_play/practice/write/reflex/`).
 
 ## Drill 01: Arrays
 

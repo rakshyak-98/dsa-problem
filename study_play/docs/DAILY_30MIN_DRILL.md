@@ -1,7 +1,7 @@
 # Daily Reflex Practice — Essential Pack
 
 > **Purpose:** Build automatic DSA reflexes so medium problems don’t stall on basics.
-> **Rule:** Blind write only. No `solutions_reference/` until the blind block is done.
+> **Rule:** Blind write only. No `drills/solutions/` until the blind block is done.
 > **Helper:** `cd study_play && go run .`
 
 This file is the full daily practice. Same shape every day. Do the **Core 5** every session, then today’s specialty drill.
@@ -106,7 +106,7 @@ cd study_play && go run . -- --run
 
 **Sunday:** optional streak day (graphs). Rest from new problems is fine — still do Core 5 if you want the habit.
 
-**Every 4th Sunday:** re-type `templates/pattern_cheat_sheet.go` from memory instead of graphs (30 min).
+**Every 4th Sunday:** re-type `_support/templates/pattern_cheat_sheet.go` from memory instead of graphs (30 min).
 
 ---
 
@@ -154,7 +154,7 @@ Scan these every day until they fire automatically:
 
 ## Part E — Essential templates (type from memory weekly)
 
-Keep these as muscle memory. Full versions live in `templates/pattern_cheat_sheet.go`.
+Keep these as muscle memory. Full versions live in `_support/templates/pattern_cheat_sheet.go`.
 
 ```go
 // TWO POINTERS — opposite ends
