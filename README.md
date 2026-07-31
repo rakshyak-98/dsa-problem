@@ -6,11 +6,11 @@ Interview prep workspace: problem catalog, reflex drills, code-reading drills, s
 
 | Tool | Version | Used for |
 |------|---------|----------|
-| [Go](https://go.dev/dl/) | 1.22+ | `study_play` and `study_code` drill helpers |
+| [Go](https://go.dev/dl/) | 1.22+ | drill helpers (`study_play`, `study_code`, `daily`) |
 | Browser | any modern | study tracker + visualizer |
 | Node.js (optional) | 18+ | `npx serve` for local tracker hosting |
 
-## Quick setup
+## Start here
 
 ```bash
 git clone https://github.com/rakshyak-98/dsa-problem.git
