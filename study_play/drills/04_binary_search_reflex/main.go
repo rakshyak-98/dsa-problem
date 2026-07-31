@@ -1,6 +1,8 @@
 // REFLEX DRILL 04 — Binary Search
 //
 // RUN: go run ./drills/04_binary_search_reflex
+//
+// AFTER PASSING: binary_search/easy/search_insertion_position.js
 package main
 
 import "fmt"
@@ -35,10 +37,20 @@ func assert(name string, cond bool) {
 func main() {
 	assert("binarySearch found", binarySearch([]int{-1, 0, 3, 5, 9, 12}, 9) == 4)
 	assert("binarySearch missing", binarySearch([]int{-1, 0, 3, 5, 9, 12}, 2) == -1)
+	assert("binarySearch empty", binarySearch([]int{}, 1) == -1)
+	assert("binarySearch single hit", binarySearch([]int{5}, 5) == 0)
+	assert("binarySearch single miss", binarySearch([]int{5}, 2) == -1)
+
 	assert("searchInsert exist", searchInsert([]int{1, 3, 5, 6}, 5) == 2)
 	assert("searchInsert new", searchInsert([]int{1, 3, 5, 6}, 2) == 1)
+	assert("searchInsert end", searchInsert([]int{1, 3, 5, 6}, 7) == 4)
+
 	assert("findMinRotated", findMinRotated([]int{4, 5, 6, 7, 0, 1, 2}) == 0)
-	assert("isTargetPresent", isTargetPresent([]int{1, 2, 3, 4, 5}, 3) == true)
+	assert("findMinRotated two", findMinRotated([]int{3, 1}) == 1)
+
+	assert("isTargetPresent true", isTargetPresent([]int{1, 2, 3, 4, 5}, 3) == true)
+	assert("isTargetPresent false", isTargetPresent([]int{1, 2, 3, 4, 5}, 6) == false)
 
 	fmt.Println("\nAll binary search reflex drills passed.")
+	fmt.Println("Primary: binary_search/easy/search_insertion_position.js")
 }

@@ -3,6 +3,9 @@ study_play/study_play
 *.exe
 *.test
 
+# Drill progress log (local)
+study_play/.drill_log.json
+
 # OS / editor
 .DS_Store
 .idea/

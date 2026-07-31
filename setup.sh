@@ -9,23 +9,24 @@ command -v go >/dev/null || { echo "Go is required (1.22+). Install from https:/
 go version
 
 echo
-echo "==> Initializing study_play reflex drills"
+echo "==> Initializing study_play reflex drills (7 daily + 2 bonus)"
 (cd study_play && go run . -- --setup)
 
 echo
-echo "==> Verifying study_play helper"
+echo "==> Verifying helpers"
 (cd study_play && go run . -- --catalog >/dev/null)
-
-echo
-echo "==> Verifying study_code helper"
 (cd study_code && go run . -- --catalog >/dev/null)
+(cd daily && go build -o /dev/null .)
+(cd study_play/core5 && go build -o /dev/null .)
+(cd study_play/variants && go build -o /dev/null .)
 
 echo
 echo "Setup complete."
 echo
 echo "Next steps:"
+echo "  unified daily:              cd daily && go run ."
 echo "  study_play (write drills):  cd study_play && go run ."
+echo "  Core 5:                     cd study_play && go run ./core5"
 echo "  study_code (read drills):   cd study_code && go run ."
 echo "  study tracker (browser):    open study_play/study_tracker.html"
 echo "  visualizer (browser):       open visualizer/index.html"
-echo "  problem index:              CATEGORIES.md"

@@ -3,6 +3,8 @@
 // REFLEX DRILL 07 — Graphs (Grid BFS/DFS)
 //
 // RUN: go run ./drills/07_graphs_reflex
+//
+// AFTER PASSING: graphs/medium/number_of_islands.js
 package main
 
 import (
@@ -48,6 +50,8 @@ func main() {
 		{'1', '0', '1'},
 	}
 	assert("numIslands", numIslands(grid1) == 3)
+	assert("numIslands all water", numIslands([][]byte{{'0'}}) == 0)
+	assert("numIslands all land", numIslands([][]byte{{'1', '1'}, {'1', '1'}}) == 1)
 
 	img := [][]int{
 		{1, 1, 1},
@@ -67,6 +71,9 @@ func main() {
 		{0, 0, 0},
 	}
 	assert("shortestPathGrid", shortestPathGrid(pathGrid) == 4)
+	assert("shortestPathGrid blocked", shortestPathGrid([][]int{{0, 1}, {1, 0}}) == -1)
+	assert("shortestPathGrid single", shortestPathGrid([][]int{{0}}) == 1)
 
 	fmt.Println("\nAll graph reflex drills passed.")
+	fmt.Println("Primary: graphs/medium/number_of_islands.js")
 }
