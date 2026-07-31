@@ -12,7 +12,7 @@ import (
 var blankFS embed.FS
 
 func blankContent(file string) ([]byte, error) {
-	content, err := blankFS.ReadFile("_support/blanks/" + file + ".go")
+	content, err := blankFS.ReadFile("blanks/" + file + ".go")
 	if err != nil {
 		return nil, fmt.Errorf("no blank template for %s: %w", file, err)
 	}
@@ -40,20 +40,13 @@ func writeDrillFromBlank(file, drillDir string) error {
 	return nil
 }
 
-func setupAllDrills(repoRoot string) error {
+func setupAllDrills(root string) error {
 	for _, d := range drills {
-		drillDir := writeReflexDir(repoRoot, d.file)
+		drillDir := filepath.Join(root, "drills", d.file)
 		if err := writeDrillFromBlank(d.file, drillDir); err != nil {
 			return err
 		}
-		fmt.Printf("  ✓ drills/write/reflex/%s/main.go\n", d.file)
-	}
-	for _, file := range bonusDrills {
-		drillDir := writeReflexDir(repoRoot, file)
-		if err := writeDrillFromBlank(file, drillDir); err != nil {
-			return err
-		}
-		fmt.Printf("  ✓ drills/write/reflex/%s/main.go (bonus)\n", file)
+		fmt.Printf("  ✓ study_play/drills/%s/main.go\n", d.file)
 	}
 	return nil
 }
