@@ -107,3 +107,5 @@ Use this quick mapping when solving:
 3. Rewrite one function from memory.
 4. Run the matching drill tests.
 5. Log one mistake and the corrected invariant.
+
+**Math behind the patterns:** See `MATH_CONCEPTS.md` for complexity formulas, combinatorics, number theory, recurrences, and geometry used across all DSA topics.
