@@ -2,7 +2,7 @@
 //
 // GOAL: Practice the first five passes of READING_PATTERNS.md on short snippets.
 // HOW:  Fill every TODO: READ. Do not peek at answers/.
-// RUN:  go run ./drills/00_core_read
+// RUN: go run -C drills/read/core/00_core_read .
 package main
 
 import (

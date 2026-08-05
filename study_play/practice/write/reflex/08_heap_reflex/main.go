@@ -1,6 +1,6 @@
 // REFLEX DRILL 08 — Heaps (bonus)
 //
-// RUN: go run ./drills/08_heap_reflex
+// RUN: go run -C drills/write/reflex/08_heap_reflex .
 //
 // AFTER PASSING: heaps/medium/kth_largest_element_in_an_array.js
 package main

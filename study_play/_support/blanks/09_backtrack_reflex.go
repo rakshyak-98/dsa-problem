@@ -2,7 +2,7 @@
 
 // REFLEX DRILL 09 — Backtracking (bonus)
 //
-// RUN: go run ./drills/09_backtrack_reflex
+// RUN: go run -C drills/write/reflex/09_backtrack_reflex .
 //
 // AFTER PASSING: backtracking/medium/subsets.js
 package main

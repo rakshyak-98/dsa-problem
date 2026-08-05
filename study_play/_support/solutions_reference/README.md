@@ -34,7 +34,7 @@ go run -C study_play/_support/solutions_reference/reflex/02_hashing_reflex .
 
 ## Read drills
 
-Reading answer keys: [`drills/read/answers/`](../read/answers/)
+Reading answer keys: [`drills/read/answers/`](../../../drills/read/answers/)
 
 ## Rule
 

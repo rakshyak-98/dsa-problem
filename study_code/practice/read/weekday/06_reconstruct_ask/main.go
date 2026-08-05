@@ -1,7 +1,7 @@
 // READ DRILL 06 — Reconstruct the ask
 //
 // GOAL: Write the problem in one plain sentence from the code alone.
-// RUN:  go run ./drills/06_reconstruct_ask
+// RUN: go run -C drills/read/weekday/06_reconstruct_ask .
 package main
 
 import (

@@ -2,7 +2,7 @@
 
 // REFLEX DRILL 03 — Two Pointers & Sliding Window
 //
-// RUN: go run ./drills/03_two_pointers_reflex
+// RUN: go run -C drills/write/reflex/03_two_pointers_reflex .
 //
 // AFTER PASSING: two_pointers/easy/move_zeroes.js
 package main

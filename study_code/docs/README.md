@@ -51,27 +51,24 @@ Daily clock: [`DAILY_20MIN_READING.md`](./DAILY_20MIN_READING.md).
 ## Folder map
 
 ```
+drills/read/                   ← practice files (front door)
 study_code/
-├── START_HERE.md
-├── README.md
-├── READING_PATTERNS.md      # the 6-pass read method
-├── DAILY_20MIN_READING.md   # daily ritual
-├── daily_read.go            # weekday helper
-├── go.mod
-├── drills/
-│   ├── 01_scan_structure/
-│   ├── 02_trace_execution/
-│   ├── 03_name_the_pattern/
-│   ├── 04_find_the_bug/
-│   ├── 05_complexity_glance/
-│   ├── 06_reconstruct_ask/
-│   ├── 07_compare_variants/
-│   └── answers/             # peek only after honest attempt
-└── worksheets/              # optional paper / markdown practice
+├── README.md                  ← CLI entry
+├── docs/
+│   ├── START_HERE.md
+│   ├── READING_PATTERNS.md    # the 6-pass read method
+│   ├── DAILY_20MIN_READING.md # daily ritual
+│   └── reading_log.md         # optional session log
+├── practice/read/
+│   ├── core/00_core_read/
+│   ├── weekday/01_scan_structure/ … 07_compare_variants/
+│   └── answers/
+├── daily_read.go
+└── go.mod
 ```
 
 ---
 
 ## Rule
 
-**Read before you peek.** Fill answers in the drill file, run tests, then open `drills/answers/` only for fails — and re-read the snippet once more after correcting.
+**Read before you peek.** Fill answers in the drill file, run tests, then open `drills/read/answers/` only for fails — and re-read the snippet once more after correcting.

@@ -115,9 +115,9 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Reflex | Primary (understand → solve) | Stretch | Cap |
 |-----|--------|------------------------------|---------|-----|
-| Mon | `drills/01_arrays_reflex/` | `arrays/easy/plus_one.js` | `arrays/easy/concatenation_of_array.js` | 25 min |
+| Mon | `drills/write/reflex/01_arrays_reflex/` | `arrays/easy/plus_one.js` | `arrays/easy/concatenation_of_array.js` | 25 min |
 | Tue | Re-drill arrays | `arrays/easy/find_closest_number_to_zero.js` | `arrays/easy/max_consecutive_ones.js` | 25 min |
-| Wed | `drills/02_hashing_reflex/` | `hashing/easy/two_sum.js` | `hashing/easy/contains_duplicates.js` | 25 min |
+| Wed | `drills/write/reflex/02_hashing_reflex/` | `hashing/easy/two_sum.js` | `hashing/easy/contains_duplicates.js` | 25 min |
 | Thu | Re-drill hashing | `hashing/easy/fair_candy_swap.js` | `hashing/easy/degree_of_an_array.js` | 25 min |
 | Fri | Mixed: 1 array + 1 hash drill fn | `arrays/easy/majority_element.js` | `hashing/easy/summary_ranges.js` | 30 min |
 | Sat | Review: re-do failed primaries; blind drills | — | — | 60 min |
@@ -156,7 +156,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Reflex | Primary | Stretch |
 |-----|--------|---------|---------|
-| Mon | `drills/03_two_pointers_reflex/` | `two_pointers/easy/remove_duplicates_from_sorted_array.js` | `two_pointers/easy/move_zeroes.js` |
+| Mon | `drills/write/reflex/03_two_pointers_reflex/` | `two_pointers/easy/remove_duplicates_from_sorted_array.js` | `two_pointers/easy/move_zeroes.js` |
 | Tue | Re-drill + opposite ends | `two_pointers/easy/best_time_to_buy_sell_stock.js` | `two_pointers/easy/squares_of_a_sorted_array.js` |
 | Wed | Medium intro | `two_pointers/medium/container_with_most_water.js` | `two_pointers/medium/3sum.js` (stretch only) |
 | Thu | Sliding window in drill | `misc/easy/maximum_average_subarray_1.js` | `two_pointers/easy/minimum_difference_between_highest_and_lowest_of_k_score.js` |
@@ -168,7 +168,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Reflex | Primary | Stretch |
 |-----|--------|---------|---------|
-| Mon | `drills/04_binary_search_reflex/` | `binary_search/easy/search_insertion_position.js` | `binary_search/easy/find_smallest_letter_greater_than_target.js` |
+| Mon | `drills/write/reflex/04_binary_search_reflex/` | `binary_search/easy/search_insertion_position.js` | `binary_search/easy/find_smallest_letter_greater_than_target.js` |
 | Tue | Binary search on answer | `binary_search/easy/longest_subsequence_with_limited_sum.js` | — |
 | Wed | Mixed pointers + BS | `two_pointers/medium/find_the_duplicate_number.js` | — |
 | Thu | Medium | `two_pointers/medium/sort_colors.js` | `two_pointers/medium/longest_palindromic_substring.js` |
@@ -192,7 +192,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Focus | Primary | Stretch |
 |-----|-------|---------|---------|
-| Mon | `drills/02_hashing_reflex/` full rewrite | `hashing/medium/group_anagram.js` | `hashing/medium/top_k_ferquent_element.js` |
+| Mon | `drills/write/reflex/02_hashing_reflex/` full rewrite | `hashing/medium/group_anagram.js` | `hashing/medium/top_k_ferquent_element.js` |
 | Tue | Prefix sum + hash | `misc/easy/find_pivot_index.js` | `misc/medium/subarray_sum_divisible_by_k.js` |
 | Wed | Array medium | `arrays/medium/find_all_duplicates_in_an_array.js` | `arrays/medium/max_product_subarray.js` |
 | Thu | Set tricks | `hashing/medium/longest_consecutive_sequence.js` | — |
@@ -223,7 +223,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Reflex | Primary | Stretch |
 |-----|--------|---------|---------|
-| Mon | `drills/05_trees_stacks_reflex/` | `trees/easy/convert_sorted_array_to_binary_search_tree.js` | — |
+| Mon | `drills/write/reflex/05_trees_stacks_reflex/` | `trees/easy/convert_sorted_array_to_binary_search_tree.js` | — |
 | Tue | Tree BFS/DFS | 1 tree easy (repo or LeetCode) | — |
 | Wed | Stack patterns | `stack_queue/easy/last_stone_weight.js` | — |
 | Thu | Monotonic stack (study + 1) | 1 next-greater style problem | — |
@@ -235,7 +235,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Focus | Primary | Stretch |
 |-----|-------|---------|---------|
-| Mon | `drills/06_dp_reflex/` | `dynamic_programming/easy/fibonacci_number.js` | `dynamic_programming/easy/min_cost_climbing_staris.js` |
+| Mon | `drills/write/reflex/06_dp_reflex/` | `dynamic_programming/easy/fibonacci_number.js` | `dynamic_programming/easy/min_cost_climbing_staris.js` |
 | Tue | 1D DP | `dynamic_programming/easy/pascale_triangle_1.js` | `dynamic_programming/easy/pascale_triangle_2.js` |
 | Wed | DP on strings (study classic: LCS / edit distance) | Read + rewrite one idea | — |
 | Thu | Greedy vs DP | `greedy/easy/can_place_flower.js` | `greedy/easy/lemonade_change.js` |
@@ -247,7 +247,7 @@ Each day lists: **Primary** (required on Standard tier) and **Stretch** (optiona
 
 | Day | Reflex | Focus |
 |-----|--------|-------|
-| Mon | `drills/07_graphs_reflex/` | BFS grid — primary: finish BFS section |
+| Mon | `drills/write/reflex/07_graphs_reflex/` | BFS grid — primary: finish BFS section |
 | Tue | Same drill | DFS grid + visited — primary: finish DFS section |
 | Wed | — | 1 repo graph easy |
 | Thu | — | 1 medium graph (attempt + understand editorial) |
@@ -430,13 +430,13 @@ If you feel overwhelmed: do **only** the reflex block that day. That is enough.
 ```bash
 # From study_play/
 go run .
-go run ./drills/01_arrays_reflex
-go run ./drills/02_hashing_reflex
-go run ./drills/03_two_pointers_reflex
-go run ./drills/04_binary_search_reflex
-go run ./drills/05_trees_stacks_reflex
-go run ./drills/06_dp_reflex
-go run ./drills/07_graphs_reflex
+go run -C drills/write/reflex/01_arrays_reflex .
+go run -C drills/write/reflex/02_hashing_reflex .
+go run -C drills/write/reflex/03_two_pointers_reflex .
+go run -C drills/write/reflex/04_binary_search_reflex .
+go run -C drills/write/reflex/05_trees_stacks_reflex .
+go run -C drills/write/reflex/06_dp_reflex .
+go run -C drills/write/reflex/07_graphs_reflex .
 ```
 
 ---

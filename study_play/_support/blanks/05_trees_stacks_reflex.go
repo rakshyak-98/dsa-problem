@@ -2,7 +2,7 @@
 
 // REFLEX DRILL 05 — Trees & Stacks
 //
-// RUN: go run ./drills/05_trees_stacks_reflex
+// RUN: go run -C drills/write/reflex/05_trees_stacks_reflex .
 //
 // AFTER PASSING: stacks/easy/valid_parentheses.js
 package main

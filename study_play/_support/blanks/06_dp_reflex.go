@@ -2,7 +2,7 @@
 
 // REFLEX DRILL 06 — Dynamic Programming (1D)
 //
-// RUN: go run ./drills/06_dp_reflex
+// RUN: go run -C drills/write/reflex/06_dp_reflex .
 //
 // AFTER PASSING: dynamic_programming/easy/fibonacci_number.js
 package main

@@ -1,7 +1,7 @@
 // READ DRILL 05 — Complexity at a glance
 //
 // GOAL: Bound time/space from shape. Watch for amortized two-pointer.
-// RUN:  go run ./drills/05_complexity_glance
+// RUN: go run -C drills/read/weekday/05_complexity_glance .
 package main
 
 import (

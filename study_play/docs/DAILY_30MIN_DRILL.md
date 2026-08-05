@@ -90,16 +90,16 @@ After Core 5, open today’s file and implement every `TODO: REFLEX` from empty 
 
 | Day | File | Essential functions you must own |
 |-----|------|----------------------------------|
-| **Mon** | `drills/01_arrays_reflex/` | `reverseInPlace`, `indexOfMax`, `arraySum`, `rotateRight`, `runningSum` |
-| **Tue** | `drills/02_hashing_reflex/` | `twoSum`, `containsDuplicate`, `frequencyMap`, `firstUniqueChar`, `groupAnagrams` |
-| **Wed** | `drills/03_two_pointers_reflex/` | `removeDuplicates`, `moveZeroes`, `maxArea`, `isPalindrome`, `maxSumSubarrayK` |
-| **Thu** | `drills/04_binary_search_reflex/` | `binarySearch`, `searchInsert`, `findMinRotated`, `isTargetPresent` |
-| **Fri** | `drills/05_trees_stacks_reflex/` | `inorderTraversal`, `maxDepth`, `isValidParentheses`, `dailyTemperatures` |
-| **Sat** | `drills/06_dp_reflex/` | `fib`, `minCostClimbingStairs`, `rob`, `climbStairs` |
-| **Sun** | `drills/07_graphs_reflex/` | `numIslands`, `floodFill`, `shortestPathGrid` |
+| **Mon** | `drills/write/reflex/01_arrays_reflex/` | `reverseInPlace`, `indexOfMax`, `arraySum`, `rotateRight`, `runningSum` |
+| **Tue** | `drills/write/reflex/02_hashing_reflex/` | `twoSum`, `containsDuplicate`, `frequencyMap`, `firstUniqueChar`, `groupAnagrams` |
+| **Wed** | `drills/write/reflex/03_two_pointers_reflex/` | `removeDuplicates`, `moveZeroes`, `maxArea`, `isPalindrome`, `maxSumSubarrayK` |
+| **Thu** | `drills/write/reflex/04_binary_search_reflex/` | `binarySearch`, `searchInsert`, `findMinRotated`, `isTargetPresent` |
+| **Fri** | `drills/write/reflex/05_trees_stacks_reflex/` | `inorderTraversal`, `maxDepth`, `isValidParentheses`, `dailyTemperatures` |
+| **Sat** | `drills/write/reflex/06_dp_reflex/` | `fib`, `minCostClimbingStairs`, `rob`, `climbStairs` |
+| **Sun** | `drills/write/reflex/07_graphs_reflex/` | `numIslands`, `floodFill`, `shortestPathGrid` |
 
 ```bash
-go run ./drills/0X_...
+go run -C drills/write/reflex/0X_... .
 # or
 cd study_play && go run . -- --run
 ```

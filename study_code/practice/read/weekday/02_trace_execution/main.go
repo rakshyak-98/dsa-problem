@@ -1,7 +1,7 @@
 // READ DRILL 02 — Trace execution
 //
 // GOAL: Hand-simulate. Predict returns from a step table, not vibes.
-// RUN:  go run ./drills/02_trace_execution
+// RUN: go run -C drills/read/weekday/02_trace_execution .
 package main
 
 import (

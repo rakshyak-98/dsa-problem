@@ -1,7 +1,7 @@
 // REFLEX DRILL 01 — Arrays
 //
 // GOAL: Write every function from memory in < 3 minutes each.
-// RUN: go run ./drills/01_arrays_reflex
+// RUN: go run -C drills/write/reflex/01_arrays_reflex .
 //
 // AFTER PASSING: arrays/easy/plus_one.js
 package main

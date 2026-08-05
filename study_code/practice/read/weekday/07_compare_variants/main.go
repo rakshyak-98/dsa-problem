@@ -1,7 +1,7 @@
 // READ DRILL 07 — Compare variants
 //
 // GOAL: Same ask, two shapes. Name the shared ask and the tradeoff.
-// RUN:  go run ./drills/07_compare_variants
+// RUN: go run -C drills/read/weekday/07_compare_variants .
 package main
 
 import (

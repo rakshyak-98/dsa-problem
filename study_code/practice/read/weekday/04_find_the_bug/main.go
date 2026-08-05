@@ -1,7 +1,7 @@
 // READ DRILL 04 — Find the bug
 //
 // GOAL: Each function has exactly one logic bug. Name the bug kind + broken line idea.
-// RUN:  go run ./drills/04_find_the_bug
+// RUN: go run -C drills/read/weekday/04_find_the_bug .
 package main
 
 import (

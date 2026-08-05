@@ -1,6 +1,6 @@
 // REFLEX DRILL 07 — Graphs (Grid BFS/DFS)
 //
-// RUN: go run ./drills/07_graphs_reflex
+// RUN: go run -C drills/write/reflex/07_graphs_reflex .
 //
 // AFTER PASSING: graphs/medium/number_of_islands.js
 package main

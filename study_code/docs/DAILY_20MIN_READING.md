@@ -1,7 +1,7 @@
 # Daily Code Reading — 20 Minute Pack
 
 > **Purpose:** Make pattern recognition and tracing automatic when *reading* code.  
-> **Rule:** Fill answers blind. Open `drills/answers/` only after `--run` fails.  
+> **Rule:** Fill answers blind. Open `drills/read/answers/` only after `--run` fails.  
 > **Helper:** `cd study_code && go run .`
 
 ---
@@ -32,7 +32,7 @@ cd study_code && go run . -- --micro
 
 ## Part A — Core Read 3 (every day)
 
-Open `drills/00_core_read/` (or use the three snippets printed by `go run .`).
+Open `drills/read/core/00_core_read/` (or use the three snippets printed by `go run .`).
 
 For each snippet, do Pass 1–5 from `READING_PATTERNS.md` and fill answers.
 
@@ -101,4 +101,4 @@ Log line:
 2026-07-29 | core OK | 03_name_the_pattern | mistook variable window for fixed | revisit Aug 1
 ```
 
-Optional longer notes: `worksheets/reading_log.md`.
+Optional longer notes: `docs/reading_log.md`.

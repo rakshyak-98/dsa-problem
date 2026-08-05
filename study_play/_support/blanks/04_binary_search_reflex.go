@@ -2,7 +2,7 @@
 
 // REFLEX DRILL 04 — Binary Search
 //
-// RUN: go run ./drills/04_binary_search_reflex
+// RUN: go run -C drills/write/reflex/04_binary_search_reflex .
 //
 // AFTER PASSING: binary_search/easy/search_insertion_position.js
 package main

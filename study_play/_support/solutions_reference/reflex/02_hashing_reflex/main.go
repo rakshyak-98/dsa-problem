@@ -2,8 +2,8 @@
 package main
 
 import (
+	"slices"
 	"fmt"
-	"sort"
 )
 
 func twoSum(nums []int, target int) []int {
@@ -53,7 +53,7 @@ func groupAnagrams(strs []string) [][]string {
 	m := make(map[string][]string)
 	for _, w := range strs {
 		b := []byte(w)
-		sort.Slice(b, func(i, j int) bool { return b[i] < b[j] })
+		slices.Sort(b)
 		key := string(b)
 		m[key] = append(m[key], w)
 	}

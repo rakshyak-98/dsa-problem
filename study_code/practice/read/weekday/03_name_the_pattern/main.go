@@ -1,7 +1,7 @@
 // READ DRILL 03 — Name the pattern
 //
 // GOAL: Ignore names. Match skeleton → pattern label.
-// RUN:  go run ./drills/03_name_the_pattern
+// RUN: go run -C drills/read/weekday/03_name_the_pattern .
 package main
 
 import (

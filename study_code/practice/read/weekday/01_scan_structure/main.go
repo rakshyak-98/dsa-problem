@@ -1,7 +1,7 @@
 // READ DRILL 01 — Scan structure
 //
 // GOAL: Map signature, control flow, and state BEFORE tracing values.
-// RUN:  go run ./drills/01_scan_structure
+// RUN: go run -C drills/read/weekday/01_scan_structure .
 package main
 
 import (

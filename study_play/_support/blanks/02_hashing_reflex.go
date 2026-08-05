@@ -3,7 +3,7 @@
 // REFLEX DRILL 02 — Hashing
 //
 // GOAL: Hash map patterns = automatic.
-// RUN: go run ./drills/02_hashing_reflex
+// RUN: go run -C drills/write/reflex/02_hashing_reflex .
 //
 // AFTER PASSING: hashing/easy/two_sum.js
 package main
