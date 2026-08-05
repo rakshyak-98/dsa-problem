@@ -8,70 +8,31 @@ package main
 
 import (
 	"fmt"
-	"slices"
 )
 
 // TODO: REFLEX — classic two sum (return indices)
 func twoSum(nums []int, target int) []int {
-	seen := make(map[int]int)
-	for i, n := range nums {
-		if j, ok := seen[target-n]; ok {
-			return []int{j, i}
-		}
-		seen[n] = i
-	}
-	return nil
+	panic("Implement from memory")
 }
 
 // TODO: REFLEX — return true if any value appears twice
 func containsDuplicate(nums []int) bool {
-	set := make(map[int]struct{})
-	for _, n := range nums {
-		if _, ok := set[n]; ok {
-			return true
-		}
-		set[n] = struct{}{}
-	}
-	return false
+	panic("Implement from memory")
 }
 
 // TODO: REFLEX — return map of value -> frequency
 func frequencyMap(arr []string) map[string]int {
-	m := make(map[string]int)
-	for _, x := range arr {
-		m[x]++
-	}
-	return m
+	panic("Implement from memory")
 }
 
 // TODO: REFLEX — first character that appears only once; return "" if none
 func firstUniqueChar(s string) string {
-	freq := make(map[rune]int)
-	for _, ch := range s {
-		freq[ch]++
-	}
-	for _, ch := range s {
-		if freq[ch] == 1 {
-			return string(ch) 
-		}
-	}
-	return  "" 
+	panic("Implement from memory")
 }
 
 // TODO: REFLEX — group anagrams (return slice of groups)
 func groupAnagrams(strs []string) [][]string {
-	m := make(map[string][]string)
-	for _, w := range strs {
-		b := []byte(w)
-		slices.Sort(b)
-		key := string(b)
-		m[key] = append(m[key], w)
-	}
-	out := make([][]string, 0, len(m))
-	for _, g := range m {
-		out = append(out, g)
-	}
-	return out
+	panic("Implement from memory")
 }
 
 func assert(name string, cond bool) {
