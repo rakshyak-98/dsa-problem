@@ -1,10 +1,10 @@
 package main
 
-func parseBackendArgs(args []string) (micro, run, catalog, cram, setup bool) {
+func parseBackendArgs(args []string) (drill, run, catalog, cram, setup bool) {
 	for _, a := range args {
 		switch a {
-		case "--micro":
-			micro = true
+		case "--drill":
+			drill = true
 		case "--run":
 			run = true
 		case "--catalog":
@@ -15,5 +15,5 @@ func parseBackendArgs(args []string) (micro, run, catalog, cram, setup bool) {
 			setup = true
 		}
 	}
-	return micro, run, catalog, cram, setup
+	return drill, run, catalog, cram, setup
 }

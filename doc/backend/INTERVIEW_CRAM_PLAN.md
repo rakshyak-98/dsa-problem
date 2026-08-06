@@ -59,7 +59,7 @@ go run -C drills/backend/explain/blocks/02_databases_sql .
 ### Morning · 45 min
 
 ```bash
-go run ./bin/study_backend -- --micro --run
+go run ./bin/study_backend -- --drill --run
 ```
 
 Skim `DRILL_CONCEPTS.md` trigger table only.
@@ -108,7 +108,7 @@ Skim `DRILL_CONCEPTS.md` trigger table only.
 ## Optional DSA (if energy remains)
 
 ```bash
-go run . -- --micro
+go run . -- --drill
 ```
 
 One easy hashing problem only — don't burn out before interview.

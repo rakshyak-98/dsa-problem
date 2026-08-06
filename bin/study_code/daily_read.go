@@ -3,7 +3,7 @@
 // RUN:              go run .
 // RUN with checks:  go run . -- --run
 // Math add-on:      go run . -- --run-math
-// Core only:        go run . -- --micro
+// Core only:        go run . -- --drill
 // Full catalog:     go run . -- --catalog
 package main
 
@@ -122,64 +122,23 @@ func drillOpenPath(file string) string {
 	return fmt.Sprintf("drills/read/weekday/%s/main.go", file)
 }
 
-func drillRunHint(file string) string {
-	if file == "00_core_read" {
-		return "go run -C drills/read/core/00_core_read ."
-	}
-	return fmt.Sprintf("go run -C drills/read/weekday/%s .", file)
+func printDrill() {
+	fmt.Println("READ | core 3")
+	fmt.Println("path: drills/read/core/00_core_read/")
 }
 
-func printCore() {
-	fmt.Println("════════════════════════════════════════")
-	fmt.Println(" CORE READ 3  (every day)")
-	fmt.Println("════════════════════════════════════════")
-	for i, c := range core3 {
-		fmt.Printf("  %d. [%ds] %s\n     → %s\n", i+1, c.sec, c.skill, c.prompt)
-	}
-	fmt.Println()
-	fmt.Println("  File: drills/read/core/00_core_read/")
-	fmt.Println("  Method: doc/read/READING_PATTERNS.md (6 passes)")
-	fmt.Println()
-}
-
-func printSpecialty(d drill) {
-	fmt.Println("════════════════════════════════════════")
-	fmt.Printf(" SPECIALTY — %s (%s)\n", d.day, d.file)
-	fmt.Println("════════════════════════════════════════")
-	fmt.Printf("  Skill: %s\n", d.skill)
-	fmt.Printf("  Warm-up: %s\n", d.warmup)
-	fmt.Println("  Focus:")
-	for _, f := range d.focus {
-		fmt.Printf("    • %s\n", f)
-	}
-	fmt.Printf("\n  Open:  %s\n", drillOpenPath(d.file))
-	fmt.Printf("  Run:   %s\n", drillRunHint(d.file))
-	fmt.Println("  Answers only after fails: drills/read/answers/")
-	fmt.Println()
-}
-
-func printMathReadAddon() {
-	fmt.Println("════════════════════════════════════════")
-	fmt.Println(" MATH READ (daily add-on — ~5 min)")
-	fmt.Println("════════════════════════════════════════")
-	fmt.Println("  Skill: Formula recall + numeric trace")
-	fmt.Println("  Warm-up: Write gcd, nCr, and Master theorem from memory.")
-	fmt.Printf("  Open:  %s\n", drillOpenPath(mathReadFile))
-	fmt.Printf("  Run:   %s\n", drillRunHint(mathReadFile))
-	fmt.Println("  Guide:  doc/write/MATH_CONCEPTS.md")
-	fmt.Println("  Answers only after fails: drills/read/answers/")
-	fmt.Println()
+func printToday(d drill) {
+	fmt.Printf("READ %s | %s — %s\n", d.day, d.file, d.skill)
+	fmt.Printf("path: %s\n", drillOpenPath(d.file))
+	fmt.Println("test: go run . -- --run")
 }
 
 func printCatalog() {
-	fmt.Println("ESSENTIAL READING CATALOG")
-	fmt.Println("-------------------------")
+	fmt.Println("READ catalog")
 	for _, d := range drills {
 		fmt.Printf("%-9s  %-22s  %s\n", d.day, d.file, d.skill)
 	}
 	fmt.Printf("%-9s  %-22s  %s\n", "Daily", mathReadFile, "Math formulas & traces")
-	fmt.Println()
-	fmt.Println("Core: drills/read/core/00_core_read/  |  Method: doc/read/READING_PATTERNS.md")
 }
 
 func runDrill(file string) error {
@@ -196,8 +155,8 @@ func runDrill(file string) error {
 }
 
 func main() {
-	micro, run, runMath, catalog := parseReadArgs(os.Args[1:])
-	if code := runStudyCode(micro, run, runMath, catalog); code != 0 {
+	drill, run, runMath, catalog := parseReadArgs(os.Args[1:])
+	if code := runStudyCode(drill, run, runMath, catalog); code != 0 {
 		os.Exit(code)
 	}
 }

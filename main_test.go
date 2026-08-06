@@ -3,7 +3,7 @@ package main
 import "testing"
 
 func TestParseDailyArgs(t *testing.T) {
-	opts := parseDailyArgs([]string{"--", "--micro", "--run"})
+	opts := parseDailyArgs([]string{"--", "--drill", "--run"})
 	if !opts.run || len(opts.passArgs) != 2 || opts.track != trackDSA {
 		t.Fatalf("parseDailyArgs: %+v", opts)
 	}

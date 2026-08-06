@@ -26,7 +26,7 @@ Options:
   -t, --track=NAME         practice track: dsa, read, write, or backend
                              (default: "dsa")
       --run                run tests (forwarded to track)
-      --micro              core drills only (forwarded to track)
+      --drill              core drills only (forwarded to track)
       --catalog            list drills in track (forwarded to track)
 
 `)
@@ -86,20 +86,15 @@ func runUnified(root string, opts dailyOptions) int {
 		return 1
 	}
 
-	printUnifiedHeader(opts.track)
-
 	switch opts.track {
 	case trackDSA:
-		fmt.Println("━━━ 1/2  CODE READING ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 		if code := runModule(root, "study_code", opts.passArgs, opts.run); code != 0 {
 			return code
 		}
 		fmt.Println()
-		fmt.Println("━━━ 2/2  REFLEX WRITING ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 		if code := runModule(root, "study_play", opts.passArgs, opts.run); code != 0 {
 			return code
 		}
-		printDSAExtras()
 	case trackRead:
 		if code := runModule(root, "study_code", opts.passArgs, opts.run); code != 0 {
 			return code
@@ -108,7 +103,6 @@ func runUnified(root string, opts dailyOptions) int {
 		if code := runModule(root, "study_play", opts.passArgs, opts.run); code != 0 {
 			return code
 		}
-		printDSAExtras()
 	case trackBackend:
 		if code := runModule(root, "study_backend", opts.passArgs, opts.run); code != 0 {
 			return code

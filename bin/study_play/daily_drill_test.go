@@ -44,12 +44,12 @@ func TestPrintFunctionsNoPanic(t *testing.T) {
 		t.Fatal("printCatalog empty")
 	}
 	out = capture(func() { printToday(drills[0]) })
-	if len(out) < 100 {
+	if len(out) < 30 {
 		t.Fatal("printToday empty")
 	}
-	out = capture(func() { printMicro(drills[0]) })
-	if len(out) < 50 {
-		t.Fatal("printMicro empty")
+	out = capture(func() { printDrill(drills[0]) })
+	if len(out) < 20 {
+		t.Fatal("printDrill empty")
 	}
 }
 
@@ -67,21 +67,6 @@ func TestCore5Metadata(t *testing.T) {
 		t.Fatal("triggers list")
 	}
 }
-
-func TestPrintBanner(t *testing.T) {
-	old := os.Stdout
-	r, w, _ := os.Pipe()
-	os.Stdout = w
-	printBanner()
-	w.Close()
-	os.Stdout = old
-	var buf bytes.Buffer
-	_, _ = io.Copy(&buf, r)
-	if len(buf.String()) < 20 {
-		t.Fatal("printBanner")
-	}
-}
-
 func TestBonusDrills(t *testing.T) {
 	if len(bonusDrills) != 3 {
 		t.Fatal("bonus drills")

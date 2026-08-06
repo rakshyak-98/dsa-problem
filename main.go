@@ -2,7 +2,7 @@
 //
 // RUN:              go run .          (from repo root)
 // RUN with tests:   go run . -- --run
-// Core only:        go run . -- --micro
+// Core only:        go run . -- --drill
 // Select track:     go run . -- -t dsa|read|write|backend
 // List tracks:      go run . -- --list-tracks
 package main

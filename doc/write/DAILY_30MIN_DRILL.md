@@ -29,7 +29,7 @@ Missed a day? Do **not** catch up. Run today’s pack only.
 go run ./bin/study_play             # prints Core 5 + today’s specialty
 go run ./bin/study_play -- --run    # run today’s specialty tests
 go run ./bin/study_play -- --reset  # reset today’s drill to blank TODOs
-go run ./bin/study_play -- --micro  # Core 5 only (paper / blank file)
+go run ./bin/study_play -- --drill  # Core 5 only (paper / blank file)
 ```
 
 ---
@@ -219,7 +219,7 @@ You **own** a function when all are true:
 | Stuck 10+ min on one specialty fn | Skip it, finish others; peek **only that one**; re-type blind in last 5 min |
 | Core 5 fails | Stop specialty; re-do Core 5 only — protect the foundation |
 | All specialty tests fail | Yesterday’s specialty file (recovery day) + Core 5 |
-| No time | Core 5 only (`--micro`) |
+| No time | Core 5 only (`--drill`) |
 
 ---
 
