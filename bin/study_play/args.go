@@ -43,6 +43,8 @@ func parsePlayArgs(args []string) (drillKind string, brief, runMath bool, runMod
 			drillKind = kind
 		case "--brief":
 			brief = true
+		case "-r", "--read", "-w", "--write":
+			// consumed by root CLI when selecting read/write side
 		case "--run-math":
 			runMath = true
 		case "--run-core5":

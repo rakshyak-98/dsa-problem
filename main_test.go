@@ -23,6 +23,26 @@ func TestParseDailyArgs(t *testing.T) {
 		t.Fatalf("drill unknown: %+v", opts)
 	}
 
+	opts = parseDailyArgs([]string{"--", "--run", "reflex", "-r"})
+	if !opts.run || opts.runSide != "read" || len(opts.passArgs) != 3 {
+		t.Fatalf("parseDailyArgs run reflex -r: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--run", "reflex", "--write"})
+	if !opts.run || opts.runSide != "write" {
+		t.Fatalf("parseDailyArgs run reflex --write: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--run", "reflex"})
+	if !opts.run || opts.runSide != "" {
+		t.Fatalf("parseDailyArgs run reflex no side: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--run", "reflex", "-r", "-w"})
+	if opts.runSide != "conflict" {
+		t.Fatalf("expected run side conflict: %+v", opts)
+	}
+
 	opts = parseDailyArgs([]string{"--", "--run", "reflex"})
 	if !opts.run || len(opts.passArgs) != 2 || opts.passArgs[1] != "reflex" {
 		t.Fatalf("parseDailyArgs reflex: %+v", opts)

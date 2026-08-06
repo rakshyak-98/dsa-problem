@@ -37,10 +37,31 @@ func isDrillKind(s string) bool {
 	return s == "core" || s == "reflex"
 }
 
+func isRunSideFlag(s string) bool {
+	return s == "-r" || s == "--read" || s == "-w" || s == "--write"
+}
+
+func parseRunSide(s string) string {
+	if s == "-r" || s == "--read" {
+		return "read"
+	}
+	return "write"
+}
+
+func hasRunKind(passArgs []string) bool {
+	for i, a := range passArgs {
+		if a == "--run" && i+1 < len(passArgs) && isDrillKind(passArgs[i+1]) {
+			return true
+		}
+	}
+	return false
+}
+
 type dailyOptions struct {
 	track        drillTrack
 	passArgs     []string
 	run          bool
+	runSide      string // "read", "write", or ""
 	help         bool
 	listTracks   bool
 	core5        bool
@@ -89,6 +110,16 @@ func parseDailyArgs(args []string) dailyOptions {
 			opts.passArgs = append(opts.passArgs, a)
 			if i+1 < len(args) && isDrillKind(args[i+1]) {
 				i++
+				opts.passArgs = append(opts.passArgs, args[i])
+			}
+			for i+1 < len(args) && isRunSideFlag(args[i+1]) {
+				i++
+				side := parseRunSide(args[i])
+				if opts.runSide != "" && opts.runSide != side {
+					opts.runSide = "conflict"
+				} else {
+					opts.runSide = side
+				}
 				opts.passArgs = append(opts.passArgs, args[i])
 			}
 		default:

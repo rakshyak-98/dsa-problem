@@ -51,7 +51,9 @@ Options:
   -t, --track=NAME         practice track: dsa, read, write, or backend
                              (default: "dsa")
       --core5                run Core 5 reflex drill
-      --run [KIND]           run tests: core, reflex, or both if omitted
+      --run [KIND] [-r|-w]     run tests; KIND: core, reflex, or both if omitted
+                               -r, --read   reading drills only
+                               -w, --write  writing drills only
       --drill KIND           show drill plan: core or reflex (required)
       --catalog            list drills in track (forwarded to track)
 
@@ -71,6 +73,16 @@ func printDrillArgError(missing bool, unknown string) {
 		fmt.Fprintf(os.Stderr, "unknown drill kind %q\n", unknown)
 	}
 	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex")
+	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
+}
+
+func printRunSideRequired() {
+	fmt.Fprintln(os.Stderr, "option '--run' with KIND requires -r/--read or -w/--write")
+	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
+}
+
+func printRunSideConflict() {
+	fmt.Fprintln(os.Stderr, "cannot use both -r/--read and -w/--write")
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
@@ -143,22 +155,46 @@ func runUnified(root string, opts dailyOptions) int {
 
 	switch opts.track {
 	case trackDSA:
+		if opts.run {
+			if opts.runSide == "conflict" {
+				printRunSideConflict()
+				return 1
+			}
+			if hasRunKind(opts.passArgs) && opts.runSide == "" {
+				printRunSideRequired()
+				return 1
+			}
+			runArgs := opts.passArgs
+			if opts.runSide == "" || opts.runSide == "read" {
+				if code := runModule(root, "study_code", runArgs, true); code != 0 {
+					return code
+				}
+			}
+			if opts.runSide == "" || opts.runSide == "write" {
+				if code := runModule(root, "study_play", runArgs, true); code != 0 {
+					return code
+				}
+			}
+			return 0
+		}
 		fmt.Printf("DAILY %s", todayName())
 		if drillKind != "" {
 			fmt.Printf(" | %s", drillKind)
 		}
 		fmt.Println()
-		if code := runModule(root, "study_code", briefArgs, opts.run); code != 0 {
+		if code := runModule(root, "study_code", briefArgs, false); code != 0 {
 			return code
 		}
-		if code := runModule(root, "study_play", briefArgs, opts.run); code != 0 {
+		if code := runModule(root, "study_play", briefArgs, false); code != 0 {
 			return code
 		}
 		if drillKind == "" {
 			fmt.Println("drill:  go run . -- --drill core")
 			fmt.Println("        go run . -- --drill reflex")
-			fmt.Println("run:    go run . -- --run core")
-			fmt.Println("        go run . -- --run reflex")
+			fmt.Println("run:    go run . -- --run core -r")
+			fmt.Println("        go run . -- --run core -w")
+			fmt.Println("        go run . -- --run reflex -r")
+			fmt.Println("        go run . -- --run reflex -w")
 			fmt.Println("math:   go run . -- --run-math")
 		}
 	case trackRead:

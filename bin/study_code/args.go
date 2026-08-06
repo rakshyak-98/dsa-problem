@@ -47,6 +47,8 @@ func parseReadArgs(args []string) (drillKind string, runMath, catalog, brief boo
 			catalog = true
 		case "--brief":
 			brief = true
+		case "-r", "--read", "-w", "--write":
+			// consumed by root CLI when selecting read/write side
 		case "--run":
 			if i+1 < len(args) && isRunKind(args[i+1]) {
 				i++
