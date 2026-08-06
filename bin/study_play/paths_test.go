@@ -98,7 +98,7 @@ func TestPrintTodaySunday(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
-	printToday(sun)
+	printToday(sun, false)
 	w.Close()
 	os.Stdout = old
 	var buf bytes.Buffer

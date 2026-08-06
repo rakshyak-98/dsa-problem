@@ -26,11 +26,25 @@ This file is the full daily practice. Same shape every day. Do the **Core 5** ev
 Missed a day? Do **not** catch up. Run today’s pack only.
 
 ```bash
-go run ./bin/study_play             # prints Core 5 + today’s specialty
-go run ./bin/study_play -- --run    # run today’s specialty tests
-go run ./bin/study_play -- --reset  # reset today’s drill to blank TODOs
-go run ./bin/study_play -- --drill  # Core 5 only (paper / blank file)
+go run .                          # daily drill: read + write for today
+go run . -- --run                 # check today's answers
+go run . -- --drill               # core only (Core Read 3 + Core 5)
+go run . -- --run-math            # math add-on drills
 ```
+
+Example output:
+
+```
+DAILY Thursday
+read:  04_find_the_bug
+write: 04_binary_search_reflex
+       core5: twoSum, binarySearch, removeDuplicates, maxSumSubarrayK, frequencyMap
+       specialty: binarySearch, searchInsert, findMinRotated, isTargetPresent
+test: go run . -- --run
+math: go run . -- --run-math
+```
+
+Full schedule, tiers, and triggers: see sections below.
 
 ---
 

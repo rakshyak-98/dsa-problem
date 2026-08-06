@@ -5,9 +5,32 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
 var commandRunner = runIn
+
+var weekdayNames = []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
+
+func todayName() string {
+	return weekdayNames[time.Now().Weekday()]
+}
+
+func hasArg(args []string, flag string) bool {
+	for _, a := range args {
+		if a == flag {
+			return true
+		}
+	}
+	return false
+}
+
+func withBrief(args []string) []string {
+	if hasArg(args, "--brief") {
+		return args
+	}
+	return append(args, "--brief")
+}
 
 func printTrackList() {
 	for _, t := range availableTracks {
@@ -86,14 +109,26 @@ func runUnified(root string, opts dailyOptions) int {
 		return 1
 	}
 
+	drillOnly := hasArg(opts.passArgs, "--drill")
+	briefArgs := withBrief(opts.passArgs)
+
 	switch opts.track {
 	case trackDSA:
-		if code := runModule(root, "study_code", opts.passArgs, opts.run); code != 0 {
+		fmt.Printf("DAILY %s", todayName())
+		if drillOnly {
+			fmt.Println(" | core")
+		} else {
+			fmt.Println()
+		}
+		if code := runModule(root, "study_code", briefArgs, opts.run); code != 0 {
 			return code
 		}
-		fmt.Println()
-		if code := runModule(root, "study_play", opts.passArgs, opts.run); code != 0 {
+		if code := runModule(root, "study_play", briefArgs, opts.run); code != 0 {
 			return code
+		}
+		if !drillOnly {
+			fmt.Println("test: go run . -- --run")
+			fmt.Println("math: go run . -- --run-math")
 		}
 	case trackRead:
 		if code := runModule(root, "study_code", opts.passArgs, opts.run); code != 0 {

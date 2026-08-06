@@ -178,18 +178,29 @@ func printCatalog() {
 	}
 }
 
-func printDrill(today drill) {
+func printDrill(today drill, brief bool) {
+	if brief {
+		fmt.Println("write: drills/write/core5/")
+		return
+	}
 	fmt.Printf("WRITE %s | core 5\n", today.day)
 	fmt.Printf("core5: %s\n", core5Names())
 	fmt.Println("path: drills/write/core5/")
 }
 
-func printToday(today drill) {
+func printToday(today drill, brief bool) {
+	if brief {
+		fmt.Printf("write: %s\n", today.file)
+		fmt.Printf("       core5: %s\n", core5Names())
+		fmt.Printf("       specialty: %s\n", strings.Join(today.functions, ", "))
+		return
+	}
 	fmt.Printf("WRITE %s | %s\n", today.day, today.file)
 	fmt.Printf("core5: %s\n", core5Names())
 	fmt.Printf("specialty: %s\n", strings.Join(today.functions, ", "))
 	fmt.Printf("path: drills/write/reflex/%s/\n", today.file)
 	fmt.Println("test: go run . -- --run")
+	fmt.Printf("math: go run . -- --run-math  (%s)\n", mathReflexFile)
 }
 
 func hasFlag(flag string) bool {
@@ -233,7 +244,7 @@ func main() {
 		return
 	}
 	if hasFlag("--drill") {
-		printDrill(today)
+		printDrill(today, hasFlag("--brief"))
 		return
 	}
 	if hasFlag("--reset") {
@@ -244,7 +255,7 @@ func main() {
 		return
 	}
 
-	printToday(today)
+	printToday(today, hasFlag("--brief"))
 
 	if hasFlag("--run-core5") {
 		core5Path := writeCore5Dir(repoRoot)

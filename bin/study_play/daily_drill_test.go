@@ -43,11 +43,11 @@ func TestPrintFunctionsNoPanic(t *testing.T) {
 	if len(out) < 50 {
 		t.Fatal("printCatalog empty")
 	}
-	out = capture(func() { printToday(drills[0]) })
+	out = capture(func() { printToday(drills[0], false) })
 	if len(out) < 30 {
 		t.Fatal("printToday empty")
 	}
-	out = capture(func() { printDrill(drills[0]) })
+	out = capture(func() { printDrill(drills[0], false) })
 	if len(out) < 20 {
 		t.Fatal("printDrill empty")
 	}

@@ -122,12 +122,20 @@ func drillOpenPath(file string) string {
 	return fmt.Sprintf("drills/read/weekday/%s/main.go", file)
 }
 
-func printDrill() {
+func printDrill(brief bool) {
+	if brief {
+		fmt.Println("read:  drills/read/core/00_core_read/")
+		return
+	}
 	fmt.Println("READ | core 3")
 	fmt.Println("path: drills/read/core/00_core_read/")
 }
 
-func printToday(d drill) {
+func printToday(d drill, brief bool) {
+	if brief {
+		fmt.Printf("read:  %s\n", d.file)
+		return
+	}
 	fmt.Printf("READ %s | %s — %s\n", d.day, d.file, d.skill)
 	fmt.Printf("path: %s\n", drillOpenPath(d.file))
 	fmt.Println("test: go run . -- --run")
@@ -155,8 +163,8 @@ func runDrill(file string) error {
 }
 
 func main() {
-	drill, run, runMath, catalog := parseReadArgs(os.Args[1:])
-	if code := runStudyCode(drill, run, runMath, catalog); code != 0 {
+	drill, run, runMath, catalog, brief := parseReadArgs(os.Args[1:])
+	if code := runStudyCode(drill, run, runMath, catalog, brief); code != 0 {
 		os.Exit(code)
 	}
 }
