@@ -20,7 +20,10 @@ func runStudyCode(drillKind string, runMath, catalog, brief bool, runMode string
 	}
 
 	d := todayDrill()
-	printToday(d, brief)
+
+	if runMode == "" {
+		printToday(d, brief)
+	}
 
 	if runMath {
 		if err := runDrill(mathReadFile); err != nil {

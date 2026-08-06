@@ -275,7 +275,9 @@ func main() {
 		return
 	}
 
-	printToday(today, brief)
+	if runMode == "" {
+		printToday(today, brief)
+	}
 
 	if runMath {
 		mathPath := writeReflexDir(repoRoot, mathReflexFile)
