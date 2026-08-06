@@ -5,18 +5,18 @@ import (
 	"os"
 )
 
-func runStudyCode(drill, run, runMath, catalog bool) int {
+func runStudyCode(drill, run, runMath, catalog, brief bool) int {
 	if catalog {
 		printCatalog()
 		return 0
 	}
 	if drill {
-		printDrill()
+		printDrill(brief)
 		return 0
 	}
 
 	d := todayDrill()
-	printToday(d)
+	printToday(d, brief)
 
 	if runMath {
 		if err := runDrill(mathReadFile); err != nil {

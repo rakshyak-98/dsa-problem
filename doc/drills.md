@@ -29,11 +29,12 @@ drills/
 ## Daily flow (recommended)
 
 ```bash
-go run .                      # unified plan: read + write (DSA track)
+go run .                      # daily drill: read + write (DSA track)
+go run . -- --run             # check today's answers
+go run . -- --drill           # core only
 go run . -- --track backend   # backend interview track
 go run . -- --track read      # reading only
 go run . -- --track write     # writing only
-go run . -- --run             # check today's answers
 ```
 
 ## Write drills

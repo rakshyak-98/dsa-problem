@@ -22,12 +22,12 @@ func TestDrillsCatalog(t *testing.T) {
 }
 
 func TestParseReadArgs(t *testing.T) {
-	drill, run, runMath, catalog := parseReadArgs([]string{"--", "--drill", "--run", "--run-math", "--catalog"})
-	if !drill || !run || !runMath || !catalog {
+	drill, run, runMath, catalog, brief := parseReadArgs([]string{"--", "--drill", "--run", "--run-math", "--catalog", "--brief"})
+	if !drill || !run || !runMath || !catalog || !brief {
 		t.Fatal("parseReadArgs all flags")
 	}
-	drill, run, runMath, catalog = parseReadArgs(nil)
-	if drill || run || runMath || catalog {
+	drill, run, runMath, catalog, brief = parseReadArgs(nil)
+	if drill || run || runMath || catalog || brief {
 		t.Fatal("parseReadArgs empty")
 	}
 }
@@ -71,8 +71,8 @@ func TestPrintFunctions(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
-	printDrill()
-	printToday(drills[0])
+	printDrill(false)
+	printToday(drills[0], false)
 	printCatalog()
 	w.Close()
 	os.Stdout = old
