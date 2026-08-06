@@ -6,7 +6,7 @@ Interview prep workspace for DSA drills, problem practice, and progress tracking
 
 | Tool | Version | Used for |
 |------|---------|----------|
-| [Go](https://go.dev/dl/) | 1.22+ | drill helpers (`study_play`, `study_code`, `daily`) |
+| [Go](https://go.dev/dl/) | 1.22+ | drill helpers (`bin/study_play`, `bin/study_code`, root `go run`) |
 | Browser | any modern | study tracker + visualizer |
 | Node.js (optional) | 18+ | `npx serve` for local tracker hosting |
 
@@ -16,46 +16,59 @@ Interview prep workspace for DSA drills, problem practice, and progress tracking
 ./setup.sh
 ```
 
-Then open **[`drills/README.md`](drills/README.md)** — all practice files live under `drills/`.
+Then open **[`doc/drills.md`](doc/drills.md)** — all practice files live under `drills/`.
 
-## Quick commands
+## Quick commands (from repo root)
 
 ```bash
-cd daily && go run .                    # unified daily plan
-go run -C study_play/practice/write/core5 .  # Core 5 reflex
-cd study_play && go run . -- --run        # test today's write drill
-cd study_code && go run . -- --run      # check reading answers
-open drills/tracker/study_tracker.html  # progress tracker
+go run .                              # unified daily plan (DSA: read + write)
+go run . -- --track backend           # backend interview prep only
+go run . -- --track read              # DSA reading drills only
+go run . -- --track write             # DSA writing drills only
+go run . -- --list-tracks             # show all available tracks
+go run . -- --run                     # check today's answers
+go run ./bin/study_play               # write drill plan (direct)
+go run ./bin/study_code               # read drill plan (direct)
+go run -C drills/write/core5 .        # Core 5 reflex
+open drills/tracker/study_tracker.html
 ```
 
 ## Repository layout
 
 ```
 dsa-problem/
-├── drills/                  # ★ PRACTICE (front door)
+├── doc/                     # ★ DOCUMENTATION (all guides)
+│   ├── drills.md            # drills overview
+│   ├── write/               # write reflex study plans
+│   ├── read/                # reading drill guides
+│   └── backend/             # backend interview prep
+├── drills/                  # ★ PRACTICE (by topic)
 │   ├── write/               # reflex drills: core5, reflex, variants
 │   ├── read/                # reading drills: core, weekday, answers
+│   ├── backend/             # backend interview drills
 │   ├── solutions/           # write drill solutions (after attempt)
 │   └── tracker/             # browser study tracker
-├── daily/                   # unified read + write command
-├── study_play/              # write-drill CLI + internal support
-│   ├── _support/            # blanks, templates, solutions (hidden)
-│   └── docs/                # study plans and guides
-├── study_code/              # read-drill CLI
-│   └── docs/
-├── problems/                # problem catalog + simulation
-├── visualizer/              # algorithm visualizer
-└── tools/scripts/           # test coverage gate
+├── bin/                     # internal CLI tooling
+│   ├── study_play/          # write-drill CLI + templates
+│   ├── study_code/          # read-drill CLI
+│   ├── study_backend/       # backend interview CLI
+│   └── scripts/             # test coverage gate
+├── reference/               # unrelated reference material
+│   ├── problems/            # problem catalog + simulation
+│   └── visualizer/          # algorithm visualizer
+├── main.go                  # unified daily command (go run .)
+└── setup.sh
 ```
 
 ## Testing
 
 ```bash
-./tools/scripts/test-coverage.sh
+./bin/scripts/test-coverage.sh
 ```
 
 ## More docs
 
-- [`study_play/docs/START_HERE.md`](study_play/docs/START_HERE.md) — writing reflex flow
-- [`study_code/docs/START_HERE.md`](study_code/docs/START_HERE.md) — reading drill flow
-- [`problems/CATEGORIES.md`](problems/CATEGORIES.md) — problem index by topic
+- [`doc/write/START_HERE.md`](doc/write/START_HERE.md) — writing reflex flow
+- [`doc/read/START_HERE.md`](doc/read/START_HERE.md) — reading drill flow
+- [`doc/backend/START_HERE.md`](doc/backend/START_HERE.md) — backend interview cram
+- [`reference/problems/CATEGORIES.md`](reference/problems/CATEGORIES.md) — problem index by topic
