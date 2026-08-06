@@ -2,7 +2,7 @@
 //
 // RUN:              go run .
 // RUN with tests:   go run . -- --run
-// Core 5 only:      go run . -- --micro
+// Core 5 only:      go run . -- --drill
 // Full catalog:     go run . -- --catalog
 // Reset today:      go run . -- --reset
 // First-time setup: go run . -- --setup
@@ -11,6 +11,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -158,124 +159,37 @@ var allTriggers = []string{
 	"count combinations → nCr with symmetry k = min(k, n-k)",
 }
 
-func printBanner() {
-	fmt.Println(`
-╔══════════════════════════════════════════════════════════╗
-║         DAILY REFLEX PRACTICE — ESSENTIAL PACK           ║
-╚══════════════════════════════════════════════════════════╝`)
-}
-
-func printCore5() {
-	fmt.Print(`── CORE 5 (every day — target < 8 min) ───────────────
-  Say the ask, then write blind.
-
-`)
+func core5Names() string {
+	names := make([]string, len(core5))
 	for i, fn := range core5 {
-		fmt.Printf("  %d. %s\n", i+1, fn.name)
-		fmt.Printf("     Ask:     %s\n", fn.ask)
-		fmt.Printf("     Pattern: %s\n", fn.pattern)
-		fmt.Printf("     Target:  %ds\n\n", fn.sec)
+		name := fn.name
+		if idx := strings.Index(name, "("); idx > 0 {
+			name = name[:idx]
+		}
+		names[i] = name
 	}
+	return strings.Join(names, ", ")
 }
 
 func printCatalog() {
-	printBanner()
-	fmt.Println("Essential catalog — own every function blind.")
-	fmt.Println()
+	fmt.Println("WRITE catalog")
 	for _, entry := range essentialCatalog {
-		fmt.Printf("  %s\n", entry.group)
-		for _, fn := range entry.fns {
-			fmt.Printf("    [ ] %s\n", fn)
-		}
-		fmt.Println()
+		fmt.Printf("%s: %s\n", entry.group, strings.Join(entry.fns, ", "))
 	}
-	fmt.Println("Guide: doc/write/DAILY_30MIN_DRILL.md")
 }
 
-func printMicro(today drill) {
-	printBanner()
-	fmt.Printf("Minimum / micro day (%s) — Core 5 only.\n\n", today.day)
-	printCore5()
-	fmt.Printf(`When ready for specialty:
-  Open: drills/write/reflex/%s
-  Run:  go run . -- --run
-`, today.file)
+func printDrill(today drill) {
+	fmt.Printf("WRITE %s | core 5\n", today.day)
+	fmt.Printf("core5: %s\n", core5Names())
+	fmt.Println("path: drills/write/core5/")
 }
 
 func printToday(today drill) {
-	printBanner()
-	fmt.Printf("Today: %s\nSpecialty file: drills/write/reflex/%s\nSpecialty set:  %s\n\n",
-		today.day, today.file, today.patterns)
-
-	if today.day == "Sunday" {
-		fmt.Println("Note: Sunday is rest from new problems. Graphs specialty is optional; still do Core 5.")
-		fmt.Println()
-	}
-
-	fmt.Print(`── TIERS ──────────────────────────────────────────────
-  Minimum   ~20-30 min   Core 5 + log
-  Reflex    ~30-40 min   Core 5 + today's specialty drill
-  Standard  45-60 min    Reflex + ONE primary from STUDY_PLAN.md
-`)
-	printCore5()
-
-	fmt.Println("── SPECIALTY FUNCTIONS (blind write after Core 5) ──")
-	for _, fn := range today.functions {
-		fmt.Printf("  • %s\n", fn)
-	}
-
-	fmt.Print(`
-── REFLEX CLOCK ────────────────────────────────────────
-  0-2 min    Full trigger scan (out loud)
-  2-10 min   Core 5 blind write
-  10-12 min  Understand warm-up (specialty)
-  12-32 min  Specialty TODO: REFLEX functions
-  32-37 min  Run tests & fix once (no solutions)
-  37-40 min  Log fails + revisit (+3 days)
-
-── TODAY'S TRIGGERS ────────────────────────────────────`)
-	for _, t := range today.triggers {
-		fmt.Printf("  • %s\n", t)
-	}
-
-	fmt.Println("\n── ALWAYS-ON TRIGGERS (scan daily) ─────────────────────")
-	for _, t := range allTriggers {
-		fmt.Printf("  • %s\n", t)
-	}
-
-	fmt.Printf(`
-── UNDERSTAND WARM-UP (say aloud) ──────────────────────
-  %s
-
-── COMMANDS ────────────────────────────────────────────
-  Core 5 drill:    go run -C drills/write/core5 .
-  Open specialty:  drills/write/reflex/%s
-  Run specialty:   go run . -- --run
-  Run Core 5:      go run . -- --run-core5
-  Reset specialty: go run . -- --reset
-  Weak functions:  go run . -- --weak
-  Variants:        go run -C drills/write/variants .
-  Solutions:       drills/solutions/reflex/<today's drill>/ (after honest attempt)
-  Core 5 only:     go run . -- --micro
-  Full catalog:    go run . -- --catalog
-  Full guide:      doc/write/DAILY_30MIN_DRILL.md
-`, today.understandWarmup, today.file)
-
-	printAskWarmup(today.day)
-	printProblemMap(today.file)
-	printCore5Problems()
-	printVisualizerLink(today.file)
-	printMathReflexAddon()
-}
-
-func printMathReflexAddon() {
-	fmt.Printf(`
-── MATH REFLEX (daily add-on — ~5 min) ────────────────
-  Functions: gcd, lcm, modPow, nCr, isPrime, powOfTwo
-  Open:  drills/write/reflex/%s
-  Run:   go run . -- --run-math
-  Guide: doc/write/MATH_CONCEPTS.md
-`, mathReflexFile)
+	fmt.Printf("WRITE %s | %s\n", today.day, today.file)
+	fmt.Printf("core5: %s\n", core5Names())
+	fmt.Printf("specialty: %s\n", strings.Join(today.functions, ", "))
+	fmt.Printf("path: drills/write/reflex/%s/\n", today.file)
+	fmt.Println("test: go run . -- --run")
 }
 
 func hasFlag(flag string) bool {
@@ -318,8 +232,8 @@ func main() {
 		printCatalog()
 		return
 	}
-	if hasFlag("--micro") {
-		printMicro(today)
+	if hasFlag("--drill") {
+		printDrill(today)
 		return
 	}
 	if hasFlag("--reset") {
@@ -334,54 +248,35 @@ func main() {
 
 	if hasFlag("--run-core5") {
 		core5Path := writeCore5Dir(repoRoot)
-		fmt.Println("Running Core 5 tests...")
-		fmt.Println()
 		ok, output, _ := runDrillWithLog(core5Path)
+		fmt.Print(output)
 		if !ok {
-			fmt.Print(output)
-			fmt.Println()
-			fmt.Println("Core 5 failed — fix blind, then re-run.")
 			os.Exit(1)
 		}
-		fmt.Print(output)
 		updateLogFromOutput(repoRoot, output, []string{"twoSum", "binarySearch", "removeDuplicates", "maxSumSubarrayK", "frequencyMap"})
-		fmt.Println("Core 5 logged.")
 		return
 	}
 
 	if hasFlag("--run-math") {
 		mathPath := writeReflexDir(repoRoot, mathReflexFile)
-		fmt.Println("Running math reflex tests...")
-		fmt.Println()
 		ok, output, _ := runDrillWithLog(mathPath)
 		fmt.Print(output)
 		mathFns := []string{"gcd", "lcm", "modPow", "nCr", "isPrime", "powOfTwo"}
 		if !ok {
 			updateLogFromOutput(repoRoot, output, mathFns)
-			fmt.Println()
-			fmt.Println("Math reflex failed — fix blind, then re-run.")
 			os.Exit(1)
 		}
 		updateLogFromOutput(repoRoot, output, mathFns)
-		fmt.Println("Math reflex logged.")
 		return
 	}
 
 	if hasFlag("--run") {
-		fmt.Println("Running specialty tests...")
-		fmt.Println()
 		ok, output, _ := runDrillWithLog(drillPath)
 		fmt.Print(output)
 		if !ok {
 			updateLogFromOutput(repoRoot, output, today.functions)
-			fmt.Println()
-			fmt.Println("Tests failed — good data. Fix blind, then re-run.")
 			os.Exit(1)
 		}
 		updateLogFromOutput(repoRoot, output, today.functions)
-		fmt.Println("Specialty logged. Next: solve today's primary problem (see map above).")
-	} else {
-		fmt.Println("Tip: after Core 5 + specialty, run  go run . -- --run")
-		fmt.Println()
 	}
 }

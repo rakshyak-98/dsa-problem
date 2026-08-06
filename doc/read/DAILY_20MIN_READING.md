@@ -25,7 +25,7 @@ Missed a day? Do **not** catch up. Run today’s pack only.
 ```bash
 go run ./bin/study_code
 go run ./bin/study_code -- --run
-go run ./bin/study_code -- --micro
+go run ./bin/study_code -- --drill
 ```
 
 ---

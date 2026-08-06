@@ -22,12 +22,12 @@ func TestDrillsCatalog(t *testing.T) {
 }
 
 func TestParseReadArgs(t *testing.T) {
-	micro, run, runMath, catalog := parseReadArgs([]string{"--", "--micro", "--run", "--run-math", "--catalog"})
-	if !micro || !run || !runMath || !catalog {
+	drill, run, runMath, catalog := parseReadArgs([]string{"--", "--drill", "--run", "--run-math", "--catalog"})
+	if !drill || !run || !runMath || !catalog {
 		t.Fatal("parseReadArgs all flags")
 	}
-	micro, run, runMath, catalog = parseReadArgs(nil)
-	if micro || run || runMath || catalog {
+	drill, run, runMath, catalog = parseReadArgs(nil)
+	if drill || run || runMath || catalog {
 		t.Fatal("parseReadArgs empty")
 	}
 }
@@ -71,14 +71,14 @@ func TestPrintFunctions(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
-	printCore()
-	printSpecialty(drills[0])
+	printDrill()
+	printToday(drills[0])
 	printCatalog()
 	w.Close()
 	os.Stdout = old
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
-	if len(buf.String()) < 50 {
+	if len(buf.String()) < 30 {
 		t.Fatal("print output too short")
 	}
 }

@@ -22,7 +22,7 @@ func TestRunStudyCodeCatalog(t *testing.T) {
 	}
 }
 
-func TestRunStudyCodeMicro(t *testing.T) {
+func TestRunStudyCodeDrill(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
@@ -31,8 +31,8 @@ func TestRunStudyCodeMicro(t *testing.T) {
 	os.Stdout = old
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
-	if code != 0 || !strings.Contains(buf.String(), "micro") {
-		t.Fatal("micro mode")
+	if code != 0 || !strings.Contains(buf.String(), "core 3") {
+		t.Fatal("drill mode")
 	}
 }
 
@@ -45,7 +45,7 @@ func TestRunStudyCodeDefault(t *testing.T) {
 	os.Stdout = old
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
-	if code != 0 || len(buf.String()) < 50 {
+	if code != 0 || len(buf.String()) < 20 {
 		t.Fatal("default mode")
 	}
 }

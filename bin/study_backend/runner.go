@@ -4,9 +4,26 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 )
 
-func runBackend(micro, run, catalog, cram, setup bool) int {
+func coreExplainTopics() string {
+	topics := make([]string, len(coreExplain))
+	for i, c := range coreExplain {
+		topics[i] = c.topic
+	}
+	return strings.Join(topics, ", ")
+}
+
+func coreWriteTopics() string {
+	topics := make([]string, len(coreWrite))
+	for i, c := range coreWrite {
+		topics[i] = c.topic
+	}
+	return strings.Join(topics, ", ")
+}
+
+func runBackend(drill, run, catalog, cram, setup bool) int {
 	if setup {
 		if err := runSetup(); err != nil {
 			fmt.Fprintf(os.Stderr, "setup failed: %v\n", err)
@@ -23,16 +40,11 @@ func runBackend(micro, run, catalog, cram, setup bool) int {
 		fmt.Println()
 	}
 
-	fmt.Println()
-	fmt.Println("study_backend — interview prep from your resume")
-	fmt.Println("Fill TODO: EXPLAIN / TODO: REFLEX, then go run . -- --run")
-	fmt.Println()
-
-	printCoreExplain()
-	printCoreWrite()
-
-	if micro {
-		fmt.Println("(--micro) Blocks skipped. Still counts as Minimum tier.")
+	if drill {
+		fmt.Println("BACKEND | core 5")
+		fmt.Printf("explain: %s\n", coreExplainTopics())
+		fmt.Printf("write: %s\n", coreWriteTopics())
+		fmt.Println("path: drills/backend/explain/core5/ + drills/backend/write/core5/")
 		if run {
 			if err := runCoreDrills(); err != nil {
 				return 1
@@ -42,13 +54,14 @@ func runBackend(micro, run, catalog, cram, setup bool) int {
 	}
 
 	b := todayBlock()
-	printBlock(b)
+	fmt.Printf("BACKEND %s | %s — %s\n", b.day, b.file, b.topic)
+	fmt.Printf("path: drills/backend/explain/blocks/%s/\n", b.file)
+	fmt.Println("test: go run . -- --run")
 
 	if run {
 		if err := runCoreDrills(); err != nil {
 			return 1
 		}
-		fmt.Printf("── Running block %s ──\n", b.file)
 		if err := runExplainBlock(b.file); err != nil {
 			return 1
 		}
@@ -58,13 +71,10 @@ func runBackend(micro, run, catalog, cram, setup bool) int {
 
 func runCoreDrills() error {
 	root := findRepoRoot(mustCwd())
-	fmt.Println("── Core 5 EXPLAIN ──")
 	if err := goRun(explainCore5Dir(root)); err != nil {
 		fmt.Fprintf(os.Stderr, "explain core5 failed: %v\n", err)
 		return err
 	}
-	fmt.Println()
-	fmt.Println("── Core 5 WRITE (Go) ──")
 	if err := goRun(writeCore5Dir(root)); err != nil {
 		fmt.Fprintf(os.Stderr, "write core5 failed: %v\n", err)
 		return err
