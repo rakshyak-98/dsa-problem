@@ -9,6 +9,10 @@ command -v go >/dev/null || { echo "Go is required (1.22+). Install from https:/
 go version
 
 echo
+echo "==> Initializing backend interview drills"
+(cd study_backend && go run . -- --setup)
+
+echo
 echo "==> Initializing write drills (7 daily + 2 bonus)"
 (cd study_play && go run . -- --setup)
 
@@ -28,6 +32,7 @@ echo
 echo "Setup complete."
 echo
 echo "Next steps:"
+echo "  backend interview prep:     cd study_backend && go run . -- --cram"
 echo "  START HERE:                 open drills/README.md"
 echo "  unified daily:              cd daily && go run ."
 echo "  write drills CLI:           cd study_play && go run ."
