@@ -5,9 +5,9 @@ Resume-driven prep for **Rakshyak Satpathy — Backend Software Engineer**.
 ## Quick start
 
 ```bash
-cd study_backend && go run . -- --cram          # cram schedule
-cd study_backend && go run . -- --setup         # sync files here
-cd study_backend && go run . -- --run           # check your answers
+go run ./bin/study_backend -- --cram          # cram schedule
+go run ./bin/study_backend -- --setup         # sync files here
+go run ./bin/study_backend -- --run           # check your answers
 ```
 
 ## Layout
@@ -25,9 +25,9 @@ drills/backend/
 
 ## Guides
 
-- [`study_backend/docs/START_HERE.md`](../study_backend/docs/START_HERE.md)
-- [`study_backend/docs/INTERVIEW_CRAM_PLAN.md`](../study_backend/docs/INTERVIEW_CRAM_PLAN.md)
-- [`study_backend/docs/DRILL_CONCEPTS.md`](../study_backend/docs/DRILL_CONCEPTS.md)
-- [`study_backend/docs/STAR_STORIES.md`](../study_backend/docs/STAR_STORIES.md)
+- [`doc/backend/START_HERE.md`](../doc/backend/START_HERE.md)
+- [`doc/backend/INTERVIEW_CRAM_PLAN.md`](../doc/backend/INTERVIEW_CRAM_PLAN.md)
+- [`doc/backend/DRILL_CONCEPTS.md`](../doc/backend/DRILL_CONCEPTS.md)
+- [`doc/backend/STAR_STORIES.md`](../doc/backend/STAR_STORIES.md)
 
-Answers (after attempt): `study_backend/_support/answers/`
+Answers (after attempt): `bin/study_backend/_support/answers/`
