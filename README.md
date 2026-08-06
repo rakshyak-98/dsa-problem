@@ -2,6 +2,8 @@
 
 Interview prep workspace for DSA drills, problem practice, and progress tracking.
 
+**Overview blog:** [`BLOG.md`](BLOG.md) — intent, features, and how the system builds skill over time.
+
 ## Prerequisites
 
 | Tool | Version | Used for |
