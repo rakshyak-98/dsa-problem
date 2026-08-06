@@ -27,8 +27,6 @@ go run . -- --track read              # DSA reading drills only
 go run . -- --track write             # DSA writing drills only
 go run . -- --list-tracks             # show all available tracks
 go run . -- --run                     # check today's answers
-go run . -- --plan-write              # write drill plan
-go run . -- --plan-read               # read drill plan
 go run . -- --core5                   # Core 5 reflex
 open drills/tracker/study_tracker.html
 ```
