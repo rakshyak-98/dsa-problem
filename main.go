@@ -47,6 +47,12 @@ func main() {
 		printTrackList()
 		return
 	}
+	if opts.core5 {
+		if code := runCore5(root); code != 0 {
+			os.Exit(code)
+		}
+		return
+	}
 	if code := runUnified(root, opts); code != 0 {
 		os.Exit(code)
 	}

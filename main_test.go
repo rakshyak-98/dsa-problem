@@ -37,6 +37,21 @@ func TestParseDailyArgs(t *testing.T) {
 	if !opts.help {
 		t.Fatal("expected help")
 	}
+
+	opts = parseDailyArgs([]string{"--plan-write"})
+	if opts.track != trackWrite || opts.core5 {
+		t.Fatalf("plan-write: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--plan-read"})
+	if opts.track != trackRead || opts.core5 {
+		t.Fatalf("plan-read: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--core5"})
+	if !opts.core5 || opts.track != trackDSA {
+		t.Fatalf("core5: %+v", opts)
+	}
 }
 
 func TestIsKnownTrack(t *testing.T) {

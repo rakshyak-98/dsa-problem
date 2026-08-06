@@ -39,6 +39,7 @@ type dailyOptions struct {
 	run        bool
 	help       bool
 	listTracks bool
+	core5      bool
 }
 
 func parseDailyArgs(args []string) dailyOptions {
@@ -60,6 +61,12 @@ func parseDailyArgs(args []string) dailyOptions {
 			}
 			i++
 			opts.track = drillTrack(strings.ToLower(args[i]))
+		case "--plan-write":
+			opts.track = trackWrite
+		case "--plan-read":
+			opts.track = trackRead
+		case "--core5":
+			opts.core5 = true
 		case "--run":
 			opts.run = true
 			opts.passArgs = append(opts.passArgs, a)

@@ -3,12 +3,14 @@ package main
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"time"
 )
 
 var commandRunner = runIn
+var core5Runner = runCore5In
 
 var weekdayNames = []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
 
@@ -48,6 +50,9 @@ Options:
       --list-tracks        list practice tracks and exit
   -t, --track=NAME         practice track: dsa, read, write, or backend
                              (default: "dsa")
+      --plan-write           write drill plan (same as --track write)
+      --plan-read            read drill plan (same as --track read)
+      --core5                run Core 5 reflex drill
       --run [KIND]           run tests: core, reflex, or both if omitted
       --drill              core drills only (forwarded to track)
       --catalog            list drills in track (forwarded to track)
@@ -98,6 +103,22 @@ func printDSAExtras() {
 
 func runModule(root, module string, passArgs []string, run bool) int {
 	if err := commandRunner(filepath.Join(root, "bin", module), passArgs...); err != nil && run {
+		return 1
+	}
+	return 0
+}
+
+func runCore5In(root string) error {
+	core5Dir := filepath.Join(root, "drills", "write", "core5")
+	cmd := exec.Command("go", "run", ".")
+	cmd.Dir = core5Dir
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	return cmd.Run()
+}
+
+func runCore5(root string) int {
+	if err := core5Runner(root); err != nil {
 		return 1
 	}
 	return 0
