@@ -267,6 +267,10 @@ Use this as a master checklist. Specialty days cover these in rotation; Core 5 k
 ### Graphs
 - [ ] `numIslands` · `floodFill` · `shortestPathGrid`
 
+### Math (daily add-on)
+- [ ] `gcd` · `lcm` · `modPow` · `nCr` · `isPrime` · `powOfTwo`
+- [ ] Math read drill: `drills/read/weekday/08_math_concepts`
+
 ---
 
 ## After reflex (Standard tier only)

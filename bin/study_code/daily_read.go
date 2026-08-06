@@ -2,6 +2,7 @@
 //
 // RUN:              go run .
 // RUN with checks:  go run . -- --run
+// Math add-on:      go run . -- --run-math
 // Core only:        go run . -- --micro
 // Full catalog:     go run . -- --catalog
 package main
@@ -106,6 +107,8 @@ var drills = []drill{
 	},
 }
 
+const mathReadFile = "08_math_concepts"
+
 func todayDrill() drill {
 	wd := int(time.Now().Weekday())
 	idx := (wd + 6) % 7
@@ -155,12 +158,26 @@ func printSpecialty(d drill) {
 	fmt.Println()
 }
 
+func printMathReadAddon() {
+	fmt.Println("════════════════════════════════════════")
+	fmt.Println(" MATH READ (daily add-on — ~5 min)")
+	fmt.Println("════════════════════════════════════════")
+	fmt.Println("  Skill: Formula recall + numeric trace")
+	fmt.Println("  Warm-up: Write gcd, nCr, and Master theorem from memory.")
+	fmt.Printf("  Open:  %s\n", drillOpenPath(mathReadFile))
+	fmt.Printf("  Run:   %s\n", drillRunHint(mathReadFile))
+	fmt.Println("  Guide:  doc/write/MATH_CONCEPTS.md")
+	fmt.Println("  Answers only after fails: drills/read/answers/")
+	fmt.Println()
+}
+
 func printCatalog() {
 	fmt.Println("ESSENTIAL READING CATALOG")
 	fmt.Println("-------------------------")
 	for _, d := range drills {
 		fmt.Printf("%-9s  %-22s  %s\n", d.day, d.file, d.skill)
 	}
+	fmt.Printf("%-9s  %-22s  %s\n", "Daily", mathReadFile, "Math formulas & traces")
 	fmt.Println()
 	fmt.Println("Core: drills/read/core/00_core_read/  |  Method: doc/read/READING_PATTERNS.md")
 }
@@ -179,8 +196,8 @@ func runDrill(file string) error {
 }
 
 func main() {
-	micro, run, catalog := parseReadArgs(os.Args[1:])
-	if code := runStudyCode(micro, run, catalog); code != 0 {
+	micro, run, runMath, catalog := parseReadArgs(os.Args[1:])
+	if code := runStudyCode(micro, run, runMath, catalog); code != 0 {
 		os.Exit(code)
 	}
 }

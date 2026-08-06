@@ -107,3 +107,20 @@ Do **not** memorize these. Re-trace the snippet after reading a line.
 | `pair2Pick` | `v2b` |
 | `pair3Mutates` | `yes` |
 | `pair3Space` | `v3a` |
+
+---
+
+## 08_math_concepts
+
+| Var | Answer |
+|-----|--------|
+| `m1GCD` | `6` |
+| `m2ModPow` | `81` |
+| `m3nCr` | `56` |
+| `m4Sum` | `210` |
+| `m5Fib` | `13` |
+| `m6Master` | `O(n log n)` |
+| `m7Recurrence` | `O(log n)` |
+| `m8Bits` | `3` |
+| `m9Prime` | `no` |
+| `m10Height` | `3` |

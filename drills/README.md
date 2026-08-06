@@ -12,3 +12,6 @@ go run ./bin/study_code               # read drills CLI
 go run -C drills/write/core5 .        # Core 5
 open drills/tracker/study_tracker.html
 ```
+
+Math reference: [`../doc/write/MATH_CONCEPTS.md`](../doc/write/MATH_CONCEPTS.md)  
+Math write drill: [`write/reflex/10_math_reflex/`](write/reflex/10_math_reflex/) · Math read drill: [`read/weekday/08_math_concepts/`](read/weekday/08_math_concepts/)

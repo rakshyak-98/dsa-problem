@@ -23,7 +23,7 @@ Open **`DAILY_30MIN_DRILL.md`** for the daily ritual.
 ```
 drills/write/              ← practice files (start here)
 drills/solutions/          ← write solutions (peek after attempt)
-doc/write/                 ← guides (this folder)
+doc/write/                 ← guides (this folder, incl. MATH_CONCEPTS.md)
 bin/study_play/            ← CLI + blank templates (_support/)
 ```
 

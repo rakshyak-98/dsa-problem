@@ -22,12 +22,12 @@ func TestDrillsCatalog(t *testing.T) {
 }
 
 func TestParseReadArgs(t *testing.T) {
-	micro, run, catalog := parseReadArgs([]string{"--", "--micro", "--run", "--catalog"})
-	if !micro || !run || !catalog {
+	micro, run, runMath, catalog := parseReadArgs([]string{"--", "--micro", "--run", "--run-math", "--catalog"})
+	if !micro || !run || !runMath || !catalog {
 		t.Fatal("parseReadArgs all flags")
 	}
-	micro, run, catalog = parseReadArgs(nil)
-	if micro || run || catalog {
+	micro, run, runMath, catalog = parseReadArgs(nil)
+	if micro || run || runMath || catalog {
 		t.Fatal("parseReadArgs empty")
 	}
 }

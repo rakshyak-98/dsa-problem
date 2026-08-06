@@ -59,6 +59,11 @@ func printUnifiedHeader(track drillTrack) {
 
 func printDSAExtras() {
 	fmt.Println()
+	fmt.Println("━━━ MATH (daily add-on) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+	fmt.Println("  Write: go run ./bin/study_play -- --run-math")
+	fmt.Println("  Read:  go run ./bin/study_code -- --run-math")
+	fmt.Println("  Guide: doc/write/MATH_CONCEPTS.md")
+	fmt.Println()
 	fmt.Println("━━━ VARIANTS (optional stretch) ━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println("  go run -C drills/write/variants .")
 	fmt.Println()

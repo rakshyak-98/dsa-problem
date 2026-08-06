@@ -83,7 +83,7 @@ func TestPrintBanner(t *testing.T) {
 }
 
 func TestBonusDrills(t *testing.T) {
-	if len(bonusDrills) != 2 {
+	if len(bonusDrills) != 3 {
 		t.Fatal("bonus drills")
 	}
 }

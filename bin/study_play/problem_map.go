@@ -63,6 +63,14 @@ var problemMap = map[string][]problemLink{
 		{"permute", "backtracking/medium/permutations.js", "Return all permutations of nums"},
 		{"combine", "backtracking/medium/combinations.js", "All combinations of k numbers from 1..n"},
 	},
+	"10_math_reflex": {
+		{"gcd", "math_geometry/easy/range_addition_2.js", "Modular arithmetic and cycle alignment"},
+		{"lcm", "math_geometry/easy/range_addition_2.js", "Merge repeating intervals with lcm periods"},
+		{"modPow", "math_geometry/easy/largest_triangle_area.js", "Numeric computation with overflow control"},
+		{"nCr", "backtracking/medium/combinations.js", "Count k-combinations from n items"},
+		{"isPrime", "math_geometry/easy/projection_area_of_3d_shapes.js", "Prime / factor checks in geometry grids"},
+		{"powOfTwo", "binary_search/easy/search_insertion_position.js", "Halving search space — powers of two"},
+	},
 }
 
 var core5Problems = []problemLink{
