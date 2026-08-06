@@ -138,7 +138,8 @@ func printToday(d drill, brief bool) {
 	}
 	fmt.Printf("READ %s | %s — %s\n", d.day, d.file, d.skill)
 	fmt.Printf("path: %s\n", drillOpenPath(d.file))
-	fmt.Println("test: go run . -- --run")
+	fmt.Println("run:    go run . -- --run core")
+	fmt.Println("        go run . -- --run reflex")
 }
 
 func printCatalog() {
@@ -163,8 +164,8 @@ func runDrill(file string) error {
 }
 
 func main() {
-	drill, run, runMath, catalog, brief := parseReadArgs(os.Args[1:])
-	if code := runStudyCode(drill, run, runMath, catalog, brief); code != 0 {
+	drill, runMath, catalog, brief, runMode := parseReadArgs(os.Args[1:])
+	if code := runStudyCode(drill, runMath, catalog, brief, runMode); code != 0 {
 		os.Exit(code)
 	}
 }

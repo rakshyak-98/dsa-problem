@@ -30,7 +30,8 @@ drills/
 
 ```bash
 go run .                      # daily drill: read + write (DSA track)
-go run . -- --run             # check today's answers
+go run . -- --run core          # check core answers
+go run . -- --run reflex        # check reflex specialty answers
 go run . -- --drill           # core only
 go run . -- --track backend   # backend interview track
 go run . -- --track read      # reading only

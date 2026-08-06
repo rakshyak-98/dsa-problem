@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func runStudyCode(drill, run, runMath, catalog, brief bool) int {
+func runStudyCode(drill, runMath, catalog, brief bool, runMode string) int {
 	if catalog {
 		printCatalog()
 		return 0
@@ -26,7 +26,18 @@ func runStudyCode(drill, run, runMath, catalog, brief bool) int {
 		return 0
 	}
 
-	if run {
+	switch runMode {
+	case "core":
+		if err := runDrill("00_core_read"); err != nil {
+			fmt.Fprintf(os.Stderr, "core failed: %v\n", err)
+			return 1
+		}
+	case "reflex":
+		if err := runDrill(d.file); err != nil {
+			fmt.Fprintf(os.Stderr, "specialty failed: %v\n", err)
+			return 1
+		}
+	case "all":
 		if err := runDrill("00_core_read"); err != nil {
 			fmt.Fprintf(os.Stderr, "core failed: %v\n", err)
 			return 1

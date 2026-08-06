@@ -48,7 +48,7 @@ Options:
       --list-tracks        list practice tracks and exit
   -t, --track=NAME         practice track: dsa, read, write, or backend
                              (default: "dsa")
-      --run                run tests (forwarded to track)
+      --run [KIND]           run tests: core, reflex, or both if omitted
       --drill              core drills only (forwarded to track)
       --catalog            list drills in track (forwarded to track)
 
@@ -127,8 +127,10 @@ func runUnified(root string, opts dailyOptions) int {
 			return code
 		}
 		if !drillOnly {
-			fmt.Println("test: go run . -- --run")
-			fmt.Println("math: go run . -- --run-math")
+			fmt.Println("drill:  go run . -- --drill")
+			fmt.Println("run:    go run . -- --run core")
+			fmt.Println("        go run . -- --run reflex")
+			fmt.Println("math:   go run . -- --run-math")
 		}
 	case trackRead:
 		if code := runModule(root, "study_code", opts.passArgs, opts.run); code != 0 {

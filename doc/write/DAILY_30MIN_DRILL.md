@@ -27,7 +27,8 @@ Missed a day? Do **not** catch up. Run today’s pack only.
 
 ```bash
 go run .                          # daily drill: read + write for today
-go run . -- --run                 # check today's answers
+go run . -- --run core              # check core answers
+go run . -- --run reflex            # check reflex specialty answers
 go run . -- --drill               # core only (Core Read 3 + Core 5)
 go run . -- --run-math            # math add-on drills
 ```
@@ -40,8 +41,10 @@ read:  04_find_the_bug
 write: 04_binary_search_reflex
        core5: twoSum, binarySearch, removeDuplicates, maxSumSubarrayK, frequencyMap
        specialty: binarySearch, searchInsert, findMinRotated, isTargetPresent
-test: go run . -- --run
-math: go run . -- --run-math
+drill:  go run . -- --drill
+run:    go run . -- --run core
+        go run . -- --run reflex
+math:   go run . -- --run-math
 ```
 
 Full schedule, tiers, and triggers: see sections below.

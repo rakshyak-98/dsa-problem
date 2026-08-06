@@ -199,8 +199,9 @@ func printToday(today drill, brief bool) {
 	fmt.Printf("core5: %s\n", core5Names())
 	fmt.Printf("specialty: %s\n", strings.Join(today.functions, ", "))
 	fmt.Printf("path: drills/write/reflex/%s/\n", today.file)
-	fmt.Println("test: go run . -- --run")
-	fmt.Printf("math: go run . -- --run-math  (%s)\n", mathReflexFile)
+	fmt.Println("run:    go run . -- --run core")
+	fmt.Println("        go run . -- --run reflex")
+	fmt.Printf("math:   go run . -- --run-math  (%s)\n", mathReflexFile)
 }
 
 func hasFlag(flag string) bool {
@@ -223,6 +224,8 @@ func main() {
 	repoRoot := findRepoRoot(root)
 	_, drillPath := resolvePlayPaths(root, today.file)
 
+	drill, brief, runMath, runMode := parsePlayArgs(os.Args[1:])
+
 	if hasFlag("--weak") {
 		printWeakFunctions(repoRoot, 5)
 		return
@@ -243,8 +246,8 @@ func main() {
 		printCatalog()
 		return
 	}
-	if hasFlag("--drill") {
-		printDrill(today, hasFlag("--brief"))
+	if drill {
+		printDrill(today, brief)
 		return
 	}
 	if hasFlag("--reset") {
@@ -255,20 +258,9 @@ func main() {
 		return
 	}
 
-	printToday(today, hasFlag("--brief"))
+	printToday(today, brief)
 
-	if hasFlag("--run-core5") {
-		core5Path := writeCore5Dir(repoRoot)
-		ok, output, _ := runDrillWithLog(core5Path)
-		fmt.Print(output)
-		if !ok {
-			os.Exit(1)
-		}
-		updateLogFromOutput(repoRoot, output, []string{"twoSum", "binarySearch", "removeDuplicates", "maxSumSubarrayK", "frequencyMap"})
-		return
-	}
-
-	if hasFlag("--run-math") {
+	if runMath {
 		mathPath := writeReflexDir(repoRoot, mathReflexFile)
 		ok, output, _ := runDrillWithLog(mathPath)
 		fmt.Print(output)
@@ -281,8 +273,33 @@ func main() {
 		return
 	}
 
-	if hasFlag("--run") {
+	core5Fns := []string{"twoSum", "binarySearch", "removeDuplicates", "maxSumSubarrayK", "frequencyMap"}
+	core5Path := writeCore5Dir(repoRoot)
+
+	switch runMode {
+	case "core":
+		ok, output, _ := runDrillWithLog(core5Path)
+		fmt.Print(output)
+		if !ok {
+			os.Exit(1)
+		}
+		updateLogFromOutput(repoRoot, output, core5Fns)
+	case "reflex":
 		ok, output, _ := runDrillWithLog(drillPath)
+		fmt.Print(output)
+		if !ok {
+			updateLogFromOutput(repoRoot, output, today.functions)
+			os.Exit(1)
+		}
+		updateLogFromOutput(repoRoot, output, today.functions)
+	case "all":
+		ok, output, _ := runDrillWithLog(core5Path)
+		fmt.Print(output)
+		if !ok {
+			os.Exit(1)
+		}
+		updateLogFromOutput(repoRoot, output, core5Fns)
+		ok, output, _ = runDrillWithLog(drillPath)
 		fmt.Print(output)
 		if !ok {
 			updateLogFromOutput(repoRoot, output, today.functions)

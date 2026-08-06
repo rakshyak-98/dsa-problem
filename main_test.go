@@ -3,9 +3,14 @@ package main
 import "testing"
 
 func TestParseDailyArgs(t *testing.T) {
-	opts := parseDailyArgs([]string{"--", "--drill", "--run"})
-	if !opts.run || len(opts.passArgs) != 2 || opts.track != trackDSA {
+	opts := parseDailyArgs([]string{"--", "--drill", "--run", "core"})
+	if !opts.run || len(opts.passArgs) != 3 || opts.passArgs[2] != "core" || opts.track != trackDSA {
 		t.Fatalf("parseDailyArgs: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--", "--run", "reflex"})
+	if !opts.run || len(opts.passArgs) != 2 || opts.passArgs[1] != "reflex" {
+		t.Fatalf("parseDailyArgs reflex: %+v", opts)
 	}
 
 	opts = parseDailyArgs([]string{"--track", "backend", "--cram"})
