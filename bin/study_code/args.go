@@ -14,16 +14,24 @@ func isDrillKind(s string) bool {
 }
 
 func printDrillArgError(missing bool, unknown string) {
+	printKindArgError("--drill", "drill kind", missing, unknown)
+}
+
+func printSolutionArgError(missing bool, unknown string) {
+	printKindArgError("--solution", "solution kind", missing, unknown)
+}
+
+func printKindArgError(flag, label string, missing bool, unknown string) {
 	if missing {
-		fmt.Fprintln(os.Stderr, "option '--drill' requires an argument")
+		fmt.Fprintf(os.Stderr, "option %q requires an argument\n", flag)
 	} else {
-		fmt.Fprintf(os.Stderr, "unknown drill kind %q\n", unknown)
+		fmt.Fprintf(os.Stderr, "unknown %s %q\n", label, unknown)
 	}
 	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex")
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
-func parseReadArgs(args []string) (drillKind string, runMath, catalog, brief bool, runMode string, drillErr bool) {
+func parseReadArgs(args []string) (drillKind, solutionKind string, runMath, catalog, brief bool, runMode string, parseErr bool) {
 	if len(args) > 0 && args[0] == "--" {
 		args = args[1:]
 	}
@@ -32,15 +40,27 @@ func parseReadArgs(args []string) (drillKind string, runMath, catalog, brief boo
 		case "--drill":
 			if i+1 >= len(args) {
 				printDrillArgError(true, "")
-				return "", runMath, catalog, brief, runMode, true
+				return "", "", runMath, catalog, brief, runMode, true
 			}
 			kind := args[i+1]
 			if !isDrillKind(kind) {
 				printDrillArgError(false, kind)
-				return "", runMath, catalog, brief, runMode, true
+				return "", "", runMath, catalog, brief, runMode, true
 			}
 			i++
 			drillKind = kind
+		case "--solution":
+			if i+1 >= len(args) {
+				printSolutionArgError(true, "")
+				return "", "", runMath, catalog, brief, runMode, true
+			}
+			kind := args[i+1]
+			if !isDrillKind(kind) {
+				printSolutionArgError(false, kind)
+				return "", "", runMath, catalog, brief, runMode, true
+			}
+			i++
+			solutionKind = kind
 		case "--run-math":
 			runMath = true
 		case "--catalog":
@@ -58,5 +78,5 @@ func parseReadArgs(args []string) (drillKind string, runMath, catalog, brief boo
 			}
 		}
 	}
-	return drillKind, runMath, catalog, brief, runMode, false
+	return drillKind, solutionKind, runMath, catalog, brief, runMode, false
 }

@@ -22,29 +22,37 @@ func TestDrillsCatalog(t *testing.T) {
 }
 
 func TestParseReadArgs(t *testing.T) {
-	drillKind, runMath, catalog, brief, runMode, drillErr := parseReadArgs([]string{"--", "--drill", "core", "--run", "core", "--run-math", "--catalog", "--brief"})
-	if drillErr || drillKind != "core" || runMode != "core" || !runMath || !catalog || !brief {
+	drillKind, solutionKind, runMath, catalog, brief, runMode, parseErr := parseReadArgs([]string{"--", "--drill", "core", "--run", "core", "--run-math", "--catalog", "--brief"})
+	if parseErr || drillKind != "core" || solutionKind != "" || runMode != "core" || !runMath || !catalog || !brief {
 		t.Fatal("parseReadArgs all flags")
 	}
-	drillKind, runMath, catalog, brief, runMode, drillErr = parseReadArgs([]string{"--drill", "reflex"})
-	if drillErr || drillKind != "reflex" || runMath || catalog || brief || runMode != "" {
+	drillKind, solutionKind, runMath, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--drill", "reflex"})
+	if parseErr || drillKind != "reflex" || solutionKind != "" || runMath || catalog || brief || runMode != "" {
 		t.Fatal("parseReadArgs reflex drill")
 	}
-	drillKind, runMath, catalog, brief, runMode, drillErr = parseReadArgs([]string{"--run", "reflex"})
-	if drillErr || runMode != "reflex" || drillKind != "" || runMath || catalog || brief {
+	_, solutionKind, runMath, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--solution", "reflex"})
+	if parseErr || solutionKind != "reflex" || runMath || catalog || brief || runMode != "" {
+		t.Fatal("parseReadArgs solution reflex")
+	}
+	drillKind, solutionKind, runMath, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--run", "reflex"})
+	if parseErr || runMode != "reflex" || drillKind != "" || solutionKind != "" || runMath || catalog || brief {
 		t.Fatal("parseReadArgs reflex run")
 	}
-	drillKind, runMath, catalog, brief, runMode, drillErr = parseReadArgs([]string{"--run"})
-	if drillErr || runMode != "all" {
+	drillKind, solutionKind, runMath, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--run"})
+	if parseErr || runMode != "all" {
 		t.Fatal("parseReadArgs bare run")
 	}
-	drillKind, runMath, catalog, brief, runMode, drillErr = parseReadArgs(nil)
-	if drillErr || drillKind != "" || runMath || catalog || brief || runMode != "" {
+	drillKind, solutionKind, runMath, catalog, brief, runMode, parseErr = parseReadArgs(nil)
+	if parseErr || drillKind != "" || solutionKind != "" || runMath || catalog || brief || runMode != "" {
 		t.Fatal("parseReadArgs empty")
 	}
-	_, _, _, _, _, drillErr = parseReadArgs([]string{"--drill"})
-	if !drillErr {
+	_, _, _, _, _, _, parseErr = parseReadArgs([]string{"--drill"})
+	if !parseErr {
 		t.Fatal("bare drill should error")
+	}
+	_, _, _, _, _, _, parseErr = parseReadArgs([]string{"--solution"})
+	if !parseErr {
+		t.Fatal("bare solution should error")
 	}
 }
 
@@ -89,6 +97,8 @@ func TestPrintFunctions(t *testing.T) {
 	os.Stdout = w
 	printDrill(false)
 	printReflexDrill(drills[0], false)
+	printSolutionCore(false)
+	printSolutionReflex(drills[0], false)
 	printToday(drills[0], false)
 	printCatalog()
 	w.Close()

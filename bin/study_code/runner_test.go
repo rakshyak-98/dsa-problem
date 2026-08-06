@@ -12,7 +12,7 @@ func TestRunStudyCodeCatalog(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
-	code := runStudyCode("core", false, true, false, "")
+	code := runStudyCode("core", "", false, true, false, "")
 	w.Close()
 	os.Stdout = old
 	var buf bytes.Buffer
@@ -26,7 +26,7 @@ func TestRunStudyCodeDrill(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
-	code := runStudyCode("core", false, false, false, "")
+	code := runStudyCode("core", "", false, false, false, "")
 	w.Close()
 	os.Stdout = old
 	var buf bytes.Buffer
@@ -40,7 +40,7 @@ func TestRunStudyCodeDefault(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
-	code := runStudyCode("", false, false, false, "")
+	code := runStudyCode("", "", false, false, false, "")
 	w.Close()
 	os.Stdout = old
 	var buf bytes.Buffer

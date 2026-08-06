@@ -25,3 +25,7 @@ func readDrillDir(repoRoot, file string) string {
 	}
 	return filepath.Join(repoRoot, "drills", "read", "weekday", file)
 }
+
+func readAnswersPath(repoRoot string) string {
+	return filepath.Join(repoRoot, "drills", "read", "answers", "ANSWER_KEY.md")
+}

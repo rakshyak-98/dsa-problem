@@ -55,6 +55,7 @@ Options:
                                -r, --read   reading drills only
                                -w, --write  writing drills only
       --drill KIND           show drill plan: core or reflex (required)
+      --solution KIND        show solution file path: core or reflex (required)
       --catalog            list drills in track (forwarded to track)
 
 `)
@@ -83,6 +84,16 @@ func printRunSideRequired() {
 
 func printRunSideConflict() {
 	fmt.Fprintln(os.Stderr, "cannot use both -r/--read and -w/--write")
+	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
+}
+
+func printSolutionArgError(missing bool, unknown string) {
+	if missing {
+		fmt.Fprintln(os.Stderr, "option '--solution' requires an argument")
+	} else {
+		fmt.Fprintf(os.Stderr, "unknown solution kind %q\n", unknown)
+	}
+	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex")
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
@@ -151,6 +162,7 @@ func runUnified(root string, opts dailyOptions) int {
 	}
 
 	drillKind := opts.drillKind
+	solutionKind := opts.solutionKind
 	briefArgs := withBrief(opts.passArgs)
 
 	switch opts.track {
@@ -180,6 +192,8 @@ func runUnified(root string, opts dailyOptions) int {
 		fmt.Printf("DAILY %s", todayName())
 		if drillKind != "" {
 			fmt.Printf(" | %s", drillKind)
+		} else if solutionKind != "" {
+			fmt.Printf(" | solution %s", solutionKind)
 		}
 		fmt.Println()
 		if code := runModule(root, "study_code", briefArgs, false); code != 0 {
@@ -188,9 +202,11 @@ func runUnified(root string, opts dailyOptions) int {
 		if code := runModule(root, "study_play", briefArgs, false); code != 0 {
 			return code
 		}
-		if drillKind == "" {
+		if drillKind == "" && solutionKind == "" {
 			fmt.Println("drill:  go run . -- --drill core")
 			fmt.Println("        go run . -- --drill reflex")
+			fmt.Println("solution: go run . -- --solution core")
+			fmt.Println("          go run . -- --solution reflex")
 			fmt.Println("run:    go run . -- --run core -r")
 			fmt.Println("        go run . -- --run core -w")
 			fmt.Println("        go run . -- --run reflex -r")

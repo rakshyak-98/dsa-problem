@@ -58,6 +58,18 @@ func solutionsDir(repoRoot string) string {
 	return p
 }
 
+func solutionCorePath(repoRoot string) string {
+	return filepath.Join(solutionsDir(repoRoot), "core5.md")
+}
+
+func solutionReflexMain(repoRoot, drillFile string) string {
+	return filepath.Join(solutionsDir(repoRoot), "reflex", drillFile, "main.go")
+}
+
+func solutionReflexNotes(repoRoot, drillFile string) string {
+	return filepath.Join(solutionsDir(repoRoot), drillFile+".md")
+}
+
 func todayDrillFromWeekday(weekday time.Weekday) drill {
 	dayIndex := int(weekday)
 	drillIndex := dayIndex - 1

@@ -73,6 +73,16 @@ func TestParseDailyArgs(t *testing.T) {
 		t.Fatal("expected help")
 	}
 
+	opts = parseDailyArgs([]string{"--", "--solution", "reflex"})
+	if opts.solutionKind != "reflex" || len(opts.passArgs) != 2 || opts.passArgs[1] != "reflex" {
+		t.Fatalf("parseDailyArgs solution reflex: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--solution"})
+	if !opts.solutionMissing || opts.solutionKind != "" {
+		t.Fatalf("solution missing: %+v", opts)
+	}
+
 	opts = parseDailyArgs([]string{"--core5"})
 	if !opts.core5 || opts.track != trackDSA {
 		t.Fatalf("core5: %+v", opts)

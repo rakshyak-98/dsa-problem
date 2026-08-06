@@ -198,6 +198,25 @@ func printReflexDrill(today drill, brief bool) {
 	fmt.Printf("path: drills/write/reflex/%s/\n", today.file)
 }
 
+func printSolutionCore(brief bool) {
+	if brief {
+		fmt.Println("write: drills/solutions/core5.md")
+		return
+	}
+	fmt.Println("WRITE solution | core 5")
+	fmt.Println("path: drills/solutions/core5.md")
+}
+
+func printSolutionReflex(today drill, brief bool) {
+	if brief {
+		fmt.Printf("write: drills/solutions/reflex/%s/main.go\n", today.file)
+		return
+	}
+	fmt.Printf("WRITE solution %s | %s\n", today.day, today.file)
+	fmt.Printf("path: drills/solutions/reflex/%s/main.go\n", today.file)
+	fmt.Printf("notes: drills/solutions/%s.md\n", today.file)
+}
+
 func printToday(today drill, brief bool) {
 	if brief {
 		fmt.Printf("write: %s\n", today.file)
@@ -234,8 +253,8 @@ func main() {
 	repoRoot := findRepoRoot(root)
 	_, drillPath := resolvePlayPaths(root, today.file)
 
-	drillKind, brief, runMath, runMode, drillErr := parsePlayArgs(os.Args[1:])
-	if drillErr {
+	drillKind, solutionKind, brief, runMath, runMode, parseErr := parsePlayArgs(os.Args[1:])
+	if parseErr {
 		os.Exit(1)
 	}
 
@@ -265,6 +284,14 @@ func main() {
 	}
 	if drillKind == "reflex" {
 		printReflexDrill(today, brief)
+		return
+	}
+	if solutionKind == "core" {
+		printSolutionCore(brief)
+		return
+	}
+	if solutionKind == "reflex" {
+		printSolutionReflex(today, brief)
 		return
 	}
 	if hasFlag("--reset") {

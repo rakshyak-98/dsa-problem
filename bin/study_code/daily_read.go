@@ -140,6 +140,26 @@ func printReflexDrill(d drill, brief bool) {
 	fmt.Printf("path: %s\n", drillOpenPath(d.file))
 }
 
+func printSolutionCore(brief bool) {
+	if brief {
+		fmt.Println("read:  drills/read/answers/ANSWER_KEY.md")
+		return
+	}
+	fmt.Println("READ solution | core 3")
+	fmt.Println("path: drills/read/answers/ANSWER_KEY.md")
+	fmt.Println("section: 00_core_read")
+}
+
+func printSolutionReflex(d drill, brief bool) {
+	if brief {
+		fmt.Println("read:  drills/read/answers/ANSWER_KEY.md")
+		return
+	}
+	fmt.Printf("READ solution %s | %s — %s\n", d.day, d.file, d.skill)
+	fmt.Println("path: drills/read/answers/ANSWER_KEY.md")
+	fmt.Printf("section: %s\n", d.file)
+}
+
 func printToday(d drill, brief bool) {
 	if brief {
 		fmt.Printf("read:  %s\n", d.file)
@@ -173,11 +193,11 @@ func runDrill(file string) error {
 }
 
 func main() {
-	drillKind, runMath, catalog, brief, runMode, drillErr := parseReadArgs(os.Args[1:])
-	if drillErr {
+	drillKind, solutionKind, runMath, catalog, brief, runMode, parseErr := parseReadArgs(os.Args[1:])
+	if parseErr {
 		os.Exit(1)
 	}
-	if code := runStudyCode(drillKind, runMath, catalog, brief, runMode); code != 0 {
+	if code := runStudyCode(drillKind, solutionKind, runMath, catalog, brief, runMode); code != 0 {
 		os.Exit(code)
 	}
 }

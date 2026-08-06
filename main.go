@@ -55,6 +55,14 @@ func main() {
 		printDrillArgError(false, opts.drillUnknown)
 		os.Exit(1)
 	}
+	if opts.solutionMissing {
+		printSolutionArgError(true, "")
+		os.Exit(1)
+	}
+	if opts.solutionUnknown != "" {
+		printSolutionArgError(false, opts.solutionUnknown)
+		os.Exit(1)
+	}
 	if opts.core5 {
 		if code := runCore5(root); code != 0 {
 			os.Exit(code)

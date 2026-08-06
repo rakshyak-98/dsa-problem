@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func runStudyCode(drillKind string, runMath, catalog, brief bool, runMode string) int {
+func runStudyCode(drillKind, solutionKind string, runMath, catalog, brief bool, runMode string) int {
 	if catalog {
 		printCatalog()
 		return 0
@@ -16,6 +16,14 @@ func runStudyCode(drillKind string, runMath, catalog, brief bool, runMode string
 	}
 	if drillKind == "reflex" {
 		printReflexDrill(todayDrill(), brief)
+		return 0
+	}
+	if solutionKind == "core" {
+		printSolutionCore(brief)
+		return 0
+	}
+	if solutionKind == "reflex" {
+		printSolutionReflex(todayDrill(), brief)
 		return 0
 	}
 

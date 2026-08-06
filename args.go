@@ -58,16 +58,19 @@ func hasRunKind(passArgs []string) bool {
 }
 
 type dailyOptions struct {
-	track        drillTrack
-	passArgs     []string
-	run          bool
-	runSide      string // "read", "write", or ""
-	help         bool
-	listTracks   bool
-	core5        bool
-	drillKind    string
-	drillMissing bool
-	drillUnknown string
+	track           drillTrack
+	passArgs        []string
+	run             bool
+	runSide         string // "read", "write", or ""
+	help            bool
+	listTracks      bool
+	core5           bool
+	drillKind       string
+	drillMissing    bool
+	drillUnknown    string
+	solutionKind    string
+	solutionMissing bool
+	solutionUnknown string
 }
 
 func parseDailyArgs(args []string) dailyOptions {
@@ -105,6 +108,20 @@ func parseDailyArgs(args []string) dailyOptions {
 			i++
 			opts.drillKind = kind
 			opts.passArgs = append(opts.passArgs, "--drill", kind)
+		case "--solution":
+			if i+1 >= len(args) {
+				opts.solutionMissing = true
+				continue
+			}
+			kind := args[i+1]
+			if !isDrillKind(kind) {
+				opts.solutionUnknown = kind
+				i++
+				continue
+			}
+			i++
+			opts.solutionKind = kind
+			opts.passArgs = append(opts.passArgs, "--solution", kind)
 		case "--run":
 			opts.run = true
 			opts.passArgs = append(opts.passArgs, a)
