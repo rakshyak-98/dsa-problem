@@ -1,11 +1,11 @@
 # Go build artifacts
-study_play/study_play
+bin/study_play/study_play
 *.exe
 *.test
 
 # Drill progress log (local)
 .drill_log.json
-study_play/.drill_log.json
+bin/study_play/.drill_log.json
 
 # OS / editor
 .DS_Store

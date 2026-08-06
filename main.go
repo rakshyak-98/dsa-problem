@@ -3,6 +3,8 @@
 // RUN:              go run .          (from repo root)
 // RUN with tests:   go run . -- --run
 // Core only:        go run . -- --micro
+// Select track:     go run . -- --track dsa|read|write|backend
+// List tracks:      go run . -- --list-tracks
 package main
 
 import (
@@ -36,8 +38,16 @@ func runIn(dir string, args ...string) error {
 
 func main() {
 	root := repoRoot()
-	passArgs, run := parseDailyArgs(os.Args[1:])
-	if code := runUnified(root, passArgs, run); code != 0 {
+	opts := parseDailyArgs(os.Args[1:])
+	if opts.help {
+		printHelp()
+		return
+	}
+	if opts.listTracks {
+		printTrackList()
+		return
+	}
+	if code := runUnified(root, opts); code != 0 {
 		os.Exit(code)
 	}
 }

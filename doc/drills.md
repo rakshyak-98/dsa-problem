@@ -29,7 +29,10 @@ drills/
 ## Daily flow (recommended)
 
 ```bash
-go run .           # unified plan: read + write (from repo root)
+go run .           # unified plan: read + write (DSA track)
+go run . -- --track backend   # backend interview track
+go run . -- --track read      # reading only
+go run . -- --track write     # writing only
 go run . -- --run  # check today's answers
 ```
 
