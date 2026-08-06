@@ -63,6 +63,10 @@ func parseDailyArgs(args []string) dailyOptions {
 		case "--run":
 			opts.run = true
 			opts.passArgs = append(opts.passArgs, a)
+			if i+1 < len(args) && (args[i+1] == "core" || args[i+1] == "reflex") {
+				i++
+				opts.passArgs = append(opts.passArgs, args[i])
+			}
 		default:
 			opts.passArgs = append(opts.passArgs, a)
 		}

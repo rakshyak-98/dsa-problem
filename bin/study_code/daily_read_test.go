@@ -22,12 +22,20 @@ func TestDrillsCatalog(t *testing.T) {
 }
 
 func TestParseReadArgs(t *testing.T) {
-	drill, run, runMath, catalog, brief := parseReadArgs([]string{"--", "--drill", "--run", "--run-math", "--catalog", "--brief"})
-	if !drill || !run || !runMath || !catalog || !brief {
+	drill, runMath, catalog, brief, runMode := parseReadArgs([]string{"--", "--drill", "--run", "core", "--run-math", "--catalog", "--brief"})
+	if !drill || runMode != "core" || !runMath || !catalog || !brief {
 		t.Fatal("parseReadArgs all flags")
 	}
-	drill, run, runMath, catalog, brief = parseReadArgs(nil)
-	if drill || run || runMath || catalog || brief {
+	drill, runMath, catalog, brief, runMode = parseReadArgs([]string{"--run", "reflex"})
+	if runMode != "reflex" || drill || runMath || catalog || brief {
+		t.Fatal("parseReadArgs reflex")
+	}
+	drill, runMath, catalog, brief, runMode = parseReadArgs([]string{"--run"})
+	if runMode != "all" {
+		t.Fatal("parseReadArgs bare run")
+	}
+	drill, runMath, catalog, brief, runMode = parseReadArgs(nil)
+	if drill || runMath || catalog || brief || runMode != "" {
 		t.Fatal("parseReadArgs empty")
 	}
 }

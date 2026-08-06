@@ -206,8 +206,8 @@ func printCatalog() {
 }
 
 func main() {
-	drill, run, catalog, cram, setup := parseBackendArgs(os.Args[1:])
-	if code := runBackend(drill, run, catalog, cram, setup); code != 0 {
+	drill, catalog, cram, setup, runMode := parseBackendArgs(os.Args[1:])
+	if code := runBackend(drill, catalog, cram, setup, runMode); code != 0 {
 		os.Exit(code)
 	}
 }

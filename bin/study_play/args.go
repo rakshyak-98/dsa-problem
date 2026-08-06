@@ -4,7 +4,7 @@ func isRunKind(s string) bool {
 	return s == "core" || s == "reflex"
 }
 
-func parseReadArgs(args []string) (drill, runMath, catalog, brief bool, runMode string) {
+func parsePlayArgs(args []string) (drill, brief, runMath bool, runMode string) {
 	if len(args) > 0 && args[0] == "--" {
 		args = args[1:]
 	}
@@ -12,12 +12,12 @@ func parseReadArgs(args []string) (drill, runMath, catalog, brief bool, runMode 
 		switch args[i] {
 		case "--drill":
 			drill = true
-		case "--run-math":
-			runMath = true
-		case "--catalog":
-			catalog = true
 		case "--brief":
 			brief = true
+		case "--run-math":
+			runMath = true
+		case "--run-core5":
+			runMode = "core"
 		case "--run":
 			if i+1 < len(args) && isRunKind(args[i+1]) {
 				i++
@@ -27,5 +27,5 @@ func parseReadArgs(args []string) (drill, runMath, catalog, brief bool, runMode 
 			}
 		}
 	}
-	return drill, runMath, catalog, brief, runMode
+	return drill, brief, runMath, runMode
 }

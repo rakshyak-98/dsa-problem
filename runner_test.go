@@ -107,7 +107,7 @@ func TestRunUnifiedFailOnRun(t *testing.T) {
 	}
 	defer func() { commandRunner = runIn }()
 
-	opts := dailyOptions{track: trackDSA, passArgs: []string{"--run"}, run: true}
+	opts := dailyOptions{track: trackDSA, passArgs: []string{"--run", "core"}, run: true}
 	if code := runUnified("/tmp", opts); code != 1 {
 		t.Fatalf("expected exit 1, got %d", code)
 	}
