@@ -10,19 +10,19 @@ go version
 
 echo
 echo "==> Initializing backend interview drills"
-(go run ./bin/study_backend -- --setup)
+(go run -C bin/study_backend . -- --setup)
 
 echo
 echo "==> Initializing write drills (7 daily + 2 bonus)"
-(go run ./bin/study_play -- --setup)
+(go run -C bin/study_play . -- --setup)
 
 echo
 echo "==> Verifying helpers"
-(go run ./bin/study_play -- --catalog >/dev/null)
-(go run ./bin/study_code -- --catalog >/dev/null)
+(go run -C bin/study_play . -- --catalog >/dev/null)
+(go run -C bin/study_code . -- --catalog >/dev/null)
 (go build -o /dev/null .)
-(go build -o /dev/null -C drills/write/core5 .)
-(go build -o /dev/null -C drills/write/variants .)
+(go build -C drills/write/core5 -o /dev/null .)
+(go build -C drills/write/variants -o /dev/null .)
 
 echo
 echo "==> Running coverage gate (80%)"
@@ -34,10 +34,10 @@ echo
 echo "Next steps:"
 echo "  START HERE:                 open doc/drills.md"
 echo "  unified daily:              go run ."
-echo "  backend interview prep:     go run ./bin/study_backend -- --cram"
-echo "  write drills CLI:           go run ./bin/study_play"
+echo "  backend interview prep:     go run -C bin/study_backend . -- --cram"
+echo "  write drills CLI:           go run -C bin/study_play ."
 echo "  Core 5:                     go run -C drills/write/core5 ."
-echo "  read drills CLI:            go run ./bin/study_code"
+echo "  read drills CLI:            go run -C bin/study_code ."
 echo "  study tracker (browser):    open drills/tracker/study_tracker.html"
 echo "  visualizer (browser):       open reference/visualizer/index.html"
 echo "  problem index:              reference/problems/CATEGORIES.md"
