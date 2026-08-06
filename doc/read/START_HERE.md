@@ -33,7 +33,7 @@ bin/study_code/                ← read drill CLI
 ```bash
 go run ./bin/study_code              # Core Read 3 + today’s specialty
 go run ./bin/study_code -- --run     # check your filled answers
-go run ./bin/study_code -- --drill   # Core Read 3 only
+go run ./bin/study_code -- --drill core   # Core Read 3 only
 go run ./bin/study_code -- --catalog # full checklist
 ```
 

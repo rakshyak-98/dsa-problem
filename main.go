@@ -2,7 +2,7 @@
 //
 // RUN:              go run .          (from repo root)
 // RUN with tests:   go run . -- --run
-// Core only:        go run . -- --drill
+// Core only:        go run . -- --drill core
 // Select track:     go run . -- -t dsa|read|write|backend
 // List tracks:      go run . -- --list-tracks
 package main
@@ -45,6 +45,20 @@ func main() {
 	}
 	if opts.listTracks {
 		printTrackList()
+		return
+	}
+	if opts.drillMissing {
+		printDrillArgError(true, "")
+		os.Exit(1)
+	}
+	if opts.drillUnknown != "" {
+		printDrillArgError(false, opts.drillUnknown)
+		os.Exit(1)
+	}
+	if opts.core5 {
+		if code := runCore5(root); code != 0 {
+			os.Exit(code)
+		}
 		return
 	}
 	if code := runUnified(root, opts); code != 0 {

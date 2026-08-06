@@ -33,12 +33,20 @@ func isKnownTrack(track drillTrack) bool {
 	return false
 }
 
+func isDrillKind(s string) bool {
+	return s == "core" || s == "reflex"
+}
+
 type dailyOptions struct {
-	track      drillTrack
-	passArgs   []string
-	run        bool
-	help       bool
-	listTracks bool
+	track        drillTrack
+	passArgs     []string
+	run          bool
+	help         bool
+	listTracks   bool
+	core5        bool
+	drillKind    string
+	drillMissing bool
+	drillUnknown string
 }
 
 func parseDailyArgs(args []string) dailyOptions {
@@ -60,10 +68,30 @@ func parseDailyArgs(args []string) dailyOptions {
 			}
 			i++
 			opts.track = drillTrack(strings.ToLower(args[i]))
+		case "--plan-write":
+			opts.track = trackWrite
+		case "--plan-read":
+			opts.track = trackRead
+		case "--core5":
+			opts.core5 = true
+		case "--drill":
+			if i+1 >= len(args) {
+				opts.drillMissing = true
+				continue
+			}
+			kind := args[i+1]
+			if !isDrillKind(kind) {
+				opts.drillUnknown = kind
+				i++
+				continue
+			}
+			i++
+			opts.drillKind = kind
+			opts.passArgs = append(opts.passArgs, "--drill", kind)
 		case "--run":
 			opts.run = true
 			opts.passArgs = append(opts.passArgs, a)
-			if i+1 < len(args) && (args[i+1] == "core" || args[i+1] == "reflex") {
+			if i+1 < len(args) && isDrillKind(args[i+1]) {
 				i++
 				opts.passArgs = append(opts.passArgs, args[i])
 			}

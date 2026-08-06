@@ -22,21 +22,29 @@ func TestDrillsCatalog(t *testing.T) {
 }
 
 func TestParseReadArgs(t *testing.T) {
-	drill, runMath, catalog, brief, runMode := parseReadArgs([]string{"--", "--drill", "--run", "core", "--run-math", "--catalog", "--brief"})
-	if !drill || runMode != "core" || !runMath || !catalog || !brief {
+	drillKind, runMath, catalog, brief, runMode, drillErr := parseReadArgs([]string{"--", "--drill", "core", "--run", "core", "--run-math", "--catalog", "--brief"})
+	if drillErr || drillKind != "core" || runMode != "core" || !runMath || !catalog || !brief {
 		t.Fatal("parseReadArgs all flags")
 	}
-	drill, runMath, catalog, brief, runMode = parseReadArgs([]string{"--run", "reflex"})
-	if runMode != "reflex" || drill || runMath || catalog || brief {
-		t.Fatal("parseReadArgs reflex")
+	drillKind, runMath, catalog, brief, runMode, drillErr = parseReadArgs([]string{"--drill", "reflex"})
+	if drillErr || drillKind != "reflex" || runMath || catalog || brief || runMode != "" {
+		t.Fatal("parseReadArgs reflex drill")
 	}
-	drill, runMath, catalog, brief, runMode = parseReadArgs([]string{"--run"})
-	if runMode != "all" {
+	drillKind, runMath, catalog, brief, runMode, drillErr = parseReadArgs([]string{"--run", "reflex"})
+	if drillErr || runMode != "reflex" || drillKind != "" || runMath || catalog || brief {
+		t.Fatal("parseReadArgs reflex run")
+	}
+	drillKind, runMath, catalog, brief, runMode, drillErr = parseReadArgs([]string{"--run"})
+	if drillErr || runMode != "all" {
 		t.Fatal("parseReadArgs bare run")
 	}
-	drill, runMath, catalog, brief, runMode = parseReadArgs(nil)
-	if drill || runMath || catalog || brief || runMode != "" {
+	drillKind, runMath, catalog, brief, runMode, drillErr = parseReadArgs(nil)
+	if drillErr || drillKind != "" || runMath || catalog || brief || runMode != "" {
 		t.Fatal("parseReadArgs empty")
+	}
+	_, _, _, _, _, drillErr = parseReadArgs([]string{"--drill"})
+	if !drillErr {
+		t.Fatal("bare drill should error")
 	}
 }
 
@@ -80,6 +88,7 @@ func TestPrintFunctions(t *testing.T) {
 	r, w, _ := os.Pipe()
 	os.Stdout = w
 	printDrill(false)
+	printReflexDrill(drills[0], false)
 	printToday(drills[0], false)
 	printCatalog()
 	w.Close()

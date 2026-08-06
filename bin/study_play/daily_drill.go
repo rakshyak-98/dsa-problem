@@ -2,7 +2,7 @@
 //
 // RUN:              go run .
 // RUN with tests:   go run . -- --run
-// Core 5 only:      go run . -- --drill
+// Core 5 only:      go run . -- --drill core
 // Full catalog:     go run . -- --catalog
 // Reset today:      go run . -- --reset
 // First-time setup: go run . -- --setup
@@ -188,6 +188,16 @@ func printDrill(today drill, brief bool) {
 	fmt.Println("path: drills/write/core5/")
 }
 
+func printReflexDrill(today drill, brief bool) {
+	if brief {
+		fmt.Printf("write: %s\n", today.file)
+		return
+	}
+	fmt.Printf("WRITE %s | %s\n", today.day, today.file)
+	fmt.Printf("specialty: %s\n", strings.Join(today.functions, ", "))
+	fmt.Printf("path: drills/write/reflex/%s/\n", today.file)
+}
+
 func printToday(today drill, brief bool) {
 	if brief {
 		fmt.Printf("write: %s\n", today.file)
@@ -224,7 +234,10 @@ func main() {
 	repoRoot := findRepoRoot(root)
 	_, drillPath := resolvePlayPaths(root, today.file)
 
-	drill, brief, runMath, runMode := parsePlayArgs(os.Args[1:])
+	drillKind, brief, runMath, runMode, drillErr := parsePlayArgs(os.Args[1:])
+	if drillErr {
+		os.Exit(1)
+	}
 
 	if hasFlag("--weak") {
 		printWeakFunctions(repoRoot, 5)
@@ -246,8 +259,12 @@ func main() {
 		printCatalog()
 		return
 	}
-	if drill {
+	if drillKind == "core" {
 		printDrill(today, brief)
+		return
+	}
+	if drillKind == "reflex" {
+		printReflexDrill(today, brief)
 		return
 	}
 	if hasFlag("--reset") {

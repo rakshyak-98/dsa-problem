@@ -32,7 +32,7 @@ func TestRunUnifiedDSA(t *testing.T) {
 	}
 	defer func() { commandRunner = runIn }()
 
-	code := runUnified("/tmp/repo", dailyOptions{track: trackDSA, passArgs: []string{"--drill"}})
+	code := runUnified("/tmp/repo", dailyOptions{track: trackDSA, drillKind: "core", passArgs: []string{"--drill", "core"}})
 	if code != 0 {
 		t.Fatal("expected success")
 	}
@@ -85,7 +85,7 @@ func TestPrintHelp(t *testing.T) {
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
 	out := buf.String()
-	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "(default:"} {
+	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "--plan-write", "--plan-read", "--core5", "--drill KIND", "(default:"} {
 		if !strings.Contains(out, want) {
 			t.Fatalf("help missing %q:\n%s", want, out)
 		}
@@ -118,3 +118,48 @@ var errTest = &testError{}
 type testError struct{}
 
 func (e *testError) Error() string { return "test error" }
+
+func TestPrintDrillArgError(t *testing.T) {
+	old := os.Stderr
+	r, w, _ := os.Pipe()
+	os.Stderr = w
+	printDrillArgError(true, "")
+	w.Close()
+	os.Stderr = old
+	var buf bytes.Buffer
+	_, _ = io.Copy(&buf, r)
+	out := buf.String()
+	for _, want := range []string{"requires an argument", "Valid arguments: core, reflex"} {
+		if !strings.Contains(out, want) {
+			t.Fatalf("missing %q:\n%s", want, out)
+		}
+	}
+}
+
+func TestRunCore5(t *testing.T) {
+	called := false
+	core5Runner = func(root string) error {
+		called = true
+		if !strings.Contains(root, "repo") {
+			t.Fatalf("unexpected root: %s", root)
+		}
+		return nil
+	}
+	defer func() { core5Runner = runCore5In }()
+
+	if code := runCore5("/tmp/repo"); code != 0 {
+		t.Fatalf("expected success, got %d", code)
+	}
+	if !called {
+		t.Fatal("expected core5Runner to be called")
+	}
+}
+
+func TestRunCore5Fail(t *testing.T) {
+	core5Runner = func(root string) error { return errTest }
+	defer func() { core5Runner = runCore5In }()
+
+	if code := runCore5("/tmp/repo"); code != 1 {
+		t.Fatalf("expected exit 1, got %d", code)
+	}
+}
