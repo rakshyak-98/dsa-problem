@@ -1,6 +1,6 @@
 package main
 
-func parseReadArgs(args []string) (micro, run, catalog bool) {
+func parseReadArgs(args []string) (micro, run, catalog, specialty bool) {
 	if len(args) > 0 && args[0] == "--" {
 		args = args[1:]
 	}
@@ -12,7 +12,9 @@ func parseReadArgs(args []string) (micro, run, catalog bool) {
 			run = true
 		case "--catalog":
 			catalog = true
+		case "--specialty":
+			specialty = true
 		}
 	}
-	return micro, run, catalog
+	return micro, run, catalog, specialty
 }

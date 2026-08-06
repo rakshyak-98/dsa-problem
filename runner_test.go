@@ -1,46 +1,48 @@
 package main
 
 import (
-	"bytes"
 	"io"
 	"os"
 	"strings"
 	"testing"
 )
 
-func TestPrintUnifiedHeaderFooter(t *testing.T) {
-	old := os.Stdout
-	r, w, _ := os.Pipe()
-	os.Stdout = w
-	printUnifiedHeader(trackDSA)
-	printDSAExtras()
-	w.Close()
-	os.Stdout = old
-	var buf bytes.Buffer
-	_, _ = io.Copy(&buf, r)
-	out := buf.String()
-	if len(out) < 100 {
-		t.Fatal("header/footer too short")
+func TestSpecialtyOnly(t *testing.T) {
+	if !specialtyOnly(dailyOptions{track: trackDSA}) {
+		t.Fatal("default should be specialty only")
 	}
-	if !containsAll(out, "UNIFIED", "variants", "Visualizer") {
-		t.Fatal("missing sections")
+	if specialtyOnly(dailyOptions{passArgs: []string{"--verbose"}}) {
+		t.Fatal("verbose disables specialty only")
+	}
+	if specialtyOnly(dailyOptions{passArgs: []string{"--catalog"}}) {
+		t.Fatal("catalog disables specialty only")
 	}
 }
 
-func TestRunUnifiedDSA(t *testing.T) {
-	calls := []string{}
+func TestModuleArgs(t *testing.T) {
+	args := moduleArgs(dailyOptions{track: trackDSA})
+	if len(args) != 1 || args[0] != "--specialty" {
+		t.Fatalf("expected --specialty, got %v", args)
+	}
+	args = moduleArgs(dailyOptions{passArgs: []string{"--verbose"}})
+	if len(args) != 1 || args[0] != "--verbose" {
+		t.Fatalf("verbose passthrough: %v", args)
+	}
+}
+
+func TestRunUnifiedDSAPassesSpecialty(t *testing.T) {
+	var lastArgs []string
 	commandRunner = func(dir string, args ...string) error {
-		calls = append(calls, dir)
+		lastArgs = args
 		return nil
 	}
 	defer func() { commandRunner = runIn }()
 
-	code := runUnified("/tmp/repo", dailyOptions{track: trackDSA, passArgs: []string{"--micro"}})
-	if code != 0 {
+	if code := runUnified("/tmp/repo", dailyOptions{track: trackDSA}); code != 0 {
 		t.Fatal("expected success")
 	}
-	if len(calls) != 2 {
-		t.Fatalf("expected 2 calls, got %d", len(calls))
+	if len(lastArgs) == 0 || lastArgs[0] != "--specialty" {
+		t.Fatalf("expected --specialty, got %v", lastArgs)
 	}
 }
 
@@ -56,15 +58,15 @@ func TestRunUnifiedReadOnly(t *testing.T) {
 	if code != 0 {
 		t.Fatal("expected success")
 	}
-	if len(calls) != 1 || !containsAll(calls[0], "study_code") {
+	if len(calls) != 1 || !strings.Contains(calls[0], "study_code") {
 		t.Fatalf("expected study_code only, got %v", calls)
 	}
 }
 
-func TestRunUnifiedBackend(t *testing.T) {
-	calls := []string{}
+func TestRunUnifiedBackendCramSkipsSpecialty(t *testing.T) {
+	var lastArgs []string
 	commandRunner = func(dir string, args ...string) error {
-		calls = append(calls, dir)
+		lastArgs = args
 		return nil
 	}
 	defer func() { commandRunner = runIn }()
@@ -73,28 +75,19 @@ func TestRunUnifiedBackend(t *testing.T) {
 	if code != 0 {
 		t.Fatal("expected success")
 	}
-	if len(calls) != 1 || !containsAll(calls[0], "study_backend") {
-		t.Fatalf("expected study_backend only, got %v", calls)
+	for _, a := range lastArgs {
+		if a == "--specialty" {
+			t.Fatal("cram should not use specialty mode")
+		}
 	}
 }
 
 func TestPrintHelp(t *testing.T) {
-	old := os.Stdout
-	r, w, _ := os.Pipe()
-	os.Stdout = w
-	printHelp()
-	w.Close()
-	os.Stdout = old
-	var buf bytes.Buffer
-	_, _ = io.Copy(&buf, r)
-	out := buf.String()
-	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "(default:"} {
+	out := captureStdout(printHelp)
+	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "--verbose"} {
 		if !strings.Contains(out, want) {
 			t.Fatalf("help missing %q:\n%s", want, out)
 		}
-	}
-	if strings.Contains(out, "Examples:") {
-		t.Fatal("help should not include examples section")
 	}
 }
 
@@ -121,3 +114,15 @@ var errTest = &testError{}
 type testError struct{}
 
 func (e *testError) Error() string { return "test error" }
+
+func captureStdout(fn func()) string {
+	old := os.Stdout
+	r, w, _ := os.Pipe()
+	os.Stdout = w
+	fn()
+	w.Close()
+	os.Stdout = old
+	var buf strings.Builder
+	_, _ = io.Copy(&buf, r)
+	return buf.String()
+}

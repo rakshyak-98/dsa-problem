@@ -41,6 +41,26 @@ type dailyOptions struct {
 	listTracks bool
 }
 
+func specialtyOnly(opts dailyOptions) bool {
+	if opts.help || opts.listTracks {
+		return false
+	}
+	for _, a := range opts.passArgs {
+		switch a {
+		case "--catalog", "--setup", "--cram", "--weak", "--reset", "--verbose":
+			return false
+		}
+	}
+	return true
+}
+
+func moduleArgs(opts dailyOptions) []string {
+	if !specialtyOnly(opts) {
+		return opts.passArgs
+	}
+	return append([]string{"--specialty"}, opts.passArgs...)
+}
+
 func parseDailyArgs(args []string) dailyOptions {
 	opts := dailyOptions{track: trackDSA}
 	if len(args) > 0 && args[0] == "--" {
@@ -62,6 +82,8 @@ func parseDailyArgs(args []string) dailyOptions {
 			opts.track = drillTrack(strings.ToLower(args[i]))
 		case "--run":
 			opts.run = true
+			opts.passArgs = append(opts.passArgs, a)
+		case "--verbose":
 			opts.passArgs = append(opts.passArgs, a)
 		default:
 			opts.passArgs = append(opts.passArgs, a)

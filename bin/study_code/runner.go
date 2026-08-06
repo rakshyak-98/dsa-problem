@@ -5,9 +5,25 @@ import (
 	"os"
 )
 
-func runStudyCode(micro, run, catalog bool) int {
+func runStudyCode(micro, run, catalog, specialty bool) int {
 	if catalog {
 		printCatalog()
+		return 0
+	}
+
+	if specialty {
+		if micro {
+			return 0
+		}
+		d := todayDrill()
+		printSpecialty(d)
+		if run {
+			fmt.Printf("── Running specialty %s ──\n", d.file)
+			if err := runDrill(d.file); err != nil {
+				fmt.Fprintf(os.Stderr, "specialty failed: %v\n", err)
+				return 1
+			}
+		}
 		return 0
 	}
 

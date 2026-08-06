@@ -179,8 +179,8 @@ func runDrill(file string) error {
 }
 
 func main() {
-	micro, run, catalog := parseReadArgs(os.Args[1:])
-	if code := runStudyCode(micro, run, catalog); code != 0 {
+	micro, run, catalog, specialty := parseReadArgs(os.Args[1:])
+	if code := runStudyCode(micro, run, catalog, specialty); code != 0 {
 		os.Exit(code)
 	}
 }

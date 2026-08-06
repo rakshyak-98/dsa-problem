@@ -6,7 +6,7 @@ import (
 	"os/exec"
 )
 
-func runBackend(micro, run, catalog, cram, setup bool) int {
+func runBackend(micro, run, catalog, cram, setup, specialty bool) int {
 	if setup {
 		if err := runSetup(); err != nil {
 			fmt.Fprintf(os.Stderr, "setup failed: %v\n", err)
@@ -21,6 +21,24 @@ func runBackend(micro, run, catalog, cram, setup bool) int {
 	if cram {
 		printCramPlan()
 		fmt.Println()
+	}
+
+	if specialty {
+		if micro {
+			return 0
+		}
+		b := todayBlock()
+		printBlock(b)
+		if run {
+			if err := runCoreDrills(); err != nil {
+				return 1
+			}
+			fmt.Printf("── Running block %s ──\n", b.file)
+			if err := runExplainBlock(b.file); err != nil {
+				return 1
+			}
+		}
+		return 0
 	}
 
 	fmt.Println()

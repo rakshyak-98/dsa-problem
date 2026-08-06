@@ -196,6 +196,22 @@ func printMicro(today drill) {
 `, today.file)
 }
 
+func printWriteSpecialty(today drill) {
+	fmt.Println("════════════════════════════════════════")
+	fmt.Printf(" SPECIALTY — %s (%s)\n", today.day, today.file)
+	fmt.Println("════════════════════════════════════════")
+	fmt.Printf("  Patterns: %s\n", today.patterns)
+	fmt.Printf("  Warm-up: %s\n", today.understandWarmup)
+	fmt.Println("  Functions:")
+	for _, fn := range today.functions {
+		fmt.Printf("    • %s\n", fn)
+	}
+	fmt.Printf("\n  Open:  drills/write/reflex/%s/main.go\n", today.file)
+	fmt.Printf("  Run:   go run -C drills/write/reflex/%s .\n", today.file)
+	fmt.Println("  Solutions: drills/solutions/reflex/<today's drill>/ (after honest attempt)")
+	fmt.Println()
+}
+
 func printToday(today drill) {
 	printBanner()
 	fmt.Printf("Today: %s\nSpecialty file: drills/write/reflex/%s\nSpecialty set:  %s\n\n",
@@ -299,6 +315,26 @@ func main() {
 
 	if hasFlag("--catalog") {
 		printCatalog()
+		return
+	}
+	if hasFlag("--specialty") {
+		if hasFlag("--micro") {
+			return
+		}
+		printWriteSpecialty(today)
+		if hasFlag("--run") {
+			fmt.Println("Running specialty tests...")
+			fmt.Println()
+			ok, output, _ := runDrillWithLog(drillPath)
+			fmt.Print(output)
+			if !ok {
+				updateLogFromOutput(repoRoot, output, today.functions)
+				fmt.Println()
+				fmt.Println("Tests failed — good data. Fix blind, then re-run.")
+				os.Exit(1)
+			}
+			updateLogFromOutput(repoRoot, output, today.functions)
+		}
 		return
 	}
 	if hasFlag("--micro") {
