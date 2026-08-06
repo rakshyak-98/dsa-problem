@@ -2,6 +2,8 @@
 
 Everything you **practice** lives under `drills/`, organized by topic. CLI helpers live in `bin/`.
 
+**New to DSA words?** See [`DSA_JARGON.md`](DSA_JARGON.md) for one-sentence plain-English definitions.
+
 ## Layout
 
 ```
