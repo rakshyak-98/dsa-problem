@@ -22,6 +22,15 @@ drills/
     └── study_tracker.html
 ```
 
+## Backend interview prep (resume drills)
+
+```bash
+cd study_backend && go run . -- --cram    # cram schedule until interview
+cd study_backend && go run . -- --run     # validate answers
+```
+
+Guide: [`study_backend/docs/START_HERE.md`](../study_backend/docs/START_HERE.md)
+
 ## Daily flow (recommended)
 
 ```bash
