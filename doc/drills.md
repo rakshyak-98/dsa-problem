@@ -29,8 +29,11 @@ drills/
 ## Daily flow (recommended)
 
 ```bash
-go run .           # unified plan: read + write (from repo root)
-go run . -- --run  # check today's answers
+go run .                      # unified plan: read + write (DSA track)
+go run . -- --track backend   # backend interview track
+go run . -- --track read      # reading only
+go run . -- --track write     # writing only
+go run . -- --run             # check today's answers
 ```
 
 ## Write drills
@@ -82,5 +85,5 @@ Open [`tracker/study_tracker.html`](tracker/study_tracker.html).
 | Documentation | `doc/` |
 | Practice files | `drills/` (this folder) |
 | CLI tooling | `bin/` |
-| Problem catalog | `reference/reference/problems/CATEGORIES.md` |
+| Problem catalog | `reference/problems/CATEGORIES.md` |
 | Visualizer | `reference/visualizer/` |
