@@ -66,6 +66,7 @@ dsa-problem/
 
 ## More docs
 
+- [`doc/DSA_JARGON.md`](doc/DSA_JARGON.md) — plain-English glossary for DSA terms
 - [`doc/write/START_HERE.md`](doc/write/START_HERE.md) — writing reflex flow
 - [`doc/read/START_HERE.md`](doc/read/START_HERE.md) — reading drill flow
 - [`doc/backend/START_HERE.md`](doc/backend/START_HERE.md) — backend interview cram
