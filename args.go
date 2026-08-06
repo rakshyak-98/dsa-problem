@@ -68,10 +68,6 @@ func parseDailyArgs(args []string) dailyOptions {
 			}
 			i++
 			opts.track = drillTrack(strings.ToLower(args[i]))
-		case "--plan-write":
-			opts.track = trackWrite
-		case "--plan-read":
-			opts.track = trackRead
 		case "--core5":
 			opts.core5 = true
 		case "--drill":

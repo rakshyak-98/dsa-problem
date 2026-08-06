@@ -50,8 +50,6 @@ Options:
       --list-tracks        list practice tracks and exit
   -t, --track=NAME         practice track: dsa, read, write, or backend
                              (default: "dsa")
-      --plan-write           write drill plan (same as --track write)
-      --plan-read            read drill plan (same as --track read)
       --core5                run Core 5 reflex drill
       --run [KIND]           run tests: core, reflex, or both if omitted
       --drill KIND           show drill plan: core or reflex (required)
