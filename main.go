@@ -3,7 +3,7 @@
 // RUN:              go run .          (from repo root)
 // RUN with tests:   go run . -- --run
 // Core only:        go run . -- --micro
-// Select track:     go run . -- --track dsa|read|write|backend
+// Select track:     go run . -- -t dsa|read|write|backend
 // List tracks:      go run . -- --list-tracks
 package main
 

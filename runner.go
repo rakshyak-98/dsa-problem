@@ -10,33 +10,32 @@ import (
 var commandRunner = runIn
 
 func printTrackList() {
-	fmt.Println("Available practice tracks:")
-	fmt.Println()
 	for _, t := range availableTracks {
-		fmt.Printf("  %-8s  %s\n", t.name, t.description)
+		fmt.Printf("  %-8s%s\n", t.name, t.description)
 	}
-	fmt.Println()
-	fmt.Println("Usage: go run . -- --track <name>")
 }
 
 func printHelp() {
-	fmt.Println("Unified daily practice — select a track with --track")
-	fmt.Println()
-	printTrackList()
-	fmt.Println("Common flags (passed to the selected track):")
-	fmt.Println("  --run       run tests / check answers")
-	fmt.Println("  --micro     minimum tier (core drills only)")
-	fmt.Println("  --catalog   list all drills in the track")
-	fmt.Println()
-	fmt.Println("Track-specific flags:")
-	fmt.Println("  backend:  --cram, --setup")
-	fmt.Println("  write:    --reset, --weak, --run-core5, --setup")
-	fmt.Println()
-	fmt.Println("Examples:")
-	fmt.Println("  go run .                         # DSA: read + write")
-	fmt.Println("  go run . -- --track backend      # backend interview prep")
-	fmt.Println("  go run . -- --track write --run  # test today's write drill")
-	fmt.Println("  go run . -- --track backend --cram")
+	fmt.Print(`Usage: go run . -- [OPTION]...
+
+Run daily practice drills.
+
+Options:
+  -h, --help               display this help message and exit
+      --list-tracks        list practice tracks and exit
+  -t, --track=NAME         practice track: dsa, read, write, or backend
+                             (default: "dsa")
+      --run                run tests (forwarded to track)
+      --micro              core drills only (forwarded to track)
+      --catalog            list drills in track (forwarded to track)
+
+`)
+}
+
+func printUnknownTrack(track drillTrack) {
+	fmt.Fprintf(os.Stderr, "unknown track %q\n", track)
+	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, backend\n")
+	fmt.Fprint(os.Stderr, "Try 'go run . -- --help' for more information.\n")
 }
 
 func printUnifiedHeader(track drillTrack) {
@@ -78,8 +77,7 @@ func runModule(root, module string, passArgs []string, run bool) int {
 
 func runUnified(root string, opts dailyOptions) int {
 	if !isKnownTrack(opts.track) {
-		fmt.Fprintf(os.Stderr, "Unknown track %q\n\n", opts.track)
-		printTrackList()
+		printUnknownTrack(opts.track)
 		return 1
 	}
 

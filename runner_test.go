@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"io"
 	"os"
+	"strings"
 	"testing"
 )
 
@@ -74,6 +75,26 @@ func TestRunUnifiedBackend(t *testing.T) {
 	}
 	if len(calls) != 1 || !containsAll(calls[0], "study_backend") {
 		t.Fatalf("expected study_backend only, got %v", calls)
+	}
+}
+
+func TestPrintHelp(t *testing.T) {
+	old := os.Stdout
+	r, w, _ := os.Pipe()
+	os.Stdout = w
+	printHelp()
+	w.Close()
+	os.Stdout = old
+	var buf bytes.Buffer
+	_, _ = io.Copy(&buf, r)
+	out := buf.String()
+	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "(default:"} {
+		if !strings.Contains(out, want) {
+			t.Fatalf("help missing %q:\n%s", want, out)
+		}
+	}
+	if strings.Contains(out, "Examples:") {
+		t.Fatal("help should not include examples section")
 	}
 }
 

@@ -18,10 +18,10 @@ type trackInfo struct {
 }
 
 var availableTracks = []trackInfo{
-	{trackDSA, "dsa", "Code reading + reflex writing (default daily flow)"},
-	{trackRead, "read", "DSA code reading drills only"},
-	{trackWrite, "write", "DSA reflex writing drills only"},
-	{trackBackend, "backend", "Backend / resume interview prep"},
+	{trackDSA, "dsa", "reading and reflex writing"},
+	{trackRead, "read", "reading drills only"},
+	{trackWrite, "write", "writing drills only"},
+	{trackBackend, "backend", "interview prep"},
 }
 
 func isKnownTrack(track drillTrack) bool {
@@ -53,7 +53,7 @@ func parseDailyArgs(args []string) dailyOptions {
 			opts.help = true
 		case "--list-tracks":
 			opts.listTracks = true
-		case "--track":
+		case "--track", "-t":
 			if i+1 >= len(args) {
 				opts.help = true
 				continue

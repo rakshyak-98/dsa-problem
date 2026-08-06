@@ -13,7 +13,7 @@ func TestParseDailyArgs(t *testing.T) {
 		t.Fatalf("backend track: %+v", opts)
 	}
 
-	opts = parseDailyArgs([]string{"--track", "write", "--run"})
+	opts = parseDailyArgs([]string{"-t", "write", "--run"})
 	if opts.track != trackWrite || !opts.run {
 		t.Fatalf("write track: %+v", opts)
 	}
