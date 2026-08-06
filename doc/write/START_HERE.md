@@ -33,7 +33,7 @@ bin/study_play/            ← CLI + blank templates (_support/)
 go run ./bin/study_play              # Core 5 + today's specialty
 go run ./bin/study_play -- --run     # run specialty tests
 go run ./bin/study_play -- --reset   # wipe today's drill back to TODO stubs
-go run ./bin/study_play -- --drill   # Core 5 only (low energy)
+go run ./bin/study_play -- --drill core   # Core 5 only (low energy)
 go run ./bin/study_play -- --catalog # full essential checklist
 ```
 

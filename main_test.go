@@ -3,9 +3,24 @@ package main
 import "testing"
 
 func TestParseDailyArgs(t *testing.T) {
-	opts := parseDailyArgs([]string{"--", "--drill", "--run", "core"})
-	if !opts.run || len(opts.passArgs) != 3 || opts.passArgs[2] != "core" || opts.track != trackDSA {
+	opts := parseDailyArgs([]string{"--", "--drill", "core", "--run", "core"})
+	if !opts.run || opts.drillKind != "core" || len(opts.passArgs) != 4 || opts.passArgs[1] != "core" || opts.track != trackDSA {
 		t.Fatalf("parseDailyArgs: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--", "--drill", "reflex"})
+	if opts.drillKind != "reflex" || len(opts.passArgs) != 2 || opts.passArgs[1] != "reflex" {
+		t.Fatalf("parseDailyArgs reflex: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--drill"})
+	if !opts.drillMissing || opts.drillKind != "" {
+		t.Fatalf("drill missing: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--drill", "nope"})
+	if opts.drillUnknown != "nope" || opts.drillKind != "" {
+		t.Fatalf("drill unknown: %+v", opts)
 	}
 
 	opts = parseDailyArgs([]string{"--", "--run", "reflex"})

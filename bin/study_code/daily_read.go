@@ -3,7 +3,7 @@
 // RUN:              go run .
 // RUN with checks:  go run . -- --run
 // Math add-on:      go run . -- --run-math
-// Core only:        go run . -- --drill
+// Core only:        go run . -- --drill core
 // Full catalog:     go run . -- --catalog
 package main
 
@@ -131,6 +131,15 @@ func printDrill(brief bool) {
 	fmt.Println("path: drills/read/core/00_core_read/")
 }
 
+func printReflexDrill(d drill, brief bool) {
+	if brief {
+		fmt.Printf("read:  %s\n", d.file)
+		return
+	}
+	fmt.Printf("READ %s | %s — %s\n", d.day, d.file, d.skill)
+	fmt.Printf("path: %s\n", drillOpenPath(d.file))
+}
+
 func printToday(d drill, brief bool) {
 	if brief {
 		fmt.Printf("read:  %s\n", d.file)
@@ -164,8 +173,11 @@ func runDrill(file string) error {
 }
 
 func main() {
-	drill, runMath, catalog, brief, runMode := parseReadArgs(os.Args[1:])
-	if code := runStudyCode(drill, runMath, catalog, brief, runMode); code != 0 {
+	drillKind, runMath, catalog, brief, runMode, drillErr := parseReadArgs(os.Args[1:])
+	if drillErr {
+		os.Exit(1)
+	}
+	if code := runStudyCode(drillKind, runMath, catalog, brief, runMode); code != 0 {
 		os.Exit(code)
 	}
 }

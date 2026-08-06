@@ -23,7 +23,7 @@ func coreWriteTopics() string {
 	return strings.Join(topics, ", ")
 }
 
-func runBackend(drill, catalog, cram, setup bool, runMode string) int {
+func runBackend(drillKind string, catalog, cram, setup bool, runMode string) int {
 	if setup {
 		if err := runSetup(); err != nil {
 			fmt.Fprintf(os.Stderr, "setup failed: %v\n", err)
@@ -40,7 +40,7 @@ func runBackend(drill, catalog, cram, setup bool, runMode string) int {
 		fmt.Println()
 	}
 
-	if drill {
+	if drillKind == "core" {
 		fmt.Println("BACKEND | core 5")
 		fmt.Printf("explain: %s\n", coreExplainTopics())
 		fmt.Printf("write: %s\n", coreWriteTopics())
@@ -50,6 +50,12 @@ func runBackend(drill, catalog, cram, setup bool, runMode string) int {
 				return 1
 			}
 		}
+		return 0
+	}
+	if drillKind == "reflex" {
+		b := todayBlock()
+		fmt.Printf("BACKEND %s | %s — %s\n", b.day, b.file, b.topic)
+		fmt.Printf("path: drills/backend/explain/blocks/%s/\n", b.file)
 		return 0
 	}
 

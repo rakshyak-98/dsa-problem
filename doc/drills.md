@@ -32,7 +32,8 @@ drills/
 go run .                      # daily drill: read + write (DSA track)
 go run . -- --run core          # check core answers
 go run . -- --run reflex        # check reflex specialty answers
-go run . -- --drill           # core only
+go run . -- --drill core        # core only (Core Read 3 + Core 5)
+go run . -- --drill reflex       # today's specialty only
 go run . -- --track backend   # backend interview track
 go run . -- --track read      # reading only
 go run . -- --track write     # writing only

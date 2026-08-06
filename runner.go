@@ -54,7 +54,7 @@ Options:
       --plan-read            read drill plan (same as --track read)
       --core5                run Core 5 reflex drill
       --run [KIND]           run tests: core, reflex, or both if omitted
-      --drill              core drills only (forwarded to track)
+      --drill KIND           show drill plan: core or reflex (required)
       --catalog            list drills in track (forwarded to track)
 
 `)
@@ -64,6 +64,16 @@ func printUnknownTrack(track drillTrack) {
 	fmt.Fprintf(os.Stderr, "unknown track %q\n", track)
 	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, backend\n")
 	fmt.Fprint(os.Stderr, "Try 'go run . -- --help' for more information.\n")
+}
+
+func printDrillArgError(missing bool, unknown string) {
+	if missing {
+		fmt.Fprintln(os.Stderr, "option '--drill' requires an argument")
+	} else {
+		fmt.Fprintf(os.Stderr, "unknown drill kind %q\n", unknown)
+	}
+	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex")
+	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
 func printUnifiedHeader(track drillTrack) {
@@ -130,25 +140,25 @@ func runUnified(root string, opts dailyOptions) int {
 		return 1
 	}
 
-	drillOnly := hasArg(opts.passArgs, "--drill")
+	drillKind := opts.drillKind
 	briefArgs := withBrief(opts.passArgs)
 
 	switch opts.track {
 	case trackDSA:
 		fmt.Printf("DAILY %s", todayName())
-		if drillOnly {
-			fmt.Println(" | core")
-		} else {
-			fmt.Println()
+		if drillKind != "" {
+			fmt.Printf(" | %s", drillKind)
 		}
+		fmt.Println()
 		if code := runModule(root, "study_code", briefArgs, opts.run); code != 0 {
 			return code
 		}
 		if code := runModule(root, "study_play", briefArgs, opts.run); code != 0 {
 			return code
 		}
-		if !drillOnly {
-			fmt.Println("drill:  go run . -- --drill")
+		if drillKind == "" {
+			fmt.Println("drill:  go run . -- --drill core")
+			fmt.Println("        go run . -- --drill reflex")
 			fmt.Println("run:    go run . -- --run core")
 			fmt.Println("        go run . -- --run reflex")
 			fmt.Println("math:   go run . -- --run-math")

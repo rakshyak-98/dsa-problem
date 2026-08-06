@@ -25,7 +25,7 @@ Shows hour-by-hour schedule until interview time.
 ```bash
 go run ./bin/study_backend                    # today's plan + block
 go run ./bin/study_backend -- --run           # validate your answers
-go run ./bin/study_backend -- --drill --run   # Core 5 only (interview-day warm-up)
+go run ./bin/study_backend -- --drill core --run   # Core 5 only (interview-day warm-up)
 go run ./bin/study_backend -- --catalog       # all 8 resume blocks
 go run ./bin/study_backend -- --setup         # copy drills to drills/backend/
 ```

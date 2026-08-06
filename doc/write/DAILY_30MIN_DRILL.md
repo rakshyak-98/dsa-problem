@@ -29,7 +29,7 @@ Missed a day? Do **not** catch up. Run today’s pack only.
 go run .                          # daily drill: read + write for today
 go run . -- --run core              # check core answers
 go run . -- --run reflex            # check reflex specialty answers
-go run . -- --drill               # core only (Core Read 3 + Core 5)
+go run . -- --drill core          # core only (Core Read 3 + Core 5)
 go run . -- --run-math            # math add-on drills
 ```
 
@@ -41,7 +41,8 @@ read:  04_find_the_bug
 write: 04_binary_search_reflex
        core5: twoSum, binarySearch, removeDuplicates, maxSumSubarrayK, frequencyMap
        specialty: binarySearch, searchInsert, findMinRotated, isTargetPresent
-drill:  go run . -- --drill
+drill:  go run . -- --drill core
+        go run . -- --drill reflex
 run:    go run . -- --run core
         go run . -- --run reflex
 math:   go run . -- --run-math
@@ -236,7 +237,7 @@ You **own** a function when all are true:
 | Stuck 10+ min on one specialty fn | Skip it, finish others; peek **only that one**; re-type blind in last 5 min |
 | Core 5 fails | Stop specialty; re-do Core 5 only — protect the foundation |
 | All specialty tests fail | Yesterday’s specialty file (recovery day) + Core 5 |
-| No time | Core 5 only (`--drill`) |
+| No time | Core 5 only (`--drill core`) |
 
 ---
 

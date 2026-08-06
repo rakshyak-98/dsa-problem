@@ -17,7 +17,7 @@ func printCramPlan() {
 	if hoursLeft > 0 {
 		fmt.Printf("Time until interview: ~%.0f hours\n", hoursLeft)
 	} else {
-		fmt.Println("Interview window is today — run --drill for warm-up only.")
+		fmt.Println("Interview window is today — run --drill core for warm-up only.")
 	}
 	fmt.Println()
 
@@ -57,7 +57,7 @@ func printAug7Plan(hour int) {
 	fmt.Println("------------------------------")
 	if hour < 10 {
 		fmt.Println("Morning (45 min)")
-		fmt.Println("  • go run . -- --drill --run  (Core 5 only)")
+		fmt.Println("  • go run . -- --drill core --run  (Core 5 only)")
 		fmt.Println("  • Skim DRILL_CONCEPTS.md headers")
 	}
 	if hour < 13 {

@@ -5,13 +5,17 @@ import (
 	"os"
 )
 
-func runStudyCode(drill, runMath, catalog, brief bool, runMode string) int {
+func runStudyCode(drillKind string, runMath, catalog, brief bool, runMode string) int {
 	if catalog {
 		printCatalog()
 		return 0
 	}
-	if drill {
+	if drillKind == "core" {
 		printDrill(brief)
+		return 0
+	}
+	if drillKind == "reflex" {
+		printReflexDrill(todayDrill(), brief)
 		return 0
 	}
 
