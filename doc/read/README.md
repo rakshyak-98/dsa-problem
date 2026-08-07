@@ -52,19 +52,11 @@ Daily clock: [`DAILY_20MIN_READING.md`](./DAILY_20MIN_READING.md).
 
 ```
 drills/read/                   ← practice files (front door)
-study_code/
-├── README.md                  ← CLI entry
-├── docs/
-│   ├── START_HERE.md
-│   ├── READING_PATTERNS.md    # the 6-pass read method
-│   ├── DAILY_20MIN_READING.md # daily ritual
-│   └── reading_log.md         # optional session log
-├── practice/read/
-│   ├── core/00_core_read/
-│   ├── weekday/01_scan_structure/ … 07_compare_variants/
-│   └── answers/
-├── daily_read.go
-└── go.mod
+├── core/00_core_read/
+├── weekday/01_scan_structure/ … 08_math_concepts/
+└── answers/
+bin/study_code/                ← CLI entry
+doc/read/                      ← guides (START_HERE, patterns, ritual)
 ```
 
 ---

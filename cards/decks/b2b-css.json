@@ -1,0 +1,1010 @@
+[
+  {
+    "id": "a7af163f44ce",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Animation in one sentence?",
+    "back": "Browser animation performance: stay on the compositor (transform/opacity), avoid layout thrash — Paul Lewis / high-performance animations + Chrome rendering pipeline.",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Remember"
+  },
+  {
+    "id": "6e9eb4fc7e9f",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "remember"
+    ],
+    "front": "In Animation, what is transform, opacity?",
+    "back": "Composite only (if promoted) — Low — GPU-friendly",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Remember"
+  },
+  {
+    "id": "d7f32844a2e9",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "remember"
+    ],
+    "front": "In Animation, what is color, box-shadow?",
+    "back": "Paint — Medium",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Remember"
+  },
+  {
+    "id": "31a29b6d0e9a",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "remember"
+    ],
+    "front": "In Animation, what is width, height, top, left, margin?",
+    "back": "Layout → Paint → Composite — High — layout thrash",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Remember"
+  },
+  {
+    "id": "4d9f469e7249",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Animation (how the system thinks).",
+    "back": "Rendering pipeline (simplified):",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Understand"
+  },
+  {
+    "id": "bfa556c89566",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Janky scroll-linked animation — what do you check and fix?",
+    "back": "Check: Main thread long tasks · Fix: Move to transform; offload work; passive: true listeners",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Analyze"
+  },
+  {
+    "id": "f89aad9d83c5",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Fan spin / GPU memory spike — what do you check and fix?",
+    "back": "Check: Layer count · Fix: Remove excess will-change; avoid promoting huge elements",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Analyze"
+  },
+  {
+    "id": "3e7dd2a4ba40",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Animation stutters every N ms — what do you check and fix?",
+    "back": "Check: GC or layout in loop · Fix: Profile Performance tab; eliminate FSL",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Analyze"
+  },
+  {
+    "id": "11bdb5dc0d1e",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works desktop, dies mobile — what do you check and fix?",
+    "back": "Check: Too many paints / layers · Fix: Reduce blur/shadow animation; simplify",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Analyze"
+  },
+  {
+    "id": "8227801b92f8",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: position: fixed jank during scroll — what do you check and fix?",
+    "back": "Check: Compositor + scroll mismatch · Fix: transform: translateZ(0) sparingly; check containing block",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Analyze"
+  },
+  {
+    "id": "f8fa49457955",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CLS after animation — what do you check and fix?",
+    "back": "Check: Layout-affecting exit · Fix: Animate transform/opacity; reserve space",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Analyze"
+  },
+  {
+    "id": "7b02e3c039e6",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Animation: what silently fails?",
+    "back": "will-change: transform on everything — mobile Safari/Chrome may exhaust GPU memory; toggle only during active animation.",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Evaluate"
+  },
+  {
+    "id": "7e9acfad329c",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Animation?",
+    "back": "Reduced motion users — respect prefers-reduced-motion: reduce; provide instant state change. Critical path LCP element — don't animate hero image/container until after LCP. Heavy box-shadow on large lists — paint cost scales with pixels; use border or static shadow image.",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Evaluate"
+  },
+  {
+    "id": "ffdbf7eb02c8",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Animation setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Browser animation performance: stay on the compositor (transform/opacity), avoid layout thrash — **Paul Lewis / high-performance ani",
+    "source": "Back2Basics/css/Animation.md",
+    "section": "Animation · Create"
+  },
+  {
+    "id": "48a0149e9d48",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is CSS property?",
+    "back": "CSS property — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/css/CSS property.md",
+    "section": "CSS property · Remember"
+  },
+  {
+    "id": "a8be1786daac",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does CSS property matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/css/CSS property.md",
+    "section": "CSS property · Understand"
+  },
+  {
+    "id": "06e41168a5d5",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe CSS property checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/css/CSS property.md",
+    "section": "CSS property · Create"
+  },
+  {
+    "id": "71fd89801754",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Flash of Unstyled Content (FOUC) in one sentence?",
+    "back": "Brief display of unstyled or wrong-theme HTML before CSS loads — users see a layout jump; Lighthouse flags CLS; trust drops on first paint.",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Remember"
+  },
+  {
+    "id": "5ce1b609bc75",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Flash of Unstyled Content (FOUC) (how the system thinks).",
+    "back": "The browser parses HTML incrementally. If CSS arrives after first paint, content renders with user-agent defaults (or wrong theme), then reflows when rules apply.",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Understand"
+  },
+  {
+    "id": "75f65cb124e0",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Flash of Unstyled Content (FOUC)?",
+    "back": "Timeline (bad): → HTML parsed ──► first paint (ugly) ──► CSS arrives ──► restyle + reflow (FOUC) → Timeline (good): → CSS discovered early ──► block render until CSSOM ──► first paint (styled)",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Apply"
+  },
+  {
+    "id": "6b16db3de475",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Flash of Unstyled Content (FOUC) setup, what is your first validation command?",
+    "back": "Timeline (bad):",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Apply"
+  },
+  {
+    "id": "133740cfffe3",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: White page → styled jump — what do you check and fix?",
+    "back": "Check: CSS <link> at bottom of body · Fix: Move stylesheets to <head>; inline critical CSS",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Analyze"
+  },
+  {
+    "id": "c4cb9642c82d",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Dark mode flash (light then dark) — what do you check and fix?",
+    "back": "Check: Theme JS at end of body · Fix: Inline theme script in <head>; use color-scheme CSS",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Analyze"
+  },
+  {
+    "id": "d7fba75c9557",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: FOUC only on slow 3G — what do you check and fix?",
+    "back": "Check: Waterfall: CSS after JS · Fix: Preload CSS; reduce JS blocking; split bundles",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Analyze"
+  },
+  {
+    "id": "be02607d4d10",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: FOUC after deploy only — what do you check and fix?",
+    "back": "Check: CDN cache miss / hashed filename mismatch · Fix: Verify cache headers; atomic deploys",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Analyze"
+  },
+  {
+    "id": "95f3187bf459",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: React hydration warning + flash — what do you check and fix?",
+    "back": "Check: SSR/client class mismatch · Fix: Fix SSR style collection; consistent builds",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Analyze"
+  },
+  {
+    "id": "08ff182169d3",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Text jumps when font loads — what do you check and fix?",
+    "back": "Check: font-display: swap without metrics · Fix: Use size-adjust, fallback stack, or optional",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Analyze"
+  },
+  {
+    "id": "608021f6e1e7",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: FOUC with Tailwind CDN — what do you check and fix?",
+    "back": "Check: Full utility CSS loads async · Fix: Build CSS at compile time; don't rely on CDN in prod",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Analyze"
+  },
+  {
+    "id": "7cf2c59dc4ee",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Flash of Unstyled Content (FOUC): what silently fails?",
+    "back": "@import inside CSS — forces serial fetch; each import blocks the next. Prefer <link> tags or bundler imports.",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Evaluate"
+  },
+  {
+    "id": "1af621923a17",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Flash of Unstyled Content (FOUC)?",
+    "back": "Hiding body with visibility:hidden until load — hurts LCP and accessibility; fix CSS delivery instead. Blocking all JS for style — overkill; inline tiny theme/critical CSS, async the rest. Aggressive font-display: block — eliminates FOUT but can hide text for seconds on slow networks.",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Evaluate"
+  },
+  {
+    "id": "8a616b62d18b",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Flash of Unstyled Content (FOUC) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Timeline (bad):",
+    "source": "Back2Basics/css/Flash of Unstyled Content.md",
+    "section": "Flash of Unstyled Content (FOUC) · Create"
+  },
+  {
+    "id": "7863c7a67d4a",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is CSS image sizing (clipped container) in one sentence?",
+    "back": "When a parent clips width but <img> uses width/height: 100%, browsers disagree on which box defines 100% — fix with explicit object-fit and containment.",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Remember"
+  },
+  {
+    "id": "24b084d50122",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of CSS image sizing (clipped container) (how the system thinks).",
+    "back": "A progress bar or clipped div sets used width via % or flex. Child img with w-full h-full (Tailwind) or width:100%; height:100% resolves percentages against different containing blocks in Chrome vs Firefox if overflow/containment differs. object-fit + fixed aspect on the img decouples layout from intrinsic image dimensions.",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Understand"
+  },
+  {
+    "id": "e837f9924f41",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for CSS image sizing (clipped container)?",
+    "back": "Parent (overflow:hidden, width: 40%) → Fix: img { width:100%; height:100%; object-fit: cover; display:block; }",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Apply"
+  },
+  {
+    "id": "429b9fe4fe27",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken CSS image sizing (clipped container) setup, what is your first validation command?",
+    "back": "Parent (overflow:hidden, width: 40%)",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Apply"
+  },
+  {
+    "id": "968d8c57ccb2",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Chrome stretched, Firefox correct — what do you check and fix?",
+    "back": "Check: DevTools computed sizes · Fix: object-fit: cover; display:block removes inline gap",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Analyze"
+  },
+  {
+    "id": "7a2c6fc73bf1",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Image overflows clip — what do you check and fix?",
+    "back": "Check: Parent overflow · Fix: overflow:hidden on clip container not img",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Analyze"
+  },
+  {
+    "id": "cc8353a99f74",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Aspect ratio collapse — what do you check and fix?",
+    "back": "Check: No explicit height · Fix: Parent aspect-ratio or fixed height",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Analyze"
+  },
+  {
+    "id": "aae59428c2b0",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Blurry upscale — what do you check and fix?",
+    "back": "Check: Intrinsic vs display size · Fix: Serve correct resolution; srcset",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Analyze"
+  },
+  {
+    "id": "82780d318036",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CLS on load — what do you check and fix?",
+    "back": "Check: No width/height attrs · Fix: width/height HTML attrs or aspect-ratio",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Analyze"
+  },
+  {
+    "id": "010349b383a3",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with CSS image sizing (clipped container): what silently fails?",
+    "back": "Inline img baseline gap — display:block or vertical-align:bottom fixes 4px leak. object-fit ignored — needs explicit width and height on replaced element. Percentage height chain — parent needs defined height all the way up.",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Evaluate"
+  },
+  {
+    "id": "0f69cb50a143",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use CSS image sizing (clipped container)?",
+    "back": "Don't fight img in clip for decorative fills — background-image is simpler. Don't use object-fit: none unless you mean pixel-exact cropping.",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Evaluate"
+  },
+  {
+    "id": "eb51cfce42a9",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct CSS image sizing (clipped container) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Parent (overflow:hidden, width: 40%)",
+    "source": "Back2Basics/css/css image.md",
+    "section": "CSS image sizing (clipped container) · Create"
+  },
+  {
+    "id": "e823cf2f699c",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is scss in one sentence?",
+    "back": "SCSS in 2026: still valuable for design tokens, mixins, and partials — but lean on native CSS where it caught up — Sass team + modern CSS spec.",
+    "source": "Back2Basics/css/scss.md",
+    "section": "scss · Remember"
+  },
+  {
+    "id": "9221bff67204",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of scss (how the system thinks).",
+    "back": "SCSS = CSS + variables, nesting, mixins, functions, @use modules. Build step compiles to plain CSS.",
+    "source": "Back2Basics/css/scss.md",
+    "section": "scss · Understand"
+  },
+  {
+    "id": "10c0bedeb12c",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate CSS in bundle — what do you check and fix?",
+    "back": "Check: Leftover @import · Fix: Migrate to @use; single entry @forward barrel",
+    "source": "Back2Basics/css/scss.md",
+    "section": "scss · Analyze"
+  },
+  {
+    "id": "1962de75f7b1",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Undefined variable — what do you check and fix?",
+    "back": "Check: Namespace · Fix: @use 'tokens/colors' as c; → c.$primary",
+    "source": "Back2Basics/css/scss.md",
+    "section": "scss · Analyze"
+  },
+  {
+    "id": "2599f036ef2a",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Deprecation warnings CI fail — what do you check and fix?",
+    "back": "Check: dart-sass 1.80+ · Fix: Replace @import, / division → math.div()",
+    "source": "Back2Basics/css/scss.md",
+    "section": "scss · Analyze"
+  },
+  {
+    "id": "40863d3d1801",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Huge CSS output — what do you check and fix?",
+    "back": "Check: @extend chains · Fix: Prefer mixins or utility classes",
+    "source": "Back2Basics/css/scss.md",
+    "section": "scss · Analyze"
+  },
+  {
+    "id": "9915774df443",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Dark mode tokens wrong — what do you check and fix?",
+    "back": "Check: Compile-time $vars only · Fix: Move theme to CSS custom properties",
+    "source": "Back2Basics/css/scss.md",
+    "section": "scss · Analyze"
+  },
+  {
+    "id": "a5c4cac1ac32",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow builds — what do you check and fix?",
+    "back": "Check: @use graph + source maps · Fix: --quiet-deps; limit additionalData glob",
+    "source": "Back2Basics/css/scss.md",
+    "section": "scss · Analyze"
+  },
+  {
+    "id": "8e783a5d69dd",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with scss: what silently fails?",
+    "back": "@extend across files — unpredictable selector bloat and ordering bugs; prefer mixins or utility classes.",
+    "source": "Back2Basics/css/scss.md",
+    "section": "scss · Evaluate"
+  },
+  {
+    "id": "92ec200ef2eb",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use scss?",
+    "back": "New micro-frontends with Tailwind/CSS-in-JS — SCSS adds build complexity without team buy-in. Runtime theming / user accent colors — CSS custom properties only. One-off static landing — plain CSS or utility framework faster than token architecture.",
+    "source": "Back2Basics/css/scss.md",
+    "section": "scss · Evaluate"
+  },
+  {
+    "id": "8b72974607d8",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct scss setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: SCSS in 2026: still valuable for design tokens, mixins, and partials — but lean on native CSS where it caught up — **Sass team + modern",
+    "source": "Back2Basics/css/scss.md",
+    "section": "scss · Create"
+  },
+  {
+    "id": "5b663601c043",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is tailwindcss Error?",
+    "back": "tailwindcss Error — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/css/tailwindcss Error.md",
+    "section": "tailwindcss Error · Remember"
+  },
+  {
+    "id": "01a93860a348",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does tailwindcss Error matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/css/tailwindcss Error.md",
+    "section": "tailwindcss Error · Understand"
+  },
+  {
+    "id": "49de5712cfd5",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe tailwindcss Error checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/css/tailwindcss Error.md",
+    "section": "tailwindcss Error · Create"
+  },
+  {
+    "id": "98922ba6acb3",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Tailwind CSS in one sentence?",
+    "back": "Utility-first CSS framework — compose designs from constrained class names; build step tree-shakes unused utilities for production.",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Remember"
+  },
+  {
+    "id": "821a455453dd",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Tailwind CSS (how the system thinks).",
+    "back": "Tailwind is not a component library. It generates atomic utility classes (flex, pt-4, text-slate-600) from a config file. At build time, it scans your source files and emits only used rules — keeping prod CSS small.",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Understand"
+  },
+  {
+    "id": "86566131a734",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Tailwind CSS?",
+    "back": "Source files ──► Tailwind scanner (content globs) → Generated CSS (utilities + @layer base/components) → PostCSS pipeline ──► single bundled stylesheet → npm install tailwindcss @tailwindcss/vite",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Apply"
+  },
+  {
+    "id": "4e1920ef372e",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Tailwind CSS setup, what is your first validation command?",
+    "back": "Source files ──► Tailwind scanner (content globs)",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Apply"
+  },
+  {
+    "id": "8ce1dfe5f86f",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Classes have no effect — what do you check and fix?",
+    "back": "Check: Class not in scanned content paths · Fix: Add glob for new folder; rebuild",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Analyze"
+  },
+  {
+    "id": "ae3cc1268fd5",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Huge CSS in prod — what do you check and fix?",
+    "back": "Check: CDN/play CDN Tailwind or missing purge · Fix: Use build pipeline; never @tailwindcss/browser in prod",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Analyze"
+  },
+  {
+    "id": "46996765bf5d",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Unknown at rule @tailwind\" in editor — what do you check and fix?",
+    "back": "Check: IDE doesn't know Tailwind · Fix: Install Tailwind CSS IntelliSense; set css.customData",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Analyze"
+  },
+  {
+    "id": "ee1400afccc1",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: @apply fails on custom class — what do you check and fix?",
+    "back": "Check: Order / layer issue · Fix: Define in @layer components; import order matters",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Analyze"
+  },
+  {
+    "id": "aa1c762c6e58",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Dark mode not working — what do you check and fix?",
+    "back": "Check: Wrong strategy (media vs class) · Fix: Set darkMode: 'class' + dark: variants on <html>",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Analyze"
+  },
+  {
+    "id": "8ca956270f45",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Styles differ dev vs prod — what do you check and fix?",
+    "back": "Check: JIT missed dynamic class string · Fix: Use full class names: text-${color}-500 won't scan — safelist",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Analyze"
+  },
+  {
+    "id": "f49a6fc12943",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: v4 migration broken — what do you check and fix?",
+    "back": "Check: Mixed v3 @tailwind + v4 @import · Fix: Pick one version's entry pattern; read upgrade guide",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Analyze"
+  },
+  {
+    "id": "35e6a3d2744b",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Prefix classes ignored — what do you check and fix?",
+    "back": "Check: Forgot prefix in JSX · Fix: With prefix(tw), use tw:flex not flex",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Analyze"
+  },
+  {
+    "id": "23f541dcc5f7",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Tailwind CSS: what silently fails?",
+    "back": "Dynamic class names don't purge — bg-${statusColor}-500 won't generate CSS unless every variant is safelisted. Use maps: { ok: 'bg-green-500', err: 'bg-red-500' }.",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Evaluate"
+  },
+  {
+    "id": "de08c9bf4541",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Tailwind CSS?",
+    "back": "Email templates — poor client support for utility-class HTML; use inline styles. Heavy bespoke design system with zero utility markup — consider CSS modules or tokens-only approach. No build step allowed — Tailwind v4 still needs compilation; raw CDN is dev/prototype only.",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Evaluate"
+  },
+  {
+    "id": "fd3743bd8033",
+    "deck": "b2b-css",
+    "tags": [
+      "back2basics",
+      "css",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Tailwind CSS setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Source files ──► Tailwind scanner (content globs)",
+    "source": "Back2Basics/css/tailwindcss.md",
+    "section": "Tailwind CSS · Create"
+  }
+]

@@ -1,0 +1,370 @@
+{
+  "total": 8999,
+  "decks": [
+    {
+      "deck": "b2b-android",
+      "count": 15,
+      "file": "decks/b2b-android.json"
+    },
+    {
+      "deck": "b2b-apache",
+      "count": 26,
+      "file": "decks/b2b-apache.json"
+    },
+    {
+      "deck": "b2b-architectures",
+      "count": 115,
+      "file": "decks/b2b-architectures.json"
+    },
+    {
+      "deck": "b2b-aws",
+      "count": 226,
+      "file": "decks/b2b-aws.json"
+    },
+    {
+      "deck": "b2b-compiler",
+      "count": 53,
+      "file": "decks/b2b-compiler.json"
+    },
+    {
+      "deck": "b2b-cookies",
+      "count": 22,
+      "file": "decks/b2b-cookies.json"
+    },
+    {
+      "deck": "b2b-css",
+      "count": 72,
+      "file": "decks/b2b-css.json"
+    },
+    {
+      "deck": "b2b-dart",
+      "count": 16,
+      "file": "decks/b2b-dart.json"
+    },
+    {
+      "deck": "b2b-data-structure",
+      "count": 131,
+      "file": "decks/b2b-data-structure.json"
+    },
+    {
+      "deck": "b2b-database",
+      "count": 578,
+      "file": "decks/b2b-database.json"
+    },
+    {
+      "deck": "b2b-deployment",
+      "count": 55,
+      "file": "decks/b2b-deployment.json"
+    },
+    {
+      "deck": "b2b-descriptive",
+      "count": 448,
+      "file": "decks/b2b-descriptive.json"
+    },
+    {
+      "deck": "b2b-design-pattern",
+      "count": 234,
+      "file": "decks/b2b-design-pattern.json"
+    },
+    {
+      "deck": "b2b-devops",
+      "count": 105,
+      "file": "decks/b2b-devops.json"
+    },
+    {
+      "deck": "b2b-dns",
+      "count": 161,
+      "file": "decks/b2b-dns.json"
+    },
+    {
+      "deck": "b2b-docker",
+      "count": 61,
+      "file": "decks/b2b-docker.json"
+    },
+    {
+      "deck": "b2b-expressjs",
+      "count": 56,
+      "file": "decks/b2b-expressjs.json"
+    },
+    {
+      "deck": "b2b-feature-implementation",
+      "count": 15,
+      "file": "decks/b2b-feature-implementation.json"
+    },
+    {
+      "deck": "b2b-firebase",
+      "count": 22,
+      "file": "decks/b2b-firebase.json"
+    },
+    {
+      "deck": "b2b-flutter",
+      "count": 36,
+      "file": "decks/b2b-flutter.json"
+    },
+    {
+      "deck": "b2b-general",
+      "count": 110,
+      "file": "decks/b2b-general.json"
+    },
+    {
+      "deck": "b2b-git",
+      "count": 198,
+      "file": "decks/b2b-git.json"
+    },
+    {
+      "deck": "b2b-github",
+      "count": 46,
+      "file": "decks/b2b-github.json"
+    },
+    {
+      "deck": "b2b-golang",
+      "count": 89,
+      "file": "decks/b2b-golang.json"
+    },
+    {
+      "deck": "b2b-helm",
+      "count": 6,
+      "file": "decks/b2b-helm.json"
+    },
+    {
+      "deck": "b2b-javascript",
+      "count": 271,
+      "file": "decks/b2b-javascript.json"
+    },
+    {
+      "deck": "b2b-kotlin",
+      "count": 19,
+      "file": "decks/b2b-kotlin.json"
+    },
+    {
+      "deck": "b2b-kubernates",
+      "count": 73,
+      "file": "decks/b2b-kubernates.json"
+    },
+    {
+      "deck": "b2b-linux",
+      "count": 1089,
+      "file": "decks/b2b-linux.json"
+    },
+    {
+      "deck": "b2b-lld",
+      "count": 9,
+      "file": "decks/b2b-lld.json"
+    },
+    {
+      "deck": "b2b-mcp",
+      "count": 25,
+      "file": "decks/b2b-mcp.json"
+    },
+    {
+      "deck": "b2b-messaging",
+      "count": 46,
+      "file": "decks/b2b-messaging.json"
+    },
+    {
+      "deck": "b2b-ml",
+      "count": 317,
+      "file": "decks/b2b-ml.json"
+    },
+    {
+      "deck": "b2b-mongodb",
+      "count": 146,
+      "file": "decks/b2b-mongodb.json"
+    },
+    {
+      "deck": "b2b-netlify",
+      "count": 13,
+      "file": "decks/b2b-netlify.json"
+    },
+    {
+      "deck": "b2b-networking",
+      "count": 307,
+      "file": "decks/b2b-networking.json"
+    },
+    {
+      "deck": "b2b-nextjs",
+      "count": 42,
+      "file": "decks/b2b-nextjs.json"
+    },
+    {
+      "deck": "b2b-nginx",
+      "count": 162,
+      "file": "decks/b2b-nginx.json"
+    },
+    {
+      "deck": "b2b-nodejs",
+      "count": 354,
+      "file": "decks/b2b-nodejs.json"
+    },
+    {
+      "deck": "b2b-npm",
+      "count": 62,
+      "file": "decks/b2b-npm.json"
+    },
+    {
+      "deck": "b2b-nvim",
+      "count": 7,
+      "file": "decks/b2b-nvim.json"
+    },
+    {
+      "deck": "b2b-oncall",
+      "count": 16,
+      "file": "decks/b2b-oncall.json"
+    },
+    {
+      "deck": "b2b-operating-system",
+      "count": 535,
+      "file": "decks/b2b-operating-system.json"
+    },
+    {
+      "deck": "b2b-payments",
+      "count": 82,
+      "file": "decks/b2b-payments.json"
+    },
+    {
+      "deck": "b2b-php",
+      "count": 49,
+      "file": "decks/b2b-php.json"
+    },
+    {
+      "deck": "b2b-pm2",
+      "count": 16,
+      "file": "decks/b2b-pm2.json"
+    },
+    {
+      "deck": "b2b-prisma",
+      "count": 16,
+      "file": "decks/b2b-prisma.json"
+    },
+    {
+      "deck": "b2b-programming-paradigram",
+      "count": 19,
+      "file": "decks/b2b-programming-paradigram.json"
+    },
+    {
+      "deck": "b2b-projects",
+      "count": 34,
+      "file": "decks/b2b-projects.json"
+    },
+    {
+      "deck": "b2b-protocol",
+      "count": 116,
+      "file": "decks/b2b-protocol.json"
+    },
+    {
+      "deck": "b2b-proxy",
+      "count": 3,
+      "file": "decks/b2b-proxy.json"
+    },
+    {
+      "deck": "b2b-python",
+      "count": 39,
+      "file": "decks/b2b-python.json"
+    },
+    {
+      "deck": "b2b-react",
+      "count": 375,
+      "file": "decks/b2b-react.json"
+    },
+    {
+      "deck": "b2b-redis",
+      "count": 30,
+      "file": "decks/b2b-redis.json"
+    },
+    {
+      "deck": "b2b-rendering-performance",
+      "count": 71,
+      "file": "decks/b2b-rendering-performance.json"
+    },
+    {
+      "deck": "b2b-rtq",
+      "count": 8,
+      "file": "decks/b2b-rtq.json"
+    },
+    {
+      "deck": "b2b-security",
+      "count": 366,
+      "file": "decks/b2b-security.json"
+    },
+    {
+      "deck": "b2b-ssh",
+      "count": 56,
+      "file": "decks/b2b-ssh.json"
+    },
+    {
+      "deck": "b2b-streaming",
+      "count": 437,
+      "file": "decks/b2b-streaming.json"
+    },
+    {
+      "deck": "b2b-system-design",
+      "count": 270,
+      "file": "decks/b2b-system-design.json"
+    },
+    {
+      "deck": "b2b-terraform",
+      "count": 44,
+      "file": "decks/b2b-terraform.json"
+    },
+    {
+      "deck": "b2b-tmux",
+      "count": 17,
+      "file": "decks/b2b-tmux.json"
+    },
+    {
+      "deck": "b2b-typescript",
+      "count": 26,
+      "file": "decks/b2b-typescript.json"
+    },
+    {
+      "deck": "b2b-vim",
+      "count": 45,
+      "file": "decks/b2b-vim.json"
+    },
+    {
+      "deck": "b2b-vite",
+      "count": 11,
+      "file": "decks/b2b-vite.json"
+    },
+    {
+      "deck": "b2b-zed",
+      "count": 22,
+      "file": "decks/b2b-zed.json"
+    },
+    {
+      "deck": "backend",
+      "count": 46,
+      "file": "decks/backend.json"
+    },
+    {
+      "deck": "jargon",
+      "count": 192,
+      "file": "decks/jargon.json"
+    },
+    {
+      "deck": "math",
+      "count": 124,
+      "file": "decks/math.json"
+    },
+    {
+      "deck": "meta",
+      "count": 1,
+      "file": "decks/meta.json"
+    },
+    {
+      "deck": "patterns",
+      "count": 61,
+      "file": "decks/patterns.json"
+    },
+    {
+      "deck": "reading",
+      "count": 22,
+      "file": "decks/reading.json"
+    },
+    {
+      "deck": "star",
+      "count": 12,
+      "file": "decks/star.json"
+    }
+  ]
+}

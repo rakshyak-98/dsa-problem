@@ -48,7 +48,7 @@ Run daily practice drills.
 Options:
   -h, --help               display this help message and exit
       --list-tracks        list practice tracks and exit
-  -t, --track=NAME         practice track: dsa, read, write, or backend
+  -t, --track=NAME         practice track: dsa, read, write, backend, or cards
                              (default: "dsa")
       --core5                run Core 5 reflex drill
       --run [KIND] [-r|-w]     run tests; KIND: core, reflex, or both if omitted
@@ -58,12 +58,17 @@ Options:
       --solution KIND        show solution file path: core or reflex (required)
       --catalog            list drills in track (forwarded to track)
 
+Cards track (--track=cards) also accepts:
+      --due, --stats, --list, --review, --reset
+      --deck=NAME, --tag=TAG, --limit=N, --new=N, --no-shuffle
+      (decks: jargon/patterns/… plus b2b-* from Back2Basics)
+
 `)
 }
 
 func printUnknownTrack(track drillTrack) {
 	fmt.Fprintf(os.Stderr, "unknown track %q\n", track)
-	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, backend\n")
+	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, backend, cards\n")
 	fmt.Fprint(os.Stderr, "Try 'go run . -- --help' for more information.\n")
 }
 
@@ -112,6 +117,8 @@ func printUnifiedHeader(track drillTrack) {
 		fmt.Println("Track: DSA writing — Core 5 + today's reflex specialty")
 	case trackBackend:
 		fmt.Println("Track: Backend interview — Core 5 explain/write + resume block")
+	case trackCards:
+		fmt.Println("Track: Cards — spaced-repetition flashcards from doc/")
 	}
 	fmt.Println()
 }
@@ -225,8 +232,33 @@ func runUnified(root string, opts dailyOptions) int {
 		if code := runModule(root, "study_backend", opts.passArgs, opts.run); code != 0 {
 			return code
 		}
+	case trackCards:
+		// Flashcard flags (--due, --deck, …) are forwarded; ignore DSA --run.
+		cardArgs := filterCardsPassArgs(opts.passArgs)
+		if code := runModule(root, "study_cards", cardArgs, true); code != 0 {
+			return code
+		}
 	}
 	return 0
+}
+
+func filterCardsPassArgs(passArgs []string) []string {
+	out := make([]string, 0, len(passArgs))
+	for i := 0; i < len(passArgs); i++ {
+		a := passArgs[i]
+		switch a {
+		case "--run":
+			if i+1 < len(passArgs) && isDrillKind(passArgs[i+1]) {
+				i++
+			}
+			continue
+		case "-r", "--read", "-w", "--write":
+			continue
+		default:
+			out = append(out, a)
+		}
+	}
+	return out
 }
 
 func containsAll(s string, parts ...string) bool {

@@ -1,0 +1,212 @@
+[
+  {
+    "id": "5e7cb14d5806",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Bar code generate feature?",
+    "back": "npm install express bwip-js",
+    "source": "Back2Basics/Feature implementation/Bar code generate feature.md",
+    "section": "Bar code generate feature · Apply"
+  },
+  {
+    "id": "261e567be505",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Bar code generate feature setup, what is your first validation command?",
+    "back": "npm install express bwip-js",
+    "source": "Back2Basics/Feature implementation/Bar code generate feature.md",
+    "section": "Bar code generate feature · Apply"
+  },
+  {
+    "id": "994a3216ca38",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Bar code generate feature setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: npm install express bwip-js",
+    "source": "Back2Basics/Feature implementation/Bar code generate feature.md",
+    "section": "Bar code generate feature · Create"
+  },
+  {
+    "id": "c564207704a2",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Manage cart with session id?",
+    "back": "Here’s how you can structure your project:",
+    "source": "Back2Basics/Feature implementation/Manage cart with session id.md",
+    "section": "Manage cart with session id · Remember"
+  },
+  {
+    "id": "a76c2e328133",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Session Persistence?",
+    "back": "Cart is retained even if the user is not logged in.",
+    "source": "Back2Basics/Feature implementation/Manage cart with session id.md",
+    "section": "Manage cart with session id · Remember"
+  },
+  {
+    "id": "9d1f4acdea00",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Seamless Checkout?",
+    "back": "Users can add items to the cart without signing in but are prompted to log in before checkout.",
+    "source": "Back2Basics/Feature implementation/Manage cart with session id.md",
+    "section": "Manage cart with session id · Remember"
+  },
+  {
+    "id": "6b5d33e60ca9",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Simple Architecture?",
+    "back": "Easy to extend with more features like discounts, order history, etc.",
+    "source": "Back2Basics/Feature implementation/Manage cart with session id.md",
+    "section": "Manage cart with session id · Remember"
+  },
+  {
+    "id": "3629c07d5625",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Session Expiration?",
+    "back": "Cart will expire after 48 hours if not checked out or logged in.",
+    "source": "Back2Basics/Feature implementation/Manage cart with session id.md",
+    "section": "Manage cart with session id · Remember"
+  },
+  {
+    "id": "1fc2241e42ad",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Session Management Complexity?",
+    "back": "Handling session persistence can get tricky with scaling, especially if using a stateless backend.",
+    "source": "Back2Basics/Feature implementation/Manage cart with session id.md",
+    "section": "Manage cart with session id · Remember"
+  },
+  {
+    "id": "d61e2cb0e10e",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Manage cart with session id?",
+    "back": "In sessionUtils.js, you can check whether the session has expired by comparing the session time with the current time.",
+    "source": "Back2Basics/Feature implementation/Manage cart with session id.md",
+    "section": "Manage cart with session id · Apply"
+  },
+  {
+    "id": "5413678d32a8",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Manage cart with session id setup, what is your first validation command?",
+    "back": "In sessionUtils.js, you can check whether the session has expired by comparing the session time with the current time.",
+    "source": "Back2Basics/Feature implementation/Manage cart with session id.md",
+    "section": "Manage cart with session id · Apply"
+  },
+  {
+    "id": "80f8b0ac0dcd",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Manage cart with session id setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: In sessionUtils.js, you can check whether the session has expired by comparing the session time with the current time.",
+    "source": "Back2Basics/Feature implementation/Manage cart with session id.md",
+    "section": "Manage cart with session id · Create"
+  },
+  {
+    "id": "8a44b22b083e",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Push notification integration?",
+    "back": "Push notification integration — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Feature implementation/Push notification integration.md",
+    "section": "Push notification integration · Remember"
+  },
+  {
+    "id": "5476eb410e80",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Push notification integration matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Feature implementation/Push notification integration.md",
+    "section": "Push notification integration · Understand"
+  },
+  {
+    "id": "381a48253eee",
+    "deck": "b2b-feature-implementation",
+    "tags": [
+      "back2basics",
+      "feature-implementation",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Push notification integration checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Feature implementation/Push notification integration.md",
+    "section": "Push notification integration · Create"
+  }
+]

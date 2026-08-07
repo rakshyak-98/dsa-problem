@@ -1,0 +1,996 @@
+[
+  {
+    "id": "8b23a67ed151",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is INP (Interaction to Next Paint) in one sentence?",
+    "back": "Core Web Vital measuring responsiveness — latency from user input to next frame paint — replaces FID (2024).",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Remember"
+  },
+  {
+    "id": "435b48b791f1",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of INP (Interaction to Next Paint) (how the system thinks).",
+    "back": "INP captures worst-case (or high percentile) delay between interaction (click, tap, key) and when the browser paints the next frame showing feedback. Target: ≤ 200 ms good, 200–500 ms needs improvement, > 500 ms poor.",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Understand"
+  },
+  {
+    "id": "bb9d72eeb6d6",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for INP (Interaction to Next Paint)?",
+    "back": "User click → Main thread busy? ──yes──► delay (long task)",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Apply"
+  },
+  {
+    "id": "6488a8d7b714",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for INP (Interaction to Next Paint)?",
+    "back": "1. Performance panel → record → interact → find Long tasks (> 50 ms). 2. Performance insights → INP breakdown (input delay, processing, presentation delay).",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Apply"
+  },
+  {
+    "id": "c79e7e5396b1",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: INP poor, LCP good — what do you check and fix?",
+    "back": "Check: Long tasks on interaction · Fix: Profile click handler; split work",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Analyze"
+  },
+  {
+    "id": "32221ba24224",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Spikes only mobile — what do you check and fix?",
+    "back": "Check: Slower CPU, 4x throttling · Fix: Reduce JS; simplify DOM",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Analyze"
+  },
+  {
+    "id": "c57f27aa9fa4",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: After deploy regression — what do you check and fix?",
+    "back": "Check: New sync JSON parse · Fix: Stream/chunk; Web Worker",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Analyze"
+  },
+  {
+    "id": "255883a0e1ee",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Third-party widgets — what do you check and fix?",
+    "back": "Check: Tag managers on click · Fix: Delay load; facade buttons",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Analyze"
+  },
+  {
+    "id": "e18a95359121",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: INP N/A in report — what do you check and fix?",
+    "back": "Check: No interactions / bfcache · Fix: Normal for static pages",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Analyze"
+  },
+  {
+    "id": "32bf563376fc",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with INP (Interaction to Next Paint): what silently fails?",
+    "back": "Optimizing LCP alone won't fix INP — hero image fast but 800 ms click handler still fails CWV.",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Evaluate"
+  },
+  {
+    "id": "3106b411f8b9",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use INP (Interaction to Next Paint)?",
+    "back": "Don't chase sub-50 ms INP on internal admin tools with 5 users — focus on critical revenue paths first.",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Evaluate"
+  },
+  {
+    "id": "2d4d6d35b800",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct INP (Interaction to Next Paint) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: User click",
+    "source": "Back2Basics/Rendering performance/INP.md",
+    "section": "INP (Interaction to Next Paint) · Create"
+  },
+  {
+    "id": "f2c8e546d3aa",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is SEO (Search Engine Optimization) in one sentence?",
+    "back": "Make content discoverable, crawlable, and eligible for rich results — technical + content signals — Google Search Essentials.",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Remember"
+  },
+  {
+    "id": "c63770d2d726",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of SEO (Search Engine Optimization) (how the system thinks).",
+    "back": "Search engines crawl URLs, index content, rank for queries. SEO spans:",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Understand"
+  },
+  {
+    "id": "b8becae7d3a1",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for SEO (Search Engine Optimization)?",
+    "back": "Technical (crawl, speed, mobile) + Content (intent, E-E-A-T) + Links (authority) → Googlebot → robots.txt → fetch HTML → render (JS) → index → rank",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Apply"
+  },
+  {
+    "id": "3f3d80795fb1",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken SEO (Search Engine Optimization) setup, what is your first validation command?",
+    "back": "Technical (crawl, speed, mobile) + Content (intent, E-E-A-T) + Links (authority)",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Apply"
+  },
+  {
+    "id": "4e8226b55bda",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for SEO (Search Engine Optimization)?",
+    "back": "Critical content in initial HTML — Google renders JS but slower and not guaranteed for all bots See Nginx/nginx SPA deployment for prerender/static fallbacks",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Apply"
+  },
+  {
+    "id": "b5905cd03f08",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Pages not indexed — what do you check and fix?",
+    "back": "Check: Search Console coverage · Fix: robots/noindex; canonical to wrong URL",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Analyze"
+  },
+  {
+    "id": "1cd6535d5d9a",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate titles — what do you check and fix?",
+    "back": "Check: CMS defaults · Fix: Unique <title> per URL",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Analyze"
+  },
+  {
+    "id": "3113bfbc3ccf",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Soft 404 — what do you check and fix?",
+    "back": "Check: Thin content + 200 · Fix: Real content or 404 status",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Analyze"
+  },
+  {
+    "id": "763c5d9a1d8d",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CWV poor — what do you check and fix?",
+    "back": "Check: CrUX report · Fix: Fix LCP/INP/CLS per rendering notes",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Analyze"
+  },
+  {
+    "id": "e5bcdaa3a449",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: JS content missing in index — what do you check and fix?",
+    "back": "Check: View rendered HTML · Fix: SSR/prerender critical content",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Analyze"
+  },
+  {
+    "id": "566bde72aaa6",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: hreflang wrong — what do you check and fix?",
+    "back": "Check: International targeting · Fix: Valid language/region pairs",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Analyze"
+  },
+  {
+    "id": "8dabb625d6c5",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with SEO (Search Engine Optimization): what silently fails?",
+    "back": "noindex in staging leaking to prod via env mistake — instant de-indexing.",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Evaluate"
+  },
+  {
+    "id": "4be36bdd2758",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use SEO (Search Engine Optimization)?",
+    "back": "Don't SEO spam internal tools behind auth — noindex and save effort. Keyword stuffing — hurts readability and can trigger quality demotion.",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Evaluate"
+  },
+  {
+    "id": "611c56bd2ce0",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct SEO (Search Engine Optimization) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Technical (crawl, speed, mobile) + Content (intent, E-E-A-T) + Links (authority)",
+    "source": "Back2Basics/Rendering performance/SEO.md",
+    "section": "SEO (Search Engine Optimization) · Create"
+  },
+  {
+    "id": "33b640aee0fe",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is composite?",
+    "back": "composite — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Rendering performance/composite.md",
+    "section": "composite · Remember"
+  },
+  {
+    "id": "fb67aaeb9a3b",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does composite matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Rendering performance/composite.md",
+    "section": "composite · Understand"
+  },
+  {
+    "id": "0e1843d6b319",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe composite checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Rendering performance/composite.md",
+    "section": "composite · Create"
+  },
+  {
+    "id": "50dc3e2cb6fc",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is critical rendering path?",
+    "back": "critical rendering path — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Rendering performance/critical rendering path.md",
+    "section": "critical rendering path · Remember"
+  },
+  {
+    "id": "b34c68d07a9f",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does critical rendering path matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Rendering performance/critical rendering path.md",
+    "section": "critical rendering path · Understand"
+  },
+  {
+    "id": "f704cf1757c6",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe critical rendering path checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Rendering performance/critical rendering path.md",
+    "section": "critical rendering path · Create"
+  },
+  {
+    "id": "1dbacb734dc5",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Layout (reflow) in one sentence?",
+    "back": "Browser calculates geometry — sizes and positions of elements — render pipeline stage between style and paint.",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Remember"
+  },
+  {
+    "id": "f4f2ecbf9f82",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Layout (reflow) (how the system thinks).",
+    "back": "Layout (reflow) computes where boxes go. One element's size can ripple up and down the tree — layout is often global within a subtree.",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Understand"
+  },
+  {
+    "id": "c36063ca3280",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Layout (reflow)?",
+    "back": "Style recalc → Layout → Paint → Composite → triggered by geometry-changing properties",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Apply"
+  },
+  {
+    "id": "f2801923eb69",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Layout (reflow) setup, what is your first validation command?",
+    "back": "Style recalc → Layout → Paint → Composite",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Apply"
+  },
+  {
+    "id": "96eb0c696277",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Layout (reflow)?",
+    "back": "Performance → Layout events in flame chart Rendering tab → Layout Shift Regions (CLS related)",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Apply"
+  },
+  {
+    "id": "712514f02d41",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Jank on scroll — what do you check and fix?",
+    "back": "Check: Sticky + height reads · Fix: passive: true listeners; avoid layout in scroll",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Analyze"
+  },
+  {
+    "id": "c08487bed875",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ResizeObserver loop error — what do you check and fix?",
+    "back": "Check: Feedback resize · Fix: Debounce; don't set size from observer blindly",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Analyze"
+  },
+  {
+    "id": "0aedcd2ef23c",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow list filter — what do you check and fix?",
+    "back": "Check: Re-layout 10k nodes · Fix: Virtual list; key stability",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Analyze"
+  },
+  {
+    "id": "afa6bdc38e5e",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CLS on font swap — what do you check and fix?",
+    "back": "Check: Layout shift metric · Fix: size-adjust, reserve space",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Analyze"
+  },
+  {
+    "id": "4b7de74871d0",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Animation stutters — what do you check and fix?",
+    "back": "Check: Animating top/left · Fix: Switch to transform",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Analyze"
+  },
+  {
+    "id": "fe9fcb2615f9",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Layout (reflow): what silently fails?",
+    "back": "getBoundingClientRect() in hot path forces layout if DOM dirty — cache per frame.",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Evaluate"
+  },
+  {
+    "id": "50139feb25df",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Layout (reflow)?",
+    "back": "Don't contain: strict on everything — breaks positioning (position: fixed descendants).",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Evaluate"
+  },
+  {
+    "id": "52f55379f292",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Layout (reflow) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Style recalc → Layout → Paint → Composite",
+    "source": "Back2Basics/Rendering performance/layout.md",
+    "section": "Layout (reflow) · Create"
+  },
+  {
+    "id": "a91b91349b77",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Paint (repaint) in one sentence?",
+    "back": "Fill pixels after layout — text, colors, borders, shadows — often split into layers for compositing.",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Remember"
+  },
+  {
+    "id": "58918134fe87",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Paint (repaint) (how the system thinks).",
+    "back": "After Rendering performance/layout, paint records draw lists per layer (what to draw where). GPU composite merges layers. Changing paint-only properties skips layout but still repaints.",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Understand"
+  },
+  {
+    "id": "de8b3f97b0d4",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Paint (repaint)?",
+    "back": "Layout complete → Paint records (fill, stroke, text, images) → Layers → Composite (GPU)",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Apply"
+  },
+  {
+    "id": "592a218f3cb8",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Paint (repaint) setup, what is your first validation command?",
+    "back": "Layout complete",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Apply"
+  },
+  {
+    "id": "9b00a02cbd48",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Paint (repaint)?",
+    "back": "1. Rendering → Paint flashing (green flashes = repaints) 2. Layers panel — see promoted layers, memory cost 3. Performance trace — Paint and Raster slices",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Apply"
+  },
+  {
+    "id": "17ede17c686a",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Full-screen green flash — what do you check and fix?",
+    "back": "Check: Whole page repaints · Fix: Reduce layer count; fix hover rules on *",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Analyze"
+  },
+  {
+    "id": "daa4e94426c6",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Memory climb — what do you check and fix?",
+    "back": "Check: Too many layers · Fix: Remove excessive will-change",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Analyze"
+  },
+  {
+    "id": "0b355c7836bf",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Text blurry after animate — what do you check and fix?",
+    "back": "Check: Subpixel transform · Fix: Snap to integer px",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Analyze"
+  },
+  {
+    "id": "cbd506d9e74d",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Scroll jank with fixed bg — what do you check and fix?",
+    "back": "Check: background-attachment: fixed · Fix: Use pseudo-element layer",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Analyze"
+  },
+  {
+    "id": "e1b6367bc0dc",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Canvas + DOM overlap — what do you check and fix?",
+    "back": "Check: Duplicate paint · Fix: Single surface or isolate iframe",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Analyze"
+  },
+  {
+    "id": "2b6e5b1a480f",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Paint (repaint): what silently fails?",
+    "back": "will-change on everything — each layer consumes GPU memory; mobile OOM and worse perf.",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Evaluate"
+  },
+  {
+    "id": "865ec10291fd",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Paint (repaint)?",
+    "back": "Don't micro-optimize paint on static marketing pages with no interaction — Rendering performance/INP and LCP dominate.",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Evaluate"
+  },
+  {
+    "id": "90d57281024e",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Paint (repaint) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Layout complete",
+    "source": "Back2Basics/Rendering performance/paint.md",
+    "section": "Paint (repaint) · Create"
+  },
+  {
+    "id": "473bcb23f484",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Refresh rate in one sentence?",
+    "back": "Display hardware cadence — frames must be ready before vsync or user sees jank — 60 Hz ≈ 16.67 ms budget.",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Remember"
+  },
+  {
+    "id": "91c7589b3755",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Refresh rate (how the system thinks).",
+    "back": "Screen refreshes at fixed Hz (60, 90, 120, 144). Browser must produce a frame before each vsync or frame drops (stutter).",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Understand"
+  },
+  {
+    "id": "0d4da0f3c782",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Refresh rate?",
+    "back": "Browser target: complete JS + layout + paint within ~10 ms (60 Hz) → leaves headroom for compositor + system",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Apply"
+  },
+  {
+    "id": "a72156842053",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Refresh rate setup, what is your first validation command?",
+    "back": "Browser target: complete JS + layout + paint within ~10 ms (60 Hz)",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Apply"
+  },
+  {
+    "id": "3954ec600279",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Refresh rate?",
+    "back": "Enable 120 Hz on device/emulator Chrome DevTools → Rendering → FPS meter Throttle CPU 4× to simulate mobile",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Apply"
+  },
+  {
+    "id": "012fe1d358a8",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Visible stutter in animation — what do you check and fix?",
+    "back": "Check: Long tasks > frame period · Fix: Split work; compositor-only props",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Analyze"
+  },
+  {
+    "id": "448487daf695",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 30 FPS on 120 Hz panel — what do you check and fix?",
+    "back": "Check: Every other frame missed · Fix: Profile; reduce paint cost",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Analyze"
+  },
+  {
+    "id": "d97033cfa716",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: rAF runs but nothing moves — what do you check and fix?",
+    "back": "Check: Logic bug vs display · Fix: Verify transform updates",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Analyze"
+  },
+  {
+    "id": "d3ab57494707",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Background tab slow — what do you check and fix?",
+    "back": "Check: Browser throttles rAF · Fix: Expected — pause work on visibilitychange",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Analyze"
+  },
+  {
+    "id": "8bc90c335165",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: VSync tear (games/native) — what do you check and fix?",
+    "back": "Check: Full-screen exclusive · Fix: Web uses compositor — different stack",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Analyze"
+  },
+  {
+    "id": "6f697d8b47bd",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Refresh rate: what silently fails?",
+    "back": "Meeting 10 ms on desktop ≠ mobile — same site at 4× CPU throttle may miss 16 ms budget.",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Evaluate"
+  },
+  {
+    "id": "e4a10b1504af",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Refresh rate?",
+    "back": "Non-visual batch jobs — don't tie to rAF; use setTimeout or Worker.",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Evaluate"
+  },
+  {
+    "id": "89018439756f",
+    "deck": "b2b-rendering-performance",
+    "tags": [
+      "back2basics",
+      "rendering-performance",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Refresh rate setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Browser target: complete JS + layout + paint within ~10 ms (60 Hz)",
+    "source": "Back2Basics/Rendering performance/refresh rate.md",
+    "section": "Refresh rate · Create"
+  }
+]

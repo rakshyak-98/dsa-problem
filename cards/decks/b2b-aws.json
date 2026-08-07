@@ -1,0 +1,3166 @@
+[
+  {
+    "id": "28614b3ef4cd",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AMI (Amazon Machine Image)?",
+    "back": "AMI (Amazon Machine Image) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/AWS/AMI (Amazon Machine Image).md",
+    "section": "AMI (Amazon Machine Image) · Remember"
+  },
+  {
+    "id": "3c4b267196ca",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does AMI (Amazon Machine Image) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/AWS/AMI (Amazon Machine Image).md",
+    "section": "AMI (Amazon Machine Image) · Understand"
+  },
+  {
+    "id": "d31ffce824a4",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe AMI (Amazon Machine Image) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/AWS/AMI (Amazon Machine Image).md",
+    "section": "AMI (Amazon Machine Image) · Create"
+  },
+  {
+    "id": "27469772249e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ARN (Amazon Resource Name) in one sentence?",
+    "back": "Universal resource identifier for IAM policies, CloudTrail, cross-service references, and CLI --resource-arn. Format is strict — one wrong segment = AccessDenied or wrong resource.",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Remember"
+  },
+  {
+    "id": "9bb28547d5cf",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of ARN (Amazon Resource Name) (how the system thinks).",
+    "back": "Every AWS resource that policies reference gets an ARN: partition, service, region (sometimes empty), account, resource path. IAM evaluates string match on ARNs in policies; typos and missing account ids are silent until runtime.",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Understand"
+  },
+  {
+    "id": "d69b294b6616",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for ARN (Amazon Resource Name)?",
+    "back": "arn : partition : service : region : account-id : resource",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Apply"
+  },
+  {
+    "id": "7214d27a0e19",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken ARN (Amazon Resource Name) setup, what is your first validation command?",
+    "back": "arn : partition : service : region : account-id : resource",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Apply"
+  },
+  {
+    "id": "b51851dcf995",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for ARN (Amazon Resource Name)?",
+    "back": "aws — commercial; aws-us-gov, aws-cn — isolated partitions; ARNs don't cross partitions.",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Apply"
+  },
+  {
+    "id": "19b5343c5fba",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Policy \"looks right\" but Deny — what do you check and fix?",
+    "back": "Check: Wrong account id in ARN · Fix: Copy ARN from describe-* API",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Analyze"
+  },
+  {
+    "id": "34fe20578c2e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cross-region copy/snapshot fail — what do you check and fix?",
+    "back": "Check: Source/dest ARNs region mismatch · Fix: Use region-local ARNs",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Analyze"
+  },
+  {
+    "id": "c19d7cb759f0",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: KMS InvalidArnException — what do you check and fix?",
+    "back": "Check: Key ARN vs alias (alias/xxx) · Fix: Use key id ARN in key policies",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Analyze"
+  },
+  {
+    "id": "a4c452a7ad32",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: EventBridge target fail — what do you check and fix?",
+    "back": "Check: Target ARN service mismatch · Fix: Verify full target ARN format",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Analyze"
+  },
+  {
+    "id": "4ae668ae0628",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Organization SCP not applying — what do you check and fix?",
+    "back": "Check: ARN in member account vs org id · Fix: SCP uses different principal patterns",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Analyze"
+  },
+  {
+    "id": "a6800c0f248c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with ARN (Amazon Resource Name): what silently fails?",
+    "back": "S3 ARN has no region in resource — but bucket is regional; policies still work; some services need bucket location for cross-region ops.",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Evaluate"
+  },
+  {
+    "id": "efe9c28517cd",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use ARN (Amazon Resource Name)?",
+    "back": "Human-readable naming in automation — construct from API responses; don't hand-build instance ids. ARN as secret — ARNs are identifiers, not authorization; knowing ARN doesn't grant access without policy.",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Evaluate"
+  },
+  {
+    "id": "319ce14e11bf",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct ARN (Amazon Resource Name) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: arn : partition : service : region : account-id : resource",
+    "source": "Back2Basics/AWS/ARN (Amazon Resource Name).md",
+    "section": "ARN (Amazon Resource Name) · Create"
+  },
+  {
+    "id": "b9c8ed48ff4c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AWS Billing and Cost Management in one sentence?",
+    "back": "Where money leaks show up — Free Tier tracking, Cost Explorer, bills by service, and alarms before finance pings you.",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Remember"
+  },
+  {
+    "id": "53eecb16ea58",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of AWS Billing and Cost Management (how the system thinks).",
+    "back": "AWS bills per account (consolidated billing in Organizations). Cost Explorer aggregates usage; Bills shows line items by service (EC2, S3, data transfer). Free Tier is per-service limits, not one global bucket. Untagged resources make chargeback impossible.",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Understand"
+  },
+  {
+    "id": "f38d7e19f4ae",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for AWS Billing and Cost Management?",
+    "back": "Usage (API calls, hours, GB) → CUR/Billing → Cost Explorer → Budgets/Alerts → aws ce get-cost-and-usage \\",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Apply"
+  },
+  {
+    "id": "b23a1101315f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken AWS Billing and Cost Management setup, what is your first validation command?",
+    "back": "Usage (API calls, hours, GB) → CUR/Billing → Cost Explorer → Budgets/Alerts",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Apply"
+  },
+  {
+    "id": "ef5dbb1bbf46",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for AWS Billing and Cost Management?",
+    "back": "1. Billing and Cost Management → Bills → filter by month → Charges by service 2. Free Tier (left menu) → usage vs limit per service 3. Cost Explorer → daily/monthly by service, linked account, tag 4. Budgets → email at 80%/100% forecast",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Apply"
+  },
+  {
+    "id": "dec55645a27e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Unexpected EC2 charge — what do you check and fix?",
+    "back": "Check: Running instances all regions · Fix: ec2 describe-instances --region us-east-1 (repeat regions)",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Analyze"
+  },
+  {
+    "id": "c51d390c2f67",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Data transfer spike — what do you check and fix?",
+    "back": "Check: Cost Explorer DT line · Fix: CloudFront for egress; same-AZ traffic",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Analyze"
+  },
+  {
+    "id": "c6066cca22f4",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NAT Gateway $$$ — what do you check and fix?",
+    "back": "Check: Hours + GB processed · Fix: VPC endpoints; reduce cross-AZ NAT hairpin",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Analyze"
+  },
+  {
+    "id": "3947b19dd6cf",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: S3 pennies → dollars — what do you check and fix?",
+    "back": "Check: Storage class, versions · Fix: Lifecycle delete old versions",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Analyze"
+  },
+  {
+    "id": "d04e6989c83f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Free Tier exceeded — what do you check and fix?",
+    "back": "Check: Free Tier dashboard · Fix: Service actually \"Always Free\" vs 12-month",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Analyze"
+  },
+  {
+    "id": "160dbb087b5e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Multiple accounts surprise — what do you check and fix?",
+    "back": "Check: Organizations · Fix: Consolidated bill; SCP limits",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Analyze"
+  },
+  {
+    "id": "acf32249d07d",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with AWS Billing and Cost Management: what silently fails?",
+    "back": "Stopped EC2 still pays for EBS — terminate or snapshot+delete volume. Elastic IP unattached — charged when not associated. Regional resources — bill shock often from wrong region left running.",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Evaluate"
+  },
+  {
+    "id": "ff68b360724d",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use AWS Billing and Cost Management?",
+    "back": "Don't optimize pennies before measuring — enable Cost Explorer tags first month. Don't buy 3-year RIs on spiky/dev workloads — use On-Demand + autoscaling first.",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Evaluate"
+  },
+  {
+    "id": "8b18e754d7de",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct AWS Billing and Cost Management setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Usage (API calls, hours, GB) → CUR/Billing → Cost Explorer → Budgets/Alerts",
+    "source": "Back2Basics/AWS/AWS Billing and cost management.md",
+    "section": "AWS Billing and Cost Management · Create"
+  },
+  {
+    "id": "92bf4040d726",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AWS EBS (Elastic Block Store) in one sentence?",
+    "back": "Network-attached block volumes for EC2 — persistent disk, snapshots, resize, and Delete on Termination gotcha.",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Remember"
+  },
+  {
+    "id": "b2fe78da7ece",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of AWS EBS (Elastic Block Store) (how the system thinks).",
+    "back": "EBS volumes are AZ-scoped block devices attached to EC2 as /dev/xvdf etc. OS sees raw disk — format, mount, persist data independent of instance lifecycle unless volume is deleted on instance terminate. Snapshots → S3-backed incremental backups → new volume in any AZ (copy region for DR).",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Understand"
+  },
+  {
+    "id": "a6b658c5716e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for AWS EBS (Elastic Block Store)?",
+    "back": "EC2 instance ← attach → EBS volume (gp3/io2) → AMI / DR / clone → aws ec2 create-volume --availability-zone us-east-1a --size 100 --volume-type gp3 → aws ec2 attach-volume --volume-id vol-xxx --instance-id i-xxx --device /dev/sdf → aws ec2 create-snapshot --volume-id vol-xxx --description \"pre-migration\"",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Apply"
+  },
+  {
+    "id": "88e5b145b67d",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken AWS EBS (Elastic Block Store) setup, what is your first validation command?",
+    "back": "EC2 instance ← attach → EBS volume (gp3/io2)",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Apply"
+  },
+  {
+    "id": "ba1f042f631e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for AWS EBS (Elastic Block Store)?",
+    "back": "Launch template / instance Block device mapping → Delete on termination Uncheck for data volumes you must keep when replacing instance",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Apply"
+  },
+  {
+    "id": "d29819287449",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Data gone after terminate — what do you check and fix?",
+    "back": "Check: Delete on termination = true · Fix: Restore from snapshot; fix mapping before next terminate",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Analyze"
+  },
+  {
+    "id": "da78309ae087",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Volume won't attach — what do you check and fix?",
+    "back": "Check: AZ mismatch · Fix: Volume and instance same AZ (or detach/move)",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Analyze"
+  },
+  {
+    "id": "51d5959c1cbe",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Full disk — what do you check and fix?",
+    "back": "Check: df -h · Fix: Extend volume + filesystem; don't just restart",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Analyze"
+  },
+  {
+    "id": "4c808aae0525",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Poor IOPS — what do you check and fix?",
+    "back": "Check: CloudWatch VolumeQueueLength · Fix: gp3 provisioned IOPS; io2 for sustained",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Analyze"
+  },
+  {
+    "id": "052423458d76",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Snapshot slow first time — what do you check and fix?",
+    "back": "Check: Normal · Fix: Incremental snapshots faster after",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Analyze"
+  },
+  {
+    "id": "db020b64b1fa",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Corrupt FS after crash — what do you check and fix?",
+    "back": "Check: fsck · Fix: Restore snapshot; enable fsync app-side",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Analyze"
+  },
+  {
+    "id": "64c28dc46144",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with AWS EBS (Elastic Block Store): what silently fails?",
+    "back": "Root volume default delete on terminate — usually desired; data volume must opt out explicitly. EBS ≠ backup strategy — snapshots need lifecycle; test restore. Encryption — enable default EBS encryption per account/region for compliance.",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Evaluate"
+  },
+  {
+    "id": "c1216227dd9b",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use AWS EBS (Elastic Block Store)?",
+    "back": "Don't use EBS for shared POSIX across many EC2 — use EFS or S3. Don't attach same volume to two instances simultaneously (except cluster FS products).",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Evaluate"
+  },
+  {
+    "id": "0d99adbc7af1",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct AWS EBS (Elastic Block Store) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: EC2 instance ← attach → EBS volume (gp3/io2)",
+    "source": "Back2Basics/AWS/AWS EBS(Elastic Block Store).md",
+    "section": "AWS EBS (Elastic Block Store) · Create"
+  },
+  {
+    "id": "9ec9328c66b6",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AWS EC2 in one sentence?",
+    "back": "Virtual machines in a VPC — pick AMI, instance type, subnet/SG, and know what still bills after terminate. AWS EC2 User Guide + finance surprises from orphaned EIPs/NAT.",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Remember"
+  },
+  {
+    "id": "4c82b07e6d8e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of AWS EC2 (how the system thinks).",
+    "back": "An EC2 instance is compute on shared hardware (or Dedicated Host) with ENI(s) in a subnet. Launch = AMI + instance type + key pair/instance profile + Security group. Storage = root + optional EBS (Elastic Block Store) volumes. Terminate ≠ delete all billable artifacts.",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Understand"
+  },
+  {
+    "id": "fab2c3b36317",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for AWS EC2?",
+    "back": "Launch template ──► AMI + type + subnet + SG + user-data → aws ec2 describe-instances --filters \"Name=tag:Env,Values=prod\" \\ → aws ec2 terminate-instances --instance-ids i-xxx → aws ec2 describe-volumes --filters \"Name=status,Values=available\" → aws ec2 describe-addresses --query 'Addresses[?AssociationId==null]'",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Apply"
+  },
+  {
+    "id": "21a98bee1b46",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken AWS EC2 setup, what is your first validation command?",
+    "back": "Launch template ──► AMI + type + subnet + SG + user-data",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Apply"
+  },
+  {
+    "id": "6531e78c2a3a",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for AWS EC2?",
+    "back": "Check subnet AZ matches resilience plan — describe-instances → Placement.AvailabilityZone. Multi-AZ ASG: one subnet per AZ in LT/ASG.",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Apply"
+  },
+  {
+    "id": "3910b440da34",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Instance unreachable (SSH/app) — what do you check and fix?",
+    "back": "Check: SG, NACL, route, public IP/subnet · Fix: Full path debug (AWS Networking, Security group)",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Analyze"
+  },
+  {
+    "id": "c23cadac53e8",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Status checks failed — what do you check and fix?",
+    "back": "Check: System vs instance check in console · Fix: Reboot; migrate if hardware; fix disk full (instance check)",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Analyze"
+  },
+  {
+    "id": "d17749cc67e5",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Out of CPU credits (T-family) — what do you check and fix?",
+    "back": "Check: CloudWatch CPUCreditBalance · Fix: Unlimited mode or resize to M/C family",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Analyze"
+  },
+  {
+    "id": "fe084beced8d",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: User-data didn't run — what do you check and fix?",
+    "back": "Check: /var/log/cloud-init-output.log; MIME multipart · Fix: Fix script; re-run with cloud-init clean",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Analyze"
+  },
+  {
+    "id": "3c59b46a8c53",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: IAM role calls fail on instance — what do you check and fix?",
+    "back": "Check: Profile attached? IMDS reachable? · Fix: Attach profile; curl IMDSv2 token flow",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Analyze"
+  },
+  {
+    "id": "2ca99dec85ab",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Bill after terminate — what do you check and fix?",
+    "back": "Check: EBS volumes, EIP, NAT GW, snapshots · Fix: Delete orphans (see WARNING below)",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Analyze"
+  },
+  {
+    "id": "6c7ab9ca7990",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong region/AZ capacity — what do you check and fix?",
+    "back": "Check: InsufficientInstanceCapacity · Fix: Retry another AZ/type; use capacity reservations",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Analyze"
+  },
+  {
+    "id": "6f3d6a4c5672",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with AWS EC2: what silently fails?",
+    "back": "Terminate EC2, then manually delete EBS volumes, Elastic IPs, and NAT gateways — terminate stops compute; EBS/EIP/NAT keep charging if left behind.",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Evaluate"
+  },
+  {
+    "id": "5a1a0e398458",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use AWS EC2?",
+    "back": "Long-running stateless web at scale without ASG — use Auto Scaling Group + ALB. Batch/analytics — consider Fargate, AWS Lambda, or Spot Fleet for cost. Bare metal driver/hardware timing needs — consider Dedicated Hosts or on-prem.",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Evaluate"
+  },
+  {
+    "id": "18dbf840a971",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct AWS EC2 setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Launch template ──► AMI + type + subnet + SG + user-data",
+    "source": "Back2Basics/AWS/AWS EC2.md",
+    "section": "AWS EC2 · Create"
+  },
+  {
+    "id": "be3e8a98c3b2",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AWS ECR in one sentence?",
+    "back": "Private Docker registry in AWS — store images per region/account; IAM controls push/pull; integrates with ECS/EKS/Lambda/EC2. Not Docker Hub; not interchangeable without auth + URL change.",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Remember"
+  },
+  {
+    "id": "2aaf1eb7011b",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of AWS ECR (how the system thinks).",
+    "back": "ECR holds repositories of image manifests + layers (OCI-compatible). Each region has its own registry endpoint: {account}.dkr.ecr.{region}.amazonaws.com. Pull/push uses IAM (or bot IAM user in legacy setups) + short-lived authorization token from ecr:GetAuthorizationToken.",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Understand"
+  },
+  {
+    "id": "845509d21e13",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for AWS ECR?",
+    "back": "docker push ──► ECR API (auth token) ──► layer upload ──► repository:tag → ECS/EKS/Lambda ◄── pull (execution role iam: ecr:* on repo ARN) → AWS_REGION=us-east-1 → ACCOUNT=123456789012 → REPO=my-app",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Apply"
+  },
+  {
+    "id": "53f9cdc66536",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken AWS ECR setup, what is your first validation command?",
+    "back": "docker push ──► ECR API (auth token) ──► layer upload ──► repository:tag",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Apply"
+  },
+  {
+    "id": "b0dafbb03a2e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for AWS ECR?",
+    "back": "ecr:BatchGetImage, ecr:GetDownloadUrlForLayer on repo ARN. Same region pull avoids cross-region data charge; replicate for multi-region DR.",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Apply"
+  },
+  {
+    "id": "d11f5e0404ad",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: no basic auth credentials on push — what do you check and fix?",
+    "back": "Check: aws ecr get-login-password; IAM · Fix: Login; CI role GetAuthorizationToken",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Analyze"
+  },
+  {
+    "id": "a2808a6c898a",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: denied: repository does not exist — what do you check and fix?",
+    "back": "Check: Repo name/region/account in URL · Fix: Create repo; fix URI",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Analyze"
+  },
+  {
+    "id": "dc9d7cad126c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ECS/EKS CannotPullContainerError — what do you check and fix?",
+    "back": "Check: Execution role ECR perms; repo policy · Fix: Add ECR pull actions; private repo policy if cross-account",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Analyze"
+  },
+  {
+    "id": "b0fe9e887ed7",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Pull works locally, fails in cluster — what do you check and fix?",
+    "back": "Check: Cluster in private subnet without NAT/endpoint · Fix: ECR VPC endpoints",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Analyze"
+  },
+  {
+    "id": "cf0d3cbf0b61",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Image scan shows CVEs — what do you check and fix?",
+    "back": "Check: Base image stale · Fix: Rebuild from patched base; block deploy on CRITICAL (policy)",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Analyze"
+  },
+  {
+    "id": "ff6c26e13763",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Storage cost creep — what do you check and fix?",
+    "back": "Check: Untagged manifests · Fix: Lifecycle policy; delete old tags",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Analyze"
+  },
+  {
+    "id": "0d35e3f21eeb",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with AWS ECR: what silently fails?",
+    "back": "Auth token expires in 12 hours — CI must login each job (or use credential helper).",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Evaluate"
+  },
+  {
+    "id": "ba5acbd7f480",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use AWS ECR?",
+    "back": "Public OSS images — Docker Hub / ghcr.io unless mirroring into ECR for rate-limit/air-gap. Large binary blobs unrelated to containers — S3, not ECR. Single tiny Lambda zip deploy — container overhead may not pay off.",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Evaluate"
+  },
+  {
+    "id": "6d578be62fe7",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct AWS ECR setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: docker push ──► ECR API (auth token) ──► layer upload ──► repository:tag",
+    "source": "Back2Basics/AWS/AWS ECR.md",
+    "section": "AWS ECR · Create"
+  },
+  {
+    "id": "30d44ea9457f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AWS EFS (Elastic File System)?",
+    "back": "AWS EFS (Elastic File System) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/AWS/AWS EFS (Elastic File System).md",
+    "section": "AWS EFS (Elastic File System) · Remember"
+  },
+  {
+    "id": "1f47c1e30e1a",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does AWS EFS (Elastic File System) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/AWS/AWS EFS (Elastic File System).md",
+    "section": "AWS EFS (Elastic File System) · Understand"
+  },
+  {
+    "id": "fcd7409283b3",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe AWS EFS (Elastic File System) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/AWS/AWS EFS (Elastic File System).md",
+    "section": "AWS EFS (Elastic File System) · Create"
+  },
+  {
+    "id": "061b519957bc",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AWS Lambda in one sentence?",
+    "back": "Event-driven compute that runs your handler, then stops billing — configure memory/timeout/role correctly or you pay for cold starts, timeouts, and over-privileged roles. AWS Lambda Developer Guide + production bills from retry storms.",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Remember"
+  },
+  {
+    "id": "f925918eb295",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "For --timeout in AWS Lambda, what is the key fact?",
+    "back": "3–30s for APIs; longer for batch — Fail fast; don't hide hung deps",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Remember"
+  },
+  {
+    "id": "b07ec3e6c69a",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "For --memory-size in AWS Lambda, what is the key fact?",
+    "back": "Start 256–512; load-test — Under-memory = CPU starve + timeouts",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Remember"
+  },
+  {
+    "id": "aadd8f7efda5",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "For --architectures in AWS Lambda, what is the key fact?",
+    "back": "arm64 when deps allow — Often cheaper/faster per GB-s",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Remember"
+  },
+  {
+    "id": "04f580bd2207",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "For Env vars in AWS Lambda, what is the key fact?",
+    "back": "Non-secrets only — Secrets → Secrets Manager / SSM, not plain env",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Remember"
+  },
+  {
+    "id": "3cd8846a202c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "For Ephemeral /tmp in AWS Lambda, what is the key fact?",
+    "back": "≤ 512 MB–10 GB (config) — Not durable storage",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Remember"
+  },
+  {
+    "id": "ed3f0ec5c5e8",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of AWS Lambda (how the system thinks).",
+    "back": "Lambda is stateless compute on demand: an event (API Gateway, SQS, S3, EventBridge, cron) invokes a handler in a managed runtime (or container image). You do not manage servers; you manage execution role, memory, timeout, concurrency, and triggers. Cold start = new execution environment; warm reuse is best-effort, not a guarantee.",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Understand"
+  },
+  {
+    "id": "55c750046d7d",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for AWS Lambda?",
+    "back": "Event source ──► Lambda service ──► execution env (runtime + your code) → aws configure # or: aws sso login → aws sts get-caller-identity → Attach least-privilege policies. Minimum for logs: → VPC-attached functions also need:",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Apply"
+  },
+  {
+    "id": "e1f41529d1c0",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken AWS Lambda setup, what is your first validation command?",
+    "back": "Event source ──► Lambda service ──► execution env (runtime + your code)",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Apply"
+  },
+  {
+    "id": "3e43f299ca93",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for AWS Lambda?",
+    "back": "Need: account access, a region, and an IAM role Lambda can assume (lambda.amazonaws.com trust).",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Apply"
+  },
+  {
+    "id": "6e71e9f7ef60",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: AccessDeniedException / can't talk to S3/Dynamo — what do you check and fix?",
+    "back": "Check: Execution role policies; resource policies · Fix: Least-privilege allow on role; fix resource ARN (ARN (Amazon Resource Name))",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Analyze"
+  },
+  {
+    "id": "4a4b37c2a1cf",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Timeout near limit — what do you check and fix?",
+    "back": "Check: CW Logs duration; downstream latency; memory · Fix: Raise memory (CPU) or timeout; fix hung I/O; shorten work",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Analyze"
+  },
+  {
+    "id": "93d7aaddeb66",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cold start latency spikes — what do you check and fix?",
+    "back": "Check: Init duration in logs; VPC?; large package · Fix: Slim package; arm64; provisioned concurrency; avoid VPC if possible",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Analyze"
+  },
+  {
+    "id": "fcb0a63ffe0a",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ResourceConflictException on update — what do you check and fix?",
+    "back": "Check: Previous update still in progress · Fix: Poll LastUpdateStatus; serialize deploys",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Analyze"
+  },
+  {
+    "id": "23de0978601a",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Throttling (429 / Rate exceeded) — what do you check and fix?",
+    "back": "Check: Reserved concurrency too low; account concurrency · Fix: Raise reserved or account limit; backpressure at source",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Analyze"
+  },
+  {
+    "id": "1f027030acac",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Async retries / duplicate side effects — what do you check and fix?",
+    "back": "Check: Event source retry + DLQ empty · Fix: Idempotent handler; DLQ + alarm; SQS partial batch failure",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Analyze"
+  },
+  {
+    "id": "37088a1ddfc4",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Can't reach RDS in VPC — what do you check and fix?",
+    "back": "Check: Subnets, SG, route, ENI role policy · Fix: Fix SG path; attach VPCAccessExecutionRole; multi-AZ subnets",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Analyze"
+  },
+  {
+    "id": "9af2f6f30103",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CodeStorageExceededException — what do you check and fix?",
+    "back": "Check: Account code storage quota · Fix: Delete old versions; use images or S3 for large artifacts",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Analyze"
+  },
+  {
+    "id": "ad3cbb18a210",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Handler not found — what do you check and fix?",
+    "back": "Check: --handler path vs export name · Fix: Fix file.export; zip from correct root (no nested junk folder)",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Analyze"
+  },
+  {
+    "id": "f76b1f9d0d5a",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with AWS Lambda: what silently fails?",
+    "back": "Retries are a feature — SQS, async invoke, and stream consumers retry. Non-idempotent writes → duplicate charges, double emails, double orders. Design for at-least-once.",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Evaluate"
+  },
+  {
+    "id": "880a47aee4b4",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use AWS Lambda?",
+    "back": "Steady 24/7 high-QPS with tiny payloads — often cheaper/simpler on ECS/Fargate or EC2 behind an ALB once always-on. Workloads needing >15 minutes wall clock — Step Functions + workers, Batch, or a job runner. WebSockets / sticky long-lived connections — API Gateway WebSocket + Lambda is possible but awkward; consider dedicated connection brokers. Heavy GPU / specialized hardware —…",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Evaluate"
+  },
+  {
+    "id": "1291899760de",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct AWS Lambda setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Event source ──► Lambda service ──► execution env (runtime + your code)",
+    "source": "Back2Basics/AWS/AWS Lambda.md",
+    "section": "AWS Lambda · Create"
+  },
+  {
+    "id": "ba2b8859eb59",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AWS Networking in one sentence?",
+    "back": "VPC + subnets + routing + SG/NACL — the network shell every AWS service lives in. AWS Well-Architected (Reliability/Security) + on-call VPC debug muscle memory.",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Remember"
+  },
+  {
+    "id": "e467282f57d5",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is CIDR?",
+    "back": "/16 VPC, /24 subnets — leave headroom; overlapping CIDR blocks cannot be peered later.",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Remember"
+  },
+  {
+    "id": "9e4d298ec19c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Multi-AZ?",
+    "back": "always span ≥2 AZs for anything that matters; single-AZ NAT is a known SPOF (accept cost or run NAT per AZ).",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Remember"
+  },
+  {
+    "id": "02468b444ff5",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is DNS?",
+    "back": "enable enableDnsHostnames + enableDnsSupport on VPC (required for private hosted zones and many managed services).",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Remember"
+  },
+  {
+    "id": "e3e2a5a34b1e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of AWS Networking (how the system thinks).",
+    "back": "AWS networking is regional isolation inside a VPC: you own private IP space, carve subnets per AZ, attach route tables (where traffic goes), and gate traffic with Security Groups (stateful, instance-level) and NACLs (stateless, subnet-level). Public subnets reach the internet via Internet Gateway (IGW); private subnets reach out via NAT Gateway/GW or VPC endpoints (stay on AWS backbon…",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Understand"
+  },
+  {
+    "id": "40921772173a",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for AWS Networking?",
+    "back": "Internet ──► IGW ──► public subnet (ALB, bastion) → aws ec2 describe-instances --instance-ids i-xxx \\ → aws ec2 describe-route-tables --filters \"Name=association.subnet-id,Values=subnet-xxx\" → aws ec2 create-network-insights-path --source i-xxx --destination i-yyy --protocol tcp --destination-port 443",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Apply"
+  },
+  {
+    "id": "c06fcd925ea5",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken AWS Networking setup, what is your first validation command?",
+    "back": "Internet ──► IGW ──► public subnet (ALB, bastion)",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Apply"
+  },
+  {
+    "id": "f164d22de72e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for AWS Networking?",
+    "back": "CIDR: /16 VPC, /24 subnets — leave headroom; overlapping CIDR blocks cannot be peered later. Multi-AZ: always span ≥2 AZs for anything that matters; single-AZ NAT is a known SPOF (accept cost or run NAT per AZ). DNS: enable enableDnsHostnames + enableDnsSupport on VPC (required for private hosted zones and many managed services).",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Apply"
+  },
+  {
+    "id": "a0a4804f1d60",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: EC2 has no public IP but \"should\" — what do you check and fix?",
+    "back": "Check: Subnet auto-assign public IP; IGW attached to VPC · Fix: Enable auto-assign or attach EIP; verify public subnet route to IGW",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Analyze"
+  },
+  {
+    "id": "f0eb9b5db77b",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Private instance can't reach internet — what do you check and fix?",
+    "back": "Check: NAT GW in public subnet? Route 0.0.0.0/0 → NAT on private RT? · Fix: Fix route table association; NAT GW must sit in public subnet with IGW route",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Analyze"
+  },
+  {
+    "id": "26dec05e0335",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works instance-to-instance in same SG, fails cross-SG — what do you check and fix?",
+    "back": "Check: Security group inbound/outbound rules · Fix: Add SG-to-SG rule (reference SG id, not CIDR) on both sides if needed",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Analyze"
+  },
+  {
+    "id": "2c597ae00553",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: RDS/Redis \"connection timed out\" from app — what do you check and fix?",
+    "back": "Check: App in private subnet? SG allows app SG on DB port? NACL 1024-65535 return? · Fix: Open SG; verify NACL ephemeral return (NACL is stateless)",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Analyze"
+  },
+  {
+    "id": "72da783cdc0c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DNS resolves wrong / not at all — what do you check and fix?",
+    "back": "Check: VPC DNS settings; Route53 resolver rules; hybrid DNS · Fix: Enable DNS on VPC; check PHZ association; forwarders for on-prem",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Analyze"
+  },
+  {
+    "id": "67874b9babbf",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Peering/Transit Gateway \"partial\" connectivity — what do you check and fix?",
+    "back": "Check: Route tables on both sides; SG still independent · Fix: Add routes both directions; SG rules don't inherit from peering",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Analyze"
+  },
+  {
+    "id": "00958dfecea9",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NAT GW bill spike — what do you check and fix?",
+    "back": "Check: CloudWatch BytesOutToDestination; which AZ/subnet? · Fix: VPC endpoints for S3/ECR; fix hairpin traffic; review scrapers",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Analyze"
+  },
+  {
+    "id": "d4708f4e64b7",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with AWS Networking: what silently fails?",
+    "back": "Security Groups are stateful; NACLs are stateless. SG \"allow 443 in\" implies return traffic. NACL needs explicit ephemeral port range outbound and inbound for return packets — classic \"SG looks fine, still broken\" cause.",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Evaluate"
+  },
+  {
+    "id": "cf75d649203c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use AWS Networking?",
+    "back": "Default VPC for production — no blast-radius separation, CIDR collisions when peering. Public IPs on app/database tiers — use ALB + private subnets; bastion or SSM Session Manager for admin. NACL micromanagement — start with SG-only; add NACLs for explicit deny (compliance) or subnet-level guardrails. One NAT GW for multi-AZ prod HA — AZ failure kills all private egress.",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Evaluate"
+  },
+  {
+    "id": "e11efdf985a2",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct AWS Networking setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Internet ──► IGW ──► public subnet (ALB, bastion)",
+    "source": "Back2Basics/AWS/AWS Networking.md",
+    "section": "AWS Networking · Create"
+  },
+  {
+    "id": "3943e48fec67",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AWS cli commands?",
+    "back": "STS -> service tells you which AWS account you are connected to, which IAM user or role you are currently using, if you credentials are valid and not expired.",
+    "source": "Back2Basics/AWS/AWS cli commands.md",
+    "section": "AWS cli commands · Remember"
+  },
+  {
+    "id": "4dac87d77a85",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for AWS cli commands?",
+    "back": "aws configure → aws sts get-caller-identity → aws sts get-caller-identity --query Account --output text; # get only specific fields → aws iam delete-access-key --access-key-id <access key id>; → aws ec2 describe-regions --query \"Regions[].RegionName\";",
+    "source": "Back2Basics/AWS/AWS cli commands.md",
+    "section": "AWS cli commands · Apply"
+  },
+  {
+    "id": "c2d029681327",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken AWS cli commands setup, what is your first validation command?",
+    "back": "aws configure",
+    "source": "Back2Basics/AWS/AWS cli commands.md",
+    "section": "AWS cli commands · Apply"
+  },
+  {
+    "id": "1fe86363146d",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct AWS cli commands setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: aws configure",
+    "source": "Back2Basics/AWS/AWS cli commands.md",
+    "section": "AWS cli commands · Create"
+  },
+  {
+    "id": "4027e50d30bd",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AWS cli installation?",
+    "back": "aws cli installation linux",
+    "source": "Back2Basics/AWS/AWS cli installation.md",
+    "section": "AWS cli installation · Remember"
+  },
+  {
+    "id": "fae3ddd48c11",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for AWS cli installation?",
+    "back": "curl \"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\" -o \"awscliv2.zip\" → unzip awscliv2.zip → sudo ./aws/install → sudo apt install -y bash-completion; → complete -C \"$(command -v aws_completer)\" aws;",
+    "source": "Back2Basics/AWS/AWS cli installation.md",
+    "section": "AWS cli installation · Apply"
+  },
+  {
+    "id": "3a3493da782f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken AWS cli installation setup, what is your first validation command?",
+    "back": "curl \"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\" -o \"awscliv2.zip\"",
+    "source": "Back2Basics/AWS/AWS cli installation.md",
+    "section": "AWS cli installation · Apply"
+  },
+  {
+    "id": "f4f1a34ff68e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct AWS cli installation setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: curl \"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\" -o \"awscliv2.zip\"",
+    "source": "Back2Basics/AWS/AWS cli installation.md",
+    "section": "AWS cli installation · Create"
+  },
+  {
+    "id": "09f077a11494",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is EBS (Elastic Block Store)?",
+    "back": "EBS in AWS stands for Elastic Block Store. Purpose: It provides persistent block storage for EC2 instances. Use: It stores data such as file systems, databases, or application data. Scalability: EBS volumes can be dynamically resized, and you can attach them …",
+    "source": "Back2Basics/AWS/EBS (Elastic Block Store).md",
+    "section": "EBS (Elastic Block Store) · Remember"
+  },
+  {
+    "id": "b1c8c1288254",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Purpose?",
+    "back": "It provides persistent block storage for EC2 instances.",
+    "source": "Back2Basics/AWS/EBS (Elastic Block Store).md",
+    "section": "EBS (Elastic Block Store) · Remember"
+  },
+  {
+    "id": "10fdad9819d5",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Use?",
+    "back": "It stores data such as file systems, databases, or application data.",
+    "source": "Back2Basics/AWS/EBS (Elastic Block Store).md",
+    "section": "EBS (Elastic Block Store) · Remember"
+  },
+  {
+    "id": "4ef82e4fcde8",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Scalability?",
+    "back": "EBS volumes can be dynamically resized, and you can attach them to EC2 instances.",
+    "source": "Back2Basics/AWS/EBS (Elastic Block Store).md",
+    "section": "EBS (Elastic Block Store) · Remember"
+  },
+  {
+    "id": "53293d595249",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Types?",
+    "back": "Includes SSD-backed (General Purpose, Provisioned IOPS) and HDD-backed (Throughput Optimized, Cold) options.",
+    "source": "Back2Basics/AWS/EBS (Elastic Block Store).md",
+    "section": "EBS (Elastic Block Store) · Remember"
+  },
+  {
+    "id": "dd661b29057d",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AWS Elastic IP (EIP) in one sentence?",
+    "back": "Static public IPv4 in a region — survives stop/start, anchors DNS A records, and fronts NAT gateways. AWS EC2 User Guide (Elastic IP addresses) + billing surprises from orphaned or stopped-instance EIPs.",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Remember"
+  },
+  {
+    "id": "32a84ad2aa6f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of AWS Elastic IP (EIP) (how the system thinks).",
+    "back": "An Elastic IP is a regional, static public IPv4 you allocate into your account and associate with a network interface (usually an EC2 instance's primary ENI, or a NAT Gateway's ENI). It is not tied to an AZ until associated — the ENI's subnet/AZ defines placement.",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Understand"
+  },
+  {
+    "id": "7f4441131810",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for AWS Elastic IP (EIP)?",
+    "back": "Allocate EIP (regional pool) → aws ec2 allocate-address \\ → aws ec2 associate-address \\ → aws ec2 associate-address \\ → aws ec2 describe-addresses --allocation-ids eipalloc-0def456 \\",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Apply"
+  },
+  {
+    "id": "e45036b9d868",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken AWS Elastic IP (EIP) setup, what is your first validation command?",
+    "back": "Allocate EIP (regional pool)",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Apply"
+  },
+  {
+    "id": "4a106a08c7c8",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for AWS Elastic IP (EIP)?",
+    "back": "See How to connect Godaddy domain with AWS EC2 instance for full registrar + HTTPS runbook.",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Apply"
+  },
+  {
+    "id": "47877dcea939",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Can't SSH/curl by EIP — what do you check and fix?",
+    "back": "Check: Security group inbound; app bind address; NACL · Fix: Open 22/80/443; listen 0.0.0.0; verify subnet is public + IGW route",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Analyze"
+  },
+  {
+    "id": "d12339a9d78f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: EIP shows associated but no inbound — what do you check and fix?",
+    "back": "Check: Route table on instance subnet → IGW? · Fix: Associate subnet with public route table; attach IGW to VPC",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Analyze"
+  },
+  {
+    "id": "b2688f4e4af7",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DNS points to old IP after change — what do you check and fix?",
+    "back": "Check: dig +short domain A; TTL cache · Fix: Lower TTL before migration; update A/ALIAS to new EIP",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Analyze"
+  },
+  {
+    "id": "41f7aecec7d8",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: IP changed after stop/start — what do you check and fix?",
+    "back": "Check: Was auto public IP, not EIP · Fix: Allocate + associate EIP before relying on DNS",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Analyze"
+  },
+  {
+    "id": "5133c52820e0",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: AddressLimitExceeded — what do you check and fix?",
+    "back": "Check: describe-addresses count in region · Fix: Release unused EIPs; request quota increase",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Analyze"
+  },
+  {
+    "id": "b758ecd67285",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: EIP won't associate to ENI — what do you check and fix?",
+    "back": "Check: ENI in public subnet? Same region? · Fix: Move ENI to public subnet or pick ENI in correct VPC/region",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Analyze"
+  },
+  {
+    "id": "662f55b91bd7",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Private instance \"has EIP\" but no internet in — what do you check and fix?",
+    "back": "Check: Expectation mismatch — inbound only via EIP path · Fix: Outbound from private subnet needs NAT, not EIP on instance",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Analyze"
+  },
+  {
+    "id": "2cd541e4b572",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Bill for \"EC2-Other\" / Elastic IP — what do you check and fix?",
+    "back": "Check: EIP unassociated or on stopped instance · Fix: Start instance, disassociate + release, or associate to running resource",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Analyze"
+  },
+  {
+    "id": "9332b01b3ba6",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NAT works one AZ, not another — what do you check and fix?",
+    "back": "Check: Per-AZ NAT + route table association · Fix: Each private subnet RT must point to NAT in same AZ",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Analyze"
+  },
+  {
+    "id": "383fd35cf9a2",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Association fails after ENI swap — what do you check and fix?",
+    "back": "Check: Stale association on old ENI · Fix: Disassociate from old ENI; associate to new primary ENI",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Analyze"
+  },
+  {
+    "id": "4e906640e56c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with AWS Elastic IP (EIP): what silently fails?",
+    "back": "Unassociated EIP bills hourly — and EIPs on stopped instances also bill. Free tier: first one EIP associated with a running instance is free; extras and idle EIPs are not.",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Evaluate"
+  },
+  {
+    "id": "52274f220212",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use AWS Elastic IP (EIP)?",
+    "back": "Production web behind scaling or blue/green — use ALB/NLB + Route53 ALIAS; don't pin users to one instance EIP. Private app/database tiers — no public IP; use internal LB and NAT (Network Address Translation) for outbound only. IPv6-only workloads — use IPv6 addressing; EIP is IPv4-only. Avoiding NAT cost by EIP on every instance — security and ops overhead; prefer VPC endpoin…",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Evaluate"
+  },
+  {
+    "id": "09a993f9dabd",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct AWS Elastic IP (EIP) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Allocate EIP (regional pool)",
+    "source": "Back2Basics/AWS/Elastic IP.md",
+    "section": "AWS Elastic IP (EIP) · Create"
+  },
+  {
+    "id": "e1721e33e64f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Connect GoDaddy domain to AWS EC2 in one sentence?",
+    "back": "Runbook: point a GoDaddy-registered domain at an EC2 instance with correct DNS, networking, and HTTPS — Route53 vs GoDaddy NS decision first.",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Remember"
+  },
+  {
+    "id": "8adace00e56c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Connect GoDaddy domain to AWS EC2 (how the system thinks).",
+    "back": "Registration and DNS hosting are separate. GoDaddy holds the domain registration; whoever hosts the nameservers controls A/CNAME/ALIAS records.",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Understand"
+  },
+  {
+    "id": "c11f304fd993",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Connect GoDaddy domain to AWS EC2?",
+    "back": "Propagation: usually 5–30 min; TTL controls stale cache duration. → Route53 ALIAS to ALB example: target = dualstack.my-alb-xxxxx.region.elb.amazonaws.com, type A. → For ALB termination: ACM cert in us-east-1 if CloudFront; regional ACM for ALB. No certbot on instance.",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Apply"
+  },
+  {
+    "id": "9fae225bfbb5",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Connect GoDaddy domain to AWS EC2 setup, what is your first validation command?",
+    "back": "Propagation: usually 5–30 min; TTL controls stale cache duration.",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Apply"
+  },
+  {
+    "id": "c68fd281b88d",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Connect GoDaddy domain to AWS EC2?",
+    "back": "Propagation: usually 5–30 min; TTL controls stale cache duration.",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Apply"
+  },
+  {
+    "id": "262a88e4cd03",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Domain doesn't resolve — what do you check and fix?",
+    "back": "Check: dig yourdomain.com NS + A · Fix: Wrong NS delegation; A record still pointing at old IP",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Analyze"
+  },
+  {
+    "id": "404c53777bd6",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Resolves but connection timeout — what do you check and fix?",
+    "back": "Check: SG rules; ss -tlnp \\ · Fix: grep :80",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Analyze"
+  },
+  {
+    "id": "2a57d7ea5c72",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works by IP, not domain — what do you check and fix?",
+    "back": "Check: curl -H 'Host: yourdomain.com' http://<EIP> · Fix: DNS not updated; vhost server_name mismatch",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Analyze"
+  },
+  {
+    "id": "7fd602eef6b3",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: HTTPS cert error — what do you check and fix?",
+    "back": "Check: certbot certificates; expiry · Fix: Renew; ensure port 80 open for HTTP-01",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Analyze"
+  },
+  {
+    "id": "2fa412c53571",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Intermittent after reboot — what do you check and fix?",
+    "back": "Check: EIP disassociated? · Fix: Re-associate Elastic IP; use ENI/EIP automation",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Analyze"
+  },
+  {
+    "id": "8f68abd3b4c9",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: www works, apex doesn't — what do you check and fix?",
+    "back": "Check: Apex CNAME attempt · Fix: Use A/ALIAS at apex, not CNAME",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Analyze"
+  },
+  {
+    "id": "5575c2240db6",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow cutover — what do you check and fix?",
+    "back": "Check: Old TTL 86400 · Fix: Lower TTL 24h before migration",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Analyze"
+  },
+  {
+    "id": "481daad1447d",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Connect GoDaddy domain to AWS EC2: what silently fails?",
+    "back": "GoDaddy \"Forwarding\" vs DNS A record — URL forwarding masks DNS; breaks certbot and API clients. Use DNS records only.",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Evaluate"
+  },
+  {
+    "id": "87fed6b97964",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Connect GoDaddy domain to AWS EC2?",
+    "back": "Bare EC2 + manual DNS at scale — move to ALB + Route53 + ACM. CNAME apex — use Route53 ALIAS or ANAME provider feature. certbot on instance behind TLS-only ALB — terminate at ALB with ACM; use DNS-01 if needed.",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Evaluate"
+  },
+  {
+    "id": "34088cc18e47",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Connect GoDaddy domain to AWS EC2 setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Propagation: usually 5–30 min; TTL controls stale cache duration.",
+    "source": "Back2Basics/AWS/How to connect Godaddy domain with AWS EC2 instance.md",
+    "section": "Connect GoDaddy domain to AWS EC2 · Create"
+  },
+  {
+    "id": "a1e42d00c019",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is IAM in one sentence?",
+    "back": "Who can do what to which resource — users, groups, roles, policies, permission boundaries, and SCPs (org level). AWS IAM best practices + audit findings from over-privileged CI roles.",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Remember"
+  },
+  {
+    "id": "50b4544fe286",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of IAM (how the system thinks).",
+    "back": "IAM is AWS's authorization graph: principals (users, roles, federated identities) assume policies (identity-based + resource-based) evaluated at API call time. Roles (with aws STS (Security Token Service)) are the production default; users + access keys are legacy/break-glass.",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Understand"
+  },
+  {
+    "id": "deca6af876a7",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for IAM?",
+    "back": "Request ──► AuthN (who) ──► IAM policy eval ──► Allow/Deny ──► API → Attach managed or inline policy with least privilege — e.g. s3:GetObject on arn:aws:s3:::my-bucket/*, not s3:*.",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Apply"
+  },
+  {
+    "id": "2a6d77b3c2f0",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken IAM setup, what is your first validation command?",
+    "back": "Request ──► AuthN (who) ──► IAM policy eval ──► Allow/Deny ──► API",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Apply"
+  },
+  {
+    "id": "58735b5e6c8b",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for IAM?",
+    "back": "Attach managed or inline policy with least privilege — e.g. s3:GetObject on arn:aws:s3:::my-bucket/*, not s3:*.",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Apply"
+  },
+  {
+    "id": "24bcfaf5a21e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: AccessDenied despite \"Admin\" — what do you check and fix?",
+    "back": "Check: SCP? Permission boundary? Session policy? · Fix: Org SCP; boundary; explicit Deny in policy",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Analyze"
+  },
+  {
+    "id": "e87150cbd30f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CI deploy role stopped working — what do you check and fix?",
+    "back": "Check: OIDC trust repo branch; role session name · Fix: Fix IdP condition keys",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Analyze"
+  },
+  {
+    "id": "e9ee976b2db0",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cross-account S3/KMS fail after role fix — what do you check and fix?",
+    "back": "Check: Resource policy on bucket/key · Fix: Add Principal for role ARN",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Analyze"
+  },
+  {
+    "id": "f8af638fbfce",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: InvalidUserID.NotFound — what do you check and fix?",
+    "back": "Check: Wrong account/ partition in ARN (Amazon Resource Name) · Fix: Fix ARN",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Analyze"
+  },
+  {
+    "id": "255c680180be",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: New hire can't console login — what do you check and fix?",
+    "back": "Check: Identity Center assignment; IdP sync · Fix: Assign permission set; SCIM/group mapping",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Analyze"
+  },
+  {
+    "id": "b86be8ae8196",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: AccessDeniedException on PassRole — what do you check and fix?",
+    "back": "Check: iam:PassRole for deployment roles · Fix: Scope PassRole to specific role ARNs",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Analyze"
+  },
+  {
+    "id": "f018048eab9f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with IAM: what silently fails?",
+    "back": "Default service roles (AWSServiceRoleForSupport, AWSServiceRoleForTrustedAdvisor) — AWS-managed; don't delete; not where your app permissions live.",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Evaluate"
+  },
+  {
+    "id": "e80eb093fa01",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use IAM?",
+    "back": "IAM users with access keys for application runtime — use instance profile / IRSA / Lambda execution role. Shared root account credentials — enable root MFA; lock root to break-glass only. Duplicating AWS-managed policy by copy-paste — attach AWS managed and add small custom policy for deltas.",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Evaluate"
+  },
+  {
+    "id": "79ae61f59626",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct IAM setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Request ──► AuthN (who) ──► IAM policy eval ──► Allow/Deny ──► API",
+    "source": "Back2Basics/AWS/IAM.md",
+    "section": "IAM · Create"
+  },
+  {
+    "id": "b6a2f18b3cc8",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Route53 in one sentence?",
+    "back": "AWS authoritative DNS + health-checked routing + private zones — not just \"create an A record.\" Route53 Developer Guide + prod cutover war stories.",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Remember"
+  },
+  {
+    "id": "483e75aaf452",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Route53 (how the system thinks).",
+    "back": "Route53 hosts hosted zones (public on the internet, or private associated with VPCs). Records answer queries; routing policies (weighted, latency, failover, geolocation) steer traffic. Health checks remove unhealthy targets from DNS answers (with caveats — DNS TTL caching delays failover).",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Understand"
+  },
+  {
+    "id": "a380662c5927",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Route53?",
+    "back": "Client resolver ──► Route53 (authoritative for zone) ──► A/AAAA/CNAME/ALIAS → aws route53 list-hosted-zones-by-name --dns-name example.com → aws route53 change-resource-record-sets --hosted-zone-id Z123 --change-batch file://change.json",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Apply"
+  },
+  {
+    "id": "fd31039a8529",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Route53 setup, what is your first validation command?",
+    "back": "Client resolver ──► Route53 (authoritative for zone) ──► A/AAAA/CNAME/ALIAS",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Apply"
+  },
+  {
+    "id": "ad1c1e95928b",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Route53?",
+    "back": "change.json (ALIAS to ALB):",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Apply"
+  },
+  {
+    "id": "f0727ceb49df",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Domain doesn't resolve at all — what do you check and fix?",
+    "back": "Check: NS at registrar match Route53 zone; zone exists · Fix: Update registrar NS; wait propagation (up to 48h, often minutes)",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Analyze"
+  },
+  {
+    "id": "b553c808b739",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Resolves old IP after change — what do you check and fix?",
+    "back": "Check: TTL; cached at resolver/ISP · Fix: Lower TTL pre-change; dig +trace; flush local cache",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Analyze"
+  },
+  {
+    "id": "8f453438b225",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Apex works, www doesn't (or reverse) — what do you check and fix?",
+    "back": "Check: Missing record; CNAME at apex (invalid) · Fix: ALIAS at apex; CNAME for subdomains only",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Analyze"
+  },
+  {
+    "id": "5f4793482192",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Private name resolves on laptop, not in VPC — what do you check and fix?",
+    "back": "Check: PHZ VPC association; enableDnsSupport · Fix: Associate VPC; check hybrid DNS forwarders",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Analyze"
+  },
+  {
+    "id": "d7395becda7f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Failover didn't switch — what do you check and fix?",
+    "back": "Check: Health check region; TTL; EvaluateTargetHealth false · Fix: Fix health check path; enable eval; accept DNS delay",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Analyze"
+  },
+  {
+    "id": "86ed28b88c4b",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ACM cert stuck pending validation — what do you check and fix?",
+    "back": "Check: TXT/CNAME record in same zone ACM expects · Fix: Create exact validation record Route53 can auto-create",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Analyze"
+  },
+  {
+    "id": "b5a322b54544",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SERVFAIL intermittent — what do you check and fix?",
+    "back": "Check: Route53 query logging; lame delegations · Fix: Fix child NS; check DS/DNSSEC if enabled",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Analyze"
+  },
+  {
+    "id": "c6ffdfa48ce5",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Route53: what silently fails?",
+    "back": "DNS failover is not instant — clients and resolvers cache TTL. Plan for minutes of bleed; use health checks + app-layer retries.",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Evaluate"
+  },
+  {
+    "id": "050e1c18020e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Route53?",
+    "back": "Sub-millisecond failover requirement — DNS alone insufficient; use anycast LB + health checks at L7/L4. Complex geo compliance — combine with CloudFront/Lambda@Edge; Route53 geolocation is coarse. Full DNS server features (custom AXFR to random NS) — Route53 is managed authoritative, not a general BIND replacement (servers/BIND).",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Evaluate"
+  },
+  {
+    "id": "4894d7a0bf0c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Route53 setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Client resolver ──► Route53 (authoritative for zone) ──► A/AAAA/CNAME/ALIAS",
+    "source": "Back2Basics/AWS/Networking/Route53.md",
+    "section": "Route53 · Create"
+  },
+  {
+    "id": "10ff23087eeb",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Security Group in one sentence?",
+    "back": "Stateful virtual firewall at ENI level — default deny inbound, allow by rule; return traffic automatically permitted. Primary ingress/egress control for EC2, RDS, ELB, Lambda-in-VPC, ElastiCache, etc.",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Remember"
+  },
+  {
+    "id": "5f806ca78d5f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Least privilege ports?",
+    "back": "8080/tcp not -1 (all protocols) unless proven necessary.",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Remember"
+  },
+  {
+    "id": "1b870240dfb1",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Separate SG per tier?",
+    "back": "don't reuse default SG.",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Remember"
+  },
+  {
+    "id": "1f5f76cac38d",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Security Group (how the system thinks).",
+    "back": "A Security Group (SG) is a label + rule set attached to ENIs (instances, load balancers, RDS). Rules are allow-only (no deny rules). Stateful: if inbound TCP 443 is allowed and connection established, return packets flow without explicit outbound rule for that flow.",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Understand"
+  },
+  {
+    "id": "d17a0f76333f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Security Group?",
+    "back": "Internet ──► SG(inbound: 443 from 0.0.0.0/0) ──► EC2:443 → aws ec2 describe-security-groups --group-ids sg-xxx \\ → aws ec2 authorize-security-group-ingress \\ → aws ec2 create-network-insights-path --source sg-xxx --destination sg-yyy ...",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Apply"
+  },
+  {
+    "id": "6e3f70ca9bf3",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Security Group setup, what is your first validation command?",
+    "back": "Internet ──► SG(inbound: 443 from 0.0.0.0/0) ──► EC2:443",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Apply"
+  },
+  {
+    "id": "e1a7928437a0",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Security Group?",
+    "back": "Reference SG ids, not CIDR, for east-west traffic — IPs change; SG membership is stable.",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Apply"
+  },
+  {
+    "id": "330162259c8b",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connection timeout to EC2/RDS — what do you check and fix?",
+    "back": "Check: SG inbound on destination; outbound on source if non-stateful path · Fix: Add SG-to-SG or CIDR rule on correct port",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Analyze"
+  },
+  {
+    "id": "cb09d5befb71",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works from one instance, not another — what do you check and fix?",
+    "back": "Check: Different SG attachment · Fix: Align SG or add missing rule",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Analyze"
+  },
+  {
+    "id": "11ff66549947",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ALB targets unhealthy — what do you check and fix?",
+    "back": "Check: Target SG allows ALB SG on app/health port · Fix: Open port from alb-sg",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Analyze"
+  },
+  {
+    "id": "8519799ba6f9",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Intermittent after scale-out — what do you check and fix?",
+    "back": "Check: New instances missing SG or wrong SG · Fix: Launch template SG; ASG verify",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Analyze"
+  },
+  {
+    "id": "fd355fd28b41",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"SG looks open\" but still blocked — what do you check and fix?",
+    "back": "Check: NACL; route table; app not listening; wrong VPC · Fix: SG is necessary not sufficient — check full path (AWS Networking)",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Analyze"
+  },
+  {
+    "id": "8ac969109545",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: IPv6 path broken — what do you check and fix?",
+    "back": "Check: Separate IPv6 rules in SG (not implied by IPv4) · Fix: Add ::/0 or specific v6 rules explicitly",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Analyze"
+  },
+  {
+    "id": "7c4ad16b6c56",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Lambda in VPC can't reach RDS — what do you check and fix?",
+    "back": "Check: Lambda SG + RDS SG reciprocal · Fix: Lambda SG egress + RDS SG inbound from Lambda SG",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Analyze"
+  },
+  {
+    "id": "ed20e60cedac",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Security Group: what silently fails?",
+    "back": "Changing SG rules is immediate — no \"apply\" delay, but existing TCP sessions may not pick up new deny (stateful tracking). Restart connection after rule change.",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Evaluate"
+  },
+  {
+    "id": "c7bbd0a3936d",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Security Group?",
+    "back": "Subnet-wide block list (deny bad IP) — SG has no deny; use NACL or AWS Network Firewall / WAF at edge. Application auth — SG is network layer; never expose admin API to world because \"it's password protected.\" Replacing IAM — opening SG to 0.0.0.0/0 on 443 doesn't replace authn/z at app layer.",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Evaluate"
+  },
+  {
+    "id": "7f57fc980242",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Security Group setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Internet ──► SG(inbound: 443 from 0.0.0.0/0) ──► EC2:443",
+    "source": "Back2Basics/AWS/Security group.md",
+    "section": "Security Group · Create"
+  },
+  {
+    "id": "0b89fca9546b",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AWS STS (Security Token Service) in one sentence?",
+    "back": "Short-lived temporary credentials (AccessKeyId, SecretAccessKey, SessionToken) instead of long-lived IAM user keys — foundation for roles, federation, and cross-account access. AWS IAM docs + incident stories from leaked static keys.",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Remember"
+  },
+  {
+    "id": "8ade2a6e0cc0",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of AWS STS (Security Token Service) (how the system thinks).",
+    "back": "STS is AWS's token mint: you prove identity (IAM user, role, SAML/OIDC, or another account's role), STS returns credentials valid for minutes to hours, bound to an IAM role's permissions. Every AssumeRole, EC2 instance profile, Lambda execution role, and aws sso login session flows through STS.",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Understand"
+  },
+  {
+    "id": "d9495e1e9b81",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for AWS STS (Security Token Service)?",
+    "back": "Caller ──► sts:AssumeRole ──► temporary creds ──► AWS APIs (scoped to role policy) → aws sts get-caller-identity → aws sts assume-role \\ → eval \"$(aws sts assume-role ... --query 'Credentials.[AccessKeyId,SecretAccessKey,SessionToken]' --output text | \\ → awk '{print \"export AWS_ACCESS_KEY_ID=\"$1\"\\nexport AWS_SECRET_ACCESS_KEY=\"$2\"\\nexport AWS_SESSION_TOKEN=\"$3}')\"",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Apply"
+  },
+  {
+    "id": "6aa93266593e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken AWS STS (Security Token Service) setup, what is your first validation command?",
+    "back": "Caller ──► sts:AssumeRole ──► temporary creds ──► AWS APIs (scoped to role policy)",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Apply"
+  },
+  {
+    "id": "4619ee88744e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for AWS STS (Security Token Service)?",
+    "back": "EC2 instance profile → IMDS delivers rotating role creds (prefer IMDSv2: HttpTokens: required). EKS IRSA → OIDC trust to sts:AssumeRoleWithWebIdentity. Lambda → execution role creds injected by runtime.",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Apply"
+  },
+  {
+    "id": "0b9bbadc9bce",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: AccessDenied on AssumeRole — what do you check and fix?",
+    "back": "Check: Trust policy Principal; role name/ARN; ExternalId · Fix: Fix trust Principal; pass correct ExternalId",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Analyze"
+  },
+  {
+    "id": "02a430be9e7c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ExpiredToken mid-deploy — what do you check and fix?",
+    "back": "Check: Session duration; clock skew on host · Fix: Re-assume; sync NTP; increase duration within max",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Analyze"
+  },
+  {
+    "id": "99d15af0347f",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works locally, fails in CI — what do you check and fix?",
+    "back": "Check: OIDC thumbprint/audience; repo/org condition · Fix: Fix IdP trust; scope sub/aud conditions",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Analyze"
+  },
+  {
+    "id": "0f4d606553b6",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: EC2/Lambda \"can't reach AWS APIs\" — what do you check and fix?",
+    "back": "Check: Instance profile attached? IMDS blocked? · Fix: Attach profile; fix IMDS hop limit (containers need 2)",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Analyze"
+  },
+  {
+    "id": "5fdab7051e7e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cross-account S3/KMS denied after assume — what do you check and fix?",
+    "back": "Check: Resource policy on bucket/key must trust role ARN · Fix: Update bucket/key policy for assumed role principal",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Analyze"
+  },
+  {
+    "id": "970138f8623e",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: InvalidIdentityToken (EKS) — what do you check and fix?",
+    "back": "Check: Service account annotation eks.amazonaws.com/role-arn · Fix: IRSA setup; OIDC provider on cluster",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Analyze"
+  },
+  {
+    "id": "4fbee482a3d1",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with AWS STS (Security Token Service): what silently fails?",
+    "back": "Assumed-role creds need all three env vars — AWS_SESSION_TOKEN missing → obscure signature errors.",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Evaluate"
+  },
+  {
+    "id": "5b50bed1e4ba",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use AWS STS (Security Token Service)?",
+    "back": "Long-lived IAM user access keys for apps — use roles + STS; keys for break-glass humans only, rotated and scoped. Embedding AssumeRole in every micro-request — cache creds until ~5 min before expiry; use SDK default credential chain. One mega-role for all environments — separate roles per env/account; STS makes splitting cheap.",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Evaluate"
+  },
+  {
+    "id": "7f53dc5ef752",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct AWS STS (Security Token Service) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Caller ──► sts:AssumeRole ──► temporary creds ──► AWS APIs (scoped to role policy)",
+    "source": "Back2Basics/AWS/aws STS (Security Token Service).md",
+    "section": "AWS STS (Security Token Service) · Create"
+  },
+  {
+    "id": "69b7cd0f567c",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is aws host website?",
+    "back": "turns a normal s3 bucket into a static website.",
+    "source": "Back2Basics/AWS/aws host website.md",
+    "section": "aws host website · Remember"
+  },
+  {
+    "id": "e4ed21788725",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for aws host website?",
+    "back": "aws s3 website s3://$BUCKET --index-document index.html --error-document error.html",
+    "source": "Back2Basics/AWS/aws host website.md",
+    "section": "aws host website · Apply"
+  },
+  {
+    "id": "d2f58b5654d2",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken aws host website setup, what is your first validation command?",
+    "back": "aws s3 website s3://$BUCKET --index-document index.html --error-document error.html",
+    "source": "Back2Basics/AWS/aws host website.md",
+    "section": "aws host website · Apply"
+  },
+  {
+    "id": "c071c75809e4",
+    "deck": "b2b-aws",
+    "tags": [
+      "back2basics",
+      "aws",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct aws host website setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: aws s3 website s3://$BUCKET --index-document index.html --error-document error.html",
+    "source": "Back2Basics/AWS/aws host website.md",
+    "section": "aws host website · Create"
+  }
+]

@@ -1,0 +1,366 @@
+[
+  {
+    "id": "c17991e7cc1c",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is CGI?",
+    "back": "CGI — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/apache/CGI.md",
+    "section": "CGI · Remember"
+  },
+  {
+    "id": "a962f68080bb",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does CGI matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/apache/CGI.md",
+    "section": "CGI · Understand"
+  },
+  {
+    "id": "b5c9a373e498",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe CGI checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/apache/CGI.md",
+    "section": "CGI · Create"
+  },
+  {
+    "id": "fa4091f7de23",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is apache command?",
+    "back": "enables the Apache module named mod_rewrite. mod_rewrite is a built-in Apache module that allows rewriting requested URLs on the fly. it commonly used to convert clean URLs like /blog/post-title into actual internal file paths like index.php?post=post-title. it was likel…",
+    "source": "Back2Basics/apache/apache command.md",
+    "section": "apache command · Remember"
+  },
+  {
+    "id": "ff0deb5cbc64",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for apache command?",
+    "back": "sudo a2enmod rewrite;",
+    "source": "Back2Basics/apache/apache command.md",
+    "section": "apache command · Apply"
+  },
+  {
+    "id": "3619e10ab4d5",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken apache command setup, what is your first validation command?",
+    "back": "sudo a2enmod rewrite;",
+    "source": "Back2Basics/apache/apache command.md",
+    "section": "apache command · Apply"
+  },
+  {
+    "id": "df6830aab4b9",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct apache command setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: sudo a2enmod rewrite;",
+    "source": "Back2Basics/apache/apache command.md",
+    "section": "apache command · Create"
+  },
+  {
+    "id": "1d3b91be8b7d",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is apache configurations?",
+    "back": "change the user and group of the files so apache2 can access those files. Otherwise you will get permission error.",
+    "source": "Back2Basics/apache/apache configurations.md",
+    "section": "apache configurations · Remember"
+  },
+  {
+    "id": "034dc547cd98",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for apache configurations?",
+    "back": "sudo a2enmod rewrite; → sudo systemctl restart apache2; → cat /etc/apache2/envvars; # see here for apache group and user. → export APACHE_RUN_USER=www-data → export APACHE_RUN_GROUP=www-data",
+    "source": "Back2Basics/apache/apache configurations.md",
+    "section": "apache configurations · Apply"
+  },
+  {
+    "id": "e19e49fa58be",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken apache configurations setup, what is your first validation command?",
+    "back": "sudo a2enmod rewrite;",
+    "source": "Back2Basics/apache/apache configurations.md",
+    "section": "apache configurations · Apply"
+  },
+  {
+    "id": "d62dba4fa09a",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct apache configurations setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: sudo a2enmod rewrite;",
+    "source": "Back2Basics/apache/apache configurations.md",
+    "section": "apache configurations · Create"
+  },
+  {
+    "id": "7354321f17f3",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Apache modules in one sentence?",
+    "back": "Static (compiled-in) vs shared (dynamic LoadModule) — what you can toggle without recompiling httpd.",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Remember"
+  },
+  {
+    "id": "373a6c39ad34",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Apache modules (how the system thinks).",
+    "back": "Apache httpd loads modules at startup. Static modules are baked into the binary — always present. Shared modules (.so) load via LoadModule in config. Only load what you need: fewer modules = smaller attack surface and memory.",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Understand"
+  },
+  {
+    "id": "04f84870901b",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Apache modules?",
+    "back": "httpd binary → apache2ctl -M # Debian/Ubuntu → httpd -M # RHEL → apachectl -t -D DUMP_MODULES → sudo a2enmod rewrite ssl headers proxy proxy_http",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Apply"
+  },
+  {
+    "id": "80218d3d614d",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Apache modules setup, what is your first validation command?",
+    "back": "httpd binary",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Apply"
+  },
+  {
+    "id": "220e12dc66d5",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Invalid command 'RewriteRule' — what do you check and fix?",
+    "back": "Check: mod_rewrite loaded? · Fix: a2enmod rewrite",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Analyze"
+  },
+  {
+    "id": "556f9737bd17",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Apache won't start after enable — what do you check and fix?",
+    "back": "Check: apachectl configtest · Fix: Fix LoadModule order; missing .so",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Analyze"
+  },
+  {
+    "id": "7710e3f58d58",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: PHP works, static 403 — what do you check and fix?",
+    "back": "Check: Directory permissions · Fix: Require all granted + filesystem perms",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Analyze"
+  },
+  {
+    "id": "db34cf016ad1",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SSL handshake fail — what do you check and fix?",
+    "back": "Check: mod_ssl + cert paths · Fix: SSLEngine on; cert file readable",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Analyze"
+  },
+  {
+    "id": "fa1c73ccb452",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Proxy 502 — what do you check and fix?",
+    "back": "Check: mod_proxy enabled · Fix: a2enmod proxy proxy_http; backend up",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Analyze"
+  },
+  {
+    "id": "295420dfec2d",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Apache modules: what silently fails?",
+    "back": "MPM switch — can't mix prefork/worker/event blindly; restart required; PHP-FPM pairs with event/worker. Module loaded twice — duplicate LoadModule lines break startup. Distro splits packages — libapache2-mod-* separate from core.",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Evaluate"
+  },
+  {
+    "id": "aa64e5cbff94",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Apache modules?",
+    "back": "Don't enable mod_php on new stacks — use PHP-FPM + proxy_fcgi or Nginx. Don't load debug modules (mod_info, mod_status) on public-facing servers without IP restrict.",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Evaluate"
+  },
+  {
+    "id": "2f8a76f20089",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Apache modules setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: httpd binary",
+    "source": "Back2Basics/apache/apache modules.md",
+    "section": "Apache modules · Create"
+  },
+  {
+    "id": "7426dfadc6c6",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is fastCGI servers?",
+    "back": "fastCGI servers — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/apache/fastCGI servers.md",
+    "section": "fastCGI servers · Remember"
+  },
+  {
+    "id": "2f22aabda982",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does fastCGI servers matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/apache/fastCGI servers.md",
+    "section": "fastCGI servers · Understand"
+  },
+  {
+    "id": "e38459d79bfe",
+    "deck": "b2b-apache",
+    "tags": [
+      "back2basics",
+      "apache",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe fastCGI servers checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/apache/fastCGI servers.md",
+    "section": "fastCGI servers · Create"
+  }
+]

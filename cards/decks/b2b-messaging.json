@@ -1,0 +1,646 @@
+[
+  {
+    "id": "818e75b8627d",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Kafka broker?",
+    "back": "Kafka broker — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Messaging/Kafka/Kafka broker.md",
+    "section": "Kafka broker · Remember"
+  },
+  {
+    "id": "d3cb7c0a7102",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Kafka broker matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Messaging/Kafka/Kafka broker.md",
+    "section": "Kafka broker · Understand"
+  },
+  {
+    "id": "d84c266b9a21",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Kafka broker checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Messaging/Kafka/Kafka broker.md",
+    "section": "Kafka broker · Create"
+  },
+  {
+    "id": "3c46a0f47360",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Kafka configuration?",
+    "back": "Zookeeper mode -> Traditional mode with a zookeeper cluster managing brokers. KRaft mode -> Newer mode where kafka manages metadata internally.",
+    "source": "Back2Basics/Messaging/Kafka/Kafka configuration.md",
+    "section": "Kafka configuration · Remember"
+  },
+  {
+    "id": "406bd0ecebf1",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Kafka configuration?",
+    "back": "Run inside your Kafka container: → If Kafka is in Docker bridge mode, you need to explicitly set advertised.listeners",
+    "source": "Back2Basics/Messaging/Kafka/Kafka configuration.md",
+    "section": "Kafka configuration · Apply"
+  },
+  {
+    "id": "b9159976c54b",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Kafka configuration setup, what is your first validation command?",
+    "back": "Run inside your Kafka container:",
+    "source": "Back2Basics/Messaging/Kafka/Kafka configuration.md",
+    "section": "Kafka configuration · Apply"
+  },
+  {
+    "id": "6744b9d6ddc2",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Kafka configuration setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Run inside your Kafka container:",
+    "source": "Back2Basics/Messaging/Kafka/Kafka configuration.md",
+    "section": "Kafka configuration · Create"
+  },
+  {
+    "id": "e4f1f1222628",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Kafka distributed event streaming?",
+    "back": "Kafka distributed event streaming — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Messaging/Kafka/Kafka distributed event streaming.md",
+    "section": "Kafka distributed event streaming · Remember"
+  },
+  {
+    "id": "cfaf7f81c1d0",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Kafka distributed event streaming matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Messaging/Kafka/Kafka distributed event streaming.md",
+    "section": "Kafka distributed event streaming · Understand"
+  },
+  {
+    "id": "25c13ee10d78",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Kafka distributed event streaming checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Messaging/Kafka/Kafka distributed event streaming.md",
+    "section": "Kafka distributed event streaming · Create"
+  },
+  {
+    "id": "8b4515eb53a7",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Zookeeper?",
+    "back": "Zookeeper — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Messaging/Kafka/Zookeeper.md",
+    "section": "Zookeeper · Remember"
+  },
+  {
+    "id": "286fbf517630",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Zookeeper matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Messaging/Kafka/Zookeeper.md",
+    "section": "Zookeeper · Understand"
+  },
+  {
+    "id": "a9cf80107af3",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Zookeeper checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Messaging/Kafka/Zookeeper.md",
+    "section": "Zookeeper · Create"
+  },
+  {
+    "id": "d546c803e317",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is kafka producer and consumer?",
+    "back": "A kafka producer is a component responsible for sending messages (events) to Kafka topics. used to notify other microservices (e.g., Inventory, Order, and Discount services).",
+    "source": "Back2Basics/Messaging/Kafka/kafka producer and consumer.md",
+    "section": "kafka producer and consumer · Remember"
+  },
+  {
+    "id": "ee34da2b7052",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for kafka producer and consumer?",
+    "back": "Each time a producer is created:",
+    "source": "Back2Basics/Messaging/Kafka/kafka producer and consumer.md",
+    "section": "kafka producer and consumer · Apply"
+  },
+  {
+    "id": "57d656d304cc",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken kafka producer and consumer setup, what is your first validation command?",
+    "back": "Each time a producer is created:",
+    "source": "Back2Basics/Messaging/Kafka/kafka producer and consumer.md",
+    "section": "kafka producer and consumer · Apply"
+  },
+  {
+    "id": "47958ee97785",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct kafka producer and consumer setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Each time a producer is created:",
+    "source": "Back2Basics/Messaging/Kafka/kafka producer and consumer.md",
+    "section": "kafka producer and consumer · Create"
+  },
+  {
+    "id": "aa8f7de15d7f",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is kafka?",
+    "back": "kafka — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Messaging/Kafka/kafka.md",
+    "section": "kafka · Remember"
+  },
+  {
+    "id": "9eefedab81f5",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does kafka matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Messaging/Kafka/kafka.md",
+    "section": "kafka · Understand"
+  },
+  {
+    "id": "8928349093f4",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe kafka checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Messaging/Kafka/kafka.md",
+    "section": "kafka · Create"
+  },
+  {
+    "id": "7720d19b3460",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is => -r--r--r-- 1 rabbitmq rabbitmq 87B Mar 21 19:50 00-defaults.conf?",
+    "back": "=> -r--r--r-- 1 rabbitmq rabbitmq 87B Mar 21 19:50 00-defaults.conf — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Messaging/RabbitMQ.md",
+    "section": "=> -r--r--r-- 1 rabbitmq rabbitmq 87B Mar 21 19:50 00-defaults.conf · Remember"
+  },
+  {
+    "id": "50d1dd76fad4",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does => -r--r--r-- 1 rabbitmq rabbitmq 87B Mar 21 19:50 00-defaults.conf matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Messaging/RabbitMQ.md",
+    "section": "=> -r--r--r-- 1 rabbitmq rabbitmq 87B Mar 21 19:50 00-defaults.conf · Understand"
+  },
+  {
+    "id": "78b1e6178f6e",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe => -r--r--r-- 1 rabbitmq rabbitmq 87B Mar 21 19:50 00-defaults.conf checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Messaging/RabbitMQ.md",
+    "section": "=> -r--r--r-- 1 rabbitmq rabbitmq 87B Mar 21 19:50 00-defaults.conf · Create"
+  },
+  {
+    "id": "1c5cf8936f0d",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is SSE (Server-Sent Events)?",
+    "back": "SSE (Server-Sent Events) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Messaging/SSE (Server-Sent Events).md",
+    "section": "SSE (Server-Sent Events) · Remember"
+  },
+  {
+    "id": "e8fcd66caa0f",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does SSE (Server-Sent Events) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Messaging/SSE (Server-Sent Events).md",
+    "section": "SSE (Server-Sent Events) · Understand"
+  },
+  {
+    "id": "9d91d88668e9",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe SSE (Server-Sent Events) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Messaging/SSE (Server-Sent Events).md",
+    "section": "SSE (Server-Sent Events) · Create"
+  },
+  {
+    "id": "74762fb10d15",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Web hooks?",
+    "back": "Web hooks — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Messaging/Web hooks.md",
+    "section": "Web hooks · Remember"
+  },
+  {
+    "id": "f4dead4948fc",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Web hooks matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Messaging/Web hooks.md",
+    "section": "Web hooks · Understand"
+  },
+  {
+    "id": "8cb15702dbc4",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Web hooks checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Messaging/Web hooks.md",
+    "section": "Web hooks · Create"
+  },
+  {
+    "id": "d85e9105c319",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Webhook in one sentence?",
+    "back": "One-line: server-to-server HTTP callback on events — receiver must verify, dedupe, and respond fast — not a reliable message bus.",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Remember"
+  },
+  {
+    "id": "083819e84801",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Webhook (how the system thinks).",
+    "back": "Publisher (Stripe, GitHub, Slack) POSTs an event payload to your HTTPS URL when something happens. Delivery is best-effort with retries — your endpoint must be idempotent and quick (ack, then process async).",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Understand"
+  },
+  {
+    "id": "7faf3e1e9dc5",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Webhook?",
+    "back": "Publisher Your service",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Apply"
+  },
+  {
+    "id": "fa505c788d2a",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Webhook setup, what is your first validation command?",
+    "back": "Publisher Your service",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Apply"
+  },
+  {
+    "id": "a9dac83a76ca",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Webhook?",
+    "back": "[ ] HTTPS only; valid cert [ ] Verify signature (every request — no exceptions) [ ] Constant-time compare for HMAC [ ] Idempotency key (event.id, X-GitHub-Delivery, Idempotency-Key) [ ] Respond 2xx within provider timeout (often 5–30s) [ ] Process async (queue/worker) [ ] Log delivery ID, not full secrets [ ] Rotate webhook secrets; support du…",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Apply"
+  },
+  {
+    "id": "75f5688e98c9",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: No events arriving — what do you check and fix?",
+    "back": "Check: Publisher dashboard delivery log · Fix: URL wrong; tunnel expired; DNS/firewall",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Analyze"
+  },
+  {
+    "id": "e864d605c48b",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: All return 401/403 — what do you check and fix?",
+    "back": "Check: Signature secret mismatch · Fix: Update secret; ensure raw body for HMAC",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Analyze"
+  },
+  {
+    "id": "b6fe24d957a4",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 400 invalid signature — what do you check and fix?",
+    "back": "Check: JSON parser ran before verify · Fix: Use express.raw() on webhook route only",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Analyze"
+  },
+  {
+    "id": "c6b1e14dc4ff",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate side effects — what do you check and fix?",
+    "back": "Check: Same event.id processed twice · Fix: Idempotency store (Redis/DB unique constraint)",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Analyze"
+  },
+  {
+    "id": "a43d56f3dbf5",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Publisher stopped retrying — what do you check and fix?",
+    "back": "Check: Returned 4xx on transient error · Fix: Return 5xx only when you want retry; 2xx if ignored intentionally",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Analyze"
+  },
+  {
+    "id": "a30cdc91378b",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Timeouts in publisher log — what do you check and fix?",
+    "back": "Check: Handler > 30s · Fix: Move work to queue; return 200 immediately",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Analyze"
+  },
+  {
+    "id": "3d2c2f6502ea",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works in staging, not prod — what do you check and fix?",
+    "back": "Check: Different secret / URL · Fix: Separate endpoints per env",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Analyze"
+  },
+  {
+    "id": "81b79f1e0787",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SSL errors on receive — what do you check and fix?",
+    "back": "Check: Cert chain, TLS version · Fix: Fix cert; use provider-minimum TLS",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Analyze"
+  },
+  {
+    "id": "3097208784d6",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Out-of-order events — what do you check and fix?",
+    "back": "Check: Normal for distributed systems · Fix: Design for ordering per aggregate; use version fields",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Analyze"
+  },
+  {
+    "id": "292406abf87f",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Webhook: what silently fails?",
+    "back": "Return 200 only after durable enqueue — if you 200 then crash before queue write, event is lost forever (publisher won't retry).",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Evaluate"
+  },
+  {
+    "id": "9dca35277e4f",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Webhook?",
+    "back": "High-volume internal events → message queue (MQTT, Kafka, SQS) with at-least-once semantics. Client browser callbacks → CORS + user session; webhooks are server-to-server. Need guaranteed ordering globally → webhook + retry isn't enough; use ordered stream.",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Evaluate"
+  },
+  {
+    "id": "89b8cf83a23e",
+    "deck": "b2b-messaging",
+    "tags": [
+      "back2basics",
+      "messaging",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Webhook setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Publisher Your service",
+    "source": "Back2Basics/Messaging/webhook.md",
+    "section": "Webhook · Create"
+  }
+]

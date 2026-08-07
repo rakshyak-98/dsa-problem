@@ -1,0 +1,3278 @@
+[
+  {
+    "id": "44ffdda19e80",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Abstraction?",
+    "back": "Abstraction — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Design pattern/Abstraction.md",
+    "section": "Abstraction · Remember"
+  },
+  {
+    "id": "695f718e80cd",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Abstraction matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Design pattern/Abstraction.md",
+    "section": "Abstraction · Understand"
+  },
+  {
+    "id": "d773251caae0",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Abstraction checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Design pattern/Abstraction.md",
+    "section": "Abstraction · Create"
+  },
+  {
+    "id": "a955527e6d40",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Adapter in one sentence?",
+    "back": "Convert one interface into another the client expects — retrofit vendor shapes into domain — Dive Into Design Patterns + MetaPayloadAdapter.",
+    "source": "Back2Basics/Design pattern/Adapter.md",
+    "section": "Adapter · Remember"
+  },
+  {
+    "id": "8964d515de78",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Adapter (how the system thinks).",
+    "back": "Your domain speaks LaunchRequest / Campaign. Meta Graph speaks nested snake_case fields that change with API version. Adapter sits on the boundary and translates both directions so domain and controllers never touch vendor field names.",
+    "source": "Back2Basics/Design pattern/Adapter.md",
+    "section": "Adapter · Understand"
+  },
+  {
+    "id": "9b854c6a08ef",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Adapter?",
+    "back": "Domain model ←── Adapter ──→ Vendor DTO / Graph payload",
+    "source": "Back2Basics/Design pattern/Adapter.md",
+    "section": "Adapter · Apply"
+  },
+  {
+    "id": "9ce4fd6c901e",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Adapter setup, what is your first validation command?",
+    "back": "Domain model ←── Adapter ──→ Vendor DTO / Graph payload",
+    "source": "Back2Basics/Design pattern/Adapter.md",
+    "section": "Adapter · Apply"
+  },
+  {
+    "id": "ccacdf40d5c5",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Controllers set special_ad_categories — what do you check and fix?",
+    "back": "Check: Adapter skipped · Fix: Only Adapter emits Graph keys",
+    "source": "Back2Basics/Design pattern/Adapter.md",
+    "section": "Adapter · Analyze"
+  },
+  {
+    "id": "6301cfd9b3f0",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Graph version change breaks app — what do you check and fix?",
+    "back": "Check: Mapping scattered · Fix: Centralize in Adapter; version behind it",
+    "source": "Back2Basics/Design pattern/Adapter.md",
+    "section": "Adapter · Analyze"
+  },
+  {
+    "id": "ec6058a35c48",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Silent wrong fields — what do you check and fix?",
+    "back": "Check: Typo in map · Fix: Contract tests on Adapter fixtures",
+    "source": "Back2Basics/Design pattern/Adapter.md",
+    "section": "Adapter · Analyze"
+  },
+  {
+    "id": "0f65acaf7769",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Fat Adapter knows launch rules — what do you check and fix?",
+    "back": "Check: Scope creep · Fix: Mapping only; rules in Strategy/Chain",
+    "source": "Back2Basics/Design pattern/Adapter.md",
+    "section": "Adapter · Analyze"
+  },
+  {
+    "id": "fac7a0f43c0e",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Adapter: what silently fails?",
+    "back": "An \"interface\" that is a 1:1 mirror of Meta fields is not insulating you — the Adapter (or anti-corruption layer) must own the translation to *your* model.",
+    "source": "Back2Basics/Design pattern/Adapter.md",
+    "section": "Adapter · Evaluate"
+  },
+  {
+    "id": "3b8e9ba86ef6",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Adapter?",
+    "back": "You control both interfaces and can change them to match. Need parallel hierarchies designed to evolve — Design pattern/Bridge.",
+    "source": "Back2Basics/Design pattern/Adapter.md",
+    "section": "Adapter · Evaluate"
+  },
+  {
+    "id": "ba1ae5034f02",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Adapter setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Domain model ←── Adapter ──→ Vendor DTO / Graph payload",
+    "source": "Back2Basics/Design pattern/Adapter.md",
+    "section": "Adapter · Create"
+  },
+  {
+    "id": "124395d0157b",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Bridge pattern in one sentence?",
+    "back": "Decouple abstraction from implementation so both evolve independently — two hierarchies joined by composition — GoF + device/remote mental model.",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Remember"
+  },
+  {
+    "id": "5692ad39b5b9",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Bridge pattern (how the system thinks).",
+    "back": "Without Bridge, one class dimension multiplies subclasses (BasicRemote+TV, BasicRemote+Radio, …). Bridge splits:",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Understand"
+  },
+  {
+    "id": "1217ed2d5c21",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Bridge pattern?",
+    "back": "Remote (abstraction) Device (implementation) → BasicRemote ────────────────► TV → ProRemote ────────────────► Projector",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Apply"
+  },
+  {
+    "id": "714297957f1f",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Bridge pattern setup, what is your first validation command?",
+    "back": "Remote (abstraction) Device (implementation)",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Apply"
+  },
+  {
+    "id": "05834d709e87",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Bridge pattern?",
+    "back": "Multiple UI skins over same backend driver Cross-platform rendering (Skia vs CoreGraphics) Payment methods × checkout flows without class explosion",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Apply"
+  },
+  {
+    "id": "b18cd5af53b3",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Class explosion returns — what do you check and fix?",
+    "back": "Check: Inheritance instead of compose · Fix: Inject implementor interface",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Analyze"
+  },
+  {
+    "id": "75d7de30d505",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Abstraction leaks impl types — what do you check and fix?",
+    "back": "Check: instanceof TV in Remote · Fix: Keep Remote on Device API only",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Analyze"
+  },
+  {
+    "id": "c14214c2b306",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate code in implementors — what do you check and fix?",
+    "back": "Check: Shared logic · Fix: Extract helper module, not mega base class",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Analyze"
+  },
+  {
+    "id": "874d877337b5",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Testing pain — what do you check and fix?",
+    "back": "Check: Hard-coded new TV() · Fix: Design pattern/Dependency Injection for Device",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Analyze"
+  },
+  {
+    "id": "c8bac3c5bddf",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong implementor at runtime — what do you check and fix?",
+    "back": "Check: Wiring in factory · Fix: Central DI container / factory map",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Analyze"
+  },
+  {
+    "id": "0df2469e2ef8",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Bridge pattern: what silently fails?",
+    "back": "Bridge adds indirection — don't introduce for two fixed variants that will never multiply.",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Evaluate"
+  },
+  {
+    "id": "d593e1dc16e3",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Bridge pattern?",
+    "back": "Single platform, single backend — concrete class is fine. One-off adapter to legacy API — use Adapter pattern.",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Evaluate"
+  },
+  {
+    "id": "bad1ca686544",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Bridge pattern setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Remote (abstraction) Device (implementation)",
+    "source": "Back2Basics/Design pattern/Bridge.md",
+    "section": "Bridge pattern · Create"
+  },
+  {
+    "id": "defe020438fe",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Builder in one sentence?",
+    "back": "Construct a complex object step by step — same construction process, different representations — Dive Into Design Patterns + wizard → launch request.",
+    "source": "Back2Basics/Design pattern/Builder.md",
+    "section": "Builder · Remember"
+  },
+  {
+    "id": "1c0bc7994f7c",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Builder (how the system thinks).",
+    "back": "When an object needs many optional fields, nested parts, or ordered assembly (wizard screens → launch DTO), a Builder accumulates pieces then build() validates and returns the product. Director/pipeline can replay the same steps for different builders.",
+    "source": "Back2Basics/Design pattern/Builder.md",
+    "section": "Builder · Understand"
+  },
+  {
+    "id": "0cacf032ac52",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Builder?",
+    "back": "Wizard fields → .withGoal() → .withBudget() → .withCreative() → .withGeo()",
+    "source": "Back2Basics/Design pattern/Builder.md",
+    "section": "Builder · Apply"
+  },
+  {
+    "id": "25fce2f0e6d5",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Builder setup, what is your first validation command?",
+    "back": "Wizard fields",
+    "source": "Back2Basics/Design pattern/Builder.md",
+    "section": "Builder · Apply"
+  },
+  {
+    "id": "69060e6ce77c",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Invalid objects escape — what do you check and fix?",
+    "back": "Check: build() too permissive · Fix: Validate required fields in build()",
+    "source": "Back2Basics/Design pattern/Builder.md",
+    "section": "Builder · Analyze"
+  },
+  {
+    "id": "11f2618d7b0e",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Builder reused across requests — what do you check and fix?",
+    "back": "Check: Mutable leftover state · Fix: New builder per request or reset()",
+    "source": "Back2Basics/Design pattern/Builder.md",
+    "section": "Builder · Analyze"
+  },
+  {
+    "id": "d38f7e2fc534",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 12-arg constructor still exists — what do you check and fix?",
+    "back": "Check: Call sites bypass builder · Fix: Delete public constructor; factory/builder only",
+    "source": "Back2Basics/Design pattern/Builder.md",
+    "section": "Builder · Analyze"
+  },
+  {
+    "id": "611cfbb8b185",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Steps order-dependent bugs — what do you check and fix?",
+    "back": "Check: Implicit ordering · Fix: Document order or enforce in Director",
+    "source": "Back2Basics/Design pattern/Builder.md",
+    "section": "Builder · Analyze"
+  },
+  {
+    "id": "ba2028626279",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Builder: what silently fails?",
+    "back": "Telescoping constructors (new X(a), new X(a,b), …) are the smell Builder replaces — don't keep both.",
+    "source": "Back2Basics/Design pattern/Builder.md",
+    "section": "Builder · Evaluate"
+  },
+  {
+    "id": "ce170497dc98",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Builder?",
+    "back": "2–3 required fields, no optionals — constructor is clearer (System Design/KISS). Need a family of products — Design pattern/Creation pattern/Abstract Factory.",
+    "source": "Back2Basics/Design pattern/Builder.md",
+    "section": "Builder · Evaluate"
+  },
+  {
+    "id": "a03842a291df",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Builder setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Wizard fields",
+    "source": "Back2Basics/Design pattern/Builder.md",
+    "section": "Builder · Create"
+  },
+  {
+    "id": "92d86d343206",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Chain of Responsibility in one sentence?",
+    "back": "Pass a request along a chain of handlers until one handles it (or all approve) — Dive Into Design Patterns + launch validation chain.",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Remember"
+  },
+  {
+    "id": "6a44a2aaca3e",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Chain of Responsibility (how the system thinks).",
+    "back": "Ordered checks: auth → goal → page → creative → budget. Each handler does one job; on success calls next, on failure short-circuits with an error. Open for extension: append a handler without editing others.",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Understand"
+  },
+  {
+    "id": "8de8567f10c5",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Chain of Responsibility?",
+    "back": "LaunchValidationChain → AuthHandler → GoalHandler → PageHandler → CreativeHandler → BudgetHandler → OK",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Apply"
+  },
+  {
+    "id": "1d2c17195156",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Chain of Responsibility setup, what is your first validation command?",
+    "back": "LaunchValidationChain",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Apply"
+  },
+  {
+    "id": "b2916c9f487f",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Chain of Responsibility?",
+    "back": "Express / Koa middleware is the same pattern — see NodeJS/Express middleware.",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Apply"
+  },
+  {
+    "id": "439ca5ac67d5",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Handler never runs — what do you check and fix?",
+    "back": "Check: Forgotten in compose list · Fix: Single chain factory",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Analyze"
+  },
+  {
+    "id": "df6cfe6a0052",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Order bugs (budget before auth) — what do you check and fix?",
+    "back": "Check: Array order · Fix: Document required order; tests",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Analyze"
+  },
+  {
+    "id": "196aee69ff31",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Handler does HTTP launch — what do you check and fix?",
+    "back": "Check: Scope creep · Fix: Validation only; launch in Pipeline",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Analyze"
+  },
+  {
+    "id": "a05b8440b49f",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Silent success on failure — what do you check and fix?",
+    "back": "Check: Forgot to throw / didn't call next wrongly · Fix: Fail closed; don't call next on error",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Analyze"
+  },
+  {
+    "id": "f99d53933a45",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Chain of Responsibility: what silently fails?",
+    "back": "Calling next() after already failing, or swallowing errors, breaks the chain contract — one clear success path.",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Evaluate"
+  },
+  {
+    "id": "2af5877ae4f0",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Chain of Responsibility?",
+    "back": "One check — a function is enough. All checks always run and combine errors — use a list of validators + aggregate, not short-circuit chain (unless you want fail-fast).",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Evaluate"
+  },
+  {
+    "id": "9e2b10acb599",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Chain of Responsibility setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: LaunchValidationChain",
+    "source": "Back2Basics/Design pattern/Chain of Responsibility.md",
+    "section": "Chain of Responsibility · Create"
+  },
+  {
+    "id": "9410aa0164a6",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Command pattern in one sentence?",
+    "back": "Encapsulate an action as an object — invoker, undo, queue, and log requests — GoF + UI/action systems.",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Remember"
+  },
+  {
+    "id": "ea76e27ac90c",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Command pattern (how the system thinks).",
+    "back": "Invoker doesn't know concrete receiver — enables macro commands, undo stack, job queues.",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Understand"
+  },
+  {
+    "id": "3d58f4be4b9c",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Command pattern?",
+    "back": "Client ──creates──► Command ──passed to──► Invoker ──calls──► Receiver",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Apply"
+  },
+  {
+    "id": "6f9cb46ad4a4",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Command pattern setup, what is your first validation command?",
+    "back": "Client ──creates──► Command ──passed to──► Invoker ──calls──► Receiver",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Apply"
+  },
+  {
+    "id": "8b4577786ecf",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Command pattern?",
+    "back": "Job queues: command payload = serializable message (Messaging/Web hooks, SQS) CQRS: command side separates from read models Text editor undo/redo stacks Transaction scripts with compensating actions (saga step)",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Apply"
+  },
+  {
+    "id": "c24ea8a88ab5",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Undo inconsistent state — what do you check and fix?",
+    "back": "Check: Command not reversible · Fix: Store before-snapshot or inverse op",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Analyze"
+  },
+  {
+    "id": "18ccba9e8e9b",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Memory leak in history — what do you check and fix?",
+    "back": "Check: Unbounded stack · Fix: Cap size or persist to disk",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Analyze"
+  },
+  {
+    "id": "dab9c8dd9183",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate execution — what do you check and fix?",
+    "back": "Check: Retry without idempotency · Fix: Idempotent command IDs",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Analyze"
+  },
+  {
+    "id": "58b0262670e7",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Invoker knows too much — what do you check and fix?",
+    "back": "Check: Fat command interface · Fix: Narrow to execute() only",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Analyze"
+  },
+  {
+    "id": "e4adcda96d08",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Serialization fails — what do you check and fix?",
+    "back": "Check: Closures in command · Fix: Data-only command DTOs",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Analyze"
+  },
+  {
+    "id": "18cf4243ea85",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Command pattern: what silently fails?",
+    "back": "Macro commands that partially fail need composite rollback — implement undo on each sub-command in reverse order.",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Evaluate"
+  },
+  {
+    "id": "ae281ca06e11",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Command pattern?",
+    "back": "Simple one-shot function call with no undo/queue/logging — YAGNI. Entire app as Command objects — prefer plain functions until undo/queue appears.",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Evaluate"
+  },
+  {
+    "id": "3a85d317fb52",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Command pattern setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Client ──creates──► Command ──passed to──► Invoker ──calls──► Receiver",
+    "source": "Back2Basics/Design pattern/Command.md",
+    "section": "Command pattern · Create"
+  },
+  {
+    "id": "601b69e9f4ec",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Abstract Factor?",
+    "back": "Abstract Factor — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factor.md",
+    "section": "Abstract Factor · Remember"
+  },
+  {
+    "id": "b3a579e3b14c",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Abstract Factor matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factor.md",
+    "section": "Abstract Factor · Understand"
+  },
+  {
+    "id": "10d5eee69720",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Abstract Factor checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factor.md",
+    "section": "Abstract Factor · Create"
+  },
+  {
+    "id": "f720519290e3",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Abstract Factory in one sentence?",
+    "back": "Create families of related products without binding to concrete classes — Dive Into Design Patterns (Marketing platform = campaign + adset + creative + ad + insights).",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Remember"
+  },
+  {
+    "id": "9cdd223af1bb",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Abstract Factory (how the system thinks).",
+    "back": "When products must match as a set (Meta campaign service with Meta adset service — never mix Meta + Google mid-pipeline), declare one factory interface with a create method per product. Each platform gets one concrete factory that returns the whole consistent family.",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Understand"
+  },
+  {
+    "id": "eab77e4133b1",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Abstract Factory?",
+    "back": "AbstractFactory → createCampaign() createAdSet() createCreative() createAd() createInsights() → MetaMarketingFactory GoogleMarketingFactory",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Apply"
+  },
+  {
+    "id": "9e251205616f",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Abstract Factory setup, what is your first validation command?",
+    "back": "AbstractFactory",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Apply"
+  },
+  {
+    "id": "204a7257b84e",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Abstract Factory?",
+    "back": "New platform → new *MarketingFactory + register in Design pattern/Factory Method. Existing Meta factory and call sites stay closed.",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Apply"
+  },
+  {
+    "id": "d70097460b82",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mixed Meta/Google objects — what do you check and fix?",
+    "back": "Check: Factory bypassed mid-flow · Fix: Hold factory on pipeline; never pick services ad hoc",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Analyze"
+  },
+  {
+    "id": "7e70d0235596",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Adding product means editing all factories — what do you check and fix?",
+    "back": "Check: Abstract factory incomplete · Fix: Add create* to interface + all concretes",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Analyze"
+  },
+  {
+    "id": "22d2c170d15a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Fat factory knows Graph field names — what do you check and fix?",
+    "back": "Check: Responsibilities leaked · Fix: Products own mapping; factory only wires",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Analyze"
+  },
+  {
+    "id": "49b45cbf53b1",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Hard to test — what do you check and fix?",
+    "back": "Check: Real Graph client inside factory · Fix: Inject client / use Design pattern/Dependency Injection",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Analyze"
+  },
+  {
+    "id": "0d9632a915e0",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Abstract Factory: what silently fails?",
+    "back": "Abstract Factory freezes the product set. Adding a product type forces interface + every concrete factory to change — accept that cost or split factories by subdomain.",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Evaluate"
+  },
+  {
+    "id": "959b52311253",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Abstract Factory?",
+    "back": "Only one platform and no second planned — concrete services at composition root. Products are independent and never used as a matched set — separate factories / DI bindings.",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Evaluate"
+  },
+  {
+    "id": "4ef1aa627e48",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Abstract Factory setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: AbstractFactory",
+    "source": "Back2Basics/Design pattern/Creation pattern/Abstract Factory.md",
+    "section": "Abstract Factory · Create"
+  },
+  {
+    "id": "509ea1f0fddd",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Decorator in one sentence?",
+    "back": "Wrap an object to add behavior without changing its interface — stack concerns — Dive Into Design Patterns + logging/retry around Graph client.",
+    "source": "Back2Basics/Design pattern/Decorator.md",
+    "section": "Decorator · Remember"
+  },
+  {
+    "id": "29ad03e8da96",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Decorator (how the system thinks).",
+    "back": "Instead of subclassing MetaClient into LoggingMetaClient, RetryMetaClient, LoggingRetryMetaClient, … wrap the same interface:",
+    "source": "Back2Basics/Design pattern/Decorator.md",
+    "section": "Decorator · Understand"
+  },
+  {
+    "id": "a5a33c239bfb",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Decorator?",
+    "back": "Favor decorator stacks for cross-cutting concerns. Subclassing for every combination is the anti-pattern the book (and production Graph clients) warn against.",
+    "source": "Back2Basics/Design pattern/Decorator.md",
+    "section": "Decorator · Apply"
+  },
+  {
+    "id": "bcb7cdaeb9af",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Double logging / double retry — what do you check and fix?",
+    "back": "Check: Wrapped twice · Fix: Compose once at composition root",
+    "source": "Back2Basics/Design pattern/Decorator.md",
+    "section": "Decorator · Analyze"
+  },
+  {
+    "id": "3415a1463328",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Retry hides 4xx forever — what do you check and fix?",
+    "back": "Check: Retrying non-idempotent / client errors · Fix: Retry only 429/5xx; respect Retry-After",
+    "source": "Back2Basics/Design pattern/Decorator.md",
+    "section": "Decorator · Analyze"
+  },
+  {
+    "id": "19765bf8ba74",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Decorator breaks interface — what do you check and fix?",
+    "back": "Check: Extra methods only on wrapper · Fix: Keep strict same interface",
+    "source": "Back2Basics/Design pattern/Decorator.md",
+    "section": "Decorator · Analyze"
+  },
+  {
+    "id": "bc6dcfc5b998",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Hard to test order — what do you check and fix?",
+    "back": "Check: Opaque stack · Fix: Unit-test each decorator with fake inner",
+    "source": "Back2Basics/Design pattern/Decorator.md",
+    "section": "Decorator · Analyze"
+  },
+  {
+    "id": "164bc1605e08",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Decorator: what silently fails?",
+    "back": "Decorator that changes return semantics (swallows errors, mutates payload) surprises callers — keep additive and transparent.",
+    "source": "Back2Basics/Design pattern/Decorator.md",
+    "section": "Decorator · Evaluate"
+  },
+  {
+    "id": "a68b763a73a5",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Decorator?",
+    "back": "Single concern, single class — plain wrapper function is enough. Need to change the interface — Adapter, not Decorator.",
+    "source": "Back2Basics/Design pattern/Decorator.md",
+    "section": "Decorator · Evaluate"
+  },
+  {
+    "id": "ea8f6e3b0935",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Decorator setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: MetaClient",
+    "source": "Back2Basics/Design pattern/Decorator.md",
+    "section": "Decorator · Create"
+  },
+  {
+    "id": "e23d0588bbc1",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Dependency Injection in one sentence?",
+    "back": "Supply dependencies from outside instead of hard-coding new inside a class — testability and modular wiring — IoC container vs manual constructor inject.",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Remember"
+  },
+  {
+    "id": "32df8a084bbb",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Dependency Injection (how the system thinks).",
+    "back": "Without DI: class creates its own DB client → tight coupling, hard to mock.",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Understand"
+  },
+  {
+    "id": "03d8db2edfe6",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Dependency Injection?",
+    "back": "PostgresUserRepo",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Apply"
+  },
+  {
+    "id": "7d550e78137d",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Dependency Injection setup, what is your first validation command?",
+    "back": "PostgresUserRepo",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Apply"
+  },
+  {
+    "id": "b6c34ca6b01f",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Dependency Injection?",
+    "back": "Each middleware receives (req, res, next) — deps wired when registering routes, not inside handler with globals.",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Apply"
+  },
+  {
+    "id": "2c5cb3774b4a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Tests hit prod DB — what do you check and fix?",
+    "back": "Check: Real impl wired · Fix: Inject mock at test composition root",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Analyze"
+  },
+  {
+    "id": "af9bdd4b28e6",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Circular dependency — what do you check and fix?",
+    "back": "Check: A needs B needs A · Fix: Extract interface or third module",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Analyze"
+  },
+  {
+    "id": "303b151fcc03",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Container startup fails — what do you check and fix?",
+    "back": "Check: Missing binding · Fix: Register all tokens in module",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Analyze"
+  },
+  {
+    "id": "c9e40dae643f",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Service not found\" runtime — what do you check and fix?",
+    "back": "Check: Service locator abuse · Fix: Constructor inject required deps",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Analyze"
+  },
+  {
+    "id": "547997cdae3a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Too many constructor args — what do you check and fix?",
+    "back": "Check: God object · Fix: Split bounded contexts",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Analyze"
+  },
+  {
+    "id": "cd466a53e571",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Dependency Injection: what silently fails?",
+    "back": "Property injection frameworks can construct partially initialized objects if circular deps misconfigured.",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Evaluate"
+  },
+  {
+    "id": "3adc22240dce",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Dependency Injection?",
+    "back": "Pure functions with no external IO — pass args directly, no container. Script < 100 lines — manual wiring is clearer.",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Evaluate"
+  },
+  {
+    "id": "27028f4e8a48",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Dependency Injection setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: PostgresUserRepo",
+    "source": "Back2Basics/Design pattern/Dependency Injection.md",
+    "section": "Dependency Injection · Create"
+  },
+  {
+    "id": "087ef7ca9046",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Facade in one sentence?",
+    "back": "One simple entry point over a noisy subsystem — keep routes/controllers dumb — Dive Into Design Patterns + ServicesManageApi.",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Remember"
+  },
+  {
+    "id": "389b007678f8",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Facade (how the system thinks).",
+    "back": "Marketing (or any) subsystem has factories, validators, pipelines, adapters. App layers should not know that graph. Facade exposes a small stable API (launchCampaign, getInsights) and wires the internals.",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Understand"
+  },
+  {
+    "id": "da3a38960468",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Facade?",
+    "back": "Flutter / REST controllers → ServicesManageApi (Facade) → Pipeline Factory EventBus Commands",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Apply"
+  },
+  {
+    "id": "5ad1423e9292",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Facade setup, what is your first validation command?",
+    "back": "Flutter / REST controllers",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Apply"
+  },
+  {
+    "id": "8105367344d0",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Facade?",
+    "back": "Facade is the compatibility layer for Flutter/REST. Internal pattern refactors should not force client changes unless the task explicitly changes the contract.",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Apply"
+  },
+  {
+    "id": "832c951ad50b",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Controllers import Graph client — what do you check and fix?",
+    "back": "Check: Facade bypass · Fix: Move call behind Facade method",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Analyze"
+  },
+  {
+    "id": "7446eb81abc3",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Facade became god class — what do you check and fix?",
+    "back": "Check: Too many unrelated ops · Fix: Split by bounded context; keep thin",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Analyze"
+  },
+  {
+    "id": "193b212ef114",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Every internal rename breaks mobile — what do you check and fix?",
+    "back": "Check: Clients coupled past Facade · Fix: Version Facade DTOs",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Analyze"
+  },
+  {
+    "id": "56174f1eab24",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate orchestration in 2 Facades — what do you check and fix?",
+    "back": "Check: Parallel entry points · Fix: One app-facing Facade per subsystem",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Analyze"
+  },
+  {
+    "id": "d3f948967b93",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Facade: what silently fails?",
+    "back": "Facade is not a dumping ground. If it grows validation + mapping + HTTP, you rebuilt the god service — push work into Pipeline / Strategy / Adapter.",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Evaluate"
+  },
+  {
+    "id": "7e34ce77302b",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Facade?",
+    "back": "Module already has one clear function and no subsystem — extra class is noise. Need to swap algorithms only — Design pattern/Strategy pattern.",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Evaluate"
+  },
+  {
+    "id": "3773009d3e42",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Facade setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Flutter / REST controllers",
+    "source": "Back2Basics/Design pattern/Facade.md",
+    "section": "Facade · Create"
+  },
+  {
+    "id": "feec337cfefc",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Factory Method in one sentence?",
+    "back": "Defer instantiation to a method subclasses (or a registry) can override — caller depends on product interface, not new Concrete — Dive Into Design Patterns.",
+    "source": "Back2Basics/Design pattern/Factory Method.md",
+    "section": "Factory Method · Remember"
+  },
+  {
+    "id": "b0ef28f26dd4",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Factory Method (how the system thinks).",
+    "back": "Creation is not the creator's main job — the creator already has business logic. Factory Method isolates *which* concrete product appears so you can add variants without editing call sites.",
+    "source": "Back2Basics/Design pattern/Factory Method.md",
+    "section": "Factory Method · Understand"
+  },
+  {
+    "id": "1c10b0007ec1",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Factory Method?",
+    "back": "Creator.createProduct() ──► Product (interface) → PlatformFactory MetaServices / GoogleServices → createPlatformFactory(id) ← chooses family entry",
+    "source": "Back2Basics/Design pattern/Factory Method.md",
+    "section": "Factory Method · Apply"
+  },
+  {
+    "id": "2f26baefb081",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Factory Method setup, what is your first validation command?",
+    "back": "Creator.createProduct() ──► Product (interface)",
+    "source": "Back2Basics/Design pattern/Factory Method.md",
+    "section": "Factory Method · Apply"
+  },
+  {
+    "id": "c6bdbe779c44",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Call sites still new Concrete — what do you check and fix?",
+    "back": "Check: Factory bypassed · Fix: Route all construction through factory",
+    "source": "Back2Basics/Design pattern/Factory Method.md",
+    "section": "Factory Method · Analyze"
+  },
+  {
+    "id": "3ce983a05caf",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Switch grows forever — what do you check and fix?",
+    "back": "Check: Many products, one method · Fix: Split factories or use registry map",
+    "source": "Back2Basics/Design pattern/Factory Method.md",
+    "section": "Factory Method · Analyze"
+  },
+  {
+    "id": "370036e6c2a1",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Can't test without Meta — what do you check and fix?",
+    "back": "Check: Factory returns concrete only · Fix: Inject factory or product interface",
+    "source": "Back2Basics/Design pattern/Factory Method.md",
+    "section": "Factory Method · Analyze"
+  },
+  {
+    "id": "c968bb25e0d9",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong platform in prod — what do you check and fix?",
+    "back": "Check: Config / header mapping · Fix: Fail on unknown; log resolved id",
+    "source": "Back2Basics/Design pattern/Factory Method.md",
+    "section": "Factory Method · Analyze"
+  },
+  {
+    "id": "1b8931ececf0",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Factory Method: what silently fails?",
+    "back": "Factory Method return type must be the interface. If the base declares MetaClient, subclasses cannot honestly return other vendors.",
+    "source": "Back2Basics/Design pattern/Factory Method.md",
+    "section": "Factory Method · Evaluate"
+  },
+  {
+    "id": "c53f74f17be7",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Factory Method?",
+    "back": "Single concrete type forever — new at composition root is clearer. Building one complex object with many optional fields — use Design pattern/Builder.",
+    "source": "Back2Basics/Design pattern/Factory Method.md",
+    "section": "Factory Method · Evaluate"
+  },
+  {
+    "id": "f05345e6f56d",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Factory Method setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Creator.createProduct() ──► Product (interface)",
+    "source": "Back2Basics/Design pattern/Factory Method.md",
+    "section": "Factory Method · Create"
+  },
+  {
+    "id": "e38001bb6dc5",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Mediator in one sentence?",
+    "back": "Central colleague that coordinates widgets/modules so they do not refer to each other — Dive Into Design Patterns + campaign wizard steps.",
+    "source": "Back2Basics/Design pattern/Mediator.md",
+    "section": "Mediator · Remember"
+  },
+  {
+    "id": "d43a1ee396f3",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Mediator (how the system thinks).",
+    "back": "Wizard steps (goal → creative → budget → review) must enable/disable each other. Without Mediator, every step imports every other step. Mediator owns the collaboration graph; colleagues talk only to the mediator.",
+    "source": "Back2Basics/Design pattern/Mediator.md",
+    "section": "Mediator · Understand"
+  },
+  {
+    "id": "0b96cdccbd8e",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Mediator?",
+    "back": "GoalStep ──┐ → CreativeStep ──► CampaignWizardMediator ──► updates peers → BudgetStep ──┘",
+    "source": "Back2Basics/Design pattern/Mediator.md",
+    "section": "Mediator · Apply"
+  },
+  {
+    "id": "a5f52e4a4fd3",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Mediator setup, what is your first validation command?",
+    "back": "GoalStep ──┐",
+    "source": "Back2Basics/Design pattern/Mediator.md",
+    "section": "Mediator · Apply"
+  },
+  {
+    "id": "c557bf94ad9d",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Steps import each other — what do you check and fix?",
+    "back": "Check: Mediator bypassed · Fix: Route all cross-talk through mediator",
+    "source": "Back2Basics/Design pattern/Mediator.md",
+    "section": "Mediator · Analyze"
+  },
+  {
+    "id": "e5d599d9f722",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mediator god object — what do you check and fix?",
+    "back": "Check: Too many domains · Fix: One mediator per UI flow / BC",
+    "source": "Back2Basics/Design pattern/Mediator.md",
+    "section": "Mediator · Analyze"
+  },
+  {
+    "id": "e2b711cae452",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: State illegal for status — what do you check and fix?",
+    "back": "Check: Lifecycle mixed in · Fix: Keep legality in Design pattern/State",
+    "source": "Back2Basics/Design pattern/Mediator.md",
+    "section": "Mediator · Analyze"
+  },
+  {
+    "id": "559ac299c390",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Mediator?",
+    "back": "Two components — direct callback is fine. Global app event bus for everything — prefer Design pattern/Observer with clear event names, not one mega-mediator.",
+    "source": "Back2Basics/Design pattern/Mediator.md",
+    "section": "Mediator · Evaluate"
+  },
+  {
+    "id": "bb5cf5016cd2",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Mediator setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: GoalStep ──┐",
+    "source": "Back2Basics/Design pattern/Mediator.md",
+    "section": "Mediator · Create"
+  },
+  {
+    "id": "71297cb18cfd",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Memento in one sentence?",
+    "back": "Capture and restore an object's internal state without exposing it — undo/draft snapshots — Dive Into Design Patterns + campaign draft memento.",
+    "source": "Back2Basics/Design pattern/Memento.md",
+    "section": "Memento · Remember"
+  },
+  {
+    "id": "670520399947",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Memento (how the system thinks).",
+    "back": "Originator (draft) creates an opaque memento; caretaker (history stack) stores it. Restore returns the draft to a prior snapshot without caretaker reading fields.",
+    "source": "Back2Basics/Design pattern/Memento.md",
+    "section": "Memento · Understand"
+  },
+  {
+    "id": "af03f5abc304",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Memento?",
+    "back": "Draft (originator) ──createMemento──► Memento ──stored by──► History",
+    "source": "Back2Basics/Design pattern/Memento.md",
+    "section": "Memento · Apply"
+  },
+  {
+    "id": "314e5007333b",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Memento setup, what is your first validation command?",
+    "back": "Draft (originator) ──createMemento──► Memento ──stored by──► History",
+    "source": "Back2Basics/Design pattern/Memento.md",
+    "section": "Memento · Apply"
+  },
+  {
+    "id": "5ed48a58bcc2",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Undo leaks private fields — what do you check and fix?",
+    "back": "Check: Caretaker reads memento · Fix: Keep snapshot opaque / readonly",
+    "source": "Back2Basics/Design pattern/Memento.md",
+    "section": "Memento · Analyze"
+  },
+  {
+    "id": "21c7fd1aac70",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Memory blowup — what do you check and fix?",
+    "back": "Check: Unbounded history · Fix: Cap stack; persist to disk",
+    "source": "Back2Basics/Design pattern/Memento.md",
+    "section": "Memento · Analyze"
+  },
+  {
+    "id": "b9c25cd2df87",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Partial restore — what do you check and fix?",
+    "back": "Check: Nested objects shared by ref · Fix: Deep clone on save",
+    "source": "Back2Basics/Design pattern/Memento.md",
+    "section": "Memento · Analyze"
+  },
+  {
+    "id": "e63783d8a936",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Memento?",
+    "back": "Full event sourcing already provides replay — don't dual-write mementos. Need undo of side-effects on server — Design pattern/Command with compensating undo().",
+    "source": "Back2Basics/Design pattern/Memento.md",
+    "section": "Memento · Evaluate"
+  },
+  {
+    "id": "f8564234bdbc",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Memento setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Draft (originator) ──createMemento──► Memento ──stored by──► History",
+    "source": "Back2Basics/Design pattern/Memento.md",
+    "section": "Memento · Create"
+  },
+  {
+    "id": "4de8a3091d3a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is OOPS?",
+    "back": "OOPS — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Design pattern/OOPS.md",
+    "section": "OOPS · Remember"
+  },
+  {
+    "id": "559fe5856e3f",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does OOPS matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Design pattern/OOPS.md",
+    "section": "OOPS · Understand"
+  },
+  {
+    "id": "fd4e7c32688b",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe OOPS checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Design pattern/OOPS.md",
+    "section": "OOPS · Create"
+  },
+  {
+    "id": "ae20d7fe7470",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Observer in one sentence?",
+    "back": "Subscribers react to events without the subject knowing who they are — Dive Into Design Patterns + launchEventBus.",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Remember"
+  },
+  {
+    "id": "3d1f473b1dfc",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Observer (how the system thinks).",
+    "back": "After a successful launch you want metrics, audit log, webhook, cache invalidate. Subject (LaunchEventBus) emits; observers subscribe. Adding a side-effect = new subscription — subject stays closed (OCP).",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Understand"
+  },
+  {
+    "id": "47fb303367a9",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Observer?",
+    "back": "LaunchPipeline ──emit──► LaunchEventBus → Metrics Audit Webhook",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Apply"
+  },
+  {
+    "id": "7833e5974fb4",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Observer setup, what is your first validation command?",
+    "back": "LaunchPipeline ──emit──► LaunchEventBus",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Apply"
+  },
+  {
+    "id": "f4dcd8853ad0",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Observer?",
+    "back": "New launch side-effect → launchEventBus.subscribe(LaunchEvents.*, …). Do not edit the pipeline for every notifier.",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Apply"
+  },
+  {
+    "id": "5657efb63f77",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Side-effect failure rolls back launch — what do you check and fix?",
+    "back": "Check: Observer in critical path · Fix: Emit after commit; make handlers best-effort or outbox",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Analyze"
+  },
+  {
+    "id": "ae8651c82952",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Subscriber never fires — what do you check and fix?",
+    "back": "Check: Wrong event name / subscribe after emit · Fix: Central event constants; subscribe at boot",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Analyze"
+  },
+  {
+    "id": "c079f6d7ac1a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Ordering assumptions — what do you check and fix?",
+    "back": "Check: Set iteration order · Fix: Do not rely on order; or use explicit pipeline step",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Analyze"
+  },
+  {
+    "id": "f1accaecf1d8",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Memory leak — what do you check and fix?",
+    "back": "Check: Forgotten unsubscribe in hot paths · Fix: Return disposer; clear on shutdown",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Analyze"
+  },
+  {
+    "id": "2cc0a9c24847",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Observer: what silently fails?",
+    "back": "If a \"subscriber\" is required for correctness (must create billing record), it is not a side-effect — put it in the Template Method steps or outbox with retry.",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Evaluate"
+  },
+  {
+    "id": "43990b0b8c92",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Observer?",
+    "back": "One caller, one reaction — plain function call. Need guaranteed transactional coupling — same unit of work, not bus.",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Evaluate"
+  },
+  {
+    "id": "bd64d8528384",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Observer setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: LaunchPipeline ──emit──► LaunchEventBus",
+    "source": "Back2Basics/Design pattern/Observer.md",
+    "section": "Observer · Create"
+  },
+  {
+    "id": "ec6210638b5a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Private Properties and Methods?",
+    "back": "Private Properties and Methods — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Design pattern/Private Properties and Methods.md",
+    "section": "Private Properties and Methods · Remember"
+  },
+  {
+    "id": "186b6cb00917",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Private Properties and Methods matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Design pattern/Private Properties and Methods.md",
+    "section": "Private Properties and Methods · Understand"
+  },
+  {
+    "id": "8dd775b99b8c",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Private Properties and Methods checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Design pattern/Private Properties and Methods.md",
+    "section": "Private Properties and Methods · Create"
+  },
+  {
+    "id": "2e58896907fd",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Proxy in one sentence?",
+    "back": "Surrogate that controls access to a real object — lazy init, auth, caching — Dive Into Design Patterns + MetaClientProxy.",
+    "source": "Back2Basics/Design pattern/Proxy.md",
+    "section": "Proxy · Remember"
+  },
+  {
+    "id": "c21c9f9afe66",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Proxy (how the system thinks).",
+    "back": "Same interface as the real subject. Proxy decides *when* and *whether* to forward. Common in API clients: delay constructing the decorated Graph client until first use; enforce token present; cache.",
+    "source": "Back2Basics/Design pattern/Proxy.md",
+    "section": "Proxy · Understand"
+  },
+  {
+    "id": "1a4668c4a9a7",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Proxy?",
+    "back": "Caller → MetaClientProxy → (lazy) Decorator stack → RawMetaClient",
+    "source": "Back2Basics/Design pattern/Proxy.md",
+    "section": "Proxy · Apply"
+  },
+  {
+    "id": "d1f950cb58bf",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Proxy setup, what is your first validation command?",
+    "back": "Caller → MetaClientProxy → (lazy) Decorator stack → RawMetaClient",
+    "source": "Back2Basics/Design pattern/Proxy.md",
+    "section": "Proxy · Apply"
+  },
+  {
+    "id": "5786b4cff963",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Proxy?",
+    "back": "Structure is nearly identical — name by intent.",
+    "source": "Back2Basics/Design pattern/Proxy.md",
+    "section": "Proxy · Apply"
+  },
+  {
+    "id": "f986a57604de",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Client never initializes — what do you check and fix?",
+    "back": "Check: Factory throws / never called · Fix: Fail on first request with clear error",
+    "source": "Back2Basics/Design pattern/Proxy.md",
+    "section": "Proxy · Analyze"
+  },
+  {
+    "id": "949cfc3f7f12",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stale token forever — what do you check and fix?",
+    "back": "Check: Proxy cached client at boot · Fix: Recreate on auth refresh or short TTL",
+    "source": "Back2Basics/Design pattern/Proxy.md",
+    "section": "Proxy · Analyze"
+  },
+  {
+    "id": "b3605be071d5",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Proxy leaks Real type — what do you check and fix?",
+    "back": "Check: Downcast in callers · Fix: Depend on Subject interface only",
+    "source": "Back2Basics/Design pattern/Proxy.md",
+    "section": "Proxy · Analyze"
+  },
+  {
+    "id": "b02ea120da08",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Proxy: what silently fails?",
+    "back": "Lazy proxy + mutable process config (Graph API version) can pin the wrong version — recreate when runtime config changes (Design pattern/Singleton runtime wiring).",
+    "source": "Back2Basics/Design pattern/Proxy.md",
+    "section": "Proxy · Evaluate"
+  },
+  {
+    "id": "e46c5dca8242",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Proxy?",
+    "back": "Object is cheap and always needed — construct directly. Only adding behavior with no access control — Design pattern/Decorator.",
+    "source": "Back2Basics/Design pattern/Proxy.md",
+    "section": "Proxy · Evaluate"
+  },
+  {
+    "id": "7346eecdd010",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Proxy setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Caller → MetaClientProxy → (lazy) Decorator stack → RawMetaClient",
+    "source": "Back2Basics/Design pattern/Proxy.md",
+    "section": "Proxy · Create"
+  },
+  {
+    "id": "e9a88dcad2ed",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Singleton?",
+    "back": "Singleton — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Design pattern/Singleton.md",
+    "section": "Singleton · Remember"
+  },
+  {
+    "id": "e7b6193b76d8",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Singleton matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Design pattern/Singleton.md",
+    "section": "Singleton · Understand"
+  },
+  {
+    "id": "ac3d4e7364c3",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Singleton checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Design pattern/Singleton.md",
+    "section": "Singleton · Create"
+  },
+  {
+    "id": "fda6e50c1170",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is State in one sentence?",
+    "back": "Object alters behavior when its internal state changes — appears to change class — Dive Into Design Patterns + campaign wizard Draft → Ready → Launched.",
+    "source": "Back2Basics/Design pattern/State.md",
+    "section": "State · Remember"
+  },
+  {
+    "id": "973a2ffdfbc0",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of State (how the system thinks).",
+    "back": "Wizard/campaign lifecycle: each state allows different operations. Draft can edit; Ready can launch; Launched is mostly read-only. State object implements transitions; context delegates.",
+    "source": "Back2Basics/Design pattern/State.md",
+    "section": "State · Understand"
+  },
+  {
+    "id": "d7a6f262b4fe",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for State?",
+    "back": "Draft ──submit──► Ready ──launch──► Launched",
+    "source": "Back2Basics/Design pattern/State.md",
+    "section": "State · Apply"
+  },
+  {
+    "id": "a3d9e3a57eae",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken State setup, what is your first validation command?",
+    "back": "Draft ──submit──► Ready ──launch──► Launched",
+    "source": "Back2Basics/Design pattern/State.md",
+    "section": "State · Apply"
+  },
+  {
+    "id": "b3934c523c75",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Illegal ops succeed — what do you check and fix?",
+    "back": "Check: Missing throws in state · Fix: Explicit reject in each concrete state",
+    "source": "Back2Basics/Design pattern/State.md",
+    "section": "State · Analyze"
+  },
+  {
+    "id": "cdf1aae888c1",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: State lost after restart — what do you check and fix?",
+    "back": "Check: Only in memory · Fix: Persist state.name + rehydrate",
+    "source": "Back2Basics/Design pattern/State.md",
+    "section": "State · Analyze"
+  },
+  {
+    "id": "64195baf8dab",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Giant switch on status string — what do you check and fix?",
+    "back": "Check: State pattern abandoned · Fix: Restore state objects or transition table",
+    "source": "Back2Basics/Design pattern/State.md",
+    "section": "State · Analyze"
+  },
+  {
+    "id": "465846f1b581",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Transition without event — what do you check and fix?",
+    "back": "Check: Hidden setState · Fix: Only states call setState",
+    "source": "Back2Basics/Design pattern/State.md",
+    "section": "State · Analyze"
+  },
+  {
+    "id": "c1168ff932de",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with State: what silently fails?",
+    "back": "Persisted enums + in-memory State objects drift — always rehydrate from stored status on load.",
+    "source": "Back2Basics/Design pattern/State.md",
+    "section": "State · Evaluate"
+  },
+  {
+    "id": "d88b4e0b53d7",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use State?",
+    "back": "Two statuses and one transition — a boolean / enum is enough. Behavior does not depend on status — Strategy or plain functions.",
+    "source": "Back2Basics/Design pattern/State.md",
+    "section": "State · Evaluate"
+  },
+  {
+    "id": "527dd14277f1",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct State setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Draft ──submit──► Ready ──launch──► Launched",
+    "source": "Back2Basics/Design pattern/State.md",
+    "section": "State · Create"
+  },
+  {
+    "id": "61906875310b",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Static members (class-level state and methods) in one sentence?",
+    "back": "Belong to the type, not instances — one shared slot in memory; no virtual dispatch; common for factories, constants, and caches; abuse causes test pain and hidden global state.",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Remember"
+  },
+  {
+    "id": "30d1a8bed09a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Static members (class-level state and methods) (how the system thinks).",
+    "back": "Static methods resolve at compile time by reference type — cannot override instance methods polymorphically (method shadowing hiding rules in Java).",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Understand"
+  },
+  {
+    "id": "7452f7631677",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Static members (class-level state and methods)?",
+    "back": "Class Loader loads MyClass → Method area / metaclass ──► static fields initialized once → All instances share same static field memory",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Apply"
+  },
+  {
+    "id": "39af15837921",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Static members (class-level state and methods) setup, what is your first validation command?",
+    "back": "Class Loader loads MyClass",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Apply"
+  },
+  {
+    "id": "aa031bd96f25",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NullPointerException on static call — what do you check and fix?",
+    "back": "Check: Uninitialized static in cycle · Fix: Fix class init order; lazy holder idiom",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Analyze"
+  },
+  {
+    "id": "4876322593f6",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Tests flaky order-dependent — what do you check and fix?",
+    "back": "Check: Static mutable state leaks · Fix: Reset in @AfterEach or remove static",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Analyze"
+  },
+  {
+    "id": "d3544963278a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Override\" static — wrong method runs — what do you check and fix?",
+    "back": "Check: Hiding not overriding · Fix: Call via correct type or make instance method",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Analyze"
+  },
+  {
+    "id": "530fc721769c",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Memory leak in app server — what do you check and fix?",
+    "back": "Check: Static holds ClassLoader ref · Fix: Clear static caches on undeploy",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Analyze"
+  },
+  {
+    "id": "bbdac21d459a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Race on static lazy init — what do you check and fix?",
+    "back": "Check: Unsynchronized check-then-act · Fix: synchronized or enum singleton",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Analyze"
+  },
+  {
+    "id": "dde8f691036d",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Static members (class-level state and methods): what silently fails?",
+    "back": "Static mutable state — global variable in disguise; breaks parallel tests and multi-tenant isolation.",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Evaluate"
+  },
+  {
+    "id": "aa9189f1047f",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Static members (class-level state and methods)?",
+    "back": "Dependency injection targets — Spring/CDI beans should be instances for test/replace. Simulating polymorphism — static methods don't participate in virtual dispatch. Per-object configuration — use instance fields.",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Evaluate"
+  },
+  {
+    "id": "fbf1bb2fcc44",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Static members (class-level state and methods) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Class Loader loads MyClass",
+    "source": "Back2Basics/Design pattern/Static Members.md",
+    "section": "Static members (class-level state and methods) · Create"
+  },
+  {
+    "id": "73777a60bdaf",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Strategy pattern in one sentence?",
+    "back": "Family of interchangeable algorithms behind one interface — pick at runtime — Dive Into Design Patterns + ODAX/goal configs in Marketing API.",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Remember"
+  },
+  {
+    "id": "7d2aadfda239",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Strategy pattern (how the system thinks).",
+    "back": "Encapsulate what varies. When behavior branches by type (payment gateway, campaign goal, compression codec), put each variant in its own class implementing a shared interface. The context holds a strategy reference and delegates — no switch sprayed through the codebase.",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Understand"
+  },
+  {
+    "id": "130a84292bc0",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Strategy pattern?",
+    "back": "Context ──holds──► Strategy (interface) → GoalLeads GoalCalls GoalVisits",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Apply"
+  },
+  {
+    "id": "6ddc60d0a583",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Strategy pattern setup, what is your first validation command?",
+    "back": "Context ──holds──► Strategy (interface)",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Apply"
+  },
+  {
+    "id": "dceaa8e16172",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Strategy pattern?",
+    "back": "1. Add NewGoalStrategy implementing the interface. 2. Register in GOAL_STRATEGIES. 3. Do not edit existing strategies or sprinkle if (goal === 'new').",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Apply"
+  },
+  {
+    "id": "10883bc2eef1",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Still editing switches in 5 files — what do you check and fix?",
+    "back": "Check: Bypass / forgotten registry · Fix: One resolve function; ban raw switches",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Analyze"
+  },
+  {
+    "id": "9e3cc17cd467",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: New goal needs core changes — what do you check and fix?",
+    "back": "Check: Interface too thin or too fat · Fix: Widen strategy API or split strategies (System Design/SOLID ISP)",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Analyze"
+  },
+  {
+    "id": "bee79692ff14",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong config at runtime — what do you check and fix?",
+    "back": "Check: Bad registry key / default · Fix: Fail closed on unknown id",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Analyze"
+  },
+  {
+    "id": "2e7b5920e2a7",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Strategies share 80% code — what do you check and fix?",
+    "back": "Check: Copy-paste · Fix: Shared helpers module — not a mega base class",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Analyze"
+  },
+  {
+    "id": "d8a4150c3ee0",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Tests couple to Meta fields — what do you check and fix?",
+    "back": "Check: Strategy returns vendor DTOs · Fix: Return domain config; Design pattern/Adapter translates",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Analyze"
+  },
+  {
+    "id": "2af034af345c",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Strategy pattern: what silently fails?",
+    "back": "Inheritance for reuse is the classic smell Strategy replaces: one superclass, override everywhere, change ripples to all subclasses.",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Evaluate"
+  },
+  {
+    "id": "2cdf9566b4af",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Strategy pattern?",
+    "back": "One algorithm, no planned variants. Variants differ only by data (config object / lookup table), not behavior.",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Evaluate"
+  },
+  {
+    "id": "4beca8babb0a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Strategy pattern setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Context ──holds──► Strategy (interface)",
+    "source": "Back2Basics/Design pattern/Strategy pattern.md",
+    "section": "Strategy pattern · Create"
+  },
+  {
+    "id": "b2fb1b409768",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Template Method in one sentence?",
+    "back": "Fixed algorithm skeleton in a base class (or function); subclasses override steps — Dive Into Design Patterns + LaunchPipeline.",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Remember"
+  },
+  {
+    "id": "42b1f1027931",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Template Method (how the system thinks).",
+    "back": "Launch always: validate → create campaign → create adset → create creative → create ad → publish events. Platforms differ in *how* each step talks to the vendor. Template Method locks the order; overrides supply platform-specific steps.",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Understand"
+  },
+  {
+    "id": "375a77af1576",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Template Method?",
+    "back": "LaunchPipeline.run() → validate() ← may use Chain → createCampaign() ← override per platform → createAdSet() → createCreative()",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Apply"
+  },
+  {
+    "id": "58d3e7623e15",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Template Method setup, what is your first validation command?",
+    "back": "LaunchPipeline.run()",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Apply"
+  },
+  {
+    "id": "6351dbefa737",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Template Method?",
+    "back": "Favor composition when steps themselves are strategies — hybrid is common (pipeline + goal strategy).",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Apply"
+  },
+  {
+    "id": "09843c3c29d5",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Copy-paste launch flows per platform — what do you check and fix?",
+    "back": "Check: No shared skeleton · Fix: Extract Template Method base",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Analyze"
+  },
+  {
+    "id": "32962a2e7299",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Base knows Meta fields — what do you check and fix?",
+    "back": "Check: Leakage · Fix: Steps use factory + adapter only",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Analyze"
+  },
+  {
+    "id": "cefe31936017",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Optional step forced — what do you check and fix?",
+    "back": "Check: Abstract when optional · Fix: Default empty hook (afterLaunch)",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Analyze"
+  },
+  {
+    "id": "516a90cd7cde",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Hard to test mid-step — what do you check and fix?",
+    "back": "Check: Monolith run · Fix: Test concrete step overrides with fake factory",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Analyze"
+  },
+  {
+    "id": "f5a27ec3583f",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Template Method: what silently fails?",
+    "back": "Deep Template Method hierarchies reintroduce the inheritance pain Strategy was meant to avoid — keep one base + one level of concretes.",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Evaluate"
+  },
+  {
+    "id": "fef8826f4b89",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Template Method?",
+    "back": "Steps are identical — one function, no inheritance. Only one step varies — Design pattern/Strategy pattern or a callback hook.",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Evaluate"
+  },
+  {
+    "id": "fc80467d98be",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Template Method setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: LaunchPipeline.run()",
+    "source": "Back2Basics/Design pattern/Template Method.md",
+    "section": "Template Method · Create"
+  },
+  {
+    "id": "0f3d071239a7",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Method shadowing (embedding / inheritance) in one sentence?",
+    "back": "Same-named method on outer and inner type — which implementation runs depends on the static type of the reference, not the \"logical\" OOP hierarchy; source of subtle bugs in Go embedding and Java hiding.",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Remember"
+  },
+  {
+    "id": "3808378c9b3a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Method shadowing (embedding / inheritance) (how the system thinks).",
+    "back": "Overriding (Java virtual methods) — dynamic dispatch on runtime type.",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Understand"
+  },
+  {
+    "id": "2012a7d35cfb",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Method shadowing (embedding / inheritance)?",
+    "back": "Go embed: var c Car; c.Start() → Car.Start if defined, else promoted Engine.Start → Java static: Child.hide() hides Parent.hide — reference type picks method → Java field: Child.x shadows Parent.x — no polymorphism on fields",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Apply"
+  },
+  {
+    "id": "5a6b424e52a6",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Method shadowing (embedding / inheritance) setup, what is your first validation command?",
+    "back": "Go embed: var c Car; c.Start() → Car.Start if defined, else promoted Engine.Start",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Apply"
+  },
+  {
+    "id": "40461cb97c18",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong Log/helper called — what do you check and fix?",
+    "back": "Check: Go promoted vs outer method · Fix: Qualify embed s.Logger.Log or rename",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Analyze"
+  },
+  {
+    "id": "2bbd676dc641",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Java \"override\" doesn't run — what do you check and fix?",
+    "back": "Check: Method static / private / wrong sig · Fix: Remove static; match signature; add @Override",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Analyze"
+  },
+  {
+    "id": "f910c9efd025",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Unexpected field value — what do you check and fix?",
+    "back": "Check: Field shadowing · Fix: Rename field; use getter",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Analyze"
+  },
+  {
+    "id": "efcc81797492",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Interface default vs class — what do you check and fix?",
+    "back": "Check: Java 8+ default methods · Fix: Explicit override in impl",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Analyze"
+  },
+  {
+    "id": "1957bda188b8",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: LSP violation in tests — what do you check and fix?",
+    "back": "Check: Shadowing breaks substitutability · Fix: Favor composition over inheritance",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Analyze"
+  },
+  {
+    "id": "51202026901a",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Method shadowing (embedding / inheritance): what silently fails?",
+    "back": "Go is not Java — no subclass polymorphism on embedded structs; outer method is fixed at compile time for that type.",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Evaluate"
+  },
+  {
+    "id": "e37fb2c203f9",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Method shadowing (embedding / inheritance)?",
+    "back": "Inheritance to reuse one method — prefer explicit delegation (golang/go embedding with named field). Shadowing fields intentionally — code smell; rename for readability.",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Evaluate"
+  },
+  {
+    "id": "7d53ab964668",
+    "deck": "b2b-design-pattern",
+    "tags": [
+      "back2basics",
+      "design-pattern",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Method shadowing (embedding / inheritance) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Go embed: var c Car; c.Start() → Car.Start if defined, else promoted Engine.Start",
+    "source": "Back2Basics/Design pattern/method shadowing.md",
+    "section": "Method shadowing (embedding / inheritance) · Create"
+  }
+]

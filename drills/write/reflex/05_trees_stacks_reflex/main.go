@@ -18,7 +18,7 @@ type TreeNode struct {
 
 // TODO: REFLEX — inorder traversal (iterative with stack preferred)
 func inorderTraversal(root *TreeNode) []int {
-	panic("Implement from memory")
+  panic("Implement from memory")
 }
 
 // TODO: REFLEX — max depth of binary tree

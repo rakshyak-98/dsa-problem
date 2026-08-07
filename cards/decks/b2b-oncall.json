@@ -1,0 +1,210 @@
+[
+  {
+    "id": "91060808896c",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: EMFILE / “too many open files” — which notes?",
+    "back": "file descriptors · ss",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "d257ae85fb0f",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: Disk “saved” but data gone after crash — which notes?",
+    "back": "fsync · WAL (Write-Ahead Log) · ACID",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "7065d9084741",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: Process killed, no clear app error — which notes?",
+    "back": "OOM (Linux Out Of Memory) · Linux cgroup",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "454374cb051d",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: TCP weirdness / half-open / listen state — which notes?",
+    "back": "ss · half-open connections · Epoll",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "4a6d501764a5",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: DNS not resolving / wrong answer — which notes?",
+    "back": "DNS · dig · DNS zone",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "f8789337292e",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: SSH auth fails / wrong key — which notes?",
+    "back": "ssh agent · SSH authentication · ssh allow local system with key",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "e62c39fc16af",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: Nginx 502/504/499 — which notes?",
+    "back": "Configuration · nginx using unix socket",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "ec83e1a4824c",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: Container won’t start / compose drift — which notes?",
+    "back": "Docker compose · docker cli · Docker Runtime Security",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "8714b6144c00",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: Pod CrashLoop / not Ready — which notes?",
+    "back": "Pods · kubectl · ingress",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "cf0cb9ba0507",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: Create / apply a Pod manifest — which notes?",
+    "back": "kubectl pod creation · Pods · kubectl",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "3b27bad984bc",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: Certbot / TLS renew fail — which notes?",
+    "back": "certbot error · TLS (Transport Layer Security) · ACME server",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "0cac861d55db",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: Terraform state lock / drift — which notes?",
+    "back": "Terraform workflow · Terraform CLI · variable file",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "4e4e91da0ac0",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: Redis latency / OOM / eviction — which notes?",
+    "back": "redis-cli · redis installation",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "98b8585a7b55",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: Slow query / missing index — which notes?",
+    "back": "covering index · mysql index · Data access patterns",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "2a403183c985",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: Postgres inconsistent types deduced for parameter $n — which notes?",
+    "back": "postgres/postgres parameter type error",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  },
+  {
+    "id": "45472ef6c9d3",
+    "deck": "b2b-oncall",
+    "tags": [
+      "back2basics",
+      "oncall",
+      "index"
+    ],
+    "front": "On-call: TLS not yet valid / JWT expired / clock skew — which notes?",
+    "back": "NTP sync · date · TLS (Transport Layer Security)",
+    "source": "Back2Basics/INDEX.md",
+    "section": "On-call / debug first"
+  }
+]

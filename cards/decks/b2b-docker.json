@@ -1,0 +1,856 @@
+[
+  {
+    "id": "50bc6d47a705",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Docker Runtime Security in one sentence?",
+    "back": "Shrink the container attack surface: non-root, dropped caps, seccomp, read-only rootfs — Docker Deep Dive (Poulton) + Container Security (Liz Rice).",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Remember"
+  },
+  {
+    "id": "6004d72bb162",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Docker Runtime Security (how the system thinks).",
+    "back": "A container is namespaced processes on shared kernel — not a VM. Security = defense in depth:",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Understand"
+  },
+  {
+    "id": "26c49e1a0856",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Docker Runtime Security?",
+    "back": "Host kernel → Default retained caps include CHOWN, NET_RAW, etc. — drop ALL, add back minimally. → Docker default seccomp profile blocks ~40 dangerous syscalls (reboot, mount, …). → Writable rootfs = attacker can drop binaries, modify /etc, install persistence. → Prevents setuid binaries from gaining privs (e.g. exploited ping setuid).",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Apply"
+  },
+  {
+    "id": "a89db23090ad",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Docker Runtime Security?",
+    "back": "Default retained caps include CHOWN, NET_RAW, etc. — drop ALL, add back minimally.",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Apply"
+  },
+  {
+    "id": "6ed4459dc977",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Permission denied writing file — what do you check and fix?",
+    "back": "Check: read-only rootfs · Fix: Mount volume/tmpfs for that path",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Analyze"
+  },
+  {
+    "id": "43485e984388",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Operation not permitted — what do you check and fix?",
+    "back": "Check: seccomp or cap drop · Fix: Add specific cap or syscall to profile",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Analyze"
+  },
+  {
+    "id": "08f077cc141e",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Can't bind port 80 — what do you check and fix?",
+    "back": "Check: non-root · Fix: Listen 8080 + reverse proxy; or CAP_NET_BIND_SERVICE",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Analyze"
+  },
+  {
+    "id": "917fb8a5ec4b",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: App exits as root — what do you check and fix?",
+    "back": "Check: Missing USER · Fix: Fix Dockerfile; verify docker inspect User",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Analyze"
+  },
+  {
+    "id": "267144ce4354",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DNS works in dev, fails hardened — what do you check and fix?",
+    "back": "Check: NET_RAW dropped · Fix: Usually not needed; check outbound firewall",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Analyze"
+  },
+  {
+    "id": "aade29417e29",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: JVM/Node crash on seccomp — what do you check and fix?",
+    "back": "Check: blocked syscall in logs · Fix: Custom seccomp allowlist for runtime",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Analyze"
+  },
+  {
+    "id": "6fefe399d7b3",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Docker Runtime Security: what silently fails?",
+    "back": "Mounting /var/run/docker.sock — container owns the host. CI pattern only with isolated runners.",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Evaluate"
+  },
+  {
+    "id": "b33e87250a59",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Docker Runtime Security?",
+    "back": "Hardware/device containers (GPU, BPF loaders) — may legitimately need extra caps; document exception. seccomp-unconfined as default — only narrow debug window. Security theater — read-only rootfs while running root with --privileged undoes everything.",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Evaluate"
+  },
+  {
+    "id": "9d905f9bfb0f",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Docker Runtime Security setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Host kernel",
+    "source": "Back2Basics/Docker/Docker Runtime Security.md",
+    "section": "Docker Runtime Security · Create"
+  },
+  {
+    "id": "07ecedcc5194",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Docker compose in one sentence?",
+    "back": "Multi-container apps as declarative YAML — docker compose v2 is a Docker CLI plugin, not a separate Python binary — Compose spec + Docker Deep Dive (Poulton).",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Remember"
+  },
+  {
+    "id": "602b43733448",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Docker compose (how the system thinks).",
+    "back": "Compose orchestrates one host / one stack (dev, CI, small prod). Not a cluster scheduler — that's Kubernetes.",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Understand"
+  },
+  {
+    "id": "c959c9715292",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Docker compose?",
+    "back": "docker compose up → Project name = directory name (or -p) → Service name = DNS name on default network → http://api:8080 from sibling container",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Apply"
+  },
+  {
+    "id": "49cbeb58e72a",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Docker compose setup, what is your first validation command?",
+    "back": "docker compose up",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Apply"
+  },
+  {
+    "id": "ce66c53f0fdf",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Docker compose?",
+    "back": "Without condition: service_healthy, depends_on only waits for container *start*, not app ready — race on first request.",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Apply"
+  },
+  {
+    "id": "86aeaf9e7d49",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: connection refused between services — what do you check and fix?",
+    "back": "Check: docker compose ps; wrong service name · Fix: Use service name not localhost cross-container",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Analyze"
+  },
+  {
+    "id": "81e8f1785d47",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works once, fails on restart — what do you check and fix?",
+    "back": "Check: No healthcheck; app starts before DB · Fix: condition: service_healthy",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Analyze"
+  },
+  {
+    "id": "a1a6622160c1",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Config change ignored — what do you check and fix?",
+    "back": "Check: Old container running · Fix: docker compose up -d --force-recreate",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Analyze"
+  },
+  {
+    "id": "e6644192f4e5",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Permission denied on bind mount — what do you check and fix?",
+    "back": "Check: UID mismatch (root in container) · Fix: Named volume; or user: in compose",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Analyze"
+  },
+  {
+    "id": "1a2bd85b445a",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Secrets in docker inspect — what do you check and fix?",
+    "back": "Check: Plain environment: · Fix: Move to secrets / external secret manager",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Analyze"
+  },
+  {
+    "id": "978a77dee24a",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Disk fills — what do you check and fix?",
+    "back": "Check: Bind mount logs on host · Fix: Log driver limits; named volumes; rotation",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Analyze"
+  },
+  {
+    "id": "c537b69f8430",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: port is already allocated — what do you check and fix?",
+    "back": "Check: Host port clash · Fix: Change ports: or stop conflicting service",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Analyze"
+  },
+  {
+    "id": "fd806432b066",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Prod outage after down -v — what do you check and fix?",
+    "back": "Check: Operator ran destructive down · Fix: Backups; document runbooks; avoid -v in prod",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Analyze"
+  },
+  {
+    "id": "65f4bbd12bc8",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Docker compose: what silently fails?",
+    "back": "Bind mount database data dir — SELinux (:Z), path drift, backup/restore pain, corrupt on laptop sleep. Use named volumes for state.",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Evaluate"
+  },
+  {
+    "id": "16482a4f6aef",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Docker compose?",
+    "back": "Multi-node HA, PDB, autoscaling — kubectl / Kubernetes. Secret rotation at scale — Vault, cloud SM, not flat files on disk. Compose in prod at large scale — OK for single-node edge/small SaaS; plan migration path early.",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Evaluate"
+  },
+  {
+    "id": "9633a9665d2a",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Docker compose setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: docker compose up",
+    "source": "Back2Basics/Docker/Docker compose.md",
+    "section": "Docker compose · Create"
+  },
+  {
+    "id": "dc579b09dd51",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Swarm network?",
+    "back": "Swarm network — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Docker/Swarm network.md",
+    "section": "Swarm network · Remember"
+  },
+  {
+    "id": "7f2447f4ba3d",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Swarm network matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Docker/Swarm network.md",
+    "section": "Swarm network · Understand"
+  },
+  {
+    "id": "4a19ca76831a",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Swarm network checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Docker/Swarm network.md",
+    "section": "Swarm network · Create"
+  },
+  {
+    "id": "f47947b0aa73",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is commit changes in the container to new image. in one sentence?",
+    "back": "Keep in mind that even if a port is exposed in a container, it may not be accessible from outside the host machine if the container is not connected to the host network or if the firewall is blocking traffic to that port.",
+    "source": "Back2Basics/Docker/docker OCI.md",
+    "section": "commit changes in the container to new image. · Remember"
+  },
+  {
+    "id": "394e303108c8",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for commit changes in the container to new image.?",
+    "back": "docker commit <container id> <new-image-name>; → docker port <container id>; # test docker port → docker ps --format \"{{.Names}}\\\\t {{.Ports}}\" → docker inspect --format='{{json .NetworkSettings.Ports}}' mycontainer",
+    "source": "Back2Basics/Docker/docker OCI.md",
+    "section": "commit changes in the container to new image. · Apply"
+  },
+  {
+    "id": "dc011b1ad1be",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken commit changes in the container to new image. setup, what is your first validation command?",
+    "back": "docker commit <container id> <new-image-name>;",
+    "source": "Back2Basics/Docker/docker OCI.md",
+    "section": "commit changes in the container to new image. · Apply"
+  },
+  {
+    "id": "da3a095f0d3c",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct commit changes in the container to new image. setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: docker commit <container id> <new-image-name>;",
+    "source": "Back2Basics/Docker/docker OCI.md",
+    "section": "commit changes in the container to new image. · Create"
+  },
+  {
+    "id": "4fd4007ece02",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is docker cli in one sentence?",
+    "back": "Day-one Docker CLI for build, run, debug, and cleanup — Docker docs + on-call triage when containers misbehave.",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Remember"
+  },
+  {
+    "id": "4612b942b75a",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of docker cli (how the system thinks).",
+    "back": "Image = template; container = running (or stopped) instance. Build context = everything sent to daemon during docker build (.dockerignore matters).",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Understand"
+  },
+  {
+    "id": "b1e9c7bb2042",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for docker cli?",
+    "back": "Common lint failures: missing .dockerignore, latest tag in prod, root user, unpinned base image.",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Apply"
+  },
+  {
+    "id": "0d7a0a334987",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken docker cli setup, what is your first validation command?",
+    "back": "Common lint failures: missing .dockerignore, latest tag in prod, root user, unpinned base image.",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Apply"
+  },
+  {
+    "id": "673786902b23",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for docker cli?",
+    "back": "Common lint failures: missing .dockerignore, latest tag in prod, root user, unpinned base image.",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Apply"
+  },
+  {
+    "id": "44020ee39029",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cannot connect to Docker daemon — what do you check and fix?",
+    "back": "Check: systemctl status docker · Fix: Start daemon; user in docker group; DOCKER_HOST",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Analyze"
+  },
+  {
+    "id": "3c08174e58fc",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Build fails COPY missing file — what do you check and fix?",
+    "back": "Check: Context vs .dockerignore · Fix: Fix path; adjust ignore; docker build --progress=plain",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Analyze"
+  },
+  {
+    "id": "23465febdce8",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Container exits immediately — what do you check and fix?",
+    "back": "Check: docker logs; exit code · Fix: Fix CMD; run interactively; check arch mismatch",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Analyze"
+  },
+  {
+    "id": "a5e91eeb5074",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Port already allocated — what do you check and fix?",
+    "back": "Check: ss -tlnp \\ · Fix: grep :3000",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Analyze"
+  },
+  {
+    "id": "7e13a82b50cf",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Out of disk — what do you check and fix?",
+    "back": "Check: docker system df · Fix: Prune; expand volume; logs rotation",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Analyze"
+  },
+  {
+    "id": "055413edea0f",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works locally, fails CI — what do you check and fix?",
+    "back": "Check: Platform (linux/amd64) · Fix: docker buildx build --platform linux/amd64",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Analyze"
+  },
+  {
+    "id": "b802b71f0895",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DNS inside container broken — what do you check and fix?",
+    "back": "Check: docker exec cat /etc/resolv.conf · Fix: Custom network; corporate proxy",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Analyze"
+  },
+  {
+    "id": "a1ee218c7ccf",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: no space left on device during build — what do you check and fix?",
+    "back": "Check: Layer cache · Fix: Prune; multi-stage build; smaller base",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Analyze"
+  },
+  {
+    "id": "6cfb8eace1b1",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Network alias not resolving — what do you check and fix?",
+    "back": "Check: Same user-defined network? · Fix: docker network connect; use service name in compose",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Analyze"
+  },
+  {
+    "id": "64be0841c046",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with docker cli: what silently fails?",
+    "back": "docker system prune -a --volumes in prod — deletes unused volumes including orphaned DB data.",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Evaluate"
+  },
+  {
+    "id": "c4ae49800805",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use docker cli?",
+    "back": "Production orchestration at scale — Docker compose for dev; Kubernetes/systemd for prod HA. Rootful Docker for untrusted code — use rootless mode or sandbox (Docker Runtime Security). Long-term log storage — ship to journal/Loki; docker logs rotates with container.",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Evaluate"
+  },
+  {
+    "id": "4e913b65577f",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct docker cli setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Common lint failures: missing .dockerignore, latest tag in prod, root user, unpinned base image.",
+    "source": "Back2Basics/Docker/docker cli.md",
+    "section": "docker cli · Create"
+  },
+  {
+    "id": "0862486fb3e4",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Basic (recommended)?",
+    "back": "## Snap shot a container",
+    "source": "Back2Basics/Docker/docker container.md",
+    "section": "Basic (recommended) · Remember"
+  },
+  {
+    "id": "f34842cd02c7",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Basic (recommended)?",
+    "back": "docker run [OPTIONS] image_name[:tag]; → docker run hello-world; → docker run -it --rm ubuntu bash; # interactive terminal, remove when stopped → docker run -d --name my-nginx -p 8080:80 nginx:latest; → docker run -d -e MYSQL_ROOT_PASSWORD=secret123 --name mydb mysql:8.0;",
+    "source": "Back2Basics/Docker/docker container.md",
+    "section": "Basic (recommended) · Apply"
+  },
+  {
+    "id": "effefb0c063a",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Basic (recommended) setup, what is your first validation command?",
+    "back": "docker run [OPTIONS] image_name[:tag];",
+    "source": "Back2Basics/Docker/docker container.md",
+    "section": "Basic (recommended) · Apply"
+  },
+  {
+    "id": "bca966b9d37b",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Basic (recommended) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: docker run [OPTIONS] image_name[:tag];",
+    "source": "Back2Basics/Docker/docker container.md",
+    "section": "Basic (recommended) · Create"
+  },
+  {
+    "id": "83a43e69768f",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is the default is not to use systemd for cgroups because the delegate issues still?",
+    "back": "To run a specific command on container restart, you should configure the ENTRYPOINT or CMD block in the Dockerfile ENTRYPOINT : used to define the main command or process that always runs in the container. It cannot be overridden at runtime unless specifically done with …",
+    "source": "Back2Basics/Docker/docker file.md",
+    "section": "the default is not to use systemd for cgroups because the delegate issues still · Remember"
+  },
+  {
+    "id": "c3a240948d51",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for the default is not to use systemd for cgroups because the delegate issues still?",
+    "back": "Docker supports multiple drivers (you usually don't change this unless needed) → RUN",
+    "source": "Back2Basics/Docker/docker file.md",
+    "section": "the default is not to use systemd for cgroups because the delegate issues still · Apply"
+  },
+  {
+    "id": "fbf206123e53",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken the default is not to use systemd for cgroups because the delegate issues still setup, what is your first validation command?",
+    "back": "Docker supports multiple drivers (you usually don't change this unless needed)",
+    "source": "Back2Basics/Docker/docker file.md",
+    "section": "the default is not to use systemd for cgroups because the delegate issues still · Apply"
+  },
+  {
+    "id": "1a8d5c905d71",
+    "deck": "b2b-docker",
+    "tags": [
+      "back2basics",
+      "docker",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct the default is not to use systemd for cgroups because the delegate issues still setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Docker supports multiple drivers (you usually don't change this unless needed)",
+    "source": "Back2Basics/Docker/docker file.md",
+    "section": "the default is not to use systemd for cgroups because the delegate issues still · Create"
+  }
+]

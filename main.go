@@ -3,8 +3,9 @@
 // RUN:              go run .          (from repo root)
 // RUN with tests:   go run . -- --run
 // Core only:        go run . -- --drill core
-// Select track:     go run . -- -t dsa|read|write|backend
+// Select track:     go run . -- -t dsa|read|write|backend|cards
 // List tracks:      go run . -- --list-tracks
+// Cards:            go run . -- --track cards --due
 package main
 
 import (
@@ -31,6 +32,7 @@ func repoRoot() string {
 func runIn(dir string, args ...string) error {
 	cmd := exec.Command("go", append([]string{"run", "."}, args...)...)
 	cmd.Dir = dir
+	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()

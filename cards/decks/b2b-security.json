@@ -1,0 +1,5126 @@
+[
+  {
+    "id": "cf90697ec407",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ACME server?",
+    "back": "is the remote server (rub by a Certificate Authority) that Certbot talks to using the ACME protocol.",
+    "source": "Back2Basics/Security/ACME server.md",
+    "section": "ACME server · Remember"
+  },
+  {
+    "id": "8813335b8393",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "For Let's Encrypt production in ACME server, what is the key fact?",
+    "back": "ISRG / Let's Encrypt — Yes — Yes — Yes (default) — acme-v02.api.letsencrypt.org",
+    "source": "Back2Basics/Security/ACME server.md",
+    "section": "ACME server · Remember"
+  },
+  {
+    "id": "944043ee74f5",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "For Let's Encrypt staging in ACME server, what is the key fact?",
+    "back": "ISRG / Let's Encrypt — Yes — No (for testing) — --staging flag — staging environment to avoid rate limits",
+    "source": "Back2Basics/Security/ACME server.md",
+    "section": "ACME server · Remember"
+  },
+  {
+    "id": "dedd154bca41",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "For Your own private CA in ACME server, what is the key fact?",
+    "back": "step-ca, Smallstep, Boulder, etc. — Yes (self-hosted) — No (internal only) — --server flag — For internal use",
+    "source": "Back2Basics/Security/ACME server.md",
+    "section": "ACME server · Remember"
+  },
+  {
+    "id": "cdebd9210fd5",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Asymmetrical encryption in one sentence?",
+    "back": "Public-key cryptography — encrypt or verify with public key; decrypt or sign with private key; solves key distribution at cost of CPU and size limits.",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Remember"
+  },
+  {
+    "id": "64e381d7cdb6",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Asymmetrical encryption (how the system thinks).",
+    "back": "Asymmetric = key pair per party:",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Understand"
+  },
+  {
+    "id": "a68458661adc",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Asymmetrical encryption?",
+    "back": "Common uses:",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Apply"
+  },
+  {
+    "id": "b8b838731d9c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Asymmetrical encryption setup, what is your first validation command?",
+    "back": "Common uses:",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Apply"
+  },
+  {
+    "id": "ad0ed2fcc09a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Asymmetrical encryption?",
+    "back": "Why hybrid: RSA can't encrypt large payloads; AES-GCM carries bulk data.",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Apply"
+  },
+  {
+    "id": "4c34c38b5a6b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: decryption failed — what do you check and fix?",
+    "back": "Check: Wrong key; OAEP vs PKCS#1 v1.5 · Fix: Match padding; use OAEP for new systems",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Analyze"
+  },
+  {
+    "id": "db2681a24d4d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Signature verify fail — what do you check and fix?",
+    "back": "Check: Message altered; wrong hash alg · Fix: Canonical JSON; specify SHA-256",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Analyze"
+  },
+  {
+    "id": "3f0ce10ce26a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: TLS handshake fail — what do you check and fix?",
+    "back": "Check: Cert/key mismatch; expired · Fix: Renew cert; full chain",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Analyze"
+  },
+  {
+    "id": "b0070e56d36c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Performance bottleneck — what do you check and fix?",
+    "back": "Check: RSA sign every request · Fix: Move to ECDSA/Ed25519; session tickets",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Analyze"
+  },
+  {
+    "id": "42a5664e3bac",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Asymmetrical encryption: what silently fails?",
+    "back": "Encrypting with private key is NOT signing — use proper sign API (RSA_sign, Ed25519).",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Evaluate"
+  },
+  {
+    "id": "4b484a8e742d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Asymmetrical encryption?",
+    "back": "Don't encrypt large blobs directly with RSA. Don't use asymmetric crypto where symmetrical encryption + pre-shared key (already distributed via KMS) suffices.",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Evaluate"
+  },
+  {
+    "id": "bf3a6d7056fb",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Asymmetrical encryption setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Common uses:",
+    "source": "Back2Basics/Security/Asymmetrical Encryption.md",
+    "section": "Asymmetrical encryption · Create"
+  },
+  {
+    "id": "9435867c699d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Authentication terms in one sentence?",
+    "back": "Glossary of identity primitives — use consistent vocabulary in design reviews, incident docs, and API specs.",
+    "source": "Back2Basics/Security/Authentication terms.md",
+    "section": "Authentication terms · Remember"
+  },
+  {
+    "id": "d981731825e9",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Authentication terms (how the system thinks).",
+    "back": "Authentication stack layers:",
+    "source": "Back2Basics/Security/Authentication terms.md",
+    "section": "Authentication terms · Understand"
+  },
+  {
+    "id": "7040d3c7ffac",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Authentication terms?",
+    "back": "Why separate AuthN/AuthZ: passing login doesn't imply admin — check permissions every request.",
+    "source": "Back2Basics/Security/Authentication terms.md",
+    "section": "Authentication terms · Apply"
+  },
+  {
+    "id": "a3cc1ed6b671",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Logged in but 403\" — what do you check and fix?",
+    "back": "Check: AuthZ policy · Fix: Fix roles/scopes; not token refresh",
+    "source": "Back2Basics/Security/Authentication terms.md",
+    "section": "Authentication terms · Analyze"
+  },
+  {
+    "id": "a758b069b2a5",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Token valid forever — what do you check and fix?",
+    "back": "Check: Missing exp · Fix: Short TTL + refresh rotation",
+    "source": "Back2Basics/Security/Authentication terms.md",
+    "section": "Authentication terms · Analyze"
+  },
+  {
+    "id": "ca61e3b491c0",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: TOTP drift fail — what do you check and fix?",
+    "back": "Check: NTP on server/phone · Fix: Widen window temporarily; fix time",
+    "source": "Back2Basics/Security/Authentication terms.md",
+    "section": "Authentication terms · Analyze"
+  },
+  {
+    "id": "f95a0764fe40",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: OAuth confusion — what do you check and fix?",
+    "back": "Check: Using access token as ID token · Fix: Use OIDC ID token for identity",
+    "source": "Back2Basics/Security/Authentication terms.md",
+    "section": "Authentication terms · Analyze"
+  },
+  {
+    "id": "dbbe361c7734",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Session fixation — what do you check and fix?",
+    "back": "Check: Cookie not rotated on login · Fix: Regenerate session ID",
+    "source": "Back2Basics/Security/Authentication terms.md",
+    "section": "Authentication terms · Analyze"
+  },
+  {
+    "id": "19a6626a8687",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Authentication terms: what silently fails?",
+    "back": "OAuth ≠ authentication unless using OIDC ID token validated properly.",
+    "source": "Back2Basics/Security/Authentication terms.md",
+    "section": "Authentication terms · Evaluate"
+  },
+  {
+    "id": "d7c0017c47eb",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Authentication terms?",
+    "back": "Don't roll custom crypto authentication protocols — use OIDC/SAML libraries and proven password KDFs (yashcrypt / argon2 / bcrypt).",
+    "source": "Back2Basics/Security/Authentication terms.md",
+    "section": "Authentication terms · Evaluate"
+  },
+  {
+    "id": "46784443f1bd",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Authentication terms setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Glossary of identity primitives — use consistent vocabulary in design reviews, incident docs, and API specs.",
+    "source": "Back2Basics/Security/Authentication terms.md",
+    "section": "Authentication terms · Create"
+  },
+  {
+    "id": "1bf76bb23bfc",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Base64?",
+    "back": "Base64 — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Security/Base64.md",
+    "section": "Base64 · Remember"
+  },
+  {
+    "id": "3cfc60cd7989",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Base64 matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Security/Base64.md",
+    "section": "Base64 · Understand"
+  },
+  {
+    "id": "beed0704cf0a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Base64 checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Security/Base64.md",
+    "section": "Base64 · Create"
+  },
+  {
+    "id": "64685f2a4b09",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is CORS (Cross Origin Request Sharing) in one sentence?",
+    "back": "One-line: browser-enforced policy — server headers permit another origin to read responses; preflight validates \"non-simple\" requests — Fetch spec / W3C.",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Remember"
+  },
+  {
+    "id": "e6610ef30a9a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of CORS (Cross Origin Request Sharing) (how the system thinks).",
+    "back": "CORS is not server access control — it stops browser JavaScript on https://evil.com from reading responses from https://api.example.com unless the API explicitly allows it. curl/Postman ignore CORS.",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Understand"
+  },
+  {
+    "id": "37931b3d5d71",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for CORS (Cross Origin Request Sharing)?",
+    "back": "Browser on https://myapp.com",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Apply"
+  },
+  {
+    "id": "b3d7e559cc18",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken CORS (Cross Origin Request Sharing) setup, what is your first validation command?",
+    "back": "Browser on https://myapp.com",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Apply"
+  },
+  {
+    "id": "23f06ccff0d9",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for CORS (Cross Origin Request Sharing)?",
+    "back": "1. Network tab → failed request → if no response headers visible, likely network/CORS block. 2. Separate OPTIONS entry before POST? → preflight failure. 3. Console: blocked by CORS policy: No 'Access-Control-Allow-Origin' → server didn't echo origin. 4. Credentials flag is true, but Access-Control-Allow-Origin is * → must echo exact origin.",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Apply"
+  },
+  {
+    "id": "3c7fa3a64e7b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works in Postman, fails in browser — what do you check and fix?",
+    "back": "Check: CORS is browser-only · Fix: Add ACAO headers; not an \"API bug\"",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Analyze"
+  },
+  {
+    "id": "c7a7cb6e251e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: No Access-Control-Allow-Origin — what do you check and fix?",
+    "back": "Check: Response lacks header on error paths · Fix: Add CORS middleware before routes; include 4xx/5xx responses (always in nginx)",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Analyze"
+  },
+  {
+    "id": "d2e40f33c155",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Preflight 404/405 — what do you check and fix?",
+    "back": "Check: OPTIONS not routed · Fix: Register app.options('*') or nginx OPTIONS block",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Analyze"
+  },
+  {
+    "id": "245e7a8ea66e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: header X-Custom not allowed — what do you check and fix?",
+    "back": "Check: Missing Allow-Headers · Fix: Add header to allowedHeaders / ACAH",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Analyze"
+  },
+  {
+    "id": "d941524cdf25",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Method PUT not allowed — what do you check and fix?",
+    "back": "Check: Missing Allow-Methods · Fix: Include verb in preflight response",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Analyze"
+  },
+  {
+    "id": "500316e122cb",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cookie not sent cross-origin — what do you check and fix?",
+    "back": "Check: SameSite; missing credentials · Fix: Client: withCredentials: true; server: Allow-Credentials: true + exact ACAO",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Analyze"
+  },
+  {
+    "id": "0493ff617788",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Intermittent after deploy — what do you check and fix?",
+    "back": "Check: CDN strips CORS on cache hit · Fix: Vary on Origin; configure CDN CORS policy",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Analyze"
+  },
+  {
+    "id": "8ffece5dc15d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate ACAO headers — what do you check and fix?",
+    "back": "Check: nginx + app both set · Fix: Single layer owns CORS — remove duplicate",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Analyze"
+  },
+  {
+    "id": "ad133cd0f14c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Redirect on preflight — what do you check and fix?",
+    "back": "Check: 301 http→https loses CORS · Fix: Fix URL to final HTTPS; avoid redirect on OPTIONS",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Analyze"
+  },
+  {
+    "id": "74d8a5d5dceb",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with CORS (Cross Origin Request Sharing): what silently fails?",
+    "back": "CORS is not authentication. Any client without a browser can call your API. Still require JWT authentication / sessions.",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Evaluate"
+  },
+  {
+    "id": "dd211788f1b8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use CORS (Cross Origin Request Sharing)?",
+    "back": "Server-to-server calls → no CORS needed. Same-origin SPA + API → serve both from one host or use reverse proxy path (/api → backend). \"Fix\" CORS by disabling browser security — dev-only Chrome flags don't help users.",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Evaluate"
+  },
+  {
+    "id": "eaf6915b8596",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct CORS (Cross Origin Request Sharing) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Browser on https://myapp.com",
+    "source": "Back2Basics/Security/CORS (Cross Origin Request Sharing).md",
+    "section": "CORS (Cross Origin Request Sharing) · Create"
+  },
+  {
+    "id": "6626e9aec80c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is DER in one sentence?",
+    "back": "Distinguished Encoding Rules — canonical binary ASN.1 encoding for X.509 certs, keys, and CSRs; PEM is Base64-wrapped DER with headers.",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Remember"
+  },
+  {
+    "id": "a8145ef09c94",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Binary?",
+    "back": "not safe to paste in chat/logs without encoding",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Remember"
+  },
+  {
+    "id": "9584099f0cb0",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Canonical?",
+    "back": "one valid encoding per value (good for signatures)",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Remember"
+  },
+  {
+    "id": "756f718cc494",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of DER (how the system thinks).",
+    "back": "DER properties: Binary — not safe to paste in chat/logs without encoding Canonical — one valid encoding per value (good for signatures) What TLS sends on the wire (inside records)",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Understand"
+  },
+  {
+    "id": "a79696ab8a4e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for DER?",
+    "back": "Formats engineers confuse:",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Apply"
+  },
+  {
+    "id": "32d19b9d9706",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken DER setup, what is your first validation command?",
+    "back": "Formats engineers confuse:",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Apply"
+  },
+  {
+    "id": "a521ec0869d8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for DER?",
+    "back": "Why DER in Java/Android: CertificateFactory.generateCertificate(InputStream) expects DER by default.",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Apply"
+  },
+  {
+    "id": "abd58311869e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: unable to load certificate — what do you check and fix?",
+    "back": "Check: File is PEM with .der name · Fix: Convert or fix -inform pem",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Analyze"
+  },
+  {
+    "id": "fd49362d6003",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: bad decrypt on PKCS#8 — what do you check and fix?",
+    "back": "Check: Encrypted PEM vs raw DER · Fix: Provide passphrase; export unencrypted for HSM import (careful)",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Analyze"
+  },
+  {
+    "id": "bd1a3317231b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Java keystore import fail — what do you check and fix?",
+    "back": "Check: Wrong format · Fix: keytool -importcert -file cert.der",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Analyze"
+  },
+  {
+    "id": "a2c88ff01abe",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with DER: what silently fails?",
+    "back": "PEM is not \"more secure\" — same key material; PEM is encoding only.",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Evaluate"
+  },
+  {
+    "id": "e2d164f5d9c0",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use DER?",
+    "back": "Humans editing certs → PEM. Wire protocols and some embedded parsers → DER. Don't hand-edit DER bytes.",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Evaluate"
+  },
+  {
+    "id": "ff93a4c8473c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct DER setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Formats engineers confuse:",
+    "source": "Back2Basics/Security/DER.md",
+    "section": "DER · Create"
+  },
+  {
+    "id": "66b48a311d34",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is HMAC in one sentence?",
+    "back": "Hash-based Message Authentication Code — proves integrity and shared-secret authenticity of a message without encryption.",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Remember"
+  },
+  {
+    "id": "ab2bafcd541d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Integrity?",
+    "back": "bit flip detected",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Remember"
+  },
+  {
+    "id": "3df6d58e3ba1",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Authentication?",
+    "back": "without key, tag not forgeable (given proper key size)",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Remember"
+  },
+  {
+    "id": "67b7ff097ed4",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Not confidentiality?",
+    "back": "message sent in clear unless also encrypted",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Remember"
+  },
+  {
+    "id": "3ba166809376",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of HMAC (how the system thinks).",
+    "back": "HMAC = hash function (SHA-256) keyed with a secret:",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Understand"
+  },
+  {
+    "id": "fd148ba1ec92",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for HMAC?",
+    "back": "Properties: → Used in: JWT HS256, webhook signatures (Stripe, GitHub), API request signing, TLS 1.2 PRF building blocks. → Contrast Asymmetrical Encryption signatures — public verify, private sign; no shared secret distribution problem at scale.",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Apply"
+  },
+  {
+    "id": "b71e720abb37",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for HMAC?",
+    "back": "Why timingSafeEqual: naive === leaks tag bytes via timing side channel.",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Apply"
+  },
+  {
+    "id": "ad611bcf8f62",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Signature mismatch — what do you check and fix?",
+    "back": "Check: Encoding (hex vs base64); body raw bytes · Fix: Sign exact bytes received; no JSON re-serialize",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Analyze"
+  },
+  {
+    "id": "c4ffc8a2f923",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Intermittent fail — what do you check and fix?",
+    "back": "Check: Clock skew on timestamped HMAC · Fix: Tolerance window; NTP",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Analyze"
+  },
+  {
+    "id": "69d5b6eb6810",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Key rotation pain — what do you check and fix?",
+    "back": "Check: Single global secret · Fix: Dual-key verify window — see Token rotation",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Analyze"
+  },
+  {
+    "id": "8a58d40b3cee",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Weak forgery resistance — what do you check and fix?",
+    "back": "Check: SHA1 HMAC · Fix: Upgrade to SHA-256 minimum",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Analyze"
+  },
+  {
+    "id": "7736135c34f0",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with HMAC: what silently fails?",
+    "back": "Never use plain SHA256(secret + msg) — vulnerable to length-extension; use HMAC or KDF.",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Evaluate"
+  },
+  {
+    "id": "788955ed02ba",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use HMAC?",
+    "back": "Prefer asymmetric signatures (Ed25519, RSA-PSS) when many verifiers, untrusted clients, or public webhook endpoints — avoids sharing one MAC key with every consumer.",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Evaluate"
+  },
+  {
+    "id": "76f04d6e535d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct HMAC setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Properties:",
+    "source": "Back2Basics/Security/HMAC (Hash based Message Authentication Codes).md",
+    "section": "HMAC · Create"
+  },
+  {
+    "id": "7d5f238574d2",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is HTTP Strict Transport Security?",
+    "back": "policy mechanism that helps to protect websites against [main-in-the-middle-attacks] such as [protocol downgrade attacks] and [cookie hijacking]. mechanism enabling web sites to declare themselves accessible only via secure connections and or for users to be able to direct their…",
+    "source": "Back2Basics/Security/HTTP Strict Transport Security.md",
+    "section": "HTTP Strict Transport Security · Remember"
+  },
+  {
+    "id": "5c3d14d0a9a3",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct HTTP Strict Transport Security setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: HTTP Strict Transport Security",
+    "source": "Back2Basics/Security/HTTP Strict Transport Security.md",
+    "section": "HTTP Strict Transport Security · Create"
+  },
+  {
+    "id": "a668c913caf6",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is IDOR (Insecure Direct Object Reference) in one sentence?",
+    "back": "Authorization bug: client supplies object id (URL/body); server checks authentication but not ownership — attacker swaps id and reads/writes someone else's data. Includes auto-increment enumeration.",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Remember"
+  },
+  {
+    "id": "41607c67b5b1",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of IDOR (Insecure Direct Object Reference) (how the system thinks).",
+    "back": "IDOR is a broken access control pattern, not a separate protocol attack. AuthN proves *who you are*; missing AuthZ check lets any logged-in user access GET /api/orders/12345 by iterating ids.",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Understand"
+  },
+  {
+    "id": "e28d177ad4a1",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for IDOR (Insecure Direct Object Reference)?",
+    "back": "Attacker (user A) ──► GET /invoice/1001 ──► 200 + victim data",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Apply"
+  },
+  {
+    "id": "f8e99d668e4a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken IDOR (Insecure Direct Object Reference) setup, what is your first validation command?",
+    "back": "Attacker (user A) ──► GET /invoice/1001 ──► 200 + victim data",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Apply"
+  },
+  {
+    "id": "9c7f7b0ea1ed",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for IDOR (Insecure Direct Object Reference)?",
+    "back": "Two test users A/B; capture A's resource id; replay as B → must 404/403. Burp Autorize / custom script on sequential ids (staging only).",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Apply"
+  },
+  {
+    "id": "48059198984e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Bug bounty \"access other user's order\" — what do you check and fix?",
+    "back": "Check: Handler fetches by id only · Fix: Add ownership predicate; integration test",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Analyze"
+  },
+  {
+    "id": "8bb841f22c74",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Random UUID still leaked\" — what do you check and fix?",
+    "back": "Check: BOLA in microservice trust · Fix: Service-to-service authz; don't trust caller's user id header without signature",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Analyze"
+  },
+  {
+    "id": "cf8b3084688b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Admin panel sees all (by design?) — what do you check and fix?",
+    "back": "Check: Missing role check on /admin/* · Fix: Separate admin role + audit log",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Analyze"
+  },
+  {
+    "id": "a9b297bd2915",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Signed URL shared too wide — what do you check and fix?",
+    "back": "Check: Presigned URL long TTL, no object binding · Fix: Short TTL; least privilege key",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Analyze"
+  },
+  {
+    "id": "882028512a96",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: GraphQL node(id:) global ID — what do you check and fix?",
+    "back": "Check: Decoded id bypasses parent scoping · Fix: Auth resolver per type",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Analyze"
+  },
+  {
+    "id": "2283ded8695f",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with IDOR (Insecure Direct Object Reference): what silently fails?",
+    "back": "404 vs 403 — cross-tenant prefer 404 to avoid confirming object exists (policy-dependent).",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Evaluate"
+  },
+  {
+    "id": "fcddafb8f1e4",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use IDOR (Insecure Direct Object Reference)?",
+    "back": "Confusing with CSRF/XSS — IDOR is missing server AuthZ; CSRF is unwanted action; XSS is script injection (cross-site scripting, XSRF (cross-site request forgery)). Rate limiting as fix — slows enumeration, doesn't fix authorization.",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Evaluate"
+  },
+  {
+    "id": "4bf5bfa5cf49",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct IDOR (Insecure Direct Object Reference) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Attacker (user A) ──► GET /invoice/1001 ──► 200 + victim data",
+    "source": "Back2Basics/Security/IDOR.md",
+    "section": "IDOR (Insecure Direct Object Reference) · Create"
+  },
+  {
+    "id": "39557bc2e9ac",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is JWT authentication in one sentence?",
+    "back": "One-line: signed (or encrypted) JSON claims for stateless auth — verify algorithm, signature, and claims server-side every request — RFC 7519.",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Remember"
+  },
+  {
+    "id": "271cb088d009",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of JWT authentication (how the system thinks).",
+    "back": "JWT = header.payload.signature (JWS) or nested JWE. Server trusts token only after cryptographic verification + claim checks. Stateless by default — revocation requires blocklist or short TTL + refresh rotation.",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Understand"
+  },
+  {
+    "id": "1f390aee42e9",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for JWT authentication?",
+    "back": "Client ── Authorization: Bearer eyJ... ──► API → verify sig (JWKS / shared secret) → check exp, iss, aud, nbf → authorize sub + scopes",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Apply"
+  },
+  {
+    "id": "13cdce46dce7",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken JWT authentication setup, what is your first validation command?",
+    "back": "Client ── Authorization: Bearer eyJ... ──► API",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Apply"
+  },
+  {
+    "id": "8d167677be8d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for JWT authentication?",
+    "back": "Use jti (unique token ID) for blacklist keys — not the full token string (memory heavy). when user logs in and receives an access token or refresh token, multiple tokens may exist for the same user. jti uniquely identifies each token instance.",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Apply"
+  },
+  {
+    "id": "1c8323e14f9e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: invalid signature after IdP change — what do you check and fix?",
+    "back": "Check: JWKS kid; cached old key · Fix: Refresh JWKS; support multiple kid; reduce cache TTL during rotation",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Analyze"
+  },
+  {
+    "id": "cd43394a3408",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: jwt expired sporadic — what do you check and fix?",
+    "back": "Check: NTP on API nodes vs IdP · Fix: Sync time (chrony); set clockTolerance: 30",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Analyze"
+  },
+  {
+    "id": "60fb2618bc8b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: jwt not active (nbf) — what do you check and fix?",
+    "back": "Check: Clock ahead on client · Fix: Fix skew; avoid nbf unless needed",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Analyze"
+  },
+  {
+    "id": "ea7109d1a82c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Auth bypass reports (pen test) — what do you check and fix?",
+    "back": "Check: Accept alg: none? HS256 with public key? · Fix: Allowlist algorithms; use asymmetric RS256/ES256 for multi-service",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Analyze"
+  },
+  {
+    "id": "c1cd35f11d05",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: kid header attack — what do you check and fix?",
+    "back": "Check: App fetches key from attacker URL via kid path traversal · Fix: Map kid to known JWKS only — never filesystem paths from header",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Analyze"
+  },
+  {
+    "id": "ced585ca54fe",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Logged-out user still works until exp — what do you check and fix?",
+    "back": "Check: No revocation · Fix: Blacklist jti; or short access token (5–15m) + refresh",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Analyze"
+  },
+  {
+    "id": "6900915241bd",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Refresh token reuse detected — what do you check and fix?",
+    "back": "Check: Rotation not enforced · Fix: Issue new refresh on use; invalidate family on reuse",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Analyze"
+  },
+  {
+    "id": "0b0762a6554a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: aud mismatch — what do you check and fix?",
+    "back": "Check: Token for wrong client · Fix: Validate aud matches your API identifier",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Analyze"
+  },
+  {
+    "id": "92bfa581b129",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with JWT authentication: what silently fails?",
+    "back": "alg: none attack: Libraries that honor the header algorithm can accept unsigned tokens if algorithms isn't restricted. Always pass explicit algorithms: ['RS256'].",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Evaluate"
+  },
+  {
+    "id": "e3872a988e9d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use JWT authentication?",
+    "back": "Session-heavy monolith with server-side session store already → JWT adds complexity without benefit. Long-lived credentials in mobile apps without secure storage → use platform keystore + refresh rotation. Passing JWT in URL query strings → leaks via logs and Referer.",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Evaluate"
+  },
+  {
+    "id": "f84e1bc3545d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct JWT authentication setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Client ── Authorization: Bearer eyJ... ──► API",
+    "source": "Back2Basics/Security/JWT authentication.md",
+    "section": "JWT authentication · Create"
+  },
+  {
+    "id": "6bf9d1db0cca",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is JWT?",
+    "back": "JWT — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Security/JWT.md",
+    "section": "JWT · Remember"
+  },
+  {
+    "id": "8b2493173f00",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does JWT matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Security/JWT.md",
+    "section": "JWT · Understand"
+  },
+  {
+    "id": "5e12696901c1",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe JWT checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Security/JWT.md",
+    "section": "JWT · Create"
+  },
+  {
+    "id": "389c7d06c214",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is KMS (Key Management Service) in one sentence?",
+    "back": "Managed encryption keys — envelope encryption for AWS services and your apps; keys never leave HSM in plaintext. AWS KMS docs + outages when key policy and IAM both had to align.",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Remember"
+  },
+  {
+    "id": "b37edee92bdd",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is alias/prod-app?",
+    "back": "human-friendly; rotate underlying CMK with alias re-point (manual or automation).",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Remember"
+  },
+  {
+    "id": "9408e660c8f5",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of KMS (Key Management Service) (how the system thinks).",
+    "back": "KMS stores Customer Master Keys (CMKs) — symmetric (default) or asymmetric (sign/verify). Data is encrypted with data keys; data keys are wrapped by CMK (envelope encryption). Every use calls kms:Decrypt/GenerateDataKey — logged in CloudTrail.",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Understand"
+  },
+  {
+    "id": "3216b029b87a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for KMS (Key Management Service)?",
+    "back": "App ──► GenerateDataKey ──► plaintext data key + encrypted blob",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Apply"
+  },
+  {
+    "id": "84c06dab1444",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken KMS (Key Management Service) setup, what is your first validation command?",
+    "back": "App ──► GenerateDataKey ──► plaintext data key + encrypted blob",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Apply"
+  },
+  {
+    "id": "9a42a82b2e6b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for KMS (Key Management Service)?",
+    "back": "alias/prod-app — human-friendly; rotate underlying CMK with alias re-point (manual or automation). Automatic key rotation (annual) — AWS rotates backing material; same key id, decrypt old ciphertext still works.",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Apply"
+  },
+  {
+    "id": "28cf6fa14760",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: AccessDeniedException on Decrypt — what do you check and fix?",
+    "back": "Check: Key policy and IAM; VPC endpoint? · Fix: Add role to key policy; kms:ViaService conditions",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Analyze"
+  },
+  {
+    "id": "802f9ad905c1",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: S3 SSE-KMS upload fail — what do you check and fix?",
+    "back": "Check: Bucket default encryption key; key policy for S3 · Fix: Allow S3 service principal in key policy",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Analyze"
+  },
+  {
+    "id": "de7783d575dc",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Lambda/RDS can't read secret — what do you check and fix?",
+    "back": "Check: Secret encrypted with CMK; execution role lacks kms:Decrypt · Fix: Grant role on CMK used by Secrets Manager",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Analyze"
+  },
+  {
+    "id": "1a798a9fbff3",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cross-account Deny — what do you check and fix?",
+    "back": "Check: CMK not shared; external account principal · Fix: Key policy Principal for other account role",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Analyze"
+  },
+  {
+    "id": "6faaae5c4a56",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DisabledException — what do you check and fix?",
+    "back": "Check: Key disabled or pending deletion · Fix: Re-enable; cancel deletion window (7–30 days)",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Analyze"
+  },
+  {
+    "id": "cc31fd72a908",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Higher latency — what do you check and fix?",
+    "back": "Check: KMS API per-object encrypt · Fix: Data key caching (within compliance bounds); batch",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Analyze"
+  },
+  {
+    "id": "a8278eab45e9",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with KMS (Key Management Service): what silently fails?",
+    "back": "IAM Allow alone is insufficient — CMK key policy must trust the caller (unless account root delegation pattern used correctly).",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Evaluate"
+  },
+  {
+    "id": "fc40c60bb051",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use KMS (Key Management Service)?",
+    "back": "App-level secrets in env vars without envelope — use Secrets Manager/SSM Parameter Store with KMS CMK. Password hashing — KMS encrypt ≠ bcrypt/Argon2; use for encryption at rest, not password storage. High-frequency per-field encrypt on hot path without cache — cost + latency; batch or use AES-GCM with rotated data keys.",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Evaluate"
+  },
+  {
+    "id": "973ec99ee969",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct KMS (Key Management Service) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: App ──► GenerateDataKey ──► plaintext data key + encrypted blob",
+    "source": "Back2Basics/Security/KMS.md",
+    "section": "KMS (Key Management Service) · Create"
+  },
+  {
+    "id": "a0b1581d80d8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is PKI?",
+    "back": "PKI — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Security/PKI.md",
+    "section": "PKI · Remember"
+  },
+  {
+    "id": "616bc396523e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does PKI matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Security/PKI.md",
+    "section": "PKI · Understand"
+  },
+  {
+    "id": "fa36df1605dd",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe PKI checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Security/PKI.md",
+    "section": "PKI · Create"
+  },
+  {
+    "id": "b70c3ad4e15c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Preprocessor?",
+    "back": "Preprocessor — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Security/Preprocessor.md",
+    "section": "Preprocessor · Remember"
+  },
+  {
+    "id": "4e8ad137dc15",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Preprocessor matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Security/Preprocessor.md",
+    "section": "Preprocessor · Understand"
+  },
+  {
+    "id": "0bd37e50e3c8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Preprocessor checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Security/Preprocessor.md",
+    "section": "Preprocessor · Create"
+  },
+  {
+    "id": "369b60873d52",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is RSA in one sentence?",
+    "back": "Widely deployed public-key algorithm — encrypt small secrets, TLS handshakes, and digital signatures; being supplemented by ECC/Ed25519 for performance.",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Remember"
+  },
+  {
+    "id": "266e1cc8baad",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Key encapsulation?",
+    "back": "wrap AES key (RSA-OAEP)",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Remember"
+  },
+  {
+    "id": "a41c16bdc2d6",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Size?",
+    "back": "2048-bit keys, ciphertext max ~190 bytes for OAEP-SHA256",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Remember"
+  },
+  {
+    "id": "98a158279977",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Padding critical?",
+    "back": "raw RSA malleable",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Remember"
+  },
+  {
+    "id": "1afbdbe16a45",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of RSA (how the system thinks).",
+    "back": "RSA uses math on large composites (factorization hardness):",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Understand"
+  },
+  {
+    "id": "1fc0e4ca0abb",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for RSA?",
+    "back": "Roles in prod: → Limits:",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Apply"
+  },
+  {
+    "id": "939a8426a1b3",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken RSA setup, what is your first validation command?",
+    "back": "Roles in prod:",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Apply"
+  },
+  {
+    "id": "9e1b37ad3e4d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for RSA?",
+    "back": "Why OAEP/PSS: PKCS#1 v1.5 padding classes of attacks in old implementations — OAEP for encrypt, PSS for sign.",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Apply"
+  },
+  {
+    "id": "d978b86c48af",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: TLS RSA handshake slow — what do you check and fix?",
+    "back": "Check: CPU bound · Fix: Enable ECDHE + ECDSA cert; session resumption",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Analyze"
+  },
+  {
+    "id": "3422ff005d97",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: data too large for key size — what do you check and fix?",
+    "back": "Check: Plain RSA encrypt · Fix: Hybrid encrypt AES key only",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Analyze"
+  },
+  {
+    "id": "85c0bbb130e6",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Verification fail cross-lang — what do you check and fix?",
+    "back": "Check: Padding mode mismatch · Fix: Standardize PSS/OAEP params",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Analyze"
+  },
+  {
+    "id": "f2a9dd86b14c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Weak key detected — what do you check and fix?",
+    "back": "Check: <2048 bits · Fix: Regenerate; HSM stored keys",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Analyze"
+  },
+  {
+    "id": "4f06c7d18a6c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with RSA: what silently fails?",
+    "back": "Don't use RSA without padding — textbook RSA broken.",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Evaluate"
+  },
+  {
+    "id": "b59dd8b68936",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use RSA?",
+    "back": "Greenfield signing → Ed25519. Greenfield TLS → ECDSA P-256 or Ed25519 certs. RSA for legacy interop only.",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Evaluate"
+  },
+  {
+    "id": "d20f8c3ee9a5",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct RSA setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Roles in prod:",
+    "source": "Back2Basics/Security/RSA.md",
+    "section": "RSA · Create"
+  },
+  {
+    "id": "636f14316901",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Root certificate in one sentence?",
+    "back": "Self-signed trust anchor at the top of a certificate chain — browsers and OS trust stores decide whether your TLS cert is \"valid.\"",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Remember"
+  },
+  {
+    "id": "fe6a1e16f228",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Self-signed?",
+    "back": "issuer = subject",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Remember"
+  },
+  {
+    "id": "671d9e708d5b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Root certificate?",
+    "back": "Trust stores: Mozilla/Apple/Microsoft/Google bundles on devices. Private roots (corp) require manual install on clients.",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Apply"
+  },
+  {
+    "id": "da99ee74d079",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Root certificate setup, what is your first validation command?",
+    "back": "Trust stores: Mozilla/Apple/Microsoft/Google bundles on devices. Private roots (corp) require manual install on clients.",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Apply"
+  },
+  {
+    "id": "a49262358bb3",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Root certificate?",
+    "back": "Why intermediate exists: compromise of intermediate doesn't burn root; root stays offline.",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Apply"
+  },
+  {
+    "id": "99ececbe8c80",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Untrusted cert in browser — what do you check and fix?",
+    "back": "Check: Missing intermediate · Fix: Use fullchain.pem; fix nginx ssl_certificate",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Analyze"
+  },
+  {
+    "id": "6e7829fafb8c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Corp laptop only fails — what do you check and fix?",
+    "back": "Check: Private root not installed · Fix: Deploy MDM trust profile",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Analyze"
+  },
+  {
+    "id": "b20191e3bfc5",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Android old devices fail — what do you check and fix?",
+    "back": "Check: Expired cross-sign · Fix: Update chain; use compatible CA",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Analyze"
+  },
+  {
+    "id": "a6dae971c4f7",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: certificate has expired on root — what do you check and fix?",
+    "back": "Check: Ancient client trust store · Fix: Client update; interim cert reissue",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Analyze"
+  },
+  {
+    "id": "4625d481ee37",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Pinning failure — what do you check and fix?",
+    "back": "Check: Pin changed on root rotation · Fix: Update pins before CA migration",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Analyze"
+  },
+  {
+    "id": "6ea340c839d9",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Root certificate: what silently fails?",
+    "back": "Never put root private key on server — only leaf + intermediate certs.",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Evaluate"
+  },
+  {
+    "id": "c2f77f60c8d8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Root certificate?",
+    "back": "Don't create a private root CA unless you can distribute trust to all clients (MDM, mTLS fleet). Public sites use public CAs (certbot (letsencrypt)).",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Evaluate"
+  },
+  {
+    "id": "8d38fd6f7792",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Root certificate setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Trust stores: Mozilla/Apple/Microsoft/Google bundles on devices. Private roots (corp) require manual install on clients.",
+    "source": "Back2Basics/Security/Root certificate.md",
+    "section": "Root certificate · Create"
+  },
+  {
+    "id": "4d83406a1e45",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is SOP (Same-Origin Policy)?",
+    "back": "implemented by browser to restrict how documents or scripts loaded from one origin can interact with resources from another origin. It helps protect against cross-site-request forgery and cross-site scripting attacks.",
+    "source": "Back2Basics/Security/SOP (Same-Origin Policy).md",
+    "section": "SOP (Same-Origin Policy) · Remember"
+  },
+  {
+    "id": "cd75ff4ab3d0",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Prevents Data Leakage?",
+    "back": "Protects sensitive user data from being accessed by malicious scripts.",
+    "source": "Back2Basics/Security/SOP (Same-Origin Policy).md",
+    "section": "SOP (Same-Origin Policy) · Remember"
+  },
+  {
+    "id": "cab12ca86015",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Reduces Attack Surface?",
+    "back": "Limits the capabilities of potentially harmful cross-origin requests.",
+    "source": "Back2Basics/Security/SOP (Same-Origin Policy).md",
+    "section": "SOP (Same-Origin Policy) · Remember"
+  },
+  {
+    "id": "b3a653ce0300",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is STUN (Session Traversal Utilities for NAT)?",
+    "back": "STUN (Session Traversal Utilities for NAT) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Security/STUN (Session Traversal Utilities for NAT).md",
+    "section": "STUN (Session Traversal Utilities for NAT) · Remember"
+  },
+  {
+    "id": "19952d0ae7ae",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does STUN (Session Traversal Utilities for NAT) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Security/STUN (Session Traversal Utilities for NAT).md",
+    "section": "STUN (Session Traversal Utilities for NAT) · Understand"
+  },
+  {
+    "id": "ddd4d313ec8e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe STUN (Session Traversal Utilities for NAT) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Security/STUN (Session Traversal Utilities for NAT).md",
+    "section": "STUN (Session Traversal Utilities for NAT) · Create"
+  },
+  {
+    "id": "7bfa17222065",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Securing a hash key authentication in one sentence?",
+    "back": "Operational playbook for shared MAC/API secrets — generate strong material, store safely, rotate, and detect compromise.",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Remember"
+  },
+  {
+    "id": "8d4bf31042ce",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Securing a hash key authentication (how the system thinks).",
+    "back": "Hash-key authentication = server and client share a secret used to compute HMAC (Hash based Message Authentication Codes) or compare API key hashes:",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Understand"
+  },
+  {
+    "id": "4033c1f8d286",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Securing a hash key authentication?",
+    "back": "Threat model: → Security = key hygiene + transport + verification discipline. → See Token rotation.",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Apply"
+  },
+  {
+    "id": "9b9442647fa7",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Securing a hash key authentication setup, what is your first validation command?",
+    "back": "Threat model:",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Apply"
+  },
+  {
+    "id": "0fa54795d0a8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Securing a hash key authentication?",
+    "back": "See Token rotation.",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Apply"
+  },
+  {
+    "id": "c077d012b02e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Auth fail after deploy — what do you check and fix?",
+    "back": "Check: Wrong secret version in pod · Fix: Sync secret mount; rollout restart",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Analyze"
+  },
+  {
+    "id": "9f05d906ecd6",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Intermittent 401 — what do you check and fix?",
+    "back": "Check: Load balancer dual secrets · Fix: Sticky validation or complete rotation",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Analyze"
+  },
+  {
+    "id": "46f3d1dff1a8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Secret in logs — what do you check and fix?",
+    "back": "Check: Debug logging request headers · Fix: Redact Authorization; structured logging filters",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Analyze"
+  },
+  {
+    "id": "07c217ac0f53",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Suspected leak — what do you check and fix?",
+    "back": "Check: Unusual IPs; spike in usage · Fix: Rotate immediately; invalidate old key",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Analyze"
+  },
+  {
+    "id": "9a983bb3527f",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Timing attacks — what do you check and fix?",
+    "back": "Check: Non-constant compare · Fix: crypto.timingSafeEqual",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Analyze"
+  },
+  {
+    "id": "59a10dc38218",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Securing a hash key authentication: what silently fails?",
+    "back": "Logging full request includes Authorization — common leak vector.",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Evaluate"
+  },
+  {
+    "id": "db7f69ec11ee",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Securing a hash key authentication?",
+    "back": "Shared MAC keys don't scale to untrusted third-party integrators — use OAuth/mTLS or asymmetric webhook signatures per consumer.",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Evaluate"
+  },
+  {
+    "id": "e2f5b4625576",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Securing a hash key authentication setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Threat model:",
+    "source": "Back2Basics/Security/Securing a hash key authentication.md",
+    "section": "Securing a hash key authentication · Create"
+  },
+  {
+    "id": "636c3a74d69f",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is TLS (Transport Layer Security) in one sentence?",
+    "back": "One-line: encrypt + authenticate bytes on the wire — terminate at the edge (Nginx), use modern cipher suites, automate cert renewal, verify the full chain.",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Remember"
+  },
+  {
+    "id": "33c9c3633943",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of TLS (Transport Layer Security) (how the system thinks).",
+    "back": "TLS sits above TCP. Handshake negotiates version, ciphers, and (usually) server identity via X.509 certificate. After handshake, application data (HTTP → HTTPS) is encrypted and integrity-protected.",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Understand"
+  },
+  {
+    "id": "ff21bc12a345",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for TLS (Transport Layer Security)?",
+    "back": "Client Server → App behind proxy must trust X-Forwarded-Proto only from known hop — see Node.js security flaws in architecture.",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Apply"
+  },
+  {
+    "id": "c8420fcc74b4",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken TLS (Transport Layer Security) setup, what is your first validation command?",
+    "back": "Client Server",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Apply"
+  },
+  {
+    "id": "177c2cd3bf3f",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for TLS (Transport Layer Security)?",
+    "back": "App behind proxy must trust X-Forwarded-Proto only from known hop — see Node.js security flaws in architecture.",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Apply"
+  },
+  {
+    "id": "f0ff20fc9bbc",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SSL certificate problem: unable to get local issuer — what do you check and fix?",
+    "back": "Check: Missing intermediate in fullchain.pem · Fix: Use fullchain.pem not cert.pem only",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Analyze"
+  },
+  {
+    "id": "7cf29db24631",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Browser \"not secure\" / name mismatch — what do you check and fix?",
+    "back": "Check: SAN vs hostname · Fix: Reissue cert with correct -d names",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Analyze"
+  },
+  {
+    "id": "10febe67661c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ERR_SSL_VERSION_OR_CIPHER_MISMATCH — what do you check and fix?",
+    "back": "Check: Old client vs TLS 1.3-only · Fix: Enable TLSv1.2 temporarily; fix client",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Analyze"
+  },
+  {
+    "id": "47cf4612a99b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cert expired — what do you check and fix?",
+    "back": "Check: openssl x509 -dates · Fix: certbot renew; check timer",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Analyze"
+  },
+  {
+    "id": "50063b065b30",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mixed content warnings — what do you check and fix?",
+    "back": "Check: HTTP assets on HTTPS page · Fix: Upgrade URLs or CSP upgrade-insecure-requests",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Analyze"
+  },
+  {
+    "id": "fb72d97d36db",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works in browser, fails in app — what do you check and fix?",
+    "back": "Check: Custom CA not trusted · Fix: Add CA to trust store or use public CA",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Analyze"
+  },
+  {
+    "id": "255fe9c6ebfb",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Handshake OK, then 502 — what do you check and fix?",
+    "back": "Check: Backend issue, not TLS · Fix: See Configuration 502 playbook",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Analyze"
+  },
+  {
+    "id": "b33fe54fd96e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with TLS (Transport Layer Security): what silently fails?",
+    "back": "Private key permissions — chmod 600; never commit to git.",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Evaluate"
+  },
+  {
+    "id": "992c963dd4e3",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use TLS (Transport Layer Security)?",
+    "back": "TLS inside trusted VPC for every microservice hop — mTLS/service mesh when policy requires; otherwise edge termination + private network is common. Self-signed in production public sites — users can't trust; use public CA.",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Evaluate"
+  },
+  {
+    "id": "48e05613b395",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct TLS (Transport Layer Security) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Client Server",
+    "source": "Back2Basics/Security/TLS (Transport Layer Security).md",
+    "section": "TLS (Transport Layer Security) · Create"
+  },
+  {
+    "id": "bacac320f42c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is TOTP (Time based One Time Password)?",
+    "back": "TOTP (Time based One Time Password) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Security/TOTP (Time based One Time Password).md",
+    "section": "TOTP (Time based One Time Password) · Remember"
+  },
+  {
+    "id": "b8f34a565275",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does TOTP (Time based One Time Password) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Security/TOTP (Time based One Time Password).md",
+    "section": "TOTP (Time based One Time Password) · Understand"
+  },
+  {
+    "id": "41e60e0fa670",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe TOTP (Time based One Time Password) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Security/TOTP (Time based One Time Password).md",
+    "section": "TOTP (Time based One Time Password) · Create"
+  },
+  {
+    "id": "a578ca3defc7",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is TURN server (Traversal Using Relays around NAT)?",
+    "back": "TURN server (Traversal Using Relays around NAT) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Security/TURN server (Traversal Using Relays around NAT).md",
+    "section": "TURN server (Traversal Using Relays around NAT) · Remember"
+  },
+  {
+    "id": "bde0ff185490",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does TURN server (Traversal Using Relays around NAT) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Security/TURN server (Traversal Using Relays around NAT).md",
+    "section": "TURN server (Traversal Using Relays around NAT) · Understand"
+  },
+  {
+    "id": "b8982a755e0e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe TURN server (Traversal Using Relays around NAT) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Security/TURN server (Traversal Using Relays around NAT).md",
+    "section": "TURN server (Traversal Using Relays around NAT) · Create"
+  },
+  {
+    "id": "1f708e98612a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Token rotation in one sentence?",
+    "back": "Limit blast radius of leaked credentials — refresh/access tokens, API keys, session ids, and signing keys expire and are replaced on a schedule or after use. RFC 6819 (OAuth 2.0 Threat Model) + prod incidents from never-rotated JWT signing keys.",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Remember"
+  },
+  {
+    "id": "5a2b42b0b209",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Token rotation (how the system thinks).",
+    "back": "Long-lived secrets will leak (logs, git, browser, support tickets). Rotation means: short TTL + refresh path + revocation/list + key versioning so old material stops working without hard-downtime if done right.",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Understand"
+  },
+  {
+    "id": "de2b86fe7b61",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Token rotation?",
+    "back": "Access token (15m) ──► API → Signing keys (JWKS kid) ──► verify old + new during overlap window",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Apply"
+  },
+  {
+    "id": "06250f335188",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Token rotation setup, what is your first validation command?",
+    "back": "Access token (15m) ──► API",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Apply"
+  },
+  {
+    "id": "235afcc13274",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Token rotation?",
+    "back": "Issue with kid in header; verifiers accept both keys for overlap period (e.g. 7 days). Stop signing with old kid; remove from JWKS after max access token TTL elapsed.",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Apply"
+  },
+  {
+    "id": "7fbcb6fcf64a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mass logout after deploy — what do you check and fix?",
+    "back": "Check: JWKS old key removed too early · Fix: Re-add key; lengthen overlap",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Analyze"
+  },
+  {
+    "id": "f2dab5e70705",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Refresh loop / 401 storm — what do you check and fix?",
+    "back": "Check: Clock skew; rotated refresh not persisted client-side · Fix: Sync NTP; fix client to store new refresh",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Analyze"
+  },
+  {
+    "id": "0ae99b462375",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Invalid signature\" intermittent — what do you check and fix?",
+    "back": "Check: Multiple issuers/kids; cached JWKS stale · Fix: CDN cache JWKS short TTL; verify kid",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Analyze"
+  },
+  {
+    "id": "762ad9c79575",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: One leaked refresh compromises all — what do you check and fix?",
+    "back": "Check: No rotation/reuse detection · Fix: Enable refresh rotation + family revoke",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Analyze"
+  },
+  {
+    "id": "da5fe1967097",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: KMS decrypt fail after key delete — what do you check and fix?",
+    "back": "Check: Data encrypted with deleted CMK · Fix: Restore key from deletion pending; re-encrypt data",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Analyze"
+  },
+  {
+    "id": "4d729e077e97",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mobile apps break on rotation — what do you check and fix?",
+    "back": "Check: Hard-coded old public key · Fix: Pin to JWKS URL with update mechanism",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Analyze"
+  },
+  {
+    "id": "512a8998bb5c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Token rotation: what silently fails?",
+    "back": "Rotating signing key without overlap — all in-flight access tokens die instantly → global 401.",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Evaluate"
+  },
+  {
+    "id": "4551656c7796",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Token rotation?",
+    "back": "Rotate on every API request — unnecessary overhead; match risk (15m access / 7d refresh typical for web). Rotation without revocation store — stolen refresh works until natural expiry if you can't invalidate server-side.",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Evaluate"
+  },
+  {
+    "id": "8949a52b1beb",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Token rotation setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Access token (15m) ──► API",
+    "source": "Back2Basics/Security/Token rotation.md",
+    "section": "Token rotation · Create"
+  },
+  {
+    "id": "8fb9f8adb498",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is XSRF (cross-site request forgery)?",
+    "back": "XSRF (cross-site request forgery) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Security/XSRF (cross-site request forgery).md",
+    "section": "XSRF (cross-site request forgery) · Remember"
+  },
+  {
+    "id": "007591521fd2",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does XSRF (cross-site request forgery) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Security/XSRF (cross-site request forgery).md",
+    "section": "XSRF (cross-site request forgery) · Understand"
+  },
+  {
+    "id": "0907b8bebd54",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe XSRF (cross-site request forgery) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Security/XSRF (cross-site request forgery).md",
+    "section": "XSRF (cross-site request forgery) · Create"
+  },
+  {
+    "id": "3d626fed9895",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is certbot (letsencrypt)?",
+    "back": "Default config and log files path Main debug log: /var/log/letsencrypt/letsencrypt.log Global level conf: /etc/letsencrypt/cli.ini User level conf ~/.config/letsencrypt/cli.ini",
+    "source": "Back2Basics/Security/certbot (letsencrypt).md",
+    "section": "certbot (letsencrypt) · Remember"
+  },
+  {
+    "id": "ed3d7ad86fe5",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for certbot (letsencrypt)?",
+    "back": "sudo certbot certonly \\ → certbot plugins → certbot certificates; → sudo apt install certbot python3-certbot-nginx → sudo certbot --nginx -d example.com -d www.example.com; # Get certificate + auto-configure nginx",
+    "source": "Back2Basics/Security/certbot (letsencrypt).md",
+    "section": "certbot (letsencrypt) · Apply"
+  },
+  {
+    "id": "c064f4923472",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken certbot (letsencrypt) setup, what is your first validation command?",
+    "back": "sudo certbot certonly \\",
+    "source": "Back2Basics/Security/certbot (letsencrypt).md",
+    "section": "certbot (letsencrypt) · Apply"
+  },
+  {
+    "id": "92a6bfbb2929",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct certbot (letsencrypt) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: sudo certbot certonly \\",
+    "source": "Back2Basics/Security/certbot (letsencrypt).md",
+    "section": "certbot (letsencrypt) · Create"
+  },
+  {
+    "id": "eb4c53d106f4",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Certbot error in one sentence?",
+    "back": "One-line: map Let's Encrypt / Certbot failures to root cause and fix — operational runbook, not a log dump.",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Remember"
+  },
+  {
+    "id": "afd92c01dcda",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Certbot error (how the system thinks).",
+    "back": "Certbot talks to an ACME server (Let's Encrypt by default) through challenges to prove domain control. Failures cluster into: policy, DNS, HTTP reachability, rate limits, local misconfig, and renewal drift.",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Understand"
+  },
+  {
+    "id": "3038953b0c0c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Certbot error?",
+    "back": "certbot → ACME order → challenge (http-01 | dns-01 | tls-alpn-01) → certificate issued → /etc/letsencrypt/live/<name>/ → order invalid → read sub-problems in log → sudo certbot certonly --dry-run -v → sudo certbot renew --dry-run -v",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Apply"
+  },
+  {
+    "id": "752e87a80068",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Certbot error setup, what is your first validation command?",
+    "back": "certbot → ACME order → challenge (http-01 | dns-01 | tls-alpn-01)",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Apply"
+  },
+  {
+    "id": "02d437221e15",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cannot issue for \"x.example.com\": forbidden by policy — what do you check and fix?",
+    "back": "Fix: Use a real public domain; remove invalid SANs from -d list",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Analyze"
+  },
+  {
+    "id": "8a66992a508f",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DNS problem: NXDOMAIN looking up A/AAAA for ... — what do you check and fix?",
+    "back": "Fix: Add A/AAAA (http-01) or fix _acme-challenge TXT (dns-01)",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Analyze"
+  },
+  {
+    "id": "e4377d17c523",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connection refused / Timeout during connect on http-01 — what do you check and fix?",
+    "back": "Fix: Open :80 to internet; nginx location for webroot; cloud SG / firewall",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Analyze"
+  },
+  {
+    "id": "64f2c46a09eb",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 404 on acme-challenge — what do you check and fix?",
+    "back": "Fix: location ^~ /.well-known/acme-challenge/ { root /var/www/html; }",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Analyze"
+  },
+  {
+    "id": "2c9ef2f27029",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Invalid response ... 403 — what do you check and fix?",
+    "back": "Fix: Allowlist ACME path; disable basic auth on /.well-known/",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Analyze"
+  },
+  {
+    "id": "15de92317c2f",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Too many certificates already issued for exact set of domains — what do you check and fix?",
+    "back": "Fix: Wait; use existing cert; avoid delete+reissue loops in CI",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Analyze"
+  },
+  {
+    "id": "07f4d44ea765",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: too many failed authorizations recently — what do you check and fix?",
+    "back": "Fix: Fix root cause first; use --dry-run; wait 1 hour",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Analyze"
+  },
+  {
+    "id": "1ecfb0ba4cd8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Error creating new order :: ... sub-problems — what do you check and fix?",
+    "back": "Fix: Split certs or fix the failing name (see sub-problem)",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Analyze"
+  },
+  {
+    "id": "8ea7a7a4aea2",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Could not bind to port 80 (standalone) — what do you check and fix?",
+    "back": "Fix: Stop listener temporarily or switch to --webroot / --nginx plugin",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Analyze"
+  },
+  {
+    "id": "390c177ab26b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Renewal failure but manual issue works — what do you check and fix?",
+    "back": "Fix: certbot renew --deploy-hook \"nginx -s reload\"; verify symlink chain in live/",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Analyze"
+  },
+  {
+    "id": "aaf0a3772101",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Certbot error: what silently fails?",
+    "back": "certbot certonly doesn't install into nginx — you must point ssl_certificate at /etc/letsencrypt/live/... and reload.",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Evaluate"
+  },
+  {
+    "id": "b81742ee9c94",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Certbot error?",
+    "back": "Internal mTLS mesh between services → private CA (step-ca, Vault) not Let's Encrypt. Devices without public DNS → don't force public ACME; use DNS-01 with API or internal PKI.",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Evaluate"
+  },
+  {
+    "id": "773539fa1123",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Certbot error setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: certbot → ACME order → challenge (http-01 | dns-01 | tls-alpn-01)",
+    "source": "Back2Basics/Security/certbot error.md",
+    "section": "Certbot error · Create"
+  },
+  {
+    "id": "752b6a1b1968",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Code signing in one sentence?",
+    "back": "Cryptographic signature on binaries, packages, or scripts — proves publisher identity and detects tampering since build.",
+    "source": "Back2Basics/Security/code signing.md",
+    "section": "Code signing · Remember"
+  },
+  {
+    "id": "b12b58e1b2e4",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Code signing (how the system thinks).",
+    "back": "Code signing binds artifact hash to publisher private key:",
+    "source": "Back2Basics/Security/code signing.md",
+    "section": "Code signing · Understand"
+  },
+  {
+    "id": "8347fecb7dab",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Code signing?",
+    "back": "Platforms: → Failure modes: expired cert, revoked cert, unsigned sideload, supply-chain swap of unsigned artifact.",
+    "source": "Back2Basics/Security/code signing.md",
+    "section": "Code signing · Apply"
+  },
+  {
+    "id": "4ebe27b3f71c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Code signing?",
+    "back": "Why timestamp authority: signature valid after cert expires if TSA countersigned at sign time.",
+    "source": "Back2Basics/Security/code signing.md",
+    "section": "Code signing · Apply"
+  },
+  {
+    "id": "de26e3e02740",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Unknown publisher\" — what do you check and fix?",
+    "back": "Check: Cert chain; expired · Fix: Renew cert; install intermediate",
+    "source": "Back2Basics/Security/code signing.md",
+    "section": "Code signing · Analyze"
+  },
+  {
+    "id": "861fa3b2ecdc",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: macOS Gatekeeper block — what do you check and fix?",
+    "back": "Check: Notarization staple · Fix: Notarize; xcrun stapler staple",
+    "source": "Back2Basics/Security/code signing.md",
+    "section": "Code signing · Analyze"
+  },
+  {
+    "id": "c6f979d55a29",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CI sign fails — what do you check and fix?",
+    "back": "Check: HSM token; secret in env · Fix: Use cloud HSM; OIDC federated signing",
+    "source": "Back2Basics/Security/code signing.md",
+    "section": "Code signing · Analyze"
+  },
+  {
+    "id": "99c4066a3226",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Users still run malware — what do you check and fix?",
+    "back": "Check: Unsigned build channel · Fix: Disable sideload; enforce policy",
+    "source": "Back2Basics/Security/code signing.md",
+    "section": "Code signing · Analyze"
+  },
+  {
+    "id": "445da2b11d60",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Code signing: what silently fails?",
+    "back": "Signing ≠ sandbox — signed malware still runs if cert stolen — revocation matters.",
+    "source": "Back2Basics/Security/code signing.md",
+    "section": "Code signing · Evaluate"
+  },
+  {
+    "id": "b43b0f50c660",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Code signing?",
+    "back": "Internal-only scripts between trusted admins may use checksum in git instead of full code signing — still sign anything distributed to customers or endpoints.",
+    "source": "Back2Basics/Security/code signing.md",
+    "section": "Code signing · Evaluate"
+  },
+  {
+    "id": "1b848349bacd",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Code signing setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Platforms:",
+    "source": "Back2Basics/Security/code signing.md",
+    "section": "Code signing · Create"
+  },
+  {
+    "id": "d0b13c3df507",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Content Security Policy in one sentence?",
+    "back": "HTTP header that whitelists where scripts, styles, connections, and frames may load from — primary defense-in-depth against XSS and data exfiltration.",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Remember"
+  },
+  {
+    "id": "b61f439e28cd",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Content Security Policy (how the system thinks).",
+    "back": "CSP replaces \"browser trusts all inline script\" with an explicit allowlist:",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Understand"
+  },
+  {
+    "id": "db336da88268",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Content Security Policy?",
+    "back": "Directives (common): → Violations report to report-uri / report-to — use for rollout, not sole monitoring. → Works with SOP (Same-Origin Policy) — CSP is finer-grained fetch control.",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Apply"
+  },
+  {
+    "id": "fecc1c69e2f0",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Content Security Policy setup, what is your first validation command?",
+    "back": "Directives (common):",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Apply"
+  },
+  {
+    "id": "0332e979512e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Content Security Policy?",
+    "back": "Why avoid 'unsafe-inline': any injected <script> runs — defeats XSS mitigation.",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Apply"
+  },
+  {
+    "id": "d0076a511de9",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Blank page / JS errors — what do you check and fix?",
+    "back": "Check: DevTools Console CSP violations · Fix: Widen specific directive; nonce/hash inline",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Analyze"
+  },
+  {
+    "id": "c3df185eac6c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: API calls blocked — what do you check and fix?",
+    "back": "Check: connect-src · Fix: Add API origin explicitly",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Analyze"
+  },
+  {
+    "id": "5a3b74543b56",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CDN assets blocked — what do you check and fix?",
+    "back": "Check: script-src/style-src · Fix: Add CDN host; use Subresource Integrity",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Analyze"
+  },
+  {
+    "id": "20c223a19116",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Can't embed in iframe — what do you check and fix?",
+    "back": "Check: frame-ancestors · Fix: Set parent allowlist or 'none' intentionally",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Analyze"
+  },
+  {
+    "id": "f98eeacfc819",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Third-party widgets break — what do you check and fix?",
+    "back": "Check: Multiple directives · Fix: Isolate widget subdomain; strict default-src",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Analyze"
+  },
+  {
+    "id": "587c895d94f7",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Content Security Policy: what silently fails?",
+    "back": "CSP is not input sanitization — still escape/stored XSS in HTML contexts.",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Evaluate"
+  },
+  {
+    "id": "2c3c99786a9a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Content Security Policy?",
+    "back": "Don't deploy 'unsafe-inline' 'unsafe-eval' * — that's theater. Fix asset pipeline instead.",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Evaluate"
+  },
+  {
+    "id": "2cb94441701a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Content Security Policy setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Directives (common):",
+    "source": "Back2Basics/Security/content security policy.md",
+    "section": "Content Security Policy · Create"
+  },
+  {
+    "id": "bbcbcda20272",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Cross-site scripting (XSS) in one sentence?",
+    "back": "Injection of executable script into a page another user's browser will run — steals sessions, defaces UI, exfiltrates data.",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Remember"
+  },
+  {
+    "id": "07a021d91f0d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Cross-site scripting (XSS) (how the system thinks).",
+    "back": "XSS = attacker's JS runs in victim origin context:",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Understand"
+  },
+  {
+    "id": "689a20cb705e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Cross-site scripting (XSS)?",
+    "back": "Browser same-origin rules then grant access to cookies, localStorage, DOM, and authenticated fetch. → Defense layers:",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Apply"
+  },
+  {
+    "id": "d93f13ce24eb",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Cross-site scripting (XSS) setup, what is your first validation command?",
+    "back": "Browser same-origin rules then grant access to cookies, localStorage, DOM, and authenticated fetch.",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Apply"
+  },
+  {
+    "id": "3077f16698fc",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Cross-site scripting (XSS)?",
+    "back": "Why HttpOnly: even if XSS exists, exfiltrating session cookie is harder (not impossible with CSRF combos).",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Apply"
+  },
+  {
+    "id": "3c34206bb33b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Reported script popup — what do you check and fix?",
+    "back": "Check: Reproduce URL/param · Fix: Encode output; CSP; sanitize HTML",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Analyze"
+  },
+  {
+    "id": "8208a82ebe17",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Session hijack spike — what do you check and fix?",
+    "back": "Check: New script in stored fields · Fix: Audit DB content; WAF temporary",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Analyze"
+  },
+  {
+    "id": "f0217753eea7",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CSP breaks legit feature — what do you check and fix?",
+    "back": "Check: Console violations · Fix: Nonce/hash; narrow allowlist",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Analyze"
+  },
+  {
+    "id": "6fa8623ddd53",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Markdown/HTML renderer XSS — what do you check and fix?",
+    "back": "Check: Allowlist tags · Fix: Use safe parser; no raw HTML pass-through",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Analyze"
+  },
+  {
+    "id": "00e4318759c1",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Cross-site scripting (XSS): what silently fails?",
+    "back": "dangerouslySetInnerHTML — name is accurate.",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Evaluate"
+  },
+  {
+    "id": "cd352f93da75",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Cross-site scripting (XSS)?",
+    "back": "Don't rely on WAF alone — fix source encoding. Don't disable CSP globally for one widget — isolate vendor subdomain.",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Evaluate"
+  },
+  {
+    "id": "2b77db7804b9",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Cross-site scripting (XSS) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Browser same-origin rules then grant access to cookies, localStorage, DOM, and authenticated fetch.",
+    "source": "Back2Basics/Security/cross-site scripting.md",
+    "section": "Cross-site scripting (XSS) · Create"
+  },
+  {
+    "id": "c731342344df",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is digest access authentication?",
+    "back": "digest access authentication — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Security/digest access authentication.md",
+    "section": "digest access authentication · Remember"
+  },
+  {
+    "id": "1d309a7ea137",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does digest access authentication matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Security/digest access authentication.md",
+    "section": "digest access authentication · Understand"
+  },
+  {
+    "id": "8b9ea11ec008",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe digest access authentication checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Security/digest access authentication.md",
+    "section": "digest access authentication · Create"
+  },
+  {
+    "id": "c4868ef87641",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Fingerprint in one sentence?",
+    "back": "Short hash of a public key or certificate — human-verifiable identity for trust-on-first-use (TOFU) and MITM detection.",
+    "source": "Back2Basics/Security/fingerprint.md",
+    "section": "Fingerprint · Remember"
+  },
+  {
+    "id": "4445d493b72a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Fingerprint (how the system thinks).",
+    "back": "Full public keys are long; fingerprints compress identity:",
+    "source": "Back2Basics/Security/fingerprint.md",
+    "section": "Fingerprint · Understand"
+  },
+  {
+    "id": "24cb7cff5d34",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Fingerprint?",
+    "back": "Contexts: → Mismatch on reconnect → possible MITM, wrong host, or key rotation.",
+    "source": "Back2Basics/Security/fingerprint.md",
+    "section": "Fingerprint · Apply"
+  },
+  {
+    "id": "3f7f0f845248",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Fingerprint?",
+    "back": "Why SHA256 over MD5: MD5 ssh fingerprints still shown legacy — prefer -E sha256.",
+    "source": "Back2Basics/Security/fingerprint.md",
+    "section": "Fingerprint · Apply"
+  },
+  {
+    "id": "24ec6296aa8a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SSH \"REMOTE HOST IDENTIFICATION CHANGED\" — what do you check and fix?",
+    "back": "Check: Server rebuild; MITM · Fix: Verify new fingerprint OOB; update known_hosts",
+    "source": "Back2Basics/Security/fingerprint.md",
+    "section": "Fingerprint · Analyze"
+  },
+  {
+    "id": "eebf956e6c08",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: TLS pin failure in app — what do you check and fix?",
+    "back": "Check: Cert renewed; new CA · Fix: Rotate pins with overlap; use SPKI hash",
+    "source": "Back2Basics/Security/fingerprint.md",
+    "section": "Fingerprint · Analyze"
+  },
+  {
+    "id": "56c49206e11b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Different fingerprint same host — what do you check and fix?",
+    "back": "Check: Multiple keys (RSA+Ed25519) · Fix: Compare correct key type",
+    "source": "Back2Basics/Security/fingerprint.md",
+    "section": "Fingerprint · Analyze"
+  },
+  {
+    "id": "7849099f8805",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CI deploy fails SSH — what do you check and fix?",
+    "back": "Check: Known_hosts stale · Fix: Automate fingerprint inject from vault",
+    "source": "Back2Basics/Security/fingerprint.md",
+    "section": "Fingerprint · Analyze"
+  },
+  {
+    "id": "1bf60d606078",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Fingerprint: what silently fails?",
+    "back": "Fingerprint ≠ trust anchor — still need provenance (CA, OOB verify).",
+    "source": "Back2Basics/Security/fingerprint.md",
+    "section": "Fingerprint · Evaluate"
+  },
+  {
+    "id": "9121e6f757af",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Fingerprint?",
+    "back": "Don't fingerprint session keys — ephemeral per connection. Fingerprint long-lived public keys/certs only.",
+    "source": "Back2Basics/Security/fingerprint.md",
+    "section": "Fingerprint · Evaluate"
+  },
+  {
+    "id": "38d0c682b2b2",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Fingerprint setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Contexts:",
+    "source": "Back2Basics/Security/fingerprint.md",
+    "section": "Fingerprint · Create"
+  },
+  {
+    "id": "9fb8765e9408",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is HTTPS in one sentence?",
+    "back": "HTTP over TLS — encrypts and authenticates web traffic; browsers require valid PKI chain for padlock, APIs should pin or trust store consciously.",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Remember"
+  },
+  {
+    "id": "c0f0c4b11377",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Confidentiality?",
+    "back": "eavesdropper can't read body/headers (mostly)",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Remember"
+  },
+  {
+    "id": "f17213c5e9ce",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of HTTPS (how the system thinks).",
+    "back": "HTTPS provides: Confidentiality — eavesdropper can't read body/headers (mostly) Integrity — tampering detected Authentication — server cert proves name (if PKI trusted)",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Understand"
+  },
+  {
+    "id": "405738518976",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for HTTPS?",
+    "back": "HTTPS provides: → Not provided: authorization, XSS protection, DDoS immunity. → HTTP/1.1 vs HTTP/2 vs HTTP/3: TLS is still the security layer; HTTP/2 adds binary framing and multiplexing on one connection.",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Apply"
+  },
+  {
+    "id": "cf0162361ce4",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken HTTPS setup, what is your first validation command?",
+    "back": "HTTPS provides:",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Apply"
+  },
+  {
+    "id": "e5d130243161",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for HTTPS?",
+    "back": "Why fullchain.pem: serve leaf + intermediates — clients without AIA fetch may fail on missing intermediate.",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Apply"
+  },
+  {
+    "id": "ea986c845cde",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Certificate expired — what do you check and fix?",
+    "back": "Check: openssl s_client dates · Fix: certbot renew; automate reload",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Analyze"
+  },
+  {
+    "id": "986454956cc3",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NET::ERR_CERT_AUTHORITY_INVALID — what do you check and fix?",
+    "back": "Check: Wrong chain; self-signed · Fix: Install intermediate; public CA",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Analyze"
+  },
+  {
+    "id": "4a03b1764634",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mixed content blocked — what do you check and fix?",
+    "back": "Check: HTTP assets on HTTPS page · Fix: Upgrade URLs; CSP upgrade-insecure",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Analyze"
+  },
+  {
+    "id": "abdb3cbd06b2",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: TLS handshake timeout — what do you check and fix?",
+    "back": "Check: Firewall 443; SNI missing · Fix: Open port; correct vhost cert",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Analyze"
+  },
+  {
+    "id": "62a4f0291b83",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: HTTP/2 errors behind old proxy — what do you check and fix?",
+    "back": "Check: ALPN not forwarded · Fix: Enable HTTP/2 on edge; proxy_protocol",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Analyze"
+  },
+  {
+    "id": "f99b763b8baf",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with HTTPS: what silently fails?",
+    "back": "TLS terminates at LB — backend HTTP is plaintext on network — use mTLS or private network.",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Evaluate"
+  },
+  {
+    "id": "ae4365f65324",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use HTTPS?",
+    "back": "Don't deploy HTTPS everywhere then disable cert verification in clients (NODE_TLS_REJECT_UNAUTHORIZED=0) — fix trust store or use proper private CA.",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Evaluate"
+  },
+  {
+    "id": "027b048942a8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct HTTPS setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: HTTPS provides:",
+    "source": "Back2Basics/Security/https.md",
+    "section": "HTTPS · Create"
+  },
+  {
+    "id": "99c1a499bc25",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is openssl?",
+    "back": "/etc/ssl/certs/ca-certificates.crt",
+    "source": "Back2Basics/Security/openssl.md",
+    "section": "openssl · Remember"
+  },
+  {
+    "id": "71755a451774",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for openssl?",
+    "back": "openssl rand -hex 32; → openssl genpkey -algorithm RSA -out privatekey.pem -aes256; # generate private key → openssl rsa -in privatekey.pem -pubout -out public.key → openssl req -key privatekey.pem -new -out request.csr; # create CSR → openssl x509 -req -days 365 -in request.csr -signkey private.key -out certificate.crt; # self signed certificate",
+    "source": "Back2Basics/Security/openssl.md",
+    "section": "openssl · Apply"
+  },
+  {
+    "id": "5ecacd9bbb8f",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken openssl setup, what is your first validation command?",
+    "back": "openssl rand -hex 32;",
+    "source": "Back2Basics/Security/openssl.md",
+    "section": "openssl · Apply"
+  },
+  {
+    "id": "d2435b5716a8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct openssl setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: openssl rand -hex 32;",
+    "source": "Back2Basics/Security/openssl.md",
+    "section": "openssl · Create"
+  },
+  {
+    "id": "2e6836722a97",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Read PEM file in one sentence?",
+    "back": "Inspect PEM-encoded certs, keys, and CSRs with OpenSSL — confirm subject, expiry, SANs, and key type before install or debug TLS.",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Remember"
+  },
+  {
+    "id": "404d3aa20c8d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Read PEM file (how the system thinks).",
+    "back": "PEM files are Base64 DER with label lines:",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Understand"
+  },
+  {
+    "id": "93b62a803aa9",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Read PEM file?",
+    "back": "Common labels: → Always verify which file is which before pasting into servers — installing private key where cert goes breaks TLS silently or exposes key.",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Apply"
+  },
+  {
+    "id": "96b6244fb45f",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Read PEM file setup, what is your first validation command?",
+    "back": "Common labels:",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Apply"
+  },
+  {
+    "id": "d98b91eaaf49",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Read PEM file?",
+    "back": "Why modulus check: cert renewal with wrong key → nginx starts but handshake fails.",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Apply"
+  },
+  {
+    "id": "bcd43bd47898",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: unable to load key — what do you check and fix?",
+    "back": "Check: PEM label vs content · Fix: Re-export; PKCS#8 convert",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Analyze"
+  },
+  {
+    "id": "cee657a5e33d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cert/key mismatch — what do you check and fix?",
+    "back": "Check: Modulus/hash compare · Fix: Reissue cert or correct key file",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Analyze"
+  },
+  {
+    "id": "a0aa070d4046",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Missing SAN — what do you check and fix?",
+    "back": "Check: -ext subjectAltName · Fix: Reissue with DNS names",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Analyze"
+  },
+  {
+    "id": "44ff0c2332ca",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Expired — what do you check and fix?",
+    "back": "Check: -dates · Fix: Renew — certbot (letsencrypt)",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Analyze"
+  },
+  {
+    "id": "6b8eb81fea7f",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong file order in fullchain — what do you check and fix?",
+    "back": "Check: leaf vs intermediate · Fix: fullchain: leaf first, then intermediates",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Analyze"
+  },
+  {
+    "id": "608ad8180274",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Read PEM file: what silently fails?",
+    "back": "Never commit private PEM to git — scan with gitleaks; rotate if leaked.",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Evaluate"
+  },
+  {
+    "id": "598e379694d7",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Read PEM file?",
+    "back": "Don't -text -noout multi-GB PEM bundles in CI repeatedly — parse programmatically. For binary, use DER -inform der.",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Evaluate"
+  },
+  {
+    "id": "8710e0d13217",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Read PEM file setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Common labels:",
+    "source": "Back2Basics/Security/read pem file.md",
+    "section": "Read PEM file · Create"
+  },
+  {
+    "id": "80502ff8e67b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is HTTP Response Headers (Security & Caching) in one sentence?",
+    "back": "Server metadata that controls caching, framing, MIME sniffing, and browser security policy — mis-set headers cause stale content, clickjacking, or broken CDNs. OWASP Secure Headers + CDN cache mystery tickets.",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Remember"
+  },
+  {
+    "id": "6dcf3841c5fc",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of HTTP Response Headers (Security & Caching) (how the system thinks).",
+    "back": "Response headers are out-of-band instructions to browsers, proxies, and CDNs. Some are security defaults (CSP, HSTS); others define cache keys (Vary, Cache-Control). Order of middleware matters: headers set after response sent are ignored.",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Understand"
+  },
+  {
+    "id": "1f8942d5a248",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for HTTP Response Headers (Security & Caching)?",
+    "back": "Origin ──► App middleware ──► reverse proxy/CDN ──► browser interprets headers → Never Allow-Origin: * with credentials (CORS (Cross Origin Request Sharing)). Always Vary: Origin when origin is dynamic. → Common Vary values: Accept-Encoding (compression), Accept (format), Origin (CORS), Cookie (careful — often disables shared cache hit rate).",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Apply"
+  },
+  {
+    "id": "6a28b578bbf6",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken HTTP Response Headers (Security & Caching) setup, what is your first validation command?",
+    "back": "Origin ──► App middleware ──► reverse proxy/CDN ──► browser interprets headers",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Apply"
+  },
+  {
+    "id": "3b97407f199f",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for HTTP Response Headers (Security & Caching)?",
+    "back": "Never Allow-Origin: * with credentials (CORS (Cross Origin Request Sharing)). Always Vary: Origin when origin is dynamic.",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Apply"
+  },
+  {
+    "id": "bf3a1681b720",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CDN serves wrong language/format — what do you check and fix?",
+    "back": "Check: Missing Vary: Accept or Accept-Language · Fix: Add Vary matching negotiation headers",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Analyze"
+  },
+  {
+    "id": "e3002e855dc8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CORS works once, cached wrong origin — what do you check and fix?",
+    "back": "Check: No Vary: Origin · Fix: Add Vary; purge CDN",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Analyze"
+  },
+  {
+    "id": "b4757961689a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Site won't embed in approved iframe — what do you check and fix?",
+    "back": "Check: X-Frame-Options: DENY · Fix: CSP frame-ancestors allowlist",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Analyze"
+  },
+  {
+    "id": "e8391a6f600a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Assets stale after deploy — what do you check and fix?",
+    "back": "Check: Cache-Control: immutable on index.html · Fix: Hash filenames; no-cache on HTML",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Analyze"
+  },
+  {
+    "id": "efe159a52bfb",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: HSTS lock on bad cert — what do you check and fix?",
+    "back": "Check: Preload HSTS before cert valid · Fix: Fix cert; careful with preload",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Analyze"
+  },
+  {
+    "id": "7ffc0647c067",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CSP breaks inline scripts — what do you check and fix?",
+    "back": "Check: script-src too strict · Fix: Nonce/hash or refactor; avoid unsafe-inline in prod",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Analyze"
+  },
+  {
+    "id": "7c3dcefe511b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Security headers missing on 4xx/5xx — what do you check and fix?",
+    "back": "Check: nginx add_header without always · Fix: Add always flag",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Analyze"
+  },
+  {
+    "id": "0049fdc6c758",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with HTTP Response Headers (Security & Caching): what silently fails?",
+    "back": "Multiple Set-Cookie + missing Vary: Cookie — CDN may serve user A's page to user B from cache.",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Evaluate"
+  },
+  {
+    "id": "3b8a21717540",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use HTTP Response Headers (Security & Caching)?",
+    "back": "Spray all helmet defaults on API-only JSON — tune CSP/CORP; some headers irrelevant for non-browser consumers. Vary: * — effectively uncacheable; fix root cause instead.",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Evaluate"
+  },
+  {
+    "id": "4350a8175b35",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct HTTP Response Headers (Security & Caching) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Origin ──► App middleware ──► reverse proxy/CDN ──► browser interprets headers",
+    "source": "Back2Basics/Security/response header.md",
+    "section": "HTTP Response Headers (Security & Caching) · Create"
+  },
+  {
+    "id": "f0104c01099a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Single-sign-on (SSO) in one sentence?",
+    "back": "One-line: one identity provider (IdP) login federates access to many apps via signed assertions — SAML 2.0 or OIDC/OAuth 2.0.",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Remember"
+  },
+  {
+    "id": "e4f17ae8adc0",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Single-sign-on (SSO) (how the system thinks).",
+    "back": "SSO separates authentication (who you are) from app sessions. User authenticates once at the IdP (Okta, Azure AD, Google Workspace, Keycloak); the app receives a signed token or assertion and creates a local session.",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Understand"
+  },
+  {
+    "id": "5abceddc9f4b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Single-sign-on (SSO)?",
+    "back": "User ──► App (SP) ──redirect──► IdP login → App validates signature ──► session cookie / JWT authentication → curl -s https://login.microsoftonline.com/<tenant>/v2.0/.well-known/openid-configuration | jq . → curl -s https://idp/.well-known/jwks.json | jq . → echo \"$ID_TOKEN\" | cut -d. -f2 | base64 -d 2>/dev/null | jq .",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Apply"
+  },
+  {
+    "id": "dc5fa7ae00f6",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Single-sign-on (SSO) setup, what is your first validation command?",
+    "back": "User ──► App (SP) ──redirect──► IdP login",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Apply"
+  },
+  {
+    "id": "fde97c16375f",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Single-sign-on (SSO)?",
+    "back": "1. Register app at IdP → get client_id, client_secret (or public client + PKCE). 2. Redirect URIs — exact match required: https://app.example.com/auth/callback (no wildcards on most IdPs). 3. Fetch discovery doc: curl https://idp.example.com/.well-known/openid-configuration 4. Validate id_token: signature (JWKS from jwks_uri), `iss…",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Apply"
+  },
+  {
+    "id": "bbd45e6ee48a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: redirect_uri_mismatch — what do you check and fix?",
+    "back": "Check: IdP app config vs actual callback URL · Fix: Exact match scheme/host/path; trailing slash matters",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Analyze"
+  },
+  {
+    "id": "20bd842fe963",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: invalid_client — what do you check and fix?",
+    "back": "Check: Secret rotated; wrong tenant · Fix: Update client secret; verify tenant ID in issuer URL",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Analyze"
+  },
+  {
+    "id": "2d3398af2619",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Login works, instant logout — what do you check and fix?",
+    "back": "Check: Cookie Secure/SameSite; proxy HTTPS · Fix: Terminate TLS at edge; set SameSite=None; Secure if cross-site",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Analyze"
+  },
+  {
+    "id": "314b1e8f2f68",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Invalid signature on SAML — what do you check and fix?",
+    "back": "Check: IdP cert rotated; stale metadata · Fix: Refresh IdP metadata; update SP cert fingerprint",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Analyze"
+  },
+  {
+    "id": "9c5dcd3877a2",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Audience restriction invalid — what do you check and fix?",
+    "back": "Check: Entity ID mismatch · Fix: Align SP Entity ID with assertion Audience",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Analyze"
+  },
+  {
+    "id": "2af4c71a791d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: AuthnStatement too old / skew — what do you check and fix?",
+    "back": "Check: NTP drift on SP or IdP · Fix: Sync chrony; allow ±300s in validator",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Analyze"
+  },
+  {
+    "id": "3a0b8ec4868c",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Groups not mapped to roles — what do you check and fix?",
+    "back": "Check: Missing attribute release · Fix: IdP attribute statement / OIDC groups claim",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Analyze"
+  },
+  {
+    "id": "36c25b2f432b",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works in dev, fails prod — what do you check and fix?",
+    "back": "Check: Different client IDs; HTTP vs HTTPS · Fix: Separate IdP apps per env; never HTTP callbacks in prod",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Analyze"
+  },
+  {
+    "id": "b84f4683b38d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Infinite redirect loop — what do you check and fix?",
+    "back": "Check: Session not persisted; cookie domain · Fix: Fix cookie domain; check middleware order",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Analyze"
+  },
+  {
+    "id": "f769b5a1b8d0",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Single-sign-on (SSO): what silently fails?",
+    "back": "Never trust the id_token from the front channel without signature verification against JWKS. Always validate server-side.",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Evaluate"
+  },
+  {
+    "id": "cdaed91b44dc",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Single-sign-on (SSO)?",
+    "back": "Machine-to-machine APIs → client credentials grant or mTLS, not interactive SSO. Single small app with local users → SSO adds IdP dependency without ROI. Long-lived CLI tools → API keys or device code flow, not browser SSO redirect.",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Evaluate"
+  },
+  {
+    "id": "ec5200c0f3e2",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Single-sign-on (SSO) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: User ──► App (SP) ──redirect──► IdP login",
+    "source": "Back2Basics/Security/single-sign-on (SSO).md",
+    "section": "Single-sign-on (SSO) · Create"
+  },
+  {
+    "id": "7b664dd9fade",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is symmetrical encryption?",
+    "back": "symmetrical encryption — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Security/symmetrical encryption.md",
+    "section": "symmetrical encryption · Remember"
+  },
+  {
+    "id": "896d1bb86235",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does symmetrical encryption matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Security/symmetrical encryption.md",
+    "section": "symmetrical encryption · Understand"
+  },
+  {
+    "id": "f1d9e90abc27",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe symmetrical encryption checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Security/symmetrical encryption.md",
+    "section": "symmetrical encryption · Create"
+  },
+  {
+    "id": "71dcb6d19f84",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is white-label auth-url?",
+    "back": "white-label auth-url — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Security/white-label auth-url.md",
+    "section": "white-label auth-url · Remember"
+  },
+  {
+    "id": "7fb88a90f3af",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does white-label auth-url matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Security/white-label auth-url.md",
+    "section": "white-label auth-url · Understand"
+  },
+  {
+    "id": "7301b67d01e4",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe white-label auth-url checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Security/white-label auth-url.md",
+    "section": "white-label auth-url · Create"
+  },
+  {
+    "id": "9b8a74782f70",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is yescrypt (yashcrypt) in one sentence?",
+    "back": "Memory-hard password hashing KDF — successor to scrypt; increases attacker cost by requiring large RAM per guess. Filename yashcrypt.md is a vault typo for yescrypt.",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Remember"
+  },
+  {
+    "id": "ce5f7c5a475d",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of yescrypt (yashcrypt) (how the system thinks).",
+    "back": "yescrypt is a password hashing function (not general encryption), designed for stored credentials:",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Understand"
+  },
+  {
+    "id": "c835ab80018a",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for yescrypt (yashcrypt)?",
+    "back": "vs fast hashes (SHA256, MD5): offline attacker tries billions/sec. → vs bcrypt/argon2/scrypt: yescrypt adds ROM-dependent and memory-hard phases — parallel GPUs/ASICs need proportional RAM per guess. → Used where:",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Apply"
+  },
+  {
+    "id": "1074ec636af7",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken yescrypt (yashcrypt) setup, what is your first validation command?",
+    "back": "vs fast hashes (SHA256, MD5): offline attacker tries billions/sec.",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Apply"
+  },
+  {
+    "id": "5915b7cdbdc8",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for yescrypt (yashcrypt)?",
+    "back": "Why app-layer KDF: you control cost params per hardware generation; not tied to /etc/shadow format.",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Apply"
+  },
+  {
+    "id": "9715fd781d23",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Login fail after distro upgrade — what do you check and fix?",
+    "back": "Check: Hash method changed · Fix: Rehash on successful login (upgrade path)",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Analyze"
+  },
+  {
+    "id": "35299b0c32a9",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow login under load — what do you check and fix?",
+    "back": "Check: yescrypt memory cost high · Fix: Tune cost; offload to dedicated auth",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Analyze"
+  },
+  {
+    "id": "fe100aad795e",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Incompatible hash format — what do you check and fix?",
+    "back": "Check: $y$ vs $6$ vs $2b$ · Fix: Detect prefix; migrate gradually",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Analyze"
+  },
+  {
+    "id": "43254e5a5882",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Unknown yashcrypt reference — what do you check and fix?",
+    "back": "Check: Typo / internal name · Fix: Map to yescrypt or audit codebase",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Analyze"
+  },
+  {
+    "id": "08401ecc7353",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with yescrypt (yashcrypt): what silently fails?",
+    "back": "Never SHA256(password) for storage — use yescrypt/argon2/bcrypt/scrypt.",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Evaluate"
+  },
+  {
+    "id": "de0e61108db3",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use yescrypt (yashcrypt)?",
+    "back": "Don't use password KDFs for API signing or session tokens — use HMAC (Hash based Message Authentication Codes) or random opaque tokens. KDFs are slow by design.",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Evaluate"
+  },
+  {
+    "id": "0a53e5c5dba9",
+    "deck": "b2b-security",
+    "tags": [
+      "back2basics",
+      "security",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct yescrypt (yashcrypt) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: vs fast hashes (SHA256, MD5): offline attacker tries billions/sec.",
+    "source": "Back2Basics/Security/yashcrypt.md",
+    "section": "yescrypt (yashcrypt) · Create"
+  }
+]

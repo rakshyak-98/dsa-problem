@@ -1,0 +1,226 @@
+[
+  {
+    "id": "85e33714656f",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is PM2 ecosystem file in one sentence?",
+    "back": "Declarative process config — cluster mode, env injection, logs, and restart policy for Node apps.",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Remember"
+  },
+  {
+    "id": "a39c28d18bd8",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of PM2 ecosystem file (how the system thinks).",
+    "back": "PM2 reads ecosystem.config.js (or .cjs/JSON) and starts one or more apps. Each app has script, instances, env, and restart rules. PM2 keeps processes alive, aggregates logs, and supports zero-downtime reload for cluster mode.",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Understand"
+  },
+  {
+    "id": "ea82668cd44e",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for PM2 ecosystem file?",
+    "back": "ecosystem.config.js → pm2 start → PM2 daemon → app workers",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Apply"
+  },
+  {
+    "id": "c2275769677a",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken PM2 ecosystem file setup, what is your first validation command?",
+    "back": "ecosystem.config.js → pm2 start → PM2 daemon → app workers",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Apply"
+  },
+  {
+    "id": "70daf76c824e",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: App not picking env — what do you check and fix?",
+    "back": "Check: Wrong --env · Fix: pm2 start --env production",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Analyze"
+  },
+  {
+    "id": "c297ee6ee115",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Restarts loop — what do you check and fix?",
+    "back": "Check: pm2 logs · Fix: Fix crash; raise memory if OOM",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Analyze"
+  },
+  {
+    "id": "c5af873c6ff8",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: npm start overhead — what do you check and fix?",
+    "back": "Check: Script path · Fix: Point script at compiled JS",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Analyze"
+  },
+  {
+    "id": "3c6284591a52",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cluster sticky sessions — what do you check and fix?",
+    "back": "Check: Single instance or Redis adapter · Fix: Scale Socket.IO with adapter",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Analyze"
+  },
+  {
+    "id": "67515edf84eb",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Lost on reboot — what do you check and fix?",
+    "back": "Check: pm2 save + startup · Fix: Re-run pm2 startup after PM2 upgrade",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Analyze"
+  },
+  {
+    "id": "e920b4568931",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with PM2 ecosystem file: what silently fails?",
+    "back": "Secrets in ecosystem file — use env from host/secret manager, not committed values. instances: max on CPU-bound — can thrash; profile first. PM2 + Docker — usually one process per container; PM2 inside container is redundant unless legacy.",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Evaluate"
+  },
+  {
+    "id": "b2ec8372461f",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use PM2 ecosystem file?",
+    "back": "Don't use PM2 inside Kubernetes — use Deployments + probes. Don't cluster non-HTTP workers (queue consumers) without idempotency — use fixed instance count.",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Evaluate"
+  },
+  {
+    "id": "c5f96aedb3bc",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct PM2 ecosystem file setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: ecosystem.config.js → pm2 start → PM2 daemon → app workers",
+    "source": "Back2Basics/pm2/ecosystem.md",
+    "section": "PM2 ecosystem file · Create"
+  },
+  {
+    "id": "37c3a58ff8e9",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is pm2?",
+    "back": "pm2 runs as a non-root user (e.g., ubuntu, deploy, or your app user).",
+    "source": "Back2Basics/pm2/pm2.md",
+    "section": "pm2 · Remember"
+  },
+  {
+    "id": "c11d48242d33",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for pm2?",
+    "back": "pm2 start npm --name <app name> -- start → pm2 save; # synchronized with saved list. → pm2 resurrect; # restore saved processes. → pm2 show <process id>; # view the details of the process. → pm2 env <process id>; # show all environment variabel of process id.",
+    "source": "Back2Basics/pm2/pm2.md",
+    "section": "pm2 · Apply"
+  },
+  {
+    "id": "a47cdefca70a",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken pm2 setup, what is your first validation command?",
+    "back": "pm2 start npm --name <app name> -- start",
+    "source": "Back2Basics/pm2/pm2.md",
+    "section": "pm2 · Apply"
+  },
+  {
+    "id": "3cd9defcbf9d",
+    "deck": "b2b-pm2",
+    "tags": [
+      "back2basics",
+      "pm2",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct pm2 setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: pm2 start npm --name <app name> -- start",
+    "source": "Back2Basics/pm2/pm2.md",
+    "section": "pm2 · Create"
+  }
+]

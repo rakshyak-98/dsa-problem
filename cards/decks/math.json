@@ -1,0 +1,1440 @@
+[
+  {
+    "id": "09a10a0fbfa8",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is O(f(n))?",
+    "back": "“At most ~f(n)”",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "57993975ac14",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is Ω(f(n))?",
+    "back": "“At least ~f(n)”",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "1c73e97daf17",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is Θ(f(n))?",
+    "back": "“Exactly ~f(n)” (both O and Ω)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "5387d1b4fea4",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is o(f(n))?",
+    "back": "Grows strictly slower than f",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "32dac49fccd2",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is ω(f(n))?",
+    "back": "Grows strictly faster than f",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "d4da023c357e",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Time complexity of: Single loop i = 0..n?",
+    "back": "O(n)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "039ea08ac464",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Time complexity of: Nested i,j both 0..n?",
+    "back": "O(n²)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "a3b40c9bf1db",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Time complexity of: Halving n /= 2 each step?",
+    "back": "O(log n)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "dbc393d7ef51",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Time complexity of: i *= 2 until n?",
+    "back": "O(log n)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "b2e427c8ec92",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Time complexity of: for i=1; i<n; i*=2 + inner j=0..i?",
+    "back": "O(n) (geometric sum)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "aaf25623a0cf",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Time complexity of: for i=0; i<n; i++ + inner j=0..i?",
+    "back": "O(n²)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "e7370c05723e",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Time complexity of: Three nested 0..n?",
+    "back": "O(n³)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "b0616021e9c5",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Time complexity of: Divide array in half, one recursive call?",
+    "back": "O(n) total if O(1) work per level",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "2e2270f97903",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Time complexity of: Divide in half, two recursive calls + O(n) merge?",
+    "back": "O(n log n)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "01 — Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "dda0eaac2aa1",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Closed form of Σᵢ₌₀ⁿ⁻¹ i?",
+    "back": "Arithmetic (Arithmetic)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "02 — Summations, Series & Products"
+  },
+  {
+    "id": "e9d9793231b0",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Closed form of Σᵢ₌₀ⁿ rⁱ?",
+    "back": "Geometric; r≠1 (Geometric; r≠1)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "02 — Summations, Series & Products"
+  },
+  {
+    "id": "283d8d98284e",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Closed form of Σᵢ₌₀^∞ rⁱ?",
+    "back": "\\ (\\)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "02 — Summations, Series & Products"
+  },
+  {
+    "id": "5048fc21ef7e",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Closed form of Σᵢ₌₁ⁿ 1/i?",
+    "back": "Harmonic; γ ≈ 0.577 (Harmonic; γ ≈ 0.577)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "02 — Summations, Series & Products"
+  },
+  {
+    "id": "0be2d514cfee",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Closed form of Σᵢ₌₀^(log n) 2ⁱ?",
+    "back": "Geometric in tree height (Geometric in tree height)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "02 — Summations, Series & Products"
+  },
+  {
+    "id": "9b586009f2ce",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Solve recurrence: T(n) = T(n-1) + O(1)",
+    "back": "Linear recursion (e.g. Linear recursion)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "04 — Recurrence Relations"
+  },
+  {
+    "id": "7d049fba12c2",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Solve recurrence: T(n) = T(n-1) + O(n)",
+    "back": "Naive recursive sum (e.g. Naive recursive sum)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "04 — Recurrence Relations"
+  },
+  {
+    "id": "078727ba0240",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Solve recurrence: T(n) = T(n/2) + O(1)",
+    "back": "Binary search (e.g. Binary search)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "04 — Recurrence Relations"
+  },
+  {
+    "id": "741a6b834a7c",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Solve recurrence: T(n) = T(n/2) + O(n)",
+    "back": "Partition-style (one half) (e.g. Partition-style (one half))",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "04 — Recurrence Relations"
+  },
+  {
+    "id": "8b1d0121b3b3",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Solve recurrence: T(n) = 2T(n/2) + O(1)",
+    "back": "Tree traversal all nodes (e.g. Tree traversal all nodes)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "04 — Recurrence Relations"
+  },
+  {
+    "id": "391306193af4",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Solve recurrence: T(n) = 2T(n/2) + O(n)",
+    "back": "Merge sort (e.g. Merge sort)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "04 — Recurrence Relations"
+  },
+  {
+    "id": "02490d74163a",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Solve recurrence: T(n) = T(n-1) + O(2ⁿ)",
+    "back": "Naive Fibonacci (e.g. Naive Fibonacci)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "04 — Recurrence Relations"
+  },
+  {
+    "id": "47b38d0a4709",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Solve recurrence: T(n) = T(n-1) + T(n-2)",
+    "back": "Fibonacci (e.g. Fibonacci)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "04 — Recurrence Relations"
+  },
+  {
+    "id": "7c8bad8d2755",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Solve recurrence: T(n) = 3T(n/2) + O(n)",
+    "back": "Karatsuba-style (e.g. Karatsuba-style)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "04 — Recurrence Relations"
+  },
+  {
+    "id": "28d00770fcf6",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Formula for Permutations of n distinct?",
+    "back": "Order matters",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "06 — Combinatorics & Counting"
+  },
+  {
+    "id": "066bb59461de",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Formula for k-permutations of n?",
+    "back": "No repeat",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "06 — Combinatorics & Counting"
+  },
+  {
+    "id": "1911efbf78ae",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Formula for Combinations (binomial)?",
+    "back": "Order irrelevant",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "06 — Combinatorics & Counting"
+  },
+  {
+    "id": "4f6141828d44",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Formula for Multiset permutations?",
+    "back": "Repeated symbols",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "06 — Combinatorics & Counting"
+  },
+  {
+    "id": "8ba7e7d5cf87",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Formula for Circular permutations?",
+    "back": "Fixed rotation equivalence",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "06 — Combinatorics & Counting"
+  },
+  {
+    "id": "ca14e7c283e1",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Classic result: Random quicksort (average)?",
+    "back": "O(n log n) comparisons",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "07 — Probability & Expected Value"
+  },
+  {
+    "id": "cae77f71b620",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Classic result: Quickselect average?",
+    "back": "O(n)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "07 — Probability & Expected Value"
+  },
+  {
+    "id": "c3781d778366",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Classic result: Birthday paradox?",
+    "back": "23 people ⇒ >50% chance shared birthday",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "07 — Probability & Expected Value"
+  },
+  {
+    "id": "88aee29ce91e",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Classic result: Coupon collector?",
+    "back": "E = n H(n) ≈ n ln n + γn trials to collect all n coupons",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "07 — Probability & Expected Value"
+  },
+  {
+    "id": "63cca156088e",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Classic result: Hash table load α?",
+    "back": "Expected probes (chaining) O(1 + α)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "07 — Probability & Expected Value"
+  },
+  {
+    "id": "2800f117bcad",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Formula for Parent of i?",
+    "back": "(i - 1) / 2",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "09 — Trees & Heaps (Structural)"
+  },
+  {
+    "id": "fda47ff8a495",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Formula for Left child?",
+    "back": "2i + 1",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "09 — Trees & Heaps (Structural)"
+  },
+  {
+    "id": "04ae6ab36f14",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Formula for Right child?",
+    "back": "2i + 2",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "09 — Trees & Heaps (Structural)"
+  },
+  {
+    "id": "d43cac76e08d",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "Formula for Level of node i?",
+    "back": "⌊log₂(i+1)⌋",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "09 — Trees & Heaps (Structural)"
+  },
+  {
+    "id": "a218d192ebd0",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is 0/1 knapsack?",
+    "back": "O(nW) pseudo-polynomial (W = capacity)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "10 — Dynamic Programming — Mathematical Structure"
+  },
+  {
+    "id": "4951abb33a8a",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is Unbounded knapsack?",
+    "back": "O(nW)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "10 — Dynamic Programming — Mathematical Structure"
+  },
+  {
+    "id": "75e101f47d6e",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is Fractional knapsack?",
+    "back": "O(n log n) greedy",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "10 — Dynamic Programming — Mathematical Structure"
+  },
+  {
+    "id": "facdf2b42e6f",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is a & b?",
+    "back": "Bitwise AND",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "12 — Bit Manipulation & Binary Representations"
+  },
+  {
+    "id": "9d457f3c4f9b",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is a ^ b?",
+    "back": "XOR (xor cancel: a^a=0)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "12 — Bit Manipulation & Binary Representations"
+  },
+  {
+    "id": "d1d559f87830",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is ~a?",
+    "back": "NOT",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "12 — Bit Manipulation & Binary Representations"
+  },
+  {
+    "id": "5819aaa9acef",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is a << k?",
+    "back": "Left shift (= multiply by 2ᵏ)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "12 — Bit Manipulation & Binary Representations"
+  },
+  {
+    "id": "4045a6f977a9",
+    "deck": "math",
+    "tags": [
+      "math"
+    ],
+    "front": "What is a >> k?",
+    "back": "Right shift (signed: implementation-defined for negative)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "12 — Bit Manipulation & Binary Representations"
+  },
+  {
+    "id": "40ebce55695d",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see “Nested loops / recursion depth” → which tool?",
+    "back": "Summations, Master theorem, recursion tree",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "1a71037e90a3",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see ““How many ways?”” → which tool?",
+    "back": "Combinations, Catalan, inclusion–exclusion, DP count",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "17c43a17bbb2",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see ““Divisible by k” / huge integers” → which tool?",
+    "back": "Modular arithmetic, GCD, inverse, CRT",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "ed481818c11e",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see “Sorted search / halving” → which tool?",
+    "back": "Logarithms, O(log n) recurrence",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "f396f68a4ca5",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see “Tree / heap depth” → which tool?",
+    "back": "log₂ n, heap index formulas",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "06b04de262ca",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see “Randomized algorithm average case” → which tool?",
+    "back": "Linearity of expectation, indicator variables",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "283198d91582",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see “XOR / subset / power of 2” → which tool?",
+    "back": "Bit tricks, masks 1<<k",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "7bf3aafe59c1",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see “Geometry turn / intersection” → which tool?",
+    "back": "Cross product orientation",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "8ffd7a77ec1f",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see “String pattern match” → which tool?",
+    "back": "Rolling hash, KMP π, Z-array",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "324cd0452193",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see “Linear recurrence for huge n” → which tool?",
+    "back": "Matrix exponentiation",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "3b0265e13105",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see “Overflow in products” → which tool?",
+    "back": "64-bit, modular mul, check before multiply",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "c49fa1c7f695",
+    "deck": "math",
+    "tags": [
+      "math",
+      "picker"
+    ],
+    "front": "Math picker: when you see “Sorting lower bound” → which tool?",
+    "back": "n! leaves ⇒ Ω(n log n) comparisons",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Fast Math Picker"
+  },
+  {
+    "id": "d9d37ed62597",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Arithmetic sum?",
+    "back": "Σ i = n(n+1)/2",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "8f76e3469e5c",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Geometric sum?",
+    "back": "Σ rⁱ = (r^(n+1)-1)/(r-1)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "d46b4c981999",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Harmonic?",
+    "back": "H(n) ≈ ln n + γ",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "963ca3c9b9c8",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: GCD?",
+    "back": "gcd(a,b) = gcd(b, a mod b)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "80722943def0",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: LCM?",
+    "back": "lcm(a,b) = a·b / gcd(a,b)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "445c8f8b841d",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Binomial?",
+    "back": "C(n,k) = n! / (k!(n-k)!)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "3501dada12fc",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Catalan?",
+    "back": "C_n = C(2n,n)/(n+1)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "9445de5fa7a9",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Master?",
+    "back": "T(n)=aT(n/b)+f(n) → compare f(n) to n^(log_b a)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "e4aae2aea5ef",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Tree edges?",
+    "back": "|E| = |V| - 1",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "4a1101f513d7",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Handshaking?",
+    "back": "Σ deg = 2|E|",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "b72948f6f5cd",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Heap parent?",
+    "back": "(i-1)/2; children: 2i+1, 2i+2",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "2bfa2ee9782b",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Binary search?",
+    "back": "≤ ⌈log₂(n+1)⌉ steps",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "9c7fdb9b5a69",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Mod add/mul?",
+    "back": "(a+b)%m, (a*b)%m; inv when gcd(a,m)=1",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "49d5efa5a0b3",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Fermat inverse?",
+    "back": "a^(p-2) mod p (p prime)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "bac07f27db23",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: 2D cross?",
+    "back": "(b-a) × (c-a) → orientation sign",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "bac0c66eeb2a",
+    "deck": "math",
+    "tags": [
+      "math",
+      "formula"
+    ],
+    "front": "Formula: Shoelace area?",
+    "back": "½|Σ(x_i y_{i+1} - x_{i+1} y_i)|",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Formula Sheet"
+  },
+  {
+    "id": "570bd1e164ea",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Asymptotic Complexity & Growth Rates?",
+    "back": "Describe how resource usage scales with input size n, ignoring constants and lower-order terms.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "84b316f5f296",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Asymptotic Complexity & Growth Rates” appear in problems?",
+    "back": "Every algorithm analysis — loops, recursion, data-structure operations, lower-bound arguments.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Asymptotic Complexity & Growth Rates"
+  },
+  {
+    "id": "e2ed0d24648d",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Summations, Series & Products?",
+    "back": "Closed forms turn nested loops and recursion trees into closed complexity bounds.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Summations, Series & Products"
+  },
+  {
+    "id": "c45628a3ecb4",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Summations, Series & Products” appear in problems?",
+    "back": "Analyzing loops, recursion trees, expected values, counting operations.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Summations, Series & Products"
+  },
+  {
+    "id": "2de8a0f63a82",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Logarithms & Exponents?",
+    "back": "Logarithms measure “how many times you can divide/multiply” — core to trees, heaps, binary search, and divide-and-conquer.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Logarithms & Exponents"
+  },
+  {
+    "id": "9018b9756c09",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Logarithms & Exponents” appear in problems?",
+    "back": "Balanced BST height, heap indexing, binary search iterations, master theorem exponents.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Logarithms & Exponents"
+  },
+  {
+    "id": "7a431e9f9d70",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Recurrence Relations?",
+    "back": "Express total cost T(n) in terms of smaller subproblems; solve to get asymptotic bound.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Recurrence Relations"
+  },
+  {
+    "id": "9fecd7f7d87b",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Recurrence Relations” appear in problems?",
+    "back": "Divide-and-conquer, recursion, DP with clear substructure, tree traversals.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Recurrence Relations"
+  },
+  {
+    "id": "703764e3f31f",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Number Theory?",
+    "back": "Integer structure (divisibility, primes, residues) powers hashing, crypto-style problems, GCD/LCM puzzles, and modular DP.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Number Theory"
+  },
+  {
+    "id": "102cf3f238f8",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Number Theory” appear in problems?",
+    "back": "“Divisible by k”, coprime pairs, cycle detection in modular arithmetic, combinatorics with overflow.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Number Theory"
+  },
+  {
+    "id": "9758e41c6f11",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Combinatorics & Counting?",
+    "back": "Count arrangements, subsets, and paths without enumerating — often via formulas, recurrences, or inclusion–exclusion.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Combinatorics & Counting"
+  },
+  {
+    "id": "0bed323c01e9",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Combinatorics & Counting” appear in problems?",
+    "back": "Backtracking pruning, DP counting, probability, “how many ways” problems.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Combinatorics & Counting"
+  },
+  {
+    "id": "dd339ab57083",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Probability & Expected Value?",
+    "back": "Analyze randomized algorithms and average-case behavior; linearity of expectation simplifies many “count expected X” problems.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Probability & Expected Value"
+  },
+  {
+    "id": "6a26e69c4546",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Probability & Expected Value” appear in problems?",
+    "back": "Quickselect, randomized quicksort, reservoir sampling, hashing collision analysis, Monte Carlo.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Probability & Expected Value"
+  },
+  {
+    "id": "76f07467efab",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Graph Theory (Structural Math)?",
+    "back": "Graphs have invariant counts and bounds that explain algorithm limits and correctness.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Graph Theory (Structural Math)"
+  },
+  {
+    "id": "74b4dbd484e8",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Graph Theory (Structural Math)” appear in problems?",
+    "back": "Trees, connectivity, planarity, coloring bounds, network flow caps.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Graph Theory (Structural Math)"
+  },
+  {
+    "id": "0af7e0fb14a2",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Trees & Heaps (Structural)?",
+    "back": "Hierarchical structure implies logarithmic depth when balanced.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Trees & Heaps (Structural)"
+  },
+  {
+    "id": "f8daee7e9746",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Trees & Heaps (Structural)” appear in problems?",
+    "back": "BSTs, heaps, segment trees, Fenwick trees, trie depth.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Trees & Heaps (Structural)"
+  },
+  {
+    "id": "78b15a6c0449",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Dynamic Programming — Mathematical Structure?",
+    "back": "Optimal substructure + overlapping subproblems; often a recurrence with clear state.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Dynamic Programming — Mathematical Structure"
+  },
+  {
+    "id": "1311de04e20d",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Dynamic Programming — Mathematical Structure” appear in problems?",
+    "back": "Optimization, counting paths, knapsack, LIS, edit distance.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Dynamic Programming — Mathematical Structure"
+  },
+  {
+    "id": "bdfbe03c2008",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Greedy — Exchange Arguments & Matroids (Awareness)?",
+    "back": "Prove greedy choice is safe via exchange argument or matroid structure.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Greedy — Exchange Arguments & Matroids (Awareness)"
+  },
+  {
+    "id": "caac28a3ba60",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Greedy — Exchange Arguments & Matroids (Awareness)” appear in problems?",
+    "back": "Interval scheduling, Huffman coding, MST, fractional knapsack.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Greedy — Exchange Arguments & Matroids (Awareness)"
+  },
+  {
+    "id": "b5632a2f262f",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Bit Manipulation & Binary Representations?",
+    "back": "Integers are bit vectors; bitwise ops encode set membership, parity, and powers of two in O(1).",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Bit Manipulation & Binary Representations"
+  },
+  {
+    "id": "8e228fb2c68c",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Bit Manipulation & Binary Representations” appear in problems?",
+    "back": "Subset enumeration, XOR tricks, flags, low-level optimizations.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Bit Manipulation & Binary Representations"
+  },
+  {
+    "id": "e5454ed76423",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Geometry (Competitive / Interview)?",
+    "back": "Vectors, cross products, and distances answer orientation, intersection, and containment.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Geometry (Competitive / Interview)"
+  },
+  {
+    "id": "aafbf92b106b",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Geometry (Competitive / Interview)” appear in problems?",
+    "back": "Convex hull, line intersection, closest pair, grid geometry.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Geometry (Competitive / Interview)"
+  },
+  {
+    "id": "c5f622cb4cb9",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — String Algorithms — Math Behind the Patterns?",
+    "back": "Prefix functions and rolling hashes use modular arithmetic and recurrence on prefixes.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "String Algorithms — Math Behind the Patterns"
+  },
+  {
+    "id": "4331bc761630",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “String Algorithms — Math Behind the Patterns” appear in problems?",
+    "back": "Pattern matching, duplicate detection, palindrome centers, substring search.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "String Algorithms — Math Behind the Patterns"
+  },
+  {
+    "id": "47c8fd258079",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Numerical Stability & Integer Overflow?",
+    "back": "Language ints wrap; use wider types or modular arithmetic before intermediate products overflow.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Numerical Stability & Integer Overflow"
+  },
+  {
+    "id": "5acda213c319",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Numerical Stability & Integer Overflow” appear in problems?",
+    "back": "Combinatorics, graph weights, matrix problems, products of coordinates.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Numerical Stability & Integer Overflow"
+  },
+  {
+    "id": "b6ef4ebe5589",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Matrices & Fast Exponentiation (Advanced)?",
+    "back": "Linear recurrences and graph reachability reduce to matrix multiplication.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Matrices & Fast Exponentiation (Advanced)"
+  },
+  {
+    "id": "21ead2905ce7",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Matrices & Fast Exponentiation (Advanced)” appear in problems?",
+    "back": "Fibonacci in O(log n), Markov chains, counting paths of length k, DP on small state spaces.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Matrices & Fast Exponentiation (Advanced)"
+  },
+  {
+    "id": "b7475a8f449a",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Information Theory & Entropy (Awareness)?",
+    "back": "Shannon entropy lower-bounds average code length; explains why comparison sorts need Ω(n log n) bits of information to distinguish n! permutations.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Information Theory & Entropy (Awareness)"
+  },
+  {
+    "id": "670deeeea13b",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Information Theory & Entropy (Awareness)” appear in problems?",
+    "back": "Compression (Huffman), lower bounds, randomized bit complexity.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Information Theory & Entropy (Awareness)"
+  },
+  {
+    "id": "4e98d19c2e1d",
+    "deck": "math",
+    "tags": [
+      "math",
+      "core-idea"
+    ],
+    "front": "Math core idea — Order Statistics?",
+    "back": "Find the k-th smallest without full sort.",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Order Statistics"
+  },
+  {
+    "id": "f89d0f9e87ce",
+    "deck": "math",
+    "tags": [
+      "math",
+      "trigger"
+    ],
+    "front": "When does “Order Statistics” appear in problems?",
+    "back": "Median, quickselect, k-th largest in stream (with heap).",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Order Statistics"
+  },
+  {
+    "id": "820c0079a893",
+    "deck": "math",
+    "tags": [
+      "math",
+      "bits"
+    ],
+    "front": "Bit trick: what does n & (n - 1) do?",
+    "back": "clears lowest set bit",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Bits"
+  },
+  {
+    "id": "7602a7e9144e",
+    "deck": "math",
+    "tags": [
+      "math",
+      "bits"
+    ],
+    "front": "Bit trick: what does n & (-n) do?",
+    "back": "isolates lowest set bit (two's complement)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Bits"
+  },
+  {
+    "id": "33b0ba5de5d4",
+    "deck": "math",
+    "tags": [
+      "math",
+      "bits"
+    ],
+    "front": "Bit trick: what does 1 << k do?",
+    "back": "equals 2^k",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Bits"
+  },
+  {
+    "id": "1508bb9ee6ef",
+    "deck": "math",
+    "tags": [
+      "math",
+      "bits"
+    ],
+    "front": "Bit trick: what does n > 0 && (n & (n-1)) == 0 do?",
+    "back": "tests whether n is a power of two",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Bits"
+  },
+  {
+    "id": "a802a01f1261",
+    "deck": "math",
+    "tags": [
+      "math",
+      "master"
+    ],
+    "front": "Master theorem case 1 (leaf-heavy)?",
+    "back": "If f(n) = O(n^(log_b a - ε)) for ε>0 → T(n) = Θ(n^(log_b a))",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Master"
+  },
+  {
+    "id": "f29784fc1902",
+    "deck": "math",
+    "tags": [
+      "math",
+      "master"
+    ],
+    "front": "Master theorem case 2 (balanced)?",
+    "back": "If f(n) = Θ(n^(log_b a) log^k n) → T(n) = Θ(n^(log_b a) log^(k+1) n)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Master"
+  },
+  {
+    "id": "1cbad6e1f12e",
+    "deck": "math",
+    "tags": [
+      "math",
+      "master"
+    ],
+    "front": "Master theorem case 3 (root-heavy)?",
+    "back": "If f(n) = Ω(n^(log_b a + ε)) and regularity → T(n) = Θ(f(n))",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Master"
+  },
+  {
+    "id": "37c646274eb6",
+    "deck": "math",
+    "tags": [
+      "math",
+      "heap"
+    ],
+    "front": "Heap array indexing (0-based): parent / left / right?",
+    "back": "parent (i-1)/2; left 2i+1; right 2i+2",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Heaps"
+  },
+  {
+    "id": "c739a9fef39d",
+    "deck": "math",
+    "tags": [
+      "math",
+      "gcd"
+    ],
+    "front": "Euclidean GCD algorithm?",
+    "back": "gcd(a,b) = gcd(b, a mod b) until b==0; gcd(a,0)=a. O(log min(a,b))",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Number theory"
+  },
+  {
+    "id": "385b44f825b8",
+    "deck": "math",
+    "tags": [
+      "math",
+      "catalan"
+    ],
+    "front": "Catalan number formula?",
+    "back": "C_n = (1/(n+1)) * C(2n, n)",
+    "source": "doc/write/MATH_CONCEPTS.md",
+    "section": "Combinatorics"
+  }
+]

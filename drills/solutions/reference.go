@@ -5,7 +5,7 @@
 //
 // Do not import this during practice.
 // This file is reference only — not meant to be run.
-package solutions_reference
+package solutions
 
 import "sort"
 

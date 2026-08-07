@@ -1,0 +1,506 @@
+[
+  {
+    "id": "67f15849c576",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Flutter app icon change?",
+    "back": "Instructions for replacing the default Flutter launcher icon with the green recycling trash icon (WasteManagement.png).",
+    "source": "Back2Basics/flutter/Flutter app icon change.md",
+    "section": "Flutter app icon change · Remember"
+  },
+  {
+    "id": "4d3598471bd4",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Flutter app icon change?",
+    "back": "cd WasteManagement → mkdir -p assets/icon → cp ../WasteManagement.png assets/icon/app_icon.png → After dev_dependencies (same level as flutter:), add: → If you also want the icon on the login screen, under the flutter: section add:",
+    "source": "Back2Basics/flutter/Flutter app icon change.md",
+    "section": "Flutter app icon change · Apply"
+  },
+  {
+    "id": "321345128bee",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Flutter app icon change setup, what is your first validation command?",
+    "back": "cd WasteManagement",
+    "source": "Back2Basics/flutter/Flutter app icon change.md",
+    "section": "Flutter app icon change · Apply"
+  },
+  {
+    "id": "bc026d0fed32",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Flutter app icon change setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: cd WasteManagement",
+    "source": "Back2Basics/flutter/Flutter app icon change.md",
+    "section": "Flutter app icon change · Create"
+  },
+  {
+    "id": "46fa22d7d007",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Flutter build and release in one sentence?",
+    "back": "Compile Dart to native ARM/x64 binaries and platform bundles — debug fast, profile jank, release with obfuscation, signing, and store-ready artifacts.",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Remember"
+  },
+  {
+    "id": "8fe440374eda",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Android?",
+    "back": "Gradle wraps flutter build apk/appbundle; signing via keystore.",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Remember"
+  },
+  {
+    "id": "5e0232574fdc",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is iOS?",
+    "back": "Xcode archive; provisioning profiles + App Store Connect.",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Remember"
+  },
+  {
+    "id": "26480629af66",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Web?",
+    "back": "flutter build web → CanvasKit or skwasm renderer.",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Remember"
+  },
+  {
+    "id": "a124bc996ba1",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Flutter build and release (how the system thinks).",
+    "back": "Platform shells: Android — Gradle wraps flutter build apk/appbundle; signing via keystore. iOS — Xcode archive; provisioning profiles + App Store Connect. Web — flutter build web → CanvasKit or skwasm renderer.",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Understand"
+  },
+  {
+    "id": "dd5a34e5e34f",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Flutter build and release?",
+    "back": "Dart source ──► kernel / AOT compiler ──► libapp.so (mobile) or js/wasm (web) → flutter pub get → flutter analyze → flutter test → flutter run # debug on device/emulator",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Apply"
+  },
+  {
+    "id": "3bd07e1cd660",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Flutter build and release setup, what is your first validation command?",
+    "back": "Dart source ──► kernel / AOT compiler ──► libapp.so (mobile) or js/wasm (web)",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Apply"
+  },
+  {
+    "id": "a4148cfdd143",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Flutter build and release?",
+    "back": "android/key.properties (gitignored)",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Apply"
+  },
+  {
+    "id": "918697f8a334",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Hot reload doesn't apply — what do you check and fix?",
+    "back": "Check: Native code / const / enum changed · Fix: Hot restart; full restart",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Analyze"
+  },
+  {
+    "id": "04f9203bc034",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Release crash, debug OK — what do you check and fix?",
+    "back": "Check: Obfuscation renamed symbol · Fix: --split-debug-info; retain mapping",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Analyze"
+  },
+  {
+    "id": "fd8cdc2d9c16",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Gradle / SDK errors — what do you check and fix?",
+    "back": "Check: JDK, AGP, compileSdk mismatch · Fix: Align android/build.gradle with Flutter docs for version",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Analyze"
+  },
+  {
+    "id": "8390ec6a53d1",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Signing failed — what do you check and fix?",
+    "back": "Check: Wrong alias/password · Fix: Verify key.properties; path to keystore",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Analyze"
+  },
+  {
+    "id": "4f287d200b51",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: iOS provisioning — what do you check and fix?",
+    "back": "Check: Cert expired · Fix: Regenerate in Apple Developer portal",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Analyze"
+  },
+  {
+    "id": "b4bdcfb692ff",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Huge APK — what do you check and fix?",
+    "back": "Check: Single ABI fat apk · Fix: --split-per-abi or use AAB",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Analyze"
+  },
+  {
+    "id": "ed3864433be4",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Web blank screen — what do you check and fix?",
+    "back": "Check: Base href / renderer · Fix: --base-href /app/; check console for wasm errors",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Analyze"
+  },
+  {
+    "id": "a27ae2185cea",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: versionCode rejected — what do you check and fix?",
+    "back": "Check: Monotonic build number · Fix: Bump +N in pubspec",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Analyze"
+  },
+  {
+    "id": "be4be44e772d",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Flutter build and release: what silently fails?",
+    "back": "Never commit keystore or key.properties — use CI secrets; losing keystore = can't update app id on Play.",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Evaluate"
+  },
+  {
+    "id": "ed16b2591fe9",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Flutter build and release?",
+    "back": "Shipping debug builds — larger, slower, asserts enabled. Obfuscation without symbol backup — crash reports become useless. Manual APK for Play Store — prefer AAB for dynamic delivery.",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Evaluate"
+  },
+  {
+    "id": "7492b4d7c77c",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Flutter build and release setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Dart source ──► kernel / AOT compiler ──► libapp.so (mobile) or js/wasm (web)",
+    "source": "Back2Basics/flutter/flutter build.md",
+    "section": "Flutter build and release · Create"
+  },
+  {
+    "id": "c4d6c664287a",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is flutter cli?",
+    "back": "AOT (Ahead-of-Time Compilation)",
+    "source": "Back2Basics/flutter/flutter cli.md",
+    "section": "flutter cli · Remember"
+  },
+  {
+    "id": "be3e1871cf5f",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for flutter cli?",
+    "back": "flutter bash-completion; → flutter create <DIRECTORY>; # Creates a new project → flutter install -d <DEVICE ID>; # Install flutter app on an attached device. → flutter logs; # SHow log output fo running flutter apps. → flutter run; # Users JIT (Just-In-Time) compilation",
+    "source": "Back2Basics/flutter/flutter cli.md",
+    "section": "flutter cli · Apply"
+  },
+  {
+    "id": "5ebff0672db7",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken flutter cli setup, what is your first validation command?",
+    "back": "flutter bash-completion;",
+    "source": "Back2Basics/flutter/flutter cli.md",
+    "section": "flutter cli · Apply"
+  },
+  {
+    "id": "98ee80e9b015",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct flutter cli setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: flutter bash-completion;",
+    "source": "Back2Basics/flutter/flutter cli.md",
+    "section": "flutter cli · Create"
+  },
+  {
+    "id": "d1d01f6189e0",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is flutter debugging?",
+    "back": "flutter debugging — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/flutter/flutter debugging.md",
+    "section": "flutter debugging · Remember"
+  },
+  {
+    "id": "5199ede7dab4",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does flutter debugging matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/flutter/flutter debugging.md",
+    "section": "flutter debugging · Understand"
+  },
+  {
+    "id": "a7a41d32b060",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe flutter debugging checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/flutter/flutter debugging.md",
+    "section": "flutter debugging · Create"
+  },
+  {
+    "id": "3c27d35eb27d",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is flutter error?",
+    "back": "flutter error — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/flutter/flutter error.md",
+    "section": "flutter error · Remember"
+  },
+  {
+    "id": "42b535f05a73",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does flutter error matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/flutter/flutter error.md",
+    "section": "flutter error · Understand"
+  },
+  {
+    "id": "a8acedecaa5e",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe flutter error checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/flutter/flutter error.md",
+    "section": "flutter error · Create"
+  },
+  {
+    "id": "51d2bfa3c3d0",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is flutter widget?",
+    "back": "flutter widget — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/flutter/flutter widget.md",
+    "section": "flutter widget · Remember"
+  },
+  {
+    "id": "f47a978fa446",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does flutter widget matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/flutter/flutter widget.md",
+    "section": "flutter widget · Understand"
+  },
+  {
+    "id": "06789c819b94",
+    "deck": "b2b-flutter",
+    "tags": [
+      "back2basics",
+      "flutter",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe flutter widget checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/flutter/flutter widget.md",
+    "section": "flutter widget · Create"
+  }
+]

@@ -3,9 +3,7 @@
 **Repo:** [github.com/rakshyak-98/dsa-problem](https://github.com/rakshyak-98/dsa-problem)
 
 Interview prep usually fails from missing rhythm, not missing problems. I had study plans, LeetCode lists, and scattered notes — but no single system that turned *today* into a concrete action and kept a record of what I actually learned.
-
 So I built **dsa-problem**: a local-first workspace that treats interview prep like gym training — daily drills, spaced repetition, honest logging, and tools that stay in your repo instead of on a SaaS dashboard.
-
 This post explains why it exists, what it does, and how the design is meant to improve skill over time.
 
 ---

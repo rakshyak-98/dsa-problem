@@ -75,6 +75,39 @@ func TestRunUnifiedBackend(t *testing.T) {
 	}
 }
 
+func TestRunUnifiedCards(t *testing.T) {
+	var gotDir string
+	var gotArgs []string
+	commandRunner = func(dir string, args ...string) error {
+		gotDir = dir
+		gotArgs = append([]string{}, args...)
+		return nil
+	}
+	defer func() { commandRunner = runIn }()
+
+	code := runUnified("/tmp/repo", dailyOptions{
+		track:    trackCards,
+		run:      true,
+		passArgs: []string{"--run", "core", "-r", "--due", "--deck=jargon"},
+	})
+	if code != 0 {
+		t.Fatal("expected success")
+	}
+	if !containsAll(gotDir, "study_cards") {
+		t.Fatalf("expected study_cards, got %s", gotDir)
+	}
+	if len(gotArgs) != 2 || gotArgs[0] != "--due" || gotArgs[1] != "--deck=jargon" {
+		t.Fatalf("expected filtered card args, got %v", gotArgs)
+	}
+}
+
+func TestFilterCardsPassArgs(t *testing.T) {
+	got := filterCardsPassArgs([]string{"--run", "reflex", "-w", "--stats", "--tag=jwt"})
+	if len(got) != 2 || got[0] != "--stats" || got[1] != "--tag=jwt" {
+		t.Fatalf("got %v", got)
+	}
+}
+
 func TestPrintHelp(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
@@ -85,7 +118,7 @@ func TestPrintHelp(t *testing.T) {
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
 	out := buf.String()
-	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "--core5", "--drill KIND", "--solution KIND", "-r, --read", "(default:"} {
+	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "--core5", "--drill KIND", "--solution KIND", "-r, --read", "(default:", "cards"} {
 		if !strings.Contains(out, want) {
 			t.Fatalf("help missing %q:\n%s", want, out)
 		}

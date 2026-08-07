@@ -67,11 +67,6 @@ func TestWriteDrillPathHelpers(t *testing.T) {
 		t.Fatalf("tracker: %s", trackerDir(repo))
 	}
 
-	fallback := t.TempDir()
-	wantSolutions := filepath.Join(fallback, "bin", "study_play", "_support", "solutions_reference")
-	if solutionsDir(fallback) != wantSolutions {
-		t.Fatalf("solutions fallback: got %s want %s", solutionsDir(fallback), wantSolutions)
-	}
 }
 
 func TestSolutionsDir(t *testing.T) {

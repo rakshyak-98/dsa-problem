@@ -1,0 +1,240 @@
+[
+  {
+    "id": "113d85df9f30",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is tmux copy-mode in one sentence?",
+    "back": "Keyboard selection + copy from scrollback into tmux paste buffers — essential before yanking to system clipboard.",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Remember"
+  },
+  {
+    "id": "e48e60d63f7c",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of tmux copy-mode (how the system thinks).",
+    "back": "tmux maintains a scrollback per pane. Copy-mode enters a vi/emacs-like overlay to move, select, and yank text into a paste buffer (internal register). From there, paste into pane (paste-buffer) or sync to system clipboard (config-dependent). Copy-mode is not the same as shell Ctrl+Shift+C.",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Understand"
+  },
+  {
+    "id": "b67ae88ea9a6",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for tmux copy-mode?",
+    "back": "Pane scrollback → copy-mode → selection → paste buffer → paste / save-buffer",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Apply"
+  },
+  {
+    "id": "2638db326b50",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken tmux copy-mode setup, what is your first validation command?",
+    "back": "Pane scrollback → copy-mode → selection → paste buffer → paste / save-buffer",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Apply"
+  },
+  {
+    "id": "ddb2b4b38cae",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Can't enter copy-mode — what do you check and fix?",
+    "back": "Check: Wrong prefix · Fix: Prefix + [ ; verify prefix in conf",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Analyze"
+  },
+  {
+    "id": "deedd9aec9ad",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Yank does nothing — what do you check and fix?",
+    "back": "Check: mode-keys · Fix: Set vi/emacs keys; use Enter after selection",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Analyze"
+  },
+  {
+    "id": "4d2c4398b99f",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Paste empty — what do you check and fix?",
+    "back": "Check: list-buffers · Fix: Re-yank; copy-mode exited early",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Analyze"
+  },
+  {
+    "id": "00dd5e0ceb63",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: No system clipboard — what do you check and fix?",
+    "back": "Check: xclip/wl-copy missing · Fix: Install xclip; add copy-pipe bind",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Analyze"
+  },
+  {
+    "id": "f35a9c9b99bb",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mouse scroll weird — what do you check and fix?",
+    "back": "Check: mouse on · Fix: set -g mouse on + proper terminal",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Analyze"
+  },
+  {
+    "id": "16006b913c97",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong buffer pasted — what do you check and fix?",
+    "back": "Check: show-buffer · Fix: Use -b N with save-buffer",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Analyze"
+  },
+  {
+    "id": "76813cb649f7",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with tmux copy-mode: what silently fails?",
+    "back": "SSH without X11 — system clipboard bridge won't work; use save-buffer to file. Large selection — tmux buffer limits; pipe to file for big logs. Copy-mode vs terminal copy — selecting with mouse may bypass tmux buffer depending on terminal-overrides.",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Evaluate"
+  },
+  {
+    "id": "e98d57bec264",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use tmux copy-mode?",
+    "back": "Don't copy secrets from prod logs into shared clipboard on untrusted machines. Don't rely on copy-mode in fully mouse-driven workflows without learning prefix keys — you'll fight the tool.",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Evaluate"
+  },
+  {
+    "id": "cf7eeda19055",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct tmux copy-mode setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Pane scrollback → copy-mode → selection → paste buffer → paste / save-buffer",
+    "source": "Back2Basics/tmux/tmux copy-mode.md",
+    "section": "tmux copy-mode · Create"
+  },
+  {
+    "id": "160f5cea7068",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Kill session?",
+    "back": "Session → multiple windows Window → full screen workspace Pane → splits inside window",
+    "source": "Back2Basics/tmux/tmux.md",
+    "section": "Kill session · Remember"
+  },
+  {
+    "id": "7605360d27aa",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Kill session?",
+    "back": "tmux ls; // list session → tmux attach -t <name>; // attach previous session from outside of tmux → ctrl+b z; # Toggle focus on pane → ctrl+<space>; # Toggle pane layout",
+    "source": "Back2Basics/tmux/tmux.md",
+    "section": "Kill session · Apply"
+  },
+  {
+    "id": "37cee7471da3",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Kill session setup, what is your first validation command?",
+    "back": "tmux ls; // list session",
+    "source": "Back2Basics/tmux/tmux.md",
+    "section": "Kill session · Apply"
+  },
+  {
+    "id": "42d9b815c27f",
+    "deck": "b2b-tmux",
+    "tags": [
+      "back2basics",
+      "tmux",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Kill session setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: tmux ls; // list session",
+    "source": "Back2Basics/tmux/tmux.md",
+    "section": "Kill session · Create"
+  }
+]

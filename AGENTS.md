@@ -11,6 +11,7 @@ There are four separate Go modules with **no `go.work`**, so run `go` commands f
 - `study_play/` — write-reflex drills + tracker. `go -C study_play run .` (plan), `... run . -- --run`, `... run . -- --catalog`.
 - `study_code/` — code-reading drills. `go -C study_code run .`.
 - `daily/` — unified daily runner. `go -C daily run .`.
+- `bin/study_cards/` — spaced-repetition flashcards from `doc/` and optional Back2Basics vault. `go run . -- --track cards`, `... -- --track cards --due`, `... --deck=b2b-docker`. Regenerate: `python3 cards/generate_cards.py` (DSA) and `python3 cards/generate_back2basics.py` (needs `../Back2Basics` or `BACK2BASICS_ROOT`).
 - `practice/` — scratch problem module (not part of the test suite).
 
 **Solving a drill (the core end-to-end flow):** edit the TODO stubs in `study_play/drills/<NN>_*/main.go`, then run that drill directly, e.g. `go -C study_play run ./drills/05_trees_stacks_reflex`. All asserts print `PASS:` and it ends with `All ... reflex drills passed.` when correct.

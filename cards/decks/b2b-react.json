@@ -1,0 +1,5252 @@
+[
+  {
+    "id": "5efddd52ab3d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is API handling (React) in one sentence?",
+    "back": "How the browser talks to backends — shared client, auth injection, cancellation, and cache ownership — Martin Fowler (API client patterns) + TanStack Query / RTK Query docs.",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Remember"
+  },
+  {
+    "id": "36378d053243",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of API handling (React) (how the system thinks).",
+    "back": "Separate concerns:",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Understand"
+  },
+  {
+    "id": "0560bc8f4b77",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for API handling (React)?",
+    "back": "Separate concerns: → Server state belongs in Query cache, not scattered useState copies (React data management).",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Apply"
+  },
+  {
+    "id": "9df239726c0e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken API handling (React) setup, what is your first validation command?",
+    "back": "Separate concerns:",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Apply"
+  },
+  {
+    "id": "d2de9f6bd825",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for API handling (React)?",
+    "back": "See Redux/RTQ/RTQ tags — providesTags / invalidatesTags on mutations.",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Apply"
+  },
+  {
+    "id": "23f309dfda29",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Double fetch on mount — what do you check and fix?",
+    "back": "Check: Strict Mode + no dedupe · Fix: Query client dedupes; ignore duplicate in dev",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Analyze"
+  },
+  {
+    "id": "74cb8f3c0c05",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stale UI after mutation — what do you check and fix?",
+    "back": "Check: Cache not invalidated · Fix: invalidateQueries or RTK tags",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Analyze"
+  },
+  {
+    "id": "0aa09b0ce05d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CORS errors — what do you check and fix?",
+    "back": "Check: Response headers · Fix: CORS (Cross Origin Request Sharing) on server",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Analyze"
+  },
+  {
+    "id": "fa6d3098f57f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Random 401 loops — what do you check and fix?",
+    "back": "Check: Refresh token race · Fix: Single-flight refresh queue in interceptor",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Analyze"
+  },
+  {
+    "id": "05881683c2d0",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cancel ignored — what do you check and fix?",
+    "back": "Check: No signal passed · Fix: Pass Query signal to axios/fetch",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Analyze"
+  },
+  {
+    "id": "6fcd608b77b8",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong env URL — what do you check and fix?",
+    "back": "Check: VITE_* at build time · Fix: Rebuild; verify React project config",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Analyze"
+  },
+  {
+    "id": "c4b85685ca9c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with API handling (React): what silently fails?",
+    "back": "Fetching in useEffect without cache — every navigation refetches; race on fast route changes.",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Evaluate"
+  },
+  {
+    "id": "b1ee615233db",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use API handling (React)?",
+    "back": "Static content only — no API layer needed. GraphQL with complex graphs — use Apollo/urql with normalized cache, not ad hoc REST wrappers everywhere. Server Components (RSC) — fetch on server in loader/component; client cache optional.",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Evaluate"
+  },
+  {
+    "id": "982b93dac271",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct API handling (React) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Separate concerns:",
+    "source": "Back2Basics/React/API handling.md",
+    "section": "API handling (React) · Create"
+  },
+  {
+    "id": "45f9e491fc42",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Data Fetching HOC component?",
+    "back": "Data Fetching HOC component — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Data Fetching HOC component.md",
+    "section": "Data Fetching HOC component · Remember"
+  },
+  {
+    "id": "874bc9657c0b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Data Fetching HOC component matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Data Fetching HOC component.md",
+    "section": "Data Fetching HOC component · Understand"
+  },
+  {
+    "id": "a9627067afc3",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Data Fetching HOC component checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Data Fetching HOC component.md",
+    "section": "Data Fetching HOC component · Create"
+  },
+  {
+    "id": "6c0c66099a01",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Framer Motion in one sentence?",
+    "back": "Declarative animation library for React — motion components, variants, layout transitions — Motion (formerly Framer Motion) docs.",
+    "source": "Back2Basics/React/Framer motion.md",
+    "section": "Framer Motion · Remember"
+  },
+  {
+    "id": "c4061f036b3d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Framer Motion (how the system thinks).",
+    "back": "Framer Motion wraps DOM nodes as motion.div etc. Animate by changing props (animate, initial, exit) or variants (named state maps).",
+    "source": "Back2Basics/React/Framer motion.md",
+    "section": "Framer Motion · Understand"
+  },
+  {
+    "id": "94978640ccf1",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Exit animation skipped — what do you check and fix?",
+    "back": "Check: Missing AnimatePresence · Fix: Wrap conditional; unique key",
+    "source": "Back2Basics/React/Framer motion.md",
+    "section": "Framer Motion · Analyze"
+  },
+  {
+    "id": "9798f54973a9",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Janky list scroll — what do you check and fix?",
+    "back": "Check: Animating layout/width · Fix: Use transform only; virtualize list",
+    "source": "Back2Basics/React/Framer motion.md",
+    "section": "Framer Motion · Analyze"
+  },
+  {
+    "id": "75922f1ef779",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Flash on hydration — what do you check and fix?",
+    "back": "Check: SSR mismatch · Fix: initial={false} after mount",
+    "source": "Back2Basics/React/Framer motion.md",
+    "section": "Framer Motion · Analyze"
+  },
+  {
+    "id": "f2433564fa81",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Bundle size spike — what do you check and fix?",
+    "back": "Check: Full import · Fix: LazyMotion + domAnimation feature pack",
+    "source": "Back2Basics/React/Framer motion.md",
+    "section": "Framer Motion · Analyze"
+  },
+  {
+    "id": "3a2e0994aa08",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Children don't stagger — what do you check and fix?",
+    "back": "Check: Variants not on parent · Fix: variants + staggerChildren on parent",
+    "source": "Back2Basics/React/Framer motion.md",
+    "section": "Framer Motion · Analyze"
+  },
+  {
+    "id": "92a3f5511c8d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Framer Motion: what silently fails?",
+    "back": "Animating height: auto — expensive; use layout or fixed max-height hack with measure.",
+    "source": "Back2Basics/React/Framer motion.md",
+    "section": "Framer Motion · Evaluate"
+  },
+  {
+    "id": "3a0ebd8fc01f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Framer Motion?",
+    "back": "CSS-only hover/focus — Tailwind transitions cheaper (css/Animation). Canvas/WebGL games — use RAF loop or dedicated engine. Critical path LCP hero — prefer CSS; defer motion library.",
+    "source": "Back2Basics/React/Framer motion.md",
+    "section": "Framer Motion · Evaluate"
+  },
+  {
+    "id": "0eeb40f3bdec",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Framer Motion setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Declarative animation library for React — motion components, variants, layout transitions — Motion (formerly Framer Motion) docs.",
+    "source": "Back2Basics/React/Framer motion.md",
+    "section": "Framer Motion · Create"
+  },
+  {
+    "id": "0f481e0fc3c4",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is react useEffect?",
+    "back": "react useEffect — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Hooks/react useEffect.md",
+    "section": "react useEffect · Remember"
+  },
+  {
+    "id": "57dfcc3cb8c5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does react useEffect matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Hooks/react useEffect.md",
+    "section": "react useEffect · Understand"
+  },
+  {
+    "id": "fd6027f380db",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe react useEffect checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Hooks/react useEffect.md",
+    "section": "react useEffect · Create"
+  },
+  {
+    "id": "22f86fd35a8d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Managing complex component structure in one sentence?",
+    "back": "Decompose large UIs with Provider, Compound, Summary (hooks) patterns — contain complexity without prop drilling — patterns.dev / React docs.",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Remember"
+  },
+  {
+    "id": "24da6f5270c6",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Managing complex component structure (how the system thinks).",
+    "back": "Complex UI = state + composition + data fetching tangled in one file. Three levers:",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Understand"
+  },
+  {
+    "id": "f73ac3d31a80",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Managing complex component structure?",
+    "back": "Match pattern to coupling:",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Apply"
+  },
+  {
+    "id": "6e87924a112f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Managing complex component structure setup, what is your first validation command?",
+    "back": "Match pattern to coupling:",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Apply"
+  },
+  {
+    "id": "5e8737e05792",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mystery re-renders — what do you check and fix?",
+    "back": "Check: Context value recreated · Fix: useMemo context value; split contexts",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Analyze"
+  },
+  {
+    "id": "b594ad994b35",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Can't reuse child alone — what do you check and fix?",
+    "back": "Check: Hidden coupling to parent · Fix: Export hook + subcomponents explicitly",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Analyze"
+  },
+  {
+    "id": "96ce78c156d2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: God Provider — what do you check and fix?",
+    "back": "Check: 20 values in one context · Fix: Split by domain (React State management)",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Analyze"
+  },
+  {
+    "id": "59ac14c6633c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Hooks rules violation — what do you check and fix?",
+    "back": "Check: Conditional hook calls · Fix: Move hooks to top-level custom hook",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Analyze"
+  },
+  {
+    "id": "d877b3cdd3e5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Tests brittle — what do you check and fix?",
+    "back": "Check: Logic in JSX · Fix: Summary hook unit tests",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Analyze"
+  },
+  {
+    "id": "29c1470cd780",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Managing complex component structure: what silently fails?",
+    "back": "Provider for server data — use API handling / Query, not hand-rolled cache Context.",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Evaluate"
+  },
+  {
+    "id": "ea471ae90ac2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Managing complex component structure?",
+    "back": "Two-level prop pass — plain props faster than Context ceremony. Single-use modal — local useState enough. Cross-app global everything — Redux / zustand with selectors instead of mega-Provider.",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Evaluate"
+  },
+  {
+    "id": "ef182ec878d3",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Managing complex component structure setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Match pattern to coupling:",
+    "source": "Back2Basics/React/Managing complex component structure.md",
+    "section": "Managing complex component structure · Create"
+  },
+  {
+    "id": "f7977e8b3a22",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Optimizing performance?",
+    "back": "Optimizing performance — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Optimizing performance.md",
+    "section": "Optimizing performance · Remember"
+  },
+  {
+    "id": "1cfd1ce2ea77",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Optimizing performance matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Optimizing performance.md",
+    "section": "Optimizing performance · Understand"
+  },
+  {
+    "id": "c43de390927b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Optimizing performance checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Optimizing performance.md",
+    "section": "Optimizing performance · Create"
+  },
+  {
+    "id": "dd2fcfd30ba2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is RSC (React Server Component boundaries)?",
+    "back": "They are compile-time enfo[]()rced boundaries that separate Server Components from Client Components in Next.js (App Router) using React Server Components (RSC).",
+    "source": "Back2Basics/React/RSC (React Server Component boundaries).md",
+    "section": "RSC (React Server Component boundaries) · Remember"
+  },
+  {
+    "id": "07df6c476ca6",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Server Components?",
+    "back": "Rendered on the server at build- or request-time, serialized into HTML/JSON.",
+    "source": "Back2Basics/React/RSC (React Server Component boundaries).md",
+    "section": "RSC (React Server Component boundaries) · Remember"
+  },
+  {
+    "id": "34a2bf478b3f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Client Components?",
+    "back": "Hydrated in the browser and can include state, effects, event listeners, etc.",
+    "source": "Back2Basics/React/RSC (React Server Component boundaries).md",
+    "section": "RSC (React Server Component boundaries) · Remember"
+  },
+  {
+    "id": "daee9040a4c2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is React Application Architecture for Production?",
+    "back": "React Application Architecture for Production — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/React Application Architecture for Production.md",
+    "section": "React Application Architecture for Production · Remember"
+  },
+  {
+    "id": "a693d548d718",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does React Application Architecture for Production matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/React Application Architecture for Production.md",
+    "section": "React Application Architecture for Production · Understand"
+  },
+  {
+    "id": "214f0496ccd3",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe React Application Architecture for Production checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/React Application Architecture for Production.md",
+    "section": "React Application Architecture for Production · Create"
+  },
+  {
+    "id": "ed58d8744fbc",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is React Architecture in one sentence?",
+    "back": "How you split UI, state, data, and boundaries so the app scales past one team — Kent C. Dodds / React docs / production postmortems.",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Remember"
+  },
+  {
+    "id": "3b9d3f65b0ea",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of React Architecture (how the system thinks).",
+    "back": "Layers (top → bottom):",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Understand"
+  },
+  {
+    "id": "d7907cd75f6c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for React Architecture?",
+    "back": "Core challenges when building production React:",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Apply"
+  },
+  {
+    "id": "fbc26af60acb",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken React Architecture setup, what is your first validation command?",
+    "back": "Core challenges when building production React:",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Apply"
+  },
+  {
+    "id": "2a5cafb59eef",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for React Architecture?",
+    "back": "Document data flow ADR when choosing Redux vs Query vs zustand (React State management).",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Apply"
+  },
+  {
+    "id": "6396f3a838cd",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Circular imports — what do you check and fix?",
+    "back": "Check: Feature ↔ shared leak · Fix: Enforce dependency rule (eslint-plugin-import)",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Analyze"
+  },
+  {
+    "id": "a15b17a9064d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Hydration mismatch — what do you check and fix?",
+    "back": "Check: Client-only APIs in RSC · Fix: Move to client leaf",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Analyze"
+  },
+  {
+    "id": "ac316c1a1379",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Global re-render storm — what do you check and fix?",
+    "back": "Check: Context at root · Fix: Colocate; selectors (zustand)",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Analyze"
+  },
+  {
+    "id": "1444a0de0385",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Inconsistent API errors — what do you check and fix?",
+    "back": "Check: Per-page handling · Fix: Normalized error type in API handling",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Analyze"
+  },
+  {
+    "id": "8904d6beec93",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow initial load — what do you check and fix?",
+    "back": "Check: No split · Fix: Route lazy + analyze bundle (React build)",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Analyze"
+  },
+  {
+    "id": "85664b2013db",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with React Architecture: what silently fails?",
+    "back": "Premature micro-frontends — fix module boundaries inside monorepo first.",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Evaluate"
+  },
+  {
+    "id": "f3530f04a398",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use React Architecture?",
+    "back": "Marketing one-pager — Vite + few components; skip feature folders. Embedded widget — isolate bundle, minimal router. Copy-paste architecture from blog — match team size and release cadence.",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Evaluate"
+  },
+  {
+    "id": "4ef4418c3417",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct React Architecture setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Core challenges when building production React:",
+    "source": "Back2Basics/React/React Architecture.md",
+    "section": "React Architecture · Create"
+  },
+  {
+    "id": "885addf79cdb",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Component Presentational Pattern?",
+    "back": "Component Presentational Pattern — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/React Pattern/Component Presentational Pattern.md",
+    "section": "Component Presentational Pattern · Remember"
+  },
+  {
+    "id": "79498c770f44",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Component Presentational Pattern matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/React Pattern/Component Presentational Pattern.md",
+    "section": "Component Presentational Pattern · Understand"
+  },
+  {
+    "id": "5cd1a85ab2ec",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Component Presentational Pattern checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/React Pattern/Component Presentational Pattern.md",
+    "section": "Component Presentational Pattern · Create"
+  },
+  {
+    "id": "963126ca32d2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Composite pattern?",
+    "back": "Composite pattern — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/React Pattern/Composite pattern.md",
+    "section": "Composite pattern · Remember"
+  },
+  {
+    "id": "0dfb5127934b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Composite pattern matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/React Pattern/Composite pattern.md",
+    "section": "Composite pattern · Understand"
+  },
+  {
+    "id": "0597c99ab0eb",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Composite pattern checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/React Pattern/Composite pattern.md",
+    "section": "Composite pattern · Create"
+  },
+  {
+    "id": "fbc55a2ca0c9",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Compound Components 1?",
+    "back": "Instead of passing multiple props, the parent component manages the state, and child components communicate implicitly.",
+    "source": "Back2Basics/React/React Pattern/Compound Components 1.md",
+    "section": "Compound Components 1 · Remember"
+  },
+  {
+    "id": "9297273e4123",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Compound Components 1?",
+    "back": "Tabs (Parent): Manages active state. → Tabs.List: Holds multiple Tab elements. → Tabs.Tab: Represents an individual tab button. → Tabs.panel: Displays the content of the active tab.",
+    "source": "Back2Basics/React/React Pattern/Compound Components 1.md",
+    "section": "Compound Components 1 · Apply"
+  },
+  {
+    "id": "d42449905e11",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Compound Components 1 setup, what is your first validation command?",
+    "back": "Tabs (Parent): Manages active state.",
+    "source": "Back2Basics/React/React Pattern/Compound Components 1.md",
+    "section": "Compound Components 1 · Apply"
+  },
+  {
+    "id": "a5fb9d3cd8e7",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Compound Components 1 setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Tabs (Parent): Manages active state.",
+    "source": "Back2Basics/React/React Pattern/Compound Components 1.md",
+    "section": "Compound Components 1 · Create"
+  },
+  {
+    "id": "b5065cb67802",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Compound Components?",
+    "back": "A Class Management component composed of smaller components like ClassHeader ClassBody and ClassFooter.",
+    "source": "Back2Basics/React/React Pattern/Compound Components.md",
+    "section": "Compound Components · Remember"
+  },
+  {
+    "id": "1cc56b3ed1b5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Compound Components?",
+    "back": "Instead of passing multiple props, the parent component manages the state, and child components communicate implicitly. → We break the component into self-contained components → Tabs (Parent): Manages active state. → Tabs.List: Holds multiple Tab elements. → Tabs.Tab: Represents an individual tab button.",
+    "source": "Back2Basics/React/React Pattern/Compound Components.md",
+    "section": "Compound Components · Apply"
+  },
+  {
+    "id": "6861b0ac88a4",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Compound Components setup, what is your first validation command?",
+    "back": "Instead of passing multiple props, the parent component manages the state, and child components communicate implicitly.",
+    "source": "Back2Basics/React/React Pattern/Compound Components.md",
+    "section": "Compound Components · Apply"
+  },
+  {
+    "id": "d5772d3e18dd",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Compound Components setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Instead of passing multiple props, the parent component manages the state, and child components communicate implicitly.",
+    "source": "Back2Basics/React/React Pattern/Compound Components.md",
+    "section": "Compound Components · Create"
+  },
+  {
+    "id": "2cb53300085f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Controlled and Uncontrolled component Pattern?",
+    "back": "Controlled and Uncontrolled component Pattern — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/React Pattern/Controlled and Uncontrolled component Pattern.md",
+    "section": "Controlled and Uncontrolled component Pattern · Remember"
+  },
+  {
+    "id": "31217669ac3a",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Controlled and Uncontrolled component Pattern matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/React Pattern/Controlled and Uncontrolled component Pattern.md",
+    "section": "Controlled and Uncontrolled component Pattern · Understand"
+  },
+  {
+    "id": "0ef5d7b54b6b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Controlled and Uncontrolled component Pattern checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/React Pattern/Controlled and Uncontrolled component Pattern.md",
+    "section": "Controlled and Uncontrolled component Pattern · Create"
+  },
+  {
+    "id": "853f7df01d9e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Higher order Component (HOCs)?",
+    "back": "Higher order Component (HOCs) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/React Pattern/Higher order Component (HOCs).md",
+    "section": "Higher order Component (HOCs) · Remember"
+  },
+  {
+    "id": "368033acfcfb",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Higher order Component (HOCs) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/React Pattern/Higher order Component (HOCs).md",
+    "section": "Higher order Component (HOCs) · Understand"
+  },
+  {
+    "id": "6cf9e19afe55",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Higher order Component (HOCs) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/React Pattern/Higher order Component (HOCs).md",
+    "section": "Higher order Component (HOCs) · Create"
+  },
+  {
+    "id": "67aca0beffde",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Provider pattern?",
+    "back": "Separate frequently changing state from stable actions.",
+    "source": "Back2Basics/React/React Pattern/Provider pattern.md",
+    "section": "Provider pattern · Remember"
+  },
+  {
+    "id": "2233bda94839",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Provider pattern?",
+    "back": "Effect on children",
+    "source": "Back2Basics/React/React Pattern/Provider pattern.md",
+    "section": "Provider pattern · Apply"
+  },
+  {
+    "id": "4f9da24f69a2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Provider pattern setup, what is your first validation command?",
+    "back": "Effect on children",
+    "source": "Back2Basics/React/React Pattern/Provider pattern.md",
+    "section": "Provider pattern · Apply"
+  },
+  {
+    "id": "2753f8bef4d7",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Provider pattern setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Effect on children",
+    "source": "Back2Basics/React/React Pattern/Provider pattern.md",
+    "section": "Provider pattern · Create"
+  },
+  {
+    "id": "cb8860817c59",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Purpose?",
+    "back": "Break down complex UI into smaller, reusable components.",
+    "source": "Back2Basics/React/React Pattern/React pattern categorisation.md",
+    "section": "React pattern categorisation · Remember"
+  },
+  {
+    "id": "b2e48db0e38a",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Summary pattern in one sentence?",
+    "back": "Pack component logic into custom hooks so the component body is mostly JSX — \"summarize\" behavior above the return — React community pattern (hooks era).",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Remember"
+  },
+  {
+    "id": "e56958da150d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Summary pattern (how the system thinks).",
+    "back": "The hook is the summary of behavior; the component presents it. Enables:",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Understand"
+  },
+  {
+    "id": "cc87a131aee6",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Summary pattern?",
+    "back": "The hook is the summary of behavior; the component presents it. Enables: → Not the Gang of Four Summary (short object interface) — naming collision in this vault only.",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Apply"
+  },
+  {
+    "id": "8bd2fbf40bd0",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Summary pattern setup, what is your first validation command?",
+    "back": "The hook is the summary of behavior; the component presents it. Enables:",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Apply"
+  },
+  {
+    "id": "04438e10e499",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Summary pattern?",
+    "back": "useFeatureName — hook FeatureNameView — pure presentation (optional) Export hook from useFeatureName.ts colocated with screen",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Apply"
+  },
+  {
+    "id": "f83527aa5695",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Hook 300+ lines — what do you check and fix?",
+    "back": "Check: Multiple domains mixed · Fix: Split useRoomData + useRoomForm",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Analyze"
+  },
+  {
+    "id": "86fbb7ee22ba",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Unstable return object — what do you check and fix?",
+    "back": "Check: New {} each render · Fix: useMemo return bundle or destructure fields",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Analyze"
+  },
+  {
+    "id": "47f324943fac",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Can't test without router — what do you check and fix?",
+    "back": "Check: Hook calls useNavigate · Fix: Inject navigate param or wrapper in test",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Analyze"
+  },
+  {
+    "id": "cac64840156b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate hooks same fetch — what do you check and fix?",
+    "back": "Check: Copy-paste · Fix: Move to shared feature hook",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Analyze"
+  },
+  {
+    "id": "9ea27a017d27",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Rules of hooks error — what do you check and fix?",
+    "back": "Check: Hook inside if · Fix: Call hook unconditionally at top",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Analyze"
+  },
+  {
+    "id": "93581704f1ef",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Summary pattern: what silently fails?",
+    "back": "God hook — summary pattern doesn't mean one hook per app; split by concern.",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Evaluate"
+  },
+  {
+    "id": "55268f12f551",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Summary pattern?",
+    "back": "Trivial 10-line component — inline state is clearer. Shared library API — export hook + headless component, not only internal summary. Class components (legacy) — HOC/render props instead (Render props).",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Evaluate"
+  },
+  {
+    "id": "454abe525b30",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Summary pattern setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: The hook is the summary of behavior; the component presents it. Enables:",
+    "source": "Back2Basics/React/React Pattern/Summary pattern.md",
+    "section": "Summary pattern · Create"
+  },
+  {
+    "id": "92e4ddf05de3",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is data fetching component?",
+    "back": "data fetching component — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/React Pattern/data fetching component.md",
+    "section": "data fetching component · Remember"
+  },
+  {
+    "id": "062623b7f0d7",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does data fetching component matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/React Pattern/data fetching component.md",
+    "section": "data fetching component · Understand"
+  },
+  {
+    "id": "319361230bd5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe data fetching component checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/React Pattern/data fetching component.md",
+    "section": "data fetching component · Create"
+  },
+  {
+    "id": "005a985b2353",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is React State management in one sentence?",
+    "back": "Where state lives — local UI, lifted, context, zustand, Redux, server cache — pick by lifetime and audience — Kent C. Dodds (state colocation).",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Remember"
+  },
+  {
+    "id": "4d358da3d4c5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of React State management (how the system thinks).",
+    "back": "You can derive values in render — don't duplicate state:",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Understand"
+  },
+  {
+    "id": "93cfd60c4f1b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for React State management?",
+    "back": "You can derive values in render — don't duplicate state: → Decision tree:",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Apply"
+  },
+  {
+    "id": "f9c7e58111f2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken React State management setup, what is your first validation command?",
+    "back": "You can derive values in render — don't duplicate state:",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Apply"
+  },
+  {
+    "id": "fd7b58811e70",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for React State management?",
+    "back": "See zustand for client-global pattern; Redux when you need audit middleware across many features.",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Apply"
+  },
+  {
+    "id": "00fb629c5a58",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stale list after POST — what do you check and fix?",
+    "back": "Check: Server state not invalidated · Fix: Query invalidate / RTK tags",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Analyze"
+  },
+  {
+    "id": "5c6757e8fb9e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Context re-render entire tree — what do you check and fix?",
+    "back": "Check: Value not memoized · Fix: Split context; zustand selectors",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Analyze"
+  },
+  {
+    "id": "c3d410d5589d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Two sources of truth — what do you check and fix?",
+    "back": "Check: Same entity in Redux + Query · Fix: Single owner — usually Query",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Analyze"
+  },
+  {
+    "id": "00a9ff190735",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Lost state on refresh — what do you check and fix?",
+    "back": "Check: Expected for RAM · Fix: Persist or URL encode",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Analyze"
+  },
+  {
+    "id": "6df2deedee21",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Infinite update loop — what do you check and fix?",
+    "back": "Check: setState in render · Fix: Derive or useEffect deps",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Analyze"
+  },
+  {
+    "id": "bc280f21e5dc",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with React State management: what silently fails?",
+    "back": "useEffect to sync props → state — prefer key remount or controlled pattern.",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Evaluate"
+  },
+  {
+    "id": "c5c2ebf9de27",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use React State management?",
+    "back": "Everything in Redux — 2017 pattern; server cache belongs in Query. Context for high-frequency updates — perf cliff; use zustand/external store. Global store for one screen — local state until second consumer exists.",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Evaluate"
+  },
+  {
+    "id": "be001a6b5d7f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct React State management setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: You can derive values in render — don't duplicate state:",
+    "source": "Back2Basics/React/React State management.md",
+    "section": "React State management · Create"
+  },
+  {
+    "id": "067e021ea8b3",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is React build in one sentence?",
+    "back": "Turn TS/JSX into optimized static assets — dev server vs production bundle, env injection, source maps — Vite / CRA / Next docs.",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Remember"
+  },
+  {
+    "id": "107bf9190c83",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of React build (how the system thinks).",
+    "back": "Build output must match runtime env: import.meta.env.VITE_* baked at build time, not read dynamically from shell at runtime (unless SSR injects).",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Understand"
+  },
+  {
+    "id": "9080114e19ef",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for React build?",
+    "back": "Build output must match runtime env: import.meta.env.VITE_* baked at build time, not read dynamically from shell at runtime (unless SSR injects).",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Apply"
+  },
+  {
+    "id": "4cbc7773f398",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken React build setup, what is your first validation command?",
+    "back": "Build output must match runtime env: import.meta.env.VITE_* baked at build time, not read dynamically from shell at runtime (unless SSR injects).",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Apply"
+  },
+  {
+    "id": "6840c1b8a6b1",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: undefined API URL in prod — what do you check and fix?",
+    "back": "Check: Env not prefixed VITE_ · Fix: Rename; rebuild",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Analyze"
+  },
+  {
+    "id": "5cb76c0db15a",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: White screen prod only — what do you check and fix?",
+    "back": "Check: Thrown error minified away · Fix: Enable sourcemap; Sentry",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Analyze"
+  },
+  {
+    "id": "cd0268b8ba04",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Huge main chunk — what do you check and fix?",
+    "back": "Check: No route split · Fix: React.lazy + dynamic import",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Analyze"
+  },
+  {
+    "id": "d01e617b4cf2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stale assets after deploy — what do you check and fix?",
+    "back": "Check: CDN cache · Fix: Hash filenames (default Vite)",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Analyze"
+  },
+  {
+    "id": "2ec07cd66dc7",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works dev, fails build — what do you check and fix?",
+    "back": "Check: TS errors stricter · Fix: tsc -b in CI",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Analyze"
+  },
+  {
+    "id": "d6b297c07afc",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CORS on static host — what do you check and fix?",
+    "back": "Check: API separate origin · Fix: Proxy in dev; CDN rules prod",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Analyze"
+  },
+  {
+    "id": "d29c9eca187f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with React build: what silently fails?",
+    "back": "Secrets in VITE_* — embedded in client bundle; never API keys server-only.",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Evaluate"
+  },
+  {
+    "id": "56e477515ac1",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use React build?",
+    "back": "SSR/RSC app — don't treat as pure SPA build; use framework pipeline (Next). Library package — publish ESM/CJS via tsup/rollup, not SPA index.html build.",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Evaluate"
+  },
+  {
+    "id": "e93c13e5925b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct React build setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Build output must match runtime env: import.meta.env.VITE_* baked at build time, not read dynamically from shell at runtime (unless SSR injects).",
+    "source": "Back2Basics/React/React build.md",
+    "section": "React build · Create"
+  },
+  {
+    "id": "e7e6fb185fdd",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is React code smells?",
+    "back": "React code smells — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/React code smells.md",
+    "section": "React code smells · Remember"
+  },
+  {
+    "id": "4c6f086d9e3b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does React code smells matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/React code smells.md",
+    "section": "React code smells · Understand"
+  },
+  {
+    "id": "3a0ccf3ae7f2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe React code smells checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/React code smells.md",
+    "section": "React code smells · Create"
+  },
+  {
+    "id": "ebbf9c720a6c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is React data management in one sentence?",
+    "back": "Decision tree: server state vs client state — where TanStack Query, RTK Query, Zustand, and Context belong — staff-level frontend architecture.",
+    "source": "Back2Basics/React/React data management.md",
+    "section": "React data management · Remember"
+  },
+  {
+    "id": "ba02662c83dc",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of React data management (how the system thinks).",
+    "back": "Split state by source of truth and lifecycle:",
+    "source": "Back2Basics/React/React data management.md",
+    "section": "React data management · Understand"
+  },
+  {
+    "id": "d12474e11449",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stale list after mutation — what do you check and fix?",
+    "back": "Check: invalidateQueries / tag invalidation · Fix: Add onSuccess invalidation; optimistic update",
+    "source": "Back2Basics/React/React data management.md",
+    "section": "React data management · Analyze"
+  },
+  {
+    "id": "4d7ad6ec6677",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Global loading spinner forever — what do you check and fix?",
+    "back": "Check: queryKey mismatch · Fix: Align keys between list/detail",
+    "source": "Back2Basics/React/React data management.md",
+    "section": "React data management · Analyze"
+  },
+  {
+    "id": "fe8cf25fb6ad",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: State lost on refresh — what do you check and fix?",
+    "back": "Check: Client-only Zustand · Fix: Persist or fetch from server",
+    "source": "Back2Basics/React/React data management.md",
+    "section": "React data management · Analyze"
+  },
+  {
+    "id": "b237d8986272",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SSR hydration flash — what do you check and fix?",
+    "back": "Check: fetch on client only · Fix: prefetch in loader / dehydrate QueryClient",
+    "source": "Back2Basics/React/React data management.md",
+    "section": "React data management · Analyze"
+  },
+  {
+    "id": "8b21591f4180",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Redux boilerplate fatigue — what do you check and fix?",
+    "back": "Check: RTK for everything · Fix: Server → Query; UI → Zustand slice",
+    "source": "Back2Basics/React/React data management.md",
+    "section": "React data management · Analyze"
+  },
+  {
+    "id": "977b69af4c6e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with React data management: what silently fails?",
+    "back": "Copy server data into Zustand — sync bugs on refetch; derive from Query cache with selectors.",
+    "source": "Back2Basics/React/React data management.md",
+    "section": "React data management · Evaluate"
+  },
+  {
+    "id": "7d9b614fd409",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct React data management setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Decision tree: server state vs client state — where TanStack Query, RTK Query, Zustand, and Context belong — **staff-level frontend arch",
+    "source": "Back2Basics/React/React data management.md",
+    "section": "React data management · Create"
+  },
+  {
+    "id": "e9fdc84745bf",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is React design patterns?",
+    "back": "## Presentational Pattern",
+    "source": "Back2Basics/React/React design patterns.md",
+    "section": "React design patterns · Remember"
+  },
+  {
+    "id": "268734f0911c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for React design patterns?",
+    "back": "Yes, I know a lot about React design patterns! They're essential for writing clean, maintainable, scaleable, and performant React code. → Here are some of the most popular and useful React design patterns (all in plain JavaScript, as you prefer): → These patterns help solve common problems like: → Separate logic/fetching (container) from UI rendering (presentational). → Components that work together and share implicit state (like <Select><Option /></Select>).",
+    "source": "Back2Basics/React/React design patterns.md",
+    "section": "React design patterns · Apply"
+  },
+  {
+    "id": "08ea035b4c28",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken React design patterns setup, what is your first validation command?",
+    "back": "Yes, I know a lot about React design patterns! They're essential for writing clean, maintainable, scaleable, and performant React code.",
+    "source": "Back2Basics/React/React design patterns.md",
+    "section": "React design patterns · Apply"
+  },
+  {
+    "id": "c956eb60fd6c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct React design patterns setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Yes, I know a lot about React design patterns! They're essential for writing clean, maintainable, scaleable, and performant React code.",
+    "source": "Back2Basics/React/React design patterns.md",
+    "section": "React design patterns · Create"
+  },
+  {
+    "id": "a3ad10fe0be7",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is How to track user has come from certain path sequence??",
+    "back": "To determine if a user has navigated to a React component from a certain path, you can utilize React Router's useLocation and useNavigationType hooks or custom logic. Here's how to do it:",
+    "source": "Back2Basics/React/React feature implementations.md",
+    "section": "How to track user has come from certain path sequence? · Remember"
+  },
+  {
+    "id": "b3aa1c303acc",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for How to track user has come from certain path sequence??",
+    "back": "The useNavigationType hook helps identify how the navigation occurred (PUSH, REPLACE, or POP). → If you need to track paths globally, you can set up a context or middleware to store the previous path and access it in your component. → If you want server-side logic to handle this:",
+    "source": "Back2Basics/React/React feature implementations.md",
+    "section": "How to track user has come from certain path sequence? · Apply"
+  },
+  {
+    "id": "9017cc3d9e90",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken How to track user has come from certain path sequence? setup, what is your first validation command?",
+    "back": "The useNavigationType hook helps identify how the navigation occurred (PUSH, REPLACE, or POP).",
+    "source": "Back2Basics/React/React feature implementations.md",
+    "section": "How to track user has come from certain path sequence? · Apply"
+  },
+  {
+    "id": "b24168baecd0",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct How to track user has come from certain path sequence? setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: The useNavigationType hook helps identify how the navigation occurred (PUSH, REPLACE, or POP).",
+    "source": "Back2Basics/React/React feature implementations.md",
+    "section": "How to track user has come from certain path sequence? · Create"
+  },
+  {
+    "id": "98cf882582eb",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is React interview?",
+    "back": "React interview — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/React interview.md",
+    "section": "React interview · Remember"
+  },
+  {
+    "id": "16bf846d90e2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does React interview matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/React interview.md",
+    "section": "React interview · Understand"
+  },
+  {
+    "id": "d5a5d78eff55",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe React interview checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/React interview.md",
+    "section": "React interview · Create"
+  },
+  {
+    "id": "2246bd3b4e6c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is React project config in one sentence?",
+    "back": "TypeScript, Vite, path aliases, env typing — boring correct setup so IDE and CI agree — Vite + TS handbook.",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Remember"
+  },
+  {
+    "id": "453559da54f0",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of React project config (how the system thinks).",
+    "back": "Config layers:",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Understand"
+  },
+  {
+    "id": "02c28521ff06",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for React project config?",
+    "back": "Goal: one import style (@/features/...), strict enough TS to catch prod bugs, env vars validated once at boot. → Requires @types/react, @types/node in devDependencies.",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Apply"
+  },
+  {
+    "id": "5cad78ff2061",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken React project config setup, what is your first validation command?",
+    "back": "Goal: one import style (@/features/...), strict enough TS to catch prod bugs, env vars validated once at boot.",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Apply"
+  },
+  {
+    "id": "fc70ab113612",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for React project config?",
+    "back": "Requires @types/react, @types/node in devDependencies.",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Apply"
+  },
+  {
+    "id": "378322cd02d8",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cannot find module @/ — what do you check and fix?",
+    "back": "Check: tsconfig paths only · Fix: Mirror alias in vite.config",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Analyze"
+  },
+  {
+    "id": "ba3ecbf141e9",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: import.meta.env any — what do you check and fix?",
+    "back": "Check: Missing vite/client ref · Fix: Add vite-env.d.ts",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Analyze"
+  },
+  {
+    "id": "9b3fe78894fa",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Types work in IDE, fail CI — what do you check and fix?",
+    "back": "Check: tsc not run · Fix: \"build\": \"tsc -b && vite build\"",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Analyze"
+  },
+  {
+    "id": "f80967cf02bd",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Node API in browser bundle — what do you check and fix?",
+    "back": "Check: Wrong tsconfig types · Fix: \"types\": [] or split tsconfig",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Analyze"
+  },
+  {
+    "id": "091dbbae9560",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Env undefined prod — what do you check and fix?",
+    "back": "Check: Not set in CI · Fix: Inject at build; document in README",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Analyze"
+  },
+  {
+    "id": "38971ff7d691",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with React project config: what silently fails?",
+    "back": "Triple-slash refs don't replace installing @types/* — both needed.",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Evaluate"
+  },
+  {
+    "id": "922479289473",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use React project config?",
+    "back": "Monorepo packages — per-package tsconfig + project references, not one giant paths map. Next.js — use next-env.d.ts and NEXT_PUBLIC_* instead of Vite env pattern.",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Evaluate"
+  },
+  {
+    "id": "6248bdbb7337",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct React project config setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Goal: one import style (@/features/...), strict enough TS to catch prod bugs, env vars validated once at boot.",
+    "source": "Back2Basics/React/React project config.md",
+    "section": "React project config · Create"
+  },
+  {
+    "id": "4f252748ee9c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Immutability in Redux?",
+    "back": "Immutability in Redux — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Redux/Immutability in Redux.md",
+    "section": "Immutability in Redux · Remember"
+  },
+  {
+    "id": "e061a52e3b2e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Immutability in Redux matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Redux/Immutability in Redux.md",
+    "section": "Immutability in Redux · Understand"
+  },
+  {
+    "id": "371b34c0de7f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Immutability in Redux checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Redux/Immutability in Redux.md",
+    "section": "Immutability in Redux · Create"
+  },
+  {
+    "id": "ba47eac44a71",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Middleware?",
+    "back": "Middleware — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Redux/RTQ/Middleware.md",
+    "section": "Middleware · Remember"
+  },
+  {
+    "id": "47ae2e599814",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Middleware matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Redux/RTQ/Middleware.md",
+    "section": "Middleware · Understand"
+  },
+  {
+    "id": "1dfa83b2b8cd",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Middleware checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Redux/RTQ/Middleware.md",
+    "section": "Middleware · Create"
+  },
+  {
+    "id": "aaa7105b16f1",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is RTQ store?",
+    "back": "RTQ store — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ store.md",
+    "section": "RTQ store · Remember"
+  },
+  {
+    "id": "ad2f17cf08cb",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does RTQ store matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ store.md",
+    "section": "RTQ store · Understand"
+  },
+  {
+    "id": "6988a5fd101f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe RTQ store checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ store.md",
+    "section": "RTQ store · Create"
+  },
+  {
+    "id": "b793ad449605",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is RTQ tags in one sentence?",
+    "back": "RTK Query cache labels — providesTags on queries, invalidatesTags on mutations — automatic refetch graph — RTK Query docs.",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Remember"
+  },
+  {
+    "id": "8ba0223c4b03",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of RTQ tags (how the system thinks).",
+    "back": "Each cached query entry can provide tags { type, id? }. Mutations invalidate tags → RTK refetches all queries that provided matching tags.",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Understand"
+  },
+  {
+    "id": "107b8ec88bcc",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for RTQ tags?",
+    "back": "Without tags, mutations leave stale lists until manual dispatch(api.util.invalidateTags(...)). → Internal shape (debug):",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Apply"
+  },
+  {
+    "id": "c9c51c6d1cbd",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken RTQ tags setup, what is your first validation command?",
+    "back": "Without tags, mutations leave stale lists until manual dispatch(api.util.invalidateTags(...)).",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Apply"
+  },
+  {
+    "id": "b580fe22c42f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for RTQ tags?",
+    "back": "Register api.middleware and api.reducer in store (Redux/RTQ Toolkit).",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Apply"
+  },
+  {
+    "id": "c69e7ded1f36",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: List stale after create — what do you check and fix?",
+    "back": "Check: Mutation missing LIST invalidation · Fix: invalidatesTags: [{ type: 'Post', id: 'LIST' }]",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Analyze"
+  },
+  {
+    "id": "7622f7f7ac04",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Too many refetches — what do you check and fix?",
+    "back": "Check: Broad { type: 'Post' } without id · Fix: Narrow id-specific invalidation",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Analyze"
+  },
+  {
+    "id": "099ca4a15f54",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Tag not in tagTypes — what do you check and fix?",
+    "back": "Check: Typo / missing registration · Fix: Add to tagTypes array",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Analyze"
+  },
+  {
+    "id": "683863133878",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Query never refetches — what do you check and fix?",
+    "back": "Check: providesTags omitted · Fix: Add providesTags to query endpoint",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Analyze"
+  },
+  {
+    "id": "b7982d20f93e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Flash empty during refetch — what do you check and fix?",
+    "back": "Check: keepUnusedDataFor · Fix: Tune cache lifetime; optimistic update",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Analyze"
+  },
+  {
+    "id": "83507cf03522",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with RTQ tags: what silently fails?",
+    "back": "Invalidate everything — { type: 'Post' } without id invalidates all Post queries — expensive on large apps.",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Evaluate"
+  },
+  {
+    "id": "c2afa97a456c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use RTQ tags?",
+    "back": "One-off read never mutated — skip tags; static keepUnusedDataFor. Real-time push — WebSocket patch + updateQueryData may beat blind invalidation (webSocket). Non-Redux app — TanStack Query queryKey invalidation is the parallel (react-query).",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Evaluate"
+  },
+  {
+    "id": "018a1f05cc8a",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct RTQ tags setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Without tags, mutations leave stale lists until manual dispatch(api.util.invalidateTags(...)).",
+    "source": "Back2Basics/React/Redux/RTQ/RTQ tags.md",
+    "section": "RTQ tags · Create"
+  },
+  {
+    "id": "63dccc056c9c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is RTQ Toolkit?",
+    "back": "reducerPath -> determines where in Redux the data is stored. providesTags and invalidatesTags -> automatically refresh data when mutations happen. RTK Query is an advanced data fetching and caching tool. leverages RTK APIs like [createSlice](https://redux-toolkit.js.org/…",
+    "source": "Back2Basics/React/Redux/RTQ Toolkit.md",
+    "section": "RTQ Toolkit · Remember"
+  },
+  {
+    "id": "e67512e87836",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for RTQ Toolkit?",
+    "back": "is the internal Redux action that RTK Query dispatches whey you trigger a mutation → Since RTK Query automatically caches API responses, your component should read from useGetUserQuery() instead of a separate UserProfile state. → if you must store user data separately in UserProfile, update it using an extra reducer when getUser succeds. → to prevent API calls after refresh, persist Redux state using redux-persist redux persist. → unlike traditional Redux where you manually upda…",
+    "source": "Back2Basics/React/Redux/RTQ Toolkit.md",
+    "section": "RTQ Toolkit · Apply"
+  },
+  {
+    "id": "8a7ac6ce7b3d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken RTQ Toolkit setup, what is your first validation command?",
+    "back": "is the internal Redux action that RTK Query dispatches whey you trigger a mutation",
+    "source": "Back2Basics/React/Redux/RTQ Toolkit.md",
+    "section": "RTQ Toolkit · Apply"
+  },
+  {
+    "id": "feb8592241bd",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct RTQ Toolkit setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: is the internal Redux action that RTK Query dispatches whey you trigger a mutation",
+    "source": "Back2Basics/React/Redux/RTQ Toolkit.md",
+    "section": "RTQ Toolkit · Create"
+  },
+  {
+    "id": "78fa9642a85d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Redux Error (common fixes) in one sentence?",
+    "back": "Recurring Redux / RTK / Immer failures in dev and prod — MapSet, serializable checks, mutations — Redux Toolkit docs + Immer.",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Remember"
+  },
+  {
+    "id": "bc15cdfc6c83",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Redux Error (common fixes) (how the system thinks).",
+    "back": "Redux expects:",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Understand"
+  },
+  {
+    "id": "7dc2172aab1a",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Redux Error (common fixes)?",
+    "back": "Errors usually mean you violated one of those rules or forgot an Immer plugin. → When using Map / Set in state or drafts: → Prefer plain objects over Map/Set in Redux state when possible — simpler DevTools and persist. → Common culprits: Date, Error, Map, DOM nodes, axios response objects. → Fix properly: store ISO strings / ids, not class instances.",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Apply"
+  },
+  {
+    "id": "03e1e509b415",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Redux Error (common fixes) setup, what is your first validation command?",
+    "back": "Errors usually mean you violated one of those rules or forgot an Immer plugin.",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Apply"
+  },
+  {
+    "id": "f5bc99ce1224",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Redux Error (common fixes)?",
+    "back": "When using Map / Set in state or drafts:",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Apply"
+  },
+  {
+    "id": "636c0f8a0030",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: MapSet Immer error — what do you check and fix?",
+    "back": "Check: Map/Set in slice · Fix: enableMapSet() or plain object",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Analyze"
+  },
+  {
+    "id": "b36525c927b8",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Console serializable flood — what do you check and fix?",
+    "back": "Check: RTK Query meta · Fix: Ignore paths or strip in transform",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Analyze"
+  },
+  {
+    "id": "7f9222537d01",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: State unchanged after dispatch — what do you check and fix?",
+    "back": "Check: Mutated nested object outside Immer · Fix: Return new object or use createSlice",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Analyze"
+  },
+  {
+    "id": "f23a7ec3864a",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DevTools empty actions — what do you check and fix?",
+    "back": "Check: Middleware stripped · Fix: Don't disable default middleware",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Analyze"
+  },
+  {
+    "id": "bd830ae5c060",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Infinite loop dispatch — what do you check and fix?",
+    "back": "Check: Middleware dispatching same action · Fix: Guard conditions in middleware",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Analyze"
+  },
+  {
+    "id": "cbb791c40b39",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Redux Error (common fixes): what silently fails?",
+    "back": "Ignoring all serializable checks — hides bugs until persist/export fails in prod.",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Evaluate"
+  },
+  {
+    "id": "b09e14e7d1ce",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Redux Error (common fixes)?",
+    "back": "Bypassing Immer with deep clone everywhere — use createSlice correctly instead. Map/Set for convenience — normalized { byId, allIds } pattern scales better with RTK.",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Evaluate"
+  },
+  {
+    "id": "e7975b3142c1",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Redux Error (common fixes) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Errors usually mean you violated one of those rules or forgot an Immer plugin.",
+    "source": "Back2Basics/React/Redux/Redux Error.md",
+    "section": "Redux Error (common fixes) · Create"
+  },
+  {
+    "id": "b7df22b36644",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Redux State sync with localstorage?",
+    "back": "localstorage -> slice on app init, manual dispatch(setx(...))",
+    "source": "Back2Basics/React/Redux/Redux State sync with localstorage.md",
+    "section": "Redux State sync with localstorage · Remember"
+  },
+  {
+    "id": "4cf95646c8b2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Redux State sync with localstorage?",
+    "back": "there are two main ways to initialize state from you application.",
+    "source": "Back2Basics/React/Redux/Redux State sync with localstorage.md",
+    "section": "Redux State sync with localstorage · Apply"
+  },
+  {
+    "id": "393fb685ba4e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Redux State sync with localstorage setup, what is your first validation command?",
+    "back": "there are two main ways to initialize state from you application.",
+    "source": "Back2Basics/React/Redux/Redux State sync with localstorage.md",
+    "section": "Redux State sync with localstorage · Apply"
+  },
+  {
+    "id": "e051b97b2ca1",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Redux State sync with localstorage setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: there are two main ways to initialize state from you application.",
+    "source": "Back2Basics/React/Redux/Redux State sync with localstorage.md",
+    "section": "Redux State sync with localstorage · Create"
+  },
+  {
+    "id": "2106a3dfe9c5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Redux Thunk?",
+    "back": "Redux Thunk — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Redux/Redux Thunk.md",
+    "section": "Redux Thunk · Remember"
+  },
+  {
+    "id": "1a9270da614b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Redux Thunk matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Redux/Redux Thunk.md",
+    "section": "Redux Thunk · Understand"
+  },
+  {
+    "id": "5c38b8307e50",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Redux Thunk checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Redux/Redux Thunk.md",
+    "section": "Redux Thunk · Create"
+  },
+  {
+    "id": "e4b6ee794e82",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Redux concept and data flow?",
+    "back": "Redux concept and data flow — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Redux/Redux concept and data flow.md",
+    "section": "Redux concept and data flow · Remember"
+  },
+  {
+    "id": "a94d5b547371",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Redux concept and data flow matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Redux/Redux concept and data flow.md",
+    "section": "Redux concept and data flow · Understand"
+  },
+  {
+    "id": "b7d3bb8daf99",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Redux concept and data flow checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Redux/Redux concept and data flow.md",
+    "section": "Redux concept and data flow · Create"
+  },
+  {
+    "id": "64c56cc19d2c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Redux createApi?",
+    "back": "Redux createApi — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Redux/Redux createApi.md",
+    "section": "Redux createApi · Remember"
+  },
+  {
+    "id": "5f5292088667",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Redux createApi matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Redux/Redux createApi.md",
+    "section": "Redux createApi · Understand"
+  },
+  {
+    "id": "c17f9e0cc730",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Redux createApi checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Redux/Redux createApi.md",
+    "section": "Redux createApi · Create"
+  },
+  {
+    "id": "3387a2f6513a",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Redux createAsyncThunk?",
+    "back": "Redux createAsyncThunk — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Redux/Redux createAsyncThunk.md",
+    "section": "Redux createAsyncThunk · Remember"
+  },
+  {
+    "id": "87dda119a1d5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Redux createAsyncThunk matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Redux/Redux createAsyncThunk.md",
+    "section": "Redux createAsyncThunk · Understand"
+  },
+  {
+    "id": "e270d7324656",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Redux createAsyncThunk checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Redux/Redux createAsyncThunk.md",
+    "section": "Redux createAsyncThunk · Create"
+  },
+  {
+    "id": "416ec5e5e7c8",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Redux createSlice?",
+    "back": "createSlice is a utility function in Redux Toolkit that automatically generates both actions and a reducer for you. It simplifies the process of managing state by bundling the actions and reducer logic together.",
+    "source": "Back2Basics/React/Redux/Redux createSlice.md",
+    "section": "Redux createSlice · Remember"
+  },
+  {
+    "id": "19a0d908c79f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Redux createSlice?",
+    "back": "Related to this RTK's createEntityAdapter update function can either be used as standalone reducers, or _mutating_ update functions. → if you need to run an action Workaround → extract the transform specific pieces of state from the Redux store. → Memoization → caches function results based on input args.",
+    "source": "Back2Basics/React/Redux/Redux createSlice.md",
+    "section": "Redux createSlice · Apply"
+  },
+  {
+    "id": "439aecf2ff16",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Redux createSlice setup, what is your first validation command?",
+    "back": "Related to this RTK's createEntityAdapter update function can either be used as standalone reducers, or _mutating_ update functions.",
+    "source": "Back2Basics/React/Redux/Redux createSlice.md",
+    "section": "Redux createSlice · Apply"
+  },
+  {
+    "id": "d9c2bf09f2a2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Redux createSlice setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Related to this RTK's createEntityAdapter update function can either be used as standalone reducers, or _mutating_ update functions.",
+    "source": "Back2Basics/React/Redux/Redux createSlice.md",
+    "section": "Redux createSlice · Create"
+  },
+  {
+    "id": "fe9b03a9a2cb",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is redux compose in one sentence?",
+    "back": "Right-to-left function composition — chain store enhancers (applyMiddleware, DevTools) into one createStore argument — Redux core API.",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Remember"
+  },
+  {
+    "id": "45ecce2951be",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of redux compose (how the system thinks).",
+    "back": "Redux uses compose to merge enhancers — functions that wrap createStore:",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Understand"
+  },
+  {
+    "id": "c5eb825ffad5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for redux compose?",
+    "back": "Redux uses compose to merge enhancers — functions that wrap createStore:",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Apply"
+  },
+  {
+    "id": "43854434fcc6",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken redux compose setup, what is your first validation command?",
+    "back": "Redux uses compose to merge enhancers — functions that wrap createStore:",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Apply"
+  },
+  {
+    "id": "789c6f62f327",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for redux compose?",
+    "back": "RTK's getDefaultMiddleware already includes thunk + invariant checks in dev.",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Apply"
+  },
+  {
+    "id": "2740236b55f7",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DevTools not connected — what do you check and fix?",
+    "back": "Check: Wrong compose enhancer · Fix: Use __REDUX_DEVTOOLS_EXTENSION_COMPOSE__",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Analyze"
+  },
+  {
+    "id": "7bb79c9be7d4",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Middleware never runs — what do you check and fix?",
+    "back": "Check: Order in compose · Fix: Middleware enhancer innermost (applied last in chain)",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Analyze"
+  },
+  {
+    "id": "8ab93ec119e6",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: undefined is not a function — what do you check and fix?",
+    "back": "Check: compose on non-enhancers · Fix: Each arg must be (createStore) => (reducer, pre) => store",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Analyze"
+  },
+  {
+    "id": "48808375ac2b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Double middleware — what do you check and fix?",
+    "back": "Check: compose + configureStore · Fix: Pick RTK only",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Analyze"
+  },
+  {
+    "id": "f13c2afdb99d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Prod bundle includes DevTools — what do you check and fix?",
+    "back": "Check: Guard with NODE_ENV · Fix: devTools: false in prod",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Analyze"
+  },
+  {
+    "id": "46f71c77d4a7",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with redux compose: what silently fails?",
+    "back": "Right-to-left order — easy to invert middleware vs DevTools when copying snippets.",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Evaluate"
+  },
+  {
+    "id": "f8dccbc66eaa",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use redux compose?",
+    "back": "New greenfield apps — configureStore handles composition. Non-Redux function piping — use plain functions or pipe utilities elsewhere.",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Evaluate"
+  },
+  {
+    "id": "c80645e5ecf9",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct redux compose setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Redux uses compose to merge enhancers — functions that wrap createStore:",
+    "source": "Back2Basics/React/Redux/redux compose.md",
+    "section": "redux compose · Create"
+  },
+  {
+    "id": "39ec89b42561",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is redux middleware in one sentence?",
+    "back": "Functions dispatch → action → middleware chain → reducer — intercept, async, logging — Redux middleware contract.",
+    "source": "Back2Basics/React/Redux/redux middleware.md",
+    "section": "redux middleware · Remember"
+  },
+  {
+    "id": "7bcf49d0adfd",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for redux middleware?",
+    "back": "Signature: → RTK default middleware (dev): redux-thunk + serializable/immutable invariant checks. → Prefer createAsyncThunk (Redux/Redux createAsyncThunk) for pending/fulfilled/rejected lifecycle.",
+    "source": "Back2Basics/React/Redux/redux middleware.md",
+    "section": "redux middleware · Apply"
+  },
+  {
+    "id": "70e4b6301f7b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for redux middleware?",
+    "back": "Prefer createAsyncThunk (Redux/Redux createAsyncThunk) for pending/fulfilled/rejected lifecycle.",
+    "source": "Back2Basics/React/Redux/redux middleware.md",
+    "section": "redux middleware · Apply"
+  },
+  {
+    "id": "a3e0fd911484",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Action never hits reducer — what do you check and fix?",
+    "back": "Check: Forgot next(action) · Fix: Return next(action) unless intentionally blocking",
+    "source": "Back2Basics/React/Redux/redux middleware.md",
+    "section": "redux middleware · Analyze"
+  },
+  {
+    "id": "391349f94760",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Async never runs — what do you check and fix?",
+    "back": "Check: Not using thunk middleware · Fix: RTK getDefaultMiddleware includes thunk",
+    "source": "Back2Basics/React/Redux/redux middleware.md",
+    "section": "redux middleware · Analyze"
+  },
+  {
+    "id": "621936075aa4",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Infinite dispatch loop — what do you check and fix?",
+    "back": "Check: Middleware dispatches same type · Fix: Add guard / compare action type",
+    "source": "Back2Basics/React/Redux/redux middleware.md",
+    "section": "redux middleware · Analyze"
+  },
+  {
+    "id": "5526bab45757",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Dev slow — what do you check and fix?",
+    "back": "Check: invariant middleware · Fix: Normal in dev; disable only if needed",
+    "source": "Back2Basics/React/Redux/redux middleware.md",
+    "section": "redux middleware · Analyze"
+  },
+  {
+    "id": "e2ffb10da6e3",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: RTK Query not caching — what do you check and fix?",
+    "back": "Check: Query middleware missing · Fix: Include api.middleware in concat",
+    "source": "Back2Basics/React/Redux/redux middleware.md",
+    "section": "redux middleware · Analyze"
+  },
+  {
+    "id": "69eac1d9796a",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with redux middleware: what silently fails?",
+    "back": "Mutating action in middleware — breaks time-travel; treat actions as read-only.",
+    "source": "Back2Basics/React/Redux/redux middleware.md",
+    "section": "redux middleware · Evaluate"
+  },
+  {
+    "id": "8a3a44c3edc6",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use redux middleware?",
+    "back": "Simple sync state — middleware adds noise without async/logging need. Fetch in middleware instead of RTK Query — reinventing cache/invalidation (Redux/RTQ/RTQ tags). Business logic in reducer — reducers stay pure; async in middleware/thunk.",
+    "source": "Back2Basics/React/Redux/redux middleware.md",
+    "section": "redux middleware · Evaluate"
+  },
+  {
+    "id": "c44dafc6caf2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct redux middleware setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Signature:",
+    "source": "Back2Basics/React/Redux/redux middleware.md",
+    "section": "redux middleware · Create"
+  },
+  {
+    "id": "4370f5e1e91b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is redux persist?",
+    "back": "redux persist — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Redux/redux persist.md",
+    "section": "redux persist · Remember"
+  },
+  {
+    "id": "15ce1e08527e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does redux persist matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Redux/redux persist.md",
+    "section": "redux persist · Understand"
+  },
+  {
+    "id": "838ba755b9aa",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe redux persist checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Redux/redux persist.md",
+    "section": "redux persist · Create"
+  },
+  {
+    "id": "b463004c5e0e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is redux reducers in one sentence?",
+    "back": "Pure functions (state, action) => newState — only place state shape changes — Redux fundamentals.",
+    "source": "Back2Basics/React/Redux/redux reducers.md",
+    "section": "redux reducers · Remember"
+  },
+  {
+    "id": "4ef703207cb2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for redux reducers?",
+    "back": "Rules: → RTK createSlice uses Immer — you mutate draft inside reducer, Immer produces immutable next state (Redux/Redux createSlice). → Each key manages its slice independently.",
+    "source": "Back2Basics/React/Redux/redux reducers.md",
+    "section": "redux reducers · Apply"
+  },
+  {
+    "id": "4a620afe6f61",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for redux reducers?",
+    "back": "Each key manages its slice independently.",
+    "source": "Back2Basics/React/Redux/redux reducers.md",
+    "section": "redux reducers · Apply"
+  },
+  {
+    "id": "bcd2a75daa68",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: State reference unchanged, UI stale — what do you check and fix?",
+    "back": "Check: Mutated nested object in plain reducer · Fix: Spread clone or use createSlice",
+    "source": "Back2Basics/React/Redux/redux reducers.md",
+    "section": "redux reducers · Analyze"
+  },
+  {
+    "id": "78424f430a90",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Undefined state after action — what do you check and fix?",
+    "back": "Check: Missing default param / wrong key · Fix: state = initialState; match action type",
+    "source": "Back2Basics/React/Redux/redux reducers.md",
+    "section": "redux reducers · Analyze"
+  },
+  {
+    "id": "9cfd6b73464b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Random test failures — what do you check and fix?",
+    "back": "Check: Impure reducer (API inside) · Fix: Move async to Redux/redux middleware",
+    "source": "Back2Basics/React/Redux/redux reducers.md",
+    "section": "redux reducers · Analyze"
+  },
+  {
+    "id": "3fe1c864f66e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Immer error in plain reducer — what do you check and fix?",
+    "back": "Check: push on frozen state · Fix: Switch to createSlice or deep clone",
+    "source": "Back2Basics/React/Redux/redux reducers.md",
+    "section": "redux reducers · Analyze"
+  },
+  {
+    "id": "f49a0906b557",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Whole tree resets — what do you check and fix?",
+    "back": "Check: Returned wrong shape · Fix: Return only slice shape in nested reducer",
+    "source": "Back2Basics/React/Redux/redux reducers.md",
+    "section": "redux reducers · Analyze"
+  },
+  {
+    "id": "2927309d76e2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with redux reducers: what silently fails?",
+    "back": "API call inside reducer — same action could yield different states → breaks replay and tests.",
+    "source": "Back2Basics/React/Redux/redux reducers.md",
+    "section": "redux reducers · Evaluate"
+  },
+  {
+    "id": "47a5f1e44084",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use redux reducers?",
+    "back": "Server cache normalization — RTK Query manages its own reducer slice. Ephemeral UI — modal open flag rarely belongs in Redux (React State management). Derived data — compute in selector (createSelector), don't store duplicate fields.",
+    "source": "Back2Basics/React/Redux/redux reducers.md",
+    "section": "redux reducers · Evaluate"
+  },
+  {
+    "id": "9f0652be57a7",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct redux reducers setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Rules:",
+    "source": "Back2Basics/React/Redux/redux reducers.md",
+    "section": "redux reducers · Create"
+  },
+  {
+    "id": "fdc8f1881d88",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Store Architecture Guide in one sentence?",
+    "back": "Reference document for maintaining and extending the Redux store after refactoring. Last updated: March 2026",
+    "source": "Back2Basics/React/Redux/redux store architecture.md",
+    "section": "Store Architecture Guide · Remember"
+  },
+  {
+    "id": "d1019ce2d223",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Store Architecture Guide?",
+    "back": "src/ → store/ → index.js # configureStore only — imports reducers and middlewares → rootReducer.js # combines all feature reducers → middleware/",
+    "source": "Back2Basics/React/Redux/redux store architecture.md",
+    "section": "Store Architecture Guide · Apply"
+  },
+  {
+    "id": "5d7df31448a8",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Store Architecture Guide setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: src/",
+    "source": "Back2Basics/React/Redux/redux store architecture.md",
+    "section": "Store Architecture Guide · Create"
+  },
+  {
+    "id": "9be52a8c9676",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is redux toolkit features?",
+    "back": "redux toolkit features — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Redux/redux toolkit features.md",
+    "section": "redux toolkit features · Remember"
+  },
+  {
+    "id": "0d4f5398aa31",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does redux toolkit features matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Redux/redux toolkit features.md",
+    "section": "redux toolkit features · Understand"
+  },
+  {
+    "id": "cfd23f1ca030",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe redux toolkit features checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Redux/redux toolkit features.md",
+    "section": "redux toolkit features · Create"
+  },
+  {
+    "id": "a8f72a921874",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Redux toolkit?",
+    "back": "Redux toolkit — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Redux toolkit.md",
+    "section": "Redux toolkit · Remember"
+  },
+  {
+    "id": "31fdc7465ffd",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Redux toolkit matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Redux toolkit.md",
+    "section": "Redux toolkit · Understand"
+  },
+  {
+    "id": "3ead5eab80e5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Redux toolkit checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Redux toolkit.md",
+    "section": "Redux toolkit · Create"
+  },
+  {
+    "id": "f74ea4e410c9",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Redux?",
+    "back": "Redux is good if configs can change at runtime or need to be updated via API. - if configs are static constants (e.g., section names that never change), Redux adds unnecessary boilerplate & re-render overhead.",
+    "source": "Back2Basics/React/Redux.md",
+    "section": "Redux · Remember"
+  },
+  {
+    "id": "ad3b2b657b34",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Redux?",
+    "back": "npm install @reduxjs/toolkit react-redux",
+    "source": "Back2Basics/React/Redux.md",
+    "section": "Redux · Apply"
+  },
+  {
+    "id": "3eebb166ca5b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Redux setup, what is your first validation command?",
+    "back": "npm install @reduxjs/toolkit react-redux",
+    "source": "Back2Basics/React/Redux.md",
+    "section": "Redux · Apply"
+  },
+  {
+    "id": "ada45bcce533",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Redux setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: npm install @reduxjs/toolkit react-redux",
+    "source": "Back2Basics/React/Redux.md",
+    "section": "Redux · Create"
+  },
+  {
+    "id": "26153558c006",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Render props?",
+    "back": "Render props — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Render props.md",
+    "section": "Render props · Remember"
+  },
+  {
+    "id": "510c537c9f28",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Render props matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Render props.md",
+    "section": "Render props · Understand"
+  },
+  {
+    "id": "036126966766",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Render props checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Render props.md",
+    "section": "Render props · Create"
+  },
+  {
+    "id": "ffd89a37a893",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Separate functional logic from persentation components?",
+    "back": "Separate functional logic from persentation components — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Separate functional logic from persentation components.md",
+    "section": "Separate functional logic from persentation components · Remember"
+  },
+  {
+    "id": "c1b84d4a786f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Separate functional logic from persentation components matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Separate functional logic from persentation components.md",
+    "section": "Separate functional logic from persentation components · Understand"
+  },
+  {
+    "id": "7062a0a02392",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Separate functional logic from persentation components checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Separate functional logic from persentation components.md",
+    "section": "Separate functional logic from persentation components · Create"
+  },
+  {
+    "id": "43a7f79db426",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Creating a stack from scratch?",
+    "back": "Creating a stack from scratch — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/Stack from scratch.md",
+    "section": "Creating a stack from scratch · Remember"
+  },
+  {
+    "id": "064f3657d90f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Creating a stack from scratch matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/Stack from scratch.md",
+    "section": "Creating a stack from scratch · Understand"
+  },
+  {
+    "id": "32ba4de0dba9",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Creating a stack from scratch checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/Stack from scratch.md",
+    "section": "Creating a stack from scratch · Create"
+  },
+  {
+    "id": "1cda2da2f80f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Typescript with react?",
+    "back": "useRef has a type overload for the specific case in which the type argument doesn't include null but the initializer is null",
+    "source": "Back2Basics/React/Typescript with react.md",
+    "section": "Typescript with react · Remember"
+  },
+  {
+    "id": "f40a3fcce314",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Typescript with react?",
+    "back": "grep -r \"defaultExportName\" src/",
+    "source": "Back2Basics/React/Typescript with react.md",
+    "section": "Typescript with react · Apply"
+  },
+  {
+    "id": "1089bf5b894e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Typescript with react setup, what is your first validation command?",
+    "back": "grep -r \"defaultExportName\" src/",
+    "source": "Back2Basics/React/Typescript with react.md",
+    "section": "Typescript with react · Apply"
+  },
+  {
+    "id": "4dff84c2cf6f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Typescript with react setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: grep -r \"defaultExportName\" src/",
+    "source": "Back2Basics/React/Typescript with react.md",
+    "section": "Typescript with react · Create"
+  },
+  {
+    "id": "3f1b8c89e748",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Ad hoc system (React context) in one sentence?",
+    "back": "A one-off, purpose-built solution for a single feature — fast locally, expensive globally if it becomes the default pattern — Fowler (refactoring) applied to frontend.",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Remember"
+  },
+  {
+    "id": "e018b15162dd",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Ad hoc system (React context) (how the system thinks).",
+    "back": "\"Ad hoc\" (Latin: *for this*) = code shaped for one screen or sprint, not a reusable platform.",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Understand"
+  },
+  {
+    "id": "20ce25759275",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Ad hoc system (React context)?",
+    "back": "In React codebases, ad hoc systems appear as: → Fine for prototypes and experiments; toxic when it becomes production architecture without review.",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Apply"
+  },
+  {
+    "id": "02cc9f95316d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Ad hoc system (React context) setup, what is your first validation command?",
+    "back": "In React codebases, ad hoc systems appear as:",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Apply"
+  },
+  {
+    "id": "a8746a1c5800",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Ad hoc system (React context)?",
+    "back": "1. Extract hook — useExport() with error/loading contract. 2. Centralize server state — RTK Query / TanStack Query (React data management). 3. Document boundary — ADR or ticket linking replacement.",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Apply"
+  },
+  {
+    "id": "d20e4a2f8444",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Same bug in many pages — what do you check and fix?",
+    "back": "Check: Copy-paste ad hoc fetch · Fix: Single hook or RTK endpoint",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Analyze"
+  },
+  {
+    "id": "38b848c6d625",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: State desync across tabs — what do you check and fix?",
+    "back": "Check: Ad hoc localStorage writes · Fix: Redux/Redux State sync with localstorage or Query persist",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Analyze"
+  },
+  {
+    "id": "4517a28c23f7",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Un-testable components — what do you check and fix?",
+    "back": "Check: Logic in JSX · Fix: Extract pure functions / hooks",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Analyze"
+  },
+  {
+    "id": "1e2696f8a094",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Works on my machine\" env — what do you check and fix?",
+    "back": "Check: Hardcoded URLs · Fix: React project config env vars",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Analyze"
+  },
+  {
+    "id": "a7daa80306db",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Performance death by Context — what do you check and fix?",
+    "back": "Check: Ad hoc Provider tree · Fix: zustand or colocate state",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Analyze"
+  },
+  {
+    "id": "84a8ec15ac9d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Ad hoc system (React context): what silently fails?",
+    "back": "Ad hoc Context for server data — no cache, dedupe, or stale-while-revalidate; use react-query / RTK Query instead.",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Evaluate"
+  },
+  {
+    "id": "f878442487ad",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Ad hoc system (React context)?",
+    "back": "Shared across 3+ features — invest in React Architecture and React data management. Auth, billing, permissions — never one-off; centralize and audit. Design system components — use tokens + shared library, not inline styles per screen.",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Evaluate"
+  },
+  {
+    "id": "7bde1e7924d5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Ad hoc system (React context) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: In React codebases, ad hoc systems appear as:",
+    "source": "Back2Basics/React/ad hoc system.md",
+    "section": "Ad hoc system (React context) · Create"
+  },
+  {
+    "id": "803362ac0bd9",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is flux?",
+    "back": "flux — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/flux.md",
+    "section": "flux · Remember"
+  },
+  {
+    "id": "12e872a7a2d0",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does flux matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/flux.md",
+    "section": "flux · Understand"
+  },
+  {
+    "id": "2d5be328ce2a",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe flux checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/flux.md",
+    "section": "flux · Create"
+  },
+  {
+    "id": "8f58880fdad6",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Formik in one sentence?",
+    "back": "React form state library — values, touched, errors, submit lifecycle — client-only (needs DOM + hooks) — Formik docs.",
+    "source": "Back2Basics/React/formik.md",
+    "section": "Formik · Remember"
+  },
+  {
+    "id": "d6759bc36cc9",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Formik (how the system thinks).",
+    "back": "Formik centralizes form state in one object:",
+    "source": "Back2Basics/React/formik.md",
+    "section": "Formik · Understand"
+  },
+  {
+    "id": "4f0d98b94c20",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Whole app re-renders typing — what do you check and fix?",
+    "back": "Check: Large Formik tree · Fix: Split forms; React Hook Form; FastField",
+    "source": "Back2Basics/React/formik.md",
+    "section": "Formik · Analyze"
+  },
+  {
+    "id": "7ab2a2c12834",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Validation never fires — what do you check and fix?",
+    "back": "Check: validateOnBlur false · Fix: validateOnChange / submit",
+    "source": "Back2Basics/React/formik.md",
+    "section": "Formik · Analyze"
+  },
+  {
+    "id": "031b4cc5a0ee",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Values stale after props load — what do you check and fix?",
+    "back": "Check: Missing reinitialize · Fix: enableReinitialize",
+    "source": "Back2Basics/React/formik.md",
+    "section": "Formik · Analyze"
+  },
+  {
+    "id": "9108a88d46b2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: RSC error \"useState only client\" — what do you check and fix?",
+    "back": "Check: Form in Server Component · Fix: \"use client\" boundary",
+    "source": "Back2Basics/React/formik.md",
+    "section": "Formik · Analyze"
+  },
+  {
+    "id": "ddf6dfb08ff0",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Double submit — what do you check and fix?",
+    "back": "Check: No isSubmitting guard · Fix: Disable button; debouncing onSubmit",
+    "source": "Back2Basics/React/formik.md",
+    "section": "Formik · Analyze"
+  },
+  {
+    "id": "e2a1d4517995",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Formik: what silently fails?",
+    "back": "Nested objects — shallow updates need care; consider flat names or libraries like Immer inside custom handlers.",
+    "source": "Back2Basics/React/formik.md",
+    "section": "Formik · Evaluate"
+  },
+  {
+    "id": "2d82c321c1ca",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Formik?",
+    "back": "Server Actions + native <form> — Next.js can post without Formik for simple flows. Huge dynamic field arrays (100+) — React Hook Form performance often wins. Non-React surfaces — web components without React bindings.",
+    "source": "Back2Basics/React/formik.md",
+    "section": "Formik · Evaluate"
+  },
+  {
+    "id": "1406c5e14ddc",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Formik setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: React form state library — values, touched, errors, submit lifecycle — client-only (needs DOM + hooks) — Formik docs.",
+    "source": "Back2Basics/React/formik.md",
+    "section": "Formik · Create"
+  },
+  {
+    "id": "77d903d6eea1",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is hydration?",
+    "back": "hydration — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/hydration.md",
+    "section": "hydration · Remember"
+  },
+  {
+    "id": "6c48748c6a31",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does hydration matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/hydration.md",
+    "section": "hydration · Understand"
+  },
+  {
+    "id": "af0af57fae15",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe hydration checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/hydration.md",
+    "section": "hydration · Create"
+  },
+  {
+    "id": "92260cb98e69",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is re-export file?",
+    "back": "If you publish an npm package → avoid export * completely in the public index.ts. Use explicit exports.",
+    "source": "Back2Basics/React/re-export file.md",
+    "section": "re-export file · Remember"
+  },
+  {
+    "id": "eafb602a421b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for re-export file?",
+    "back": "Usage anywhere in the app",
+    "source": "Back2Basics/React/re-export file.md",
+    "section": "re-export file · Apply"
+  },
+  {
+    "id": "d33a51c11392",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken re-export file setup, what is your first validation command?",
+    "back": "Usage anywhere in the app",
+    "source": "Back2Basics/React/re-export file.md",
+    "section": "re-export file · Apply"
+  },
+  {
+    "id": "ca04eefc1304",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct re-export file setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Usage anywhere in the app",
+    "source": "Back2Basics/React/re-export file.md",
+    "section": "re-export file · Create"
+  },
+  {
+    "id": "1af10130073d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is TenStack Query?",
+    "back": "TenStack Query — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/react cache.md",
+    "section": "TenStack Query · Remember"
+  },
+  {
+    "id": "7650506a9487",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does TenStack Query matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/react cache.md",
+    "section": "TenStack Query · Understand"
+  },
+  {
+    "id": "8b041152c39b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe TenStack Query checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/react cache.md",
+    "section": "TenStack Query · Create"
+  },
+  {
+    "id": "b3ffdccac5c0",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is react error?",
+    "back": "react error — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/react error.md",
+    "section": "react error · Remember"
+  },
+  {
+    "id": "b5a53f36587b",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does react error matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/react error.md",
+    "section": "react error · Understand"
+  },
+  {
+    "id": "179cce233c02",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe react error checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/react error.md",
+    "section": "react error · Create"
+  },
+  {
+    "id": "e7abd8db17c5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is react hooks?",
+    "back": "Memoization of function: preventing its recreation on every render unless its dependency array changes. avoids expensive computations when passing functions as props to child components.",
+    "source": "Back2Basics/React/react hooks.md",
+    "section": "react hooks · Remember"
+  },
+  {
+    "id": "478e86723213",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for react hooks?",
+    "back": "Some component need to synchronize with external systems. → Two types of logic inside React components: → Example (using useEffect correctly for a network request)",
+    "source": "Back2Basics/React/react hooks.md",
+    "section": "react hooks · Apply"
+  },
+  {
+    "id": "a6cd77d225be",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken react hooks setup, what is your first validation command?",
+    "back": "Some component need to synchronize with external systems.",
+    "source": "Back2Basics/React/react hooks.md",
+    "section": "react hooks · Apply"
+  },
+  {
+    "id": "4f65123b5cb4",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct react hooks setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Some component need to synchronize with external systems.",
+    "source": "Back2Basics/React/react hooks.md",
+    "section": "react hooks · Create"
+  },
+  {
+    "id": "a7ded35c0c8e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is React routes in one sentence?",
+    "back": "Map URLs → layouts → screens — prefer relative routes + route objects so base path changes don't break — React Router v6+ docs.",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Remember"
+  },
+  {
+    "id": "4eb7c952e90f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of React routes (how the system thinks).",
+    "back": "React Router v6 uses nested routes:",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Understand"
+  },
+  {
+    "id": "bdd3e267052e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for React routes?",
+    "back": "React Router v6 uses nested routes:",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Apply"
+  },
+  {
+    "id": "47aa362a09c0",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken React routes setup, what is your first validation command?",
+    "back": "React Router v6 uses nested routes:",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Apply"
+  },
+  {
+    "id": "b1411cf5a162",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for React routes?",
+    "back": "Wrap with RequireAuth that reads auth hook → <Navigate to=\"/login\" /> or <Outlet />.",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Apply"
+  },
+  {
+    "id": "5caf0ccb287c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 404 on refresh (SPA) — what do you check and fix?",
+    "back": "Check: Server not fallback to index · Fix: nginx try_files / Vercel rewrite",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Analyze"
+  },
+  {
+    "id": "46dd4706919c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong screen on deep link — what do you check and fix?",
+    "back": "Check: Absolute vs relative paths · Fix: Prefer nested relative paths",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Analyze"
+  },
+  {
+    "id": "54f09476bb87",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Double layout render — what do you check and fix?",
+    "back": "Check: Missing <Outlet /> · Fix: Add outlet in parent",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Analyze"
+  },
+  {
+    "id": "0be488359fe4",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Loader data stale — what do you check and fix?",
+    "back": "Check: No revalidation · Fix: shouldRevalidate / Query cache",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Analyze"
+  },
+  {
+    "id": "0add153fbfc8",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Basename broken assets — what do you check and fix?",
+    "back": "Check: Hardcoded / paths · Fix: import.meta.env.BASE_URL",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Analyze"
+  },
+  {
+    "id": "04e9c3376b80",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with React routes: what silently fails?",
+    "back": "All absolute paths (/manage-rooms) — works until app moves under /v2; use relative segments in nested config.",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Evaluate"
+  },
+  {
+    "id": "499915cf994f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use React routes?",
+    "back": "File-based routing only — Next.js App Router owns routes; don't fight framework. Hash routing (#/) — only legacy embeds without server rewrite support.",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Evaluate"
+  },
+  {
+    "id": "7f793d2ab5ab",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct React routes setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: React Router v6 uses nested routes:",
+    "source": "Back2Basics/React/react routes.md",
+    "section": "React routes · Create"
+  },
+  {
+    "id": "dd5f20bf5717",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is React style inside component in one sentence?",
+    "back": "CSS colocated with JSX — CSS Modules, styled-components, styled-jsx (Next.js) — scope styles to component without global leaks — CSS-in-JS tradeoffs.",
+    "source": "Back2Basics/React/react style inside component.md",
+    "section": "React style inside component · Remember"
+  },
+  {
+    "id": "70c950d1f25f",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of React style inside component (how the system thinks).",
+    "back": "Options for component-local styling:",
+    "source": "Back2Basics/React/react style inside component.md",
+    "section": "React style inside component · Understand"
+  },
+  {
+    "id": "34cf3f77f378",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for React style inside component?",
+    "back": "Avoid huge inline objects recreated every render (referential equality matters for memoized children).",
+    "source": "Back2Basics/React/react style inside component.md",
+    "section": "React style inside component · Apply"
+  },
+  {
+    "id": "c783275aff92",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Styles not applied (Modules) — what do you check and fix?",
+    "back": "Check: Wrong import · Fix: import s from './x.module.css'",
+    "source": "Back2Basics/React/react style inside component.md",
+    "section": "React style inside component · Analyze"
+  },
+  {
+    "id": "71e8dcc7930c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Flash unstyled (FOUC) — what do you check and fix?",
+    "back": "Check: CSS load order · Fix: css/Flash of Unstyled Content",
+    "source": "Back2Basics/React/react style inside component.md",
+    "section": "React style inside component · Analyze"
+  },
+  {
+    "id": "9b8d76724e2c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: styled-jsx not working — what do you check and fix?",
+    "back": "Check: Not Next / plugin · Fix: Use Modules or Tailwind in Vite",
+    "source": "Back2Basics/React/react style inside component.md",
+    "section": "React style inside component · Analyze"
+  },
+  {
+    "id": "5a3d393cfe41",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Specificity wars — what do you check and fix?",
+    "back": "Check: Global !important · Fix: Scope with Modules",
+    "source": "Back2Basics/React/react style inside component.md",
+    "section": "React style inside component · Analyze"
+  },
+  {
+    "id": "76f2bf4eaa19",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Hydration class mismatch — what do you check and fix?",
+    "back": "Check: Random class gen · Fix: Stable build config",
+    "source": "Back2Basics/React/react style inside component.md",
+    "section": "React style inside component · Analyze"
+  },
+  {
+    "id": "4f10b95edbb2",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with React style inside component: what silently fails?",
+    "back": "Runtime CSS-in-JS — extra bundle + insert cost; RSC apps often prefer static CSS (RSC (React Server Component boundaries)).",
+    "source": "Back2Basics/React/react style inside component.md",
+    "section": "React style inside component · Evaluate"
+  },
+  {
+    "id": "497089f1b000",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use React style inside component?",
+    "back": "Design system at scale — Tailwind + component variants (css/tailwindcss), not per-component <style jsx>. Animation-heavy — Framer motion + CSS transforms, not inline everything. Plain static site — external CSS file sufficient.",
+    "source": "Back2Basics/React/react style inside component.md",
+    "section": "React style inside component · Evaluate"
+  },
+  {
+    "id": "cd253ae547fd",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct React style inside component setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: CSS colocated with JSX — CSS Modules, styled-components, styled-jsx (Next.js) — scope styles to component without global leaks — **CSS",
+    "source": "Back2Basics/React/react style inside component.md",
+    "section": "React style inside component · Create"
+  },
+  {
+    "id": "7a33fac93742",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is react-query?",
+    "back": "react-query — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/react-query.md",
+    "section": "react-query · Remember"
+  },
+  {
+    "id": "0bd0315b5120",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does react-query matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/react-query.md",
+    "section": "react-query · Understand"
+  },
+  {
+    "id": "50273f17a26c",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe react-query checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/react-query.md",
+    "section": "react-query · Create"
+  },
+  {
+    "id": "d7367df0425e",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is useRef?",
+    "back": "useRef — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/React/useRef.md",
+    "section": "useRef · Remember"
+  },
+  {
+    "id": "0f86ca635815",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does useRef matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/React/useRef.md",
+    "section": "useRef · Understand"
+  },
+  {
+    "id": "1fcf7020b60d",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe useRef checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/React/useRef.md",
+    "section": "useRef · Create"
+  },
+  {
+    "id": "773d3b97715a",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Zustand in one sentence?",
+    "back": "Minimal client-state library for React — store outside the component tree with selective subscriptions — when Redux is overkill.",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Remember"
+  },
+  {
+    "id": "fe496643f5d5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Zustand (how the system thinks).",
+    "back": "Zustand holds state in a vanilla store (works without React). Components subscribe to slices; only subscribers to changed keys re-render. No Provider required (unlike Context performance traps).",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Understand"
+  },
+  {
+    "id": "b6f708d57a35",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Zustand?",
+    "back": "On server: new store per request. On client: hydrate once from serialized snapshot or accept flash.",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Apply"
+  },
+  {
+    "id": "d6783f6c9564",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Zustand setup, what is your first validation command?",
+    "back": "On server: new store per request. On client: hydrate once from serialized snapshot or accept flash.",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Apply"
+  },
+  {
+    "id": "f2dc4a48c871",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Zustand?",
+    "back": "On server: new store per request. On client: hydrate once from serialized snapshot or accept flash.",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Apply"
+  },
+  {
+    "id": "9558d40d78a4",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Too many re-renders — what do you check and fix?",
+    "back": "Check: Selector returns new object each time · Fix: Stable selector; useShallow for object picks",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Analyze"
+  },
+  {
+    "id": "2d9ff6e66596",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: State wrong after navigation (SSR) — what do you check and fix?",
+    "back": "Check: Global store on server · Fix: Per-request store factory",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Analyze"
+  },
+  {
+    "id": "a383eb3aa4b8",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stale closure in action — what do you check and fix?",
+    "back": "Check: Old state captured · Fix: Use functional set(s => ...)",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Analyze"
+  },
+  {
+    "id": "51c67627cba6",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DevTools empty — what do you check and fix?",
+    "back": "Check: Missing middleware · Fix: devtools middleware in dev only",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Analyze"
+  },
+  {
+    "id": "c49184b62de5",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Zustand: what silently fails?",
+    "back": "Zustand for API cache — reinventing React Query: no stale time, dedup, background refetch, error retry.",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Evaluate"
+  },
+  {
+    "id": "cf8274d8e3f3",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Zustand?",
+    "back": "Server-fetched lists with cache invalidation — TanStack Query / RTK Query. Complex event-sourced domain — Redux Toolkit + RTK Query or explicit event store. Cross-tab sync requirements — add BroadcastChannel or use URL/server state.",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Evaluate"
+  },
+  {
+    "id": "28e5820c4dec",
+    "deck": "b2b-react",
+    "tags": [
+      "back2basics",
+      "react",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Zustand setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: On server: new store per request. On client: hydrate once from serialized snapshot or accept flash.",
+    "source": "Back2Basics/React/zustand.md",
+    "section": "Zustand · Create"
+  }
+]

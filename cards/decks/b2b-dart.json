@@ -1,0 +1,226 @@
+[
+  {
+    "id": "7744732ff8cf",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Dart functions in one sentence?",
+    "back": "First-class, closable functions with optional/named params, cascade-friendly syntax, and nested functions for encapsulation — know closure capture and => vs block bodies.",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Remember"
+  },
+  {
+    "id": "6389f84d7ff2",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Dart functions (how the system thinks).",
+    "back": "Functions are objects: assign to variables, pass as args, return from functions. Dart is single-threaded event-loop async (flutter isolates for parallelism).",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Understand"
+  },
+  {
+    "id": "9910b8fcadd5",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Dart functions?",
+    "back": "Top-level fn",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Apply"
+  },
+  {
+    "id": "fc7dfc82cc84",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Dart functions setup, what is your first validation command?",
+    "back": "Top-level fn",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Apply"
+  },
+  {
+    "id": "3c897bf44ff5",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Required named parameter missing\" — what do you check and fix?",
+    "back": "Check: Call without required arg · Fix: Pass named param or give default",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Analyze"
+  },
+  {
+    "id": "d512959c1b9f",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Closure sees stale value — what do you check and fix?",
+    "back": "Check: Captured loop variable (pre-Dart 3) · Fix: Use for (final x in xs) or copy local",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Analyze"
+  },
+  {
+    "id": "d14450a296b6",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: void callback return ignored — what do you check and fix?",
+    "back": "Check: Returning value from void fn · Fix: Change return type or don't return",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Analyze"
+  },
+  {
+    "id": "b9fa9aeff534",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stack overflow — what do you check and fix?",
+    "back": "Check: Unbounded recursion · Fix: Iterate or tail-call refactor",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Analyze"
+  },
+  {
+    "id": "d8a0170bcf8a",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Type error on Function — what do you check and fix?",
+    "back": "Check: Raw Function vs typed · Fix: Use void Function(int) or typedef",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Analyze"
+  },
+  {
+    "id": "f5728da5e6cd",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Nested fn not visible outside — what do you check and fix?",
+    "back": "Check: Scope is lexical · Fix: Move to private top-level _helper if needed wider",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Analyze"
+  },
+  {
+    "id": "1dace091c17f",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Dart functions: what silently fails?",
+    "back": "Named params are not optional by default — mark {required foo} or provide default; unlike JS object destructuring defaults alone.",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Evaluate"
+  },
+  {
+    "id": "55800c3e9b88",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Dart functions?",
+    "back": "Nested functions for large logic — extract class or top-level private function for testability. Dynamic Function everywhere — defeats analyzer; use typedefs/generics. Isolates for tiny work — message copy cost; use compute/isolate only for CPU-heavy jobs.",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Evaluate"
+  },
+  {
+    "id": "c14c29aee0fe",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Dart functions setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Top-level fn",
+    "source": "Back2Basics/dart/dart functions.md",
+    "section": "Dart functions · Create"
+  },
+  {
+    "id": "1fd6cb184366",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is dart?",
+    "back": "dart — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/dart/dart.md",
+    "section": "dart · Remember"
+  },
+  {
+    "id": "5723ee187f43",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does dart matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/dart/dart.md",
+    "section": "dart · Understand"
+  },
+  {
+    "id": "3ecd053b2659",
+    "deck": "b2b-dart",
+    "tags": [
+      "back2basics",
+      "dart",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe dart checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/dart/dart.md",
+    "section": "dart · Create"
+  }
+]

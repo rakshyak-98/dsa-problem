@@ -1,0 +1,772 @@
+[
+  {
+    "id": "6525b16d8d8a",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Render CLI in one sentence?",
+    "back": "Operate Render services from the terminal — deploy, logs, SSH, psql, Blueprint validation. Docs: CLI · reference.",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Remember"
+  },
+  {
+    "id": "ec37ea597006",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Render CLI (how the system thinks).",
+    "back": "render talks to your active workspace. Interactive mode (TTY) is menu-driven; scripts/CI use API key + --confirm + -o json. Deploys are triggers against an existing service (srv-…), not “upload this folder like vercel” — Git/image is already wired on the service.",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Understand"
+  },
+  {
+    "id": "40f9836e1e5d",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Render CLI?",
+    "back": "local terminal → render CLI → Render API → service (build/deploy/logs/ssh) → CI: RENDER_API_KEY + service ID → deploys create --wait --confirm → curl -fsSL https://raw.githubusercontent.com/render-oss/cli/refs/heads/main/bin/install.sh | sh → curl -L https://github.com/render-oss/cli/releases/download/v1.1.0/cli_1.1.0_linux_amd64.zip -o render.zip → unzip render.zip",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Apply"
+  },
+  {
+    "id": "3213c60f067d",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Render CLI setup, what is your first validation command?",
+    "back": "local terminal → render CLI → Render API → service (build/deploy/logs/ssh)",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Apply"
+  },
+  {
+    "id": "2ef3b729ffb1",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Render CLI?",
+    "back": "CI / automation: set RENDER_API_KEY (API key wins over CLI token; does not expire like CLI tokens).",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Apply"
+  },
+  {
+    "id": "05a54f1192cb",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong services listed — what do you check and fix?",
+    "back": "Check: Active workspace · Fix: render workspace set / render workspaces",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Analyze"
+  },
+  {
+    "id": "e734d67a638d",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Auth fails in CI — what do you check and fix?",
+    "back": "Check: RENDER_API_KEY set? · Fix: Create API key in dashboard; export before commands",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Analyze"
+  },
+  {
+    "id": "0127de5cd917",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CLI token expired — what do you check and fix?",
+    "back": "Check: Idle / revoked token · Fix: render login again; revoke old tokens in Account Settings",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Analyze"
+  },
+  {
+    "id": "87ab26c86ca7",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Deploy “succeeded” but old code — what do you check and fix?",
+    "back": "Check: Wrong service / commit · Fix: Pass --commit <sha>; confirm srv-… ID",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Analyze"
+  },
+  {
+    "id": "97067b2a3b51",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Interactive hang in CI — what do you check and fix?",
+    "back": "Check: TTY menus · Fix: Always --confirm + -o json (or CI=true)",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Analyze"
+  },
+  {
+    "id": "64c91a960da5",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Blueprint apply errors — what do you check and fix?",
+    "back": "Check: YAML shape · Fix: render blueprints validate ./render.yaml",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Analyze"
+  },
+  {
+    "id": "5e27055257b8",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Can’t SSH / empty instance — what do you check and fix?",
+    "back": "Check: Service not running · Fix: Check deploys; use --ephemeral for one-off shell",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Analyze"
+  },
+  {
+    "id": "5720e8e048bb",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Render CLI: what silently fails?",
+    "back": "CLI deploy does not disable auto-deploy — Git pushes still deploy unless you turn auto-deploy off (dashboard or services update). RENDER_API_KEY overrides CLI login — local shells with the env var set will ignore render login tokens. Ephemeral SSH ≠ production process — --ephemeral skips the service start command; don’t debug “why isn’t my app listening” there. Pin CLI version in CI — the install script floats to latest; pin a linux_amd64 release zip for reproducibil…",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Evaluate"
+  },
+  {
+    "id": "e844cbbb3fbc",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Render CLI?",
+    "back": "Don’t trigger prod deploys from a laptop as the only gate — prefer Git + required checks, or CI calling deploys create --wait. Don’t use the CLI as a substitute for IaC ownership of the whole stack — use Blueprints (render.yaml) for multi-service layout; CLI for day-2 ops. Don’t put API keys in the repo — secrets manager / CI secrets only.",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Evaluate"
+  },
+  {
+    "id": "d58564fb0b85",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Render CLI setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: local terminal → render CLI → Render API → service (build/deploy/logs/ssh)",
+    "source": "Back2Basics/Deployment/render cli.md",
+    "section": "Render CLI · Create"
+  },
+  {
+    "id": "ad6c2108339d",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Spinnaker in one sentence?",
+    "back": "Multi-cloud continuous delivery control plane — pipelines, bakes, deploy stages, and rollback — Netflix OSS CD mental model.",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Remember"
+  },
+  {
+    "id": "31f66f2d6619",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Spinnaker (how the system thinks).",
+    "back": "Spinnaker separates how artifacts are built (CI: Jenkins, GitHub Actions) from how they are promoted (CD: pipelines with gates). A typical flow:",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Understand"
+  },
+  {
+    "id": "5ba1e209d08b",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Spinnaker?",
+    "back": "Rule of thumb: K8s-only + GitOps → Argo. Multi-cloud + legacy VM/ASG + rich pipelines → Spinnaker. Many teams: Actions/Jenkins CI + Argo CD and skip Spinnaker entirely.",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Apply"
+  },
+  {
+    "id": "9130479b8407",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Pipeline not triggering — what do you check and fix?",
+    "back": "Check: Trigger config; artifact regex; CI webhook · Fix: Match tag pattern; verify echo/delivery config",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Analyze"
+  },
+  {
+    "id": "c5a42d5e0466",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Deploy stuck \"in progress\" — what do you check and fix?",
+    "back": "Check: Clouddriver logs; cloud quota · Fix: Kill stuck stage; refresh cache; fix IAM",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Analyze"
+  },
+  {
+    "id": "cc029c6936ea",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong version deployed — what do you check and fix?",
+    "back": "Check: Artifact pin vs :latest · Fix: Immutable tags; forbid floating latest in prod",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Analyze"
+  },
+  {
+    "id": "f70e4c8f8d12",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Rollback didn't revert — what do you check and fix?",
+    "back": "Check: Deployed new server group still receiving traffic · Fix: Disable bad group; verify LB weights",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Analyze"
+  },
+  {
+    "id": "f859e7d6c5dc",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Bake fails — what do you check and fix?",
+    "back": "Check: Packer logs in Rosco · Fix: Base AMI deprecated; region mismatch",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Analyze"
+  },
+  {
+    "id": "2412cabea9c4",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: UI shows phantom resources — what do you check and fix?",
+    "back": "Check: Cache stale · Fix: curl cache refresh API; clouddriver pod restart",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Analyze"
+  },
+  {
+    "id": "454caddd791d",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: K8s manifest stage error — what do you check and fix?",
+    "back": "Check: Artifact compression; account kubeconfig · Fix: Validate manifest locally with kubectl",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Analyze"
+  },
+  {
+    "id": "37af16d24f79",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Spinnaker: what silently fails?",
+    "back": ":latest in prod — rollback impossible to reason about; pin digest/tag.",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Evaluate"
+  },
+  {
+    "id": "027c6823fdac",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Spinnaker?",
+    "back": "Single small K8s cluster — Argo CD + Helm sufficient. Serverless-only, few functions — CI deploy per function adequate. Team without dedicated platform ops — Spinnaker maintenance will stall feature work.",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Evaluate"
+  },
+  {
+    "id": "e43638924e87",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Spinnaker setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Multi-cloud continuous delivery control plane — pipelines, bakes, deploy stages, and rollback — Netflix OSS CD mental model.",
+    "source": "Back2Basics/Deployment/spinnaker.md",
+    "section": "Spinnaker · Create"
+  },
+  {
+    "id": "74fddb291ce1",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Vercel CLI in one sentence?",
+    "back": "Link local project, preview deploy, and promote to production without leaving the terminal.",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Remember"
+  },
+  {
+    "id": "b8c2d0d6de50",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Vercel CLI (how the system thinks).",
+    "back": "vercel CLI talks to Vercel platform: creates preview URL per deploy, production on --prod. Project linked via .vercel/project.json after vercel link. Builds run remotely (default) or locally (vercel dev). Env vars pulled from dashboard or vercel env pull.",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Understand"
+  },
+  {
+    "id": "07f28713c099",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Vercel CLI?",
+    "back": "local repo → vercel → remote build → *.vercel.app preview → --prod → custom domain → npm i -g vercel → vercel login → vercel link # associate or create project → vercel env pull .env.local",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Apply"
+  },
+  {
+    "id": "29036a71364e",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Vercel CLI setup, what is your first validation command?",
+    "back": "local repo → vercel → remote build → *.vercel.app preview → --prod → custom domain",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Apply"
+  },
+  {
+    "id": "ffebd108c484",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong project linked — what do you check and fix?",
+    "back": "Check: .vercel/project.json · Fix: vercel link again",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Analyze"
+  },
+  {
+    "id": "8da41f8860c2",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Env missing in build — what do you check and fix?",
+    "back": "Check: Dashboard vs preview/prod · Fix: vercel env pull; scope vars",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Analyze"
+  },
+  {
+    "id": "413be9c8a5ae",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: vercel dev ≠ prod — what do you check and fix?",
+    "back": "Check: Edge vs Node runtime · Fix: Test preview deploy",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Analyze"
+  },
+  {
+    "id": "1e0d203b8dc1",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Build OOM — what do you check and fix?",
+    "back": "Check: Build logs · Fix: Increase memory tier; optimize build",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Analyze"
+  },
+  {
+    "id": "a295282f4b5c",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Typo varcel dev — what do you check and fix?",
+    "back": "Check: — · Fix: vercel dev",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Analyze"
+  },
+  {
+    "id": "13dd4d468717",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 404 on API routes — what do you check and fix?",
+    "back": "Check: Output config · Fix: Don't output: 'export' if using API routes",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Analyze"
+  },
+  {
+    "id": "a54d8bd20898",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Vercel CLI: what silently fails?",
+    "back": "Preview URLs are public — don't deploy secrets in client bundle assuming privacy. Git integration vs CLI — two deploy paths; know which owns production branch. Monorepo — set Root Directory in project settings.",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Evaluate"
+  },
+  {
+    "id": "0b40e53d6d34",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Vercel CLI?",
+    "back": "Don't use CLI prod deploy without CI checks — wire Git integration + required checks. Don't commit .vercel with tokens — only project ids; secrets stay in dashboard.",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Evaluate"
+  },
+  {
+    "id": "9c83054b9afd",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Vercel CLI setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: local repo → vercel → remote build → *.vercel.app preview → --prod → custom domain",
+    "source": "Back2Basics/Deployment/vercel cli.md",
+    "section": "Vercel CLI · Create"
+  },
+  {
+    "id": "b033668075cb",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Vercel deployment in one sentence?",
+    "back": "Git-push serverless hosting for Next.js/static SPAs — edge CDN, serverless functions, env vars per environment. Vercel docs + classic SPA refresh 404 and env mismatch debug.",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Remember"
+  },
+  {
+    "id": "0217b0e386e3",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Vercel deployment (how the system thinks).",
+    "back": "Vercel builds from Git (or CLI vercel deploy) → static assets on global CDN + serverless functions (/api/*, Next.js routes). Routing is filesystem-based (Next) or vercel.json rewrites (CRA/Vite SPA). No long-lived server — cold starts and regional execution matter for APIs.",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Understand"
+  },
+  {
+    "id": "43bcdca9fd15",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Vercel deployment?",
+    "back": "Git push ──► build ──► static (CDN) + lambdas (region) → User refresh /deep link ──► must rewrite to index or SSR route → Next.js App Router: file-based routing — no catch-all rewrite unless custom static export. → Or set Root Directory in project settings.",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Apply"
+  },
+  {
+    "id": "f53840b5b7c5",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Vercel deployment setup, what is your first validation command?",
+    "back": "Git push ──► build ──► static (CDN) + lambdas (region)",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Apply"
+  },
+  {
+    "id": "c4ee7d3e7bc4",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Vercel deployment?",
+    "back": "vercel.json at repo root:",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Apply"
+  },
+  {
+    "id": "5c2010c9bfa7",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Refresh on /dashboard → 404 — what do you check and fix?",
+    "back": "Check: Missing SPA rewrite · Fix: Add vercel.json rewrites to /index.html",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Analyze"
+  },
+  {
+    "id": "33464c466cc2",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works locally, env undefined in prod — what do you check and fix?",
+    "back": "Check: Var not set for Production · Fix: Dashboard env; rebuild after add",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Analyze"
+  },
+  {
+    "id": "7640857c8af8",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: API 500 only on Vercel — what do you check and fix?",
+    "back": "Check: Function timeout; edge vs node runtime · Fix: Increase timeout; export const runtime = 'nodejs'",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Analyze"
+  },
+  {
+    "id": "ef82e1020108",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CORS from browser to /api on same domain — what do you check and fix?",
+    "back": "Check: Usually same-origin — if split domain · Fix: Configure API CORS or proxy (CORS (Cross Origin Request Sharing))",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Analyze"
+  },
+  {
+    "id": "1788196f2b24",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stale assets after deploy — what do you check and fix?",
+    "back": "Check: CDN cache; service worker · Fix: Cache bust filenames; update SW",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Analyze"
+  },
+  {
+    "id": "91e1cb410b92",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Preview URL works, prod domain not — what do you check and fix?",
+    "back": "Check: DNS not verified · Fix: Fix CNAME; wait propagation",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Analyze"
+  },
+  {
+    "id": "06a49d70f431",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Vercel deployment: what silently fails?",
+    "back": "Catch-all rewrite breaks real static files if ordered wrong — Vercel serves existing files first; rewrite applies to non-matches (usually OK).",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Evaluate"
+  },
+  {
+    "id": "29a69145778d",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Vercel deployment?",
+    "back": "Long-running workers / queues — use Railway/Fly/ECS/K8s (Deployment). Stateful TCP services — Vercel is HTTP-centric. Full control of nginx tuning — compare nginx SPA deployment on own VM.",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Evaluate"
+  },
+  {
+    "id": "c427a666bdb4",
+    "deck": "b2b-deployment",
+    "tags": [
+      "back2basics",
+      "deployment",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Vercel deployment setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Git push ──► build ──► static (CDN) + lambdas (region)",
+    "source": "Back2Basics/Deployment/vercel deployment.md",
+    "section": "Vercel deployment · Create"
+  }
+]

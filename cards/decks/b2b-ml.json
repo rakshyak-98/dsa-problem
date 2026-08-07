@@ -1,0 +1,4440 @@
+[
+  {
+    "id": "acf04d1d4037",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AI chat with memory in one sentence?",
+    "back": "LLMs are stateless per request — \"memory\" is context you re-inject each turn (history, summaries, RAG chunks) — OpenAI / Anthropic API docs.",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Remember"
+  },
+  {
+    "id": "66559ecef16b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of AI chat with memory (how the system thinks).",
+    "back": "The model does not persist anything between HTTP calls. Every turn you send:",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Understand"
+  },
+  {
+    "id": "a64043befac7",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for AI chat with memory?",
+    "back": "Token budget is finite (context window). Long chats hit context rot (early facts dropped) and cost/latency scale with history length.",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Apply"
+  },
+  {
+    "id": "4a64dd02732f",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken AI chat with memory setup, what is your first validation command?",
+    "back": "Token budget is finite (context window). Long chats hit context rot (early facts dropped) and cost/latency scale with history length.",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Apply"
+  },
+  {
+    "id": "db2d2357bc96",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for AI chat with memory?",
+    "back": "Annotate why: system prompt sets behavior; RAG grounds facts; trimming protects latency and cost.",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Apply"
+  },
+  {
+    "id": "eb5029d0e852",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Model \"forgets\" earlier facts — what do you check and fix?",
+    "back": "Check: Token count / window size · Fix: Summary memory, RAG, or structured DB facts",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Analyze"
+  },
+  {
+    "id": "aa8efff05958",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong answers despite docs — what do you check and fix?",
+    "back": "Check: Retrieval (k, chunk size, embedding model) · Fix: Re-chunk, hybrid search, cite sources in prompt",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Analyze"
+  },
+  {
+    "id": "61038693ca0e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cost spike — what do you check and fix?",
+    "back": "Check: Messages array growth · Fix: Hard cap turns; summarize; cache embeddings",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Analyze"
+  },
+  {
+    "id": "1743e043f6e4",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate / contradictory replies — what do you check and fix?",
+    "back": "Check: Multiple memory sources unsynced · Fix: Single source of truth; version user profile row",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Analyze"
+  },
+  {
+    "id": "da8dad09d04f",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: PII in logs — what do you check and fix?",
+    "back": "Check: What you persist · Fix: Redact before store; TTL on conversation tables",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Analyze"
+  },
+  {
+    "id": "39d8bd8ca935",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with AI chat with memory: what silently fails?",
+    "back": "Storing full chat in the client — anyone can tamper with \"memory.\" Treat client history as UX only; authoritative memory lives server-side with user/session ID.",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Evaluate"
+  },
+  {
+    "id": "776f0e3de1ee",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use AI chat with memory?",
+    "back": "Single-shot Q&A with no follow-up — skip memory infrastructure entirely. Strict audit trail required — prefer structured DB fields over LLM summaries you cannot replay verbatim. Real-time collaborative editing — use CRDT/OT, not chat history as state.",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Evaluate"
+  },
+  {
+    "id": "2077298fd71e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct AI chat with memory setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Token budget is finite (context window). Long chats hit context rot (early facts dropped) and cost/latency scale with history length.",
+    "source": "Back2Basics/ML/AI chat with memory.md",
+    "section": "AI chat with memory · Create"
+  },
+  {
+    "id": "c5d3bbadb9ea",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ANN (Artificial Neural Network) in one sentence?",
+    "back": "Stacked layers of weighted sums + nonlinear activations — universal function approximator trained by gradient descent — Goodfellow et al. (Deep Learning).",
+    "source": "Back2Basics/ML/ANN.md",
+    "section": "ANN (Artificial Neural Network) · Remember"
+  },
+  {
+    "id": "c800b16892e7",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of ANN (Artificial Neural Network) (how the system thinks).",
+    "back": "A feedforward ANN maps input x through layers:",
+    "source": "Back2Basics/ML/ANN.md",
+    "section": "ANN (Artificial Neural Network) · Understand"
+  },
+  {
+    "id": "ad5ac8480de3",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for ANN (Artificial Neural Network)?",
+    "back": "Why StandardScaler: unscaled features dominate gradients; tree models don't need this — see Decision tree.",
+    "source": "Back2Basics/ML/ANN.md",
+    "section": "ANN (Artificial Neural Network) · Apply"
+  },
+  {
+    "id": "09016cd3a6e4",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Loss flat / NaN — what do you check and fix?",
+    "back": "Check: Learning rate, input scale · Fix: Lower LR; StandardScaler; gradient clipping",
+    "source": "Back2Basics/ML/ANN.md",
+    "section": "ANN (Artificial Neural Network) · Analyze"
+  },
+  {
+    "id": "7e5b507a4bed",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Train acc high, val low — what do you check and fix?",
+    "back": "Check: Capacity, no regularization · Fix: Dropout, weight decay, early stopping, more data",
+    "source": "Back2Basics/ML/ANN.md",
+    "section": "ANN (Artificial Neural Network) · Analyze"
+  },
+  {
+    "id": "3a40e4710d00",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow convergence — what do you check and fix?",
+    "back": "Check: LR schedule, batch size · Fix: AdamW + warmup; tune batch size to GPU",
+    "source": "Back2Basics/ML/ANN.md",
+    "section": "ANN (Artificial Neural Network) · Analyze"
+  },
+  {
+    "id": "38ef0ddf23a3",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Random results — what do you check and fix?",
+    "back": "Check: Seeds, data shuffle · Fix: Fix random_state; set torch/cuda seeds",
+    "source": "Back2Basics/ML/ANN.md",
+    "section": "ANN (Artificial Neural Network) · Analyze"
+  },
+  {
+    "id": "8b8407d3044a",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"ANN\" search returns garbage — what do you check and fix?",
+    "back": "Check: Embedding quality, index params · Fix: Retrain embeddings; tune HNSW ef, recall@k",
+    "source": "Back2Basics/ML/ANN.md",
+    "section": "ANN (Artificial Neural Network) · Analyze"
+  },
+  {
+    "id": "ab70e29d1c71",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with ANN (Artificial Neural Network): what silently fails?",
+    "back": "Tabular Kaggle data: Gradient boosting / Random forest often beat shallow MLPs with less tuning. Reach for ANNs when you have images, text, sequences, or massive unstructured data.",
+    "source": "Back2Basics/ML/ANN.md",
+    "section": "ANN (Artificial Neural Network) · Evaluate"
+  },
+  {
+    "id": "0d335d979b4f",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use ANN (Artificial Neural Network)?",
+    "back": "Small tabular datasets (<10k rows) — Decision tree, Model/support vector machines (SVM), or linear models first. Need exact interpretable coefficients — use Model/Linear regression or GAM. Hard latency SLA on CPU — deep nets vs single Decision tree inference cost.",
+    "source": "Back2Basics/ML/ANN.md",
+    "section": "ANN (Artificial Neural Network) · Evaluate"
+  },
+  {
+    "id": "acbd80346890",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct ANN (Artificial Neural Network) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Stacked layers of weighted sums + nonlinear activations — universal function approximator trained by gradient descent — **Goodfellow et al.",
+    "source": "Back2Basics/ML/ANN.md",
+    "section": "ANN (Artificial Neural Network) · Create"
+  },
+  {
+    "id": "d8f979bf43d1",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Decision tree in one sentence?",
+    "back": "Greedy, axis-aligned splits that partition feature space into leaf predictions — Hastie / ESL + production ML triage.",
+    "source": "Back2Basics/ML/Decision tree.md",
+    "section": "Decision tree · Remember"
+  },
+  {
+    "id": "aade70013ab1",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Decision tree (how the system thinks).",
+    "back": "A decision tree asks a sequence of yes/no questions on one feature at a time until a leaf assigns a class (classification) or average target (regression).",
+    "source": "Back2Basics/ML/Decision tree.md",
+    "section": "Decision tree · Understand"
+  },
+  {
+    "id": "ca6aacaf818b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 100% train / 50% val — what do you check and fix?",
+    "back": "Check: Depth too high, leaf min too low · Fix: Reduce max_depth; raise min_samples_leaf; try ccp_alpha",
+    "source": "Back2Basics/ML/Decision tree.md",
+    "section": "Decision tree · Analyze"
+  },
+  {
+    "id": "d6b70be56ebb",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Model ignores a feature — what do you check and fix?",
+    "back": "Check: High cardinality / sparse one-hot · Fix: Target encoding, binning, or tree ensemble",
+    "source": "Back2Basics/ML/Decision tree.md",
+    "section": "Decision tree · Analyze"
+  },
+  {
+    "id": "9955f70eed04",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Unstable splits run-to-run — what do you check and fix?",
+    "back": "Check: Small data + many ties · Fix: Set random_state; increase min_samples_split",
+    "source": "Back2Basics/ML/Decision tree.md",
+    "section": "Decision tree · Analyze"
+  },
+  {
+    "id": "2b03166559b2",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Biased toward majority class — what do you check and fix?",
+    "back": "Check: Check class_weight, metric · Fix: class_weight=\"balanced\"; optimize PR-AUC not accuracy",
+    "source": "Back2Basics/ML/Decision tree.md",
+    "section": "Decision tree · Analyze"
+  },
+  {
+    "id": "4cb8fadbf44e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow training on wide data — what do you check and fix?",
+    "back": "Check: max_features, depth · Fix: Limit depth; use max_features; switch to Random forest / xg boost",
+    "source": "Back2Basics/ML/Decision tree.md",
+    "section": "Decision tree · Analyze"
+  },
+  {
+    "id": "571184ad36e0",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Decision tree: what silently fails?",
+    "back": "Extrapolation: trees cannot predict outside training range for regression — flat plateau at training min/max.",
+    "source": "Back2Basics/ML/Decision tree.md",
+    "section": "Decision tree · Evaluate"
+  },
+  {
+    "id": "d6319a81e557",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Decision tree?",
+    "back": "High-dimensional sparse text without feature engineering — linear + hashing or embeddings beat deep single trees. Need calibrated probabilities from one tree — use Random forest, Gradient boosting, or Platt/isotonic calibration. Strict monotonic or linear relationship — prefer constrained boosting or GLM. Production latency at massive depth — shallow tree or linear model; …",
+    "source": "Back2Basics/ML/Decision tree.md",
+    "section": "Decision tree · Evaluate"
+  },
+  {
+    "id": "0cb444d3d85e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Decision tree setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Greedy, axis-aligned splits that partition feature space into leaf predictions — Hastie / ESL + production ML triage.",
+    "source": "Back2Basics/ML/Decision tree.md",
+    "section": "Decision tree · Create"
+  },
+  {
+    "id": "84b5760316a3",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is GPT?",
+    "back": "GPT — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/ML/GPT.md",
+    "section": "GPT · Remember"
+  },
+  {
+    "id": "3f761873adf6",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does GPT matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/ML/GPT.md",
+    "section": "GPT · Understand"
+  },
+  {
+    "id": "caa366c90ae1",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe GPT checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/ML/GPT.md",
+    "section": "GPT · Create"
+  },
+  {
+    "id": "42a3f9a77f1d",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Gradient boosting in one sentence?",
+    "back": "Sequential ensemble: each new tree fits the residual errors of the ensemble so far — Friedman (1999) + modern GBDT libraries.",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Remember"
+  },
+  {
+    "id": "7fe248a4e500",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Gradient boosting (how the system thinks).",
+    "back": "Boosting builds an additive model:",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Understand"
+  },
+  {
+    "id": "606f91680429",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Gradient boosting?",
+    "back": "See xg boost. Typical starting grid:",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Apply"
+  },
+  {
+    "id": "a3bef5feb1a6",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Gradient boosting setup, what is your first validation command?",
+    "back": "See xg boost. Typical starting grid:",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Apply"
+  },
+  {
+    "id": "fd1a187beca2",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Gradient boosting?",
+    "back": "See xg boost. Typical starting grid:",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Apply"
+  },
+  {
+    "id": "32b7fe0d179c",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Train great, val collapses — what do you check and fix?",
+    "back": "Check: learning_rate too high, too many rounds · Fix: Lower η; enable early stopping; ↑ min_child_weight / min_samples_leaf",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Analyze"
+  },
+  {
+    "id": "a5ae54dd76f5",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Underfitting (both weak) — what do you check and fix?",
+    "back": "Check: Too few rounds, depth too shallow · Fix: More estimators + early stop; slightly deeper trees",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Analyze"
+  },
+  {
+    "id": "8b87a4648adb",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Training very slow — what do you check and fix?",
+    "back": "Check: Dense wide matrix · Fix: HistGradientBoosting; LightGBM histogram; reduce features",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Analyze"
+  },
+  {
+    "id": "27bfc3759e59",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Predictions all one class — what do you check and fix?",
+    "back": "Check: Base rate skew, wrong objective · Fix: Check scale_pos_weight; class weights; PR curve",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Analyze"
+  },
+  {
+    "id": "8513b78742d1",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wild variance across CV folds — what do you check and fix?",
+    "back": "Check: Small data + high capacity · Fix: Stronger regularization; fewer features; nested CV",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Analyze"
+  },
+  {
+    "id": "68860a116ec8",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Serving latency high — what do you check and fix?",
+    "back": "Check: Tree count × depth · Fix: Limit rounds; model distillation; ONNX + treelite",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Analyze"
+  },
+  {
+    "id": "162ffb3470a3",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Gradient boosting: what silently fails?",
+    "back": "Leakage through early stopping: validation set must be truly held out; don't peek at test for round selection.",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Evaluate"
+  },
+  {
+    "id": "2e2d62540f52",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Gradient boosting?",
+    "back": "Tiny tabular data (< few hundred rows) — linear/logistic + strong regularization often generalizes better with less tuning. Need online learning — GBDT retrains are batch-heavy; consider linear models or incremental learners. Strict interpretability for regulators — single Decision tree or GAM may be required; explain boosted models with documented SHAP limits. **Already at latenc…",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Evaluate"
+  },
+  {
+    "id": "ceeb7df095c6",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Gradient boosting setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: See xg boost. Typical starting grid:",
+    "source": "Back2Basics/ML/Gradient boosting.md",
+    "section": "Gradient boosting · Create"
+  },
+  {
+    "id": "99c450f59e44",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ML Classifiers in one sentence?",
+    "back": "Algorithms that assign discrete class labels from features — pick by data size, interpretability, imbalance, and latency — scikit-learn classifier zoo.",
+    "source": "Back2Basics/ML/ML Classifiers.md",
+    "section": "ML Classifiers · Remember"
+  },
+  {
+    "id": "53b7f2953774",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of ML Classifiers (how the system thinks).",
+    "back": "Features (predictors, X) → classifier → predicted label (target, y). All sklearn classifiers share fit(X, y) and predict(X).",
+    "source": "Back2Basics/ML/ML Classifiers.md",
+    "section": "ML Classifiers · Understand"
+  },
+  {
+    "id": "de84fb64c694",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for ML Classifiers?",
+    "back": "1. Stratified split (or time split for temporal data). 2. data preprocessing inside Pipeline. 3. Metric aligned to cost (binary classification PR-AUC vs accuracy). 4. Persist with joblib + training data hash + schema version.",
+    "source": "Back2Basics/ML/ML Classifiers.md",
+    "section": "ML Classifiers · Apply"
+  },
+  {
+    "id": "dbc2b71ae30f",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: All one class predicted — what do you check and fix?",
+    "back": "Check: Imbalance, bad threshold · Fix: class_weight; tune threshold",
+    "source": "Back2Basics/ML/ML Classifiers.md",
+    "section": "ML Classifiers · Analyze"
+  },
+  {
+    "id": "9a744613ea23",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Great offline, bad online — what do you check and fix?",
+    "back": "Check: Train/serve skew · Fix: Feature parity tests",
+    "source": "Back2Basics/ML/ML Classifiers.md",
+    "section": "ML Classifiers · Analyze"
+  },
+  {
+    "id": "ebbe01ed22b0",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow inference — what do you check and fix?",
+    "back": "Check: Forest depth, k-NN · Fix: Reduce trees; distill to logistic",
+    "source": "Back2Basics/ML/ML Classifiers.md",
+    "section": "ML Classifiers · Analyze"
+  },
+  {
+    "id": "5c9f17c08eae",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Unstable feature importances — what do you check and fix?",
+    "back": "Check: Correlated features · Fix: Random forest impurity vs SHAP",
+    "source": "Back2Basics/ML/ML Classifiers.md",
+    "section": "ML Classifiers · Analyze"
+  },
+  {
+    "id": "8c739ecacb9a",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: High variance across CV folds — what do you check and fix?",
+    "back": "Check: Small data · Fix: Simpler model; collect more labels",
+    "source": "Back2Basics/ML/ML Classifiers.md",
+    "section": "ML Classifiers · Analyze"
+  },
+  {
+    "id": "9cd75e41fd1d",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with ML Classifiers: what silently fails?",
+    "back": "Accuracy on imbalanced data — report precision/recall/F1 or PR-AUC per class.",
+    "source": "Back2Basics/ML/ML Classifiers.md",
+    "section": "ML Classifiers · Evaluate"
+  },
+  {
+    "id": "85fa9c81eb61",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use ML Classifiers?",
+    "back": "Continuous target — regression. Ordered ratings — ordinal classification. Search ranking — learning-to-rank + Normalized Discounted Cumulative Gain (NDCG).",
+    "source": "Back2Basics/ML/ML Classifiers.md",
+    "section": "ML Classifiers · Evaluate"
+  },
+  {
+    "id": "f75bb8ce7273",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct ML Classifiers setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Algorithms that assign discrete class labels from features — pick by data size, interpretability, imbalance, and latency — **scikit-lear",
+    "source": "Back2Basics/ML/ML Classifiers.md",
+    "section": "ML Classifiers · Create"
+  },
+  {
+    "id": "32e6eac3447b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Mean Average Precision (MAP) in one sentence?",
+    "back": "Ranking metric: average of per-query Average Precision — rewards relevant items ranked high — IR evaluation (Manning, Raghavan, Schütze).",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Remember"
+  },
+  {
+    "id": "d92072623ae9",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Mean Average Precision (MAP) (how the system thinks).",
+    "back": "For each query, you have a ranked list of items. Relevance is binary (or graded in nDCG). Precision@k = relevant in top k / k. Average Precision (AP) integrates precision at each rank where a relevant item appears.",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Understand"
+  },
+  {
+    "id": "41c99432f9f2",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Mean Average Precision (MAP)?",
+    "back": "MAP cares about order: putting all relevant items at the top scores higher than burying one relevant doc at rank 50.",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Apply"
+  },
+  {
+    "id": "be67a3a99b69",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Mean Average Precision (MAP) setup, what is your first validation command?",
+    "back": "MAP cares about order: putting all relevant items at the top scores higher than burying one relevant doc at rank 50.",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Apply"
+  },
+  {
+    "id": "5716bb140160",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Mean Average Precision (MAP)?",
+    "back": "1. Hold out queries with labeled relevant set (clicks, purchases, human grades). 2. Score all candidates; sort descending. 3. Report MAP @ full list and Precision@5 / Recall@20 for product SLAs.",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Apply"
+  },
+  {
+    "id": "d150a2141603",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: MAP = 1.0 suspiciously — what do you check and fix?",
+    "back": "Check: Single relevant doc, trivial rank · Fix: More queries; harder negatives",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Analyze"
+  },
+  {
+    "id": "2e5efdd55377",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: MAP flat despite \"better\" model — what do you check and fix?",
+    "back": "Check: Wrong labels (implicit vs explicit) · Fix: Define relevance from business event",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Analyze"
+  },
+  {
+    "id": "44f4aa848725",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Offline MAP ↑, revenue flat — what do you check and fix?",
+    "back": "Check: Position bias in logs · Fix: Inverse propensity scoring; interleaving",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Analyze"
+  },
+  {
+    "id": "1f2217605382",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: AP undefined — what do you check and fix?",
+    "back": "Check: No relevant items in query · Fix: Skip query or define fallback metric",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Analyze"
+  },
+  {
+    "id": "459c28a16c02",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Compares unfairly across systems — what do you check and fix?",
+    "back": "Check: Different candidate pools · Fix: Same corpus per query",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Analyze"
+  },
+  {
+    "id": "728e2a8c72d2",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Mean Average Precision (MAP): what silently fails?",
+    "back": "MAP with binary relevance ignores how relevant (marginally vs perfect match) — use Normalized Discounted Cumulative Gain (NDCG) for graded labels.",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Evaluate"
+  },
+  {
+    "id": "c6a4821d29c3",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Mean Average Precision (MAP)?",
+    "back": "Single-label classification — use precision/recall/F1 (binary classification). Regression — use MAE/RMSE (regression). Clustering — no query-level ranking.",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Evaluate"
+  },
+  {
+    "id": "185c1cc137f7",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Mean Average Precision (MAP) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: MAP cares about order: putting all relevant items at the top scores higher than burying one relevant doc at rank 50.",
+    "source": "Back2Basics/ML/Mean Average Precision (MAP).md",
+    "section": "Mean Average Precision (MAP) · Create"
+  },
+  {
+    "id": "0911c3c8e106",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Linear regression in one sentence?",
+    "back": "Predict continuous target as weighted sum of features (+ intercept) — Hastie ESL; baseline every tabular regression problem should beat.",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Remember"
+  },
+  {
+    "id": "ec1dd158f2ff",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Linear regression (how the system thinks).",
+    "back": "Ordinary Least Squares (OLS) picks β to minimize Σ(yᵢ − ŷᵢ)². Geometrically: orthogonal projection of y onto the column space of X.",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Understand"
+  },
+  {
+    "id": "952c49c00b9a",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Linear regression?",
+    "back": "For classification boundaries, see sigmoid + logistic regression (not this note).",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Apply"
+  },
+  {
+    "id": "c672d6e43cd9",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Linear regression setup, what is your first validation command?",
+    "back": "For classification boundaries, see sigmoid + logistic regression (not this note).",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Apply"
+  },
+  {
+    "id": "35401baa52ad",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Linear regression?",
+    "back": "OLS: scaling doesn't change predictions (only coefficient scale). Ridge/Lasso: always scale — penalty is not rotation-invariant.",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Apply"
+  },
+  {
+    "id": "22468c7b4b87",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: High train R², awful val — what do you check and fix?",
+    "back": "Check: Overfitting transforms / leakage · Fix: Audit features; hold out time; reduce polynomial degree",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Analyze"
+  },
+  {
+    "id": "f05fd0645097",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Negative R² on val — what do you check and fix?",
+    "back": "Check: Wrong baseline, broken pipeline · Fix: Verify target not in X; check train/val split",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Analyze"
+  },
+  {
+    "id": "2a48dc294eec",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Coefficients flip sign vs domain — what do you check and fix?",
+    "back": "Check: Multicollinearity · Fix: Drop correlated cols; Ridge; PCA",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Analyze"
+  },
+  {
+    "id": "f61be3a2895b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Residual fan shape — what do you check and fix?",
+    "back": "Check: Heteroscedasticity · Fix: Log-transform target; weighted least squares",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Analyze"
+  },
+  {
+    "id": "76253144d8eb",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Predictions clip at extremes — what do you check and fix?",
+    "back": "Check: Linear extrapolation · Fix: Polynomial features; Gradient boosting; log target",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Analyze"
+  },
+  {
+    "id": "4386597c8bd3",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: LinAlgError: singular matrix — what do you check and fix?",
+    "back": "Check: Perfect collinearity, p > n · Fix: Drop duplicate cols; Ridge; reduce features",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Analyze"
+  },
+  {
+    "id": "62d075dccad0",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Linear regression: what silently fails?",
+    "back": "R² on skewed targets: optimizing R² on heavy-tailed revenue can chase outliers — also track MAE / MAPE on business slices.",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Evaluate"
+  },
+  {
+    "id": "05f097a5252c",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Linear regression?",
+    "back": "Strong nonlinear interactions without explicit feature crosses — Gradient boosting or GAM usually wins. Target is count / rate with bounds — Poisson, Gamma GLM, or beta regression. Heavy outliers drive loss — Huber / quantile regression, or robust tree models. Need calibrated uncertainty in production — Bayesian linear or conformal prediction on residuals.",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Evaluate"
+  },
+  {
+    "id": "3bd70eb87bdf",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Linear regression setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: For classification boundaries, see sigmoid + logistic regression (not this note).",
+    "source": "Back2Basics/ML/Model/Linear regression.md",
+    "section": "Linear regression · Create"
+  },
+  {
+    "id": "7e0a92bf072e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Polynomial regression in one sentence?",
+    "back": "Extend linear models with x, x², x³, interactions to capture curvature — still linear in coefficients, nonlinear in features — ESL.",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Remember"
+  },
+  {
+    "id": "9808633f9fa4",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Polynomial regression (how the system thinks).",
+    "back": "Start with Model/Linear regression: ŷ = β₀ + β₁x. Add powers and cross-terms:",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Understand"
+  },
+  {
+    "id": "b67414f1f0ea",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Polynomial regression?",
+    "back": "High degree + unregularized OLS overfits wildly between points (Runge phenomenon). Prefer Ridge or low degree + cross-validation.",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Apply"
+  },
+  {
+    "id": "992bb78f92eb",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Polynomial regression setup, what is your first validation command?",
+    "back": "High degree + unregularized OLS overfits wildly between points (Runge phenomenon). Prefer Ridge or low degree + cross-validation.",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Apply"
+  },
+  {
+    "id": "2eea20257673",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Polynomial regression?",
+    "back": "Always pair with Visualization/Residual plot — U-shaped residuals hint missing quadratic term.",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Apply"
+  },
+  {
+    "id": "6c8dd5945f20",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wild predictions outside train range — what do you check and fix?",
+    "back": "Check: High degree extrapolation · Fix: Lower degree; clip; Gradient boosting",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Analyze"
+  },
+  {
+    "id": "5dc83ca9f1d2",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Numerical overflow — what do you check and fix?",
+    "back": "Check: x large, x⁶ features · Fix: StandardScaler; reduce degree",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Analyze"
+  },
+  {
+    "id": "04ba57e93627",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Feature count explosion — what do you check and fix?",
+    "back": "Check: degree on many columns · Fix: Interaction-only; manual terms",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Analyze"
+  },
+  {
+    "id": "2c38b6e9ef3e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Better than trees on train only — what do you check and fix?",
+    "back": "Check: Overfit · Fix: Ridge alpha CV; holdout",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Analyze"
+  },
+  {
+    "id": "bd1ba769f254",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Negative R² on test — what do you check and fix?",
+    "back": "Check: Wrong basis · Fix: Try splines/GAM or tree models",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Analyze"
+  },
+  {
+    "id": "3a21659e7935",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Polynomial regression: what silently fails?",
+    "back": "PolynomialFeatures on all columns — 20 features at degree=3 → thousands of terms.",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Evaluate"
+  },
+  {
+    "id": "73abcd87b618",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Polynomial regression?",
+    "back": "Many categorical / high-dimensional tabular — Decision tree / Gradient boosting find interactions automatically. Sharp discontinuities — trees handle better than smooth polynomials. Need interpretable single slope — stick to degree-1 Model/Linear regression.",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Evaluate"
+  },
+  {
+    "id": "0f8b3899cd17",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Polynomial regression setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: High degree + unregularized OLS overfits wildly between points (Runge phenomenon). Prefer Ridge or low degree + cross-validation.",
+    "source": "Back2Basics/ML/Model/Polynomial regression.md",
+    "section": "Polynomial regression · Create"
+  },
+  {
+    "id": "dfc9d55e97e1",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Support Vector Machines (SVM) in one sentence?",
+    "back": "Find the maximum-margin separating hyperplane (or ε-tube for regression) — kernel trick maps to high-D implicitly — Cortes & Vapnik (1995).",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Remember"
+  },
+  {
+    "id": "1bc3f283221f",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Support Vector Machines (SVM) (how the system thinks).",
+    "back": "Hard margin: separate classes with widest gap. Soft margin (C): allow slack ξᵢ — trade misclassification vs margin width.",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Understand"
+  },
+  {
+    "id": "8dd9842a3788",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Support Vector Machines (SVM)?",
+    "back": "SVMs shine on medium-sized, dense data; struggle on large sparse text unless linear kernel + careful scaling.",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Apply"
+  },
+  {
+    "id": "80bad1cd3d7c",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Support Vector Machines (SVM) setup, what is your first validation command?",
+    "back": "SVMs shine on medium-sized, dense data; struggle on large sparse text unless linear kernel + careful scaling.",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Apply"
+  },
+  {
+    "id": "ac12a7d4e67e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Support Vector Machines (SVM)?",
+    "back": "probability=True on SVC wraps Platt scaling — slow; use decision_function + calibrate separately if needed.",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Apply"
+  },
+  {
+    "id": "7130d5ef636d",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Training never finishes — what do you check and fix?",
+    "back": "Check: n > 100k, RBF · Fix: LinearSVC or Random forest",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Analyze"
+  },
+  {
+    "id": "27e9a23d85e6",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: All one class — what do you check and fix?",
+    "back": "Check: C too high/low, scaling · Fix: Grid search C; StandardScaler",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Analyze"
+  },
+  {
+    "id": "4a7d4539639b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Test perf random — what do you check and fix?",
+    "back": "Check: Unscaled features · Fix: Pipeline with scaler",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Analyze"
+  },
+  {
+    "id": "ff9b798b8f63",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Memory blowup — what do you check and fix?",
+    "back": "Check: RBF on 500k rows · Fix: Subsample; linear kernel",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Analyze"
+  },
+  {
+    "id": "ec2570f479a6",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Platt probs miscalibrated — what do you check and fix?",
+    "back": "Check: probability=True · Fix: CalibratedClassifierCV",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Analyze"
+  },
+  {
+    "id": "9cd31e3b792b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Support Vector Machines (SVM): what silently fails?",
+    "back": "RBF γ too large — overfits every point (memorization). Too small — underfits (linear-ish).",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Evaluate"
+  },
+  {
+    "id": "7c41928de751",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Support Vector Machines (SVM)?",
+    "back": "Huge datasets (millions+ rows) — Gradient boosting / linear models scale better. Need feature importances for compliance — prefer Decision tree or linear models. Image/audio deep learning — CNNs / transformers dominate.",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Evaluate"
+  },
+  {
+    "id": "7a694303be84",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Support Vector Machines (SVM) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: SVMs shine on medium-sized, dense data; struggle on large sparse text unless linear kernel + careful scaling.",
+    "source": "Back2Basics/ML/Model/support vector machines (SVM).md",
+    "section": "Support Vector Machines (SVM) · Create"
+  },
+  {
+    "id": "1f4b6ce6c135",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Normalized Discounted Cumulative Gain (NDCG) in one sentence?",
+    "back": "Graded ranking metric — relevant items higher in the list score more; normalized to [0,1] vs ideal ranking — Järvelin & Kekäläinen (2002).",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Remember"
+  },
+  {
+    "id": "06a248070b25",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Normalized Discounted Cumulative Gain (NDCG) (how the system thinks).",
+    "back": "DCG sums relevance with a logarithmic position discount (top ranks matter most):",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Understand"
+  },
+  {
+    "id": "925adaa86218",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Normalized Discounted Cumulative Gain (NDCG)?",
+    "back": "Relevance rel can be 0–3 (not relevant → perfect). NDCG = 1 only when the list matches the ideal order up to k. → vs Mean Average Precision (MAP): MAP is binary relevance; NDCG handles graded judgment (somewhat relevant vs exact match).",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Apply"
+  },
+  {
+    "id": "c8dbc12a176e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Normalized Discounted Cumulative Gain (NDCG) setup, what is your first validation command?",
+    "back": "Relevance rel can be 0–3 (not relevant → perfect). NDCG = 1 only when the list matches the ideal order up to k.",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Apply"
+  },
+  {
+    "id": "353c187f4021",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Normalized Discounted Cumulative Gain (NDCG)?",
+    "back": "Report NDCG@5 and NDCG@10 separately — product surfaces differ.",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Apply"
+  },
+  {
+    "id": "f735398a10c9",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NDCG always ~1 — what do you check and fix?",
+    "back": "Check: Tiny candidate sets · Fix: Expand pool; harder negatives",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Analyze"
+  },
+  {
+    "id": "96103af8a785",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NDCG drops after reranker — what do you check and fix?",
+    "back": "Check: Graded labels inconsistent · Fix: Harmonize label guidelines",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Analyze"
+  },
+  {
+    "id": "2b1f5ce99201",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Compare @k across teams — what do you check and fix?",
+    "back": "Check: Different k · Fix: Fix k in SLA (e.g. @10)",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Analyze"
+  },
+  {
+    "id": "776a4942dd9e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: IDCG = 0 — what do you check and fix?",
+    "back": "Check: No relevant items · Fix: Exclude query from aggregate",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Analyze"
+  },
+  {
+    "id": "c9e6afa98886",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: sklearn shape errors — what do you check and fix?",
+    "back": "Check: Query matrix layout · Fix: (n_queries, n_items) 2D arrays",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Analyze"
+  },
+  {
+    "id": "44f473934302",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Normalized Discounted Cumulative Gain (NDCG): what silently fails?",
+    "back": "Position bias in logged data — users rarely see rank 20; NDCG on biased logs favors old rankers.",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Evaluate"
+  },
+  {
+    "id": "521e22b8365a",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Normalized Discounted Cumulative Gain (NDCG)?",
+    "back": "Binary classification without ranking — binary classification metrics. Continuous score prediction — regression + Visualization/predicated vs actual plot. Uniform relevance only — Mean Average Precision (MAP) may be simpler to explain.",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Evaluate"
+  },
+  {
+    "id": "1db461b6542a",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Normalized Discounted Cumulative Gain (NDCG) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Relevance rel can be 0–3 (not relevant → perfect). NDCG = 1 only when the list matches the ideal order up to k.",
+    "source": "Back2Basics/ML/Normalized Discounted Cumulative Gain (NDCG).md",
+    "section": "Normalized Discounted Cumulative Gain (NDCG) · Create"
+  },
+  {
+    "id": "5423c55dbb59",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Perceptron?",
+    "back": "simplest type of neural network used for binary classification finding an appropriate learning rate requires some experimentation. If the learning rate is too large, the algorithm will overshoot the global loss minimum. If the learning rate is too small, the algorithm will requi…",
+    "source": "Back2Basics/ML/Perceptron.md",
+    "section": "Perceptron · Remember"
+  },
+  {
+    "id": "f0f90b41c009",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Simple?",
+    "back": "Easy to understand and implement.",
+    "source": "Back2Basics/ML/Perceptron.md",
+    "section": "Perceptron · Remember"
+  },
+  {
+    "id": "b4c5d8ce31d8",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Binary Classification?",
+    "back": "Effective for linearly separable data (can separate two classes with a straight line).",
+    "source": "Back2Basics/ML/Perceptron.md",
+    "section": "Perceptron · Remember"
+  },
+  {
+    "id": "079e304d9825",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Linear Limitation?",
+    "back": "Can only classify linearly separable data. It struggles with complex data that can't be separated by a straight line (e.g., XOR problem).",
+    "source": "Back2Basics/ML/Perceptron.md",
+    "section": "Perceptron · Remember"
+  },
+  {
+    "id": "c7327b6de58b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Single Layer?",
+    "back": "The basic perceptron is limited to binary classification and can't handle multi-class problems or complex patterns. This is why multilayer perceptrons (MLPs) and more complex neural networks are often used.",
+    "source": "Back2Basics/ML/Perceptron.md",
+    "section": "Perceptron · Remember"
+  },
+  {
+    "id": "684f6277795c",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Random forest in one sentence?",
+    "back": "Bagged ensemble of decorrelated Decision trees — vote (classify) or average (regress) — Breiman (2001); strong default before boosting tuning.",
+    "source": "Back2Basics/ML/Random forest.md",
+    "section": "Random forest · Remember"
+  },
+  {
+    "id": "ad4f1f1e984b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Random forest (how the system thinks).",
+    "back": "Why it works: individual trees overfit; averaging uncorrelated errors reduces variance without heavy bias increase. Random feature subsampling at splits decorrelates trees beyond bagging alone.",
+    "source": "Back2Basics/ML/Random forest.md",
+    "section": "Random forest · Understand"
+  },
+  {
+    "id": "d1727b4a7a17",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: OOB good, val bad — what do you check and fix?",
+    "back": "Check: Data shift / leakage in features · Fix: Audit temporal split; remove leaky cols",
+    "source": "Back2Basics/ML/Random forest.md",
+    "section": "Random forest · Analyze"
+  },
+  {
+    "id": "91fb1373cb7f",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Barely beats single tree — what do you check and fix?",
+    "back": "Check: Too few trees or correlated features · Fix: ↑ n_estimators; tune max_features",
+    "source": "Back2Basics/ML/Random forest.md",
+    "section": "Random forest · Analyze"
+  },
+  {
+    "id": "19b5467381ea",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Memory blowup on fit — what do you check and fix?",
+    "back": "Check: n_estimators × deep trees × wide data · Fix: Limit depth; max_samples; subsample rows",
+    "source": "Back2Basics/ML/Random forest.md",
+    "section": "Random forest · Analyze"
+  },
+  {
+    "id": "5e194a20792c",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Importance ranks nonsense — what do you check and fix?",
+    "back": "Check: Correlated features · Fix: Permutation importance; SHAP",
+    "source": "Back2Basics/ML/Random forest.md",
+    "section": "Random forest · Analyze"
+  },
+  {
+    "id": "0693b6ea7503",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Class imbalance ignored — what do you check and fix?",
+    "back": "Check: Default majority vote · Fix: class_weight; stratified bootstrap",
+    "source": "Back2Basics/ML/Random forest.md",
+    "section": "Random forest · Analyze"
+  },
+  {
+    "id": "66ec059fea60",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Random forest: what silently fails?",
+    "back": "Extrapolation (regression): same as trees — predictions plateau outside training range.",
+    "source": "Back2Basics/ML/Random forest.md",
+    "section": "Random forest · Evaluate"
+  },
+  {
+    "id": "c19179b1e981",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Random forest?",
+    "back": "Need peak tabular accuracy after tuning budget — Gradient boosting / xg boost usually wins Kaggle-style tabular. Linear separable with sparse high-dim text — linear models + hashing faster and simpler. Strict latency (< few ms) on edge — model size of hundreds of trees may exceed budget; linear or tiny NN. Online learning — full retrain required; not incremental.",
+    "source": "Back2Basics/ML/Random forest.md",
+    "section": "Random forest · Evaluate"
+  },
+  {
+    "id": "2325644ab674",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Random forest setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Bagged ensemble of decorrelated Decision trees — vote (classify) or average (regress) — Breiman (2001); strong default before boosti",
+    "source": "Back2Basics/ML/Random forest.md",
+    "section": "Random forest · Create"
+  },
+  {
+    "id": "40a99a1715e1",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Rank distribution in one sentence?",
+    "back": "Histogram/KDE of predicted scores or ranks — detect collapse, saturation, and train/serve skew in ranking systems.",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Remember"
+  },
+  {
+    "id": "b257dba98075",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Rank distribution (how the system thinks).",
+    "back": "A ranker should produce a spread of scores so sorting separates good from bad items. Healthy distribution:",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Understand"
+  },
+  {
+    "id": "6dd59e15a996",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Rank distribution?",
+    "back": "Failure modes: → Compare train, val, and prod score distributions — drift here precedes Normalized Discounted Cumulative Gain (NDCG) drops.",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Apply"
+  },
+  {
+    "id": "f6881e63da41",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Rank distribution setup, what is your first validation command?",
+    "back": "Failure modes:",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Apply"
+  },
+  {
+    "id": "1a466133a762",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Rank distribution?",
+    "back": "Alert if p50 jumps week-over-week without redeploy explanation.",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Apply"
+  },
+  {
+    "id": "8de44e6749e5",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: All scores identical — what do you check and fix?",
+    "back": "Check: Model not trained / wrong column · Fix: Verify predict output variance",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Analyze"
+  },
+  {
+    "id": "2c0d02409dab",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Scores all 0–1 but flat — what do you check and fix?",
+    "back": "Check: Sigmoid saturation · Fix: Feature scale; deeper model",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Analyze"
+  },
+  {
+    "id": "c9b99dc7aec3",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Prod distribution shifted — what do you check and fix?",
+    "back": "Check: Feature null rate · Fix: Schema tests; default imputation",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Analyze"
+  },
+  {
+    "id": "438a4787cef9",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Top-k always same items — what do you check and fix?",
+    "back": "Check: Popularity bias · Fix: Negative sampling; diversify",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Analyze"
+  },
+  {
+    "id": "dbfc64eba3b6",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Bimodal after deploy — what do you check and fix?",
+    "back": "Check: A/B bucket mixing · Fix: Split metrics by variant",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Analyze"
+  },
+  {
+    "id": "cf85debc4e2a",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Rank distribution: what silently fails?",
+    "back": "Global histogram hides per-query effects — search quality is per-query; always check within-query rank stats too.",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Evaluate"
+  },
+  {
+    "id": "c84ee99dda7d",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Rank distribution?",
+    "back": "Pure classification without scores — use confusion matrix (binary classification). Regression error analysis — Visualization/Residual plot instead. Small offline sets — histograms noisy; rely on Mean Average Precision (MAP) with confidence intervals.",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Evaluate"
+  },
+  {
+    "id": "a1b39f2397f7",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Rank distribution setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Failure modes:",
+    "source": "Back2Basics/ML/Visualization/Rank distribution.md",
+    "section": "Rank distribution · Create"
+  },
+  {
+    "id": "f9ee238bff73",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Residual plot in one sentence?",
+    "back": "Plot residual (y − ŷ) vs ŷ (or vs feature) — primary diagnostic for regression misspecification — ESL / regression diagnostics.",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Remember"
+  },
+  {
+    "id": "10910abd4cf1",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Residual plot (how the system thinks).",
+    "back": "Residuals should look like random noise around zero:",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Understand"
+  },
+  {
+    "id": "f9be54537820",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Residual plot?",
+    "back": "Structured patterns mean the model missed something: → For ordinal models, off-by-k errors show as discrete bands — consider ordinal classification metrics too.",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Apply"
+  },
+  {
+    "id": "e11ad91698a9",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Residual plot setup, what is your first validation command?",
+    "back": "Structured patterns mean the model missed something:",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Apply"
+  },
+  {
+    "id": "869aa34a5acc",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: U-curve — what do you check and fix?",
+    "back": "Check: Linearity assumption · Fix: Add squared term or Gradient boosting",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Analyze"
+  },
+  {
+    "id": "9a458be1e0cd",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Funnel — what do you check and fix?",
+    "back": "Check: Variance scales with y · Fix: log1p(y); heteroscedastic models",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Analyze"
+  },
+  {
+    "id": "eb9e12e34d31",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Few huge residuals — what do you check and fix?",
+    "back": "Check: Bad rows / leakage · Fix: Inspect outliers; data QA",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Analyze"
+  },
+  {
+    "id": "c1bd74c85bcb",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Periodic pattern — what do you check and fix?",
+    "back": "Check: Seasonality missing · Fix: Time features; SARIMA / separate model",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Analyze"
+  },
+  {
+    "id": "1b54eb77aeaa",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mean residual ≠ 0 — what do you check and fix?",
+    "back": "Check: Systematic bias · Fix: Intercept issue; recalibrate",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Analyze"
+  },
+  {
+    "id": "d7b56d797b70",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Residual plot: what silently fails?",
+    "back": "Heteroscedasticity violates OLS confidence intervals — predictions may still be OK; inference is wrong.",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Evaluate"
+  },
+  {
+    "id": "6c1e88103103",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Residual plot?",
+    "back": "Classification — use calibration curves / confusion matrix. Huge datasets — subsample scatter; use binned residual plots. Ranking-only goals — Normalized Discounted Cumulative Gain (NDCG) on ranked lists.",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Evaluate"
+  },
+  {
+    "id": "d3407d9f6abf",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Residual plot setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Structured patterns mean the model missed something:",
+    "source": "Back2Basics/ML/Visualization/Residual plot.md",
+    "section": "Residual plot · Create"
+  },
+  {
+    "id": "92234955ece4",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Histogram?",
+    "back": "Histogram — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/ML/Visualization/data visualization.md",
+    "section": "Histogram · Remember"
+  },
+  {
+    "id": "9959adf56b06",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Histogram matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/ML/Visualization/data visualization.md",
+    "section": "Histogram · Understand"
+  },
+  {
+    "id": "8529bdc7deea",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Histogram checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/ML/Visualization/data visualization.md",
+    "section": "Histogram · Create"
+  },
+  {
+    "id": "d0aa0e2cfed8",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Feature importance in one sentence?",
+    "back": "Quantify which inputs drive predictions — impurity/Gain (trees), coefficients (linear), SHAP (model-agnostic) — interpretability vs correctness tradeoffs.",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Remember"
+  },
+  {
+    "id": "be36b6f9223e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Feature importance (how the system thinks).",
+    "back": "\"Importance\" is not one number — definition depends on method:",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Understand"
+  },
+  {
+    "id": "2ef6b8cc01e2",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Feature importance?",
+    "back": "Use importance for debugging and prioritization, not legal causality without domain review.",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Apply"
+  },
+  {
+    "id": "ce335c01a31e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Feature importance setup, what is your first validation command?",
+    "back": "Use importance for debugging and prioritization, not legal causality without domain review.",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Apply"
+  },
+  {
+    "id": "3746c11902a2",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Feature importance?",
+    "back": "Fit importance on validation data the model didn't train on.",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Apply"
+  },
+  {
+    "id": "489d89ef8159",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: One-hot column tops chart — what do you check and fix?",
+    "back": "Check: Cardinality bias · Fix: Group categories; permutation/SHAP",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Analyze"
+  },
+  {
+    "id": "4a2a0ff3766c",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Importance contradicts domain — what do you check and fix?",
+    "back": "Check: Leakage feature · Fix: Audit pipeline; drop suspect cols",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Analyze"
+  },
+  {
+    "id": "adf0beda6642",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SHAP slow — what do you check and fix?",
+    "back": "Check: Full dataset · Fix: Sample 1k–5k rows",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Analyze"
+  },
+  {
+    "id": "7a4ea8aefb0d",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: All near zero — what do you check and fix?",
+    "back": "Check: Wrong scoring metric · Fix: Match business metric in permutation",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Analyze"
+  },
+  {
+    "id": "f535954bc2a6",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Train vs val importance differs — what do you check and fix?",
+    "back": "Check: Overfit · Fix: Compare on held-out only",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Analyze"
+  },
+  {
+    "id": "61cd74b66cbf",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Feature importance: what silently fails?",
+    "back": "High-cardinality categoricals inflate tree impurity importance — don't trust raw feature_importances_ alone.",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Evaluate"
+  },
+  {
+    "id": "e7467508e331",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Feature importance?",
+    "back": "Regulatory causal claims — importance ≠ causal effect; run proper experiments. Production monitoring — track feature distribution drift, not static importance charts. Deep vision/NLP — use saliency/attention/LLM explainers, not tabular impurity.",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Evaluate"
+  },
+  {
+    "id": "345aca029db6",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Feature importance setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Use importance for debugging and prioritization, not legal causality without domain review.",
+    "source": "Back2Basics/ML/Visualization/feature importance.md",
+    "section": "Feature importance · Create"
+  },
+  {
+    "id": "742f8df2a0ea",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Predicted vs actual plot in one sentence?",
+    "back": "Scatter of y_true vs ŷ — quick visual for calibration, bias, and heteroscedasticity — standard regression QA.",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Remember"
+  },
+  {
+    "id": "b4c5462ee75d",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Predicted vs actual plot (how the system thinks).",
+    "back": "Perfect predictions lie on the diagonal y = x:",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Understand"
+  },
+  {
+    "id": "4a50fd386752",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Predicted vs actual plot?",
+    "back": "Patterns tell stories: → For ranking models, same plot compares predicted scores to graded relevance — use alongside Mean Average Precision (MAP).",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Apply"
+  },
+  {
+    "id": "bed89fb8f2ef",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Predicted vs actual plot setup, what is your first validation command?",
+    "back": "Patterns tell stories:",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Apply"
+  },
+  {
+    "id": "f76710a44c08",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Predicted vs actual plot?",
+    "back": "Always pair with Visualization/Residual plot — actual vs predicted hides structure in errors when scale is large.",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Apply"
+  },
+  {
+    "id": "e4fd65aaeb0e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Tight cloud but bad business metric — what do you check and fix?",
+    "back": "Check: Wrong aggregate metric · Fix: Segment plot by cohort",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Analyze"
+  },
+  {
+    "id": "13dd91118cef",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: S-curve off diagonal — what do you check and fix?",
+    "back": "Check: Log/normal target · Fix: Log transform; Model/Polynomial regression",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Analyze"
+  },
+  {
+    "id": "3331286e5057",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Vertical stripe at one y — what do you check and fix?",
+    "back": "Check: Class imbalance bucket · Fix: Classification not regression",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Analyze"
+  },
+  {
+    "id": "8a7ef3180484",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Predictions constant — what do you check and fix?",
+    "back": "Check: Dead model / leakage removed · Fix: Baseline check",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Analyze"
+  },
+  {
+    "id": "a1383a4df2c0",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Rank plot flat — what do you check and fix?",
+    "back": "Check: Scores uncalibrated · Fix: Calibrate; check Visualization/Rank distribution",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Analyze"
+  },
+  {
+    "id": "f1df97e93bb9",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Predicted vs actual plot: what silently fails?",
+    "back": "Outliers compress the cloud — use log axes or hexbin; don't overfit 3 points.",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Evaluate"
+  },
+  {
+    "id": "088cc1a0a8bb",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Predicted vs actual plot?",
+    "back": "Classification — confusion matrix / ROC, not y vs ŷ scatter. High-dimensional output — per-target subplots or aggregate metrics. Only ranking matters — Normalized Discounted Cumulative Gain (NDCG) curves beat scatter.",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Evaluate"
+  },
+  {
+    "id": "e12a32b42c76",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Predicted vs actual plot setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Patterns tell stories:",
+    "source": "Back2Basics/ML/Visualization/predicated vs actual plot.md",
+    "section": "Predicted vs actual plot · Create"
+  },
+  {
+    "id": "66f550972c7a",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Binary classification in one sentence?",
+    "back": "Predict one of two labels (spam/ham, fraud/legit) — optimize threshold on precision/recall tradeoff, not raw accuracy — Hastie, Tibshirani, Friedman (ESL).",
+    "source": "Back2Basics/ML/binary classification.md",
+    "section": "Binary classification · Remember"
+  },
+  {
+    "id": "d89e408bce24",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Binary classification (how the system thinks).",
+    "back": "Output is usually P(y=1 | x) ∈ [0,1] from sigmoid (logistic) or margin score from Model/support vector machines (SVM). You pick a decision threshold (default 0.5) to emit class 1 vs 0.",
+    "source": "Back2Basics/ML/binary classification.md",
+    "section": "Binary classification · Understand"
+  },
+  {
+    "id": "709acc9d81a7",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: High accuracy, bad business outcome — what do you check and fix?",
+    "back": "Check: Class balance, threshold · Fix: PR-AUC; tune τ; class_weight / scale_pos_weight",
+    "source": "Back2Basics/ML/binary classification.md",
+    "section": "Binary classification · Analyze"
+  },
+  {
+    "id": "7cf64995ce23",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Model always predicts negative — what do you check and fix?",
+    "back": "Check: Prevalence, features, leakage · Fix: SMOTE (careful); better features; check label definition",
+    "source": "Back2Basics/ML/binary classification.md",
+    "section": "Binary classification · Analyze"
+  },
+  {
+    "id": "45c9a2f50595",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Probabilities look wrong — what do you check and fix?",
+    "back": "Check: Calibration plot · Fix: Platt / isotonic via CalibratedClassifierCV",
+    "source": "Back2Basics/ML/binary classification.md",
+    "section": "Binary classification · Analyze"
+  },
+  {
+    "id": "194d0c8210e1",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Train AUC 1.0, prod collapse — what do you check and fix?",
+    "back": "Check: Target leakage, temporal split · Fix: Time-based split; remove post-outcome features",
+    "source": "Back2Basics/ML/binary classification.md",
+    "section": "Binary classification · Analyze"
+  },
+  {
+    "id": "872e1aa77286",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Different results per run — what do you check and fix?",
+    "back": "Check: Random seed, data order · Fix: Set seeds; stratified CV",
+    "source": "Back2Basics/ML/binary classification.md",
+    "section": "Binary classification · Analyze"
+  },
+  {
+    "id": "83f9b7d27597",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Binary classification: what silently fails?",
+    "back": "Default 0.5 threshold is rarely optimal when false negatives cost 100× false positives (medical, fraud).",
+    "source": "Back2Basics/ML/binary classification.md",
+    "section": "Binary classification · Evaluate"
+  },
+  {
+    "id": "e93a4b283aaa",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Binary classification?",
+    "back": "More than two unordered classes — multiclass classification. Ordered labels (low/medium/high) — ordinal classification. Ranking/search quality — Mean Average Precision (MAP) / Normalized Discounted Cumulative Gain (NDCG).",
+    "source": "Back2Basics/ML/binary classification.md",
+    "section": "Binary classification · Evaluate"
+  },
+  {
+    "id": "10a7bbdd623f",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Binary classification setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Predict one of two labels (spam/ham, fraud/legit) — optimize threshold on precision/recall tradeoff, not raw accuracy — **Hastie, Tibshi",
+    "source": "Back2Basics/ML/binary classification.md",
+    "section": "Binary classification · Create"
+  },
+  {
+    "id": "3bbf481723ba",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is claude ai?",
+    "back": "claude ai — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/ML/claude ai.md",
+    "section": "claude ai · Remember"
+  },
+  {
+    "id": "fa121b2538af",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does claude ai matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/ML/claude ai.md",
+    "section": "claude ai · Understand"
+  },
+  {
+    "id": "29ad1cc20673",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe claude ai checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/ML/claude ai.md",
+    "section": "claude ai · Create"
+  },
+  {
+    "id": "34f047d4cb46",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Data preprocessing in one sentence?",
+    "back": "Turn raw tables into leak-safe, scaled, encoded matrices estimators can fit — garbage in → un-debuggable models — scikit-learn Pipeline docs.",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Remember"
+  },
+  {
+    "id": "70617254d955",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Data preprocessing (how the system thinks).",
+    "back": "Preprocessing runs before the learner sees data. Order matters:",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Understand"
+  },
+  {
+    "id": "f1a7be855e37",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Data preprocessing?",
+    "back": "Fit transformers on training data only; apply same params to val/test. Putting fit on full dataset before split = leakage (val scores lie).",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Apply"
+  },
+  {
+    "id": "69e30a976c39",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Data preprocessing setup, what is your first validation command?",
+    "back": "Fit transformers on training data only; apply same params to val/test. Putting fit on full dataset before split = leakage (val scores lie).",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Apply"
+  },
+  {
+    "id": "b5bcdbf9e083",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Great CV, bad prod — what do you check and fix?",
+    "back": "Check: Fit on full data before split · Fix: Pipeline inside CV; fit only on train fold",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Analyze"
+  },
+  {
+    "id": "92e5c6ac2d06",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ValueError: unknown category — what do you check and fix?",
+    "back": "Check: New category in prod · Fix: handle_unknown=\"ignore\" or fallback bucket",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Analyze"
+  },
+  {
+    "id": "5b120e4ec768",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Exploding coefficients — what do you check and fix?",
+    "back": "Check: Unscaled features · Fix: StandardScaler in Pipeline",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Analyze"
+  },
+  {
+    "id": "72e49889d7fd",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: All NaN after join — what do you check and fix?",
+    "back": "Check: Merge keys, dtypes · Fix: Assert row counts; df.info()",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Analyze"
+  },
+  {
+    "id": "ce57ddd3e306",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Model worse after \"cleaning\" — what do you check and fix?",
+    "back": "Check: Removed signal (outliers = fraud) · Fix: Domain review; RobustScaler vs drop",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Analyze"
+  },
+  {
+    "id": "3194b0181937",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Data preprocessing: what silently fails?",
+    "back": "Target encoding on full dataset leaks label statistics — encode inside CV folds only (CategoryEncoders + pipeline).",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Evaluate"
+  },
+  {
+    "id": "143b13b560dd",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Data preprocessing?",
+    "back": "Raw deep learning on images/text — use domain-specific augmentations, not tabular imputers. Streaming features with strict SLA — precompute offline features in a feature store; don't refit heavy pipelines per request.",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Evaluate"
+  },
+  {
+    "id": "84ee147e41aa",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Data preprocessing setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Fit transformers on training data only; apply same params to val/test. Putting fit on full dataset before split = leakage (val scores lie).",
+    "source": "Back2Basics/ML/data preprocessing.md",
+    "section": "Data preprocessing · Create"
+  },
+  {
+    "id": "0fd220c60fcc",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Estimator (ML / statistics) in one sentence?",
+    "back": "An object that learns parameters from data via fit and applies them via predict / transform — scikit-learn's uniform API — Pedregosa et al. (sklearn).",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Remember"
+  },
+  {
+    "id": "657d5538f970",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "In Estimator (ML / statistics), what is Unbiased?",
+    "back": "E[θ̂] = θ on average",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Remember"
+  },
+  {
+    "id": "97f71ab47ba6",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "In Estimator (ML / statistics), what is Consistent?",
+    "back": "θ̂ → θ as n → ∞",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Remember"
+  },
+  {
+    "id": "6d9f2d8a0fd7",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "In Estimator (ML / statistics), what is Efficient?",
+    "back": "Low variance among unbiased estimators",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Remember"
+  },
+  {
+    "id": "9682a4e11afb",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Estimator (ML / statistics) (how the system thinks).",
+    "back": "In sklearn, Estimator is the base contract:",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Understand"
+  },
+  {
+    "id": "21248ae9674f",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Estimator (ML / statistics)?",
+    "back": "Statistical estimators (sample mean, MLE) estimate population quantities from a sample. Properties matter: → ML \"estimators\" prioritize predictive loss on held-out data, not unbiasedness of coefficients.",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Apply"
+  },
+  {
+    "id": "26c008f71e4b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Estimator (ML / statistics) setup, what is your first validation command?",
+    "back": "Statistical estimators (sample mean, MLE) estimate population quantities from a sample. Properties matter:",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Apply"
+  },
+  {
+    "id": "280324ef9963",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Estimator (ML / statistics)?",
+    "back": "1. X shape (n_samples, n_features) — no object columns unless ColumnTransformer handles them. 2. Align y index with X. 3. No NaN unless imputer in pipeline. 4. Same random seed for reproducible estimators (random_state=42).",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Apply"
+  },
+  {
+    "id": "13501d24f28e",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NotFittedError — what do you check and fix?",
+    "back": "Check: Called predict before fit · Fix: fit on train; persist with joblib",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Analyze"
+  },
+  {
+    "id": "86cee55659a3",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Different output same data — what do you check and fix?",
+    "back": "Check: Unset seed, parallel race · Fix: random_state; n_jobs=1 while debugging",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Analyze"
+  },
+  {
+    "id": "ce5e2e20f2d8",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CV worse than single split — what do you check and fix?",
+    "back": "Check: Leakage in preprocessing · Fix: Pipeline wrapped in CV",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Analyze"
+  },
+  {
+    "id": "71b521948a65",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: fit hangs — what do you check and fix?",
+    "back": "Check: Huge one-hot, dense matrix · Fix: Sparse matrices; feature selection",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Analyze"
+  },
+  {
+    "id": "32c2866af657",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Coefficients \"wrong sign\" — what do you check and fix?",
+    "back": "Check: Collinearity, scaling · Fix: Regularization; VIF review",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Analyze"
+  },
+  {
+    "id": "18eec27ac402",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Estimator (ML / statistics): what silently fails?",
+    "back": "Fitting on test data — even \"just once\" for scaling — invalidates all reported metrics.",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Evaluate"
+  },
+  {
+    "id": "c91540e02db5",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Estimator (ML / statistics)?",
+    "back": "One-off SQL aggregate — not every computation needs a reusable Estimator class. Online learning at high QPS — sklearn estimators batch-fit; use streaming libraries (River, Vowpal) or serve frozen weights.",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Evaluate"
+  },
+  {
+    "id": "0000d7488673",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Estimator (ML / statistics) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Statistical estimators (sample mean, MLE) estimate population quantities from a sample. Properties matter:",
+    "source": "Back2Basics/ML/estimator.md",
+    "section": "Estimator (ML / statistics) · Create"
+  },
+  {
+    "id": "0da576320ae5",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is model tranning?",
+    "back": "model tranning — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/ML/model tranning.md",
+    "section": "model tranning · Remember"
+  },
+  {
+    "id": "84cd18dd5686",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does model tranning matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/ML/model tranning.md",
+    "section": "model tranning · Understand"
+  },
+  {
+    "id": "d8a2161d9b55",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe model tranning checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/ML/model tranning.md",
+    "section": "model tranning · Create"
+  },
+  {
+    "id": "cebb8156e483",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Multiclass classification in one sentence?",
+    "back": "Predict one label from K > 2 classes — reduction strategies, metrics, and production pitfalls.",
+    "source": "Back2Basics/ML/multiclass classification.md",
+    "section": "Multiclass classification · Remember"
+  },
+  {
+    "id": "3e0dbbe8fbe3",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Multiclass classification (how the system thinks).",
+    "back": "Binary classifiers naturally output one score; multiclass extends via:",
+    "source": "Back2Basics/ML/multiclass classification.md",
+    "section": "Multiclass classification · Understand"
+  },
+  {
+    "id": "618fe0758544",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Always predicts majority class — what do you check and fix?",
+    "back": "Check: Class imbalance, wrong metric · Fix: class_weight=\"balanced\"; SMOTE cautiously; macro F1",
+    "source": "Back2Basics/ML/multiclass classification.md",
+    "section": "Multiclass classification · Analyze"
+  },
+  {
+    "id": "b9592b74c6c0",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Confusion between two similar classes — what do you check and fix?",
+    "back": "Check: Feature overlap · Fix: Add discriminative features; hierarchical classification",
+    "source": "Back2Basics/ML/multiclass classification.md",
+    "section": "Multiclass classification · Analyze"
+  },
+  {
+    "id": "aaea101782e1",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Probabilities don't sum to 1 — what do you check and fix?",
+    "back": "Check: Wrong API / broken wrapper · Fix: Use predict_proba; verify OvR calibration",
+    "source": "Back2Basics/ML/multiclass classification.md",
+    "section": "Multiclass classification · Analyze"
+  },
+  {
+    "id": "36973f8d1c84",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Great val, bad prod slice — what do you check and fix?",
+    "back": "Check: Train skew vs prod geography · Fix: Stratified split by segment; monitor per-class recall",
+    "source": "Back2Basics/ML/multiclass classification.md",
+    "section": "Multiclass classification · Analyze"
+  },
+  {
+    "id": "2ef938bab9b2",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: K increases, latency spikes — what do you check and fix?",
+    "back": "Check: OvO explosion · Fix: Switch to OvR or native multiclass; model distillation",
+    "source": "Back2Basics/ML/multiclass classification.md",
+    "section": "Multiclass classification · Analyze"
+  },
+  {
+    "id": "566aa6696ebc",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Label string mismatch at serve — what do you check and fix?",
+    "back": "Check: Encoder drift · Fix: Version LabelEncoder / label map with model artifact",
+    "source": "Back2Basics/ML/multiclass classification.md",
+    "section": "Multiclass classification · Analyze"
+  },
+  {
+    "id": "074bf4fb4cb3",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Multiclass classification: what silently fails?",
+    "back": "Hierarchical labels treated flat: \"dog\" vs \"golden retriever\" as sibling classes wastes signal — use taxonomy-aware loss or cascade.",
+    "source": "Back2Basics/ML/multiclass classification.md",
+    "section": "Multiclass classification · Evaluate"
+  },
+  {
+    "id": "38bcd221aae5",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Multiclass classification?",
+    "back": "Extremely large K (millions of labels) — extreme classification, embeddings + ANN retrieval (ANN), not full softmax. Ordinal classes (small < medium < large) — treat as ordinal classification, not nominal multiclass. Need interpretable per-class rules — shallow Decision tree or separate binary models per business line.",
+    "source": "Back2Basics/ML/multiclass classification.md",
+    "section": "Multiclass classification · Evaluate"
+  },
+  {
+    "id": "576732617816",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Multiclass classification setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Predict one label from K > 2 classes — reduction strategies, metrics, and production pitfalls.",
+    "source": "Back2Basics/ML/multiclass classification.md",
+    "section": "Multiclass classification · Create"
+  },
+  {
+    "id": "393c5d4c7ae5",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Ordinal classification in one sentence?",
+    "back": "Classes have a natural order (1★–5★, mild/moderate/severe) — respect ordering in loss and metrics, don't treat as nominal — ordinal regression literature.",
+    "source": "Back2Basics/ML/ordinal classification.md",
+    "section": "Ordinal classification · Remember"
+  },
+  {
+    "id": "e42a871d7e58",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Ordinal classification (how the system thinks).",
+    "back": "Nominal multiclass treats \"medium\" vs \"large\" as equally wrong as \"small\" vs \"large\". Ordinal models encode rank structure:",
+    "source": "Back2Basics/ML/ordinal classification.md",
+    "section": "Ordinal classification · Understand"
+  },
+  {
+    "id": "a47197c629a7",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Ordinal classification?",
+    "back": "Use quadratic weighted kappa or MAE on ranks — not plain accuracy.",
+    "source": "Back2Basics/ML/ordinal classification.md",
+    "section": "Ordinal classification · Apply"
+  },
+  {
+    "id": "d8cfacd19094",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Treating as multiclass, odd errors — what do you check and fix?",
+    "back": "Check: Loss ignores distance · Fix: Switch to ordinal/regression",
+    "source": "Back2Basics/ML/ordinal classification.md",
+    "section": "Ordinal classification · Analyze"
+  },
+  {
+    "id": "55d045b90fa9",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Regression predicts 3.7 — what do you check and fix?",
+    "back": "Check: Unbounded head · Fix: Round + clip; ordinal logistic",
+    "source": "Back2Basics/ML/ordinal classification.md",
+    "section": "Ordinal classification · Analyze"
+  },
+  {
+    "id": "777a5b67e44d",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Classes collapsed to middle — what do you check and fix?",
+    "back": "Check: Imbalance · Fix: Class weights; focal loss variants",
+    "source": "Back2Basics/ML/ordinal classification.md",
+    "section": "Ordinal classification · Analyze"
+  },
+  {
+    "id": "d4e0496285fa",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Good accuracy, bad user UX — what do you check and fix?",
+    "back": "Check: Far-off errors hidden · Fix: Report MAE / off-by-2 rate",
+    "source": "Back2Basics/ML/ordinal classification.md",
+    "section": "Ordinal classification · Analyze"
+  },
+  {
+    "id": "e244ff02ff5d",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Label order ambiguous — what do you check and fix?",
+    "back": "Check: Domain definition · Fix: Lock encoding doc (low=0 vs low=1)",
+    "source": "Back2Basics/ML/ordinal classification.md",
+    "section": "Ordinal classification · Analyze"
+  },
+  {
+    "id": "10b1433b9efc",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Ordinal classification: what silently fails?",
+    "back": "Standard softmax on star ratings wastes order information and treats all misclassifications equally in the loss (unless you post-hoc weight).",
+    "source": "Back2Basics/ML/ordinal classification.md",
+    "section": "Ordinal classification · Evaluate"
+  },
+  {
+    "id": "3363bbeece3d",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Ordinal classification?",
+    "back": "Unordered categories (cat/dog/bird) — multiclass classification. True continuous measurement — regression without bucketing. Binary decision — binary classification.",
+    "source": "Back2Basics/ML/ordinal classification.md",
+    "section": "Ordinal classification · Evaluate"
+  },
+  {
+    "id": "32a33f9eecca",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Ordinal classification setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Approaches:",
+    "source": "Back2Basics/ML/ordinal classification.md",
+    "section": "Ordinal classification · Create"
+  },
+  {
+    "id": "eadcdc9577e3",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is prompt enginerring?",
+    "back": "prompt enginerring — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/ML/prompt enginerring.md",
+    "section": "prompt enginerring · Remember"
+  },
+  {
+    "id": "ea2d4edfc324",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does prompt enginerring matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/ML/prompt enginerring.md",
+    "section": "prompt enginerring · Understand"
+  },
+  {
+    "id": "716b25acccf0",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe prompt enginerring checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/ML/prompt enginerring.md",
+    "section": "prompt enginerring · Create"
+  },
+  {
+    "id": "84c73c087fca",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is prompt?",
+    "back": "prompt — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/ML/prompt.md",
+    "section": "prompt · Remember"
+  },
+  {
+    "id": "f2c290eae018",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does prompt matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/ML/prompt.md",
+    "section": "prompt · Understand"
+  },
+  {
+    "id": "db879272c3a8",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe prompt checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/ML/prompt.md",
+    "section": "prompt · Create"
+  },
+  {
+    "id": "3e49b881eb9d",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Questions (issues)?",
+    "back": "rank prediction involves predicting a continuous output or an ordinal label To handle this, you would typically use a neural network with multiple layers predicting ranks is harder as the score distribution may be dense at certain ranges, leading to prediction uncertainties …",
+    "source": "Back2Basics/ML/rank prediction.md",
+    "section": "Questions (issues) · Remember"
+  },
+  {
+    "id": "24e3d2f9d6f8",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Questions (issues)?",
+    "back": "error in rank predictor model document to understand information retrievalz research paper [research paper](https://link.springer.com/article/10.10…",
+    "source": "Back2Basics/ML/rank prediction.md",
+    "section": "Questions (issues) · Apply"
+  },
+  {
+    "id": "27212842e22d",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Questions (issues) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Questions (issues)",
+    "source": "Back2Basics/ML/rank prediction.md",
+    "section": "Questions (issues) · Create"
+  },
+  {
+    "id": "4e86e6345c6c",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Regression in one sentence?",
+    "back": "Predict a continuous target (price, latency, demand) — minimize squared or robust loss; diagnose with residuals — Hastie et al. (ESL).",
+    "source": "Back2Basics/ML/regression.md",
+    "section": "Regression · Remember"
+  },
+  {
+    "id": "3d07e528090b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Regression (how the system thinks).",
+    "back": "Supervised task where y ∈ ℝ (or bounded interval treated as regression). Models output ŷ = f(x). Common loss: MSE (L2), MAE (L1, outlier-robust), Huber (mix).",
+    "source": "Back2Basics/ML/regression.md",
+    "section": "Regression · Understand"
+  },
+  {
+    "id": "c492c92228bb",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Regression?",
+    "back": "Despite the name, multinomial logistic regression predicts class probabilities — see multiclass classification, not this note.",
+    "source": "Back2Basics/ML/regression.md",
+    "section": "Regression · Apply"
+  },
+  {
+    "id": "c10c0b1ef024",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Huge errors on tail — what do you check and fix?",
+    "back": "Check: Outliers · Fix: MAE/Huber; RobustScaler; cap/winsorize (careful)",
+    "source": "Back2Basics/ML/regression.md",
+    "section": "Regression · Analyze"
+  },
+  {
+    "id": "bcbb7bbeba81",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Predictions outside bounds — what do you check and fix?",
+    "back": "Check: Unbounded linear head · Fix: Clip; beta regression; classify buckets",
+    "source": "Back2Basics/ML/regression.md",
+    "section": "Regression · Analyze"
+  },
+  {
+    "id": "4686b2ccbde8",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Train RMSE ↓, val flat — what do you check and fix?",
+    "back": "Check: Overfit · Fix: Regularize; fewer features; simpler model",
+    "source": "Back2Basics/ML/regression.md",
+    "section": "Regression · Analyze"
+  },
+  {
+    "id": "03ac8856fb20",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Regression: what silently fails?",
+    "back": "R² alone — can look good while MAE is unacceptable for SLA (e.g. p99 latency).",
+    "source": "Back2Basics/ML/regression.md",
+    "section": "Regression · Evaluate"
+  },
+  {
+    "id": "cfa925df7321",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Regression?",
+    "back": "Categorical unordered target — binary classification / multiclass classification. Ranking quality — use ranking metrics (Normalized Discounted Cumulative Gain (NDCG)). Heavy zero-inflation (counts with many zeros) — Poisson/negative binomial or two-part models.",
+    "source": "Back2Basics/ML/regression.md",
+    "section": "Regression · Evaluate"
+  },
+  {
+    "id": "a6e3d4cb3af8",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Regression setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Predict a continuous target (price, latency, demand) — minimize squared or robust loss; diagnose with residuals — **Hastie et al. (ESL)*",
+    "source": "Back2Basics/ML/regression.md",
+    "section": "Regression · Create"
+  },
+  {
+    "id": "5096f4c1bb9a",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is scikitlearn?",
+    "back": "scikitlearn — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/ML/scikitlearn.md",
+    "section": "scikitlearn · Remember"
+  },
+  {
+    "id": "63d8641370ec",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does scikitlearn matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/ML/scikitlearn.md",
+    "section": "scikitlearn · Understand"
+  },
+  {
+    "id": "53b554fd9c61",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe scikitlearn checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/ML/scikitlearn.md",
+    "section": "scikitlearn · Create"
+  },
+  {
+    "id": "0c7c0df77942",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Sigmoid in one sentence?",
+    "back": "Maps ℝ → (0,1): σ(z) = 1 / (1 + e⁻ᶻ) — turns scores into probabilities for binary classification — logistic regression.",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Remember"
+  },
+  {
+    "id": "2bf3d739abcb",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Sigmoid (how the system thinks).",
+    "back": "The sigmoid is a smooth S-curve saturating at 0 and 1. In logistic regression:",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Understand"
+  },
+  {
+    "id": "7c1ec2cfae83",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Sigmoid?",
+    "back": "Large positive z → p ≈ 1; large negative z → p ≈ 0; z = 0 → p = 0.5. → Derivatives: σ'(z) = σ(z)(1 − σ(z)) — vanishes at extremes → saturation slows learning in deep nets (why ReLU often preferred in hidden layers).",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Apply"
+  },
+  {
+    "id": "0081792eb86b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Sigmoid setup, what is your first validation command?",
+    "back": "Large positive z → p ≈ 1; large negative z → p ≈ 0; z = 0 → p = 0.5.",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Apply"
+  },
+  {
+    "id": "3f37e6fb8015",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: overflow in exp — what do you check and fix?",
+    "back": "Check: Raw logits magnitude · Fix: Clip z; normalize features",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Analyze"
+  },
+  {
+    "id": "0d7d12451c95",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Probabilities all ~0 or ~1 — what do you check and fix?",
+    "back": "Check: Separable data, no regularization · Fix: Increase C⁻¹ in LogisticRegression; L2",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Analyze"
+  },
+  {
+    "id": "74e72a2f502c",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Sigmoid in hidden layers, dead grads — what do you check and fix?",
+    "back": "Check: Saturation · Fix: Switch hidden activations to ReLU/GELU",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Analyze"
+  },
+  {
+    "id": "f700f725c0ba",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: miscalibrated probs — what do you check and fix?",
+    "back": "Check: Reliability diagram · Fix: Platt scaling / isotonic",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Analyze"
+  },
+  {
+    "id": "54d3b8288184",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Multiclass with sigmoid per class — what do you check and fix?",
+    "back": "Check: Wrong head · Fix: Softmax + cross-entropy",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Analyze"
+  },
+  {
+    "id": "cdad4b9400b9",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Sigmoid: what silently fails?",
+    "back": "Sigmoid ≠ guaranteed calibrated probability — especially on shifted data or after heavy oversampling.",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Evaluate"
+  },
+  {
+    "id": "e3dadafa847c",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Sigmoid?",
+    "back": "Hidden layers in deep CNNs/Transformers — ReLU, GELU, SiLU dominate. Multiclass mutually exclusive labels — softmax + cross-entropy. Regression on continuous y — linear head, no sigmoid.",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Evaluate"
+  },
+  {
+    "id": "59977cfaf6f8",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Sigmoid setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Large positive z → p ≈ 1; large negative z → p ≈ 0; z = 0 → p = 0.5.",
+    "source": "Back2Basics/ML/sigmoid.md",
+    "section": "Sigmoid · Create"
+  },
+  {
+    "id": "c23331d93011",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Supervised learning in one sentence?",
+    "back": "Learn a mapping X → y from labeled examples; generalize to unseen data via train/val/test discipline — Hastie et al. (ESL).",
+    "source": "Back2Basics/ML/supervised learning.md",
+    "section": "Supervised learning · Remember"
+  },
+  {
+    "id": "a891ebcbf8ad",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Supervised learning (how the system thinks).",
+    "back": "You have pairs (xᵢ, yᵢ). The algorithm picks a function class (linear, tree, neural net) and minimizes empirical risk + regularization on training data. Success = low error on new data from the same distribution.",
+    "source": "Back2Basics/ML/supervised learning.md",
+    "section": "Supervised learning · Understand"
+  },
+  {
+    "id": "5f193609e31b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Perfect train, poor test — what do you check and fix?",
+    "back": "Check: Overfit, leakage · Fix: Regularize; simpler model; audit features",
+    "source": "Back2Basics/ML/supervised learning.md",
+    "section": "Supervised learning · Analyze"
+  },
+  {
+    "id": "ccec2ca10825",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Baseline beats model — what do you check and fix?",
+    "back": "Check: Broken features, wrong metric · Fix: EDA; data preprocessing",
+    "source": "Back2Basics/ML/supervised learning.md",
+    "section": "Supervised learning · Analyze"
+  },
+  {
+    "id": "50e56da59c7b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Metrics drift in prod — what do you check and fix?",
+    "back": "Check: Label delay, shift · Fix: Retrain pipeline; feature monitoring",
+    "source": "Back2Basics/ML/supervised learning.md",
+    "section": "Supervised learning · Analyze"
+  },
+  {
+    "id": "e3309ce2290c",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Labels inconsistent — what do you check and fix?",
+    "back": "Check: Annotation guidelines · Fix: Inter-rater agreement; gold set",
+    "source": "Back2Basics/ML/supervised learning.md",
+    "section": "Supervised learning · Analyze"
+  },
+  {
+    "id": "dd0348a44b61",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow iteration — what do you check and fix?",
+    "back": "Check: No pipeline · Fix: sklearn Pipeline + single fit path",
+    "source": "Back2Basics/ML/supervised learning.md",
+    "section": "Supervised learning · Analyze"
+  },
+  {
+    "id": "b331f9585286",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Supervised learning: what silently fails?",
+    "back": "Tuning on test set — any decision using test labels (including feature selection) inflates scores. Hold out test until the end.",
+    "source": "Back2Basics/ML/supervised learning.md",
+    "section": "Supervised learning · Evaluate"
+  },
+  {
+    "id": "a092b9af3316",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Supervised learning?",
+    "back": "No labels / labels too expensive — semi-supervised or unsupervised clustering (different playbook). Need causal effect (\"what if we change price\") — predictive model ≠ causal inference. Adversarial inputs — supervised accuracy doesn't guarantee robustness.",
+    "source": "Back2Basics/ML/supervised learning.md",
+    "section": "Supervised learning · Evaluate"
+  },
+  {
+    "id": "e449b1154033",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Supervised learning setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Learn a mapping X → y from labeled examples; generalize to unseen data via train/val/test discipline — Hastie et al. (ESL).",
+    "source": "Back2Basics/ML/supervised learning.md",
+    "section": "Supervised learning · Create"
+  },
+  {
+    "id": "51c3873ce722",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is XGBoost in one sentence?",
+    "back": "Optimized distributed GBDT — histogram splits, regularized leaf weights, sparsity-aware — Chen & Guestrin; default for production tabular ML at scale.",
+    "source": "Back2Basics/ML/xg boost.md",
+    "section": "XGBoost · Remember"
+  },
+  {
+    "id": "5427dee0ca38",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of XGBoost (how the system thinks).",
+    "back": "XGBoost = Gradient boosting + engineering:",
+    "source": "Back2Basics/ML/xg boost.md",
+    "section": "XGBoost · Understand"
+  },
+  {
+    "id": "3b0d4a4fa447",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Check failed: label must be 0..K-1 — what do you check and fix?",
+    "back": "Check: Non-contiguous labels · Fix: LabelEncoder; verify objective matches K",
+    "source": "Back2Basics/ML/xg boost.md",
+    "section": "XGBoost · Analyze"
+  },
+  {
+    "id": "7db01a6f5991",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: GPU OOM — what do you check and fix?",
+    "back": "Check: tree_method=gpu_hist, huge data · Fix: Subsample; max_bin; CPU hist",
+    "source": "Back2Basics/ML/xg boost.md",
+    "section": "XGBoost · Analyze"
+  },
+  {
+    "id": "4a88104947e6",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Early stop at round 1 — what do you check and fix?",
+    "back": "Check: Wrong eval metric / bad DMatrix · Fix: Match metric to objective; verify feature types",
+    "source": "Back2Basics/ML/xg boost.md",
+    "section": "XGBoost · Analyze"
+  },
+  {
+    "id": "df291fa01560",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Worse than LightGBM on categoricals — what do you check and fix?",
+    "back": "Check: One-hot explosion · Fix: Native cat in LightGBM/CatBoost; target encoding w/ CV",
+    "source": "Back2Basics/ML/xg boost.md",
+    "section": "XGBoost · Analyze"
+  },
+  {
+    "id": "8ae63f2bbca4",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Different results same seed — what do you check and fix?",
+    "back": "Check: Threading / data order · Fix: seed, deterministic_histogram=1 (version-dependent)",
+    "source": "Back2Basics/ML/xg boost.md",
+    "section": "XGBoost · Analyze"
+  },
+  {
+    "id": "80317a414e4b",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow batch predict — what do you check and fix?",
+    "back": "Check: Python loop over rows · Fix: Booster.predict(DMatrix) batch; Treelite/ONNX",
+    "source": "Back2Basics/ML/xg boost.md",
+    "section": "XGBoost · Analyze"
+  },
+  {
+    "id": "e5830adb0dd2",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with XGBoost: what silently fails?",
+    "back": "Version skew train vs serve: XGBoost JSON models are not always forward-compatible across major versions — pin version in serving container.",
+    "source": "Back2Basics/ML/xg boost.md",
+    "section": "XGBoost · Evaluate"
+  },
+  {
+    "id": "85796540a9ab",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use XGBoost?",
+    "back": "Small n, wide p with linear signal — logistic + L1 may generalize with zero tuning. Pure image/text/audio — deep nets or pretrained embeddings dominate. Need fully native categorical without encoding — CatBoost often less pipeline work. Regulatory mandate for linear interpretability — use GAM/GLM with documented coefficients.",
+    "source": "Back2Basics/ML/xg boost.md",
+    "section": "XGBoost · Evaluate"
+  },
+  {
+    "id": "5acfd157ec90",
+    "deck": "b2b-ml",
+    "tags": [
+      "back2basics",
+      "ml",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct XGBoost setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Optimized distributed GBDT — histogram splits, regularized leaf weights, sparsity-aware — Chen & Guestrin; default for production tabula",
+    "source": "Back2Basics/ML/xg boost.md",
+    "section": "XGBoost · Create"
+  }
+]

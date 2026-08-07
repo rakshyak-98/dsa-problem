@@ -1,0 +1,750 @@
+[
+  {
+    "id": "0f8d2c22b7c6",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "core-idea"
+    ],
+    "front": "Core idea of Drill 01: Arrays?",
+    "back": "Traverse arrays with clear index control.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 01: Arrays"
+  },
+  {
+    "id": "f0232b4fca07",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "trigger"
+    ],
+    "front": "When does “Drill 01: Arrays” appear?",
+    "back": "In-place mutation, basic scanning, prefix accumulation.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 01: Arrays"
+  },
+  {
+    "id": "01bb9629208d",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 01: Arrays: what is “Two-pointer swap”?",
+    "back": "Use left and right for in-place reverse.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 01: Arrays"
+  },
+  {
+    "id": "2915baff8910",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 01: Arrays: what is “Single pass selection”?",
+    "back": "Track best index/value while scanning.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 01: Arrays"
+  },
+  {
+    "id": "459d9d3fe593",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 01: Arrays: what is “Accumulation”?",
+    "back": "Maintain running total for sums and prefix output.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 01: Arrays"
+  },
+  {
+    "id": "f9e65ffe76f3",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 01: Arrays: what is “Rotation logic”?",
+    "back": "Reduce k with modulo and transform indices safely.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 01: Arrays"
+  },
+  {
+    "id": "d9946ec4dcad",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "core-idea"
+    ],
+    "front": "Core idea of Drill 02: Hashing?",
+    "back": "Trade memory for fast lookup.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 02: Hashing"
+  },
+  {
+    "id": "ab12eb77deac",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "trigger"
+    ],
+    "front": "When does “Drill 02: Hashing” appear?",
+    "back": "Need membership checks, counting, grouping by signature.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 02: Hashing"
+  },
+  {
+    "id": "0bad8a9ac134",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 02: Hashing: what is “Complement lookup”?",
+    "back": "For target pair questions, check map before inserting.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 02: Hashing"
+  },
+  {
+    "id": "f9b5e0048fea",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 02: Hashing: what is “Seen set”?",
+    "back": "Detect duplicates in O(1) average lookup per element.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 02: Hashing"
+  },
+  {
+    "id": "55f68e5bdb77",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 02: Hashing: what is “Frequency table”?",
+    "back": "Count occurrences with map[key]++.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 02: Hashing"
+  },
+  {
+    "id": "461e7d0bf593",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 02: Hashing: what is “Canonical key”?",
+    "back": "Group equivalent strings (anagrams) by a normalized form.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 02: Hashing"
+  },
+  {
+    "id": "a384c13c0233",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "core-idea"
+    ],
+    "front": "Core idea of Drill 03: Two Pointers and Sliding Window?",
+    "back": "Keep constraints with pointer movement instead of nested loops.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 03: Two Pointers and Sliding Window"
+  },
+  {
+    "id": "cb3358750801",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "trigger"
+    ],
+    "front": "When does “Drill 03: Two Pointers and Sliding Window” appear?",
+    "back": "Sorted arrays, in-place filtering, contiguous window metrics.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 03: Two Pointers and Sliding Window"
+  },
+  {
+    "id": "5c3c5508f5b9",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 03: Two Pointers and Sliding Window: what is “Read/write pointers”?",
+    "back": "Compact valid values to the front in one pass.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 03: Two Pointers and Sliding Window"
+  },
+  {
+    "id": "3f3b90513175",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 03: Two Pointers and Sliding Window: what is “Opposite-end pointers”?",
+    "back": "Move boundaries based on rule (area/palindrome logic).",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 03: Two Pointers and Sliding Window"
+  },
+  {
+    "id": "2f386270de7b",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 03: Two Pointers and Sliding Window: what is “Fixed window”?",
+    "back": "Build first window, then slide by add-right/remove-left.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 03: Two Pointers and Sliding Window"
+  },
+  {
+    "id": "26c657e65c58",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 03: Two Pointers and Sliding Window: what is “Invariant thinking”?",
+    "back": "Each pointer move must preserve correctness condition.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 03: Two Pointers and Sliding Window"
+  },
+  {
+    "id": "bbb717e1cf24",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "core-idea"
+    ],
+    "front": "Core idea of Drill 04: Binary Search?",
+    "back": "Use sorted structure to discard half each step.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 04: Binary Search"
+  },
+  {
+    "id": "10f6712615f9",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "trigger"
+    ],
+    "front": "When does “Drill 04: Binary Search” appear?",
+    "back": "Exact search, insertion point, rotated sorted arrays.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 04: Binary Search"
+  },
+  {
+    "id": "08cadc829bd2",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 04: Binary Search: what is “Search space boundaries”?",
+    "back": "lo, hi, and loop condition define correctness.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 04: Binary Search"
+  },
+  {
+    "id": "c815305d92e2",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 04: Binary Search: what is “Midpoint safety”?",
+    "back": "mid := lo + (hi-lo)/2.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 04: Binary Search"
+  },
+  {
+    "id": "0686ce6f1e2a",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 04: Binary Search: what is “Lower bound”?",
+    "back": "Find first index where condition becomes true.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 04: Binary Search"
+  },
+  {
+    "id": "c7e51261e705",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 04: Binary Search: what is “Half-sorted decision”?",
+    "back": "In rotated arrays, detect which half is ordered.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 04: Binary Search"
+  },
+  {
+    "id": "d2779c23aa29",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "core-idea"
+    ],
+    "front": "Core idea of Drill 05: Trees and Stacks?",
+    "back": "Use stack discipline for nested structure and next-greater relations.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 05: Trees and Stacks"
+  },
+  {
+    "id": "bd4776d573f5",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "trigger"
+    ],
+    "front": "When does “Drill 05: Trees and Stacks” appear?",
+    "back": "Tree traversal, bracket matching, nearest next condition.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 05: Trees and Stacks"
+  },
+  {
+    "id": "6fa7827d374f",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 05: Trees and Stacks: what is “Traversal state”?",
+    "back": "Recursion or explicit stack to simulate call stack.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 05: Trees and Stacks"
+  },
+  {
+    "id": "02a421d45783",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 05: Trees and Stacks: what is “Depth recurrence”?",
+    "back": "Tree answers often combine left and right subtree results.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 05: Trees and Stacks"
+  },
+  {
+    "id": "9255f2fb13fb",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 05: Trees and Stacks: what is “LIFO matching”?",
+    "back": "Parentheses validation uses most recent unmatched opener.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 05: Trees and Stacks"
+  },
+  {
+    "id": "0a110b9285e0",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 05: Trees and Stacks: what is “Monotonic stack”?",
+    "back": "Maintain decreasing/increasing stack for next-greater problems.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 05: Trees and Stacks"
+  },
+  {
+    "id": "3860f771181c",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "core-idea"
+    ],
+    "front": "Core idea of Drill 06: Dynamic Programming (1D)?",
+    "back": "Build answers from solved smaller subproblems.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 06: Dynamic Programming (1D)"
+  },
+  {
+    "id": "8613893e5774",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "trigger"
+    ],
+    "front": "When does “Drill 06: Dynamic Programming (1D)” appear?",
+    "back": "\"Min cost\", \"max value\", \"count ways\" on linear states.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 06: Dynamic Programming (1D)"
+  },
+  {
+    "id": "08414e582ab5",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 06: Dynamic Programming (1D): what is “State definition first”?",
+    "back": "Write what dp[i] means before coding.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 06: Dynamic Programming (1D)"
+  },
+  {
+    "id": "5c7a49da692b",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 06: Dynamic Programming (1D): what is “Base cases”?",
+    "back": "Initialize smallest known states correctly.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 06: Dynamic Programming (1D)"
+  },
+  {
+    "id": "f55b03bab04a",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 06: Dynamic Programming (1D): what is “Transition rule”?",
+    "back": "Express current answer from prior states.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 06: Dynamic Programming (1D)"
+  },
+  {
+    "id": "4c51d7f69bca",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 06: Dynamic Programming (1D): what is “Take/skip pattern”?",
+    "back": "For adjacency constraints, compare include vs exclude.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 06: Dynamic Programming (1D)"
+  },
+  {
+    "id": "117dd3edc5c3",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "core-idea"
+    ],
+    "front": "Core idea of Drill 07: Graphs (Grid BFS/DFS)?",
+    "back": "Explore connected cells with traversal rules.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 07: Graphs (Grid BFS/DFS)"
+  },
+  {
+    "id": "4c126b116563",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "trigger"
+    ],
+    "front": "When does “Drill 07: Graphs (Grid BFS/DFS)” appear?",
+    "back": "Components in grids, fill regions, shortest unweighted path.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 07: Graphs (Grid BFS/DFS)"
+  },
+  {
+    "id": "8e1f939c5694",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 07: Graphs (Grid BFS/DFS): what is “DFS/BFS component scan”?",
+    "back": "Start traversal from each unvisited valid cell.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 07: Graphs (Grid BFS/DFS)"
+  },
+  {
+    "id": "73cdc003e89f",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 07: Graphs (Grid BFS/DFS): what is “Visited control”?",
+    "back": "Prevent revisits and infinite loops.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 07: Graphs (Grid BFS/DFS)"
+  },
+  {
+    "id": "24423eb5d9bf",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 07: Graphs (Grid BFS/DFS): what is “Neighbor generation”?",
+    "back": "Standard 4-direction moves with boundary checks.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 07: Graphs (Grid BFS/DFS)"
+  },
+  {
+    "id": "9be94f27b7b7",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 07: Graphs (Grid BFS/DFS): what is “BFS distance layers”?",
+    "back": "First time reaching a node gives shortest path in unweighted graphs.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 07: Graphs (Grid BFS/DFS)"
+  },
+  {
+    "id": "03bcdb05831d",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "core-idea"
+    ],
+    "front": "Core idea of Drill 10: Math?",
+    "back": "Number-theory helpers that appear inside many DSA solutions.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 10: Math"
+  },
+  {
+    "id": "5ec15ae2a5ac",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write",
+      "trigger"
+    ],
+    "front": "When does “Drill 10: Math” appear?",
+    "back": "Modular counting, cycle alignment, combinatorics, prime checks, bit sizing.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 10: Math"
+  },
+  {
+    "id": "6ea1d91bd139",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 10: Math: what is “Euclidean GCD”?",
+    "back": "gcd(a,b) = gcd(b, a mod b) until b == 0.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 10: Math"
+  },
+  {
+    "id": "3b9c618647ac",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 10: Math: what is “LCM from GCD”?",
+    "back": "lcm(a,b) = |a*b| / gcd(a,b).",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 10: Math"
+  },
+  {
+    "id": "dbc711346df7",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 10: Math: what is “Modular exponentiation”?",
+    "back": "Square-and-multiply in O(log exp).",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 10: Math"
+  },
+  {
+    "id": "d28458c0bdaf",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 10: Math: what is “Combinations”?",
+    "back": "Use k = min(k, n-k) and multiplicative formula to avoid overflow.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 10: Math"
+  },
+  {
+    "id": "617d40652768",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 10: Math: what is “Prime test”?",
+    "back": "Check 2, then odd divisors up to √n.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 10: Math"
+  },
+  {
+    "id": "a597771cba0f",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "write"
+    ],
+    "front": "In Drill 10: Math: what is “Power of two”?",
+    "back": "n > 0 && (n & (n-1)) == 0.",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Drill 10: Math"
+  },
+  {
+    "id": "6496b1270f7e",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "picker"
+    ],
+    "front": "Pattern picker: Pair sum or quick lookup → ?",
+    "back": "Hash map",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Fast Pattern Picker"
+  },
+  {
+    "id": "5e045bf5e0c1",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "picker"
+    ],
+    "front": "Pattern picker: Sorted + index/position → ?",
+    "back": "Binary search",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Fast Pattern Picker"
+  },
+  {
+    "id": "3cdec1c42d0a",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "picker"
+    ],
+    "front": "Pattern picker: In-place compact/reorder → ?",
+    "back": "Two pointers",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Fast Pattern Picker"
+  },
+  {
+    "id": "0b0fc82b9da8",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "picker"
+    ],
+    "front": "Pattern picker: Contiguous fixed-size segment → ?",
+    "back": "Sliding window (fixed)",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Fast Pattern Picker"
+  },
+  {
+    "id": "2aa6450a7246",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "picker"
+    ],
+    "front": "Pattern picker: Count/group occurrences → ?",
+    "back": "Frequency map",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Fast Pattern Picker"
+  },
+  {
+    "id": "8a073eaaf23d",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "picker"
+    ],
+    "front": "Pattern picker: Next greater element → ?",
+    "back": "Monotonic stack",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Fast Pattern Picker"
+  },
+  {
+    "id": "a6f0aafb2434",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "picker"
+    ],
+    "front": "Pattern picker: Min/max ways over sequence → ?",
+    "back": "1D DP",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Fast Pattern Picker"
+  },
+  {
+    "id": "d436152015b3",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "picker"
+    ],
+    "front": "Pattern picker: Grid region count/fill → ?",
+    "back": "DFS/BFS",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Fast Pattern Picker"
+  },
+  {
+    "id": "b88852e0ff09",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "picker"
+    ],
+    "front": "Pattern picker: Shortest path in unweighted grid → ?",
+    "back": "BFS",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Fast Pattern Picker"
+  },
+  {
+    "id": "3d9541615cc9",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "picker"
+    ],
+    "front": "Pattern picker: GCD / LCM / mod exponent → ?",
+    "back": "Number theory (Drill 10)",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Fast Pattern Picker"
+  },
+  {
+    "id": "bd2fa1cad56a",
+    "deck": "patterns",
+    "tags": [
+      "patterns",
+      "picker"
+    ],
+    "front": "Pattern picker: Count combinations mod m → ?",
+    "back": "nCr + modPow",
+    "source": "doc/write/DRILL_CONCEPTS.md",
+    "section": "Fast Pattern Picker"
+  }
+]

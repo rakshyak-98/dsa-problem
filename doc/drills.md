@@ -39,6 +39,8 @@ go run . -- --drill reflex       # today's specialty only
 go run . -- --track backend   # backend interview track
 go run . -- --track read      # reading only
 go run . -- --track write     # writing only
+go run . -- --track cards     # spaced-repetition flashcards
+go run . -- --track cards --due
 ```
 
 ## Write drills

@@ -36,33 +36,17 @@ func isBackendWorkspace(backendDir string) bool {
 }
 
 func explainCore5Dir(repoRoot string) string {
-	p := filepath.Join(repoRoot, "drills", "backend", "explain", "core5")
-	if _, err := os.Stat(p); err != nil {
-		return filepath.Join(repoRoot, "bin", "study_backend", "practice", "explain", "core5")
-	}
-	return p
+	return filepath.Join(repoRoot, "drills", "backend", "explain", "core5")
 }
 
 func explainBlockDir(repoRoot, block string) string {
-	p := filepath.Join(repoRoot, "drills", "backend", "explain", "blocks", block)
-	if _, err := os.Stat(p); err != nil {
-		return filepath.Join(repoRoot, "bin", "study_backend", "practice", "explain", "blocks", block)
-	}
-	return p
+	return filepath.Join(repoRoot, "drills", "backend", "explain", "blocks", block)
 }
 
 func writeCore5Dir(repoRoot string) string {
-	p := filepath.Join(repoRoot, "drills", "backend", "write", "core5")
-	if _, err := os.Stat(p); err != nil {
-		return filepath.Join(repoRoot, "bin", "study_backend", "practice", "write", "core5")
-	}
-	return p
+	return filepath.Join(repoRoot, "drills", "backend", "write", "core5")
 }
 
 func scenarioDir(repoRoot string) string {
-	p := filepath.Join(repoRoot, "drills", "backend", "scenario")
-	if _, err := os.Stat(p); err != nil {
-		return filepath.Join(repoRoot, "bin", "study_backend", "practice", "scenario")
-	}
-	return p
+	return filepath.Join(repoRoot, "drills", "backend", "scenario")
 }

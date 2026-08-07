@@ -1,0 +1,590 @@
+[
+  {
+    "id": "8a9488857cb1",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ISR (Incremental Static Regeneration) in one sentence?",
+    "back": "Regenerate static pages on a timer or on-demand without full site rebuild — Next.js stale-while-revalidate for CDN-backed pages.",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Remember"
+  },
+  {
+    "id": "321c90bc77a8",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of ISR (Incremental Static Regeneration) (how the system thinks).",
+    "back": "At build time, page is static HTML. After deploy, first request (or revalidate interval) can trigger background regeneration. Users get stale page immediately while fresh version builds — then CDN serves new static file. Distinct from SSR (every request) and pure SSG (rebuild all).",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Understand"
+  },
+  {
+    "id": "e7d676c5cda0",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for ISR (Incremental Static Regeneration)?",
+    "back": "Request → CDN static (stale OK) → optional background regen → update CDN cache",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Apply"
+  },
+  {
+    "id": "da3521b9c5fb",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken ISR (Incremental Static Regeneration) setup, what is your first validation command?",
+    "back": "Request → CDN static (stale OK) → optional background regen → update CDN cache",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Apply"
+  },
+  {
+    "id": "a983ce53b1f5",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Content never updates — what do you check and fix?",
+    "back": "Check: revalidate set? · Fix: Add interval or on-demand hook",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Analyze"
+  },
+  {
+    "id": "6d39c6f48fad",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Users see old data long — what do you check and fix?",
+    "back": "Check: CDN TTL > revalidate · Fix: Align edge cache; purge CDN",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Analyze"
+  },
+  {
+    "id": "7c02cef1a28c",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Build OK, prod stale — what do you check and fix?",
+    "back": "Check: Hosting ISR support · Fix: Vercel/Netlify plugin; not plain static export",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Analyze"
+  },
+  {
+    "id": "4e016d35ec81",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 401 on revalidate — what do you check and fix?",
+    "back": "Check: Secret mismatch · Fix: Match header + env",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Analyze"
+  },
+  {
+    "id": "759f3bc04a2e",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Thundering herd regen — what do you check and fix?",
+    "back": "Check: Traffic spike on stale · Fix: Increase revalidate; use on-demand only",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Analyze"
+  },
+  {
+    "id": "c5e7d7ccc014",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with ISR (Incremental Static Regeneration): what silently fails?",
+    "back": "output: 'export' disables ISR — pure static export has no server to revalidate. Stale content is a feature — document SLA (\"up to 60s old\") for editors. Personalized pages — don't ISR user-specific data; use SSR or client fetch.",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Evaluate"
+  },
+  {
+    "id": "9e7baa011dcc",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use ISR (Incremental Static Regeneration)?",
+    "back": "Don't ISR real-time dashboards (stock tickers, live scores) — use SSR/WebSocket. Don't ISR pages that must be legally exact at every view (some pricing) without short revalidate + purge.",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Evaluate"
+  },
+  {
+    "id": "2c952370dc7e",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct ISR (Incremental Static Regeneration) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Request → CDN static (stale OK) → optional background regen → update CDN cache",
+    "source": "Back2Basics/NextJS/ISR (Incremental Static Regeneration).md",
+    "section": "ISR (Incremental Static Regeneration) · Create"
+  },
+  {
+    "id": "1834d9d6f1a3",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Next JS?",
+    "back": "In NextJS, when using next/router, the query parameters might be undefined on the first render because NextJS initially renders the page on the server (or statically), and _the query values are only available after hydration on the client.",
+    "source": "Back2Basics/NextJS/Next JS.md",
+    "section": "Next JS · Remember"
+  },
+  {
+    "id": "770f71e9f47f",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "remember"
+    ],
+    "front": "In Next JS, what is asPath?",
+    "back": "/product/10?sort=asc — the actual URL in the browser, including query params.",
+    "source": "Back2Basics/NextJS/Next JS.md",
+    "section": "Next JS · Remember"
+  },
+  {
+    "id": "f1477b077ef3",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "remember"
+    ],
+    "front": "In Next JS, what is pathName?",
+    "back": "/product/[id] — the NextJS route pattern (dynamic route name).",
+    "source": "Back2Basics/NextJS/Next JS.md",
+    "section": "Next JS · Remember"
+  },
+  {
+    "id": "3dafe5326370",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "remember"
+    ],
+    "front": "In Next JS, what is query?",
+    "back": "{id: \"10\", sort: \"asc\"} — extracted query parameters as an object.",
+    "source": "Back2Basics/NextJS/Next JS.md",
+    "section": "Next JS · Remember"
+  },
+  {
+    "id": "c4ea0377b8c9",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Next js Build?",
+    "back": "Next js Build — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/NextJS/Next js Build.md",
+    "section": "Next js Build · Remember"
+  },
+  {
+    "id": "37f9f0b87eaf",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Next js Build matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/NextJS/Next js Build.md",
+    "section": "Next js Build · Understand"
+  },
+  {
+    "id": "2943434c9d8a",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Next js Build checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/NextJS/Next js Build.md",
+    "section": "Next js Build · Create"
+  },
+  {
+    "id": "c33c89ba2ee1",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is How to set global package which is been fetched at the client side?",
+    "back": "How to set global package which is been fetched at the client side — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/NextJS/NextJS Config.md",
+    "section": "How to set global package which is been fetched at the client side · Remember"
+  },
+  {
+    "id": "c60b7b86498c",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does How to set global package which is been fetched at the client side matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/NextJS/NextJS Config.md",
+    "section": "How to set global package which is been fetched at the client side · Understand"
+  },
+  {
+    "id": "21b74fcfd1c3",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe How to set global package which is been fetched at the client side checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/NextJS/NextJS Config.md",
+    "section": "How to set global package which is been fetched at the client side · Create"
+  },
+  {
+    "id": "3ee2cd18d434",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is NextJS Deployment?",
+    "back": "No, NextJS cannot be deployed like a plan React (CRA) project with a static index.html",
+    "source": "Back2Basics/NextJS/NextJS Deployment.md",
+    "section": "NextJS Deployment · Remember"
+  },
+  {
+    "id": "fbb4dcf52266",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for NextJS Deployment?",
+    "back": "Tells Next.js at build time what params (id, slug, etc.) to pre-render. → Must be exported from the same file as the route: → All of these are in node_modules → Exceptions (Not Applicable to development)",
+    "source": "Back2Basics/NextJS/NextJS Deployment.md",
+    "section": "NextJS Deployment · Apply"
+  },
+  {
+    "id": "4bac0dbd6a35",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken NextJS Deployment setup, what is your first validation command?",
+    "back": "Tells Next.js at build time what params (id, slug, etc.) to pre-render.",
+    "source": "Back2Basics/NextJS/NextJS Deployment.md",
+    "section": "NextJS Deployment · Apply"
+  },
+  {
+    "id": "899e93144fbd",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct NextJS Deployment setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Tells Next.js at build time what params (id, slug, etc.) to pre-render.",
+    "source": "Back2Basics/NextJS/NextJS Deployment.md",
+    "section": "NextJS Deployment · Create"
+  },
+  {
+    "id": "34caa589ed28",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Process already running in one sentence?",
+    "back": "dinehub@0.1.0 start next start",
+    "source": "Back2Basics/NextJS/NextJS Error.md",
+    "section": "Process already running · Remember"
+  },
+  {
+    "id": "f2f4ac784130",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Process already running?",
+    "back": "Why the changes? → The new next/navigation hooks are **designed to work with RSC (React Server Component boundaries) and match the new routing paradigm. → Add generateStaticParams() to your /blog-details/[id]/page.tsx → if your data comes from an API: → Why it happens",
+    "source": "Back2Basics/NextJS/NextJS Error.md",
+    "section": "Process already running · Apply"
+  },
+  {
+    "id": "ed8f04e65a90",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Process already running setup, what is your first validation command?",
+    "back": "Why the changes?",
+    "source": "Back2Basics/NextJS/NextJS Error.md",
+    "section": "Process already running · Apply"
+  },
+  {
+    "id": "71d2d99645b1",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Process already running setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Why the changes?",
+    "source": "Back2Basics/NextJS/NextJS Error.md",
+    "section": "Process already running · Create"
+  },
+  {
+    "id": "3d66f9682057",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Next.js navigation in one sentence?",
+    "back": "Client-side routing in the App/Pages router — when to use Link, router, or a real new tab.",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Remember"
+  },
+  {
+    "id": "a5a6da0b1bd3",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Next.js navigation (how the system thinks).",
+    "back": "Next.js intercepts in-app navigation to avoid full page reloads. App Router uses next/navigation (useRouter, redirect, Link). Pages Router uses next/router. Opening a new browser tab/window is not SPA navigation — use <a target=\"_blank\"> or window.open, not router.push.",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Understand"
+  },
+  {
+    "id": "a051e85dcd87",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Next.js navigation?",
+    "back": "Same tab in-app → <Link href=\"...\"> or router.push('/path') → New tab → <a href=\"...\" target=\"_blank\" rel=\"noopener noreferrer\"> → Full reload → window.location.href = '...' (rare)",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Apply"
+  },
+  {
+    "id": "145dfa7cdfc3",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Next.js navigation setup, what is your first validation command?",
+    "back": "Same tab in-app → <Link href=\"...\"> or router.push('/path')",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Apply"
+  },
+  {
+    "id": "35257ba4cc04",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: router.push doesn't open tab — what do you check and fix?",
+    "back": "Check: API design · Fix: Use <a target=\"_blank\">",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Analyze"
+  },
+  {
+    "id": "ce4090ad97fc",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: State lost on navigate — what do you check and fix?",
+    "back": "Check: Full remount · Fix: Lift state to URL/searchParams or store",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Analyze"
+  },
+  {
+    "id": "1002274cb7f8",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Back button weird — what do you check and fix?",
+    "back": "Check: Shallow routing misuse · Fix: App Router: use router.replace intentionally",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Analyze"
+  },
+  {
+    "id": "65e8e6c89791",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 404 on client nav — what do you check and fix?",
+    "back": "Check: Missing route file · Fix: Check app/ segment or pages/ file",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Analyze"
+  },
+  {
+    "id": "021eecd817db",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Scroll jumps — what do you check and fix?",
+    "back": "Check: Default scroll restore · Fix: scroll={false} on Link if needed",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Analyze"
+  },
+  {
+    "id": "19583eacd7cb",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Next.js navigation: what silently fails?",
+    "back": "router.push after async — component may unmount; check mounted or use transition API. External URLs in Link — must use plain <a>. Middleware redirect loops — login ↔ home; test cookie/session in middleware.",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Evaluate"
+  },
+  {
+    "id": "4997ed0aeac9",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Next.js navigation?",
+    "back": "Don't router.push for file downloads — use <a download> or signed URL. Don't client-nav to logout that must clear httpOnly cookies — use server route/form POST.",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Evaluate"
+  },
+  {
+    "id": "e7167904f386",
+    "deck": "b2b-nextjs",
+    "tags": [
+      "back2basics",
+      "nextjs",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Next.js navigation setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Same tab in-app → <Link href=\"...\"> or router.push('/path')",
+    "source": "Back2Basics/NextJS/NextJS navigation.md",
+    "section": "Next.js navigation · Create"
+  }
+]

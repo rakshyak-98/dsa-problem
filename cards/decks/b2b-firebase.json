@@ -1,0 +1,310 @@
+[
+  {
+    "id": "007899e44793",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is FCM token (Firebase Cloud Messaging) in one sentence?",
+    "back": "Device-scoped token identifying one app install for push delivery — rotate on reinstall, clear data, or token refresh.",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Remember"
+  },
+  {
+    "id": "072727f622eb",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of FCM token (Firebase Cloud Messaging) (how the system thinks).",
+    "back": "Client SDK asks FCM for a registration token. Your backend stores (userId, fcmToken, platform). FCM uses token + Firebase project credentials to deliver to Google/Apple push infrastructure. Tokens expire and refresh — listen for refresh callbacks and update DB.",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Understand"
+  },
+  {
+    "id": "6b49697f3c29",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for FCM token (Firebase Cloud Messaging)?",
+    "back": "App → FCM SDK → token → your API → store → Server → FCM HTTP v1 → device",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Apply"
+  },
+  {
+    "id": "669ecb0b1fca",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken FCM token (Firebase Cloud Messaging) setup, what is your first validation command?",
+    "back": "App → FCM SDK → token → your API → store",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Apply"
+  },
+  {
+    "id": "e96e2d612220",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: registration-token-not-registered — what do you check and fix?",
+    "back": "Check: Stale token in DB · Fix: Delete token; client re-registers",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Analyze"
+  },
+  {
+    "id": "f0d7ef2a2567",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Web push fails — what do you check and fix?",
+    "back": "Check: VAPID key, HTTPS · Fix: Serve over HTTPS; matching VAPID in Firebase console",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Analyze"
+  },
+  {
+    "id": "ce1768fcf077",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: iOS no push — what do you check and fix?",
+    "back": "Check: APNs key/certs in Firebase · Fix: Upload APNs auth key; enable push capability",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Analyze"
+  },
+  {
+    "id": "b09cd3c84eb0",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate notifications — what do you check and fix?",
+    "back": "Check: Multiple tokens per user · Fix: Dedupe; send to latest token set",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Analyze"
+  },
+  {
+    "id": "2dd7c719c48f",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works on Android, not iOS — what do you check and fix?",
+    "back": "Check: Permission / focus mode · Fix: Request permission; check provisional auth",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Analyze"
+  },
+  {
+    "id": "6d20b8851e6d",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with FCM token (Firebase Cloud Messaging): what silently fails?",
+    "back": "Legacy server key API deprecated — migrate to HTTP v1 + service account. Don't use token as user id — one user, many devices; many tokens. Test tokens in logs — treat as secrets in support tickets.",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Evaluate"
+  },
+  {
+    "id": "2cd404f45ac7",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use FCM token (Firebase Cloud Messaging)?",
+    "back": "Don't poll FCM for inbound messages — use onMessage handlers + your API for data sync. Don't store tokens without TTL cleanup — unregistered errors will clutter sends.",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Evaluate"
+  },
+  {
+    "id": "7a715a382630",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct FCM token (Firebase Cloud Messaging) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: App → FCM SDK → token → your API → store",
+    "source": "Back2Basics/Firebase/FCM Token (Firebase Cloud Messaging Token).md",
+    "section": "FCM token (Firebase Cloud Messaging) · Create"
+  },
+  {
+    "id": "9cab86e7f0d8",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Firebase messaging?",
+    "back": "Firebase messaging — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Firebase/Firebase messaging.md",
+    "section": "Firebase messaging · Remember"
+  },
+  {
+    "id": "17aef4765912",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Firebase messaging matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Firebase/Firebase messaging.md",
+    "section": "Firebase messaging · Understand"
+  },
+  {
+    "id": "605f12f25999",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Firebase messaging checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Firebase/Firebase messaging.md",
+    "section": "Firebase messaging · Create"
+  },
+  {
+    "id": "7d94c3991513",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Multicast delivery?",
+    "back": "Multicast delivery — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Firebase/Multicast delivery.md",
+    "section": "Multicast delivery · Remember"
+  },
+  {
+    "id": "52d2411a400a",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Multicast delivery matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Firebase/Multicast delivery.md",
+    "section": "Multicast delivery · Understand"
+  },
+  {
+    "id": "9e4f88d87006",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Multicast delivery checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Firebase/Multicast delivery.md",
+    "section": "Multicast delivery · Create"
+  },
+  {
+    "id": "bb421d3e14aa",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is firebase reminders configuration?",
+    "back": "the code will be triggered by a Cloud Scheduler (or a Firebase Cloud Function with a CRON job)",
+    "source": "Back2Basics/Firebase/firebase reminders configuration.md",
+    "section": "firebase reminders configuration · Remember"
+  },
+  {
+    "id": "bda917de3ccd",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for firebase reminders configuration?",
+    "back": "npm install firebase-admin firebase-functions nodemailer",
+    "source": "Back2Basics/Firebase/firebase reminders configuration.md",
+    "section": "firebase reminders configuration · Apply"
+  },
+  {
+    "id": "daffdcd9d029",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken firebase reminders configuration setup, what is your first validation command?",
+    "back": "npm install firebase-admin firebase-functions nodemailer",
+    "source": "Back2Basics/Firebase/firebase reminders configuration.md",
+    "section": "firebase reminders configuration · Apply"
+  },
+  {
+    "id": "e7487daac7d1",
+    "deck": "b2b-firebase",
+    "tags": [
+      "back2basics",
+      "firebase",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct firebase reminders configuration setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: npm install firebase-admin firebase-functions nodemailer",
+    "source": "Back2Basics/Firebase/firebase reminders configuration.md",
+    "section": "firebase reminders configuration · Create"
+  }
+]

@@ -21,7 +21,7 @@ Each folder mirrors `drills/write/reflex/<name>/` with working implementations:
 
 ```bash
 # Verify a solution passes the same self-tests as the drill
-go run -C bin/study_play/_support/solutions_reference/reflex/02_hashing_reflex .
+go run -C drills/solutions/reflex/02_hashing_reflex .
 ```
 
 ## Quick-reference notes (markdown)

@@ -1,0 +1,3782 @@
+[
+  {
+    "id": "333908f3e555",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is API design in one sentence?",
+    "back": "Contract between clients and backend — resource-oriented URLs, predictable errors, auth; hide implementation, not capability.",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Remember"
+  },
+  {
+    "id": "57f9294bb801",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of API design (how the system thinks).",
+    "back": "Good API design optimizes for who can call what, how, and what they get back — not for mirroring database tables. URLs express a resource hierarchy; HTTP methods express intent; status codes express outcome. Versioning and pagination are part of the contract from day one, not retrofits.",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Understand"
+  },
+  {
+    "id": "620731629b1b",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for API design?",
+    "back": "Descending specificity: domain → type → entity → action sub-resource. → Offset pagination OK for admin UIs; degrades on large tables (database sharding).",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Apply"
+  },
+  {
+    "id": "62bfd01a7419",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken API design setup, what is your first validation command?",
+    "back": "Descending specificity: domain → type → entity → action sub-resource.",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Apply"
+  },
+  {
+    "id": "66e78c835955",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for API design?",
+    "back": "Descending specificity: domain → type → entity → action sub-resource.",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Apply"
+  },
+  {
+    "id": "27bd79f40d97",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 429 storms — what do you check and fix?",
+    "back": "Check: Client retry without backoff · Fix: Exponential backoff + jitter; raise limits if legit",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Analyze"
+  },
+  {
+    "id": "1e76c8df6cff",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate orders — what do you check and fix?",
+    "back": "Check: POST retried · Fix: Idempotency-Key header + store",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Analyze"
+  },
+  {
+    "id": "a70216be5b67",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 404 vs empty list — what do you check and fix?",
+    "back": "Check: Wrong path vs filter · Fix: GET /items → [] not 404",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Analyze"
+  },
+  {
+    "id": "c69b69cc7b02",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: N+1 from mobile — what do you check and fix?",
+    "back": "Check: Chatty fine-grained API · Fix: Aggregate DTO endpoint",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Analyze"
+  },
+  {
+    "id": "1117d1938bd6",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Breaking mobile old app — what do you check and fix?",
+    "back": "Check: Field removed from v1 · Fix: Additive changes only; version bump",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Analyze"
+  },
+  {
+    "id": "c712cd5c193b",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CORS errors browser — what do you check and fix?",
+    "back": "Check: Preflight · Fix: Allow origin + methods; not API \"bug\"",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Analyze"
+  },
+  {
+    "id": "1189797ffca5",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow list endpoints — what do you check and fix?",
+    "back": "Check: Missing index on sort column · Fix: DB index; cursor pagination",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Analyze"
+  },
+  {
+    "id": "3802e13cc06d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with API design: what silently fails?",
+    "back": "Leaking internal IDs — exposure enables enumeration; use opaque public IDs.",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Evaluate"
+  },
+  {
+    "id": "03d9cf029d85",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use API design?",
+    "back": "gRPC internal east-west — HTTP JSON for public/partner; gRPC for service mesh if already standard. GraphQL for 3-field mobile screen — complexity tax unless many client shapes. Hypermedia HATEOAS everywhere — rarely pays off for mobile/SPA teams.",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Evaluate"
+  },
+  {
+    "id": "af9f06945d0d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct API design setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Descending specificity: domain → type → entity → action sub-resource.",
+    "source": "Back2Basics/System Design/API design.md",
+    "section": "API design · Create"
+  },
+  {
+    "id": "a7769c04710e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Authentication web application?",
+    "back": "Authentication web application — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Authentication web application.md",
+    "section": "Authentication web application · Remember"
+  },
+  {
+    "id": "cadda0072d84",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Authentication web application matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Authentication web application.md",
+    "section": "Authentication web application · Understand"
+  },
+  {
+    "id": "d57509a6387a",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Authentication web application checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Authentication web application.md",
+    "section": "Authentication web application · Create"
+  },
+  {
+    "id": "798fba298ab2",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is CMS (Content Management System) in one sentence?",
+    "back": "Authoring + storage + delivery API for structured content — headless separates editorial from presentation.",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Remember"
+  },
+  {
+    "id": "2f2402566357",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of CMS (Content Management System) (how the system thinks).",
+    "back": "A CMS lets non-engineers create, edit, publish content (pages, articles, video metadata, assets) with workflow (draft → review → live). Headless CMS exposes JSON/API only — web/mobile apps render UI; monolithic CMS (WordPress) renders HTML server-side.",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Understand"
+  },
+  {
+    "id": "0d4536d3a18f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for CMS (Content Management System)?",
+    "back": "Streaming platforms use CMS for title metadata, images, CID, geo rules — playback still from origin/CDN.",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Apply"
+  },
+  {
+    "id": "273a2366d21d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken CMS (Content Management System) setup, what is your first validation command?",
+    "back": "Streaming platforms use CMS for title metadata, images, CID, geo rules — playback still from origin/CDN.",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Apply"
+  },
+  {
+    "id": "428ffd281414",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Site shows old title — what do you check and fix?",
+    "back": "Check: CDN/API cache · Fix: Purge; webhook on publish",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Analyze"
+  },
+  {
+    "id": "2ea2ceed48ee",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Draft visible publicly — what do you check and fix?",
+    "back": "Check: Preview key leaked · Fix: Separate preview domain",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Analyze"
+  },
+  {
+    "id": "9a6dfc8e58a2",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Missing poster — what do you check and fix?",
+    "back": "Check: Media not populated · Fix: populate=* or explicit join",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Analyze"
+  },
+  {
+    "id": "cb74a510f657",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slug collision — what do you check and fix?",
+    "back": "Check: Unique constraint · Fix: Enforce at CMS",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Analyze"
+  },
+  {
+    "id": "3d8e4e0c59cf",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Streaming CID mismatch — what do you check and fix?",
+    "back": "Check: Manual typo · Fix: Validation regex; golden CID registry",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Analyze"
+  },
+  {
+    "id": "8e1de3f2dc07",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Editor timeout on upload — what do you check and fix?",
+    "back": "Check: Large video in CMS · Fix: External asset URL only",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Analyze"
+  },
+  {
+    "id": "ee6eb5d153eb",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Webhook 500 loop — what do you check and fix?",
+    "back": "Check: Downstream revalidate · Fix: Idempotent webhook handler",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Analyze"
+  },
+  {
+    "id": "029754aceba7",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with CMS (Content Management System): what silently fails?",
+    "back": "Rich text XSS — sanitize HTML from CMS before render.",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Evaluate"
+  },
+  {
+    "id": "a2c8f5436dce",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use CMS (Content Management System)?",
+    "back": "Hardcoded marketing one-pager — git + MD faster. Transactional order data — CMS for editorial; orders in OLTP DB. Real-time chat — not CMS domain.",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Evaluate"
+  },
+  {
+    "id": "4233c172706d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct CMS (Content Management System) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Streaming platforms use CMS for title metadata, images, CID, geo rules — playback still from origin/CDN.",
+    "source": "Back2Basics/System Design/CMS.md",
+    "section": "CMS (Content Management System) · Create"
+  },
+  {
+    "id": "3733c288850c",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Concurrent modification?",
+    "back": "Concurrent modification — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Concurrent modification.md",
+    "section": "Concurrent modification · Remember"
+  },
+  {
+    "id": "e9f888508dd1",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Concurrent modification matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Concurrent modification.md",
+    "section": "Concurrent modification · Understand"
+  },
+  {
+    "id": "d16fff626176",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Concurrent modification checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Concurrent modification.md",
+    "section": "Concurrent modification · Create"
+  },
+  {
+    "id": "614144ad9da1",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is DRY (Don't Repeat Yourself) in one sentence?",
+    "back": "Single source of truth for knowledge — dedupe logic and config, not every similar-looking line.",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Remember"
+  },
+  {
+    "id": "eea31b45a06c",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of DRY (Don't Repeat Yourself) (how the system thinks).",
+    "back": "DRY means every piece of knowledge (business rule, schema, validation) should have one authoritative representation. Change the rule once — it propagates everywhere. Confusing DRY with \"never duplicate code\" leads to premature abstractions that couple unrelated features.",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Understand"
+  },
+  {
+    "id": "16a394a58307",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for DRY (Don't Repeat Yourself)?",
+    "back": "See Terraform setup.",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Apply"
+  },
+  {
+    "id": "38d60c75de5d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken DRY (Don't Repeat Yourself) setup, what is your first validation command?",
+    "back": "See Terraform setup.",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Apply"
+  },
+  {
+    "id": "3c014aeb7716",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for DRY (Don't Repeat Yourself)?",
+    "back": "See Terraform setup.",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Apply"
+  },
+  {
+    "id": "f38b0ca7368e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Inconsistent behavior UI vs API — what do you check and fix?",
+    "back": "Check: Forked validation · Fix: Extract shared validator; API owns truth",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Analyze"
+  },
+  {
+    "id": "28ffaec935b7",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Bug fixed in one service only — what do you check and fix?",
+    "back": "Check: Copy-paste logic · Fix: Search repo; centralize",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Analyze"
+  },
+  {
+    "id": "77016930dfac",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Shared lib breaks all services — what do you check and fix?",
+    "back": "Check: Tight coupling · Fix: Version lib semver; avoid breaking changes",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Analyze"
+  },
+  {
+    "id": "2b328d0034af",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"God module\" imports — what do you check and fix?",
+    "back": "Check: Over-DRY · Fix: Split by domain boundary",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Analyze"
+  },
+  {
+    "id": "2b7de64a7a79",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Config drift prod/stage — what do you check and fix?",
+    "back": "Check: Duplicate env files · Fix: Single template + env overlay",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Analyze"
+  },
+  {
+    "id": "07363173dae5",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Generated code edited by hand — what do you check and fix?",
+    "back": "Check: Regen overwrite · Fix: Fix generator source",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Analyze"
+  },
+  {
+    "id": "67797c88bf67",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with DRY (Don't Repeat Yourself): what silently fails?",
+    "back": "DRY across microservices via shared DB — worse than duplicated code; couples deploy.",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Evaluate"
+  },
+  {
+    "id": "ee7cdfd6f03f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use DRY (Don't Repeat Yourself)?",
+    "back": "Exploratory prototype — duplication acceptable until pattern stabilizes. Cross-team library for one constant — copy or config service. Identical syntax, different domain meaning — forcing merge creates wrong coupling.",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Evaluate"
+  },
+  {
+    "id": "80f709015935",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct DRY (Don't Repeat Yourself) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: See Terraform setup.",
+    "source": "Back2Basics/System Design/DRY.md",
+    "section": "DRY (Don't Repeat Yourself) · Create"
+  },
+  {
+    "id": "778f5ad48113",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Data fetching Frontend?",
+    "back": "Data fetching Frontend — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Data fetching Frontend.md",
+    "section": "Data fetching Frontend · Remember"
+  },
+  {
+    "id": "1477381556ab",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Data fetching Frontend matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Data fetching Frontend.md",
+    "section": "Data fetching Frontend · Understand"
+  },
+  {
+    "id": "c78a1345bfbd",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Data fetching Frontend checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Data fetching Frontend.md",
+    "section": "Data fetching Frontend · Create"
+  },
+  {
+    "id": "46e13f53ae8f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Reference?",
+    "back": "Reference — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Distributed computing.md",
+    "section": "Reference · Remember"
+  },
+  {
+    "id": "731f12caf416",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Reference matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Distributed computing.md",
+    "section": "Reference · Understand"
+  },
+  {
+    "id": "453c2b760f00",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Reference checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Distributed computing.md",
+    "section": "Reference · Create"
+  },
+  {
+    "id": "5fd4867b6461",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Eventual consistency?",
+    "back": "Eventual consistency — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Eventual consistency.md",
+    "section": "Eventual consistency · Remember"
+  },
+  {
+    "id": "9e8aec3d5045",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Eventual consistency matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Eventual consistency.md",
+    "section": "Eventual consistency · Understand"
+  },
+  {
+    "id": "5ee193f49e1f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Eventual consistency checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Eventual consistency.md",
+    "section": "Eventual consistency · Create"
+  },
+  {
+    "id": "9e6af9d2852c",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Food delivery?",
+    "back": "Food delivery — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Food delivery.md",
+    "section": "Food delivery · Remember"
+  },
+  {
+    "id": "f6922b7025bd",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Food delivery matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Food delivery.md",
+    "section": "Food delivery · Understand"
+  },
+  {
+    "id": "a413cd893e20",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Food delivery checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Food delivery.md",
+    "section": "Food delivery · Create"
+  },
+  {
+    "id": "fc8ffd0cad41",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is GRASP?",
+    "back": "GRASP — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/GRASP.md",
+    "section": "GRASP · Remember"
+  },
+  {
+    "id": "bb166e5373e1",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does GRASP matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/GRASP.md",
+    "section": "GRASP · Understand"
+  },
+  {
+    "id": "2453a0ac3033",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe GRASP checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/GRASP.md",
+    "section": "GRASP · Create"
+  },
+  {
+    "id": "85936bfc1f7d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is HES Architecture in one sentence?",
+    "back": "HES acronym is ambiguous in this vault (no prior mentions) — commonly Home Energy System, Head-End System (utilities/AMI), or Health Examination System. Below: high-availability edge service pattern applicable to meter gateways, clinic edge nodes, or IoT aggregators — define your domain acronym in the project README.",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Remember"
+  },
+  {
+    "id": "6badf346b571",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of HES Architecture (how the system thinks).",
+    "back": "HES role: sit at the edge of trust — authenticate devices, normalize payloads, absorb burst traffic, survive upstream outages, never lose acknowledged reads.",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Understand"
+  },
+  {
+    "id": "8ce0dc6c939e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for HES Architecture?",
+    "back": "If your HES = utility head-end: add protocol adapters (DLMS/COSEM, IEC 61850). If health edge: PHI encryption, audit, HIPAA boundary before cloud.",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Apply"
+  },
+  {
+    "id": "3f44aba6f3aa",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken HES Architecture setup, what is your first validation command?",
+    "back": "If your HES = utility head-end: add protocol adapters (DLMS/COSEM, IEC 61850). If health edge: PHI encryption, audit, HIPAA boundary before cloud.",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Apply"
+  },
+  {
+    "id": "cd62ab80144f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Devices retry storm — what do you check and fix?",
+    "back": "Check: 5xx rate, timeout · Fix: Scale HES pods; extend adapter backoff; fix DB pool",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Analyze"
+  },
+  {
+    "id": "77e4a4352e06",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate readings in billing — what do you check and fix?",
+    "back": "Check: Idempotency key · Fix: Enforce (device_id, seq) unique; audit adapter gen",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Analyze"
+  },
+  {
+    "id": "4da493e7f1b2",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Edge disk full — what do you check and fix?",
+    "back": "Check: Spool PVC usage · Fix: Increase retention policy; restore WAN; drop policy w/ audit",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Analyze"
+  },
+  {
+    "id": "c97c5ad29c64",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Auth failures spike — what do you check and fix?",
+    "back": "Check: Cert rotation · Fix: Push new device certs; check clock skew (NTP)",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Analyze"
+  },
+  {
+    "id": "62ad9f243958",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cloud sees gaps — what do you check and fix?",
+    "back": "Check: forward_lag metric · Fix: Network partition — expected; backfill from spool",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Analyze"
+  },
+  {
+    "id": "f0a1c825ce18",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Latency SLO miss — what do you check and fix?",
+    "back": "Check: Hot partition device · Fix: Shard by deviceId; async pipeline",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Analyze"
+  },
+  {
+    "id": "0f9ebd19c5ff",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"HES\" means different thing per team — what do you check and fix?",
+    "back": "Check: Glossary · Fix: Rename service in docs; link domain spec",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Analyze"
+  },
+  {
+    "id": "7c3e6afc9192",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with HES Architecture: what silently fails?",
+    "back": "At-least-once everywhere — without idempotent core, duplicates become revenue or clinical errors.",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Evaluate"
+  },
+  {
+    "id": "4b2097e72294",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use HES Architecture?",
+    "back": "Direct device-to-cloud only — no outage buffer; fine for low-value telemetry, not billing/medical grade. Monolith ingest in single VM — first WAN blip becomes data loss without queue. Custom binary protocol without schema registry — versioning hell at 10k firmware variants.",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Evaluate"
+  },
+  {
+    "id": "9d9377cfc358",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct HES Architecture setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: If your HES = utility head-end: add protocol adapters (DLMS/COSEM, IEC 61850). If health edge: PHI encryption, audit, HIPAA boundary before cloud.",
+    "source": "Back2Basics/System Design/HES Architecture.md",
+    "section": "HES Architecture · Create"
+  },
+  {
+    "id": "d841768fd899",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is IM (Information Management) production systems in one sentence?",
+    "back": "Enterprise MAM/PAM for broadcast — metadata, workflow, and asset lifecycle from ingest to playout and compliance.",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Remember"
+  },
+  {
+    "id": "4f9bc0bb0eb9",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of IM (Information Management) production systems (how the system thinks).",
+    "back": "Information Management (IM) in broadcast is Media Asset Management (MAM) plus workflow orchestration: log content, attach metadata/CIDs, manage versions/rights, route through edit/approval, and feed playout/streaming endpoints. Unlike a web CMS, IM systems handle professional formats (MXF, GXF), timecode, frame-accurate edits, and rights windows.",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Understand"
+  },
+  {
+    "id": "920e84435765",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for IM (Information Management) production systems?",
+    "back": "OTT stacks often integrate IM → export CID + mezzanine URL to product CMS — IM remains system of record for masters.",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Apply"
+  },
+  {
+    "id": "a8b2e6b9e9af",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken IM (Information Management) production systems setup, what is your first validation command?",
+    "back": "OTT stacks often integrate IM → export CID + mezzanine URL to product CMS — IM remains system of record for masters.",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Apply"
+  },
+  {
+    "id": "a9f7df7bf52d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Streamable but not in app — what do you check and fix?",
+    "back": "Check: CMS sync lag · Fix: Replay IM→CMS webhook",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Analyze"
+  },
+  {
+    "id": "5989bf1163b1",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong episode airs — what do you check and fix?",
+    "back": "Check: Playout schedule vs IM version · Fix: Lock version on schedule bind",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Analyze"
+  },
+  {
+    "id": "463621e54a84",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Transcode from old master — what do you check and fix?",
+    "back": "Check: Wrong asset linked · Fix: Version pin in workflow",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Analyze"
+  },
+  {
+    "id": "d31c7c544178",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Rights violation — what do you check and fix?",
+    "back": "Check: window_end passed · Fix: Automated unpublish job",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Analyze"
+  },
+  {
+    "id": "138c92ebd987",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Proxy/master mismatch — what do you check and fix?",
+    "back": "Check: Re-ingest incomplete · Fix: QC gate block publish",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Analyze"
+  },
+  {
+    "id": "75f03b717364",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate CID — what do you check and fix?",
+    "back": "Check: Ingest without dedupe · Fix: Unique constraint on CID",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Analyze"
+  },
+  {
+    "id": "ab51c8817851",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow editor UX — what do you check and fix?",
+    "back": "Check: Master over network · Fix: Force proxy workflow",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Analyze"
+  },
+  {
+    "id": "1d099824fdab",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with IM (Information Management) production systems: what silently fails?",
+    "back": "IM as playback database — high-latency MAM queries don't belong in player hot path.",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Evaluate"
+  },
+  {
+    "id": "144547e33d41",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use IM (Information Management) production systems?",
+    "back": "Creator UGC platform — lightweight object storage + CMS beats Dalet-scale IM. Simple podcast host — audio CMS sufficient. Real-time clip sharing — IM workflow too slow; separate short-form pipeline.",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Evaluate"
+  },
+  {
+    "id": "7b3d41a26f0d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct IM (Information Management) production systems setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: OTT stacks often integrate IM → export CID + mezzanine URL to product CMS — IM remains system of record for masters.",
+    "source": "Back2Basics/System Design/IM (Information Management) production systems.md",
+    "section": "IM (Information Management) production systems · Create"
+  },
+  {
+    "id": "785454fcc82e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is KISS (Keep It Simple, Stupid) in one sentence?",
+    "back": "Prefer the simplest design that meets requirements — complexity is a liability with compound interest.",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Remember"
+  },
+  {
+    "id": "43bdf0b40562",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of KISS (Keep It Simple, Stupid) (how the system thinks).",
+    "back": "KISS pushes teams to choose understandable solutions over clever ones. Every abstraction, service boundary, and config flag has operational cost — on-call must debug it at 3 AM. Simple code is easier to read, test, change, and delete; complexity hides bugs and slows onboarding.",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Understand"
+  },
+  {
+    "id": "7b679540727b",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for KISS (Keep It Simple, Stupid)?",
+    "back": "KISS pairs with DRY — don't simplify by duplicating business rules; simplify structure. → See Microservice for when split is justified.",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Apply"
+  },
+  {
+    "id": "14c233dd351e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken KISS (Keep It Simple, Stupid) setup, what is your first validation command?",
+    "back": "KISS pairs with DRY — don't simplify by duplicating business rules; simplify structure.",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Apply"
+  },
+  {
+    "id": "6587ea6471c0",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for KISS (Keep It Simple, Stupid)?",
+    "back": "See Microservice for when split is justified.",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Apply"
+  },
+  {
+    "id": "443b99005eaa",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: No one owns service — what do you check and fix?",
+    "back": "Check: Over-split architecture · Fix: Merge paths; clarify ownership",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Analyze"
+  },
+  {
+    "id": "c7ac6b2726c9",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Bug in \"framework\" — what do you check and fix?",
+    "back": "Check: Indirection depth · Fix: Inline hot path; add tests",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Analyze"
+  },
+  {
+    "id": "c9d61458a195",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Incidents hard to trace — what do you check and fix?",
+    "back": "Check: Too many async hops · Fix: Sync where latency allows; correlation IDs",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Analyze"
+  },
+  {
+    "id": "e597c9c2a0ab",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow feature delivery — what do you check and fix?",
+    "back": "Check: Ceremony per change · Fix: Reduce layers; trunk-based",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Analyze"
+  },
+  {
+    "id": "5614a618a137",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: On-call runbook 20 pages — what do you check and fix?",
+    "back": "Check: Operational complexity · Fix: Simplify deploy; reduce moving parts",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Analyze"
+  },
+  {
+    "id": "36e92b63d5f5",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Works but nobody knows how\" — what do you check and fix?",
+    "back": "Check: Bus factor · Fix: Document or delete",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Analyze"
+  },
+  {
+    "id": "8680485fe0b7",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with KISS (Keep It Simple, Stupid): what silently fails?",
+    "back": "KISS ≠ sloppy — simple still needs tests and error handling.",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Evaluate"
+  },
+  {
+    "id": "a3db217fd9f1",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use KISS (Keep It Simple, Stupid)?",
+    "back": "Proven scale pain — 10M QPS needs sharding, not bigger monolith wishful thinking. Regulatory audit boundary — DRM license service isolation is complexity worth paying (DRM). Safety-critical systems — formal verification may trump \"simple\" shortcuts.",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Evaluate"
+  },
+  {
+    "id": "8734d2d89702",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct KISS (Keep It Simple, Stupid) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: KISS pairs with DRY — don't simplify by duplicating business rules; simplify structure.",
+    "source": "Back2Basics/System Design/KISS.md",
+    "section": "KISS (Keep It Simple, Stupid) · Create"
+  },
+  {
+    "id": "65e4a3a7e044",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Quorum?",
+    "back": "Quorum — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Quorum.md",
+    "section": "Quorum · Remember"
+  },
+  {
+    "id": "f65479bff9a4",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Quorum matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Quorum.md",
+    "section": "Quorum · Understand"
+  },
+  {
+    "id": "29f1236ac5d7",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Quorum checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Quorum.md",
+    "section": "Quorum · Create"
+  },
+  {
+    "id": "86008edb5725",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Raft?",
+    "back": "Raft — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Raft.md",
+    "section": "Raft · Remember"
+  },
+  {
+    "id": "2df526b8db71",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Raft matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Raft.md",
+    "section": "Raft · Understand"
+  },
+  {
+    "id": "3e916c85fc70",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Raft checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Raft.md",
+    "section": "Raft · Create"
+  },
+  {
+    "id": "098d9d47e873",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Real-time Subscription?",
+    "back": "Real-time Subscription — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Real-time Subscription.md",
+    "section": "Real-time Subscription · Remember"
+  },
+  {
+    "id": "99d25f00886f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Real-time Subscription matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Real-time Subscription.md",
+    "section": "Real-time Subscription · Understand"
+  },
+  {
+    "id": "7985f7796113",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Real-time Subscription checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Real-time Subscription.md",
+    "section": "Real-time Subscription · Create"
+  },
+  {
+    "id": "3fe8c0e9f1f3",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is SOLID?",
+    "back": "SOLID — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/SOLID.md",
+    "section": "SOLID · Remember"
+  },
+  {
+    "id": "46f63eb7ccf1",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does SOLID matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/SOLID.md",
+    "section": "SOLID · Understand"
+  },
+  {
+    "id": "bcb0be1703fa",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe SOLID checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/SOLID.md",
+    "section": "SOLID · Create"
+  },
+  {
+    "id": "cef07b0357d6",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Scaling Throughput in High-load system?",
+    "back": "Scaling Throughput in High-load system — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Scaling Throughput in High-load system.md",
+    "section": "Scaling Throughput in High-load system · Remember"
+  },
+  {
+    "id": "46eec083805f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Scaling Throughput in High-load system matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Scaling Throughput in High-load system.md",
+    "section": "Scaling Throughput in High-load system · Understand"
+  },
+  {
+    "id": "9095e88dba9e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Scaling Throughput in High-load system checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Scaling Throughput in High-load system.md",
+    "section": "Scaling Throughput in High-load system · Create"
+  },
+  {
+    "id": "0b11efbcecad",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Serialization?",
+    "back": "Serialization — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Serialization.md",
+    "section": "Serialization · Remember"
+  },
+  {
+    "id": "d14e0674bb4f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Serialization matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Serialization.md",
+    "section": "Serialization · Understand"
+  },
+  {
+    "id": "c59021c8b3d0",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Serialization checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Serialization.md",
+    "section": "Serialization · Create"
+  },
+  {
+    "id": "bd443c5c69ba",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Splitwise in one sentence?",
+    "back": "Expense-sharing system design — groups, balances, debt simplification, notifications; classic interview + real fintech patterns.",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Remember"
+  },
+  {
+    "id": "39c7fd2d7fb1",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Splitwise (how the system thinks).",
+    "back": "Splitwise-like apps track who paid and who owes whom in groups. Core insight: store atomic expenses (who paid, split among whom) then derive balances; optionally simplify debts so A→B→C becomes A→C. Not a payment processor — ledger + settlement tracking unless integrated with Stripe/UPI.",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Understand"
+  },
+  {
+    "id": "201ef5602834",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Splitwise?",
+    "back": "Requirements from product: add/remove/update user; create group; add members; notify members; create expense; settle debt; RBAC (admin vs member). → Store money as integer cents — never float (marshalling lesson).",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Apply"
+  },
+  {
+    "id": "d74d48d378b9",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Splitwise setup, what is your first validation command?",
+    "back": "Requirements from product: add/remove/update user; create group; add members; notify members; create expense; settle debt; RBAC (admin vs member).",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Apply"
+  },
+  {
+    "id": "a3717110ff5a",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Splitwise?",
+    "back": "Store money as integer cents — never float (marshalling lesson).",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Apply"
+  },
+  {
+    "id": "f49b4765f647",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Balances don't zero after settle — what do you check and fix?",
+    "back": "Check: Partial settlement math · Fix: Validate amount ≤ owed",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Analyze"
+  },
+  {
+    "id": "6effe94b0be6",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Split sum ≠ expense — what do you check and fix?",
+    "back": "Check: Validation skipped · Fix: Reject POST if splits mismatch",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Analyze"
+  },
+  {
+    "id": "8385ea5e9f08",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: User sees other group — what do you check and fix?",
+    "back": "Check: Missing authz filter · Fix: group_id membership check",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Analyze"
+  },
+  {
+    "id": "eca72ddc258b",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate expenses — what do you check and fix?",
+    "back": "Check: Client retry · Fix: Idempotency-Key on POST",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Analyze"
+  },
+  {
+    "id": "4f953faead04",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Notification spam — what do you check and fix?",
+    "back": "Check: One event per split · Fix: Batch \"A added expense\" once",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Analyze"
+  },
+  {
+    "id": "347410a0ec49",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Currency mix — what do you check and fix?",
+    "back": "Check: FX not in scope · Fix: One currency per group MVP",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Analyze"
+  },
+  {
+    "id": "b7a434fa8d41",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Simplify confuses users — what do you check and fix?",
+    "back": "Check: UX · Fix: Show both gross and net",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Analyze"
+  },
+  {
+    "id": "29502104c01b",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Splitwise: what silently fails?",
+    "back": "Storing derived balances without expense audit — can't reconcile disputes.",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Evaluate"
+  },
+  {
+    "id": "ac3fdf44c511",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Splitwise?",
+    "back": "Enterprise AP/AR — use real accounting ERP; tax/invoicing rules differ. High-frequency trading ledger — different consistency/latency model. Single-user budget app — no group balance graph needed.",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Evaluate"
+  },
+  {
+    "id": "28629401b9a4",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Splitwise setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Requirements from product: add/remove/update user; create group; add members; notify members; create expense; settle debt; RBAC (admin vs member).",
+    "source": "Back2Basics/System Design/Splitwise.md",
+    "section": "Splitwise · Create"
+  },
+  {
+    "id": "bd91586ad185",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is System design?",
+    "back": "System design — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/System design.md",
+    "section": "System design · Remember"
+  },
+  {
+    "id": "f01209705cc3",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does System design matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/System design.md",
+    "section": "System design · Understand"
+  },
+  {
+    "id": "8fe1e209b7c5",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe System design checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/System design.md",
+    "section": "System design · Create"
+  },
+  {
+    "id": "8483f2eefea0",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Throughput?",
+    "back": "Throughput — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Throughput.md",
+    "section": "Throughput · Remember"
+  },
+  {
+    "id": "2dc283740f18",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Throughput matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Throughput.md",
+    "section": "Throughput · Understand"
+  },
+  {
+    "id": "b58f55fcb58a",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Throughput checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Throughput.md",
+    "section": "Throughput · Create"
+  },
+  {
+    "id": "ec23ad457035",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Token bucket?",
+    "back": "Token bucket — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/Token bucket.md",
+    "section": "Token bucket · Remember"
+  },
+  {
+    "id": "efd20b0cb693",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Token bucket matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/Token bucket.md",
+    "section": "Token bucket · Understand"
+  },
+  {
+    "id": "3049cdb570db",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Token bucket checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/Token bucket.md",
+    "section": "Token bucket · Create"
+  },
+  {
+    "id": "7134c0f02f4d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is autonomous program?",
+    "back": "An autonomous program is a software system that operates independently without continuous human intervention. It can make decisions, adapt to inputs, and execute tasks based on predefined logic or AI-driven learning.",
+    "source": "Back2Basics/System Design/autonomous program.md",
+    "section": "autonomous program · Remember"
+  },
+  {
+    "id": "49888bc6afbe",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Self-executing?",
+    "back": "Runs without manual triggers after deployment.",
+    "source": "Back2Basics/System Design/autonomous program.md",
+    "section": "autonomous program · Remember"
+  },
+  {
+    "id": "464fae7831f2",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Decision-making?",
+    "back": "Uses logic, rules, or AI to adapt to changing conditions.",
+    "source": "Back2Basics/System Design/autonomous program.md",
+    "section": "autonomous program · Remember"
+  },
+  {
+    "id": "4fcc00c0f631",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Self-correcting?",
+    "back": "Can handle errors or adapt behavior dynamically.",
+    "source": "Back2Basics/System Design/autonomous program.md",
+    "section": "autonomous program · Remember"
+  },
+  {
+    "id": "3ecb9d9ac2ed",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Minimal human intervention?",
+    "back": "Requires little to no manual control.",
+    "source": "Back2Basics/System Design/autonomous program.md",
+    "section": "autonomous program · Remember"
+  },
+  {
+    "id": "e58038a73e6d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AI Agents?",
+    "back": "Chatbots, autonomous trading bots.",
+    "source": "Back2Basics/System Design/autonomous program.md",
+    "section": "autonomous program · Remember"
+  },
+  {
+    "id": "18e8e35b2e3a",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is IoT Systems?",
+    "back": "Smart home automation.",
+    "source": "Back2Basics/System Design/autonomous program.md",
+    "section": "autonomous program · Remember"
+  },
+  {
+    "id": "c86c20de4585",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Self-driving Cars?",
+    "back": "Navigation and control systems.",
+    "source": "Back2Basics/System Design/autonomous program.md",
+    "section": "autonomous program · Remember"
+  },
+  {
+    "id": "c6c22f93def1",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Blockchain Smart Contracts?",
+    "back": "Execute agreements automatically.",
+    "source": "Back2Basics/System Design/autonomous program.md",
+    "section": "autonomous program · Remember"
+  },
+  {
+    "id": "ef456518497c",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is backpressure?",
+    "back": "backpressure — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/backpressure.md",
+    "section": "backpressure · Remember"
+  },
+  {
+    "id": "05643df121bd",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does backpressure matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/backpressure.md",
+    "section": "backpressure · Understand"
+  },
+  {
+    "id": "3d4f31094f71",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe backpressure checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/backpressure.md",
+    "section": "backpressure · Create"
+  },
+  {
+    "id": "2ad66595bc8b",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Cache system in one sentence?",
+    "back": "Fast read path in front of slow/expensive source — TTL, invalidation, and stampede control define correctness.",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Remember"
+  },
+  {
+    "id": "aad5e1d6df79",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Cache system (how the system thinks).",
+    "back": "A cache stores copies of data closer to readers (memory, edge, CDN) to cut latency and load on origin (DB, API). Caches are eventually consistent by definition — the hard part is when to expire and how to invalidate without thundering herds.",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Understand"
+  },
+  {
+    "id": "69ef4fe489a3",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Cache system?",
+    "back": "Never Cache-Control: public on personalized JSON without Vary: Authorization review.",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Apply"
+  },
+  {
+    "id": "571d6cd77e2e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Cache system setup, what is your first validation command?",
+    "back": "Never Cache-Control: public on personalized JSON without Vary: Authorization review.",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Apply"
+  },
+  {
+    "id": "368f040339ff",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Cache system?",
+    "back": "Never Cache-Control: public on personalized JSON without Vary: Authorization review.",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Apply"
+  },
+  {
+    "id": "4c37b57d767d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stale data after update — what do you check and fix?",
+    "back": "Check: TTL only, no invalidation · Fix: Delete key on write; shorter TTL",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Analyze"
+  },
+  {
+    "id": "db72027fda9d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Redis OOM — what do you check and fix?",
+    "back": "Check: INFO memory; evictions · Fix: Raise maxmemory; LRU policy; smaller values",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Analyze"
+  },
+  {
+    "id": "b0a89945e522",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Thundering herd on expiry — what do you check and fix?",
+    "back": "Check: Spike on DB at T+0 · Fix: Jitter TTL; singleflight rebuild",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Analyze"
+  },
+  {
+    "id": "a37b32efddde",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Random\" DNS failures — what do you check and fix?",
+    "back": "Check: resolvectl statistics · Fix: Flush cache; fix authoritative NS",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Analyze"
+  },
+  {
+    "id": "ca3457b07b89",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CDN serves old API — what do you check and fix?",
+    "back": "Check: Wrong Cache-Control · Fix: private/no-store on auth responses",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Analyze"
+  },
+  {
+    "id": "f06c8291b3d7",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cache hit rate 0 — what do you check and fix?",
+    "back": "Check: Key churn / wrong prefix · Fix: Namespace keys; log miss reason",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Analyze"
+  },
+  {
+    "id": "f886dab255ac",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Inconsistent replicas — what do you check and fix?",
+    "back": "Check: Read from replica lag · Fix: Read-your-writes: primary or version check",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Analyze"
+  },
+  {
+    "id": "0c08cd68f205",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Cache system: what silently fails?",
+    "back": "Cache null results — cache \"user not found\" with short TTL or attackers/bugs hammer DB.",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Evaluate"
+  },
+  {
+    "id": "12eb3039bbbe",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Cache system?",
+    "back": "Strong consistency required — read from primary or use linearizable store; no silent cache. Write-heavy counters — aggregate in DB/Redis INCR, not read-modify-write cache loop. Secrets — don't cache API keys in CDN edge.",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Evaluate"
+  },
+  {
+    "id": "72a20ccc26a7",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Cache system setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Never Cache-Control: public on personalized JSON without Vary: Authorization review.",
+    "source": "Back2Basics/System Design/cache system.md",
+    "section": "Cache system · Create"
+  },
+  {
+    "id": "d1215937899d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Churn rate in one sentence?",
+    "back": "Percent of customers/users lost in a period — retention KPI, drives infra downsizing and revenue models.",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Remember"
+  },
+  {
+    "id": "cca655910dea",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Churn rate (how the system thinks).",
+    "back": "Churn rate (attrition) measures how many customers stop paying or actively leave in a time window, expressed as a percentage of the starting cohort. It is the inverse lens of retention: high churn destroys unit economics and leaves orphaned data, idle seats, and over-provisioned capacity.",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Understand"
+  },
+  {
+    "id": "26bf77d68b50",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Churn rate?",
+    "back": "Distinguish voluntary (cancel button) vs involuntary (failed payment) — fix paths differ.",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Apply"
+  },
+  {
+    "id": "0b49f32a6c4d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Churn rate setup, what is your first validation command?",
+    "back": "Distinguish voluntary (cancel button) vs involuntary (failed payment) — fix paths differ.",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Apply"
+  },
+  {
+    "id": "01d3d016823d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Churn spike post deploy — what do you check and fix?",
+    "back": "Check: Release correlation · Fix: Rollback; feature flag",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Analyze"
+  },
+  {
+    "id": "e9d006ac8c51",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Involuntary churn up — what do you check and fix?",
+    "back": "Check: Payment gateway errors · Fix: Update cards; retry rules",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Analyze"
+  },
+  {
+    "id": "b6dfc86c9db5",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Enterprise logos leave — what do you check and fix?",
+    "back": "Check: Support tickets · Fix: CSM review; SLA breach",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Analyze"
+  },
+  {
+    "id": "917bff6e3c0e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Metric disagrees finance — what do you check and fix?",
+    "back": "Check: Definition drift · Fix: Align cancel date vs end-of-period",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Analyze"
+  },
+  {
+    "id": "ceb4dcbf6b99",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Churn\" from duplicate accounts — what do you check and fix?",
+    "back": "Check: Bad dedupe · Fix: One user = one subscriber ID",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Analyze"
+  },
+  {
+    "id": "42fb77bce723",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Low churn but revenue down — what do you check and fix?",
+    "back": "Check: Downgrades not counted · Fix: Track revenue churn separately",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Analyze"
+  },
+  {
+    "id": "b0d5e77dacb6",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Churn rate: what silently fails?",
+    "back": "Annual plans — monthly churn math needs cohort normalization or misleading 0% months.",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Evaluate"
+  },
+  {
+    "id": "b73c79fa55f6",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Churn rate?",
+    "back": "Pre-PMF startup — sample too small; focus qualitative exit interviews. Single metric for eng SLOs — churn is business KPI, not p99 latency substitute. Blame eng for all churn — content, pricing, support dominate in media SaaS.",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Evaluate"
+  },
+  {
+    "id": "871633026d77",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Churn rate setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Distinguish voluntary (cancel button) vs involuntary (failed payment) — fix paths differ.",
+    "source": "Back2Basics/System Design/churn rate.md",
+    "section": "Churn rate · Create"
+  },
+  {
+    "id": "bb478a9f7915",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is concurrent connection?",
+    "back": "concurrent connection — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/concurrent connection.md",
+    "section": "concurrent connection · Remember"
+  },
+  {
+    "id": "01ede557e13d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does concurrent connection matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/concurrent connection.md",
+    "section": "concurrent connection · Understand"
+  },
+  {
+    "id": "4bda2e330423",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe concurrent connection checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/concurrent connection.md",
+    "section": "concurrent connection · Create"
+  },
+  {
+    "id": "e3b34fcecd0b",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Database sharding in one sentence?",
+    "back": "Split one logical database into independent shards — horizontal scale when single-node limits hit, not day-one default.",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Remember"
+  },
+  {
+    "id": "305f41054f14",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Database sharding (how the system thinks).",
+    "back": "Sharding partitions rows across multiple databases by a shard key (user_id, tenant_id, geo). Each shard holds a subset of data; the application routes queries to the correct shard(s). Cross-shard joins and transactions become expensive or impossible — design around shard-local access patterns.",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Understand"
+  },
+  {
+    "id": "aa3feddc1b24",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Database sharding?",
+    "back": "See also mysql partitioning.",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Apply"
+  },
+  {
+    "id": "35f9c8baac9c",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Database sharding setup, what is your first validation command?",
+    "back": "See also mysql partitioning.",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Apply"
+  },
+  {
+    "id": "56f3d636315b",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Database sharding?",
+    "back": "See also mysql partitioning.",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Apply"
+  },
+  {
+    "id": "b47f65946b59",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: One shard hot — what do you check and fix?",
+    "back": "Check: Key skew · Fix: Rehash; salt hot keys",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Analyze"
+  },
+  {
+    "id": "fc18e44b1685",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cross-shard timeout — what do you check and fix?",
+    "back": "Check: Scatter-gather query · Fix: Redesign schema; denormalize",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Analyze"
+  },
+  {
+    "id": "8e280d7dd98f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: User on wrong shard — what do you check and fix?",
+    "back": "Check: Routing bug · Fix: Consistent hash; migration table",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Analyze"
+  },
+  {
+    "id": "76e64d662570",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Replica lag read stale — what do you check and fix?",
+    "back": "Check: Read from replica · Fix: Read-your-writes from primary",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Analyze"
+  },
+  {
+    "id": "421ac5b5d846",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Transaction fails across shards — what do you check and fix?",
+    "back": "Check: 2PC not used · Fix: Saga / outbox pattern",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Analyze"
+  },
+  {
+    "id": "626b97420ccd",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Backup uneven — what do you check and fix?",
+    "back": "Check: One huge shard · Fix: Rebalance",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Analyze"
+  },
+  {
+    "id": "4665d6b331d4",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connection pool exhaustion — what do you check and fix?",
+    "back": "Check: Per-shard pools · Fix: Size pools × shard count",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Analyze"
+  },
+  {
+    "id": "6a3636b070d5",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Database sharding: what silently fails?",
+    "back": "Shard too early — operational complexity kills team; exhaust vertical scale + replicas first.",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Evaluate"
+  },
+  {
+    "id": "b2f17bc1684c",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Database sharding?",
+    "back": "< 100 GB with low QPS — single Postgres + replicas sufficient. Heavy cross-entity analytics — warehouse (OLAP) not OLTP shard. Strong global transactions — shard fights ACID across boundaries.",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Evaluate"
+  },
+  {
+    "id": "c3bea97f3e3a",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Database sharding setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: See also mysql partitioning.",
+    "source": "Back2Basics/System Design/database sharding.md",
+    "section": "Database sharding · Create"
+  },
+  {
+    "id": "5d55db8a0f03",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is distributed system?",
+    "back": "distributed system — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/distributed system.md",
+    "section": "distributed system · Remember"
+  },
+  {
+    "id": "efe956cc6ea0",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does distributed system matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/distributed system.md",
+    "section": "distributed system · Understand"
+  },
+  {
+    "id": "31f55e747dfe",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe distributed system checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/distributed system.md",
+    "section": "distributed system · Create"
+  },
+  {
+    "id": "d0a3fcba61e4",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is event-driven?",
+    "back": "event-driven — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/event-driven.md",
+    "section": "event-driven · Remember"
+  },
+  {
+    "id": "181b372bf6dc",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does event-driven matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/event-driven.md",
+    "section": "event-driven · Understand"
+  },
+  {
+    "id": "24de790d3029",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe event-driven checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/event-driven.md",
+    "section": "event-driven · Create"
+  },
+  {
+    "id": "1d67500ea53b",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Marshalling in one sentence?",
+    "back": "Convert in-memory structures ↔ wire/storage bytes across process boundaries — schema + version discipline prevent silent corruption.",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Remember"
+  },
+  {
+    "id": "9af45d76a2c7",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Marshalling (how the system thinks).",
+    "back": "Marshalling (synonymous with serialization in most teams) transforms runtime objects into bytes for network, disk, or IPC, and unmarshals back on the receiver. Boundaries: different languages, different processes, different versions — all need an explicit format contract.",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Understand"
+  },
+  {
+    "id": "489ca4ea1ff8",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Garbled strings — what do you check and fix?",
+    "back": "Check: UTF-8 vs Latin-1 · Fix: Enforce UTF-8; Content-Type charset",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Analyze"
+  },
+  {
+    "id": "1637f207d00a",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works Java, fails Go — what do you check and fix?",
+    "back": "Check: JSON field casing · Fix: Tag conventions; shared OpenAPI",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Analyze"
+  },
+  {
+    "id": "1a08a81cb6b0",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Old client crash on deploy — what do you check and fix?",
+    "back": "Check: New required field · Fix: Optional fields + defaults",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Analyze"
+  },
+  {
+    "id": "16a01e729c9f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Float rounding — what do you check and fix?",
+    "back": "Check: JSON number precision · Fix: Use string decimal or int cents",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Analyze"
+  },
+  {
+    "id": "226f7cec0718",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Huge payloads — what do you check and fix?",
+    "back": "Check: Marshal entire graph · Fix: DTO projection; pagination",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Analyze"
+  },
+  {
+    "id": "acd1ad21c289",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Kafka poison message — what do you check and fix?",
+    "back": "Check: Bad Avro schema ID · Fix: Schema registry; DLQ",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Analyze"
+  },
+  {
+    "id": "38efd40485b3",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Endian binary bug — what do you check and fix?",
+    "back": "Check: Raw struct pack · Fix: Use protobuf, not manual pack",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Analyze"
+  },
+  {
+    "id": "6f8a620c555f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Marshalling: what silently fails?",
+    "back": "Marshal same object graph twice — circular references blow JSON serializers.",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Evaluate"
+  },
+  {
+    "id": "ea2a6ec873b4",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Marshalling?",
+    "back": "Same process, same language — pass object references; no marshal. Shared memory ring buffer — fixed binary layout OK with strict schema doc. JSON for high-frequency numeric telemetry — protobuf/MessagePack bandwidth.",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Evaluate"
+  },
+  {
+    "id": "642905f94767",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Marshalling setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Convert in-memory structures ↔ wire/storage bytes across process boundaries — schema + version discipline prevent silent corruption.",
+    "source": "Back2Basics/System Design/marshalling.md",
+    "section": "Marshalling · Create"
+  },
+  {
+    "id": "ac84b320c043",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Prototype Plan: Serverless Node.js Patterns - Event-Driven Lambdas with DynamoDB for Auto-Scaling?",
+    "back": "Author: Rakshyak (@rakshak_sat) Date: March 10, 2026 Goal: Build a minimal viable prototype of an event-driven serverless task manager by weekend (target: deploy and test by March 15, 2026). This will demonstrate auto-scaling Lambdas triggered by DynamoDB Streams for…",
+    "source": "Back2Basics/System Design/node serverless.md",
+    "section": "Prototype Plan: Serverless Node.js Patterns - Event-Driven Lambdas with DynamoDB for Auto-Scaling · Remember"
+  },
+  {
+    "id": "e6acb0bfeed0",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Prototype Plan: Serverless Node.js Patterns - Event-Driven Lambdas with DynamoDB for Auto-Scaling?",
+    "back": "V8 note: Use await over callbacks for cleaner stack traces in X-Ray; limit payload to 6MB to avoid V8 heap bloat. → Serverless config (serverless.yml snippet):",
+    "source": "Back2Basics/System Design/node serverless.md",
+    "section": "Prototype Plan: Serverless Node.js Patterns - Event-Driven Lambdas with DynamoDB for Auto-Scaling · Apply"
+  },
+  {
+    "id": "81ae8a430463",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Prototype Plan: Serverless Node.js Patterns - Event-Driven Lambdas with DynamoDB for Auto-Scaling setup, what is your first validation command?",
+    "back": "V8 note: Use await over callbacks for cleaner stack traces in X-Ray; limit payload to 6MB to avoid V8 heap bloat.",
+    "source": "Back2Basics/System Design/node serverless.md",
+    "section": "Prototype Plan: Serverless Node.js Patterns - Event-Driven Lambdas with DynamoDB for Auto-Scaling · Apply"
+  },
+  {
+    "id": "bed47708b630",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Prototype Plan: Serverless Node.js Patterns - Event-Driven Lambdas with DynamoDB for Auto-Scaling setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: V8 note: Use await over callbacks for cleaner stack traces in X-Ray; limit payload to 6MB to avoid V8 heap bloat.",
+    "source": "Back2Basics/System Design/node serverless.md",
+    "section": "Prototype Plan: Serverless Node.js Patterns - Event-Driven Lambdas with DynamoDB for Auto-Scaling · Create"
+  },
+  {
+    "id": "b8f2bf36d7cb",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is on-demand vs static file (Streaming)?",
+    "back": "on-demand vs static file (Streaming) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/on-demand vs static file (Streaming).md",
+    "section": "on-demand vs static file (Streaming) · Remember"
+  },
+  {
+    "id": "ef4e96f175e0",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does on-demand vs static file (Streaming) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/on-demand vs static file (Streaming).md",
+    "section": "on-demand vs static file (Streaming) · Understand"
+  },
+  {
+    "id": "30422841d2bd",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe on-demand vs static file (Streaming) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/on-demand vs static file (Streaming).md",
+    "section": "on-demand vs static file (Streaming) · Create"
+  },
+  {
+    "id": "a0bdc67785df",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is race condition?",
+    "back": "race condition — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/race condition.md",
+    "section": "race condition · Remember"
+  },
+  {
+    "id": "a3c2bb6cf843",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does race condition matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/race condition.md",
+    "section": "race condition · Understand"
+  },
+  {
+    "id": "0f1856c5f6b1",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe race condition checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/race condition.md",
+    "section": "race condition · Create"
+  },
+  {
+    "id": "31eee5b8e6d5",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is remote data?",
+    "back": "remote data — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/remote data.md",
+    "section": "remote data · Remember"
+  },
+  {
+    "id": "c4818645b693",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does remote data matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/remote data.md",
+    "section": "remote data · Understand"
+  },
+  {
+    "id": "f20aca90619a",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe remote data checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/remote data.md",
+    "section": "remote data · Create"
+  },
+  {
+    "id": "9e1dd51c174f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Server in one sentence?",
+    "back": "Long-lived process accepting client requests — connection model + state strategy define scale and failure modes.",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Remember"
+  },
+  {
+    "id": "731210c2d0a8",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Server (how the system thinks).",
+    "back": "A server listens on a port, accepts connections or requests, executes handlers, returns responses. Design choices: thread vs event loop, stateless vs session, HTTP vs WebSocket/SSE. Scale = many concurrent connections without exhausting file descriptors or memory (concurrent connection).",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Understand"
+  },
+  {
+    "id": "5308fef14451",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Server?",
+    "back": "One-way server→client; for bidirectional use webSocket.",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Apply"
+  },
+  {
+    "id": "d45b06366467",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Server setup, what is your first validation command?",
+    "back": "One-way server→client; for bidirectional use webSocket.",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Apply"
+  },
+  {
+    "id": "51a52deede5f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Server?",
+    "back": "One-way server→client; for bidirectional use webSocket.",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Apply"
+  },
+  {
+    "id": "b41ae4d5b02a",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connection refused — what do you check and fix?",
+    "back": "Check: Process down; wrong port · Fix: systemd status; bind 0.0.0.0",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Analyze"
+  },
+  {
+    "id": "085ccc83e6eb",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 502 from LB — what do you check and fix?",
+    "back": "Check: Backend unhealthy · Fix: /ready failing; OOM kill",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Analyze"
+  },
+  {
+    "id": "f352e562675a",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow under load — what do you check and fix?",
+    "back": "Check: FD exhaustion · Fix: ulimit; connection leak fix",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Analyze"
+  },
+  {
+    "id": "e19543b6fcf7",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Memory climb — what do you check and fix?",
+    "back": "Check: Session leak · Fix: TTL sessions; stateless JWT",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Analyze"
+  },
+  {
+    "id": "b67ada95faf6",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SSE duplicates — what do you check and fix?",
+    "back": "Check: Multiple tabs · Fix: Client reconnect with Last-Event-ID",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Analyze"
+  },
+  {
+    "id": "351e43fa369e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Sticky session miss — what do you check and fix?",
+    "back": "Check: LB config · Fix: Cookie affinity or shared session store",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Analyze"
+  },
+  {
+    "id": "cff0ff57f93f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CPU pegged — what do you check and fix?",
+    "back": "Check: Sync crypto/blocking · Fix: Offload; async I/O (Event Loop)",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Analyze"
+  },
+  {
+    "id": "96353ceb6056",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Server: what silently fails?",
+    "back": "Blocking the event loop — one sync bcrypt stalls all Node clients.",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Evaluate"
+  },
+  {
+    "id": "6d842f47212f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Server?",
+    "back": "Pure static site — object storage + CDN, no app server. Heavy GPU transcode — worker process, not HTTP request thread (Encoding). Long batch ETL — job queue worker, not synchronous HTTP server.",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Evaluate"
+  },
+  {
+    "id": "8a8c641bf95d",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Server setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: One-way server→client; for bidirectional use webSocket.",
+    "source": "Back2Basics/System Design/server.md",
+    "section": "Server · Create"
+  },
+  {
+    "id": "6705af28eb64",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is solid diagram?",
+    "back": "solid diagram — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/solid diagram.md",
+    "section": "solid diagram · Remember"
+  },
+  {
+    "id": "dcdf0336fc18",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does solid diagram matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/solid diagram.md",
+    "section": "solid diagram · Understand"
+  },
+  {
+    "id": "afa3d7d5c8c0",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe solid diagram checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/solid diagram.md",
+    "section": "solid diagram · Create"
+  },
+  {
+    "id": "761d903faeb8",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Stateless offset handling in one sentence?",
+    "back": "Kafka consumer offset patterns for \"stateless\" services — commits, rebalance, duplicates, and exactly-once illusions — Kleppmann / Kafka ops canon.",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Remember"
+  },
+  {
+    "id": "ee004f686cc3",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Stateless offset handling (how the system thinks).",
+    "back": "A consumer's offset is its cursor in a partition log. Stateless here means: no durable local DB for progress — the broker (or coordinator) stores committed offsets in __consumer_offsets. On restart/rebalance, processing resumes from last commit.",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Understand"
+  },
+  {
+    "id": "487337c7f6ad",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Consumer kicked from group — what do you check and fix?",
+    "back": "Check: max.poll.interval exceeded · Fix: Smaller batches; async process + pause; scale consumers",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Analyze"
+  },
+  {
+    "id": "c67f0f78c654",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Message storm duplicates — what do you check and fix?",
+    "back": "Check: Recent deploy before commit · Fix: Idempotent handler; dedupe store",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Analyze"
+  },
+  {
+    "id": "82699f82815e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Lag growing — what do you check and fix?",
+    "back": "Check: RECORDS-LAG-MAX; slow process · Fix: Scale partitions/consumers; optimize handler",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Analyze"
+  },
+  {
+    "id": "1c092e14d342",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Lost messages — what do you check and fix?",
+    "back": "Check: auto.commit=true · Fix: Disable auto commit; commit after success",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Analyze"
+  },
+  {
+    "id": "d24e905ccde4",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Rebalance loop — what do you check and fix?",
+    "back": "Check: Processing > session.timeout · Fix: Tune timeouts; static membership group.instance.id",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Analyze"
+  },
+  {
+    "id": "69f3aedfb701",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Offset reset surprise — what do you check and fix?",
+    "back": "Check: auto.offset.reset=latest new group · Fix: Explicit reset policy; document consumer group naming",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Analyze"
+  },
+  {
+    "id": "1551f99cdf4e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Exactly-once\" but double DB rows — what do you check and fix?",
+    "back": "Check: Side effect outside TX · Fix: Idempotent-key or outbox",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Analyze"
+  },
+  {
+    "id": "d8b4b1b9b75c",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Stateless offset handling: what silently fails?",
+    "back": "Commit then crash before process — at-most-once gap if you reversed order wrong.",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Evaluate"
+  },
+  {
+    "id": "dfabb23f9a99",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Stateless offset handling?",
+    "back": "Commit-before-process for money movement — unacceptable loss window. Offset reset in prod without replay capacity — can DDoS your own DB. Kafka transactions to fix non-idempotent HTTP webhooks — fix the handler instead.",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Evaluate"
+  },
+  {
+    "id": "ab0d3691c943",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Stateless offset handling setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Kafka consumer offset patterns for \"stateless\" services — commits, rebalance, duplicates, and exactly-once illusions — **Kleppmann / Kafka o",
+    "source": "Back2Basics/System Design/stateless offset handling.md",
+    "section": "Stateless offset handling · Create"
+  },
+  {
+    "id": "d8cc03e2ce1f",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is stateless?",
+    "back": "stateless — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/System Design/stateless.md",
+    "section": "stateless · Remember"
+  },
+  {
+    "id": "0730676a610c",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does stateless matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/System Design/stateless.md",
+    "section": "stateless · Understand"
+  },
+  {
+    "id": "fd762ceed89e",
+    "deck": "b2b-system-design",
+    "tags": [
+      "back2basics",
+      "system-design",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe stateless checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/System Design/stateless.md",
+    "section": "stateless · Create"
+  }
+]

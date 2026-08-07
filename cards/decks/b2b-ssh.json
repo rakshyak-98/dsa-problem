@@ -1,0 +1,786 @@
+[
+  {
+    "id": "882933db795c",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is SSH authentication?",
+    "back": "Decrypting the signed challenge with the public key. Checking if the result matches the original challenge sent by the server. If the signature matches, it proves the client has the corresponding private key",
+    "source": "Back2Basics/ssh/SSH authentication.md",
+    "section": "SSH authentication · Remember"
+  },
+  {
+    "id": "4ea1e5e56c5f",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for SSH authentication?",
+    "back": "ssh user@remote-server",
+    "source": "Back2Basics/ssh/SSH authentication.md",
+    "section": "SSH authentication · Apply"
+  },
+  {
+    "id": "67ab64efed35",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken SSH authentication setup, what is your first validation command?",
+    "back": "ssh user@remote-server",
+    "source": "Back2Basics/ssh/SSH authentication.md",
+    "section": "SSH authentication · Apply"
+  },
+  {
+    "id": "932d2b9bec12",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct SSH authentication setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: ssh user@remote-server",
+    "source": "Back2Basics/ssh/SSH authentication.md",
+    "section": "SSH authentication · Create"
+  },
+  {
+    "id": "d813d1364942",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is For a specific repo?",
+    "back": "use ssh-agent to hold your keys in memory. This prevents the need to type the passphrase repeatedly while keeping the key encrypted on the disk.",
+    "source": "Back2Basics/ssh/ssh agent.md",
+    "section": "For a specific repo · Remember"
+  },
+  {
+    "id": "c39a41784183",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Key Storage?",
+    "back": "It holds private keys and their associated passphrases, enabling seamless authentication without manual entry each time",
+    "source": "Back2Basics/ssh/ssh agent.md",
+    "section": "For a specific repo · Remember"
+  },
+  {
+    "id": "5c2d18826ab9",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Background Process?",
+    "back": "Typically runs in the background, initiated when you first use SSH after logging into your system ssh-agent",
+    "source": "Back2Basics/ssh/ssh agent.md",
+    "section": "For a specific repo · Remember"
+  },
+  {
+    "id": "08f95bb96475",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Security?",
+    "back": "Private keys are stored unencrypted in memory but are not written to disk, reducing the risk of exposure",
+    "source": "Back2Basics/ssh/ssh agent.md",
+    "section": "For a specific repo · Remember"
+  },
+  {
+    "id": "3be8865d708d",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for For a specific repo?",
+    "back": "eval \"$(ssh-agent -s)\" → ssh-add <path to priavte key>; → ssh -A user@remote-server; → Description=SSH key agent → Type=simple",
+    "source": "Back2Basics/ssh/ssh agent.md",
+    "section": "For a specific repo · Apply"
+  },
+  {
+    "id": "44e54ab78b45",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken For a specific repo setup, what is your first validation command?",
+    "back": "eval \"$(ssh-agent -s)\"",
+    "source": "Back2Basics/ssh/ssh agent.md",
+    "section": "For a specific repo · Apply"
+  },
+  {
+    "id": "c65cf2f7350a",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct For a specific repo setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: eval \"$(ssh-agent -s)\"",
+    "source": "Back2Basics/ssh/ssh agent.md",
+    "section": "For a specific repo · Create"
+  },
+  {
+    "id": "29eb6d4d34ca",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ssh allow local system with key in one sentence?",
+    "back": "Key-based SSH login for local or remote users — authorized_keys, strict permissions, optional from=/command= restrictions, sshd_config allowlists.",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Remember"
+  },
+  {
+    "id": "933ee3f4fafc",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is AllowUsers?",
+    "back": "if set, *only* listed users may SSH (others rejected before auth completes messaging).",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Remember"
+  },
+  {
+    "id": "5a50368888e2",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of ssh allow local system with key (how the system thinks).",
+    "back": "Pubkey auth trusts possession of private key + server's authorized_keys list. Password auth is separate — disable in prod after keys work.",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Understand"
+  },
+  {
+    "id": "c30bbf6bf34f",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for ssh allow local system with key?",
+    "back": "Client (private key) ──► SSH handshake ──► sshd ──► ~/.ssh/authorized_keys match? → /home/user not group/world writable (sshd checks) → ssh-keygen -t ed25519 -C \"user@host-$(date +%Y)\" -f ~/.ssh/id_ed25519 → eval \"$(ssh-agent -s)\" → ssh-add ~/.ssh/id_ed25519",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Apply"
+  },
+  {
+    "id": "cc2dc948ab3d",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken ssh allow local system with key setup, what is your first validation command?",
+    "back": "Client (private key) ──► SSH handshake ──► sshd ──► ~/.ssh/authorized_keys match?",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Apply"
+  },
+  {
+    "id": "d96d1cab1675",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for ssh allow local system with key?",
+    "back": "One line per key. Order doesn't matter; first matching key wins.",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Apply"
+  },
+  {
+    "id": "145fc1e25289",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Permission denied (publickey) — what do you check and fix?",
+    "back": "Check: ssh -vvv client; server auth log · Fix: Key not in authorized_keys; wrong user; wrong key file",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Analyze"
+  },
+  {
+    "id": "42127abcc197",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Still asks password — what do you check and fix?",
+    "back": "Check: PasswordAuthentication yes fallback · Fix: Install key; set PasswordAuthentication no after",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Analyze"
+  },
+  {
+    "id": "e1c896341787",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Authentication refused: bad ownership — what do you check and fix?",
+    "back": "Check: namei -l ~/.ssh · Fix: chmod 700 ~/.ssh; 600 authorized_keys; fix home perms",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Analyze"
+  },
+  {
+    "id": "77d81d2dcd5d",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Key works for A not B — what do you check and fix?",
+    "back": "Check: AllowUsers · Fix: Add user to AllowUsers or remove restriction",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Analyze"
+  },
+  {
+    "id": "6256e3099007",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: from= restriction fail — what do you check and fix?",
+    "back": "Check: Client IP changed · Fix: Update CIDR; check NAT egress IP",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Analyze"
+  },
+  {
+    "id": "9052aacb2be4",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: command= exits immediately — what do you check and fix?",
+    "back": "Check: Script path/shebang · Fix: ForceCommand logs in /var/log/auth.log",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Analyze"
+  },
+  {
+    "id": "ae62d74c7f71",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connection timeout (not denied) — what do you check and fix?",
+    "back": "Check: firewall, ListenAddress, SG · Fix: `ss -tlnp \\",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Analyze"
+  },
+  {
+    "id": "315bc5f78c32",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Root can't login — what do you check and fix?",
+    "back": "Check: PermitRootLogin no · Fix: Use sudo user; or prohibit-password + root key (discouraged)",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Analyze"
+  },
+  {
+    "id": "71618fc4884d",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with ssh allow local system with key: what silently fails?",
+    "back": "Lock yourself out — editing sshd_config / AllowUsers on only session. Keep console access; test sshd -t; use reload not restart; keep second session open.",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Evaluate"
+  },
+  {
+    "id": "5f960bab20cd",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use ssh allow local system with key?",
+    "back": "Shared private key across team — per-user keys + audit; use SSO bastion for org scale. command= bypass with scp — scp/sftp use different subsystem; design restrictions explicitly. PasswordAuthentication no before confirming key — classic outage pattern.",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Evaluate"
+  },
+  {
+    "id": "4647fb2ef6f2",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct ssh allow local system with key setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Client (private key) ──► SSH handshake ──► sshd ──► ~/.ssh/authorized_keys match?",
+    "source": "Back2Basics/ssh/ssh allow local system with key.md",
+    "section": "ssh allow local system with key · Create"
+  },
+  {
+    "id": "4005a25ec1ee",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Generate keys (RSA) in one sentence?",
+    "back": "Only someone with the private key can produce a valid signature - Anyone with the public key can check_signature, but they can't forge them. - The server never needs to see or store your private key. - Replay attacks are foiled because each challenge is random and temporary.",
+    "source": "Back2Basics/ssh/ssh login.md",
+    "section": "Generate keys (RSA) · Remember"
+  },
+  {
+    "id": "a6a8498f1b64",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Generate keys (RSA)?",
+    "back": "ssh user@server.example.com → ssh-keygen -t ed25519 -C \"you@example.com\" → openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048; → openssl rsa -in private.pem -pubout -out public.pem; → echo \"IAmARandomSring123456\" > challenge.txt;",
+    "source": "Back2Basics/ssh/ssh login.md",
+    "section": "Generate keys (RSA) · Apply"
+  },
+  {
+    "id": "eddb4b6e09d2",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Generate keys (RSA) setup, what is your first validation command?",
+    "back": "ssh user@server.example.com",
+    "source": "Back2Basics/ssh/ssh login.md",
+    "section": "Generate keys (RSA) · Apply"
+  },
+  {
+    "id": "97c1ebab6690",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Generate keys (RSA) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: ssh user@server.example.com",
+    "source": "Back2Basics/ssh/ssh login.md",
+    "section": "Generate keys (RSA) · Create"
+  },
+  {
+    "id": "bb3de52de94b",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ssh private network?",
+    "back": "Remove any wide-open ssh rule",
+    "source": "Back2Basics/ssh/ssh private network.md",
+    "section": "ssh private network · Remember"
+  },
+  {
+    "id": "55bb92019909",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for ssh private network?",
+    "back": "ip addr show | grep inet → sudo ufw delete allow 22; → sudo ufw delete allow ssh; → sudo ufw delete allow OpenSSH; → sudo ufw allow from 192.168.1.0/24 to any port 22 proto http",
+    "source": "Back2Basics/ssh/ssh private network.md",
+    "section": "ssh private network · Apply"
+  },
+  {
+    "id": "22aeccee9013",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken ssh private network setup, what is your first validation command?",
+    "back": "ip addr show | grep inet",
+    "source": "Back2Basics/ssh/ssh private network.md",
+    "section": "ssh private network · Apply"
+  },
+  {
+    "id": "ec5436776736",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct ssh private network setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: ip addr show | grep inet",
+    "source": "Back2Basics/ssh/ssh private network.md",
+    "section": "ssh private network · Create"
+  },
+  {
+    "id": "a6717aa83edf",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is sshd config in one sentence?",
+    "back": "One-line: server-side SSH policy in /etc/ssh/sshd_config (+ drop-ins) — who can connect, how they authenticate, what they can forward, and which sockets/keys the daemon exposes. OpenSSH sshd_config(5) + production hardening practice.",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Remember"
+  },
+  {
+    "id": "a55a1985888c",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "For ListenAddress in sshd config, what is the key fact?",
+    "back": "all interfaces — Bind bastion to public NIC, admin to VPN IP",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Remember"
+  },
+  {
+    "id": "297e9b043bd6",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "For KbdInteractiveAuthentication in sshd config, what is the key fact?",
+    "back": "no (explicit) — no — Challenge-response / keyboard-interactive",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Remember"
+  },
+  {
+    "id": "3472aa94c396",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "For UsePAM in sshd config, what is the key fact?",
+    "back": "yes (explicit) — yes — PAM account/session checks; enables password path when allowed",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Remember"
+  },
+  {
+    "id": "1250244c6b61",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "remember"
+    ],
+    "front": "For PermitRootLogin in sshd config, what is the key fact?",
+    "back": "prohibit-password — no — Root SSH policy",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Remember"
+  },
+  {
+    "id": "07c3ef90c6ca",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of sshd config (how the system thinks).",
+    "back": "sshd reads one effective config at startup (or reload) from /etc/ssh/sshd_config, which includes fragments under /etc/ssh/sshd_config.d/*.conf. OpenSSH ships defaults commented; any uncommented directive overrides the built-in default.",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Understand"
+  },
+  {
+    "id": "a80757c59841",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for sshd config?",
+    "back": "Client TCP :22 ──► sshd (or systemd ssh.socket) ──► sshd_config + .d/*.conf → ListenAddress/Port Auth stack (keys/PAM/password) Forwarding/Match rules → Host keys prove server authorized_keys / PAM / Kerberos shell / sftp / ForceCommand → Host-based auth trusts host keys + .rhosts — rare today; leave disabled unless you operate a legacy cluster. → Enable only when integrated with AD/Heimdal; otherwise noise and attack surface.",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Apply"
+  },
+  {
+    "id": "4fdac4f857c0",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken sshd config setup, what is your first validation command?",
+    "back": "Client TCP :22 ──► sshd (or systemd ssh.socket) ──► sshd_config + .d/*.conf",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Apply"
+  },
+  {
+    "id": "158b9b376f42",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for sshd config?",
+    "back": "On systemd socket-activated installs (common default), changing Port, AddressFamily, or ListenAddress requires regenerating the socket unit: sudo systemctl daemon-reload && sudo systemctl restart ssh.socket",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Apply"
+  },
+  {
+    "id": "c0591a37475f",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Config change ignored — what do you check and fix?",
+    "back": "Check: Drop-in override; wrong file · Fix: `sudo sshd -T \\",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Analyze"
+  },
+  {
+    "id": "ca1ea2851793",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: sshd: no hostkeys available — what do you check and fix?",
+    "back": "Check: Missing/regenerated keys · Fix: sudo ssh-keygen -A; verify HostKey paths",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Analyze"
+  },
+  {
+    "id": "8b76f6d16da6",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow SSH login — what do you check and fix?",
+    "back": "Check: Reverse DNS · Fix: UseDNS no; fix PTR or ignore",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Analyze"
+  },
+  {
+    "id": "bc3a14510432",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Password still works after no — what do you check and fix?",
+    "back": "Check: PAM / KbdInteractive path · Fix: sshd -T; set KbdInteractiveAuthentication no; check /etc/pam.d/sshd",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Analyze"
+  },
+  {
+    "id": "0b5573a1ab7f",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connection refused after port change — what do you check and fix?",
+    "back": "Check: systemd socket not updated · Fix: daemon-reload; restart ssh.socket; check ss -tlnp",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Analyze"
+  },
+  {
+    "id": "359e5bc9da15",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SFTP works, shell doesn't — what do you check and fix?",
+    "back": "Check: ForceCommand / Match · Fix: Review Match User blocks; sshd -T -C user=x,host=y,addr=z",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Analyze"
+  },
+  {
+    "id": "b225aaa089d7",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Locked out — what do you check and fix?",
+    "back": "Check: Bad AllowUsers / syntax · Fix: Serial console; recovery ISO; revert drop-in",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Analyze"
+  },
+  {
+    "id": "fcdcfaba6cd6",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: X11 apps fail — what do you check and fix?",
+    "back": "Check: Forwarding disabled · Fix: X11Forwarding yes; client -X/-Y; xauth on server",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Analyze"
+  },
+  {
+    "id": "082fcdcb7bab",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with sshd config: what silently fails?",
+    "back": "sshd -t does not catch logic errors — AllowUsers typo passes syntax but rejects everyone. Always open a second session before reload on remote hosts.",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Evaluate"
+  },
+  {
+    "id": "a2dc7e7c8109",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use sshd config?",
+    "back": "Don't edit sshd_config for client key selection — use ~/.ssh/config and IdentityFile (git ssh config). Don't rely on non-default Port alone — it's not access control; use firewall, keys, bastion. Don't enable PermitRootLogin or passwords to \"fix it quick\" — use console, fix keys/AllowUsers, then restore policy. Don't Match your way around bad IAM — per-user `Forc…",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Evaluate"
+  },
+  {
+    "id": "aa6959a39886",
+    "deck": "b2b-ssh",
+    "tags": [
+      "back2basics",
+      "ssh",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct sshd config setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Client TCP :22 ──► sshd (or systemd ssh.socket) ──► sshd_config + .d/*.conf",
+    "source": "Back2Basics/ssh/sshd config.md",
+    "section": "sshd config · Create"
+  }
+]

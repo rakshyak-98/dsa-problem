@@ -1,0 +1,2046 @@
+[
+  {
+    "id": "a36200cc0170",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is MongoDB data populate?",
+    "back": "MongoDB data populate — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/MongoDB/MongoDB data populate.md",
+    "section": "MongoDB data populate · Remember"
+  },
+  {
+    "id": "f35cbce5de96",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does MongoDB data populate matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/MongoDB/MongoDB data populate.md",
+    "section": "MongoDB data populate · Understand"
+  },
+  {
+    "id": "9d6b64fd25c4",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe MongoDB data populate checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/MongoDB/MongoDB data populate.md",
+    "section": "MongoDB data populate · Create"
+  },
+  {
+    "id": "bed2b2b545df",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is MongoDB query validation?",
+    "back": "The explain() method provides detailed insights into query execution, including index usage, scanned documents, and execution time.",
+    "source": "Back2Basics/MongoDB/MongoDB query validation.md",
+    "section": "MongoDB query validation · Remember"
+  },
+  {
+    "id": "2d596ae27ab9",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is nReturned?",
+    "back": "Number of documents returned by the query.",
+    "source": "Back2Basics/MongoDB/MongoDB query validation.md",
+    "section": "MongoDB query validation · Remember"
+  },
+  {
+    "id": "ab8ede860d44",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is totalKeysExamined?",
+    "back": "Number of index keys scanned.",
+    "source": "Back2Basics/MongoDB/MongoDB query validation.md",
+    "section": "MongoDB query validation · Remember"
+  },
+  {
+    "id": "a0fd5e5a97b5",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is totalDocsExamined?",
+    "back": "Number of documents scanned.",
+    "source": "Back2Basics/MongoDB/MongoDB query validation.md",
+    "section": "MongoDB query validation · Remember"
+  },
+  {
+    "id": "4f0a7ee2a3cc",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is executionTimeMillis?",
+    "back": "Total time taken by the query (in milliseconds).",
+    "source": "Back2Basics/MongoDB/MongoDB query validation.md",
+    "section": "MongoDB query validation · Remember"
+  },
+  {
+    "id": "c8b289b8d33f",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is indexName?",
+    "back": "Index used for the query.",
+    "source": "Back2Basics/MongoDB/MongoDB query validation.md",
+    "section": "MongoDB query validation · Remember"
+  },
+  {
+    "id": "3b3aed9decf4",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Slow Queries Log?",
+    "back": "Configure slowms to log queries taking longer than a specific time:",
+    "source": "Back2Basics/MongoDB/MongoDB query validation.md",
+    "section": "MongoDB query validation · Remember"
+  },
+  {
+    "id": "84e6ad3d4ec9",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Export Logs?",
+    "back": "Analyze using tools like Kibana or custom scripts.",
+    "source": "Back2Basics/MongoDB/MongoDB query validation.md",
+    "section": "MongoDB query validation · Remember"
+  },
+  {
+    "id": "0a6ecf654a0b",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for MongoDB query validation?",
+    "back": "MongoDB provides tools to monitor query performance across the database. → You can collect and analyze query logs to find slow operations.",
+    "source": "Back2Basics/MongoDB/MongoDB query validation.md",
+    "section": "MongoDB query validation · Apply"
+  },
+  {
+    "id": "1df84887c2c2",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken MongoDB query validation setup, what is your first validation command?",
+    "back": "MongoDB provides tools to monitor query performance across the database.",
+    "source": "Back2Basics/MongoDB/MongoDB query validation.md",
+    "section": "MongoDB query validation · Apply"
+  },
+  {
+    "id": "5d3132ff9bc1",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct MongoDB query validation setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: MongoDB provides tools to monitor query performance across the database.",
+    "source": "Back2Basics/MongoDB/MongoDB query validation.md",
+    "section": "MongoDB query validation · Create"
+  },
+  {
+    "id": "e514323269b8",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mognodb indexing?",
+    "back": "1. Single Field Index: Indexes created on a single field of a document. Example: Creating an index on the name field.",
+    "source": "Back2Basics/MongoDB/mognodb indexing.md",
+    "section": "mognodb indexing · Remember"
+  },
+  {
+    "id": "ef1c83e19851",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Improved Query Performance?",
+    "back": "Indexes allow MongoDB to quickly locate and retrieve the required documents, reducing the need for full collection scans.",
+    "source": "Back2Basics/MongoDB/mognodb indexing.md",
+    "section": "mognodb indexing · Remember"
+  },
+  {
+    "id": "0c8dc1d38a89",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Efficient Sorting?",
+    "back": "Indexes can be used to sort query results efficiently.",
+    "source": "Back2Basics/MongoDB/mognodb indexing.md",
+    "section": "mognodb indexing · Remember"
+  },
+  {
+    "id": "010858f875d0",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Support for Unique Constraints?",
+    "back": "Unique indexes ensure that the indexed field does not contain duplicate values.",
+    "source": "Back2Basics/MongoDB/mognodb indexing.md",
+    "section": "mognodb indexing · Remember"
+  },
+  {
+    "id": "dedff235d15f",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Optimized Geospatial Queries?",
+    "back": "Geospatial indexes enable efficient querying of location-based data.",
+    "source": "Back2Basics/MongoDB/mognodb indexing.md",
+    "section": "mognodb indexing · Remember"
+  },
+  {
+    "id": "49ff21876555",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Index Overhead?",
+    "back": "Indexes consume additional disk space and memory. It's essential to balance the number of indexes with the available resources.",
+    "source": "Back2Basics/MongoDB/mognodb indexing.md",
+    "section": "mognodb indexing · Remember"
+  },
+  {
+    "id": "807139d15ee5",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Write Performance?",
+    "back": "Indexes can impact write performance, as the database needs to update the indexes whenever documents are inserted, updated, or deleted.",
+    "source": "Back2Basics/MongoDB/mognodb indexing.md",
+    "section": "mognodb indexing · Remember"
+  },
+  {
+    "id": "4417a5e65166",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Index Selection?",
+    "back": "Choosing the right indexes based on query patterns is crucial for optimizing performance.",
+    "source": "Back2Basics/MongoDB/mognodb indexing.md",
+    "section": "mognodb indexing · Remember"
+  },
+  {
+    "id": "abbeb8da78ee",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is MongoDB connection in one sentence?",
+    "back": "URI + driver options that keep your app talking to the right cluster under load and failover — MongoDB Manual + production incident patterns.",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Remember"
+  },
+  {
+    "id": "3d52568bd8a7",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of MongoDB connection (how the system thinks).",
+    "back": "The driver maintains a connection pool to mongod/mongos processes. Each URI encodes auth, replica set name, TLS, and read/write preference. On startup the driver discovers topology (standalone → replica set → sharded). Writes go to the primary (unless you explicitly use secondary reads with caveats); reads follow readPreference.",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Understand"
+  },
+  {
+    "id": "250b34b0e1d3",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for MongoDB connection?",
+    "back": "App → Driver pool → Primary (writes)",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Apply"
+  },
+  {
+    "id": "493e01c1a940",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken MongoDB connection setup, what is your first validation command?",
+    "back": "App → Driver pool → Primary (writes)",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Apply"
+  },
+  {
+    "id": "d67cf6231812",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: getaddrinfo EAI_AGAIN — what do you check and fix?",
+    "back": "Check: dig host, Docker network, VPN · Fix: Fix DNS; use service name on same network",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Analyze"
+  },
+  {
+    "id": "88033dd15229",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: MongoServerSelectionError: timed out — what do you check and fix?",
+    "back": "Check: Firewall, SG, wrong port · Fix: Open 27017 between app ↔ DB; verify RS members reachable",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Analyze"
+  },
+  {
+    "id": "ffff57326990",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Authentication failed — what do you check and fix?",
+    "back": "Check: authSource, user DB · Fix: Create user in correct DB; match URI authSource",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Analyze"
+  },
+  {
+    "id": "20bd47c0db77",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: not primary on write — what do you check and fix?",
+    "back": "Check: rs.status() · Fix: Wait for election; fix primary; don't write to secondary",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Analyze"
+  },
+  {
+    "id": "9248ecfef8fd",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Pool exhausted / slow — what do you check and fix?",
+    "back": "Check: db.serverStatus().connections · Fix: Lower per-app maxPoolSize; scale app or DB",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Analyze"
+  },
+  {
+    "id": "c7ab1fcb8843",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: TLS handshake fail — what do you check and fix?",
+    "back": "Check: cert SAN, CA bundle · Fix: Add CA to trust store; use tlsCAFile",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Analyze"
+  },
+  {
+    "id": "1feb1cf3b248",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with MongoDB connection: what silently fails?",
+    "back": "Atlas IP allowlist — app on dynamic IP or new k8s node → connection works locally, fails in prod until IP added. Docker localhost — container localhost is itself, not host MongoDB. Use service name or host.docker.internal. Secondary reads — stale reads + no writes; use readPreference=secondaryPreferred only when you accept lag.",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Evaluate"
+  },
+  {
+    "id": "8beab5da0eb5",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use MongoDB connection?",
+    "back": "Don't open MongoDB to 0.0.0.0 on the public internet without TLS + auth + network ACL. Don't create one connection per request — always pool via driver/mongoose.",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Evaluate"
+  },
+  {
+    "id": "067e85a50dc4",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct MongoDB connection setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: App → Driver pool → Primary (writes)",
+    "source": "Back2Basics/MongoDB/mongodb connection.md",
+    "section": "MongoDB connection · Create"
+  },
+  {
+    "id": "5331d670975d",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongodb denormalization?",
+    "back": "The choice of design pattern depends on: 1. Access patterns: How the data is read and written. 2. Scalability needs: Whether horizontal scaling is a priority. 3. Data size and structure: Document size limits and data relationships. 4. Flexibility: Requirements fo…",
+    "source": "Back2Basics/MongoDB/mongodb denormalization.md",
+    "section": "mongodb denormalization · Remember"
+  },
+  {
+    "id": "14cd1fb14550",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for mongodb denormalization?",
+    "back": "Store related data in separate collections and reference by _id. → Example: Separate orders and customers. → Group related data into buckets to reduce the number of documents. → Example: Time-series data. → Separate outliers into a different collection to handle size constraints.",
+    "source": "Back2Basics/MongoDB/mongodb denormalization.md",
+    "section": "mongodb denormalization · Apply"
+  },
+  {
+    "id": "cb0aafcce8a4",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken mongodb denormalization setup, what is your first validation command?",
+    "back": "Store related data in separate collections and reference by _id.",
+    "source": "Back2Basics/MongoDB/mongodb denormalization.md",
+    "section": "mongodb denormalization · Apply"
+  },
+  {
+    "id": "68cfdf2d19ec",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct mongodb denormalization setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Store related data in separate collections and reference by _id.",
+    "source": "Back2Basics/MongoDB/mongodb denormalization.md",
+    "section": "mongodb denormalization · Create"
+  },
+  {
+    "id": "1fb6f47e7f15",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is MongoDB errors in one sentence?",
+    "back": "Symptom → cause → fix for the errors that show up in prod logs and Compass — MongoDB Manual + Mongoose gotchas.",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Remember"
+  },
+  {
+    "id": "5b2bcb3c0d22",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of MongoDB errors (how the system thinks).",
+    "back": "MongoDB errors fall into a few buckets: wire/auth (can't connect), write concern / topology (not primary, election), schema/validation (document shape), index/constraints (duplicate key), and query/update syntax (wrong operator shape). The message usually names the bucket; the fix is in the operator or topology state.",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Understand"
+  },
+  {
+    "id": "058775e96fc6",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for MongoDB errors?",
+    "back": "mongosh --eval 'rs.status()' # replica set health → mongosh --eval 'db.currentOp({ active: true })' → mongosh mydb --eval 'db.getCollectionNames()'",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Apply"
+  },
+  {
+    "id": "da7d0bf66690",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken MongoDB errors setup, what is your first validation command?",
+    "back": "mongosh --eval 'rs.status()' # replica set health",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Apply"
+  },
+  {
+    "id": "6f2378f47de3",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Modifiers operate on fields but we found type string — what do you check and fix?",
+    "back": "Check: Update payload shape · Fix: $set, $inc, etc. need { field: value }, not a bare string",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Analyze"
+  },
+  {
+    "id": "9b58198aacc2",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: E11000 duplicate key error — what do you check and fix?",
+    "back": "Check: Index definition · Fix: Remove dup doc or fix unique index fields",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Analyze"
+  },
+  {
+    "id": "bb616675e14c",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Document failed validation — what do you check and fix?",
+    "back": "Check: JSON Schema / $jsonSchema · Fix: Align insert with validator or relax rules in dev",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Analyze"
+  },
+  {
+    "id": "f1ad577b5b9d",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: not primary and secondaryOk=false — what do you check and fix?",
+    "back": "Check: rs.status() · Fix: Route writes to primary; wait for election",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Analyze"
+  },
+  {
+    "id": "30f720045405",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Executor error: Sort exceeded memory limit — what do you check and fix?",
+    "back": "Check: explain(\"executionStats\") · Fix: Add index matching sort; or { allowDiskUse: true } (aggregation)",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Analyze"
+  },
+  {
+    "id": "b4d47cfe324b",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: BSONObj size: ... is invalid. Size must be between 0 and 16793600 — what do you check and fix?",
+    "back": "Check: Document size · Fix: Split doc, use GridFS for blobs — see GridFS",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Analyze"
+  },
+  {
+    "id": "fa49643e9fef",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: MongoTimeoutError — what do you check and fix?",
+    "back": "Check: Network, pool, load · Fix: See mongodb connection triage table",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Analyze"
+  },
+  {
+    "id": "2cd8830b2a04",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with MongoDB errors: what silently fails?",
+    "back": "Mongoose updateOne without $set — { name: \"x\" } replaces entire doc in some paths; use $set explicitly for partial updates. Case-sensitive field names — { Email: 1 } index ≠ { email: 1 }; duplicates slip through. Silent undefined strips — Mongoose omits undefined keys; can look like \"update didn't work\".",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Evaluate"
+  },
+  {
+    "id": "2f03ab361ab4",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use MongoDB errors?",
+    "back": "Don't blanket catch and retry without reading error code — duplicate key and validation errors won't heal on retry. Don't disable write concern globally to \"fix\" timeout errors.",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Evaluate"
+  },
+  {
+    "id": "34808e179cc7",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct MongoDB errors setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: mongosh --eval 'rs.status()' # replica set health",
+    "source": "Back2Basics/MongoDB/mongodb errors.md",
+    "section": "MongoDB errors · Create"
+  },
+  {
+    "id": "6132e6b474f5",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongodb migration?",
+    "back": "mongodb migration — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/MongoDB/mongodb migration.md",
+    "section": "mongodb migration · Remember"
+  },
+  {
+    "id": "e7b3069a870d",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does mongodb migration matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/MongoDB/mongodb migration.md",
+    "section": "mongodb migration · Understand"
+  },
+  {
+    "id": "7799d1889ad4",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe mongodb migration checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/MongoDB/mongodb migration.md",
+    "section": "mongodb migration · Create"
+  },
+  {
+    "id": "9dafddc0ff7a",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is MongoDB model (Mongoose schema) in one sentence?",
+    "back": "Schema + indexes + hooks that define document shape, constraints, and query paths — Mongoose docs + DBA review habits.",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Remember"
+  },
+  {
+    "id": "3b0ffc49720d",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of MongoDB model (Mongoose schema) (how the system thinks).",
+    "back": "A model is a compiled schema bound to a collection. The schema declares fields, types, defaults, validators, indexes, and middleware. MongoDB is schemaless at storage time; Mongoose enforces structure at the application layer unless you bypass it with strict: false or raw collection calls.",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Understand"
+  },
+  {
+    "id": "335793fd1220",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for MongoDB model (Mongoose schema)?",
+    "back": "Schema (shape + rules) → Model (collection API) → MongoDB collection → indexes, hooks, virtuals",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Apply"
+  },
+  {
+    "id": "51356f4acec8",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken MongoDB model (Mongoose schema) setup, what is your first validation command?",
+    "back": "Schema (shape + rules) → Model (collection API) → MongoDB collection",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Apply"
+  },
+  {
+    "id": "b7e08bc7fd8e",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: E11000 on compound field — what do you check and fix?",
+    "back": "Check: db.users.getIndexes() · Fix: Fix duplicate data; confirm index key order matches query",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Analyze"
+  },
+  {
+    "id": "a28986cdeda8",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ValidationError on save — what do you check and fix?",
+    "back": "Check: Schema path + required · Fix: Align payload; use runValidators: true on updates",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Analyze"
+  },
+  {
+    "id": "f1797f58b6c3",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Field missing after update — what do you check and fix?",
+    "back": "Check: strict mode · Fix: Add field to schema or use $set with defined paths",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Analyze"
+  },
+  {
+    "id": "0fd5d3c0b159",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow list queries — what do you check and fix?",
+    "back": "Check: explain() · Fix: Add index on filter + sort fields",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Analyze"
+  },
+  {
+    "id": "d918d93a0865",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stale subdocs — what do you check and fix?",
+    "back": "Check: .markModified('path') · Fix: Required when Mixed/Array mutated in place",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Analyze"
+  },
+  {
+    "id": "d4a83a605ee8",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with MongoDB model (Mongoose schema): what silently fails?",
+    "back": "Unique index created after dupes exist — build fails or index stays partial; clean data first. field1 typo in index — { filed1: 1 } creates useless index; queries won't use it. Hooks don't run on updateMany — use middleware type updateOne/findOneAndUpdate or move logic to service layer.",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Evaluate"
+  },
+  {
+    "id": "e0ae95117d94",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use MongoDB model (Mongoose schema)?",
+    "back": "Don't mirror SQL normalized schemas 1:1 — embed when read together, reference when independent lifecycle. Don't skip indexes because \"Mongo is fast\" — unindexed collection scans hurt at scale.",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Evaluate"
+  },
+  {
+    "id": "cb2a00432da4",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct MongoDB model (Mongoose schema) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Schema (shape + rules) → Model (collection API) → MongoDB collection",
+    "source": "Back2Basics/MongoDB/mongodb model.md",
+    "section": "MongoDB model (Mongoose schema) · Create"
+  },
+  {
+    "id": "5a0f783e1a28",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is MongoDB replica set in one sentence?",
+    "back": "Primary + secondaries + oplog for durability and automatic failover — MongoDB Manual (Kleppmann-style distributed ops).",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Remember"
+  },
+  {
+    "id": "514398dd6edf",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of MongoDB replica set (how the system thinks).",
+    "back": "A replica set is a group of mongod processes that replicate the same data. One primary accepts writes; secondaries pull from the primary's oplog (capped collection of operations). Arbiters vote in elections but hold no data. Members heartbeat each other; primary loss triggers election (~seconds).",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Understand"
+  },
+  {
+    "id": "1758ef85b466",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for MongoDB replica set?",
+    "back": "Client writes → Primary → oplog → Secondaries (async lag possible) → Arbiter (vote only)",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Apply"
+  },
+  {
+    "id": "a8af78649ac4",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken MongoDB replica set setup, what is your first validation command?",
+    "back": "Client writes → Primary → oplog",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Apply"
+  },
+  {
+    "id": "1af89b7d48ab",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: No primary / RECOVERING — what do you check and fix?",
+    "back": "Check: rs.status() · Fix: Fix network; restore member; re-sync secondary",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Analyze"
+  },
+  {
+    "id": "1bb7151fdf2d",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: High replication lag — what do you check and fix?",
+    "back": "Check: rs.printSlaveReplicationInfo() · Fix: Scale primary load; disk I/O; index hot writes",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Analyze"
+  },
+  {
+    "id": "5691c0f38c65",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Rollback after failover — what do you check and fix?",
+    "back": "Check: Logs \"rollback\" · Fix: Re-sync affected secondary from backup",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Analyze"
+  },
+  {
+    "id": "9ad65c5f7819",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Split-brain (two primaries) — what do you check and fix?",
+    "back": "Check: rs.conf() priorities, votes · Fix: Odd number of voting members; fix network partition",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Analyze"
+  },
+  {
+    "id": "a2b57b68c169",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Writes fail during election — what do you check and fix?",
+    "back": "Check: Brief window · Fix: Retry with backoff; tune serverSelectionTimeoutMS",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Analyze"
+  },
+  {
+    "id": "1042ab98660b",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Arbiter-only RS (even count) — what do you check and fix?",
+    "back": "Check: Design review · Fix: Prefer 3 data-bearing nodes; arbiter is cost hack with risk",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Analyze"
+  },
+  {
+    "id": "e8c8f679a464",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with MongoDB replica set: what silently fails?",
+    "back": "Read from secondary without secondaryOk — driver defaults to primary for consistency. Write concern { w: 1 } only — ack from primary ≠ replicated; data loss if primary dies before replicate. Hidden/delayed secondaries — good for DR/analytics; don't point prod reads at delayed node.",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Evaluate"
+  },
+  {
+    "id": "27f2522922f5",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use MongoDB replica set?",
+    "back": "Don't run production on standalone mongod — no failover, no oplog backup story. Don't use arbiters as a substitute for a third data node when you care about durability.",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Evaluate"
+  },
+  {
+    "id": "49e13640f77b",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct MongoDB replica set setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Client writes → Primary → oplog",
+    "source": "Back2Basics/MongoDB/mongodb replicaset.md",
+    "section": "MongoDB replica set · Create"
+  },
+  {
+    "id": "647be0fb436f",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongodb schema?",
+    "back": "mongodb schema — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/MongoDB/mongodb schema.md",
+    "section": "mongodb schema · Remember"
+  },
+  {
+    "id": "369e379c5010",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does mongodb schema matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/MongoDB/mongodb schema.md",
+    "section": "mongodb schema · Understand"
+  },
+  {
+    "id": "0a75ae078769",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe mongodb schema checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/MongoDB/mongodb schema.md",
+    "section": "mongodb schema · Create"
+  },
+  {
+    "id": "beabd546ad34",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongodb shell?",
+    "back": "mongodb shell run Command",
+    "source": "Back2Basics/MongoDB/mongodb shell.md",
+    "section": "mongodb shell · Remember"
+  },
+  {
+    "id": "ae1a10d20b8e",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for mongodb shell?",
+    "back": "db.createCollection(\"users\", { → validator: { → bsonType: \"object\", → required: [\"name\", \"email\", \"age\"], → properties: {",
+    "source": "Back2Basics/MongoDB/mongodb shell.md",
+    "section": "mongodb shell · Apply"
+  },
+  {
+    "id": "cb4915098d16",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken mongodb shell setup, what is your first validation command?",
+    "back": "db.createCollection(\"users\", {",
+    "source": "Back2Basics/MongoDB/mongodb shell.md",
+    "section": "mongodb shell · Apply"
+  },
+  {
+    "id": "03113b70315a",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct mongodb shell setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: db.createCollection(\"users\", {",
+    "source": "Back2Basics/MongoDB/mongodb shell.md",
+    "section": "mongodb shell · Create"
+  },
+  {
+    "id": "358c24d84929",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongodb view?",
+    "back": "mongodb view — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/MongoDB/mongodb view.md",
+    "section": "mongodb view · Remember"
+  },
+  {
+    "id": "f84c1637e3de",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does mongodb view matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/MongoDB/mongodb view.md",
+    "section": "mongodb view · Understand"
+  },
+  {
+    "id": "0e82fc5a256a",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe mongodb view checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/MongoDB/mongodb view.md",
+    "section": "mongodb view · Create"
+  },
+  {
+    "id": "0070ff75362c",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Mongoose plugin in one sentence?",
+    "back": "Reusable schema functions that add paths, indexes, methods, or hooks without copy-paste — Mongoose plugins docs.",
+    "source": "Back2Basics/MongoDB/mongoose/Mongoose plugin.md",
+    "section": "Mongoose plugin · Remember"
+  },
+  {
+    "id": "5733d66226d9",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Mongoose plugin (how the system thinks).",
+    "back": "A plugin is a function (schema, options) => void registered on a schema before mongoose.model(). Global plugins apply to every schema. Plugins compose: one adds soft-delete, another adds pagination, another adds audit fields.",
+    "source": "Back2Basics/MongoDB/mongoose/Mongoose plugin.md",
+    "section": "Mongoose plugin · Understand"
+  },
+  {
+    "id": "054306d2b4c6",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Mongoose plugin?",
+    "back": "plugin(schema) → adds paths / hooks / statics → schema.plugin(plugin, opts) → per-schema → mongoose.plugin(plugin) → global (all schemas)",
+    "source": "Back2Basics/MongoDB/mongoose/Mongoose plugin.md",
+    "section": "Mongoose plugin · Apply"
+  },
+  {
+    "id": "4ba454caaa25",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Mongoose plugin setup, what is your first validation command?",
+    "back": "plugin(schema) → adds paths / hooks / statics",
+    "source": "Back2Basics/MongoDB/mongoose/Mongoose plugin.md",
+    "section": "Mongoose plugin · Apply"
+  },
+  {
+    "id": "5b0a5f6c94b3",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Plugin hook never runs — what do you check and fix?",
+    "back": "Check: Order of plugin() vs model() · Fix: Register plugin before mongoose.model()",
+    "source": "Back2Basics/MongoDB/mongoose/Mongoose plugin.md",
+    "section": "Mongoose plugin · Analyze"
+  },
+  {
+    "id": "907466a0d6cc",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Global plugin breaks one schema — what do you check and fix?",
+    "back": "Check: schema.plugin override · Fix: Disable per-schema or guard with option flag",
+    "source": "Back2Basics/MongoDB/mongoose/Mongoose plugin.md",
+    "section": "Mongoose plugin · Analyze"
+  },
+  {
+    "id": "fca3a8b02115",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate index from plugin — what do you check and fix?",
+    "back": "Check: schema.indexes() · Fix: Merge indexes; one plugin owns index",
+    "source": "Back2Basics/MongoDB/mongoose/Mongoose plugin.md",
+    "section": "Mongoose plugin · Analyze"
+  },
+  {
+    "id": "8121bf970251",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Method not on document — what do you check and fix?",
+    "back": "Check: Applied to wrong schema · Fix: Confirm schema.plugin on correct schema",
+    "source": "Back2Basics/MongoDB/mongoose/Mongoose plugin.md",
+    "section": "Mongoose plugin · Analyze"
+  },
+  {
+    "id": "eed9a7c18e8f",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Mongoose plugin: what silently fails?",
+    "back": "Plugin order matters — pre-hooks run in registration order; conflicting plugins need explicit ordering. Global plugins in tests — leak across test files; call mongoose.deleteModel() / isolate connections. Over-plugining — magic behavior hides in hooks; hard to debug \"who filtered this query?\".",
+    "source": "Back2Basics/MongoDB/mongoose/Mongoose plugin.md",
+    "section": "Mongoose plugin · Evaluate"
+  },
+  {
+    "id": "af8891d2ed49",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Mongoose plugin?",
+    "back": "Don't plugin one-off business logic — plain schema methods or service layer is clearer. Don't global-plugin heavy side effects (external API calls) without opt-in per schema.",
+    "source": "Back2Basics/MongoDB/mongoose/Mongoose plugin.md",
+    "section": "Mongoose plugin · Evaluate"
+  },
+  {
+    "id": "4f8f3ea8f22b",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Mongoose plugin setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: plugin(schema) → adds paths / hooks / statics",
+    "source": "Back2Basics/MongoDB/mongoose/Mongoose plugin.md",
+    "section": "Mongoose plugin · Create"
+  },
+  {
+    "id": "5541396e5bc7",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongoose custome function?",
+    "back": "mongoose custome function — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose custome function.md",
+    "section": "mongoose custome function · Remember"
+  },
+  {
+    "id": "5a2e797676d6",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does mongoose custome function matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose custome function.md",
+    "section": "mongoose custome function · Understand"
+  },
+  {
+    "id": "3c2be1505529",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe mongoose custome function checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose custome function.md",
+    "section": "mongoose custome function · Create"
+  },
+  {
+    "id": "fe6bced634fd",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongoose methods?",
+    "back": "mongoose methods — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose methods.md",
+    "section": "mongoose methods · Remember"
+  },
+  {
+    "id": "927528a826b3",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does mongoose methods matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose methods.md",
+    "section": "mongoose methods · Understand"
+  },
+  {
+    "id": "b7a41900445b",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe mongoose methods checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose methods.md",
+    "section": "mongoose methods · Create"
+  },
+  {
+    "id": "7e7995b8046a",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongoose schema?",
+    "back": "mongoose schema — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose schema.md",
+    "section": "mongoose schema · Remember"
+  },
+  {
+    "id": "56b02396868d",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does mongoose schema matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose schema.md",
+    "section": "mongoose schema · Understand"
+  },
+  {
+    "id": "465db4a2de6d",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe mongoose schema checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose schema.md",
+    "section": "mongoose schema · Create"
+  },
+  {
+    "id": "431e258c1bf9",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongoose?",
+    "back": "mongoose — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose.md",
+    "section": "mongoose · Remember"
+  },
+  {
+    "id": "817c74c8abcb",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does mongoose matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose.md",
+    "section": "mongoose · Understand"
+  },
+  {
+    "id": "4d37d1492279",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe mongoose checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/MongoDB/mongoose/mongoose.md",
+    "section": "mongoose · Create"
+  },
+  {
+    "id": "d1a8f8dc3f45",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Mongoose middleware in one sentence?",
+    "back": "Pre/post hooks on document and query lifecycle — powerful cross-cutting layer that hides bugs when misused — Mongoose docs + production scars.",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Remember"
+  },
+  {
+    "id": "5275f9080228",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Mongoose middleware (how the system thinks).",
+    "back": "Middleware runs between Mongoose API call and MongoDB operation. Hooks attach to save, validate, remove, and **find* query methods** — not all methods trigger all hook types.",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Understand"
+  },
+  {
+    "id": "4b9a870ff5da",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Request hangs forever — what do you check and fix?",
+    "back": "Check: Missing next() in sync pre · Fix: Add next() or switch to async/await",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Analyze"
+  },
+  {
+    "id": "533741b94686",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Password not hashed on update — what do you check and fix?",
+    "back": "Check: Used updateOne not save · Fix: Query middleware on findOneAndUpdate or hash in service layer",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Analyze"
+  },
+  {
+    "id": "c8fbbaf1aa83",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Infinite loop — what do you check and fix?",
+    "back": "Check: post('save') calls doc.save() · Fix: Remove recursive save; use updateOne or flag",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Analyze"
+  },
+  {
+    "id": "4226e9bc8d2b",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Hook didn't run — what do you check and fix?",
+    "back": "Check: Wrong op (insertMany skips some) · Fix: Use supported hook or explicit service function",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Analyze"
+  },
+  {
+    "id": "aa97eb8bb21a",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Tests flaky — what do you check and fix?",
+    "back": "Check: Parallel saves; shared doc state · Fix: Isolate fixtures; sinon stub hooks",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Analyze"
+  },
+  {
+    "id": "56c3f39928f6",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Data differs prod vs script — what do you check and fix?",
+    "back": "Check: Script uses collection API directly · Fix: Scripts bypass Mongoose — duplicate logic or use models",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Analyze"
+  },
+  {
+    "id": "9e94ce8ecc05",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: this is wrong in arrow fn — what do you check and fix?",
+    "back": "Check: Arrow doesn't bind document this · Fix: Use function () {} in document hooks",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Analyze"
+  },
+  {
+    "id": "2d233c463618",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Mongoose middleware: what silently fails?",
+    "back": "findOneAndUpdate bypasses save middleware — most common prod bug. Password/hash hooks on pre('save') silently skipped.",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Evaluate"
+  },
+  {
+    "id": "61a1df59e84a",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Mongoose middleware?",
+    "back": "Authorization / tenancy — enforce at API/gateway layer; query middleware is defense-in-depth only. Cross-collection invariants — use transaction + explicit domain service, not cascading hooks. Heavy I/O in pre hooks — blocks request; queue async job in post-commit hook or outbox pattern.",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Evaluate"
+  },
+  {
+    "id": "bcee19ecf1aa",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Mongoose middleware setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Pre/post hooks on document and query lifecycle — powerful cross-cutting layer that hides bugs when misused — **Mongoose docs + production sc",
+    "source": "Back2Basics/MongoDB/mongoose middleware.md",
+    "section": "Mongoose middleware · Create"
+  },
+  {
+    "id": "7ca592337115",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongosh query?",
+    "back": "To fetch documents where the reportingManager field contains more than one ObjectId, you can use the $expr operator to check the length of the array. Here's the query:",
+    "source": "Back2Basics/MongoDB/mongosh query.md",
+    "section": "mongosh query · Remember"
+  },
+  {
+    "id": "ff0ae049a43c",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is $unset?",
+    "back": "This operator removes the specified fields from the document.",
+    "source": "Back2Basics/MongoDB/mongosh query.md",
+    "section": "mongosh query · Remember"
+  },
+  {
+    "id": "c005e80162c1",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is key1, key2?",
+    "back": "Replace these with the actual field names you want to remove. You can remove multiple fields by adding more key-value pairs (keys as field names and values as empty strings).",
+    "source": "Back2Basics/MongoDB/mongosh query.md",
+    "section": "mongosh query · Remember"
+  },
+  {
+    "id": "a1380ccdace6",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for mongosh query?",
+    "back": "To remove keys (fields) from a document in MongoDB, you can use the $unset operator. Here's the query to remove one or more keys from a document: → query operator used to match one or more elements of an array that satisfy all the specified conditions in a single query.",
+    "source": "Back2Basics/MongoDB/mongosh query.md",
+    "section": "mongosh query · Apply"
+  },
+  {
+    "id": "0f48096fa138",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken mongosh query setup, what is your first validation command?",
+    "back": "To remove keys (fields) from a document in MongoDB, you can use the $unset operator. Here's the query to remove one or more keys from a document:",
+    "source": "Back2Basics/MongoDB/mongosh query.md",
+    "section": "mongosh query · Apply"
+  },
+  {
+    "id": "a1b5b600dbc6",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct mongosh query setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: To remove keys (fields) from a document in MongoDB, you can use the $unset operator. Here's the query to remove one or more keys from a document:",
+    "source": "Back2Basics/MongoDB/mongosh query.md",
+    "section": "mongosh query · Create"
+  },
+  {
+    "id": "ec9975b3b5b6",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongosh user management?",
+    "back": "mongosh user management — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/MongoDB/mongosh user management.md",
+    "section": "mongosh user management · Remember"
+  },
+  {
+    "id": "73233a681211",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does mongosh user management matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/MongoDB/mongosh user management.md",
+    "section": "mongosh user management · Understand"
+  },
+  {
+    "id": "a8c0cf02b300",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe mongosh user management checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/MongoDB/mongosh user management.md",
+    "section": "mongosh user management · Create"
+  },
+  {
+    "id": "d7e418096693",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongosh?",
+    "back": "mongosh — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/MongoDB/mongosh.md",
+    "section": "mongosh · Remember"
+  },
+  {
+    "id": "57ec5548ab79",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does mongosh matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/MongoDB/mongosh.md",
+    "section": "mongosh · Understand"
+  },
+  {
+    "id": "2671624ad35c",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe mongosh checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/MongoDB/mongosh.md",
+    "section": "mongosh · Create"
+  },
+  {
+    "id": "0252a97ca3d9",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongoDB Group query?",
+    "back": "to group based on two keys, you need to structure _id as an object containing both fields in the $group stage.",
+    "source": "Back2Basics/MongoDB/query/mongoDB Group query.md",
+    "section": "mongoDB Group query · Remember"
+  },
+  {
+    "id": "5549c47cff8d",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for mongoDB Group query?",
+    "back": "this approach is useful when you need both the total count and the grouped results without making two separate queries.",
+    "source": "Back2Basics/MongoDB/query/mongoDB Group query.md",
+    "section": "mongoDB Group query · Apply"
+  },
+  {
+    "id": "b64a6a12f2f7",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken mongoDB Group query setup, what is your first validation command?",
+    "back": "this approach is useful when you need both the total count and the grouped results without making two separate queries.",
+    "source": "Back2Basics/MongoDB/query/mongoDB Group query.md",
+    "section": "mongoDB Group query · Apply"
+  },
+  {
+    "id": "5c17ba1e2642",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct mongoDB Group query setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: this approach is useful when you need both the total count and the grouped results without making two separate queries.",
+    "source": "Back2Basics/MongoDB/query/mongoDB Group query.md",
+    "section": "mongoDB Group query · Create"
+  },
+  {
+    "id": "639f509f8089",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mongodb lookup query?",
+    "back": "preserveNullAndEmptyArrays in $unwind - is optional parameter is MongoDB's $unwind stage. - it controls whether documents that have null or empty arrays in the specified field should be preserved or removed from the aggregation result.",
+    "source": "Back2Basics/MongoDB/query/mongodb lookup query.md",
+    "section": "mongodb lookup query · Remember"
+  },
+  {
+    "id": "18c9e96e6811",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for mongodb lookup query?",
+    "back": "you can use the $lookup stage followed by the $unwind stage. → it is used to perform more complex joins, Instead of just a simple match localField <-> foreignField → you can match multiple fields by leveraging the $expr operator inside the $lookup pipeline.",
+    "source": "Back2Basics/MongoDB/query/mongodb lookup query.md",
+    "section": "mongodb lookup query · Apply"
+  },
+  {
+    "id": "a2466d3961a2",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken mongodb lookup query setup, what is your first validation command?",
+    "back": "you can use the $lookup stage followed by the $unwind stage.",
+    "source": "Back2Basics/MongoDB/query/mongodb lookup query.md",
+    "section": "mongodb lookup query · Apply"
+  },
+  {
+    "id": "456d7f139c9c",
+    "deck": "b2b-mongodb",
+    "tags": [
+      "back2basics",
+      "mongodb",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct mongodb lookup query setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: you can use the $lookup stage followed by the $unwind stage.",
+    "source": "Back2Basics/MongoDB/query/mongodb lookup query.md",
+    "section": "mongodb lookup query · Create"
+  }
+]

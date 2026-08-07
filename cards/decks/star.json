@@ -1,0 +1,146 @@
+[
+  {
+    "id": "baa008797050",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR: Reporting query performance (+35%) — MST — rehearse S→T→A→R",
+    "back": "S: High-volume analytics queries on the no-code page builder were slow, blocking reporting dashboards. T: Improve reporting query performance without breaking schema versioning or audit history. A: Analyzed slow queries with EXPLAIN; added composite indexes on filter columns; refactored joins to reduce row scans; normalized hot paths while keeping denormalized read models where needed. R: 35% faster reporting queries; dashboards stayed accurate with governance and publishing workflows intact.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "Reporting query performance (+35%) — MST"
+  },
+  {
+    "id": "759be9df9316",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR keywords: Reporting query performance (+35%) — MST?",
+    "back": "MySQL, indexing, SQL refactoring, relational modeling, analytics.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "Reporting query performance (+35%) — MST"
+  },
+  {
+    "id": "75cb5d0209aa",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR: API latency reduction (-40%) — iBind — rehearse S→T→A→R",
+    "back": "S: Real-time video platform APIs were too slow under concurrent load. T: Cut API latency for WebSocket-adjacent REST endpoints serving session and user state. A: Profiled request path; optimized SQL (removed N+1); tuned connection pool size; added Redis caching for hot reads; trimmed middleware overhead. R: 40% lower API latency; smoother real-time experience alongside WebRTC media.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "API latency reduction (-40%) — iBind"
+  },
+  {
+    "id": "590f363ea51e",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR keywords: API latency reduction (-40%) — iBind?",
+    "back": "query optimization, connection pooling, caching, real-time workloads.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "API latency reduction (-40%) — iBind"
+  },
+  {
+    "id": "d166b7a68318",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR: Resilient inter-service communication — iBind — rehearse S→T→A→R",
+    "back": "S: Transient downstream failures caused cascading errors in the video platform. T: Redesign inter-service calls for resilience without hiding real outages. A: Introduced exponential backoff retries for idempotent calls; circuit breakers to fail fast when downstream unhealthy; structured errors for clients; timeouts on every outbound call. R: Isolated transient failures; improved maintainability and integration reliability.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "Resilient inter-service communication — iBind"
+  },
+  {
+    "id": "78a5b2f4d6fc",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR keywords: Resilient inter-service communication — iBind?",
+    "back": "circuit breaker, exponential backoff, distributed systems, JWT REST APIs.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "Resilient inter-service communication — iBind"
+  },
+  {
+    "id": "da271ff7ae9d",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR: ZATCA invoice pipeline (-25% processing time) — Opscale — rehearse S→T→A→R",
+    "back": "S: Saudi ZATCA e-invoicing required XML validation, cryptographic signing, and secure submission at high volume. T: Keep compliance while reducing end-to-end invoice processing time. A: Designed Airflow DAGs with retry policies and idempotent tasks; batched workloads; parallelized independent stages; automated recovery on failure. R: 25% faster invoice processing; fewer pipeline failures; compliance maintained.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "ZATCA invoice pipeline (-25% processing time) — Opscale"
+  },
+  {
+    "id": "8f075b408bc4",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR keywords: ZATCA invoice pipeline (-25% processing time) — Opscale?",
+    "back": "Apache Airflow, XML validation, cryptographic signing, idempotency, batching.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "ZATCA invoice pipeline (-25% processing time) — Opscale"
+  },
+  {
+    "id": "48d4d5616fdf",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR: WebRTC across NAT — iBind — rehearse S→T→A→R",
+    "back": "S: Users on NAT-restricted networks could not establish stable video calls. T: Deliver P2P video with stable connectivity across corporate and mobile NATs. A: Integrated WebSocket signaling; WebRTC with STUN for address discovery; TURN fallback when direct P2P blocked; tuned ICE gathering and connection state handling. R: Stable conferencing across NAT-restricted networks.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "WebRTC across NAT — iBind"
+  },
+  {
+    "id": "e9d810e7d93b",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR keywords: WebRTC across NAT — iBind?",
+    "back": "WebRTC, WebSocket, STUN, TURN, peer-to-peer.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "WebRTC across NAT — iBind"
+  },
+  {
+    "id": "e05ede91e20f",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR: Jenkins CI/CD — iBind — rehearse S→T→A→R",
+    "back": "S: Manual releases were slow and error-prone. T: Automate build, test, and deployment for faster repeatable releases. A: Set up Jenkins pipelines: checkout → build → unit tests → artifact → deploy to staging/prod with gates; Docker images for consistent runtime. R: Faster releases, repeatable deployments, improved team velocity.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "Jenkins CI/CD — iBind"
+  },
+  {
+    "id": "6c99eab82666",
+    "deck": "star",
+    "tags": [
+      "backend",
+      "star"
+    ],
+    "front": "STAR keywords: Jenkins CI/CD — iBind?",
+    "back": "Jenkins, CI/CD, Docker, automation.",
+    "source": "doc/backend/STAR_STORIES.md",
+    "section": "Jenkins CI/CD — iBind"
+  }
+]

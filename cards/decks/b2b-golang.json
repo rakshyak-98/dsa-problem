@@ -1,0 +1,1248 @@
+[
+  {
+    "id": "f04bcc033f6e",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Makefile?",
+    "back": ".PHONY is used in a Makefile to declare phony targets. phony targets are not actual files but are names for commands that should always be executed when specified. this helps avoid conflicts with files that have the same name as the target.",
+    "source": "Back2Basics/golang/Makefile.md",
+    "section": "Makefile · Remember"
+  },
+  {
+    "id": "71130c2126ac",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Makefile?",
+    "back": ".PHONY: all build run clean → all: bulid → build: → go build -o p2p-client cmd/main.go → run build:",
+    "source": "Back2Basics/golang/Makefile.md",
+    "section": "Makefile · Apply"
+  },
+  {
+    "id": "e38a65c811c8",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Makefile setup, what is your first validation command?",
+    "back": ".PHONY: all build run clean",
+    "source": "Back2Basics/golang/Makefile.md",
+    "section": "Makefile · Apply"
+  },
+  {
+    "id": "8b11cd8a833b",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Makefile setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: .PHONY: all build run clean",
+    "source": "Back2Basics/golang/Makefile.md",
+    "section": "Makefile · Create"
+  },
+  {
+    "id": "22466e5ee57b",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Unbuffered channel?",
+    "back": "Unbuffered channel — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/golang/Unbuffered channel.md",
+    "section": "Unbuffered channel · Remember"
+  },
+  {
+    "id": "39ed6c9081e0",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Unbuffered channel matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/golang/Unbuffered channel.md",
+    "section": "Unbuffered channel · Understand"
+  },
+  {
+    "id": "35b67ea3d8c7",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Unbuffered channel checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/golang/Unbuffered channel.md",
+    "section": "Unbuffered channel · Create"
+  },
+  {
+    "id": "00c7bd3bb2e7",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Go SOLID (idiomatic Go) in one sentence?",
+    "back": "SOLID adapted to Go's interfaces, composition, and small-package culture — not Java inheritance.",
+    "source": "Back2Basics/golang/go SOLID.md",
+    "section": "Go SOLID (idiomatic Go) · Remember"
+  },
+  {
+    "id": "644d1f506bf8",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Go SOLID (idiomatic Go) (how the system thinks).",
+    "back": "Go favors composition over inheritance. Interfaces are implicit (duck typing). SOLID still applies but looks different: small interfaces (ISP), struct embedding (OCP-ish), constructor functions (DIP via interfaces in main).",
+    "source": "Back2Basics/golang/go SOLID.md",
+    "section": "Go SOLID (idiomatic Go) · Understand"
+  },
+  {
+    "id": "107cf46bb1ce",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Go SOLID (idiomatic Go): what silently fails?",
+    "back": "Interfaces only declare methods — no fields on interfaces in Go. Premature interfaces — define at consumer, not producer (\"accept interfaces, return structs\"). Embedding for \"inheritance\" — promoted methods can break LSP if base type isn't substitutable.",
+    "source": "Back2Basics/golang/go SOLID.md",
+    "section": "Go SOLID (idiomatic Go) · Evaluate"
+  },
+  {
+    "id": "15c250d11600",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Go SOLID (idiomatic Go)?",
+    "back": "Don't create IService, IRepository for every type — Go idiom is minimal interfaces at boundaries. Don't force Java-style abstract factories when a function literal suffices.",
+    "source": "Back2Basics/golang/go SOLID.md",
+    "section": "Go SOLID (idiomatic Go) · Evaluate"
+  },
+  {
+    "id": "f832a61b729a",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Go SOLID (idiomatic Go) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: SOLID adapted to Go's interfaces, composition, and small-package culture — not Java inheritance.",
+    "source": "Back2Basics/golang/go SOLID.md",
+    "section": "Go SOLID (idiomatic Go) · Create"
+  },
+  {
+    "id": "6b25a5bca012",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go build in one sentence?",
+    "back": "Compile Go packages/binaries with module-aware dependency resolution — go.mod is the source of truth.",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Remember"
+  },
+  {
+    "id": "d549bf0944b6",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of go build (how the system thinks).",
+    "back": "Go modules (go.mod + go.sum) replace GOPATH-era vendoring chaos. go build resolves imports, compiles packages, links a static binary (by default). Cross-compile via GOOS/GOARCH. Build cache lives in $GOCACHE — clean builds are rare after first compile.",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Understand"
+  },
+  {
+    "id": "d26fa275a41c",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for go build?",
+    "back": "go.mod (module path + require) → go mod init github.com/org/app → go get github.com/lib/pq@v1.10.9 → go mod tidy # add missing, drop unused → go mod verify",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Apply"
+  },
+  {
+    "id": "5313226cda94",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken go build setup, what is your first validation command?",
+    "back": "go.mod (module path + require)",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Apply"
+  },
+  {
+    "id": "8a2760b8ea20",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: cannot find module — what do you check and fix?",
+    "back": "Check: go.mod module path · Fix: go mod init correct path; private module GOPRIVATE",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Analyze"
+  },
+  {
+    "id": "b9c46cdd39e8",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: checksum mismatch — what do you check and fix?",
+    "back": "Check: go.sum · Fix: go mod tidy; don't hand-edit sum",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Analyze"
+  },
+  {
+    "id": "6ee619cc4bf1",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CGO errors on cross-compile — what do you check and fix?",
+    "back": "Check: CGO_ENABLED=1 · Fix: Disable CGO or cross toolchain",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Analyze"
+  },
+  {
+    "id": "98ebafa423f5",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: main redeclared — what do you check and fix?",
+    "back": "Check: Multiple main packages · Fix: Build specific ./cmd/foo path",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Analyze"
+  },
+  {
+    "id": "f17a734e4660",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stale binary — what do you check and fix?",
+    "back": "Check: Build cache · Fix: go clean -cache (last resort)",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Analyze"
+  },
+  {
+    "id": "63a8adb41e5c",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with go build: what silently fails?",
+    "back": "Private modules — set GOPRIVATE=*.corp.com and git credentials; CI needs same. -race in prod — 5–10× slower; never ship race binaries. Working directory matters for relative embed paths — use //go:embed from module root.",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Evaluate"
+  },
+  {
+    "id": "5e290dddc695",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use go build?",
+    "back": "Don't commit go.sum deletes — always commit after go mod tidy. Don't vendor unless you have air-gap or reproducibility policy requiring it.",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Evaluate"
+  },
+  {
+    "id": "28f4d52f4bdb",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct go build setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: go.mod (module path + require)",
+    "source": "Back2Basics/golang/go build.md",
+    "section": "go build · Create"
+  },
+  {
+    "id": "95f5ddc6e005",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go callstack?",
+    "back": "go callstack — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/golang/go callstack.md",
+    "section": "go callstack · Remember"
+  },
+  {
+    "id": "d3e1665f3fcd",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does go callstack matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/golang/go callstack.md",
+    "section": "go callstack · Understand"
+  },
+  {
+    "id": "baf03e72487e",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe go callstack checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/golang/go callstack.md",
+    "section": "go callstack · Create"
+  },
+  {
+    "id": "f68ed7898a07",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go cli?",
+    "back": "run your go program and capture its memory map",
+    "source": "Back2Basics/golang/go cli.md",
+    "section": "go cli · Remember"
+  },
+  {
+    "id": "e47b080ceeba",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for go cli?",
+    "back": "go mod init <domain name/username/module name>; → go mod tidy; → go mod verify; → go get <package>; → go run <file.go>;",
+    "source": "Back2Basics/golang/go cli.md",
+    "section": "go cli · Apply"
+  },
+  {
+    "id": "4f3df8dc2525",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken go cli setup, what is your first validation command?",
+    "back": "go mod init <domain name/username/module name>;",
+    "source": "Back2Basics/golang/go cli.md",
+    "section": "go cli · Apply"
+  },
+  {
+    "id": "bfdd90a5fe3f",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct go cli setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: go mod init <domain name/username/module name>;",
+    "source": "Back2Basics/golang/go cli.md",
+    "section": "go cli · Create"
+  },
+  {
+    "id": "0ffcedf782e3",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go data structure?",
+    "back": "go data structure — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/golang/go data structure.md",
+    "section": "go data structure · Remember"
+  },
+  {
+    "id": "f33f1a024202",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does go data structure matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/golang/go data structure.md",
+    "section": "go data structure · Understand"
+  },
+  {
+    "id": "ab0b121fb6f6",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe go data structure checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/golang/go data structure.md",
+    "section": "go data structure · Create"
+  },
+  {
+    "id": "8b70985a313b",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is project name is myproject?",
+    "back": "prerequisite install Delve debugger for golang",
+    "source": "Back2Basics/golang/go debugging.md",
+    "section": "project name is myproject · Remember"
+  },
+  {
+    "id": "2e7eb96116a3",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for project name is myproject?",
+    "back": "go install github.com/go-delve/delve/cmd/dlv@latest → cat go.mod; # check for module: \"module github.com/username/myproject\" → go build -gcflags=\"all=-N -l\" -o <my-app>",
+    "source": "Back2Basics/golang/go debugging.md",
+    "section": "project name is myproject · Apply"
+  },
+  {
+    "id": "2d92c3d6bde5",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken project name is myproject setup, what is your first validation command?",
+    "back": "go install github.com/go-delve/delve/cmd/dlv@latest",
+    "source": "Back2Basics/golang/go debugging.md",
+    "section": "project name is myproject · Apply"
+  },
+  {
+    "id": "f0fbc472a9cb",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct project name is myproject setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: go install github.com/go-delve/delve/cmd/dlv@latest",
+    "source": "Back2Basics/golang/go debugging.md",
+    "section": "project name is myproject · Create"
+  },
+  {
+    "id": "60fce8451932",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Go embedding (struct and interface) in one sentence?",
+    "back": "Anonymous field embedding — promotes methods and fields for convenient delegation; not classical inheritance; conflicts resolve by explicit outer rules.",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Remember"
+  },
+  {
+    "id": "22768c09f58e",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Go embedding (struct and interface) (how the system thinks).",
+    "back": "Embedding places a type inside another without a field name. The outer type promotes the embedded type's exported methods and fields to the outer type's method set.",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Understand"
+  },
+  {
+    "id": "ee9520887c9b",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Go embedding (struct and interface)?",
+    "back": "Two cases: → No virtual dispatch chain — method on outer replaces promoted method when called on outer type.",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Apply"
+  },
+  {
+    "id": "8cb69384230c",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ambiguous selector X — what do you check and fix?",
+    "back": "Check: Two embeds expose same field/method · Fix: Qualify outer.A.X; rename or drop embed",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Analyze"
+  },
+  {
+    "id": "e873be5da20e",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Interface not satisfied — what do you check and fix?",
+    "back": "Check: Embedded interface nil · Fix: Initialize embedded field; implement missing methods on outer",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Analyze"
+  },
+  {
+    "id": "029e163e9dee",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Method not promoted — what do you check and fix?",
+    "back": "Check: Unexported (lowercase) method · Fix: Export method or wrap with exported forwarder",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Analyze"
+  },
+  {
+    "id": "ed5804f951a6",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Unexpected nil panic — what do you check and fix?",
+    "back": "Check: Embedded pointer nil · Fix: Use value embed or construct with &T{}",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Analyze"
+  },
+  {
+    "id": "2dac0f133524",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: JSON/tags wrong — what do you check and fix?",
+    "back": "Check: Tags on embedded struct · Fix: Tag outer or embed with named field for custom marshaling",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Analyze"
+  },
+  {
+    "id": "4910c0e3ea3c",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: promoted method hidden in interface assertion — what do you check and fix?",
+    "back": "Check: Outer doesn't implement extra methods · Fix: Define all interface methods on outer explicitly",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Analyze"
+  },
+  {
+    "id": "a4fa630e5c48",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Go embedding (struct and interface): what silently fails?",
+    "back": "Embedding ≠ inheritance — no LSP hierarchy; promoted methods copy by name, outer override is static dispatch.",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Evaluate"
+  },
+  {
+    "id": "e6bf79442272",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Go embedding (struct and interface)?",
+    "back": "Pure \"has-a\" with no promotion — use named field logger Logger for clarity. Deep embedding chains — hard to trace method origin; prefer explicit delegation. Hiding third-party types — embed locks API surface to theirs; wrap with named field + forwarders if stability matters.",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Evaluate"
+  },
+  {
+    "id": "c0b9d80e5c78",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Go embedding (struct and interface) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Two cases:",
+    "source": "Back2Basics/golang/go embedding.md",
+    "section": "Go embedding (struct and interface) · Create"
+  },
+  {
+    "id": "f7dd245ac3f0",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go error?",
+    "back": "go error — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/golang/go error.md",
+    "section": "go error · Remember"
+  },
+  {
+    "id": "b18be462197c",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does go error matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/golang/go error.md",
+    "section": "go error · Understand"
+  },
+  {
+    "id": "bc52dca0fd37",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe go error checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/golang/go error.md",
+    "section": "go error · Create"
+  },
+  {
+    "id": "901746b25440",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go features?",
+    "back": "go features — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/golang/go features.md",
+    "section": "go features · Remember"
+  },
+  {
+    "id": "2ac0e5acb3cd",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does go features matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/golang/go features.md",
+    "section": "go features · Understand"
+  },
+  {
+    "id": "683f4a26d74a",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe go features checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/golang/go features.md",
+    "section": "go features · Create"
+  },
+  {
+    "id": "0083bc1efae0",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go functions?",
+    "back": "go functions — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/golang/go functions.md",
+    "section": "go functions · Remember"
+  },
+  {
+    "id": "bc352af31d4a",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does go functions matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/golang/go functions.md",
+    "section": "go functions · Understand"
+  },
+  {
+    "id": "46c5e50f5e00",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe go functions checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/golang/go functions.md",
+    "section": "go functions · Create"
+  },
+  {
+    "id": "da45dbf0d243",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go interface?",
+    "back": "go interface — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/golang/go interface.md",
+    "section": "go interface · Remember"
+  },
+  {
+    "id": "d632c20dc515",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does go interface matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/golang/go interface.md",
+    "section": "go interface · Understand"
+  },
+  {
+    "id": "0f2bd683db78",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe go interface checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/golang/go interface.md",
+    "section": "go interface · Create"
+  },
+  {
+    "id": "78e011de64c4",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go learning?",
+    "back": "go learning — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/golang/go learning.md",
+    "section": "go learning · Remember"
+  },
+  {
+    "id": "c14891f5d465",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does go learning matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/golang/go learning.md",
+    "section": "go learning · Understand"
+  },
+  {
+    "id": "6da251849f04",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe go learning checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/golang/go learning.md",
+    "section": "go learning · Create"
+  },
+  {
+    "id": "62ccac4094fd",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go package?",
+    "back": "go package — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/golang/go package.md",
+    "section": "go package · Remember"
+  },
+  {
+    "id": "1130b4f627ad",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does go package matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/golang/go package.md",
+    "section": "go package · Understand"
+  },
+  {
+    "id": "f92de8859ff9",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe go package checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/golang/go package.md",
+    "section": "go package · Create"
+  },
+  {
+    "id": "1f15798f8238",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Go Backend Projects: Brief Specifications?",
+    "back": "Go Backend Projects: Brief Specifications — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/golang/go project.md",
+    "section": "Go Backend Projects: Brief Specifications · Remember"
+  },
+  {
+    "id": "ae7214c1c9bd",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Go Backend Projects: Brief Specifications matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/golang/go project.md",
+    "section": "Go Backend Projects: Brief Specifications · Understand"
+  },
+  {
+    "id": "a71511dda990",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Go Backend Projects: Brief Specifications checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/golang/go project.md",
+    "section": "Go Backend Projects: Brief Specifications · Create"
+  },
+  {
+    "id": "d4cc98ca8841",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Go strings — bytes, UTF-8, and runes in one sentence?",
+    "back": "One-line: a Go string is a read-only slice of UTF-8 bytes — index and len count bytes, not characters; use range, []rune, or unicode/utf8 when you need rune-safe logic.",
+    "source": "Back2Basics/golang/go strings.md",
+    "section": "Go strings — bytes, UTF-8, and runes · Remember"
+  },
+  {
+    "id": "9d51949e4998",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Go strings — bytes, UTF-8, and runes (how the system thinks).",
+    "back": "A Go string is not a sequence of characters. It is an immutable, read-only view over a byte slice whose bytes are expected to be valid UTF-8.",
+    "source": "Back2Basics/golang/go strings.md",
+    "section": "Go strings — bytes, UTF-8, and runes · Understand"
+  },
+  {
+    "id": "2acf52edd868",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Go strings — bytes, UTF-8, and runes?",
+    "back": "Prefer strings, unicode/utf8, and range over manual s[i] when handling user-facing text.",
+    "source": "Back2Basics/golang/go strings.md",
+    "section": "Go strings — bytes, UTF-8, and runes · Apply"
+  },
+  {
+    "id": "5de98623c925",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: len(s) disagrees with visible character count — what do you check and fix?",
+    "back": "Check: utf8.RuneCountInString(s) vs len(s) · Fix: Treat len as bytes; use rune count or []rune for display limits",
+    "source": "Back2Basics/golang/go strings.md",
+    "section": "Go strings — bytes, UTF-8, and runes · Analyze"
+  },
+  {
+    "id": "ca74b353f936",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Garbled output or invalid UTF-8 after slice — what do you check and fix?",
+    "back": "Check: utf8.ValidString(sub) on s[i:j] · Fix: Slice only at rune boundaries; build substrings with range or utf8 decode",
+    "source": "Back2Basics/golang/go strings.md",
+    "section": "Go strings — bytes, UTF-8, and runes · Analyze"
+  },
+  {
+    "id": "71c11add5dbe",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: s[i] == 'é' or byte compare fails for accented text — what do you check and fix?",
+    "back": "Check: Log s[i] as %#v — often a single UTF-8 byte · Fix: Compare runes (rune(s[i]) is wrong for multi-byte); use strings or decode first",
+    "source": "Back2Basics/golang/go strings.md",
+    "section": "Go strings — bytes, UTF-8, and runes · Analyze"
+  },
+  {
+    "id": "1c62940cf8c2",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Truncation breaks last character (e.g. API max length) — what do you check and fix?",
+    "back": "Check: Last byte is continuation byte 0x80–0xBF · Fix: Truncate by runes: string([]rune(s)[:n]) or walk with utf8.DecodeRuneInString",
+    "source": "Back2Basics/golang/go strings.md",
+    "section": "Go strings — bytes, UTF-8, and runes · Analyze"
+  },
+  {
+    "id": "835d34d46226",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Emoji / combining marks counted wrong — what do you check and fix?",
+    "back": "Check: len([]rune(s)) vs grapheme clusters · Fix: For user-perceived length, use a locale/grapheme library; runes ≠ user-visible glyphs",
+    "source": "Back2Basics/golang/go strings.md",
+    "section": "Go strings — bytes, UTF-8, and runes · Analyze"
+  },
+  {
+    "id": "3d7ea19e1a86",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Go strings — bytes, UTF-8, and runes: what silently fails?",
+    "back": "s[i] is a byte, not a character. On \"aé\", s[1] and s[2] are the two bytes of é. Using either alone in comparisons, hashing, or encryption corrupts the character.",
+    "source": "Back2Basics/golang/go strings.md",
+    "section": "Go strings — bytes, UTF-8, and runes · Evaluate"
+  },
+  {
+    "id": "59214ff5e0d2",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Go strings — bytes, UTF-8, and runes?",
+    "back": "Do not convert every string to []rune by default — binary protocols, file paths, and wire formats are byte-oriented; string/[]byte is correct there. Do not use s[i] for parsing human text — use range, strings, or unicode/utf8. Do not assume one rune = one screen column — width, emoji sequences, and combining marks need domain-specific handling.",
+    "source": "Back2Basics/golang/go strings.md",
+    "section": "Go strings — bytes, UTF-8, and runes · Evaluate"
+  },
+  {
+    "id": "1a84146dc917",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Go strings — bytes, UTF-8, and runes setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: One-line: a Go string is a read-only slice of UTF-8 bytes — index and len count bytes, not characters; use range, []rune, or `un",
+    "source": "Back2Basics/golang/go strings.md",
+    "section": "Go strings — bytes, UTF-8, and runes · Create"
+  },
+  {
+    "id": "601897b37e1a",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go-routines?",
+    "back": "go-routines — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/golang/go-routines.md",
+    "section": "go-routines · Remember"
+  },
+  {
+    "id": "fa9dd37455d3",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does go-routines matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/golang/go-routines.md",
+    "section": "go-routines · Understand"
+  },
+  {
+    "id": "d727a096b804",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe go-routines checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/golang/go-routines.md",
+    "section": "go-routines · Create"
+  },
+  {
+    "id": "62e8076e832b",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is go?",
+    "back": "package main tells the Go compiler: \"The package is the entry point of an executable program\". Without this Go treats the code as a reusable library/package.",
+    "source": "Back2Basics/golang/go.md",
+    "section": "go · Remember"
+  },
+  {
+    "id": "1b0d5f8b7b12",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for go?",
+    "back": "They preferred → struct tag -> it provides metadata that packages (like encoding/json) → When printing struct pointers, fmt.Println may print memory addresses instead of values. → Using fmt.Prinf with %+v",
+    "source": "Back2Basics/golang/go.md",
+    "section": "go · Apply"
+  },
+  {
+    "id": "fb066e570b20",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken go setup, what is your first validation command?",
+    "back": "They preferred",
+    "source": "Back2Basics/golang/go.md",
+    "section": "go · Apply"
+  },
+  {
+    "id": "35ca9c21452b",
+    "deck": "b2b-golang",
+    "tags": [
+      "back2basics",
+      "golang",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct go setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: They preferred",
+    "source": "Back2Basics/golang/go.md",
+    "section": "go · Create"
+  }
+]

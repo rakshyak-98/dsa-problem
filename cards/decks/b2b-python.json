@@ -1,0 +1,548 @@
+[
+  {
+    "id": "7cc5209ff824",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ASGI?",
+    "back": "ASGI — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Python/ASGI.md",
+    "section": "ASGI · Remember"
+  },
+  {
+    "id": "7051408225f9",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does ASGI matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Python/ASGI.md",
+    "section": "ASGI · Understand"
+  },
+  {
+    "id": "27bd76a2e5e8",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe ASGI checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Python/ASGI.md",
+    "section": "ASGI · Create"
+  },
+  {
+    "id": "9948e7925aa0",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is GIL (Global interpreter lock)?",
+    "back": "GIL (Global interpreter lock) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Python/GIL (Global interpreter lock).md",
+    "section": "GIL (Global interpreter lock) · Remember"
+  },
+  {
+    "id": "341dff5a3c69",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does GIL (Global interpreter lock) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Python/GIL (Global interpreter lock).md",
+    "section": "GIL (Global interpreter lock) · Understand"
+  },
+  {
+    "id": "b177763ecca9",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe GIL (Global interpreter lock) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Python/GIL (Global interpreter lock).md",
+    "section": "GIL (Global interpreter lock) · Create"
+  },
+  {
+    "id": "7001c294749a",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Python?",
+    "back": "ref https://www.itsupportwale.com/blog/how-to-upgrade-to-python-3-11-on-ubuntu-20-04-and-22-04-lts/",
+    "source": "Back2Basics/Python/Python.md",
+    "section": "Python · Remember"
+  },
+  {
+    "id": "0663ee1778a6",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Python?",
+    "back": "python3 -m pdb <\"python file to debug\">; → sudo add-apt-repository ppa:deadsnakes/ppa → sudo apt-get update → apt list | grep python3.11 → sudo apt-get install python3.11",
+    "source": "Back2Basics/Python/Python.md",
+    "section": "Python · Apply"
+  },
+  {
+    "id": "a0a3ec4e66f9",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Python setup, what is your first validation command?",
+    "back": "python3 -m pdb <\"python file to debug\">;",
+    "source": "Back2Basics/Python/Python.md",
+    "section": "Python · Apply"
+  },
+  {
+    "id": "4fe43e726947",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Python setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: python3 -m pdb <\"python file to debug\">;",
+    "source": "Back2Basics/Python/Python.md",
+    "section": "Python · Create"
+  },
+  {
+    "id": "ce5f17d3445e",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Python Package Setup?",
+    "back": "This guide explains how to turn the python/ folder into an installable package for use in other projects. The sample code under python/src/ is currently a flat set of scripts. To reuse it as a library, follow the steps below.",
+    "source": "Back2Basics/Python/create python package from source.md",
+    "section": "Python Package Setup · Remember"
+  },
+  {
+    "id": "9360e4c2428e",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Python Package Setup?",
+    "back": "python/ → The PyPI/distribution name is doverunner-cpix; the Python import path is doverunner_cpix. → Move these files from python/src/ into python/src/doverunner_cpix/: → Do not move app_sample.py, *.json, or other sample/output files. → Create python/src/doverunner_cpix/__init__.py:",
+    "source": "Back2Basics/Python/create python package from source.md",
+    "section": "Python Package Setup · Apply"
+  },
+  {
+    "id": "5a1f01e84a8d",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Python Package Setup setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: python/",
+    "source": "Back2Basics/Python/create python package from source.md",
+    "section": "Python Package Setup · Create"
+  },
+  {
+    "id": "61ae029de23d",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is pandas in one sentence?",
+    "back": "Columnar DataFrame library for load → transform → analyze → export workflows in Python.",
+    "source": "Back2Basics/Python/pandas.md",
+    "section": "pandas · Remember"
+  },
+  {
+    "id": "8d3354453e75",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of pandas (how the system thinks).",
+    "back": "A DataFrame is labeled columns (Series) with a shared index. Operations are vectorized (C-backed) when possible. Missing data is NaN. Dtype matters: object vs int vs category affects memory and speed. Prefer explicit dtypes on ingest for prod pipelines.",
+    "source": "Back2Basics/Python/pandas.md",
+    "section": "pandas · Understand"
+  },
+  {
+    "id": "59a48c7668ea",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SettingWithCopyWarning — what do you check and fix?",
+    "back": "Check: Chained indexing · Fix: Use .loc[] assignment",
+    "source": "Back2Basics/Python/pandas.md",
+    "section": "pandas · Analyze"
+  },
+  {
+    "id": "e20983f12944",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Memory blowup — what do you check and fix?",
+    "back": "Check: df.memory_usage(deep=True) · Fix: Downcast dtypes; read columns subset",
+    "source": "Back2Basics/Python/pandas.md",
+    "section": "pandas · Analyze"
+  },
+  {
+    "id": "c73c0281546c",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Merge explosion — what do you check and fix?",
+    "back": "Check: Key duplicates · Fix: validate=\"m:1\"; dedupe keys",
+    "source": "Back2Basics/Python/pandas.md",
+    "section": "pandas · Analyze"
+  },
+  {
+    "id": "69375343c88c",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NaN after math — what do you check and fix?",
+    "back": "Check: Dtype object · Fix: Coerce numeric first",
+    "source": "Back2Basics/Python/pandas.md",
+    "section": "pandas · Analyze"
+  },
+  {
+    "id": "c5922a55fa5a",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow loop over rows — what do you check and fix?",
+    "back": "Check: iterrows · Fix: Vectorize or .apply axis=0 sparingly",
+    "source": "Back2Basics/Python/pandas.md",
+    "section": "pandas · Analyze"
+  },
+  {
+    "id": "5ba9c5bd089f",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with pandas: what silently fails?",
+    "back": "fillna(0) after coerce — hides bad data; log/coerce count first in ETL. CSV locale commas — specify decimal=',' for EU files. Timezone-naive datetimes — always UTC in storage.",
+    "source": "Back2Basics/Python/pandas.md",
+    "section": "pandas · Evaluate"
+  },
+  {
+    "id": "4bd80d1be9ed",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use pandas?",
+    "back": "Don't use pandas for row-by-row OLTP — use SQL/ORM. Don't load 100GB CSV on a laptop — use DuckDB/Polars/spark for out-of-core.",
+    "source": "Back2Basics/Python/pandas.md",
+    "section": "pandas · Evaluate"
+  },
+  {
+    "id": "de6289aa0959",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct pandas setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Columnar DataFrame library for load → transform → analyze → export workflows in Python.",
+    "source": "Back2Basics/Python/pandas.md",
+    "section": "pandas · Create"
+  },
+  {
+    "id": "731590565f7d",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is User web server gateway interface?",
+    "back": "uWSGI acts as a bridge between your web application and the web server (like Nginx or Apache). It takes care of communication, request handling, and process management.",
+    "source": "Back2Basics/Python/uwsgi.md",
+    "section": "User web server gateway interface · Remember"
+  },
+  {
+    "id": "00d5dfd2273f",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for User web server gateway interface?",
+    "back": "uwsgi --ini uwsgi.ini",
+    "source": "Back2Basics/Python/uwsgi.md",
+    "section": "User web server gateway interface · Apply"
+  },
+  {
+    "id": "fd8dbb1fce2c",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken User web server gateway interface setup, what is your first validation command?",
+    "back": "uwsgi --ini uwsgi.ini",
+    "source": "Back2Basics/Python/uwsgi.md",
+    "section": "User web server gateway interface · Apply"
+  },
+  {
+    "id": "2d72cb6e5358",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct User web server gateway interface setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: uwsgi --ini uwsgi.ini",
+    "source": "Back2Basics/Python/uwsgi.md",
+    "section": "User web server gateway interface · Create"
+  },
+  {
+    "id": "607835b0f8ba",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Python wheel (.whl) in one sentence?",
+    "back": "Built distribution format — pre-built zip of code + metadata for fast pip install without compile on target.",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Remember"
+  },
+  {
+    "id": "7ee1cadb2d51",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Python wheel (.whl) (how the system thinks).",
+    "back": "sdist (source tarball) may compile C extensions on install. wheel ships pre-built artifacts for a platform tag (cp312-manylinux_x86_64). pip prefers wheels when tag matches. You build wheels in CI; consumers install in seconds.",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Understand"
+  },
+  {
+    "id": "a2b2e2e493d1",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Python wheel (.whl)?",
+    "back": "pyproject.toml / setup.py → build backend → dist/*.whl → pip install → pip install build → python -m build # produces dist/*.whl and *.tar.gz → pip install dist/mypackage-0.1.0-py3-none-any.whl → pip install setuptools wheel",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Apply"
+  },
+  {
+    "id": "c5346f956c8e",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Python wheel (.whl) setup, what is your first validation command?",
+    "back": "pyproject.toml / setup.py → build backend → dist/*.whl → pip install",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Apply"
+  },
+  {
+    "id": "5bca54566af5",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: not a supported wheel — what do you check and fix?",
+    "back": "Check: Platform tag · Fix: Build on target arch or use pure py3-none-any",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Analyze"
+  },
+  {
+    "id": "21683b5ca1eb",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Compile on install anyway — what do you check and fix?",
+    "back": "Check: No wheel for platform · Fix: Publish manylinux wheel via cibuildwheel",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Analyze"
+  },
+  {
+    "id": "eef9c17b343f",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong version installed — what do you check and fix?",
+    "back": "Check: PyPI name clash · Fix: Unique package name; pin in requirements",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Analyze"
+  },
+  {
+    "id": "ebf1d3986400",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Import error after install — what do you check and fix?",
+    "back": "Check: Package layout · Fix: packages= in setuptools config",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Analyze"
+  },
+  {
+    "id": "99cbb5140958",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Huge wheel — what do you check and fix?",
+    "back": "Check: Bundled data · Fix: Exclude tests; use MANIFEST.in carefully",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Analyze"
+  },
+  {
+    "id": "e48a21be9a83",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Python wheel (.whl): what silently fails?",
+    "back": "Manylinux vs musl (Alpine) — glibc wheels fail on Alpine; use slim Debian base or build musllinux wheel. Commit wheels to git — usually wrong; publish to index or artifact store. setup.py only projects — migrate to pyproject.toml for reproducible builds.",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Evaluate"
+  },
+  {
+    "id": "305077761962",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Python wheel (.whl)?",
+    "back": "Don't hand-edit wheel contents — rebuild from source. Don't ship platform-specific wheels as py3-none-any — runtime import errors.",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Evaluate"
+  },
+  {
+    "id": "7649832c1526",
+    "deck": "b2b-python",
+    "tags": [
+      "back2basics",
+      "python",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Python wheel (.whl) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: pyproject.toml / setup.py → build backend → dist/*.whl → pip install",
+    "source": "Back2Basics/Python/wheel.md",
+    "section": "Python wheel (.whl) · Create"
+  }
+]

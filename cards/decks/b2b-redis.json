@@ -1,0 +1,422 @@
+[
+  {
+    "id": "7dac4130029d",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is redis installation in one sentence?",
+    "back": "Install Redis as a managed service — bind address, auth/ACL, memory cap, and persistence before exposing beyond localhost.",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Remember"
+  },
+  {
+    "id": "395b577381a7",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of redis installation (how the system thinks).",
+    "back": "Default upstream packages expose 6379 with protected-mode if no password and bind not restricted — fine for dev trap, dangerous if firewall wrong.",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Understand"
+  },
+  {
+    "id": "a7a4e35021b0",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for redis installation?",
+    "back": "Package / image ──► redis-server ──► reads redis.conf → curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg → sudo chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg → echo \"deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main\" \\ → sudo apt-get update",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Apply"
+  },
+  {
+    "id": "a2d7721f01e9",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken redis installation setup, what is your first validation command?",
+    "back": "Package / image ──► redis-server ──► reads redis.conf",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Apply"
+  },
+  {
+    "id": "1f588ada382d",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for redis installation?",
+    "back": "Typical unit (/lib/systemd/system/redis-server.service):",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Apply"
+  },
+  {
+    "id": "4125da95c7c2",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connection refused — what do you check and fix?",
+    "back": "Check: systemctl status; bind · Fix: Start service; fix bind; firewall",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Analyze"
+  },
+  {
+    "id": "4dc417921832",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NOAUTH — what do you check and fix?",
+    "back": "Check: ACL/requirepass · Fix: Update app URL; ACL LIST",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Analyze"
+  },
+  {
+    "id": "8cecaf9d8ab1",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Starts then exits — what do you check and fix?",
+    "back": "Check: journalctl -u redis-server · Fix: Bad dir permissions; corrupt AOF → redis-check-aof",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Analyze"
+  },
+  {
+    "id": "5f565d0fe7c1",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Can't write config — what do you check and fix?",
+    "back": "Check: CONFIG SET without rewrite · Fix: Edit redis.conf; restart; fix ownership",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Analyze"
+  },
+  {
+    "id": "7a43d7abb974",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: OOM on host — what do you check and fix?",
+    "back": "Check: no maxmemory · Fix: Set cap + eviction policy",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Analyze"
+  },
+  {
+    "id": "314b038ca0a5",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Exposed to internet scan — what do you check and fix?",
+    "back": "Check: Shodan/censys; ss -tlnp · Fix: Firewall; bind localhost; ACL; disable default user",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Analyze"
+  },
+  {
+    "id": "a002879773f3",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with redis installation: what silently fails?",
+    "back": "requirepass in git — config management leaks secrets. Use env-substituted template or secret mount.",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Evaluate"
+  },
+  {
+    "id": "bc03ede8909c",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use redis installation?",
+    "back": "Multi-master write on open network — use managed Redis / cluster with proper topology. requirepass only on 6+ — migrate to ACL for command-level least privilege. Installing from random PPA — use official redis.io or distro you trust; pin version.",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Evaluate"
+  },
+  {
+    "id": "7173be5b8dcd",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct redis installation setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Package / image ──► redis-server ──► reads redis.conf",
+    "source": "Back2Basics/Redis/redis installation.md",
+    "section": "redis installation · Create"
+  },
+  {
+    "id": "87e28e2f785a",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is redis-cli in one sentence?",
+    "back": "Interactive + scripted Redis admin — inspect memory, latency, persistence, and live traffic under incident load.",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Remember"
+  },
+  {
+    "id": "bcf2fcdb203f",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of redis-cli (how the system thinks).",
+    "back": "One thread executes commands — slow KEYS *, huge SMEMBERS, or Lua loops = latency spike for everyone. Prefer SCAN, MEMORY DOCTOR, SLOWLOG.",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Understand"
+  },
+  {
+    "id": "a5d6f6f50621",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for redis-cli?",
+    "back": "redis-cli ──► TCP/UNIX ──► Redis single-threaded event loop → redis-cli -h 127.0.0.1 -p 6379 → redis-cli -u redis://default:PASSWORD@127.0.0.1:6379/0 # ACL user default → redis-cli --tls --cert ./client.crt --key ./client.key --cacert ./ca.crt → AUTH default yourpassword # legacy; prefer ACL + -u URL",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Apply"
+  },
+  {
+    "id": "2a6a2c325259",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken redis-cli setup, what is your first validation command?",
+    "back": "redis-cli ──► TCP/UNIX ──► Redis single-threaded event loop",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Apply"
+  },
+  {
+    "id": "71e41aec1740",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for redis-cli?",
+    "back": "Memory fields to watch:",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Apply"
+  },
+  {
+    "id": "07fbcc8a0617",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: OOM / killed — what do you check and fix?",
+    "back": "Check: INFO memory; host dmesg · Fix: Set maxmemory + policy; add RAM; delete big keys",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Analyze"
+  },
+  {
+    "id": "e3ad11bbb27d",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Timeouts app-side — what do you check and fix?",
+    "back": "Check: LATENCY DOCTOR; SLOWLOG · Fix: Remove KEYS; pipeline; split hot key",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Analyze"
+  },
+  {
+    "id": "73576508f15e",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: OOM command not allowed — what do you check and fix?",
+    "back": "Check: maxmemory-policy noeviction · Fix: Change policy or raise limit",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Analyze"
+  },
+  {
+    "id": "90f9f0d8bb16",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Spike every N minutes — what do you check and fix?",
+    "back": "Check: INFO persistence rewrite/bgsave · Fix: Disable save during peak; disk tuning; diskless replica",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Analyze"
+  },
+  {
+    "id": "bb4f8112da3f",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Replica lag — what do you check and fix?",
+    "back": "Check: INFO replication offset · Fix: Slow commands on master; network; repl-diskless-sync",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Analyze"
+  },
+  {
+    "id": "a213fd4a089b",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connections refused — what do you check and fix?",
+    "back": "Check: INFO stats rejected · Fix: maxclients; file descriptors; connection storm",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Analyze"
+  },
+  {
+    "id": "a7177241aeb1",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Data \"vanished\" — what do you check and fix?",
+    "back": "Check: Eviction + no TTL · Fix: TTL on cache keys; monitor evicted_keys",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Analyze"
+  },
+  {
+    "id": "59f52d6c1a25",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: AOF corrupt on boot — what do you check and fix?",
+    "back": "Check: Logs · Fix: redis-check-aof --fix; restore RDB backup",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Analyze"
+  },
+  {
+    "id": "5806764bf253",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with redis-cli: what silently fails?",
+    "back": "**KEYS * in prod** — blocks event loop. Use SCAN or --bigkeys sampling.",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Evaluate"
+  },
+  {
+    "id": "60443422cfec",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use redis-cli?",
+    "back": "Primary source of truth without persistence — enable AOF/RDB or accept loss. Redis as message queue at scale — use dedicated broker; BLPOP patterns hit limits. Large object store — >512MB values hurt; use object storage.",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Evaluate"
+  },
+  {
+    "id": "7654a264dce1",
+    "deck": "b2b-redis",
+    "tags": [
+      "back2basics",
+      "redis",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct redis-cli setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: redis-cli ──► TCP/UNIX ──► Redis single-threaded event loop",
+    "source": "Back2Basics/Redis/redis-cli.md",
+    "section": "redis-cli · Create"
+  }
+]

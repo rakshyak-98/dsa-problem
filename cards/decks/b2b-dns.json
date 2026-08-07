@@ -1,0 +1,2256 @@
+[
+  {
+    "id": "c67539e3d391",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is DNS rebinding in one sentence?",
+    "back": "One-line: attacker rotates DNS answers to turn the browser into a proxy to internal IPs — bypasses naive same-origin checks — CWE-350.",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Remember"
+  },
+  {
+    "id": "ef3d06fe2d4f",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of DNS rebinding (how the system thinks).",
+    "back": "Browser loads attacker page from evil.example (legitimate origin at load time). Attacker's DNS TTL is very short; on reconnect the name resolves to 127.0.0.1, 169.254.169.254, or 10.0.0.5. Same-origin policy compares scheme+host+port at request time — if host string still matches but IP is now internal, fetches may hit services that trust \"local\" clients.",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Understand"
+  },
+  {
+    "id": "a4bc0b2ca632",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for DNS rebinding?",
+    "back": "dig suspicious.example A +noall +answer +ttlid → ss -tlnp | grep -E ':(6379|11211|8080|9200)\\s' → curl -s --max-time 2 http://169.254.169.254/latest/meta-data/",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Apply"
+  },
+  {
+    "id": "e2a1d4d566aa",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken DNS rebinding setup, what is your first validation command?",
+    "back": "dig suspicious.example A +noall +answer +ttlid",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Apply"
+  },
+  {
+    "id": "eae3a0eccbb9",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for DNS rebinding?",
+    "back": "1. Bind services to specific interfaces",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Apply"
+  },
+  {
+    "id": "df7e2fe75f05",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Internal API hit from \"external\" referer — what do you check and fix?",
+    "back": "Check: Access logs show Host=public name, src=127.0.0.1 · Fix: Host allowlist; bind service to internal IP only",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Analyze"
+  },
+  {
+    "id": "29de4e021f6b",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Metadata stolen from browser chain — what do you check and fix?",
+    "back": "Check: IMDS hop limit, metadata service v2 · Fix: AWS IMDSv2 required + hop limit 1; firewall 169.254.169.254 from containers",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Analyze"
+  },
+  {
+    "id": "ac1fd3dfea47",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Redis/Mongo \"random\" commands — what do you check and fix?",
+    "back": "Check: MONITOR; bind address · Fix: bind 127.0.0.1; require AUTH; SG restrict port",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Analyze"
+  },
+  {
+    "id": "0953bb571919",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Dev laptop compromised via local service — what do you check and fix?",
+    "back": "Check: ss -tlnp for 0.0.0.0 listeners · Fix: Bind localhost; use firewall (ufw) default deny",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Analyze"
+  },
+  {
+    "id": "f2a92c64c12e",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Pen test flags DNS rebinding — what do you check and fix?",
+    "back": "Check: PoC resolves to internal IP · Fix: Implement mitigations above; document accepted risk only with auth layer",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Analyze"
+  },
+  {
+    "id": "70111fe648c8",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with DNS rebinding: what silently fails?",
+    "back": "0.0.0.0 bind on a laptop behind a browser = rebinding target. \"It's dev only\" doesn't matter if you visit the internet on the same machine.",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Evaluate"
+  },
+  {
+    "id": "51e5df3afe7b",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use DNS rebinding?",
+    "back": "Offensive testing without written scope — rebinding against third parties is illegal. Assuming CORS (Cross Origin Request Sharing) alone fixes this — CORS governs cross-origin reads, not DNS-to-IP mapping attacks on same host string.",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Evaluate"
+  },
+  {
+    "id": "bd76b4d4e73c",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct DNS rebinding setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: dig suspicious.example A +noall +answer +ttlid",
+    "source": "Back2Basics/DNS/DNS rebinding.md",
+    "section": "DNS rebinding · Create"
+  },
+  {
+    "id": "da13c4006f7e",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is DNS server?",
+    "back": "DNS server — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/DNS/DNS server.md",
+    "section": "DNS server · Remember"
+  },
+  {
+    "id": "a71915abd0a4",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does DNS server matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/DNS/DNS server.md",
+    "section": "DNS server · Understand"
+  },
+  {
+    "id": "daca901b69fd",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe DNS server checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/DNS/DNS server.md",
+    "section": "DNS server · Create"
+  },
+  {
+    "id": "2ae59b2155ba",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is DNS zone in one sentence?",
+    "back": "One-line: a contiguous DNS namespace slice served authoritatively by one or more NS — RFC 1035.",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Remember"
+  },
+  {
+    "id": "401c3a1ae806",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of DNS zone (how the system thinks).",
+    "back": "A zone is everything below a zone apex (e.g. example.com) that one administrative entity controls. The parent zone (.com) holds NS glue pointing to your nameservers.",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Understand"
+  },
+  {
+    "id": "7159546a772f",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for DNS zone?",
+    "back": ".com (parent zone) → dig @ns1.example.com example.com AXFR # zone transfer (often ACL'd) → dig @ns1.example.com example.com SOA +short → dig @ns1.example.com example.com NS +short → for ns in ns1 ns2; do",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Apply"
+  },
+  {
+    "id": "bffffb5d4921",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken DNS zone setup, what is your first validation command?",
+    "back": ".com (parent zone)",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Apply"
+  },
+  {
+    "id": "24fc57ff7279",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Some resolvers get old IP — what do you check and fix?",
+    "back": "Check: SOA serial on all NS; TTL remaining · Fix: Bump serial; ensure secondaries synced (rndc notify / provider auto-sync)",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Analyze"
+  },
+  {
+    "id": "76339b6bd051",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Zone transfer fails — what do you check and fix?",
+    "back": "Check: dig AXFR @primary; firewall TCP/53 · Fix: ACL on primary; allow secondary IP; check TSIG key",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Analyze"
+  },
+  {
+    "id": "515f387ea635",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Subdomain NXDOMAIN — what do you check and fix?",
+    "back": "Check: Delegation NS in parent vs child zone · Fix: Add NS + glue at parent OR record in parent zone — not both incorrectly",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Analyze"
+  },
+  {
+    "id": "3fda467ab6bd",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Apex MX/TXT broken after adding CNAME — what do you check and fix?",
+    "back": "Check: CNAME coexists with nothing else at apex · Fix: Remove apex CNAME; use ALIAS or separate name",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Analyze"
+  },
+  {
+    "id": "0d9515eb10b2",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DNSSEC validation fails — what do you check and fix?",
+    "back": "Check: dig +dnssec; DS at parent matches DNSKEY · Fix: Re-sign zone; publish correct DS to registrar",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Analyze"
+  },
+  {
+    "id": "c3b9b7a0fbbd",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Serial not incrementing — what do you check and fix?",
+    "back": "Check: Secondary serving stale data · Fix: Always increment SOA serial on change (automate in CI)",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Analyze"
+  },
+  {
+    "id": "2d42502cc6f6",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wildcard surprises — what do you check and fix?",
+    "back": "Check: *.example.com catches unintended names · Fix: Narrow wildcard; explicit records override wildcard",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Analyze"
+  },
+  {
+    "id": "336ce586d403",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with DNS zone: what silently fails?",
+    "back": "Forgot to bump SOA serial → secondaries never pick up changes. Automate serial in dynamic DNS or use provider-managed zones.",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Evaluate"
+  },
+  {
+    "id": "ceb49904b071",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use DNS zone?",
+    "back": "Single static host entry on one machine → /etc/hosts or local dnsmasq stub. Global anycast without understanding secondary sync → managed DNS (Route53, Cloudflare) reduces ops load.",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Evaluate"
+  },
+  {
+    "id": "ef5ee314aaff",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct DNS zone setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: .com (parent zone)",
+    "source": "Back2Basics/DNS/DNS zone.md",
+    "section": "DNS zone · Create"
+  },
+  {
+    "id": "6d63d8f5c4bf",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is DNS in one sentence?",
+    "back": "One-line: distributed naming that maps names → records (A, AAAA, CNAME, …) via a resolver chain — Kleppmann, DDIA + RFC 1035.",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Remember"
+  },
+  {
+    "id": "f7ebd6ce84ad",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of DNS (how the system thinks).",
+    "back": "DNS is a hierarchical, cached lookup system. Your stub resolver doesn't talk to root directly for every query — it follows referrals or uses a recursive resolver (ISP, 8.8.8.8, corporate Unbound).",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Understand"
+  },
+  {
+    "id": "42c350a82bf9",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for DNS?",
+    "back": "App → stub resolver (/etc/resolv.conf, systemd-resolved) → cat /etc/resolv.conf → resolvectl status → systemd-resolve --status 2>/dev/null || true → dig example.com A +short",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Apply"
+  },
+  {
+    "id": "6ed8320f3a8f",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken DNS setup, what is your first validation command?",
+    "back": "App → stub resolver (/etc/resolv.conf, systemd-resolved)",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Apply"
+  },
+  {
+    "id": "80813c997556",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for DNS?",
+    "back": "/etc/resolv.conf minimal:",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Apply"
+  },
+  {
+    "id": "25b0f7d2c6b7",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NXDOMAIN everywhere for one name — what do you check and fix?",
+    "back": "Check: dig +trace stops where? · Fix: Fix NS delegation or missing zone at authoritative",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Analyze"
+  },
+  {
+    "id": "2d0561afb774",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works with @8.8.8.8, fails with corporate DNS — what do you check and fix?",
+    "back": "Check: Compare dig @corp-dns vs public · Fix: Internal split-horizon; add private zone or conditional forwarder",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Analyze"
+  },
+  {
+    "id": "3ff9050211bc",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Intermittent wrong IP — what do you check and fix?",
+    "back": "Check: TTL + multiple A records; geo DNS · Fix: Lower TTL during migration; verify all authoritative NS agree (dig @each-ns)",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Analyze"
+  },
+  {
+    "id": "b26bb9c3eef2",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow first query, fast after — what do you check and fix?",
+    "back": "Check: dig twice; check +stats query time · Fix: Resolver cold cache normal; fix upstream if always slow",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Analyze"
+  },
+  {
+    "id": "4a674ccf4c02",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SERVFAIL — what do you check and fix?",
+    "back": "Check: dig +dnssec; check authoritative logs · Fix: Broken DNSSEC chain; DS/DNSKEY mismatch",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Analyze"
+  },
+  {
+    "id": "e02aa01d538c",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Large response fails — what do you check and fix?",
+    "back": "Check: dig +ignore vs +bufsize=512 shows TC bit · Fix: Enable EDNS0 or TCP on resolver/firewall",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Analyze"
+  },
+  {
+    "id": "c2e90db370c2",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Pod resolves, host doesn't (or reverse) — what do you check and fix?",
+    "back": "Check: resolvectl; CoreDNS vs host resolv · Fix: K8s ndots / search suffix issue — use FQDN with trailing dot",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Analyze"
+  },
+  {
+    "id": "5b5a4187510b",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: After zone cutover, stale answers — what do you check and fix?",
+    "back": "Check: TTL on old records (300–86400 common) · Fix: Wait TTL or flush resolver cache; don't assume instant global update",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Analyze"
+  },
+  {
+    "id": "15e28e035e1d",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with DNS: what silently fails?",
+    "back": "search domain suffix causes surprise lookups. curl api may query api.ec2.internal before api — always use FQDN (api.example.com.) in automation.",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Evaluate"
+  },
+  {
+    "id": "c3c43aad3dec",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use DNS?",
+    "back": "Service-to-service naming inside a cluster → platform DNS (K8s, Consul) is faster to iterate. Storing non-DNS data in TXT beyond reasonable size — use a real config store.",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Evaluate"
+  },
+  {
+    "id": "22d0b9b22bba",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct DNS setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: App → stub resolver (/etc/resolv.conf, systemd-resolved)",
+    "source": "Back2Basics/DNS/DNS.md",
+    "section": "DNS · Create"
+  },
+  {
+    "id": "3681a3e1c9a3",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is LLMNR?",
+    "back": "LLMNR — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/DNS/LLMNR.md",
+    "section": "LLMNR · Remember"
+  },
+  {
+    "id": "d680903f4fe0",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does LLMNR matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/DNS/LLMNR.md",
+    "section": "LLMNR · Understand"
+  },
+  {
+    "id": "0628b3f0fa73",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe LLMNR checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/DNS/LLMNR.md",
+    "section": "LLMNR · Create"
+  },
+  {
+    "id": "63833cfba53b",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Sub Domain?",
+    "back": "Sub Domain — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/DNS/Sub Domain.md",
+    "section": "Sub Domain · Remember"
+  },
+  {
+    "id": "5da1de7d1434",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Sub Domain matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/DNS/Sub Domain.md",
+    "section": "Sub Domain · Understand"
+  },
+  {
+    "id": "584b0a573754",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Sub Domain checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/DNS/Sub Domain.md",
+    "section": "Sub Domain · Create"
+  },
+  {
+    "id": "57c17ab0a40b",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Unbound?",
+    "back": "Unbound — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/DNS/Unbound.md",
+    "section": "Unbound · Remember"
+  },
+  {
+    "id": "6ed50eb2cf92",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Unbound matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/DNS/Unbound.md",
+    "section": "Unbound · Understand"
+  },
+  {
+    "id": "0583986c1da0",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Unbound checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/DNS/Unbound.md",
+    "section": "Unbound · Create"
+  },
+  {
+    "id": "378a0913c8b0",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Cloudflare in one sentence?",
+    "back": "Authoritative DNS + reverse proxy (orange cloud) + WAF/CDN/DDoS — changes where traffic terminates and who sees origin IP. Cloudflare docs + migration incidents when proxy hid real client IP or broke TLS.",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Remember"
+  },
+  {
+    "id": "03fe72eb8f6e",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Cloudflare (how the system thinks).",
+    "back": "Cloudflare sits between users and origin: as DNS provider (nameservers → Cloudflare) and optionally HTTP proxy (proxied records). Proxied traffic: client → Cloudflare edge → your origin. OID identifies objects in Cloudflare API (zones, records, rulesets).",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Understand"
+  },
+  {
+    "id": "477980e3954e",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Cloudflare?",
+    "back": "User ──► CF edge (TLS, cache, WAF) ──► origin (ALB, nginx, Vercel) → App logs: use CF-Connecting-IP, not $remote_addr (which is CF edge).",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Apply"
+  },
+  {
+    "id": "39dbb4ca1a93",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Cloudflare setup, what is your first validation command?",
+    "back": "User ──► CF edge (TLS, cache, WAF) ──► origin (ALB, nginx, Vercel)",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Apply"
+  },
+  {
+    "id": "685e6e911f5f",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Cloudflare?",
+    "back": "1. Add site in Cloudflare dashboard → import/copy DNS records. 2. Change registrar NS to Cloudflare-assigned nameservers. 3. Choose proxied vs DNS-only per record (A/AAAA/CNAME).",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Apply"
+  },
+  {
+    "id": "2a7bb4a6e74e",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Too many redirects — what do you check and fix?",
+    "back": "Check: SSL mode vs origin HTTP/HTTPS · Fix: Full (strict) + HTTPS origin; or fix origin redirect loop",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Analyze"
+  },
+  {
+    "id": "73684c3848b7",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 522 / 523 connection to origin — what do you check and fix?",
+    "back": "Check: Origin down; SG/firewall blocks CF IPs · Fix: Open firewall to CF IP ranges; health check origin",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Analyze"
+  },
+  {
+    "id": "422ef3f55f1f",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 525 SSL handshake failed — what do you check and fix?",
+    "back": "Check: Origin cert expired/wrong name · Fix: Renew cert; match hostname",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Analyze"
+  },
+  {
+    "id": "ba37f07efbe0",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong client IP in logs — what do you check and fix?",
+    "back": "Check: Not reading CF header · Fix: CF-Connecting-IP / True-Client-IP (Enterprise)",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Analyze"
+  },
+  {
+    "id": "44599c76bce0",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: API CORS breaks after CF — what do you check and fix?",
+    "back": "Check: Transform rules; cached OPTIONS · Fix: Bypass cache; preserve headers (CORS (Cross Origin Request Sharing))",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Analyze"
+  },
+  {
+    "id": "7a20e0e69243",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DNS propagates but site wrong — what do you check and fix?",
+    "back": "Check: Orange vs grey cloud; old A record · Fix: Toggle proxy; purge DNS cache",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Analyze"
+  },
+  {
+    "id": "0cca2a3c6566",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Webhook HMAC fail — what do you check and fix?",
+    "back": "Check: Body buffered/transformed · Fix: Disable buffering on webhook path",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Analyze"
+  },
+  {
+    "id": "3d0dd0fb6a50",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Cloudflare: what silently fails?",
+    "back": "Flexible SSL — users see HTTPS, CF→origin may be plain HTTP. Compliance fail and session hijack on that leg.",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Evaluate"
+  },
+  {
+    "id": "d4105a0bb945",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Cloudflare?",
+    "back": "Internal-only services — no public DNS/proxy needed; use private DNS (Route53 private zone, mDNS). WebSockets/long polling without config — works on CF but verify timeout/cache rules. Replacing WAF on complex custom protocols — CF is HTTP-centric; raw TCP needs Spectrum (paid).",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Evaluate"
+  },
+  {
+    "id": "3b9fe22a147b",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Cloudflare setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: User ──► CF edge (TLS, cache, WAF) ──► origin (ALB, nginx, Vercel)",
+    "source": "Back2Basics/DNS/cloudflare.md",
+    "section": "Cloudflare · Create"
+  },
+  {
+    "id": "de7533f6d427",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is DNS record in one sentence?",
+    "back": "Name → type → value mapping in a zone — A/AAAA/CNAME/TXT/MX with TTL controlling cache stickiness.",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Remember"
+  },
+  {
+    "id": "9c4798f4d073",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of DNS record (how the system thinks).",
+    "back": "Resolvers cache answers per TTL (seconds). Lower TTL before changes = faster global cutover. CNAME can't apex @ on all providers (use ALIAS/ANAME at Route53/Cloudflare). TXT for SPF/DKIM/verification. Propagation = old TTL expiring everywhere, not instant magic.",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Understand"
+  },
+  {
+    "id": "095e5109d70d",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for DNS record?",
+    "back": "Client → recursive resolver (cache TTL) → authoritative NS → zone file/RRset → dig yourdomain.com A +short → dig www.yourdomain.com CNAME → dig yourdomain.com TXT → dig yourdomain.com NS",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Apply"
+  },
+  {
+    "id": "53db59cac645",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken DNS record setup, what is your first validation command?",
+    "back": "Client → recursive resolver (cache TTL) → authoritative NS → zone file/RRset",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Apply"
+  },
+  {
+    "id": "e2d508b4a442",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for DNS record?",
+    "back": "1. Note current TTL (dig yourdomain.com A → ANSWER TTL) 2. Lower TTL to 300 (5 min); wait old TTL to expire 3. Change A/CNAME/TXT 4. Verify with multiple resolvers 5. Raise TTL again (3600+) when stable",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Apply"
+  },
+  {
+    "id": "57f885450443",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Old IP still resolves — what do you check and fix?",
+    "back": "Check: TTL cache · Fix: Wait TTL; dig @1.1.1.1 vs local",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Analyze"
+  },
+  {
+    "id": "3c84a8cd8d9d",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Apex CNAME rejected — what do you check and fix?",
+    "back": "Check: Provider rules · Fix: ALIAS record or A to load balancer",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Analyze"
+  },
+  {
+    "id": "2d96b74c7f26",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Cert validation fails — what do you check and fix?",
+    "back": "Check: _acme-challenge TXT · Fix: Add exact token; no extra quotes",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Analyze"
+  },
+  {
+    "id": "0a6b6ec867cc",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Email bounces — what do you check and fix?",
+    "back": "Check: MX + SPF TXT · Fix: MX points to mail host; SPF includes sender",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Analyze"
+  },
+  {
+    "id": "e057da7835a7",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Subdomain wrong zone — what do you check and fix?",
+    "back": "Check: NS delegation · Fix: Child zone NS at parent",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Analyze"
+  },
+  {
+    "id": "fd3dcdc62a18",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Intermittent answers — what do you check and fix?",
+    "back": "Check: Split DNS · Fix: Internal vs public view mismatch",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Analyze"
+  },
+  {
+    "id": "0318a651e2f0",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with DNS record: what silently fails?",
+    "back": "CNAME at www only, apex A/ALIAS — classic migration mistake. Trailing dot — FQDN in some UIs needs @ or full stop semantics. **Wildcard * doesn't cover nested** — *.example.com ≠ a.b.example.com on all setups.",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Evaluate"
+  },
+  {
+    "id": "3bffd15b86e9",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use DNS record?",
+    "back": "Don't set TTL 0 in production — resolver load + instability. Don't chain CNAME → CNAME → … — flatten or use ALIAS.",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Evaluate"
+  },
+  {
+    "id": "663484fc931d",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct DNS record setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Client → recursive resolver (cache TTL) → authoritative NS → zone file/RRset",
+    "source": "Back2Basics/DNS/dns record.md",
+    "section": "DNS record · Create"
+  },
+  {
+    "id": "7e8cc931a367",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mDNS in one sentence?",
+    "back": "One-line: link-local multicast DNS for .local names without a central server — RFC 6762 (Bonjour / Avahi).",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Remember"
+  },
+  {
+    "id": "e255fe0df787",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of mDNS (how the system thinks).",
+    "back": "mDNS (multicast DNS) resolves hostnames on a local link via UDP 5353 to 224.0.0.251 (IPv4) / ff02::fb (IPv6). Queries and responses are multicast — any host on the segment can answer for names it owns.",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Understand"
+  },
+  {
+    "id": "4b5ff25ad87c",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for mDNS?",
+    "back": "Laptop LAN (same broadcast domain) → systemctl status avahi-daemon → avahi-browse -a -r # browse all services on LAN → avahi-resolve -n myhost.local → resolvectl status # look for \"MulticastDNS setting\"",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Apply"
+  },
+  {
+    "id": "e73fb9f71944",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken mDNS setup, what is your first validation command?",
+    "back": "Laptop LAN (same broadcast domain)",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Apply"
+  },
+  {
+    "id": "fd860702766a",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for mDNS?",
+    "back": "Disable mDNS on servers that shouldn't advertise (security hardening):",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Apply"
+  },
+  {
+    "id": "4323f520369a",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: *.local doesn't resolve — what do you check and fix?",
+    "back": "Check: avahi-daemon running? VLAN isolation? · Fix: Enable mDNS on interface; ensure same L2 segment (no mDNS across routed VLANs without reflector)",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Analyze"
+  },
+  {
+    "id": "69d318b74d54",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works on Wi-Fi, not Ethernet — what do you check and fix?",
+    "back": "Check: Different VLANs / AP client isolation · Fix: Move to same broadcast domain or deploy mDNS gateway/reflector (e.g. Avahi reflector, UniFi mDNS)",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Analyze"
+  },
+  {
+    "id": "75da15c52c95",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate name conflicts — what do you check and fix?",
+    "back": "Check: avahi-browse -a shows multiple same names · Fix: Rename host; Avahi appends -2 suffix on conflict",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Analyze"
+  },
+  {
+    "id": "4c520beaf162",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Chromecast / printer not found — what do you check and fix?",
+    "back": "Check: Multicast blocked on AP/guest network · Fix: Disable guest isolation; allow UDP/5353 between IoT VLAN and client VLAN via reflector",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Analyze"
+  },
+  {
+    "id": "a905d91dcc67",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: K8s pod needs .local — what do you check and fix?",
+    "back": "Check: Pods aren't on LAN · Fix: Use cluster DNS (CoreDNS), not mDNS",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Analyze"
+  },
+  {
+    "id": "9260c1df03c5",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: High multicast noise — what do you check and fix?",
+    "back": "Check: Many devices advertising · Fix: Reduce advertised services; disable on headless servers",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Analyze"
+  },
+  {
+    "id": "8316c827da19",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with mDNS: what silently fails?",
+    "back": "mDNS crosses trust boundaries poorly. A compromised LAN device can spoof printer.local or _ssh._tcp.local. Never treat mDNS answers as authenticated.",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Evaluate"
+  },
+  {
+    "id": "142e158303eb",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use mDNS?",
+    "back": "Production service discovery across datacenters → use Consul, etcd, or K8s DNS. Anything requiring authoritative global naming → use unicast DNS. Security-sensitive authentication endpoints → never rely on mDNS for identity.",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Evaluate"
+  },
+  {
+    "id": "b2dc9558c13e",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct mDNS setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Laptop LAN (same broadcast domain)",
+    "source": "Back2Basics/DNS/mDNS.md",
+    "section": "mDNS · Create"
+  },
+  {
+    "id": "5749cf2e31a7",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is name server?",
+    "back": "name server — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/DNS/name server.md",
+    "section": "name server · Remember"
+  },
+  {
+    "id": "b0dc85c6eb5c",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does name server matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/DNS/name server.md",
+    "section": "name server · Understand"
+  },
+  {
+    "id": "9b2bb56978bd",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe name server checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/DNS/name server.md",
+    "section": "name server · Create"
+  },
+  {
+    "id": "5fab593e8daa",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is public resolver?",
+    "back": "Public resolvers (like 8.8.8.8 or 1.1.1.1) don’t store domain → IP mappings permanently. They act as recursive resolvers, meaning:",
+    "source": "Back2Basics/DNS/public resolver.md",
+    "section": "public resolver · Remember"
+  },
+  {
+    "id": "11ab3801d236",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for public resolver?",
+    "back": "User query → Public Resolver → Cache hit? yes → return → no → ask Root → TLD → Authoritative → Store in cache (TTL) → Return IP",
+    "source": "Back2Basics/DNS/public resolver.md",
+    "section": "public resolver · Apply"
+  },
+  {
+    "id": "503593c8fb5d",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken public resolver setup, what is your first validation command?",
+    "back": "User query → Public Resolver",
+    "source": "Back2Basics/DNS/public resolver.md",
+    "section": "public resolver · Apply"
+  },
+  {
+    "id": "327035913803",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct public resolver setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: User query → Public Resolver",
+    "source": "Back2Basics/DNS/public resolver.md",
+    "section": "public resolver · Create"
+  },
+  {
+    "id": "ccf8a95a23e4",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is BIND (named) — Operations in one sentence?",
+    "back": "One-line: authoritative/recursive DNS via named — edit named.conf, validate zones, reload without restart, know recursion vs authority.",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Remember"
+  },
+  {
+    "id": "e72e9118a32a",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of BIND (named) — Operations (how the system thinks).",
+    "back": "BIND 9 runs as named. Two roles (don't mix blindly on public internet):",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Understand"
+  },
+  {
+    "id": "c8399f467e26",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for BIND (named) — Operations?",
+    "back": "Authoritative: \"I own example.com\" → answers from zone files / DNSSEC → Recursive: \"Look up google.com for client\" → queries root → TLD → … → /etc/named.conf # main config → /etc/named.conf.local # your zones (include) → /var/named/ or /etc/bind/ # zone files",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Apply"
+  },
+  {
+    "id": "a5ace7d7d515",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken BIND (named) — Operations setup, what is your first validation command?",
+    "back": "Authoritative: \"I own example.com\" → answers from zone files / DNSSEC",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Apply"
+  },
+  {
+    "id": "50e2f610cbd1",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for BIND (named) — Operations?",
+    "back": "Serial bump rule: increment on every zone change or secondaries won't transfer.",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Apply"
+  },
+  {
+    "id": "f9f1b3bb6d23",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NXDOMAIN for valid record — what do you check and fix?",
+    "back": "Check: Serial not bumped; wrong zone file path · Fix: named-checkzone; bump SOA serial; rndc reload",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Analyze"
+  },
+  {
+    "id": "7da9dd00a562",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Secondary stale — what do you check and fix?",
+    "back": "Check: NOTIFY blocked; serial · Fix: Open TCP 53 between prim/sec; increment serial",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Analyze"
+  },
+  {
+    "id": "d9b125341196",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: REFUSED on query — what do you check and fix?",
+    "back": "Check: allow-query ACL · Fix: Add client network or any (careful)",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Analyze"
+  },
+  {
+    "id": "73a59899181d",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Open resolver abuse — what do you check and fix?",
+    "back": "Check: Recursion on for world · Fix: recursion no; + allow-recursion { localhost; };",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Analyze"
+  },
+  {
+    "id": "7475baab3680",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Zone transfer leak — what do you check and fix?",
+    "back": "Check: AXFR open · Fix: allow-transfer restricted; TSIG",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Analyze"
+  },
+  {
+    "id": "a2d321e77dae",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: named won't start — what do you check and fix?",
+    "back": "Check: Port 53 in use · Fix: `ss -ulnp \\",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Analyze"
+  },
+  {
+    "id": "4dd2c314b9bb",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with BIND (named) — Operations: what silently fails?",
+    "back": "Forgot serial increment — #1 secondary drift issue. Automate with dnssec-signzone tools or CI check.",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Evaluate"
+  },
+  {
+    "id": "692cc768ff0d",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use BIND (named) — Operations?",
+    "back": "Simple public DNS for a startup — managed DNS (Route53, Cloudflare) reduces BIND ops burden. Recursive resolver for office — consider Unbound or dedicated resolver distro; BIND can do it but harden carefully.",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Evaluate"
+  },
+  {
+    "id": "4397d36bedd4",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct BIND (named) — Operations setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Authoritative: \"I own example.com\" → answers from zone files / DNSSEC",
+    "source": "Back2Basics/DNS/servers/BIND.md",
+    "section": "BIND (named) — Operations · Create"
+  },
+  {
+    "id": "89b6e78d4590",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is CoreDNS?",
+    "back": "CoreDNS — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/DNS/servers/CoreDNS.md",
+    "section": "CoreDNS · Remember"
+  },
+  {
+    "id": "00719a4c965b",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does CoreDNS matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/DNS/servers/CoreDNS.md",
+    "section": "CoreDNS · Understand"
+  },
+  {
+    "id": "7478c43a30b2",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe CoreDNS checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/DNS/servers/CoreDNS.md",
+    "section": "CoreDNS · Create"
+  },
+  {
+    "id": "baf6e30a84b0",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is DSN records?",
+    "back": "DNS records are entries in a DNS database that tell the internet how to route traffic for a domain.",
+    "source": "Back2Basics/DNS/servers/DSN records.md",
+    "section": "DSN records · Remember"
+  },
+  {
+    "id": "7baef6c3684b",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for DSN records?",
+    "back": "A Record (Address) -> Map a domain to an IPv4 address. Used for APIs Any IPv4 service → AAA (IPv6 address) -> Map domain to IPv6 → CNAME (Canonical Name) -> Create an alias to another hostname. Used for www CDN endpoints, Aliases",
+    "source": "Back2Basics/DNS/servers/DSN records.md",
+    "section": "DSN records · Apply"
+  },
+  {
+    "id": "8b83edef318b",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken DSN records setup, what is your first validation command?",
+    "back": "A Record (Address) -> Map a domain to an IPv4 address. Used for APIs Any IPv4 service",
+    "source": "Back2Basics/DNS/servers/DSN records.md",
+    "section": "DSN records · Apply"
+  },
+  {
+    "id": "755fd4518629",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct DSN records setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: A Record (Address) -> Map a domain to an IPv4 address. Used for APIs Any IPv4 service",
+    "source": "Back2Basics/DNS/servers/DSN records.md",
+    "section": "DSN records · Create"
+  },
+  {
+    "id": "b33e19d9cdd1",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is PoserDNS?",
+    "back": "PoserDNS — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/DNS/servers/PoserDNS.md",
+    "section": "PoserDNS · Remember"
+  },
+  {
+    "id": "490334e58ca8",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does PoserDNS matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/DNS/servers/PoserDNS.md",
+    "section": "PoserDNS · Understand"
+  },
+  {
+    "id": "726059f839e4",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe PoserDNS checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/DNS/servers/PoserDNS.md",
+    "section": "PoserDNS · Create"
+  },
+  {
+    "id": "3ab99ca3a0e4",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is dnsmasq?",
+    "back": "dnsmasq — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/DNS/servers/dnsmasq.md",
+    "section": "dnsmasq · Remember"
+  },
+  {
+    "id": "f1dfd73654c9",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does dnsmasq matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/DNS/servers/dnsmasq.md",
+    "section": "dnsmasq · Understand"
+  },
+  {
+    "id": "61bda6bac39b",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe dnsmasq checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/DNS/servers/dnsmasq.md",
+    "section": "dnsmasq · Create"
+  },
+  {
+    "id": "7164124baa11",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Top-Level Domain (TLD) in one sentence?",
+    "back": "Rightmost DNS label in a name (example.com → TLD is com) — delegated by root, operated by registry, sold by registrars. Matters for DNSSEC, resolver behavior, and policy (who can register what).",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Remember"
+  },
+  {
+    "id": "8e6cedfb8f97",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is .dev?",
+    "back": "HSTS preload eligible (HTTPS-only expectation).",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Remember"
+  },
+  {
+    "id": "97c826f270ba",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is .app?",
+    "back": "similar HTTPS-leaning policies on some resolvers.",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Remember"
+  },
+  {
+    "id": "6dd03c4c4c7f",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Brand TLD?",
+    "back": "marketing; same DNS mechanics, higher cost.",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Remember"
+  },
+  {
+    "id": "43b6b8fd0cfd",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Top-Level Domain (TLD) (how the system thinks).",
+    "back": "The DNS tree is hierarchical: root (.) → TLD (.com, .org, .uk) → SLD (example in example.com) → subdomains (www). ICANN policy; registry runs TLD nameservers; registrar (GoDaddy, Route53 Registrar) is where you pay and set delegation NS.",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Understand"
+  },
+  {
+    "id": "b2088b73304c",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Top-Level Domain (TLD)?",
+    "back": ". (root) ──► .com (TLD) ──► example.com (registered zone) ──► www.example.com → dig +trace example.com A → whois example.com | grep -i 'Name Server\\|Registrar'",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Apply"
+  },
+  {
+    "id": "72b1b2db551f",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Top-Level Domain (TLD) setup, what is your first validation command?",
+    "back": ". (root) ──► .com (TLD) ──► example.com (registered zone) ──► www.example.com",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Apply"
+  },
+  {
+    "id": "b16f2211e144",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Top-Level Domain (TLD)?",
+    "back": ".dev — HSTS preload eligible (HTTPS-only expectation). .app — similar HTTPS-leaning policies on some resolvers. Brand TLD — marketing; same DNS mechanics, higher cost.",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Apply"
+  },
+  {
+    "id": "b4dac39b18fd",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Domain \"not found\" / NXDOMAIN — what do you check and fix?",
+    "back": "Check: Registration expired; wrong TLD spelling · Fix: Renew; verify WHOIS",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Analyze"
+  },
+  {
+    "id": "3dd52bc148f2",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Partial global resolution — what do you check and fix?",
+    "back": "Check: NS mismatch at registrar vs zone · Fix: Align NS; wait TTL (up to 48h)",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Analyze"
+  },
+  {
+    "id": "d29d7fa80de9",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: com works, co.uk cookie weird — what do you check and fix?",
+    "back": "Check: Public suffix rules · Fix: Set Domain= cookie per eTLD+1 rules",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Analyze"
+  },
+  {
+    "id": "9a2bd74cabe3",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DNSSEC SERVFAIL — what do you check and fix?",
+    "back": "Check: DS record at registrar stale · Fix: Update DS after KSK rollover",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Analyze"
+  },
+  {
+    "id": "d034722895f1",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Email SPF/DMARC fail on new TLD — what do you check and fix?",
+    "back": "Check: No MX/TXT at delegation · Fix: Add records at authoritative zone",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Analyze"
+  },
+  {
+    "id": "b843951da01e",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Internal \"TLD\" collision — what do you check and fix?",
+    "back": "Check: Using .local / .corp on internet · Fix: Use .internal (RFC 6762 guidance) or subdomain under owned domain",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Analyze"
+  },
+  {
+    "id": "464cef11e885",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Top-Level Domain (TLD): what silently fails?",
+    "back": "Registrar ≠ DNS host — expiry at registrar kills delegation even if Route53 zone exists.",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Evaluate"
+  },
+  {
+    "id": "a83f9637df4a",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Top-Level Domain (TLD)?",
+    "back": "Debating TLD for infra — pick one registered domain; use subdomains for envs (staging.example.com). Deep TLD policy research in ops runbooks — registrar support for disputes; ops cares about NS and TTL.",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Evaluate"
+  },
+  {
+    "id": "091ab2ccbf2f",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Top-Level Domain (TLD) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: . (root) ──► .com (TLD) ──► example.com (registered zone) ──► www.example.com",
+    "source": "Back2Basics/DNS/top-level Domain.md",
+    "section": "Top-Level Domain (TLD) · Create"
+  },
+  {
+    "id": "56d5662830ef",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Unbound variable (bash set -u) in one sentence?",
+    "back": "Referencing an unset shell variable is an error when set -u (nounset) is on — catches typos before prod scripts half-run.",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Remember"
+  },
+  {
+    "id": "64f761a31d32",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Unbound variable (bash set -u) (how the system thinks).",
+    "back": "Default bash expands unset vars to empty string — silent bugs (rm -rf $DIR/ with empty DIR). set -u (or set -o nounset) aborts on unbound expansion. Often paired with set -e (errexit) and set -o pipefail in strict scripts. Not the Unbound DNS resolver — that's DNS infrastructure software.",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Understand"
+  },
+  {
+    "id": "39f7931e9c03",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Unbound variable (bash set -u)?",
+    "back": "set -euo pipefail → IFS=$'\\n\\t' → PORT=\"${PORT:-8080}\" # default if unset → echo \"${myvar:-fallback}\" → if -v myvar ; then",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Apply"
+  },
+  {
+    "id": "a3426a7077dd",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Unbound variable (bash set -u) setup, what is your first validation command?",
+    "back": "set -euo pipefail",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Apply"
+  },
+  {
+    "id": "304154df9c87",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: unbound variable on start — what do you check and fix?",
+    "back": "Check: Line number in trace · Fix: set -x; assign var or use ${var:-}",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Analyze"
+  },
+  {
+    "id": "5fb785c8177a",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works interactively, fails in CI — what do you check and fix?",
+    "back": "Check: CI omits env · Fix: Export required env in workflow",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Analyze"
+  },
+  {
+    "id": "6eaaf429ea27",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: $1 empty in script — what do you check and fix?",
+    "back": "Check: No args passed · Fix: :${1:?usage: $0 file}",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Analyze"
+  },
+  {
+    "id": "b120a5b102a5",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Array unset — what do you check and fix?",
+    "back": "Check: set -u + empty array · Fix: \"${arr[@]+\"${arr[@]}\"}\" pattern",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Analyze"
+  },
+  {
+    "id": "4358d64f667c",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Sourced script order — what do you check and fix?",
+    "back": "Check: Parent set -u · Fix: Initialize before source",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Analyze"
+  },
+  {
+    "id": "ae6df7001d67",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Unbound variable (bash set -u): what silently fails?",
+    "back": "$? immediately after — test commands carefully with set -e. read var without default — can trip nounset on empty input in loops. Don't confuse with Unbound DNS — resolver config is /etc/unbound/unbound.conf.",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Evaluate"
+  },
+  {
+    "id": "b98ffbfc1492",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Unbound variable (bash set -u)?",
+    "back": "Don't enable set -u in ad-hoc interactive shells unless you enjoy surprise exits. Don't use empty default :- to hide missing required config — fail loud with :? for secrets/paths.",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Evaluate"
+  },
+  {
+    "id": "1616ec4bb931",
+    "deck": "b2b-dns",
+    "tags": [
+      "back2basics",
+      "dns",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Unbound variable (bash set -u) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: set -euo pipefail",
+    "source": "Back2Basics/DNS/unbound variable.md",
+    "section": "Unbound variable (bash set -u) · Create"
+  }
+]

@@ -1,0 +1,1626 @@
+[
+  {
+    "id": "03907c8f10eb",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is E mail server in one sentence?",
+    "back": "One-line: the MTA/MDA/MUA stack that accepts, routes, stores, and retrieves mail — debug deliverability at each hop.",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Remember"
+  },
+  {
+    "id": "21b1bc83c620",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of E mail server (how the system thinks).",
+    "back": "Email crosses distinct roles. Confusing them causes misconfigured ports and wrong logs.",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Understand"
+  },
+  {
+    "id": "0d4384ed3518",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for E mail server?",
+    "back": "sudo systemctl status postfix → mailq → postqueue -p → postsuper -d ALL deferred # careful — deletes deferred queue → sudo tail -f /var/log/mail.log",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Apply"
+  },
+  {
+    "id": "284117485038",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken E mail server setup, what is your first validation command?",
+    "back": "sudo systemctl status postfix",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Apply"
+  },
+  {
+    "id": "08c242c73e14",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for E mail server?",
+    "back": "[ ] A/AAAA for mail.example.com (SMTP banner host) [ ] MX points to MTA with priority [ ] SPF TXT includes all sending IPs/providers [ ] DKIM key published; MTA signs outbound [ ] DMARC policy (p=none → monitor, then quarantine/reject) [ ] PTR/rDNS matches SMTP EHLO hostname [ ] TLS cert valid for submission/IMAP hostnames",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Apply"
+  },
+  {
+    "id": "9ed58c7240ac",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mail stuck in queue — what do you check and fix?",
+    "back": "Check: mailq; defer reason in log · Fix: Fix DNS/MX; clear RBL; auth to smart host",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Analyze"
+  },
+  {
+    "id": "27a441f091e0",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Users can't send — what do you check and fix?",
+    "back": "Check: MSA auth / TLS · Fix: Verify SASL creds; cert chain on 587",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Analyze"
+  },
+  {
+    "id": "4956e47be95d",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Users can't receive — what do you check and fix?",
+    "back": "Check: MX DNS; MTA listening :25 · Fix: Fix MX; open SG; check postconf inet_interfaces",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Analyze"
+  },
+  {
+    "id": "b6989da36712",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: IMAP works, no outbound — what do you check and fix?",
+    "back": "Check: Separate submission vs relay config · Fix: relayhost for smart host; SASL maps",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Analyze"
+  },
+  {
+    "id": "f901bc7ef6e0",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: All mail spam-foldered — what do you check and fix?",
+    "back": "Check: SPF/DKIM/DMARC headers · Fix: See SMTP triage table",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Analyze"
+  },
+  {
+    "id": "dfac4d88854d",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Disk full — what do you check and fix?",
+    "back": "Check: /var/spool/postfix; Maildir size · Fix: Expire queue; quota; expand volume",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Analyze"
+  },
+  {
+    "id": "c85f2c4991f6",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Relay denied for world — what do you check and fix?",
+    "back": "Check: smtpd_recipient_restrictions · Fix: permit_mynetworks, reject_unauth_destination",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Analyze"
+  },
+  {
+    "id": "963d6b2de92e",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: TLS handshake fail on Apple Mail — what do you check and fix?",
+    "back": "Check: Cert chain / intermediate · Fix: Install full chain; use Let's Encrypt",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Analyze"
+  },
+  {
+    "id": "ade08c31070f",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with E mail server: what silently fails?",
+    "back": "Open relay on port 25 = immediate blacklisting. Default Postfix is safe — custom mynetworks too wide is the usual mistake.",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Evaluate"
+  },
+  {
+    "id": "e195188ccdfe",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use E mail server?",
+    "back": "Product email at scale → managed SMTP relay (SES, SendGrid) beats running your own MTA reputation. Dev-only fake SMTP → Mailhog/Mailpit locally; don't point at production MX.",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Evaluate"
+  },
+  {
+    "id": "05b50eb6b567",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct E mail server setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: sudo systemctl status postfix",
+    "source": "Back2Basics/Protocol/E mail server.md",
+    "section": "E mail server · Create"
+  },
+  {
+    "id": "b55310fc02b5",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is IMAP (Internet Message Access Protocol) in one sentence?",
+    "back": "One-line: mailbox protocol — messages stay on server; folders, flags, UID sync; clients use 143/STARTTLS or 993/IMAPS.",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Remember"
+  },
+  {
+    "id": "65e7a6e03b61",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of IMAP (Internet Message Access Protocol) (how the system thinks).",
+    "back": "IMAP lets MUAs read and organize mail on the server (unlike POP3 (Post Office Protocol v3) which typically downloads and deletes). Server holds canonical state; client syncs flags (\\Seen, \\Deleted), folders, and UIDs. Multiple devices see the same mailbox.",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Understand"
+  },
+  {
+    "id": "1652c479c028",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for IMAP (Internet Message Access Protocol)?",
+    "back": "Client ──IMAP──► MDA (Dovecot, Cyrus, Exchange) → openssl s_client -connect imap.example.com:993 -quiet → openssl s_client -connect imap.example.com:143 -starttls imap",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Apply"
+  },
+  {
+    "id": "f931729b81dd",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken IMAP (Internet Message Access Protocol) setup, what is your first validation command?",
+    "back": "Client ──IMAP──► MDA (Dovecot, Cyrus, Exchange)",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Apply"
+  },
+  {
+    "id": "9baab4d76a2c",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for IMAP (Internet Message Access Protocol)?",
+    "back": "STARTTLS on 143:",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Apply"
+  },
+  {
+    "id": "2096d96fe7be",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Auth failed — what do you check and fix?",
+    "back": "Check: App password; OAuth · Fix: Enable IMAP in provider; correct token scope",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Analyze"
+  },
+  {
+    "id": "cecfd4a62137",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Certificate error — what do you check and fix?",
+    "back": "Check: Hostname mismatch · Fix: Full SAN cert; use correct server name",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Analyze"
+  },
+  {
+    "id": "7817e6b474a2",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Empty INBOX on one client — what do you check and fix?",
+    "back": "Check: Wrong folder namespace · Fix: LIST folders; prefix INBOX",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Analyze"
+  },
+  {
+    "id": "c6db62833cab",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow sync mobile — what do you check and fix?",
+    "back": "Check: FETCH entire body · Fix: CONDSTORE/QRESYNC; partial FETCH",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Analyze"
+  },
+  {
+    "id": "efebadaed99b",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: IDLE disconnects — what do you check and fix?",
+    "back": "Check: NAT/firewall timeout · Fix: Client reconnect; TCP keepalive",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Analyze"
+  },
+  {
+    "id": "ddf0e361a89b",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Messages \"duplicate\" — what do you check and fix?",
+    "back": "Check: POP3 + IMAP mixed · Fix: Pick one protocol per account",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Analyze"
+  },
+  {
+    "id": "5ce8e06d37df",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Login plain rejected — what do you check and fix?",
+    "back": "Check: Secure auth required · Fix: TLS first; OAuth2",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Analyze"
+  },
+  {
+    "id": "f7d6c5354eea",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with IMAP (Internet Message Access Protocol): what silently fails?",
+    "back": "PLAIN without TLS — credentials leak; always TLS or localhost.",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Evaluate"
+  },
+  {
+    "id": "8e5b80e75c58",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use IMAP (Internet Message Access Protocol)?",
+    "back": "Offline-first archive download only — POP3 or one-shot migration tool simpler. Transactional app notifications — use webhooks/API, not mailbox polling.",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Evaluate"
+  },
+  {
+    "id": "66420386d9e3",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct IMAP (Internet Message Access Protocol) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Client ──IMAP──► MDA (Dovecot, Cyrus, Exchange)",
+    "source": "Back2Basics/Protocol/IMAP (Internet Message Access Protocol).md",
+    "section": "IMAP (Internet Message Access Protocol) · Create"
+  },
+  {
+    "id": "1e16738b068e",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is IRC?",
+    "back": "IRC — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Protocol/IRC.md",
+    "section": "IRC · Remember"
+  },
+  {
+    "id": "01e24a684e5f",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does IRC matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Protocol/IRC.md",
+    "section": "IRC · Understand"
+  },
+  {
+    "id": "b11efc593d2c",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe IRC checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Protocol/IRC.md",
+    "section": "IRC · Create"
+  },
+  {
+    "id": "2029246421bc",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is LDAP (Lightweight Directory Access Protocol)?",
+    "back": "LDAP (Lightweight Directory Access Protocol) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Protocol/LDAP (Lightweight Directory Access Protocol).md",
+    "section": "LDAP (Lightweight Directory Access Protocol) · Remember"
+  },
+  {
+    "id": "0f3eae7bcdbb",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does LDAP (Lightweight Directory Access Protocol) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Protocol/LDAP (Lightweight Directory Access Protocol).md",
+    "section": "LDAP (Lightweight Directory Access Protocol) · Understand"
+  },
+  {
+    "id": "282bd7097629",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe LDAP (Lightweight Directory Access Protocol) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Protocol/LDAP (Lightweight Directory Access Protocol).md",
+    "section": "LDAP (Lightweight Directory Access Protocol) · Create"
+  },
+  {
+    "id": "a0b82f30b376",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is MQTT in one sentence?",
+    "back": "One-line: lightweight pub/sub for devices and IoT — broker-centric topics, QoS 0/1/2, small headers; not a drop-in for HTTP REST or chat at web scale without ops discipline.",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Remember"
+  },
+  {
+    "id": "3df19cf0c532",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of MQTT (how the system thinks).",
+    "back": "MQTT (Message Queuing Telemetry Transport) uses a broker (Mosquitto, EMQX, AWS IoT Core). Clients publish to topics (sensors/room1/temp); subscribers receive by topic filter (sensors/+/temp, # wildcard). Connection is long-lived TCP (often TLS on 8883).",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Understand"
+  },
+  {
+    "id": "11f4b6e24305",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for MQTT?",
+    "back": "Publisher ──PUBLISH topic──► Broker ──forward──► Subscriber(s) → SUBSCRIBE filter → mosquitto_sub -h broker.example.com -p 8883 \\ → mosquitto_pub -h broker.example.com -p 8883 \\",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Apply"
+  },
+  {
+    "id": "33e675a402d3",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken MQTT setup, what is your first validation command?",
+    "back": "Publisher ──PUBLISH topic──► Broker ──forward──► Subscriber(s)",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Apply"
+  },
+  {
+    "id": "a859b2780e7c",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connect loop — what do you check and fix?",
+    "back": "Check: Auth/cert/clientId clash · Fix: Unique clientId; verify user/ACL",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Analyze"
+  },
+  {
+    "id": "714aa73b79b2",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Messages not received — what do you check and fix?",
+    "back": "Check: Topic typo vs filter · Fix: Log subscribe ack; test with mosquitto_sub -v",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Analyze"
+  },
+  {
+    "id": "dcc08275fcc6",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate messages — what do you check and fix?",
+    "back": "Check: QoS 1/2 retries · Fix: Idempotent handlers; dedupe by message id",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Analyze"
+  },
+  {
+    "id": "a746ef599e43",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Broker CPU spike — what do you check and fix?",
+    "back": "Check: # subscribers; retained flood · Fix: Narrow subscriptions; limit retain",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Analyze"
+  },
+  {
+    "id": "8d4079b95d00",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Silent disconnect — what do you check and fix?",
+    "back": "Check: NAT timeout · Fix: Keepalive (ping); broker max_keepalive",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Analyze"
+  },
+  {
+    "id": "3504811fa926",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: TLS handshake fail — what do you check and fix?",
+    "back": "Check: ALPN/SNI; old cipher · Fix: Update certs; mqtts:// not mqtt://",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Analyze"
+  },
+  {
+    "id": "80acbf7f32cc",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with MQTT: what silently fails?",
+    "back": "Plaintext 1883 on public internet — credentials + payload exposed; use TLS + ACL.",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Evaluate"
+  },
+  {
+    "id": "ce597007bbf7",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use MQTT?",
+    "back": "Request/response HTTP APIs — REST/gRPC clearer for CRUD. Browser-first real-time — webSocket + app server may be simpler than MQTT-over-WS. Guaranteed global ordering — MQTT doesn't order across topics; design per-key streams.",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Evaluate"
+  },
+  {
+    "id": "116a9e95f53f",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct MQTT setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Publisher ──PUBLISH topic──► Broker ──forward──► Subscriber(s)",
+    "source": "Back2Basics/Protocol/MQTT.md",
+    "section": "MQTT · Create"
+  },
+  {
+    "id": "9e8b84ceaff3",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Relay server?",
+    "back": "A relay server is a server that forwards data between two or more devices or systems that cannot communicate directly.",
+    "source": "Back2Basics/Protocol/Relay server.md",
+    "section": "Relay server · Remember"
+  },
+  {
+    "id": "c36c4bf35bf3",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Proxy Servers?",
+    "back": "Allow the device to access external services (like TURN) even when outgoing traffic is restricted.",
+    "source": "Back2Basics/Protocol/Relay server.md",
+    "section": "Relay server · Remember"
+  },
+  {
+    "id": "94956ba274de",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is WebSocket/HTTP TURN?",
+    "back": "Increases the chances of traffic being allowed through the firewall by using protocols that are more commonly permitted.",
+    "source": "Back2Basics/Protocol/Relay server.md",
+    "section": "Relay server · Remember"
+  },
+  {
+    "id": "a6bd5e9f2a9e",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is VPN?",
+    "back": "Bypasses firewall restrictions by tunneling traffic through a secure connection.",
+    "source": "Back2Basics/Protocol/Relay server.md",
+    "section": "Relay server · Remember"
+  },
+  {
+    "id": "f959b4e897de",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is SCP (Secure Copy Protocol) in one sentence?",
+    "back": "One-line: file copy over SSH — reuses sshd auth and encryption; prefer rsync -e ssh or SFTP for large/recursive transfers with resume.",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Remember"
+  },
+  {
+    "id": "db126d317e18",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of SCP (Secure Copy Protocol) (how the system thinks).",
+    "back": "SCP wraps SSH transport: authenticate like ssh, then copy files over encrypted channel. Syntax mirrors cp with remote user@host:path. Not a separate daemon — sshd on port 22 (or custom).",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Understand"
+  },
+  {
+    "id": "fb949cdff664",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for SCP (Secure Copy Protocol)?",
+    "back": "local scp ──SSH session──► sshd ──► read/write remote files → scp file.txt user@remote_host:/path/to/destination/ → scp -r ./local_dir user@remote_host:/remote/path/ → scp user@remote_host:/path/to/file.txt ./local/ → scp -r user@remote_host:/remote/dir ./local/",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Apply"
+  },
+  {
+    "id": "21a002606095",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken SCP (Secure Copy Protocol) setup, what is your first validation command?",
+    "back": "local scp ──SSH session──► sshd ──► read/write remote files",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Apply"
+  },
+  {
+    "id": "1acb825c9a8b",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Permission denied (publickey) — what do you check and fix?",
+    "back": "Check: SSH key agent · Fix: ssh-add -l; correct -i key; authorized_keys",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Analyze"
+  },
+  {
+    "id": "d3df908576d4",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Host key verification failed — what do you check and fix?",
+    "back": "Check: Known_hosts mismatch · Fix: Verify fingerprint; update known_hosts carefully",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Analyze"
+  },
+  {
+    "id": "1573447cd442",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stalled mid-transfer — what do you check and fix?",
+    "back": "Check: Network drop · Fix: Use rsync; ServerAliveInterval in ssh config",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Analyze"
+  },
+  {
+    "id": "ab1c38084a9e",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: scp: not found — what do you check and fix?",
+    "back": "Check: Remote no scp binary · Fix: Use sftp/rsync; install openssh-clients on remote",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Analyze"
+  },
+  {
+    "id": "5fd17fce3cc0",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Wrong owner on remote — what do you check and fix?",
+    "back": "Check: Remote umask · Fix: scp preserves modes; fix with ssh chmod after",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Analyze"
+  },
+  {
+    "id": "c044553aaa1a",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Slow many small files — what do you check and fix?",
+    "back": "Check: Per-file overhead · Fix: tar+scp one archive, or rsync",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Analyze"
+  },
+  {
+    "id": "5e19e38dae6b",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with SCP (Secure Copy Protocol): what silently fails?",
+    "back": "Glob expansion is local — scp *.log host: expands on local shell; quote remote globs: host:'/logs/*.log'.",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Evaluate"
+  },
+  {
+    "id": "876c48655870",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use SCP (Secure Copy Protocol)?",
+    "back": "Large dataset sync with resume — rsync over SSH. Public anonymous download — HTTPS/S3, not SCP. Windows ↔ Linux path quirks — verify OpenSSH build; consider SFTP GUI clients.",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Evaluate"
+  },
+  {
+    "id": "347213a4ffe8",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct SCP (Secure Copy Protocol) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: local scp ──SSH session──► sshd ──► read/write remote files",
+    "source": "Back2Basics/Protocol/SCP (Secure Copy Protocol).md",
+    "section": "SCP (Secure Copy Protocol) · Create"
+  },
+  {
+    "id": "f352bd93a0ed",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is SMTP in one sentence?",
+    "back": "One-line: push protocol for MTA-to-MTA mail relay — submission on 587/TLS, legacy 25, implicit TLS 465 — RFC 5321.",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Remember"
+  },
+  {
+    "id": "1e6817d269ea",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of SMTP (how the system thinks).",
+    "back": "SMTP is command/response between mail agents. Submission (client → MSA, port 587) differs from relay (MTA → MTA, port 25). Delivery authenticity is enforced separately via SPF, DKIM, DMARC (DNS TXT) — not by SMTP itself.",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Understand"
+  },
+  {
+    "id": "248ee05585b2",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for SMTP?",
+    "back": "MUA ──587/TLS──► MSA/MTA ──25──► recipient MTA ──► MDA ──► mailbox → SPF/DKIM/DMARC checked at recipient → openssl s_client -connect smtp.example.com:587 -starttls smtp → swaks --to rcip@example.com --from sender@example.com \\ → dig +short example.com TXT # SPF",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Apply"
+  },
+  {
+    "id": "92d3ab263581",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken SMTP setup, what is your first validation command?",
+    "back": "MUA ──587/TLS──► MSA/MTA ──25──► recipient MTA ──► MDA ──► mailbox",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Apply"
+  },
+  {
+    "id": "09a6d73c1135",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for SMTP?",
+    "back": "Example SPF: v=spf1 include:_spf.google.com ip4:203.0.113.0/24 -all",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Apply"
+  },
+  {
+    "id": "530b25925c67",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mail lands in spam — what do you check and fix?",
+    "back": "Check: Authentication-Results header; mail-tester.com · Fix: Fix SPF/DKIM/DMARC alignment; warm IP; reverse PTR",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Analyze"
+  },
+  {
+    "id": "78ceee1302d3",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 550 5.7.1 SPF fail — what do you check and fix?",
+    "back": "Check: dig TXT example.com; sending IP · Fix: Add IP/include to SPF; avoid -all until complete",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Analyze"
+  },
+  {
+    "id": "2a8a882d1cb2",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 550 5.7.1 DKIM fail — what do you check and fix?",
+    "back": "Check: Selector TXT; signed headers · Fix: Re-sign with correct selector; clock skew on signer",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Analyze"
+  },
+  {
+    "id": "d2c0f1e8e0fd",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DMARC fail in aggregate report — what do you check and fix?",
+    "back": "Check: From domain vs DKIM d= vs SPF bounce domain · Fix: Align domains (envelope From = Header From); use same domain for DKIM",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Analyze"
+  },
+  {
+    "id": "ca0e5f83d05b",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connection timed out on :25 — what do you check and fix?",
+    "back": "Check: Cloud SG blocks outbound 25 · Fix: Request provider unblock or relay via SES/SendGrid",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Analyze"
+  },
+  {
+    "id": "dce86a9755ec",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Relay access denied — what do you check and fix?",
+    "back": "Check: Auth required on 587 · Fix: Enable SASL; credentials in MUA",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Analyze"
+  },
+  {
+    "id": "d89060620088",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 421 4.7.0 try again — what do you check and fix?",
+    "back": "Check: Greylisting / rate limit · Fix: Retry; fix reputation; reduce burst volume",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Analyze"
+  },
+  {
+    "id": "ac245d9ce4de",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works to Gmail, not corporate — what do you check and fix?",
+    "back": "Check: Recipient MX logs / TLS requirement · Fix: Offer TLS 1.2+; valid cert on submission",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Analyze"
+  },
+  {
+    "id": "2264c3f86ff3",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Bounces with 550 5.1.1 — what do you check and fix?",
+    "back": "Check: RCPT address valid? · Fix: Fix typo; verify MX for domain",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Analyze"
+  },
+  {
+    "id": "861da4d3d215",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Queue backlog — what do you check and fix?",
+    "back": "Check: mailq / postqueue -p · Fix: Clear deferred; fix DNS; unblock RBL listing",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Analyze"
+  },
+  {
+    "id": "6bf53600fc91",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with SMTP: what silently fails?",
+    "back": "SPF -all before all senders listed → all mail fails. Use ~all during migration, then tighten.",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Evaluate"
+  },
+  {
+    "id": "3e0f800f2ce5",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use SMTP?",
+    "back": "App transactional at scale → provider API (SES, Postmark) beats self-hosted MTA ops. Internal alerts only → Slack/webhook may beat email deliverability fight.",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Evaluate"
+  },
+  {
+    "id": "29370737b605",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct SMTP setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: MUA ──587/TLS──► MSA/MTA ──25──► recipient MTA ──► MDA ──► mailbox",
+    "source": "Back2Basics/Protocol/SMTP.md",
+    "section": "SMTP · Create"
+  },
+  {
+    "id": "3d7dfc6898ce",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is SOCKS (Socket Secure) in one sentence?",
+    "back": "One-line: client-side proxy protocol that tunnels arbitrary TCP (and UDP in v5) through a proxy — debug egress and bypass paths — RFC 1928.",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Remember"
+  },
+  {
+    "id": "b04182ab1cac",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of SOCKS (Socket Secure) (how the system thinks).",
+    "back": "Unlike HTTP proxies (URL-level), SOCKS hands the client a tunnel after authentication. The client then speaks the target protocol raw — SSH, HTTPS, DB, anything TCP.",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Understand"
+  },
+  {
+    "id": "07b738ce4fb2",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for SOCKS (Socket Secure)?",
+    "back": "App ──SOCKS handshake──► Proxy (:1080) ──TCP connect──► target:443 → ssh -N -D 1080 -q user@jump-host → curl --socks5-hostname 127.0.0.1:1080 https://ifconfig.me → curl -v --proxy socks5h://127.0.0.1:1080 https://internal.service.local → nc -X 5 -x 127.0.0.1:1080 target.host 443",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Apply"
+  },
+  {
+    "id": "085d3a14f207",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken SOCKS (Socket Secure) setup, what is your first validation command?",
+    "back": "App ──SOCKS handshake──► Proxy (:1080) ──TCP connect──► target:443",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Apply"
+  },
+  {
+    "id": "3a2b60fe7941",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connection refused to SOCKS port — what do you check and fix?",
+    "back": "Check: ss -tlnp; SSH -D running? · Fix: Start tunnel; open firewall to jump host",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Analyze"
+  },
+  {
+    "id": "6b75da79aa39",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works for IP, fails for hostname — what do you check and fix?",
+    "back": "Check: SOCKS4 vs SOCKS5; DNS local vs remote · Fix: Use socks5h:// (remote resolve) not socks5://",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Analyze"
+  },
+  {
+    "id": "d24f40ad4740",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Auth failure — what do you check and fix?",
+    "back": "Check: Username/password required · Fix: curl -U user:pass --socks5-hostname ...",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Analyze"
+  },
+  {
+    "id": "c6dc5afebf5c",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Tunnel up, target timeout — what do you check and fix?",
+    "back": "Check: Proxy can't reach destination · Fix: SG on target; routing from jump host; wrong VPC",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Analyze"
+  },
+  {
+    "id": "caddda0eb003",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: HTTPS cert errors through tunnel — what do you check and fix?",
+    "back": "Check: Expected if MITM corporate proxy · Fix: Use corporate CA; not a SOCKS bug",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Analyze"
+  },
+  {
+    "id": "8f1a5ccf99f6",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Intermittent drops — what do you check and fix?",
+    "back": "Check: Idle NAT timeout on jump path · Fix: Enable SSH ServerAliveInterval 60",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Analyze"
+  },
+  {
+    "id": "3781d0903f69",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: UDP apps fail — what do you check and fix?",
+    "back": "Check: SOCKS4 or no UDP associate · Fix: SOCKS5 with UDP relay; many tools TCP-only",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Analyze"
+  },
+  {
+    "id": "f6046b8343a4",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with SOCKS (Socket Secure): what silently fails?",
+    "back": "socks5 vs socks5h: Without h, DNS resolves locally — leaks intent and breaks internal-only names. Prefer -hostname / socks5h:// for tunnel debugging.",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Evaluate"
+  },
+  {
+    "id": "b08dc2fcbd94",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use SOCKS (Socket Secure)?",
+    "back": "Terminate TLS and inspect HTTP → HTTP CONNECT or explicit forward proxy, not raw SOCKS. Permanent service mesh routing → use sidecar/iptables, not manual -D tunnels.",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Evaluate"
+  },
+  {
+    "id": "3dd7e395614b",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct SOCKS (Socket Secure) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: App ──SOCKS handshake──► Proxy (:1080) ──TCP connect──► target:443",
+    "source": "Back2Basics/Protocol/SOCKS (Socket Secure).md",
+    "section": "SOCKS (Socket Secure) · Create"
+  },
+  {
+    "id": "1be9b33bf07d",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is TFTP?",
+    "back": "TFTP is a simple file transfer protocol that transfers files over a network using UDP instead of TCP. It is designed for environments where devices need to download or upload files with minimal protocol overhead.",
+    "source": "Back2Basics/Protocol/TFTP.md",
+    "section": "TFTP · Remember"
+  },
+  {
+    "id": "946ba50f7f3d",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for TFTP?",
+    "back": "Read Request (RRQ) (client downloads a file) → Write Request (WRQ)",
+    "source": "Back2Basics/Protocol/TFTP.md",
+    "section": "TFTP · Apply"
+  },
+  {
+    "id": "9a5c6729ffbb",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken TFTP setup, what is your first validation command?",
+    "back": "Read Request (RRQ) (client downloads a file)",
+    "source": "Back2Basics/Protocol/TFTP.md",
+    "section": "TFTP · Apply"
+  },
+  {
+    "id": "c6a854566feb",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct TFTP setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Read Request (RRQ) (client downloads a file)",
+    "source": "Back2Basics/Protocol/TFTP.md",
+    "section": "TFTP · Create"
+  },
+  {
+    "id": "c73a711cd9e6",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is WebDAV?",
+    "back": "WebDAV — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Protocol/WebDAV.md",
+    "section": "WebDAV · Remember"
+  },
+  {
+    "id": "148910659d39",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does WebDAV matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Protocol/WebDAV.md",
+    "section": "WebDAV · Understand"
+  },
+  {
+    "id": "b5787491704c",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe WebDAV checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Protocol/WebDAV.md",
+    "section": "WebDAV · Create"
+  },
+  {
+    "id": "acb604a46df1",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ftp?",
+    "back": "ftp — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Protocol/ftp.md",
+    "section": "ftp · Remember"
+  },
+  {
+    "id": "8b8953511000",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does ftp matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Protocol/ftp.md",
+    "section": "ftp · Understand"
+  },
+  {
+    "id": "4e8f9c6bb8ad",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe ftp checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Protocol/ftp.md",
+    "section": "ftp · Create"
+  },
+  {
+    "id": "5eae55922e63",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is gRPC?",
+    "back": "gRPC is an RPC framework operating fundamentally over HTTP/2, utilizing Protocol Buffers (Protobuf) as both its Interface Definition Language (IDL) and underlying message interchange format.",
+    "source": "Back2Basics/Protocol/gRPC.md",
+    "section": "gRPC · Remember"
+  },
+  {
+    "id": "74e3900d5ebf",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for gRPC?",
+    "back": "you must implement the interface generated by protoc. The most critical operational parameter here is the Context object passed to every RPC method. → Cross-cutting (authentication, logging, tracing, metrics) are implemented via interceptors.",
+    "source": "Back2Basics/Protocol/gRPC.md",
+    "section": "gRPC · Apply"
+  },
+  {
+    "id": "f9edea2e7d7a",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken gRPC setup, what is your first validation command?",
+    "back": "you must implement the interface generated by protoc. The most critical operational parameter here is the Context object passed to every RPC method.",
+    "source": "Back2Basics/Protocol/gRPC.md",
+    "section": "gRPC · Apply"
+  },
+  {
+    "id": "7a12141b5f5a",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct gRPC setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: you must implement the interface generated by protoc. The most critical operational parameter here is the Context object passed to every RPC method.",
+    "source": "Back2Basics/Protocol/gRPC.md",
+    "section": "gRPC · Create"
+  },
+  {
+    "id": "cfa86a88ee8d",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mail server?",
+    "back": "mail server — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Protocol/mail server.md",
+    "section": "mail server · Remember"
+  },
+  {
+    "id": "aa83737510bb",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does mail server matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Protocol/mail server.md",
+    "section": "mail server · Understand"
+  },
+  {
+    "id": "a3b053ee4105",
+    "deck": "b2b-protocol",
+    "tags": [
+      "back2basics",
+      "protocol",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe mail server checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Protocol/mail server.md",
+    "section": "mail server · Create"
+  }
+]

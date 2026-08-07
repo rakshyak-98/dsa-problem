@@ -51,11 +51,7 @@ func trackerDir(repoRoot string) string {
 }
 
 func solutionsDir(repoRoot string) string {
-	p := filepath.Join(repoRoot, "drills", "solutions")
-	if _, err := os.Stat(p); err != nil {
-		return filepath.Join(repoRoot, "bin", "study_play", "_support", "solutions_reference")
-	}
-	return p
+	return filepath.Join(repoRoot, "drills", "solutions")
 }
 
 func solutionCorePath(repoRoot string) string {

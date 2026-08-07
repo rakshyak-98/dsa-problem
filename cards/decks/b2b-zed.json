@@ -1,0 +1,310 @@
+[
+  {
+    "id": "b98407c000f4",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Zed config in one sentence?",
+    "back": "~/.config/zed/settings.json — themes, LSP, formatters, inline edit predictions, and remote editing over SSH.",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Remember"
+  },
+  {
+    "id": "368c6fcfa25f",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Zed config (how the system thinks).",
+    "back": "Zed reads JSON settings (user + optional project .zed/settings.json). Language servers attach per language block. Remote files use zed ssh://user@host/path with remote LSP when configured. Precedence: project overrides user for same keys.",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Understand"
+  },
+  {
+    "id": "f1ae9559a345",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Zed config?",
+    "back": "Goal: grey inline hint at the cursor — not the LSP popup menu.",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Apply"
+  },
+  {
+    "id": "01bc396ae5c2",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Popup on every key, no ghost text — what do you check and fix?",
+    "back": "Check: show_completions_on_input · Fix: Set false; enable show_edit_predictions + edit_predictions.mode: \"eager\"",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Analyze"
+  },
+  {
+    "id": "23e8546c53b9",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Ghost text never appears — what do you check and fix?",
+    "back": "Check: Signed in to Zed AI / Copilot? · Fix: edit_predictions.provider; status bar Z/Copilot icon",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Analyze"
+  },
+  {
+    "id": "fbe7398d91ba",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Ghost text blocked by popup — what do you check and fix?",
+    "back": "Check: Both LSP + predictions active · Fix: show_completions_on_input: false or hold alt to preview inline",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Analyze"
+  },
+  {
+    "id": "c1c00efbd896",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: tab inserts tab, not hint — what do you check and fix?",
+    "back": "Check: Completion menu open · Fix: esc dismiss menu, or use alt-l / keymap above",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Analyze"
+  },
+  {
+    "id": "26b0e18481aa",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Only want LSP, no AI ghost — what do you check and fix?",
+    "back": "Check: show_edit_predictions · Fix: Set false; use ctrl-space for menu",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Analyze"
+  },
+  {
+    "id": "fb4edd62d219",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: int/int16 still in popup only — what do you check and fix?",
+    "back": "Check: LSP limitation in Zed · Fix: Expected — no inline LSP setting exists yet; use menu or edit predictions",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Analyze"
+  },
+  {
+    "id": "4a9d49ed8e94",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Remote open fails — what do you check and fix?",
+    "back": "Check: SSH key, host · Fix: ssh user@host first; fix ~/.ssh/config",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Analyze"
+  },
+  {
+    "id": "8256def5721a",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ESLint still runs — what do you check and fix?",
+    "back": "Check: Language server list · Fix: Use \"!eslint\" suffix; restart Zed",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Analyze"
+  },
+  {
+    "id": "07c8919e663b",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Format on save no-op — what do you check and fix?",
+    "back": "Check: Formatter set? · Fix: Add \"formatter\": \"prettier\" + project config",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Analyze"
+  },
+  {
+    "id": "71e44ec930e9",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: LSP not found — what do you check and fix?",
+    "back": "Check: which typescript-language-server · Fix: Install globally or via mise/nvm",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Analyze"
+  },
+  {
+    "id": "d98edcad857c",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Zed config: what silently fails?",
+    "back": "LSP completions are always a popup in Zed — you cannot make gopls/TS type lists render as inline ghost text (unlike VS Code inline suggest for some providers).",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Evaluate"
+  },
+  {
+    "id": "375a66f31d0e",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Zed config?",
+    "back": "Don't disable all linters globally to silence one noisy rule — fix rule or use local override. Don't commit machine-specific absolute paths in shared .zed/settings.json.",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Evaluate"
+  },
+  {
+    "id": "bfa8a04a0bc3",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Zed config setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: ~/.config/zed/settings.json — themes, LSP, formatters, inline edit predictions, and remote editing over SSH.",
+    "source": "Back2Basics/zed/zed config.md",
+    "section": "Zed config · Create"
+  },
+  {
+    "id": "71ea3af7492a",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is zed debugger?",
+    "back": "zed debugger — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/zed/zed debugger.md",
+    "section": "zed debugger · Remember"
+  },
+  {
+    "id": "2cef1236a508",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does zed debugger matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/zed/zed debugger.md",
+    "section": "zed debugger · Understand"
+  },
+  {
+    "id": "83a3b9f20bad",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe zed debugger checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/zed/zed debugger.md",
+    "section": "zed debugger · Create"
+  },
+  {
+    "id": "27e67ae448cd",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Zed keybindings?",
+    "back": "Zed keybindings — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/zed/zed keybindings.md",
+    "section": "Zed keybindings · Remember"
+  },
+  {
+    "id": "e989379e1dc0",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Zed keybindings matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/zed/zed keybindings.md",
+    "section": "Zed keybindings · Understand"
+  },
+  {
+    "id": "b328e354dcba",
+    "deck": "b2b-zed",
+    "tags": [
+      "back2basics",
+      "zed",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Zed keybindings checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/zed/zed keybindings.md",
+    "section": "Zed keybindings · Create"
+  }
+]

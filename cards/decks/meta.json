@@ -1,0 +1,14 @@
+[
+  {
+    "id": "3e4ef17481d6",
+    "deck": "meta",
+    "tags": [
+      "meta",
+      "srs"
+    ],
+    "front": "Spaced repetition schedule after solving a problem?",
+    "back": "Day +1, then +3, then +7, then +21",
+    "source": "doc/write/STUDY_PLAN.md",
+    "section": "SRS"
+  }
+]

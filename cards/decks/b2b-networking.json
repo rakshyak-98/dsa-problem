@@ -1,0 +1,4300 @@
+[
+  {
+    "id": "a6c889d2ee17",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is NIC (10 NIC) in one sentence?",
+    "back": "Network Interface Card — hardware (or virtio) port that moves L2 frames between host memory and the wire; 10G = ~10 Gbps line rate baseline for server workloads.",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Remember"
+  },
+  {
+    "id": "cb2b345ee9ca",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of NIC (10 NIC) (how the system thinks).",
+    "back": "A NIC terminates Ethernet (or IB) and exposes a kernel netdev (eth0, ens5):",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Understand"
+  },
+  {
+    "id": "4f4d6c879a5f",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for NIC (10 NIC)?",
+    "back": "Speed tiers (common server):",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Apply"
+  },
+  {
+    "id": "d10cc11f81c4",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken NIC (10 NIC) setup, what is your first validation command?",
+    "back": "Speed tiers (common server):",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Apply"
+  },
+  {
+    "id": "3f0515563117",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for NIC (10 NIC)?",
+    "back": "Why multiple queues: single-queue NIC + many cores → one CPU handles all RX interrupts.",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Apply"
+  },
+  {
+    "id": "54bec974a3b5",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Throughput plateaus below 10G — what do you check and fix?",
+    "back": "Check: ethtool speed; PCIe width · Fix: Fix autoneg; x8 vs x16 slot; upgrade instance",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Analyze"
+  },
+  {
+    "id": "4980d531f17b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: High CPU on RX — what do you check and fix?",
+    "back": "Check: softnet_stat; drops in ethtool -S · Fix: RSS queues; XDP; kernel bypass (DPDK) last resort",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Analyze"
+  },
+  {
+    "id": "f14eba4adc15",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Latency spikes — what do you check and fix?",
+    "back": "Check: coalesce settings · Fix: Tune ethtool -c; disable LRO on forwarders",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Analyze"
+  },
+  {
+    "id": "dbaaa736a0bc",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: VM shows 10G but slow — what do you check and fix?",
+    "back": "Check: Credit-based limit · Fix: Right-size instance; check Egress traffic caps",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Analyze"
+  },
+  {
+    "id": "b554aed87796",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with NIC (10 NIC): what silently fails?",
+    "back": "Line rate ≠ application throughput — TCP window, RTT, and loss dominate WAN.",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Evaluate"
+  },
+  {
+    "id": "b769f1ee7de9",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use NIC (10 NIC)?",
+    "back": "Don't deploy 10G NICs without switch ports and storage to match — 10G east-west with 1G uplink shifts bottleneck to Egress traffic only.",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Evaluate"
+  },
+  {
+    "id": "6cbb8a292f08",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct NIC (10 NIC) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Speed tiers (common server):",
+    "source": "Back2Basics/Networking/10 NIC.md",
+    "section": "NIC (10 NIC) · Create"
+  },
+  {
+    "id": "65b570a886ad",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is BGP in one sentence?",
+    "back": "One-line: path-vector protocol ASes use to exchange reachability + policy — not a replacement for your IGP — Halabi, Internet Routing Architectures.",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Remember"
+  },
+  {
+    "id": "b62ca38a93bf",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of BGP (how the system thinks).",
+    "back": "BGP (Border Gateway Protocol) advertises IP prefixes (NLRI) between Autonomous Systems (AS). Each route carries path attributes — notably AS_PATH, NEXT_HOP, LOCAL_PREF, MED — used for policy-based selection, not pure shortest-path.",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Understand"
+  },
+  {
+    "id": "922b80eb21a7",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for BGP?",
+    "back": "AS 65001 (you) AS 64500 (upstream) → vtysh -c 'show ip bgp summary' # session state → vtysh -c 'show ip bgp neighbors' # timers, prefixes received → vtysh -c 'show ip bgp' # RIB → vtysh -c 'show ip bgp <prefix>' # why this path won",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Apply"
+  },
+  {
+    "id": "c4c327ec8fc2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken BGP setup, what is your first validation command?",
+    "back": "AS 65001 (you) AS 64500 (upstream)",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Apply"
+  },
+  {
+    "id": "31b71813e010",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for BGP?",
+    "back": "Inspect locally (Linux FRR / Bird / vendor CLI patterns):",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Apply"
+  },
+  {
+    "id": "c1b7cb0ca60e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Session stuck Active / Idle — what do you check and fix?",
+    "back": "Check: tcpdump port 179; ACL on either side · Fix: Open TCP/179; fix MD5 mismatch; verify correct source IP on multi-homed host",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Analyze"
+  },
+  {
+    "id": "215e90c4378a",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Session flaps every ~60–180s — what do you check and fix?",
+    "back": "Check: show bgp neighbors → hold timer, keepalive · Fix: MTU issue on TCP/179 (try tcp mss or lower interface MTU); BFD false positives",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Analyze"
+  },
+  {
+    "id": "a4e5411b0127",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Prefix not received — what do you check and fix?",
+    "back": "Check: show ip bgp neighbors received-routes (soft config) · Fix: Peer export policy filters you; ask peer what they advertise",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Analyze"
+  },
+  {
+    "id": "24524b71c15a",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Prefix received but not installed — what do you check and fix?",
+    "back": "Check: show ip bgp <prefix> all paths · Fix: Import route-map denies; AS_PATH loop; NEXT_HOP unreachable",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Analyze"
+  },
+  {
+    "id": "7b26502f0d75",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Traffic blackholed after peer up — what do you check and fix?",
+    "back": "Check: traceroute; compare AS_PATH length vs expected · Fix: Longer path selected elsewhere; MED/LOCAL_PREF policy wrong",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Analyze"
+  },
+  {
+    "id": "7ad57d0a6dd8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Partial internet outage — what do you check and fix?",
+    "back": "Check: Multiple peers down? RPKI/ROV drop? · Fix: Check upstream status; validate ROA for your announced prefixes",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Analyze"
+  },
+  {
+    "id": "f6cce934bd5b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: iBGP routes missing on some routers — what do you check and fix?",
+    "back": "Check: Full-mesh vs route-reflector topology · Fix: RR client missing; next-hop-self not set on edge",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Analyze"
+  },
+  {
+    "id": "387d31783e2d",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Leak / hijack suspicion — what do you check and fix?",
+    "back": "Check: IRR/RPKI vs actual AS_PATH · Fix: Emergency withdraw; contact peer NOC; enable RPKI on imports",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Analyze"
+  },
+  {
+    "id": "2593f921b178",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with BGP: what silently fails?",
+    "back": "BGP alone won't save a bad IGP. If NEXT_HOP isn't reachable inside your AS, the route sits in RIB but never forwards.",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Evaluate"
+  },
+  {
+    "id": "b38dbb0b3fe5",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use BGP?",
+    "back": "Don't run BGP inside a single-site LAN — use OSPF/IS-IS; BGP's policy complexity isn't worth it. Don't announce prefixes you don't own (even \"temporarily\") — upstream filtering varies and leaks propagate globally. Don't expect sub-second failover from BGP timers alone — add BFD or track interface state.",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Evaluate"
+  },
+  {
+    "id": "9d798ae6d9a8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct BGP setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: AS 65001 (you) AS 64500 (upstream)",
+    "source": "Back2Basics/Networking/BGP.md",
+    "section": "BGP · Create"
+  },
+  {
+    "id": "391f55b956f3",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is BSD?",
+    "back": "BSD — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/BSD Socket.md",
+    "section": "BSD · Remember"
+  },
+  {
+    "id": "a4ca35b45784",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does BSD matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/BSD Socket.md",
+    "section": "BSD · Understand"
+  },
+  {
+    "id": "b0eed80be4fc",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe BSD checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/BSD Socket.md",
+    "section": "BSD · Create"
+  },
+  {
+    "id": "f21aa0a5a61c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Berkeley sockets in one sentence?",
+    "back": "BSD-origin API (socket, bind, listen, connect, send, recv) — the POSIX façade for Internet and Unix domain communication.",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Remember"
+  },
+  {
+    "id": "e1605375806d",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Berkeley sockets (how the system thinks).",
+    "back": "Berkeley sockets are the C ABI most languages wrap:",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Understand"
+  },
+  {
+    "id": "2e07c9406e8b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Berkeley sockets?",
+    "back": "File-descriptor shaped — fits select/poll/epoll (file descriptors). Kernel holds connection state; userspace sees fd + syscalls. → Also see POSIX Socket for portable behavior details and BSD Socket if present as sibling note.",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Apply"
+  },
+  {
+    "id": "418898249312",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Berkeley sockets setup, what is your first validation command?",
+    "back": "File-descriptor shaped — fits select/poll/epoll (file descriptors). Kernel holds connection state; userspace sees fd + syscalls.",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Apply"
+  },
+  {
+    "id": "d5f59f188ee6",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Berkeley sockets?",
+    "back": "Why SO_REUSEADDR: faster restart after crash/TIME-WAIT; TCP_NODELAY: disable Nagle for latency-sensitive RPC.",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Apply"
+  },
+  {
+    "id": "ce040ee4a7ac",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: EADDRINUSE — what do you check and fix?",
+    "back": "Check: ss -tlnp \\ · Fix: grep PORT",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Analyze"
+  },
+  {
+    "id": "eecea32f5047",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Hang on connect — what do you check and fix?",
+    "back": "Check: ss -tan; firewall · Fix: Security group; SYN dropped → timeout",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Analyze"
+  },
+  {
+    "id": "b8a969072fac",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ECONNRESET — what do you check and fix?",
+    "back": "Check: Peer closed; TLS mismatch · Fix: App logs; tcpdump",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Analyze"
+  },
+  {
+    "id": "34202d6dad49",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Accept queue overflow — what do you check and fix?",
+    "back": "Check: ss -lnt Send-Q vs somaxconn · Fix: Raise net.core.somaxconn; tune backlog",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Analyze"
+  },
+  {
+    "id": "c7a840b67e25",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Berkeley sockets: what silently fails?",
+    "back": "Partial reads/writes — read/write may return less than requested; loop or use sendmsg.",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Evaluate"
+  },
+  {
+    "id": "0a4dd16dea43",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Berkeley sockets?",
+    "back": "For same-host IPC only, Unix domain sockets avoid IP stack overhead. For HTTP/gRPC, use libraries — don't hand-roll protocol on bare sockets unless necessary.",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Evaluate"
+  },
+  {
+    "id": "6e13b33f902a",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Berkeley sockets setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: File-descriptor shaped — fits select/poll/epoll (file descriptors). Kernel holds connection state; userspace sees fd + syscalls.",
+    "source": "Back2Basics/Networking/Berkeley sockets.md",
+    "section": "Berkeley sockets · Create"
+  },
+  {
+    "id": "af6fca5b740f",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is CIDR (Classless Inter-Domain Routing)?",
+    "back": "CIDR (Classless Inter-Domain Routing) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/CIDR (Classless Inter-Domain Routing).md",
+    "section": "CIDR (Classless Inter-Domain Routing) · Remember"
+  },
+  {
+    "id": "a088cfa2d868",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does CIDR (Classless Inter-Domain Routing) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/CIDR (Classless Inter-Domain Routing).md",
+    "section": "CIDR (Classless Inter-Domain Routing) · Understand"
+  },
+  {
+    "id": "8d3e0dce077c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe CIDR (Classless Inter-Domain Routing) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/CIDR (Classless Inter-Domain Routing).md",
+    "section": "CIDR (Classless Inter-Domain Routing) · Create"
+  },
+  {
+    "id": "873f60a318fc",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Data transfer communication channels?",
+    "back": "Definition: Application layer protocol for transferring data over the web. Use Case: REST APIs, web browsing. Advantage: Widely supported; secure with HTTPS. Disadvantage: Stateless; requires additional mechanisms for persistent communication (e.g., cookies or to…",
+    "source": "Back2Basics/Networking/Data transfer communication channels.md",
+    "section": "Data transfer communication channels · Remember"
+  },
+  {
+    "id": "133fcfea907f",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Definition?",
+    "back": "Application layer protocol for transferring data over the web.",
+    "source": "Back2Basics/Networking/Data transfer communication channels.md",
+    "section": "Data transfer communication channels · Remember"
+  },
+  {
+    "id": "9b13404edc51",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Use Case?",
+    "back": "REST APIs, web browsing.",
+    "source": "Back2Basics/Networking/Data transfer communication channels.md",
+    "section": "Data transfer communication channels · Remember"
+  },
+  {
+    "id": "08b88c969065",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Advantage?",
+    "back": "Widely supported; secure with HTTPS.",
+    "source": "Back2Basics/Networking/Data transfer communication channels.md",
+    "section": "Data transfer communication channels · Remember"
+  },
+  {
+    "id": "8eaee40e8b73",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Disadvantage?",
+    "back": "Stateless; requires additional mechanisms for persistent communication (e.g., cookies or tokens).",
+    "source": "Back2Basics/Networking/Data transfer communication channels.md",
+    "section": "Data transfer communication channels · Remember"
+  },
+  {
+    "id": "762d3e1c59ef",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ETAG or IF MATCH?",
+    "back": "ETag/if-Match implements optimistic concurrency control, preventing lost updates when multiple clients read and modify the same resource concurrently.",
+    "source": "Back2Basics/Networking/ETAG or IF MATCH.md",
+    "section": "ETAG or IF MATCH · Remember"
+  },
+  {
+    "id": "26ece6e0c2e0",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for ETAG or IF MATCH?",
+    "back": "If-Match (request header)",
+    "source": "Back2Basics/Networking/ETAG or IF MATCH.md",
+    "section": "ETAG or IF MATCH · Apply"
+  },
+  {
+    "id": "676761fd7887",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken ETAG or IF MATCH setup, what is your first validation command?",
+    "back": "If-Match (request header)",
+    "source": "Back2Basics/Networking/ETAG or IF MATCH.md",
+    "section": "ETAG or IF MATCH · Apply"
+  },
+  {
+    "id": "22e620ebe291",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct ETAG or IF MATCH setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: If-Match (request header)",
+    "source": "Back2Basics/Networking/ETAG or IF MATCH.md",
+    "section": "ETAG or IF MATCH · Create"
+  },
+  {
+    "id": "289ea146f297",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Egress and Ingress?",
+    "back": "Egress -> Traffic that leaves VPC and goes out to the internet. Ingress -> Traffic that comes in from the internet.",
+    "source": "Back2Basics/Networking/Egress and Ingress.md",
+    "section": "Egress and Ingress · Remember"
+  },
+  {
+    "id": "f3dd84f2d5ce",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Egress and Ingress?",
+    "back": "aws ce get-cost-and-usage \\",
+    "source": "Back2Basics/Networking/Egress and Ingress.md",
+    "section": "Egress and Ingress · Apply"
+  },
+  {
+    "id": "5f7e35058a89",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Egress and Ingress setup, what is your first validation command?",
+    "back": "aws ce get-cost-and-usage \\",
+    "source": "Back2Basics/Networking/Egress and Ingress.md",
+    "section": "Egress and Ingress · Apply"
+  },
+  {
+    "id": "71707605223e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Egress and Ingress setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: aws ce get-cost-and-usage \\",
+    "source": "Back2Basics/Networking/Egress and Ingress.md",
+    "section": "Egress and Ingress · Create"
+  },
+  {
+    "id": "dfb32c7961c2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Egress traffic in one sentence?",
+    "back": "Outbound packets leaving your network boundary toward the internet or another VPC — billed, filtered, and NAT'd differently from ingress.",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Remember"
+  },
+  {
+    "id": "af4841cc9b8c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Egress filtering?",
+    "back": "security groups (allow outbound?), NACLs, firewall policies",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Remember"
+  },
+  {
+    "id": "fd842d063380",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Cost?",
+    "back": "AWS charges per-GB processed by NAT GW + data transfer out to internet",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Remember"
+  },
+  {
+    "id": "079dde64ff06",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Egress traffic (how the system thinks).",
+    "back": "Egress = source inside, destination outside (relative to trust boundary):",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Understand"
+  },
+  {
+    "id": "0b0fc5e514c8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Egress traffic?",
+    "back": "Cloud patterns: → Ingress and egress asymmetry: you control routing tables for both; return traffic must match stateful firewall/NAT bindings.",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Apply"
+  },
+  {
+    "id": "4ea350fc31eb",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Egress traffic setup, what is your first validation command?",
+    "back": "Cloud patterns:",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Apply"
+  },
+  {
+    "id": "69e43b6b42a2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Egress traffic?",
+    "back": "Why NAT GW: gives private RFC1918 hosts outbound internet without public IPs on each VM.",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Apply"
+  },
+  {
+    "id": "cfbb3959337e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: No outbound internet from private subnet — what do you check and fix?",
+    "back": "Check: Route to NAT; NAT in public subnet · Fix: 0.0.0.0/0 → nat-id; NAT has EIP",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Analyze"
+  },
+  {
+    "id": "1f4e69d7685f",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Egress works, return fails — what do you check and fix?",
+    "back": "Check: SG stateful; asymmetric routing · Fix: Allow return on SG; fix multi-homed routes",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Analyze"
+  },
+  {
+    "id": "f971f6f1f943",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Surprise cloud bill — what do you check and fix?",
+    "back": "Check: NAT GW + cross-AZ · Fix: VPC endpoints for S3; same-AZ NAT; flow logs",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Analyze"
+  },
+  {
+    "id": "573ad337c26c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Geo-blocked egress — what do you check and fix?",
+    "back": "Check: Egress IP is NAT pool · Fix: Proxy in allowed region; VPN",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Analyze"
+  },
+  {
+    "id": "59146bbf9c53",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Egress traffic: what silently fails?",
+    "back": "NAT GW is AZ-specific — route in AZ without NAT = black hole for that subnet.",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Evaluate"
+  },
+  {
+    "id": "84dcd5afa400",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Egress traffic?",
+    "back": "Don't NAT everything if instances need direct inbound (public ALB on app tier) — split tiers: public LB ingress, private app egress via NAT.",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Evaluate"
+  },
+  {
+    "id": "6055dd8f5ede",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Egress traffic setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Cloud patterns:",
+    "source": "Back2Basics/Networking/Egress traffic.md",
+    "section": "Egress traffic · Create"
+  },
+  {
+    "id": "329f651572c8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ICMP?",
+    "back": "ICMP — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/ICMP.md",
+    "section": "ICMP · Remember"
+  },
+  {
+    "id": "df902670ba18",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does ICMP matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/ICMP.md",
+    "section": "ICMP · Understand"
+  },
+  {
+    "id": "83ff5b0fd531",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe ICMP checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/ICMP.md",
+    "section": "ICMP · Create"
+  },
+  {
+    "id": "dad028b1354b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is IPFS (InterPlanetry File System)?",
+    "back": "IPFS is a decentralized, P2P (Peer-to-Peer) file system that aims to make the we faster, safer, and more open. It allows users to store and share files in a distributed network of computers rather than relying on a central server. enables content-addressed file storage, mean…",
+    "source": "Back2Basics/Networking/IPFS (InterPlanetry File System).md",
+    "section": "IPFS (InterPlanetry File System) · Remember"
+  },
+  {
+    "id": "c4ebda7a66f5",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Decentralized?",
+    "back": "No central server stores the data. Instead, files are distributed across a network of nodes.",
+    "source": "Back2Basics/Networking/IPFS (InterPlanetry File System).md",
+    "section": "IPFS (InterPlanetry File System) · Remember"
+  },
+  {
+    "id": "1b669b736b58",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Content Addressing?",
+    "back": "Each file is assigned a unique identifier (CID), generated based on its contents. This ensures the file’s integrity (i.e., it cannot be altered without changing its CID).",
+    "source": "Back2Basics/Networking/IPFS (InterPlanetry File System).md",
+    "section": "IPFS (InterPlanetry File System) · Remember"
+  },
+  {
+    "id": "da3d4a39cf59",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is P2P Network?",
+    "back": "Files are stored across multiple nodes in the network, and users can retrieve files from the closest available node, improving speed and reliability.",
+    "source": "Back2Basics/Networking/IPFS (InterPlanetry File System).md",
+    "section": "IPFS (InterPlanetry File System) · Remember"
+  },
+  {
+    "id": "e799c27813b5",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Versioning?",
+    "back": "IPFS allows you to track and version changes in files, similar to Git.",
+    "source": "Back2Basics/Networking/IPFS (InterPlanetry File System).md",
+    "section": "IPFS (InterPlanetry File System) · Remember"
+  },
+  {
+    "id": "a8a5cb00bf37",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is File Duplication?",
+    "back": "Files are only stored once across the network, reducing redundancy.",
+    "source": "Back2Basics/Networking/IPFS (InterPlanetry File System).md",
+    "section": "IPFS (InterPlanetry File System) · Remember"
+  },
+  {
+    "id": "fe99c37f4d97",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Internal routing?",
+    "back": "if you and the target device reside on the same private IP network and you cannot configure your router, you can communicate directly within the network using internal routing.",
+    "source": "Back2Basics/Networking/Internal routing.md",
+    "section": "Internal routing · Remember"
+  },
+  {
+    "id": "9a0c2ca72470",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Internal routing?",
+    "back": "sudo netstat -tuln | grep <port> → curl http://198.168.1.3:5000; → sudo ufw allow 5000",
+    "source": "Back2Basics/Networking/Internal routing.md",
+    "section": "Internal routing · Apply"
+  },
+  {
+    "id": "39b329a9a4d0",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Internal routing setup, what is your first validation command?",
+    "back": "sudo netstat -tuln | grep <port>",
+    "source": "Back2Basics/Networking/Internal routing.md",
+    "section": "Internal routing · Apply"
+  },
+  {
+    "id": "bd15f8fc76ae",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Internal routing setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: sudo netstat -tuln | grep <port>",
+    "source": "Back2Basics/Networking/Internal routing.md",
+    "section": "Internal routing · Create"
+  },
+  {
+    "id": "4782449f98f7",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is MTU (Maximum Transmission Unit)?",
+    "back": "MTU (Maximum Transmission Unit) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/MTU (Maximum Transmission Unit).md",
+    "section": "MTU (Maximum Transmission Unit) · Remember"
+  },
+  {
+    "id": "7c7130dec502",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does MTU (Maximum Transmission Unit) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/MTU (Maximum Transmission Unit).md",
+    "section": "MTU (Maximum Transmission Unit) · Understand"
+  },
+  {
+    "id": "03fcd39c0cfd",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe MTU (Maximum Transmission Unit) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/MTU (Maximum Transmission Unit).md",
+    "section": "MTU (Maximum Transmission Unit) · Create"
+  },
+  {
+    "id": "59e1840d4ce5",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is NAT (Network Address Translation)?",
+    "back": "NAT (Network Address Translation) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/NAT (Network Address Translation).md",
+    "section": "NAT (Network Address Translation) · Remember"
+  },
+  {
+    "id": "f61c4fde6c80",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does NAT (Network Address Translation) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/NAT (Network Address Translation).md",
+    "section": "NAT (Network Address Translation) · Understand"
+  },
+  {
+    "id": "4873f57b5ece",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe NAT (Network Address Translation) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/NAT (Network Address Translation).md",
+    "section": "NAT (Network Address Translation) · Create"
+  },
+  {
+    "id": "3d6485833057",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is NAT Traversal?",
+    "back": "NAT traversal is the process of enabling two devices behind NATs to communicate with each other.",
+    "source": "Back2Basics/Networking/NAT Traversal.md",
+    "section": "NAT Traversal · Remember"
+  },
+  {
+    "id": "128f593e70e2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for NAT Traversal?",
+    "back": "The devices have private IPs, which are not reachable directly from the Internet. → Suppose two users want to start a WebRTC call. → Neither knows how to directly reach the other's private IP. → Even if they exchange: → these addresses are only valid inside their own local networks.",
+    "source": "Back2Basics/Networking/NAT Traversal.md",
+    "section": "NAT Traversal · Apply"
+  },
+  {
+    "id": "262831eba3a4",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken NAT Traversal setup, what is your first validation command?",
+    "back": "The devices have private IPs, which are not reachable directly from the Internet.",
+    "source": "Back2Basics/Networking/NAT Traversal.md",
+    "section": "NAT Traversal · Apply"
+  },
+  {
+    "id": "53f89b7712de",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct NAT Traversal setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: The devices have private IPs, which are not reachable directly from the Internet.",
+    "source": "Back2Basics/Networking/NAT Traversal.md",
+    "section": "NAT Traversal · Create"
+  },
+  {
+    "id": "fba5c1e5c308",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Network error in one sentence?",
+    "back": "Browser and client-visible failures when a request never completes cleanly — distinct from HTTP 4xx/5xx (those *did* complete).",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Remember"
+  },
+  {
+    "id": "b1bc1784aa2e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Network error (how the system thinks).",
+    "back": "Network errors happen before or instead of an HTTP response:",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Understand"
+  },
+  {
+    "id": "a1de0568c7b5",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Network error?",
+    "back": "Common codes/messages: → DevTools → Network tab → failed row shows (failed) net::ERR_*.",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Apply"
+  },
+  {
+    "id": "be03c77f9b2b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Network error setup, what is your first validation command?",
+    "back": "Common codes/messages:",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Apply"
+  },
+  {
+    "id": "15ba20e1c542",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Network error?",
+    "back": "DevTools → Network tab → failed row shows (failed) net::ERR_*.",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Apply"
+  },
+  {
+    "id": "e605156f2679",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NS_BINDING_ABORTED — what do you check and fix?",
+    "back": "Check: Cancelled navigation? CORS? · Fix: Not server bug if user navigated away; fix preflight",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Analyze"
+  },
+  {
+    "id": "9815887961a1",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Intermittent mobile failures — what do you check and fix?",
+    "back": "Check: TLS middleboxes · Fix: TLS 1.2+; proper cert chain",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Analyze"
+  },
+  {
+    "id": "ec670dec55f2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works curl, fails browser — what do you check and fix?",
+    "back": "Check: Mixed content, CORS, CSP · Fix: HTTPS everywhere; ACAO headers",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Analyze"
+  },
+  {
+    "id": "ed2788cfc746",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Spike in timeouts — what do you check and fix?",
+    "back": "Check: LB health, SYN queue · Fix: Scale backends; somaxconn; DDoS",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Analyze"
+  },
+  {
+    "id": "83336a1981b3",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Only one region — what do you check and fix?",
+    "back": "Check: DNS geo / routing · Fix: GeoDNS; anycast; BGP path",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Analyze"
+  },
+  {
+    "id": "fc2489672ecd",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Network error: what silently fails?",
+    "back": "NS_BINDING_ABORTED is often client-side cancel — don't chase server logs that never received the request.",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Evaluate"
+  },
+  {
+    "id": "a20f721c5341",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Network error?",
+    "back": "Don't blanket-retry network errors without idempotency — POST may have partially succeeded; use idempotency keys and dedupe.",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Evaluate"
+  },
+  {
+    "id": "76d3f1044e62",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Network error setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Common codes/messages:",
+    "source": "Back2Basics/Networking/Network error.md",
+    "section": "Network error · Create"
+  },
+  {
+    "id": "f52d06e38ac0",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is P2P (Peer-to-Peer)?",
+    "back": "P2P (Peer-to-Peer) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/P2P (Peer-to-Peer).md",
+    "section": "P2P (Peer-to-Peer) · Remember"
+  },
+  {
+    "id": "f2ad37b8ac2e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does P2P (Peer-to-Peer) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/P2P (Peer-to-Peer).md",
+    "section": "P2P (Peer-to-Peer) · Understand"
+  },
+  {
+    "id": "f92cd249ef09",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe P2P (Peer-to-Peer) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/P2P (Peer-to-Peer).md",
+    "section": "P2P (Peer-to-Peer) · Create"
+  },
+  {
+    "id": "09109316d45e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is POSIX Socket?",
+    "back": "Definition: Standardized API (POSIX) for inter-process & network communication using sockets. Origin: Based on BSD sockets, adopted by POSIX for portability. Key Idea: Socket = file descriptor → usable with read(), write(), close(). Uses: TCP/UDP networking…",
+    "source": "Back2Basics/Networking/POSIX Socket.md",
+    "section": "POSIX Socket · Remember"
+  },
+  {
+    "id": "213f00c7fefd",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Origin?",
+    "back": "Based on BSD sockets, adopted by POSIX for portability.",
+    "source": "Back2Basics/Networking/POSIX Socket.md",
+    "section": "POSIX Socket · Remember"
+  },
+  {
+    "id": "f505832f9624",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Key Idea?",
+    "back": "Socket = file descriptor → usable with read(), write(), close().",
+    "source": "Back2Basics/Networking/POSIX Socket.md",
+    "section": "POSIX Socket · Remember"
+  },
+  {
+    "id": "1dabb8c4212b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Uses?",
+    "back": "TCP/UDP networking, IPC (Unix domain sockets), raw packet access.",
+    "source": "Back2Basics/Networking/POSIX Socket.md",
+    "section": "POSIX Socket · Remember"
+  },
+  {
+    "id": "d77f39f7800b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Packet Fragment?",
+    "back": "Packet Fragment — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/Packet Fragment.md",
+    "section": "Packet Fragment · Remember"
+  },
+  {
+    "id": "3784349bc537",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Packet Fragment matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/Packet Fragment.md",
+    "section": "Packet Fragment · Understand"
+  },
+  {
+    "id": "4ebead30720e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Packet Fragment checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/Packet Fragment.md",
+    "section": "Packet Fragment · Create"
+  },
+  {
+    "id": "58d3b8e293f5",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Registered Media Types (RMT) in one sentence?",
+    "back": "IANA-maintained identifiers for content formats — HTTP Content-Type / Accept values that tell clients how to parse the body.",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Remember"
+  },
+  {
+    "id": "e7962bf16a7d",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Type?",
+    "back": "application, text, image, audio, video, multipart",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Remember"
+  },
+  {
+    "id": "5a32adb634dd",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Subtype?",
+    "back": "json, html, octet-stream, svg+xml",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Remember"
+  },
+  {
+    "id": "0be192d793f0",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Parameters?",
+    "back": "charset, boundary (multipart)",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Remember"
+  },
+  {
+    "id": "566f6b984bd1",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Registered Media Types (RMT) (how the system thinks).",
+    "back": "Media types (MIME types) are type/subtype plus optional parameters:",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Understand"
+  },
+  {
+    "id": "270e8350c8e0",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Registered Media Types (RMT)?",
+    "back": "Structure: → Canonical deep dive: mime type.",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Apply"
+  },
+  {
+    "id": "ee878ccec236",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Registered Media Types (RMT)?",
+    "back": "Why charset=utf-8: avoids mojibake on non-ASCII JSON/text; required for proper caching in some CDNs.",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Apply"
+  },
+  {
+    "id": "420ebc1752b0",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Browser downloads file instead of showing — what do you check and fix?",
+    "back": "Check: application/octet-stream · Fix: Fix mime.types mapping; explicit header",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Analyze"
+  },
+  {
+    "id": "7e4a38d3aa30",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: JSON.parse fails in browser — what do you check and fix?",
+    "back": "Check: HTML error page with text/html · Fix: Read body; fix 502 page content-type",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Analyze"
+  },
+  {
+    "id": "f156667e03f5",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CORS preflight oddities — what do you check and fix?",
+    "back": "Check: Custom media types trigger preflight · Fix: Use standard types; document custom",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Analyze"
+  },
+  {
+    "id": "7edc39fcba89",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Android WebView blank — what do you check and fix?",
+    "back": "Check: Missing charset · Fix: Add ; charset=utf-8",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Analyze"
+  },
+  {
+    "id": "35c7d7a46f1e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Registered Media Types (RMT): what silently fails?",
+    "back": "application/javascript vs text/javascript — use modern application/javascript (RFC 9239).",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Evaluate"
+  },
+  {
+    "id": "a96839697564",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Registered Media Types (RMT)?",
+    "back": "Don't invent application/x-myformat without vendor tree (vnd.) if you need interoperability — register or document clearly.",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Evaluate"
+  },
+  {
+    "id": "fef09a5a46ba",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Registered Media Types (RMT) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Structure:",
+    "source": "Back2Basics/Networking/Registered Media Types (RMT).md",
+    "section": "Registered Media Types (RMT) · Create"
+  },
+  {
+    "id": "76540c4ccb44",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is TCP?",
+    "back": "TCP — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/TCP.md",
+    "section": "TCP · Remember"
+  },
+  {
+    "id": "ce80993a0f0f",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does TCP matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/TCP.md",
+    "section": "TCP · Understand"
+  },
+  {
+    "id": "87d3ec97d65b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe TCP checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/TCP.md",
+    "section": "TCP · Create"
+  },
+  {
+    "id": "5cf3227e2690",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is UDP in one sentence?",
+    "back": "Connectionless datagram protocol — send without handshake; no delivery, ordering, or congestion guarantees; app owns reliability if needed.",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Remember"
+  },
+  {
+    "id": "c453a0b64ad4",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Latency > reliability?",
+    "back": "VoIP, gaming, live video",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Remember"
+  },
+  {
+    "id": "a3a9facc8363",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is App-layer retries OK?",
+    "back": "DNS, QUIC (over UDP), custom RPC",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Remember"
+  },
+  {
+    "id": "5a172875dfb3",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of UDP (how the system thinks).",
+    "back": "UDP trades TCP's session state for minimal overhead:",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Understand"
+  },
+  {
+    "id": "2811357908ed",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for UDP?",
+    "back": "Fit when: → Poor fit when:",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Apply"
+  },
+  {
+    "id": "948fa87d1c52",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for UDP?",
+    "back": "Why DNS uses UDP: single request/response fits one datagram; truncates to TCP if answer too large.",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Apply"
+  },
+  {
+    "id": "5a164dc6d50e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works TCP, fails UDP — what do you check and fix?",
+    "back": "Check: Firewall/NACL UDP blocked · Fix: Open UDP port; stateless rules both directions",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Analyze"
+  },
+  {
+    "id": "12d6dd3522e7",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Packet loss — what do you check and fix?",
+    "back": "Check: iperf3 -u; switch counters · Fix: Reduce rate; fix QoS; MTU/fragmentation",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Analyze"
+  },
+  {
+    "id": "1dd92a98ae1e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Intermittent DNS — what do you check and fix?",
+    "back": "Check: MTU black hole · Fix: Enable TCP fallback; fix PMTUD",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Analyze"
+  },
+  {
+    "id": "b943f203426a",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: NAT binding expires — what do you check and fix?",
+    "back": "Check: Idle UDP mapping timeout · Fix: Keepalive packets; switch to TCP/TLS",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Analyze"
+  },
+  {
+    "id": "368edf534333",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with UDP: what silently fails?",
+    "back": "UDP amplification attacks — open reflectors (Memcached, NTP) — never expose unnecessary UDP services.",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Evaluate"
+  },
+  {
+    "id": "8019b08b3e1c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use UDP?",
+    "back": "Default to TCP or TLS for general API traffic unless you measure need for UDP (QUIC, RTP, DNS). Building reliable UDP ≈ reinventing TCP poorly.",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Evaluate"
+  },
+  {
+    "id": "0943b3d6b4b2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct UDP setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Fit when:",
+    "source": "Back2Basics/Networking/UDP.md",
+    "section": "UDP · Create"
+  },
+  {
+    "id": "b0690c7e599e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is address port?",
+    "back": "address port — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/address port.md",
+    "section": "address port · Remember"
+  },
+  {
+    "id": "3ae608ccd1f1",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does address port matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/address port.md",
+    "section": "address port · Understand"
+  },
+  {
+    "id": "87c49215cd45",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe address port checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/address port.md",
+    "section": "address port · Create"
+  },
+  {
+    "id": "2eb9201ba7e0",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is auto-pong?",
+    "back": "auto-pong — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/auto-pong.md",
+    "section": "auto-pong · Remember"
+  },
+  {
+    "id": "e900de05a686",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does auto-pong matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/auto-pong.md",
+    "section": "auto-pong · Understand"
+  },
+  {
+    "id": "f01dd0bf5b1c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe auto-pong checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/auto-pong.md",
+    "section": "auto-pong · Create"
+  },
+  {
+    "id": "a91d2b2197a9",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Autonomous system in one sentence?",
+    "back": "A network (or set of prefixes) under one administrative routing policy, identified globally by an ASN — the unit BGP uses to exchange reachability.",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Remember"
+  },
+  {
+    "id": "cd7fa780b507",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ASN?",
+    "back": "16-bit (legacy) or 32-bit number; private use 64512–65534",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Remember"
+  },
+  {
+    "id": "0a5502e71554",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Routing policy?",
+    "back": "what you announce, filter, prefer (prepends, local-pref)",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Remember"
+  },
+  {
+    "id": "06a777532b57",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Autonomous system (how the system thinks).",
+    "back": "An Autonomous System (AS) is how the Internet names who owns which IP blocks at the routing layer:",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Understand"
+  },
+  {
+    "id": "ccd61cfcc747",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Autonomous system?",
+    "back": "Why filters matter: announcing someone else's prefix = BGP hijack — upstreams should reject via RPKI/IRR.",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Apply"
+  },
+  {
+    "id": "80e2fa972452",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Prefix unreachable from some regions — what do you check and fix?",
+    "back": "Check: bgp.tools path view · Fix: Missing announcement; over-specific filter",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Analyze"
+  },
+  {
+    "id": "13e926ac2221",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Traffic via wrong ISP — what do you check and fix?",
+    "back": "Check: AS path length / prepends · Fix: Tune local-pref; fix export policy",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Analyze"
+  },
+  {
+    "id": "f0430b3702a8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: RPKI INVALID — what do you check and fix?",
+    "back": "Check: rpki-validator · Fix: Fix ROA max-length and origin ASN",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Analyze"
+  },
+  {
+    "id": "2a1b0544e343",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ASN not in global table — what do you check and fix?",
+    "back": "Check: Registration not complete · Fix: Complete RIR SWIP; wait propagation",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Analyze"
+  },
+  {
+    "id": "034e9b9d0c78",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Autonomous system: what silently fails?",
+    "back": "Private ASN (64512+) must not leak to public internet — upstream should strip.",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Evaluate"
+  },
+  {
+    "id": "561925ce6381",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Autonomous system?",
+    "back": "Don't run BGP at the edge without filtering, RPKI, and on-call — default static routes or provider BGP are enough for single-homed sites.",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Evaluate"
+  },
+  {
+    "id": "5051fda7e764",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Autonomous system setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Key ideas:",
+    "source": "Back2Basics/Networking/autonomous system.md",
+    "section": "Autonomous system · Create"
+  },
+  {
+    "id": "1e9c82f9af6d",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is connection churn (connection chrun) in one sentence?",
+    "back": "Filename typo: chrun → churn. TCP/HTTP connection lifecycle storms: keepalives, LB idle timeouts, client pools, TIME_WAIT — the usual “works then exhausts ports or CPU” failure.",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Remember"
+  },
+  {
+    "id": "e9ab686a1b22",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of connection churn (connection chrun) (how the system thinks).",
+    "back": "Churn = high rate of short-lived TCP connections (HTTP/1.0-style close per request, health checks, misconfigured pools) or idle timeout mismatch (LB closes while client still thinks connection is open).",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Understand"
+  },
+  {
+    "id": "12558e8320e7",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for connection churn (connection chrun)?",
+    "back": "Client Load balancer Server → LB idle 60s closes ◄── client still sends ──► RST / half-open (half-open connections) → LB idle timeout: 60s (AWS ALB default) → App keepalive: 65s+ (nginx keepalive_timeout 75s; Node server.keepAliveTimeout > LB) → Client pool TTL: reuse sockets; idle < LB",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Apply"
+  },
+  {
+    "id": "67442b50d565",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken connection churn (connection chrun) setup, what is your first validation command?",
+    "back": "Client Load balancer Server",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Apply"
+  },
+  {
+    "id": "7b79c0864a50",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for connection churn (connection chrun)?",
+    "back": "Align timeouts (LB < client < server or consistent ladder):",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Apply"
+  },
+  {
+    "id": "803f51ba204a",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: EADDRNOTAVAIL / can't connect out — what do you check and fix?",
+    "back": "Check: ss -tan state time-wait \\ · Fix: wc -l; port range",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Analyze"
+  },
+  {
+    "id": "fc63753cc79b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 502 after idle period — what do you check and fix?",
+    "back": "Check: LB access logs; ss -ti timers · Fix: Raise keepAliveTimeout above LB; enable HTTP keepalive",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Analyze"
+  },
+  {
+    "id": "256f5e2a038d",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SYN flood appearance, low traffic — what do you check and fix?",
+    "back": "Check: Health check interval; ss -tan state syn-recv · Fix: Reduce check frequency; use HTTP keepalive to backend",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Analyze"
+  },
+  {
+    "id": "32e21faf3791",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CPU on accept, low RPS — what do you check and fix?",
+    "back": "Check: ss -s; strace accept loop · Fix: Connection per request — enable reuse / HTTP2 / multiplex",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Analyze"
+  },
+  {
+    "id": "7c10fb72f49c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CLOSE-WAIT climbing — what do you check and fix?",
+    "back": "Check: ss -tan state close-wait -p · Fix: App not closing sockets (Epoll event loop bug)",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Analyze"
+  },
+  {
+    "id": "67546c1e21ff",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: TLS handshake latency spikes — what do you check and fix?",
+    "back": "Check: Metrics new conn rate · Fix: Session resumption; connection pooling; HTTP/2",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Analyze"
+  },
+  {
+    "id": "aa8abc02b8a7",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with connection churn (connection chrun): what silently fails?",
+    "back": "tcp_tw_recycle appears in old blog posts — removed in Linux 4.12; breaks clients behind NAT.",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Evaluate"
+  },
+  {
+    "id": "07b689d08433",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use connection churn (connection chrun)?",
+    "back": "Long-lived WebSocket/gRPC streams — churn doc is wrong frame; debug read idle and proxy timeouts instead. UDP “connections” — no TIME_WAIT; different tools (ss -u). Tuning fin_timeout to 5 globally — can break legit slow closes; fix app reuse first.",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Evaluate"
+  },
+  {
+    "id": "6187b213dccd",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct connection churn (connection chrun) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Client Load balancer Server",
+    "source": "Back2Basics/Networking/connection chrun.md",
+    "section": "connection churn (connection chrun) · Create"
+  },
+  {
+    "id": "48b8bbf08c1a",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Deflate (dflate) in one sentence?",
+    "back": "Lossless compression combining LZ77 dictionary matching + Huffman coding — raw DEFLATE is the payload inside gzip and zlib wrappers.",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Remember"
+  },
+  {
+    "id": "b599a15cb3fe",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Lossless?",
+    "back": "exact bytes restored",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Remember"
+  },
+  {
+    "id": "0cfad6d5a5e9",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Not parallel-friendly?",
+    "back": "single stream; brotli/zstd often beat it on text at cost of CPU",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Remember"
+  },
+  {
+    "id": "8bf38876968b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Streaming?",
+    "back": "compress chunk-by-chunk for HTTP",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Remember"
+  },
+  {
+    "id": "7bea85f91d24",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Deflate (dflate) (how the system thinks).",
+    "back": "DEFLATE (RFC 1951) is the algorithm; gzip (RFC 1952) and zlib (RFC 1950) are container formats around it:",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Understand"
+  },
+  {
+    "id": "76929a8c0646",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Deflate (dflate)?",
+    "back": "Why gzip_min_length: compressing 200-byte 404 costs CPU for negligible bytes saved.",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Apply"
+  },
+  {
+    "id": "ed82e2afdda2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Garbled response body — what do you check and fix?",
+    "back": "Check: Double gzip; wrong Content-Encoding · Fix: One layer only; proxy decompress/recompress",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Analyze"
+  },
+  {
+    "id": "d13a6fea638a",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: ERR_CONTENT_DECODING_FAILED — what do you check and fix?",
+    "back": "Check: Truncated stream · Fix: Proxy buffer limits; disable gzip on broken path",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Analyze"
+  },
+  {
+    "id": "99b1029949f6",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: High CPU — what do you check and fix?",
+    "back": "Check: gzip level 9 on hot path · Fix: Lower level; offload to CDN; use zstd at edge",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Analyze"
+  },
+  {
+    "id": "b6457b1cf560",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Android okhttp issues — what do you check and fix?",
+    "back": "Check: Missing Accept-Encoding · Fix: Client must decode or disable gzip",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Analyze"
+  },
+  {
+    "id": "8fd24536aae5",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Deflate (dflate): what silently fails?",
+    "back": "DEFLATE ≠ gzip file — .gz has headers; raw DEFLATE confuses tools expecting gzip.",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Evaluate"
+  },
+  {
+    "id": "f23a4f850911",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Deflate (dflate)?",
+    "back": "Skip compression for already compressed media (JPEG, PNG, video) and TLS 1.3 0-RTT sensitive paths where timing matters more than bytes.",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Evaluate"
+  },
+  {
+    "id": "e2230471ab2a",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Deflate (dflate) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Properties:",
+    "source": "Back2Basics/Networking/dflate.md",
+    "section": "Deflate (dflate) · Create"
+  },
+  {
+    "id": "6e3509f66015",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ethtool in one sentence?",
+    "back": "NIC driver ioctl tool — inspect link state, speed/duplex, ring sizes, offload features, and driver stats at the hardware edge.",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Remember"
+  },
+  {
+    "id": "32560ab76b24",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of ethtool (how the system thinks).",
+    "back": "ethtool talks to the NIC driver, not just the kernel routing stack:",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Understand"
+  },
+  {
+    "id": "f58654fd64f4",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for ethtool?",
+    "back": "Use when ip link shows UP but performance is wrong — cable/negotiation/offload issues live here, not in route tables.",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Apply"
+  },
+  {
+    "id": "9b09daef2f75",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken ethtool setup, what is your first validation command?",
+    "back": "Use when ip link shows UP but performance is wrong — cable/negotiation/offload issues live here, not in route tables.",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Apply"
+  },
+  {
+    "id": "1c117d4ae54b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for ethtool?",
+    "back": "Why -S stats: rx_missed_errors, rx_dropped distinguish NIC overflow vs kernel backlog (ss).",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Apply"
+  },
+  {
+    "id": "2d4e225f7abd",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Link up, slow throughput — what do you check and fix?",
+    "back": "Check: Speed, Duplex; LnkSta via lspci · Fix: Fix cable/SFP; match autoneg; replace optics",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Analyze"
+  },
+  {
+    "id": "4e6bda8b9411",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Packet loss at high PPS — what do you check and fix?",
+    "back": "Check: ethtool -S drops · Fix: Increase rings; coalesce tuning; faster CPU",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Analyze"
+  },
+  {
+    "id": "ecd11f64e21d",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: TCP checksum errors — what do you check and fix?",
+    "back": "Check: rx_errors; -k offloads · Fix: Disable bad offload; update driver",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Analyze"
+  },
+  {
+    "id": "3a1328bd667e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Changes vanish on reboot — what do you check and fix?",
+    "back": "Check: No persist rule · Fix: NM dispatcher script or systemd unit",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Analyze"
+  },
+  {
+    "id": "ab11d9c85222",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with ethtool: what silently fails?",
+    "back": "Virtio/vmxnet stats differ — not all -S counters exist in VMs.",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Evaluate"
+  },
+  {
+    "id": "01388bf2a518",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use ethtool?",
+    "back": "Don't tune ring buffers before confirming application and kernel aren't the bottleneck (ss -ti, CPU softirq). ethtool is layer 1–2, not routing.",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Evaluate"
+  },
+  {
+    "id": "1f3fbc343fb2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct ethtool setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Use when ip link shows UP but performance is wrong — cable/negotiation/offload issues live here, not in route tables.",
+    "source": "Back2Basics/Networking/ethtool.md",
+    "section": "ethtool · Create"
+  },
+  {
+    "id": "4bee9b8bf0da",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Half-open connections in one sentence?",
+    "back": "One-line: TCP where one side has closed its write path (FIN sent) but the read path is still open — Stevens, TCP/IP Illustrated.",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Remember"
+  },
+  {
+    "id": "289772bf90b6",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Half-open connections (how the system thinks).",
+    "back": "TCP is full-duplex: each direction has its own FIN/ACK lifecycle. Half-open means one peer has shut down its outbound byte stream while the other can still send.",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Understand"
+  },
+  {
+    "id": "eb8d3d7bec95",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Half-open connections?",
+    "back": "A (closed write) B (still writing) → A: FIN ─────────────────► B (A done sending) → A: ◄────────────────────── B (B may still send data) → A receives EOF when B FINs or RSTs → Inspect socket state — start with ss:",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Apply"
+  },
+  {
+    "id": "141565197fe1",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Half-open connections setup, what is your first validation command?",
+    "back": "A (closed write) B (still writing)",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Apply"
+  },
+  {
+    "id": "23fe5e25371b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Half-open connections?",
+    "back": "Inspect socket state — start with ss:",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Apply"
+  },
+  {
+    "id": "6adb148f0021",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CLOSE_WAIT count climbing on app host — what do you check and fix?",
+    "back": "Check: ss -tanp state close-wait → owning PID · Fix: App not calling close() on accepted sockets after client disconnect; fix lifecycle / use finally blocks",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Analyze"
+  },
+  {
+    "id": "c52f40309d8d",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: FIN_WAIT_2 pile-up on server — what do you check and fix?",
+    "back": "Check: ss -tan state fin-wait-2 · Fix: Peer never ACK'd or never sent FIN; lower tcp_fin_timeout or enable tcp_tw_reuse where appropriate; fix client hang",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Analyze"
+  },
+  {
+    "id": "d702a4173700",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connection \"hangs\" after server end() — what do you check and fix?",
+    "back": "Check: tcpdump: FIN from server, no FIN from client · Fix: Client half-open; set { allowHalfOpen: false } or explicitly destroy() both sides",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Analyze"
+  },
+  {
+    "id": "be5be88fc948",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: LB shows healthy, app thread pool exhausted — what do you check and fix?",
+    "back": "Check: Compare LB idle timeout vs app socket timeout · Fix: Align timeouts; LB often 60s, app 300s → orphaned server-side sockets",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Analyze"
+  },
+  {
+    "id": "fc6a7cc2b837",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: One direction works, other EOF unexpectedly — what do you check and fix?",
+    "back": "Check: tcpdump -i any host <peer> and tcp[tcpflags] & (fin\\ · Fix: rst) != 0",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Analyze"
+  },
+  {
+    "id": "29c626be42ef",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mass half-opens after deploy — what do you check and fix?",
+    "back": "Check: Spike in SYN-RECV or ESTAB without traffic · Fix: Rolling deploy + draining; old pods still hold connections; use graceful shutdown + SO_LINGER review",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Analyze"
+  },
+  {
+    "id": "3e56d6064ce4",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Half-open connections: what silently fails?",
+    "back": "CLOSE_WAIT leak = application bug, not kernel bug. The remote side already closed; your process must close() the fd. Restarting the process \"fixes\" it temporarily — the leak returns.",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Evaluate"
+  },
+  {
+    "id": "784e1cc438b5",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Half-open connections?",
+    "back": "Don't enable allowHalfOpen: true unless the protocol explicitly needs unidirectional shutdown (streaming upload/download with independent lifetimes). Don't tune tcp_fin_timeout / tcp_tw_reuse without measuring — aggressive values can break legitimate long-tail responses.",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Evaluate"
+  },
+  {
+    "id": "759e6ad4848f",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Half-open connections setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: A (closed write) B (still writing)",
+    "source": "Back2Basics/Networking/half-open connections.md",
+    "section": "Half-open connections · Create"
+  },
+  {
+    "id": "fd484dab5e87",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is localhost?",
+    "back": "## What localhost means to each devices localhost always means the device running the app, not \"my dev machine\" or \"where the API lives\".",
+    "source": "Back2Basics/Networking/localhost.md",
+    "section": "localhost · Remember"
+  },
+  {
+    "id": "2614a9b9b700",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for localhost?",
+    "back": "sudo apt install mkcert; → mkcert -install; # create and install Local CA (one-time)",
+    "source": "Back2Basics/Networking/localhost.md",
+    "section": "localhost · Apply"
+  },
+  {
+    "id": "139ef4103d76",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken localhost setup, what is your first validation command?",
+    "back": "sudo apt install mkcert;",
+    "source": "Back2Basics/Networking/localhost.md",
+    "section": "localhost · Apply"
+  },
+  {
+    "id": "dead79c3521f",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct localhost setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: sudo apt install mkcert;",
+    "source": "Back2Basics/Networking/localhost.md",
+    "section": "localhost · Create"
+  },
+  {
+    "id": "00d9baccebf4",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Loopback in one sentence?",
+    "back": "Logical network interface (lo) whose addresses (127.0.0.1, ::1) route traffic back to the same host — no physical NIC involved.",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Remember"
+  },
+  {
+    "id": "b7f1a809e25c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is DNS resolving to loopback?",
+    "back": "/etc/hosts dev entries (127.0.0.1 myapp.local)",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Remember"
+  },
+  {
+    "id": "3ea0eae467da",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Loopback (how the system thinks).",
+    "back": "Loopback shortcuts the stack:",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Understand"
+  },
+  {
+    "id": "84968d51b70b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Loopback?",
+    "back": "Uses: → Distinct from localhost hostname convention — loopback is the interface/address family.",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Apply"
+  },
+  {
+    "id": "f7f6c9ba60e7",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Loopback?",
+    "back": "Why bind localhost: expose admin/metrics only to local reverse proxy or SSH tunnel — not the LAN.",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Apply"
+  },
+  {
+    "id": "91852cbc7d5d",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Connection refused on 127.0.0.1 — what do you check and fix?",
+    "back": "Check: ss -tlnp listener address · Fix: App listening on 0.0.0.0 vs 127.0.0.1",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Analyze"
+  },
+  {
+    "id": "0461bf358285",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works by IP, fails by hostname — what do you check and fix?",
+    "back": "Check: /etc/hosts; DNS · Fix: Fix hosts entry; nsswitch files dns",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Analyze"
+  },
+  {
+    "id": "c5493633d0f6",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Browser hits wrong local service — what do you check and fix?",
+    "back": "Check: Host header + port · Fix: Multiple dev servers; check port",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Analyze"
+  },
+  {
+    "id": "66d0da16a77b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SSRF to metadata — what do you check and fix?",
+    "back": "Check: App fetches user URL → 169.254/127 · Fix: Block link-local and loopback in fetcher",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Analyze"
+  },
+  {
+    "id": "5c09f5a024b2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Loopback: what silently fails?",
+    "back": "Loopback is not encrypted by default — traffic stays on host but other local users/processes may connect if permissions weak.",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Evaluate"
+  },
+  {
+    "id": "b1af4de47a2c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Loopback?",
+    "back": "Don't rely on loopback binding alone in multi-tenant hosts — containers share kernel; use network namespaces and auth.",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Evaluate"
+  },
+  {
+    "id": "71ea9baae15e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Loopback setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Uses:",
+    "source": "Back2Basics/Networking/loopback.md",
+    "section": "Loopback · Create"
+  },
+  {
+    "id": "1f3bf67051c9",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is mime type?",
+    "back": "/etc/mime.types /usr/share/mime -> system wide",
+    "source": "Back2Basics/Networking/mime type.md",
+    "section": "mime type · Remember"
+  },
+  {
+    "id": "d565ac29a45e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for mime type?",
+    "back": "xdg-mime query default mime/type; → xdg-mime default vim.desktop text/plain; → xdg-mime query default inode/directory; # get the information of file manager → gio mime <mime-type>;",
+    "source": "Back2Basics/Networking/mime type.md",
+    "section": "mime type · Apply"
+  },
+  {
+    "id": "1db04932f59c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken mime type setup, what is your first validation command?",
+    "back": "xdg-mime query default mime/type;",
+    "source": "Back2Basics/Networking/mime type.md",
+    "section": "mime type · Apply"
+  },
+  {
+    "id": "e5dd52311c2e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct mime type setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: xdg-mime query default mime/type;",
+    "source": "Back2Basics/Networking/mime type.md",
+    "section": "mime type · Create"
+  },
+  {
+    "id": "0a4f260f6e8c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is network gateway?",
+    "back": "find your public IP https://ifconfig.me",
+    "source": "Back2Basics/Networking/network gateway.md",
+    "section": "network gateway · Remember"
+  },
+  {
+    "id": "1904ae33a0f8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for network gateway?",
+    "back": "ssh -R 8080:localhost:3000 user@public-server.com;",
+    "source": "Back2Basics/Networking/network gateway.md",
+    "section": "network gateway · Apply"
+  },
+  {
+    "id": "d5d693ad16b7",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken network gateway setup, what is your first validation command?",
+    "back": "ssh -R 8080:localhost:3000 user@public-server.com;",
+    "source": "Back2Basics/Networking/network gateway.md",
+    "section": "network gateway · Apply"
+  },
+  {
+    "id": "1cb10f618fe8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct network gateway setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: ssh -R 8080:localhost:3000 user@public-server.com;",
+    "source": "Back2Basics/Networking/network gateway.md",
+    "section": "network gateway · Create"
+  },
+  {
+    "id": "a10ddb04adf0",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is NetworkManager (network managmeen) in one sentence?",
+    "back": "One-line: default Linux userspace daemon that owns interface bring-up, DHCP, Wi-Fi, DNS, and routing — replaces manual ifup/static scripts on most desktops and servers.",
+    "source": "Back2Basics/Networking/network managmeen.md",
+    "section": "NetworkManager (network managmeen) · Remember"
+  },
+  {
+    "id": "1c196362aa43",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of NetworkManager (network managmeen) (how the system thinks).",
+    "back": "NetworkManager (NM) sits between kernel netlink and admin intent (CLI, GUI, cloud-init):",
+    "source": "Back2Basics/Networking/network managmeen.md",
+    "section": "NetworkManager (network managmeen) · Understand"
+  },
+  {
+    "id": "411d261c6d6b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for NetworkManager (network managmeen)?",
+    "back": "Why nmcli over ip alone: ip route add is ephemeral unless scripted; NM stores in connection profile.",
+    "source": "Back2Basics/Networking/network managmeen.md",
+    "section": "NetworkManager (network managmeen) · Apply"
+  },
+  {
+    "id": "921f0c370ff2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: No default route — what do you check and fix?",
+    "back": "Check: nmcli dev; ip route · Fix: nmcli con up; fix ipv4.gateway; autoconnect yes",
+    "source": "Back2Basics/Networking/network managmeen.md",
+    "section": "NetworkManager (network managmeen) · Analyze"
+  },
+  {
+    "id": "92bbf2868853",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: DNS fails, IP works — what do you check and fix?",
+    "back": "Check: resolvectl status; NM dns · Fix: Set ipv4.dns; disable bad DHCP option 6",
+    "source": "Back2Basics/Networking/network managmeen.md",
+    "section": "NetworkManager (network managmeen) · Analyze"
+  },
+  {
+    "id": "efcb1de37200",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Changes lost on reboot — what do you check and fix?",
+    "back": "Check: Edited ip not NM profile · Fix: Use nmcli con mod; check netplan render",
+    "source": "Back2Basics/Networking/network managmeen.md",
+    "section": "NetworkManager (network managmeen) · Analyze"
+  },
+  {
+    "id": "28f78dcb89d3",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Interface unmanaged — what do you check and fix?",
+    "back": "Check: NM_UNMANAGED in logs · Fix: nmcli dev set eth0 managed yes; fix udev",
+    "source": "Back2Basics/Networking/network managmeen.md",
+    "section": "NetworkManager (network managmeen) · Analyze"
+  },
+  {
+    "id": "9d2451fcece9",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: VPN split tunnel wrong — what do you check and fix?",
+    "back": "Check: nmcli con show vpn routes · Fix: Adjust route metrics; ipv4.never-default",
+    "source": "Back2Basics/Networking/network managmeen.md",
+    "section": "NetworkManager (network managmeen) · Analyze"
+  },
+  {
+    "id": "6340aa2eba47",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with NetworkManager (network managmeen): what silently fails?",
+    "back": "Server minimal images may disable NM — installing NM alongside networkd causes fight-over-interface.",
+    "source": "Back2Basics/Networking/network managmeen.md",
+    "section": "NetworkManager (network managmeen) · Evaluate"
+  },
+  {
+    "id": "395f59a90812",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use NetworkManager (network managmeen)?",
+    "back": "On Kubernetes nodes or router appliances, teams often prefer systemd-networkd or CNI-managed interfaces — disable NM for dataplane NICs to avoid surprise DHCP.",
+    "source": "Back2Basics/Networking/network managmeen.md",
+    "section": "NetworkManager (network managmeen) · Evaluate"
+  },
+  {
+    "id": "0476673f05cf",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct NetworkManager (network managmeen) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: One-line: default Linux userspace daemon that owns interface bring-up, DHCP, Wi-Fi, DNS, and routing — replaces manual ifup/static scripts",
+    "source": "Back2Basics/Networking/network managmeen.md",
+    "section": "NetworkManager (network managmeen) · Create"
+  },
+  {
+    "id": "15ef76c71e31",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is non-Routable address?",
+    "back": "non-Routable address — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/non-Routable address.md",
+    "section": "non-Routable address · Remember"
+  },
+  {
+    "id": "234fa4e660df",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does non-Routable address matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/non-Routable address.md",
+    "section": "non-Routable address · Understand"
+  },
+  {
+    "id": "476d54815c7d",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe non-Routable address checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/non-Routable address.md",
+    "section": "non-Routable address · Create"
+  },
+  {
+    "id": "05565387718b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is outbound ip?",
+    "back": "outbound ip — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Networking/outbound ip.md",
+    "section": "outbound ip · Remember"
+  },
+  {
+    "id": "989290fe0281",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does outbound ip matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Networking/outbound ip.md",
+    "section": "outbound ip · Understand"
+  },
+  {
+    "id": "de7621b2da06",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe outbound ip checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Networking/outbound ip.md",
+    "section": "outbound ip · Create"
+  },
+  {
+    "id": "074711ea1e54",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Routing table in one sentence?",
+    "back": "One-line: kernel data structure mapping destination CIDR → next hop; longest-prefix match wins — Kerrisk, Linux Programming Interface.",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Remember"
+  },
+  {
+    "id": "0f2267ee88dd",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of Routing table (how the system thinks).",
+    "back": "Each entry stores a destination prefix and a target (gateway, interface, or local delivery). The kernel picks the most specific matching route; on tie, lowest metric wins.",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Understand"
+  },
+  {
+    "id": "d3394d2d2221",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for Routing table?",
+    "back": "Destination Gateway Iface Metric → ip route show → ip route show table all # custom PBR tables → ip rule list → route -n",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Apply"
+  },
+  {
+    "id": "00d0802af9fe",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken Routing table setup, what is your first validation command?",
+    "back": "Destination Gateway Iface Metric",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Apply"
+  },
+  {
+    "id": "eb2c25db7ad8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for Routing table?",
+    "back": "View routes and DNS resolver (often confused during triage):",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Apply"
+  },
+  {
+    "id": "1a726114a289",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Host unreachable to one subnet — what do you check and fix?",
+    "back": "Check: ip route get <dst> · Fix: Missing or wrong route; add via correct gateway",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Analyze"
+  },
+  {
+    "id": "2dce11886921",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works from host A, not host B — what do you check and fix?",
+    "back": "Check: Compare ip route + security groups/NACLs · Fix: Asymmetric routing or SG blocking return path",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Analyze"
+  },
+  {
+    "id": "5321cd515f58",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Route \"disappeared\" after DHCP renew — what do you check and fix?",
+    "back": "Check: journalctl -u systemd-networkd / NM logs · Fix: Daemon overwrote manual route → make persistent in net config",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Analyze"
+  },
+  {
+    "id": "50e495170625",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Ping works, TCP fails — what do you check and fix?",
+    "back": "Check: tcpdump both directions; check MTU / MTU (Maximum Transmission Unit) · Fix: PMTU blackhole; lower MSS or fix middlebox",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Analyze"
+  },
+  {
+    "id": "f9a295b67ad0",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Traffic exits wrong interface — what do you check and fix?",
+    "back": "Check: ip route get <dst> shows unexpected dev · Fix: Metric conflict or PBR rule; ip rule list",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Analyze"
+  },
+  {
+    "id": "15f939185aaa",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: New pod/VM can't reach metadata or DNS — what do you check and fix?",
+    "back": "Check: Cloud route table + /etc/resolv.conf · Fix: Missing VPC endpoint route or wrong subnet association",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Analyze"
+  },
+  {
+    "id": "354fb0b38e68",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Intermittent 5–30s delays — what do you check and fix?",
+    "back": "Check: ip route show cache / conntrack · Fix: Stale nexthop cache; check gateway ARP",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Analyze"
+  },
+  {
+    "id": "913d4ce9cae2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: RTNETLINK answers: File exists — what do you check and fix?",
+    "back": "Check: Duplicate route entry · Fix: ip route replace or delete first",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Analyze"
+  },
+  {
+    "id": "12db769a2c07",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with Routing table: what silently fails?",
+    "back": "Longest prefix wins, not \"first match\" — /32 beats /24 beats 0.0.0.0/0.",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Evaluate"
+  },
+  {
+    "id": "f5cbbd27bf9c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use Routing table?",
+    "back": "Don't hand-edit routes on managed instances (EKS nodes, GKE nodes) — fix the CNI/cloud route table instead. Don't add static routes for every microservice; use service mesh or DNS-based discovery for app-level routing.",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Evaluate"
+  },
+  {
+    "id": "22e697f1e779",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct Routing table setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Destination Gateway Iface Metric",
+    "source": "Back2Basics/Networking/routing table.md",
+    "section": "Routing table · Create"
+  },
+  {
+    "id": "b99505cd453e",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is User-Agent in one sentence?",
+    "back": "Client-declared software identity string on HTTP requests — used for compatibility, analytics, and bot detection; easily spoofed.",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Remember"
+  },
+  {
+    "id": "e557c4a36402",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Server adaptation?",
+    "back": "mobile vs desktop templates (declining; prefer responsive CSS)",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Remember"
+  },
+  {
+    "id": "4940d4522cc5",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Analytics?",
+    "back": "browser/OS market share",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Remember"
+  },
+  {
+    "id": "be237ae95ca9",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Bot/scraper detection?",
+    "back": "rate limits, CAPTCHA",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Remember"
+  },
+  {
+    "id": "8bd291e9a6d2",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is API client identification?",
+    "back": "mobile apps often use library defaults",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Remember"
+  },
+  {
+    "id": "8ed1e8dd4f1b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of User-Agent (how the system thinks).",
+    "back": "Every HTTP request may include:",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Understand"
+  },
+  {
+    "id": "26dce2146b65",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for User-Agent?",
+    "back": "Purposes: → Common mobile/API fingerprint:",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Apply"
+  },
+  {
+    "id": "d8a70b990096",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for User-Agent?",
+    "back": "Why log UA: incident forensics (\"was this curl or Chrome?\") — correlate with Network error patterns.",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Apply"
+  },
+  {
+    "id": "2e0d0d5c8b16",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Mobile app blocked by WAF — what do you check and fix?",
+    "back": "Check: Default okhttp UA · Fix: Allowlist pattern; custom UA header + auth",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Analyze"
+  },
+  {
+    "id": "94dbf74c59e8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Feature gate wrong — what do you check and fix?",
+    "back": "Check: UA sniffing · Fix: Replace with Client Hints or capability detection",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Analyze"
+  },
+  {
+    "id": "7b1c648caf5b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Rate limit hits scripts — what do you check and fix?",
+    "back": "Check: Shared datacenter UA · Fix: Per-API-key limits, not UA alone",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Analyze"
+  },
+  {
+    "id": "705dec781bee",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SEO/bot traffic — what do you check and fix?",
+    "back": "Check: Search bot UA spoof · Fix: Verify bot via reverse DNS + IP ranges",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Analyze"
+  },
+  {
+    "id": "dd1e53db67b8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with User-Agent: what silently fails?",
+    "back": "UA sniffing is fragile — Chrome frozen UA reduction; use Client Hints (Sec-CH-UA-*) where needed.",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Evaluate"
+  },
+  {
+    "id": "7a328ac53cc9",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use User-Agent?",
+    "back": "Don't branch authorization on User-Agent. Use tokens, mTLS, or attestation for API clients.",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Evaluate"
+  },
+  {
+    "id": "fa98e1f11c8f",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct User-Agent setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Purposes:",
+    "source": "Back2Basics/Networking/useragent.md",
+    "section": "User-Agent · Create"
+  },
+  {
+    "id": "fbb859037e8b",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is WebSocket in one sentence?",
+    "back": "One-line: full-duplex framed messages over a single TCP connection, bootstrapped via HTTP Upgrade — RFC 6455.",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Remember"
+  },
+  {
+    "id": "06266841f09a",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of WebSocket (how the system thinks).",
+    "back": "WebSocket starts as HTTP/1.1 with an Upgrade handshake, then switches to a binary-framed protocol. No repeated HTTP headers per message — ideal for push, chat, live dashboards.",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Understand"
+  },
+  {
+    "id": "9bab87f1dea8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for WebSocket?",
+    "back": "Client Server / Proxy",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Apply"
+  },
+  {
+    "id": "7e6bcbbe4c9a",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken WebSocket setup, what is your first validation command?",
+    "back": "Client Server / Proxy",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Apply"
+  },
+  {
+    "id": "fe89c1781751",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works direct, fails via nginx — what do you check and fix?",
+    "back": "Check: curl -i through proxy; nginx error log · Fix: Missing Upgrade/Connection headers; add map block above",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Analyze"
+  },
+  {
+    "id": "d99181400ce1",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 502 after ~60s idle — what do you check and fix?",
+    "back": "Check: nginx proxy_read_timeout (default 60s) · Fix: Raise timeout; align with app heartbeat interval",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Analyze"
+  },
+  {
+    "id": "cc748d212c9c",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 504 on connect — what do you check and fix?",
+    "back": "Check: proxy_connect_timeout; upstream down · Fix: Fix backend listen; check upstream block",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Analyze"
+  },
+  {
+    "id": "ff3e057c1b77",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Random disconnects behind LB — what do you check and fix?",
+    "back": "Check: LB idle timeout vs app ping interval · Fix: Send WS ping every (idle_timeout / 2); enable TCP keepalive",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Analyze"
+  },
+  {
+    "id": "e7f8d66830d6",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Messages hit wrong backend pod — what do you check and fix?",
+    "back": "Check: LB algorithm (round-robin) · Fix: Sticky sessions: ip_hash, cookie-based stickiness, or shared pub/sub backplane",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Analyze"
+  },
+  {
+    "id": "2e2f680f7409",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 403 / 400 Bad Request on upgrade — what do you check and fix?",
+    "back": "Check: WAF blocking Upgrade header · Fix: Allowlist /ws/ path; disable request body inspection on upgrade",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Analyze"
+  },
+  {
+    "id": "2d4c0001bce8",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: SSL termination breaks WS — what do you check and fix?",
+    "back": "Check: Client uses wss://, origin uses ws:// internally · Fix: Terminate TLS at nginx; proxy to backend over HTTP with correct X-Forwarded-Proto",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Analyze"
+  },
+  {
+    "id": "e79bb7d77c29",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Reconnect storm after deploy — what do you check and fix?",
+    "back": "Check: Connection count spike, CPU peg · Fix: Implement exponential backoff + jitter on client; drain old pods gracefully",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Analyze"
+  },
+  {
+    "id": "bf9d7a49c5c0",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with WebSocket: what silently fails?",
+    "back": "Default nginx 60s timeout is the #1 production WebSocket killer. Always set proxy_read_timeout explicitly.",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Evaluate"
+  },
+  {
+    "id": "f7f554f09ff3",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use WebSocket?",
+    "back": "High-frequency fan-out to millions of clients → dedicated pub/sub (MQTT, SSE, or managed realtime service) scales better operationally. Request/response CRUD → ordinary HTTP/REST or gRPC is simpler to cache, debug, and load-balance.",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Evaluate"
+  },
+  {
+    "id": "f80c18525b69",
+    "deck": "b2b-networking",
+    "tags": [
+      "back2basics",
+      "networking",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct WebSocket setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Client Server / Proxy",
+    "source": "Back2Basics/Networking/webSocket.md",
+    "section": "WebSocket · Create"
+  }
+]

@@ -1,0 +1,688 @@
+[
+  {
+    "id": "9d9789526987",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is PHP-FPM in one sentence?",
+    "back": "FastCGI Process Manager: the worker pool between Nginx/Apache and PHP — production default for PHP on Linux.",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Remember"
+  },
+  {
+    "id": "b94cca28f9f0",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of PHP-FPM (how the system thinks).",
+    "back": "Nginx terminates TLS and forwards requests to PHP-FPM over TCP or a Unix socket. FPM maintains a pool of worker processes; each worker handles one request at a time (unless you use async frameworks, which is rare in PHP).",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Understand"
+  },
+  {
+    "id": "55d5dcb0a745",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 502 on all PHP routes — what do you check and fix?",
+    "back": "Check: ls -la /run/php/*.sock; systemctl status php-fpm · Fix: FPM down; socket path mismatch vs Nginx fastcgi_pass",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Analyze"
+  },
+  {
+    "id": "5813f3fd3080",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 502 intermittent — what do you check and fix?",
+    "back": "Check: curl fpm-status; check listen queue · Fix: Pool exhausted — raise pm.max_children or fix slow queries",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Analyze"
+  },
+  {
+    "id": "f96db82689ac",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 502 after deploy — what do you check and fix?",
+    "back": "Check: Nginx error log: connect() to unix:... failed (13: Permission denied) · Fix: listen.owner/group/mode — Nginx user must be in socket group",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Analyze"
+  },
+  {
+    "id": "1c2b6d291594",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 504 gateway timeout — what do you check and fix?",
+    "back": "Check: Nginx fastcgi_read_timeout; FPM request_terminate_timeout · Fix: Long-running script; async job queue instead",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Analyze"
+  },
+  {
+    "id": "9b3454872dc6",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 500 with blank body — what do you check and fix?",
+    "back": "Check: FPM /var/log/php8.3-fpm.log, app error_log · Fix: PHP fatal; display_errors=Off in prod hides from client",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Analyze"
+  },
+  {
+    "id": "5771af992923",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Memory climb over days — what do you check and fix?",
+    "back": "Check: pm.max_requests = 0 · Fix: Enable recycling; audit extension leaks (imagick, etc.)",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Analyze"
+  },
+  {
+    "id": "a1cb85a2269a",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: All workers busy, low CPU — what do you check and fix?",
+    "back": "Check: DB lock / external API · Fix: Slowlog pinpoints line; not a pool sizing problem",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Analyze"
+  },
+  {
+    "id": "819e47545b38",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with PHP-FPM: what silently fails?",
+    "back": "Socket path drift — distro upgrades rename /run/php/php7.4-fpm.sock → php8.3. Nginx still points at old path → instant 502 after apt upgrade.",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Evaluate"
+  },
+  {
+    "id": "42c3fb5d5b24",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use PHP-FPM?",
+    "back": "CLI/cron scripts — invoke php directly, not FPM. Long-lived WebSockets in PHP — wrong tool; use Node/Go or a dedicated WS gateway. ondemand in prod — first-request latency after idle spikes; use dynamic.",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Evaluate"
+  },
+  {
+    "id": "68e0849ac8d4",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct PHP-FPM setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: FastCGI Process Manager: the worker pool between Nginx/Apache and PHP — production default for PHP on Linux.",
+    "source": "Back2Basics/php/PHP-FPM.md",
+    "section": "PHP-FPM · Create"
+  },
+  {
+    "id": "fe0e499a99f4",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is PHP errors in one sentence?",
+    "back": "Apache/PHP-FPM startup and runtime failures — read the error log line, fix the socket/port/config mismatch.",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Remember"
+  },
+  {
+    "id": "186a88f6df27",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of PHP errors (how the system thinks).",
+    "back": "PHP in production usually sits behind Apache (mod_php rare now) or Nginx → PHP-FPM (Unix socket or TCP). \"No listening sockets\" means the web server couldn't bind its port — often Apache still running or port 80/443 taken. PHP errors also surface in error_log, FPM pool logs, and HTTP 502 from Nginx when FPM is down.",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Understand"
+  },
+  {
+    "id": "d7869eec6ed8",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for PHP errors?",
+    "back": "sudo ss -tlnp | grep -E ':80|:443' → sudo systemctl status apache2 nginx php*-fpm → sudo apachectl configtest → sudo systemctl restart apache2 → sudo tail -f /var/log/apache2/error.log",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Apply"
+  },
+  {
+    "id": "4a1672bf994a",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken PHP errors setup, what is your first validation command?",
+    "back": "sudo ss -tlnp | grep -E ':80|:443'",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Apply"
+  },
+  {
+    "id": "2786a529323e",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: no listening sockets available, shutting down — what do you check and fix?",
+    "back": "Check: ss -tlnp, Apache already up · Fix: Stop duplicate Apache; free port 80",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Analyze"
+  },
+  {
+    "id": "f96665d737ed",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Address already in use — what do you check and fix?",
+    "back": "Check: Conflicting nginx/apache · Fix: One listener per port; disable unused service",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Analyze"
+  },
+  {
+    "id": "75b25e0c28f3",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: 502 Bad Gateway — what do you check and fix?",
+    "back": "Check: FPM running? socket path · Fix: Restart FPM; align socket in nginx + pool",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Analyze"
+  },
+  {
+    "id": "d6dc40ca807f",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Blank page, no log — what do you check and fix?",
+    "back": "Check: display_errors off · Fix: Check FPM/Apache error log; enable log in dev only",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Analyze"
+  },
+  {
+    "id": "30009708b901",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Permission denied on socket — what do you check and fix?",
+    "back": "Check: www-data group · Fix: listen.owner/group/mode in pool config",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Analyze"
+  },
+  {
+    "id": "632f192d0c87",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Max children reached — what do you check and fix?",
+    "back": "Check: FPM slow log · Fix: Raise pm.max_children; fix slow queries",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Analyze"
+  },
+  {
+    "id": "51efbc641c3d",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with PHP errors: what silently fails?",
+    "back": "apachectl vs apache2ctl — wrong binary on Debian/Ubuntu = confusing paths. Editing php.ini but FPM uses pool ini — php_admin_value in pool overrides. Opcache stale after deploy — restart FPM on deploy or tune validate_timestamps.",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Evaluate"
+  },
+  {
+    "id": "a20eaa25cd07",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use PHP errors?",
+    "back": "Don't enable display_errors=On in production — leaks paths and logic. Don't run Apache and Nginx both binding :80 without intentional reverse-proxy setup.",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Evaluate"
+  },
+  {
+    "id": "1c8db0fb2062",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct PHP errors setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: sudo ss -tlnp | grep -E ':80|:443'",
+    "source": "Back2Basics/php/php error.md",
+    "section": "PHP errors · Create"
+  },
+  {
+    "id": "f17127fb7ab8",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is PHP in one sentence?",
+    "back": "Server-side language runtime — install extensions, pair with FPM, tune for web workloads.",
+    "source": "Back2Basics/php/php.md",
+    "section": "PHP · Remember"
+  },
+  {
+    "id": "abfb6b3e8e98",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of PHP (how the system thinks).",
+    "back": "PHP executes per request (FPM worker pool) or CLI (cron, Composer). The SAPI (FPM, CLI, Apache module) loads php.ini + conf.d snippets. Composer manages dependencies; autoload maps classes. Production = FPM behind Nginx/Apache, opcache on, errors to log not browser.",
+    "source": "Back2Basics/php/php.md",
+    "section": "PHP · Understand"
+  },
+  {
+    "id": "041da387c29c",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for PHP?",
+    "back": "sudo apt update → sudo apt install php8.2-fpm php8.2-cli php8.2-mysql php8.2-curl php8.2-xml php8.2-mbstring → php -v → php -m # loaded extensions → curl -sS https://getcomposer.org/installer | php",
+    "source": "Back2Basics/php/php.md",
+    "section": "PHP · Apply"
+  },
+  {
+    "id": "8296fac6ab5a",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken PHP setup, what is your first validation command?",
+    "back": "sudo apt update",
+    "source": "Back2Basics/php/php.md",
+    "section": "PHP · Apply"
+  },
+  {
+    "id": "b84d332e17a1",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Extension missing — what do you check and fix?",
+    "back": "Check: php -m · Fix: apt install php8.2-<ext>; restart FPM",
+    "source": "Back2Basics/php/php.md",
+    "section": "PHP · Analyze"
+  },
+  {
+    "id": "dbad06ea543b",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CLI vs FPM different behavior — what do you check and fix?",
+    "back": "Check: Compare php -i vs FPM · Fix: Align ini files",
+    "source": "Back2Basics/php/php.md",
+    "section": "PHP · Analyze"
+  },
+  {
+    "id": "3ac9e5992b69",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Composer memory exhausted — what do you check and fix?",
+    "back": "Check: memory_limit · Fix: COMPOSER_MEMORY_LIMIT=-1 composer install",
+    "source": "Back2Basics/php/php.md",
+    "section": "PHP · Analyze"
+  },
+  {
+    "id": "431fb10b4ea7",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Version mismatch — what do you check and fix?",
+    "back": "Check: php -v on nginx vs cli · Fix: Point nginx to correct FPM socket version",
+    "source": "Back2Basics/php/php.md",
+    "section": "PHP · Analyze"
+  },
+  {
+    "id": "5f05a24eb728",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with PHP: what silently fails?",
+    "back": "Editing wrong php.ini — cron uses CLI ini; website uses FPM ini. World-writable upload dir — RCE via uploaded .php if webroot includes uploads. Deprecated mysql_* — use PDO/mysqli.",
+    "source": "Back2Basics/php/php.md",
+    "section": "PHP · Evaluate"
+  },
+  {
+    "id": "2664a1b5ac5b",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use PHP?",
+    "back": "Don't use built-in PHP dev server (php -S) in production — no FPM isolation or robustness. Don't install every extension \"just in case\" — attack surface and memory.",
+    "source": "Back2Basics/php/php.md",
+    "section": "PHP · Evaluate"
+  },
+  {
+    "id": "534faba74aa0",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct PHP setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: sudo apt update",
+    "source": "Back2Basics/php/php.md",
+    "section": "PHP · Create"
+  },
+  {
+    "id": "55a9d4547f34",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is PMA token (phpMyAdmin) in one sentence?",
+    "back": "CSRF token in phpMyAdmin sessions — validates that form POSTs came from your logged-in UI, not a malicious site.",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Remember"
+  },
+  {
+    "id": "0dd87af170d5",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of PMA token (phpMyAdmin) (how the system thinks).",
+    "back": "On login, phpMyAdmin stores $_SESSION['PMA_token'] (name may vary by version). Every mutating form includes this token. Server compares submitted token to session; mismatch → rejected. Token rotates on login/session regenerate. It's session CSRF protection, not API auth.",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Understand"
+  },
+  {
+    "id": "c2a4f5e912c1",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for PMA token (phpMyAdmin)?",
+    "back": "Token mismatch",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Apply"
+  },
+  {
+    "id": "42972fd6ebd7",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken PMA token (phpMyAdmin) setup, what is your first validation command?",
+    "back": "Token mismatch",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Apply"
+  },
+  {
+    "id": "d03f568b7a5d",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for PMA token (phpMyAdmin)?",
+    "back": "PHP session file or Redis/memcached session handler Browser cookie: phpMyAdmin session id",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Apply"
+  },
+  {
+    "id": "933707f60ab9",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: \"Token mismatch\" after idle — what do you check and fix?",
+    "back": "Check: Session expired · Fix: Re-login; increase session.gc_maxlifetime",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Analyze"
+  },
+  {
+    "id": "2a7ba4b11e3b",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Works on HTTP, fails on HTTPS — what do you check and fix?",
+    "back": "Check: cookie_secure · Fix: Enable HTTPS end-to-end or fix proxy headers",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Analyze"
+  },
+  {
+    "id": "67c8e6bf4426",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Random logouts — what do you check and fix?",
+    "back": "Check: Multiple FPM nodes, file sessions · Fix: Centralize sessions (Redis)",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Analyze"
+  },
+  {
+    "id": "b39ff0f3e731",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: CSRF after reverse proxy — what do you check and fix?",
+    "back": "Check: PmaAbsoluteUri in config · Fix: Set correct URL in config.inc.php",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Analyze"
+  },
+  {
+    "id": "8bf47ea74419",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: iframe/embed breaks token — what do you check and fix?",
+    "back": "Check: AllowThirdPartyFraming · Fix: Don't embed PMA; open in top window",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Analyze"
+  },
+  {
+    "id": "6738350f9970",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with PMA token (phpMyAdmin): what silently fails?",
+    "back": "Exposing phpMyAdmin to public internet — token doesn't stop brute force; use VPN/IP allowlist + 2FA. Session fixation — ensure PMA regenerates session id on login (default in modern versions).",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Evaluate"
+  },
+  {
+    "id": "2ce232a2dd2f",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use PMA token (phpMyAdmin)?",
+    "back": "Don't disable CSRF checks to \"fix\" integration — fix session/URL config instead. Don't use phpMyAdmin as your app's database API — it's an admin UI only.",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Evaluate"
+  },
+  {
+    "id": "4d0ee9dc2a54",
+    "deck": "b2b-php",
+    "tags": [
+      "back2basics",
+      "php",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct PMA token (phpMyAdmin) setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Token mismatch",
+    "source": "Back2Basics/php/pma token.md",
+    "section": "PMA token (phpMyAdmin) · Create"
+  }
+]

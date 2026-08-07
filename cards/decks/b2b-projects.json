@@ -1,0 +1,478 @@
+[
+  {
+    "id": "e5a9a6429e47",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is BOOKISH BUDDIES?",
+    "back": "BOOKISH BUDDIES — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Projects/Project Assignment.md",
+    "section": "BOOKISH BUDDIES · Remember"
+  },
+  {
+    "id": "f90124889863",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does BOOKISH BUDDIES matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Projects/Project Assignment.md",
+    "section": "BOOKISH BUDDIES · Understand"
+  },
+  {
+    "id": "745768c5a9b8",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe BOOKISH BUDDIES checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Projects/Project Assignment.md",
+    "section": "BOOKISH BUDDIES · Create"
+  },
+  {
+    "id": "a0d4abee32b4",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is ecommerce platform architecture in one sentence?",
+    "back": "Reference microservice architecture for a multi-vendor e-commerce backend (Go/Node, Postgres/Mongo/Redis, Kafka, EKS) — staff design review baseline, not a product backlog.",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Remember"
+  },
+  {
+    "id": "94682dc8c804",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of ecommerce platform architecture (how the system thinks).",
+    "back": "Money and catalog are separate failure domains. Never hold catalog locks while waiting on PSP. Emit facts after local commit (outbox), consume with idempotent handlers.",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Understand"
+  },
+  {
+    "id": "1b9418f77ed7",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for ecommerce platform architecture?",
+    "back": "All topics: commerce.<domain>.<event>.v1 with shared envelope: → Order service or Refund service as saga leader for refund:",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Apply"
+  },
+  {
+    "id": "e0ee7800d71b",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken ecommerce platform architecture setup, what is your first validation command?",
+    "back": "All topics: commerce.<domain>.<event>.v1 with shared envelope:",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Apply"
+  },
+  {
+    "id": "90ce152285db",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Paid in PSP, order pending — what do you check and fix?",
+    "back": "Check: Payment outbox lag; webhook idempotency · Fix: Replay outbox; reconcile job; marketplace app webhook table",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Analyze"
+  },
+  {
+    "id": "1cd6d6fc1dc7",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Double charge — what do you check and fix?",
+    "back": "Check: Idempotency-Key on intent API · Fix: Redis + PG unique on key",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Analyze"
+  },
+  {
+    "id": "ccf97c7706a0",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Refund stuck — what do you check and fix?",
+    "back": "Check: Refund saga step, PSP dashboard · Fix: Retry RefundIssued; DLQ inspection",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Analyze"
+  },
+  {
+    "id": "4e99498592a7",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Flash sale oversell — what do you check and fix?",
+    "back": "Check: Redis promo counter vs PG · Fix: Lower TTL holds; partition Kafka by campaign",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Analyze"
+  },
+  {
+    "id": "28be155aedcf",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Stale prices at checkout — what do you check and fix?",
+    "back": "Check: Pricing cache vs gRPC path · Fix: Short TTL; PriceChanged fan-out",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Analyze"
+  },
+  {
+    "id": "3bc4ed92d19f",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Notification storm — what do you check and fix?",
+    "back": "Check: Consumer lag, provider throttle · Fix: Scale notification workers; per-user rate limit",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Analyze"
+  },
+  {
+    "id": "17523a764ca3",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with ecommerce platform architecture: what silently fails?",
+    "back": "Saga in Kafka consumers without idempotency — every handler keys on event.id or business idempotency key.",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Evaluate"
+  },
+  {
+    "id": "1ce8fe6f12ce",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use ecommerce platform architecture?",
+    "back": "Single-merchant Shopify-scale store — modular monolith + marketplace app subset. &lt; 100 RPS — eight services + Kafka is operability overhead; start monolith with outbox table. Strong cross-entity ACID — use monolith DB or redesign aggregates; not 2PC across services.",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Evaluate"
+  },
+  {
+    "id": "2ec723a28787",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct ecommerce platform architecture setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: All topics: commerce.<domain>.<event>.v1 with shared envelope:",
+    "source": "Back2Basics/Projects/ecommerce-platform-architecture.md",
+    "section": "ecommerce platform architecture · Create"
+  },
+  {
+    "id": "01520239a9e8",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is marketplace app in one sentence?",
+    "back": "Two-sided marketplace architecture: payments, trust, inventory, and dispute boundaries — design checklist for staff reviews, not a build backlog.",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Remember"
+  },
+  {
+    "id": "e0abcabfaf91",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "understand"
+    ],
+    "front": "Explain the mental model of marketplace app (how the system thinks).",
+    "back": "Hard problems are orthogonal to CRUD: Double sale of last unit (inventory concurrency) Payment success, order create fail (distributed transaction) Seller payout vs chargeback window (ledger timing) Search ranking gaming (trust/abuse)",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Understand"
+  },
+  {
+    "id": "ceeede7cff05",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "apply"
+    ],
+    "front": "Which standard commands / workflow do you use for marketplace app?",
+    "back": "Design for eventual consistency with explicit user-visible states — not one giant ACID transaction across Stripe + Postgres + search index. → Persist transitions with actor, reason, idempotency key — support will replay history.",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Apply"
+  },
+  {
+    "id": "c47d7b581577",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "apply"
+    ],
+    "front": "Given a broken marketplace app setup, what is your first validation command?",
+    "back": "Design for eventual consistency with explicit user-visible states — not one giant ACID transaction across Stripe + Postgres + search index.",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Apply"
+  },
+  {
+    "id": "1eab97548478",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "apply"
+    ],
+    "front": "What are the production-safe defaults for marketplace app?",
+    "back": "Persist transitions with actor, reason, idempotency key — support will replay history.",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Apply"
+  },
+  {
+    "id": "ffccf76d5bdc",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Oversold SKU — what do you check and fix?",
+    "back": "Check: Reservation TTL, race logs · Fix: Pessimistic lock hot SKUs; extend hold on payment step",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Analyze"
+  },
+  {
+    "id": "ce3deb98a767",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Paid order missing — what do you check and fix?",
+    "back": "Check: Webhook 5xx / no idempotency · Fix: Replay webhooks; dead-letter queue; reconcile job",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Analyze"
+  },
+  {
+    "id": "337af9fbff86",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Seller not paid — what do you check and fix?",
+    "back": "Check: Payout batch / KYC hold · Fix: Ledger report; manual adjustment with audit",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Analyze"
+  },
+  {
+    "id": "fb3ca7799ee3",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Duplicate charges — what do you check and fix?",
+    "back": "Check: Client double-submit · Fix: Idempotency-Key header on checkout API",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Analyze"
+  },
+  {
+    "id": "2bd1db01b87c",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Review bombing — what do you check and fix?",
+    "back": "Check: Velocity by IP/account age · Fix: Rate limits; verified purchase only",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Analyze"
+  },
+  {
+    "id": "efd5b7d224ed",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Search shows delisted item — what do you check and fix?",
+    "back": "Check: Index lag · Fix: Tombstone events; periodic full reindex",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Analyze"
+  },
+  {
+    "id": "d61bd406b4e6",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "analyze"
+    ],
+    "front": "Symptom: Tax wrong jurisdiction — what do you check and fix?",
+    "back": "Check: Address vs IP vs nexus rules · Fix: Tax engine vendor; don't hand-roll VAT",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Analyze"
+  },
+  {
+    "id": "4e3a97099c07",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "Gotcha with marketplace app: what silently fails?",
+    "back": "Treat PSP balance as source of truth for cash — app ledger reconciles to Stripe daily; drift happens.",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Evaluate"
+  },
+  {
+    "id": "1b8b8d296495",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "evaluate"
+    ],
+    "front": "When should you NOT use marketplace app?",
+    "back": "Single merchant store — Shopify/WooCommerce; skip two-sided payout complexity. Classifieds (no payment on platform) — trust/messaging only; narrower scope. Real-time auction without ops — sniping, shill bidding need dedicated fraud team.",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Evaluate"
+  },
+  {
+    "id": "6a4dc7752933",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "create"
+    ],
+    "front": "Design a minimal correct marketplace app setup for a small production service.",
+    "back": "Checklist: (1) mental-model constraint, (2) required config/commands, (3) health/triage check, (4) one failure mode to avoid. Anchor: Design for eventual consistency with explicit user-visible states — not one giant ACID transaction across Stripe + Postgres + search index.",
+    "source": "Back2Basics/Projects/marketplace app.md",
+    "section": "marketplace app · Create"
+  },
+  {
+    "id": "280263b17721",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "remember"
+    ],
+    "front": "What is Product Requirements Document (PRD)?",
+    "back": "Product Requirements Document (PRD) — staff-engineer field note (expand with mental model + triage).",
+    "source": "Back2Basics/Projects/online business PRD.md",
+    "section": "Product Requirements Document (PRD) · Remember"
+  },
+  {
+    "id": "304788ec3cf6",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "understand"
+    ],
+    "front": "Why does Product Requirements Document (PRD) matter for an on-call / staff engineer?",
+    "back": "Expand this stub: mental model + top failure mode + link siblings in Related.",
+    "source": "Back2Basics/Projects/online business PRD.md",
+    "section": "Product Requirements Document (PRD) · Understand"
+  },
+  {
+    "id": "a545f664a7be",
+    "deck": "b2b-projects",
+    "tags": [
+      "back2basics",
+      "projects",
+      "bloom",
+      "create"
+    ],
+    "front": "What would a minimal production-safe Product Requirements Document (PRD) checklist include?",
+    "back": "(1) definition, (2) one config/command, (3) one triage check, (4) one gotcha.",
+    "source": "Back2Basics/Projects/online business PRD.md",
+    "section": "Product Requirements Document (PRD) · Create"
+  }
+]

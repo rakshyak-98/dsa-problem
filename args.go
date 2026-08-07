@@ -9,6 +9,7 @@ const (
 	trackBackend drillTrack = "backend"
 	trackRead    drillTrack = "read"
 	trackWrite   drillTrack = "write"
+	trackCards   drillTrack = "cards"
 )
 
 type trackInfo struct {
@@ -22,6 +23,7 @@ var availableTracks = []trackInfo{
 	{trackRead, "read", "reading drills only"},
 	{trackWrite, "write", "writing drills only"},
 	{trackBackend, "backend", "interview prep"},
+	{trackCards, "cards", "spaced-repetition flashcards"},
 }
 
 func isKnownTrack(track drillTrack) bool {
@@ -80,21 +82,23 @@ func parseDailyArgs(args []string) dailyOptions {
 	}
 	for i := 0; i < len(args); i++ {
 		a := args[i]
-		switch a {
-		case "--help", "-h":
+		switch {
+		case a == "--help" || a == "-h":
 			opts.help = true
-		case "--list-tracks":
+		case a == "--list-tracks":
 			opts.listTracks = true
-		case "--track", "-t":
+		case a == "--track" || a == "-t":
 			if i+1 >= len(args) {
 				opts.help = true
 				continue
 			}
 			i++
 			opts.track = drillTrack(strings.ToLower(args[i]))
-		case "--core5":
+		case strings.HasPrefix(a, "--track="):
+			opts.track = drillTrack(strings.ToLower(strings.TrimPrefix(a, "--track=")))
+		case a == "--core5":
 			opts.core5 = true
-		case "--drill":
+		case a == "--drill":
 			if i+1 >= len(args) {
 				opts.drillMissing = true
 				continue
@@ -108,7 +112,7 @@ func parseDailyArgs(args []string) dailyOptions {
 			i++
 			opts.drillKind = kind
 			opts.passArgs = append(opts.passArgs, "--drill", kind)
-		case "--solution":
+		case a == "--solution":
 			if i+1 >= len(args) {
 				opts.solutionMissing = true
 				continue
@@ -122,7 +126,7 @@ func parseDailyArgs(args []string) dailyOptions {
 			i++
 			opts.solutionKind = kind
 			opts.passArgs = append(opts.passArgs, "--solution", kind)
-		case "--run":
+		case a == "--run":
 			opts.run = true
 			opts.passArgs = append(opts.passArgs, a)
 			if i+1 < len(args) && isDrillKind(args[i+1]) {
