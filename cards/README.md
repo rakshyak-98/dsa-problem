@@ -2,7 +2,7 @@
 
 Backend interview flashcards for terminal review with a +1 / +3 / +7 / +21 day schedule.
 
-**Sources:** `doc/backend/DRILL_CONCEPTS.md`, `doc/backend/STAR_STORIES.md`, `doc/backend/WEEKLY_REVISION.md`
+**Sources:** `doc/backend/DRILL_CONCEPTS.md`, `doc/backend/STAR_STORIES.md`, `drills/backend/explain/`, `drills/backend/scenario/mock_scenarios/`
 
 ## Quick start
 
@@ -26,7 +26,7 @@ During review: **Enter** shows the answer, then rate **1** again / **2** hard / 
 
 | Deck | Source | Practice |
 |------|--------|----------|
-| `backend` | `doc/backend/DRILL_CONCEPTS.md` + weekly revision | Interview triggers, concept Q&A |
+| `backend` | `DRILL_CONCEPTS.md` + explain drills + mock scenarios | Triggers, concept Q&A, drill prompts, mock interviews |
 | `star` | `doc/backend/STAR_STORIES.md` | STAR story rehearsals |
 
 Cards are **question-style only** — no full-note dumps from vault markdown.

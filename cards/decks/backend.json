@@ -108,13 +108,507 @@
     "section": "Trigger table (if they ask X → you say Y)"
   },
   {
-    "id": "b103d69dd498",
+    "id": "bdd5376101aa",
+    "deck": "backend",
+    "tags": [
+      "aws",
+      "backend"
+    ],
+    "front": "When to use AWS EC2?",
+    "back": "Long-running services, full control",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "DevOps & AWS (iBind Jenkins)"
+  },
+  {
+    "id": "584011d7b255",
+    "deck": "backend",
+    "tags": [
+      "aws",
+      "backend"
+    ],
+    "front": "When to use AWS Lambda?",
+    "back": "Short event-driven handlers",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "DevOps & AWS (iBind Jenkins)"
+  },
+  {
+    "id": "ed0b006a2f63",
+    "deck": "backend",
+    "tags": [
+      "aws",
+      "backend"
+    ],
+    "front": "When to use AWS CDN (CloudFront)?",
+    "back": "Static assets, edge caching",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "DevOps & AWS (iBind Jenkins)"
+  },
+  {
+    "id": "f0f1f01324c6",
+    "deck": "backend",
+    "tags": [
+      "aws",
+      "backend"
+    ],
+    "front": "When to use AWS S3?",
+    "back": "Artifacts, backups",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "DevOps & AWS (iBind Jenkins)"
+  },
+  {
+    "id": "3bb5a9f3b12b",
+    "deck": "backend",
+    "tags": [
+      "api",
+      "backend",
+      "concept"
+    ],
+    "front": "REST API design (MST, iBind): Resources?",
+    "back": "nouns, plural (/pages, /pages/{id}/versions)",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "REST API design (MST, iBind)"
+  },
+  {
+    "id": "fe744c246466",
+    "deck": "backend",
+    "tags": [
+      "api",
+      "backend",
+      "concept"
+    ],
+    "front": "REST API design (MST, iBind): Status codes?",
+    "back": "200 OK, 201 Created, 400 client, 401 unauth, 403 forbidden, 404 not found, 409 conflict, 500 server",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "REST API design (MST, iBind)"
+  },
+  {
+    "id": "2a25324efcad",
+    "deck": "backend",
+    "tags": [
+      "api",
+      "backend",
+      "concept"
+    ],
+    "front": "REST API design (MST, iBind): Errors?",
+    "back": "{ \"code\": \"PAGE_NOT_FOUND\", \"message\": \"...\", \"details\": {} }",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "REST API design (MST, iBind)"
+  },
+  {
+    "id": "387a3e0ee267",
+    "deck": "backend",
+    "tags": [
+      "api",
+      "backend",
+      "concept"
+    ],
+    "front": "REST API design (MST, iBind): Versioning?",
+    "back": "/v1/... or Accept-Version header",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "REST API design (MST, iBind)"
+  },
+  {
+    "id": "9b530e7fca80",
+    "deck": "backend",
+    "tags": [
+      "api",
+      "backend",
+      "concept"
+    ],
+    "front": "REST API design (MST, iBind): Pagination?",
+    "back": "limit + cursor (stable) vs offset (simple)",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "REST API design (MST, iBind)"
+  },
+  {
+    "id": "af28787de31f",
+    "deck": "backend",
+    "tags": [
+      "api",
+      "backend",
+      "concept"
+    ],
+    "front": "REST API design (MST, iBind): Idempotency?",
+    "back": "PUT/DELETE idempotent; POST needs Idempotency-Key for retries",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "REST API design (MST, iBind)"
+  },
+  {
+    "id": "889291056d42",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "jwt"
+    ],
+    "front": "JWT — step 1?",
+    "back": "Client logs in → server issues access (+ optional refresh) token",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "JWT"
+  },
+  {
+    "id": "227553383eae",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "jwt"
+    ],
+    "front": "JWT — step 2?",
+    "back": "Client sends Authorization: Bearer <token>",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "JWT"
+  },
+  {
+    "id": "07bdb0ce274c",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "jwt"
+    ],
+    "front": "JWT — step 3?",
+    "back": "Middleware validates signature, exp, iss, aud; attaches claims to request context",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "JWT"
+  },
+  {
+    "id": "2f3abdcb5ee6",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "query_optimization_workflow"
+    ],
+    "front": "Query optimization workflow — step 1?",
+    "back": "EXPLAIN ANALYZE — find full table scans",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Query optimization workflow"
+  },
+  {
+    "id": "ae62e57a7094",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "query_optimization_workflow"
+    ],
+    "front": "Query optimization workflow — step 2?",
+    "back": "Rewrite query (subquery → join, remove SELECT *)",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Query optimization workflow"
+  },
+  {
+    "id": "657cbb367763",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "query_optimization_workflow"
+    ],
+    "front": "Query optimization workflow — step 3?",
+    "back": "Add/adjust indexes",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Query optimization workflow"
+  },
+  {
+    "id": "71b639841307",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "query_optimization_workflow"
+    ],
+    "front": "Query optimization workflow — step 4?",
+    "back": "Cache hot reads (Redis); tune pool",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Query optimization workflow"
+  },
+  {
+    "id": "3d2cbff041a4",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "nat_debug_checklist"
+    ],
+    "front": "NAT debug checklist — step 1?",
+    "back": "Signaling connected? (WebSocket open)",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "NAT debug checklist"
+  },
+  {
+    "id": "f5e703324604",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "nat_debug_checklist"
+    ],
+    "front": "NAT debug checklist — step 2?",
+    "back": "ICE candidates gathered? (host, srflx, relay)",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "NAT debug checklist"
+  },
+  {
+    "id": "69b7ce3c4a75",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "nat_debug_checklist"
+    ],
+    "front": "NAT debug checklist — step 3?",
+    "back": "Connection state connected vs failed?",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "NAT debug checklist"
+  },
+  {
+    "id": "ed9d791a1b29",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "nat_debug_checklist"
+    ],
+    "front": "NAT debug checklist — step 4?",
+    "back": "Try TURN if only host candidates",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "NAT debug checklist"
+  },
+  {
+    "id": "41ce66b20556",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "nat_debug_checklist"
+    ],
+    "front": "NAT debug checklist — step 5?",
+    "back": "Firewall allows UDP ports / TURN TLS",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "NAT debug checklist"
+  },
+  {
+    "id": "4ff9a430a009",
+    "deck": "backend",
+    "tags": [
+      "airflow",
+      "backend",
+      "concept",
+      "messaging"
+    ],
+    "front": "Apache Airflow: DAG?",
+    "back": "directed acyclic graph of tasks",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Apache Airflow"
+  },
+  {
+    "id": "3b661b54ecd1",
+    "deck": "backend",
+    "tags": [
+      "airflow",
+      "backend",
+      "concept",
+      "messaging"
+    ],
+    "front": "Apache Airflow: Operators?",
+    "back": "Python tasks with dependencies",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Apache Airflow"
+  },
+  {
+    "id": "8908791b1d54",
+    "deck": "backend",
+    "tags": [
+      "airflow",
+      "backend",
+      "concept",
+      "messaging"
+    ],
+    "front": "Apache Airflow: Retries?",
+    "back": "retries, retry_delay; tasks must be idempotent",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Apache Airflow"
+  },
+  {
+    "id": "640854cae656",
+    "deck": "backend",
+    "tags": [
+      "airflow",
+      "backend",
+      "concept",
+      "messaging"
+    ],
+    "front": "Apache Airflow: Sensors?",
+    "back": "wait for external condition",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Apache Airflow"
+  },
+  {
+    "id": "c401ddbcea41",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "messaging"
+    ],
+    "front": "RabbitMQ patterns: Work queue?",
+    "back": "competing consumers, ack after processing",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "RabbitMQ patterns"
+  },
+  {
+    "id": "6dc5172bec66",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "messaging"
+    ],
+    "front": "RabbitMQ patterns: Pub/sub?",
+    "back": "fanout to many subscribers",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "RabbitMQ patterns"
+  },
+  {
+    "id": "6b783c0672fd",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "messaging"
+    ],
+    "front": "RabbitMQ patterns: DLQ?",
+    "back": "poison messages after max retries",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "RabbitMQ patterns"
+  },
+  {
+    "id": "2685ecf8dfb9",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "invoice_submission_flow"
+    ],
+    "front": "Invoice submission flow — step 1?",
+    "back": "Generate invoice XML from business data",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Invoice submission flow"
+  },
+  {
+    "id": "2924f711df44",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "invoice_submission_flow"
+    ],
+    "front": "Invoice submission flow — step 2?",
+    "back": "XSD validation against authority schema",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Invoice submission flow"
+  },
+  {
+    "id": "c9d2d258c0db",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "invoice_submission_flow"
+    ],
+    "front": "Invoice submission flow — step 3?",
+    "back": "Cryptographic signing (hash + private key)",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Invoice submission flow"
+  },
+  {
+    "id": "62513af3f8ef",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "invoice_submission_flow"
+    ],
+    "front": "Invoice submission flow — step 4?",
+    "back": "Submit to ZATCA API over TLS",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Invoice submission flow"
+  },
+  {
+    "id": "49931c49e891",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "invoice_submission_flow"
+    ],
+    "front": "Invoice submission flow — step 5?",
+    "back": "Store response + audit log (who, when, payload hash)",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Invoice submission flow"
+  },
+  {
+    "id": "e4710ca029ac",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "go"
+    ],
+    "front": "BitTorrent client: Tracker (BEP 15)?",
+    "back": "UDP announce → peer list",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "BitTorrent client"
+  },
+  {
+    "id": "cd859e1420fe",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "go"
+    ],
+    "front": "BitTorrent client: bencode?",
+    "back": "binary encoding for torrent metadata",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "BitTorrent client"
+  },
+  {
+    "id": "cc8c73341549",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "go"
+    ],
+    "front": "BitTorrent client: Wire protocol?",
+    "back": "handshake, choke/unchoke, request blocks",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "BitTorrent client"
+  },
+  {
+    "id": "78777feb673c",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "go"
+    ],
+    "front": "BitTorrent client: Concurrency?",
+    "back": "per-peer goroutines, piece bitmap, work scheduling",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "BitTorrent client"
+  },
+  {
+    "id": "9c39e51c5bf4",
     "deck": "backend",
     "tags": [
       "backend",
       "jwt"
     ],
-    "front": "Walk through JWT auth flow.",
+    "front": "Walk through JWT auth flow end-to-end.",
     "back": "Client logs in → server issues access (+ optional refresh). Client sends Authorization: Bearer <token>. Middleware validates signature, exp, iss, aud; attaches claims to context.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "JWT"
@@ -132,13 +626,13 @@
     "section": "Circuit breaker"
   },
   {
-    "id": "faac54bbe260",
+    "id": "bed7a32b7610",
     "deck": "backend",
     "tags": [
       "backend",
       "resilience"
     ],
-    "front": "Exponential backoff formula + rules?",
+    "front": "Exponential backoff formula and retry rules?",
     "back": "delay = min(cap, base * 2^attempt) + jitter. Only retry transient errors. Require idempotent ops or Idempotency-Key.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Retry"
@@ -195,8 +689,8 @@
     "id": "61f13e618ec1",
     "deck": "backend",
     "tags": [
-      "backend",
-      "api"
+      "api",
+      "backend"
     ],
     "front": "Idempotency rules for REST verbs?",
     "back": "PUT/DELETE idempotent; POST needs Idempotency-Key for retries.",
@@ -255,8 +749,8 @@
     "id": "9a632d633d2f",
     "deck": "backend",
     "tags": [
-      "backend",
-      "airflow"
+      "airflow",
+      "backend"
     ],
     "front": "Airflow recovery when a task fails?",
     "back": "Clear failed task, rerun from failed node. Tasks must be idempotent; use retries + retry_delay.",
@@ -315,8 +809,8 @@
     "id": "beb342a41940",
     "deck": "backend",
     "tags": [
-      "backend",
-      "aws"
+      "aws",
+      "backend"
     ],
     "front": "When to use EC2 vs Lambda vs CDN?",
     "back": "EC2: long-running services. Lambda: short event handlers. CDN: static assets at the edge.",
@@ -372,87 +866,1203 @@
     "section": "BitTorrent"
   },
   {
-    "id": "7ae8fce8ca7a",
+    "id": "ac42837cbb1f",
     "deck": "backend",
     "tags": [
       "backend",
-      "revision"
+      "db"
     ],
-    "front": "Revision Mon: API auth recap — idempotent update verb?",
-    "back": "PUT (safe to retry without side effects).",
-    "source": "doc/backend/WEEKLY_REVISION.md",
-    "section": "01_api_auth_recap"
+    "front": "Covering index — when does it help?",
+    "back": "Index includes all columns in SELECT → index-only scan, no table lookup.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Indexing"
   },
   {
-    "id": "6120ed4c7210",
+    "id": "359602460ac9",
     "deck": "backend",
     "tags": [
       "backend",
-      "revision"
+      "db"
     ],
-    "front": "Revision Tue: slow SQL — first diagnostic step?",
-    "back": "EXPLAIN (or EXPLAIN ANALYZE) the query plan.",
-    "source": "doc/backend/WEEKLY_REVISION.md",
-    "section": "02_data_resilience_recap"
+    "front": "Page builder schema pattern for versions?",
+    "back": "Versioned entities: pages, page_versions, audit_log; draft vs published snapshots.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Schema"
   },
   {
-    "id": "7866fce1b10e",
+    "id": "c57df72d114b",
     "deck": "backend",
     "tags": [
-      "backend",
-      "revision"
+      "api",
+      "backend"
     ],
-    "front": "Revision Wed: circuit breaker prevents what?",
-    "back": "Cascading failures across downstream services.",
-    "source": "doc/backend/WEEKLY_REVISION.md",
-    "section": "03_distributed_realtime"
+    "front": "Structured API error response shape?",
+    "back": "code (e.g. PAGE_NOT_FOUND), message, optional details object.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "REST errors"
   },
   {
-    "id": "e5c8350b0a58",
+    "id": "ab9d012be6f5",
     "deck": "backend",
     "tags": [
-      "backend",
-      "revision"
+      "api",
+      "backend"
     ],
-    "front": "Revision Thu: when P2P WebRTC fails, use what?",
-    "back": "TURN relay server.",
-    "source": "doc/backend/WEEKLY_REVISION.md",
-    "section": "04_realtime_messaging"
+    "front": "Cursor vs offset pagination tradeoff?",
+    "back": "Cursor: stable under inserts; offset: simple but slow on large offsets.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Pagination"
   },
   {
-    "id": "cee020f8bffc",
+    "id": "b3d1c13fcc7e",
     "deck": "backend",
     "tags": [
       "backend",
-      "revision"
+      "webrtc"
     ],
-    "front": "Revision Fri: readiness probe gates what?",
-    "back": "Whether the pod receives traffic.",
-    "source": "doc/backend/WEEKLY_REVISION.md",
-    "section": "05_devops_orchestration"
+    "front": "WebSocket use cases in real-time apps?",
+    "back": "Signaling, chat, live notifications; heartbeats/ping detect dead connections.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "WebSocket"
   },
   {
-    "id": "06ade4a29bf0",
+    "id": "a53294bf69a3",
     "deck": "backend",
     "tags": [
-      "backend",
-      "revision"
+      "airflow",
+      "backend"
     ],
-    "front": "Revision Sat: all 9 triggers — invoice rejected?",
-    "back": "XSD validate → sign → submit → correlate audit + payload hash.",
-    "source": "doc/backend/WEEKLY_REVISION.md",
-    "section": "06_full_week_sweep"
+    "front": "What is an Airflow sensor?",
+    "back": "Waits for an external condition before downstream tasks run.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Airflow"
   },
   {
-    "id": "d4584c91af53",
+    "id": "ebbda9ab1fa7",
     "deck": "backend",
     "tags": [
       "backend",
+      "zatca"
+    ],
+    "front": "Replay protection for signed invoices?",
+    "back": "Unique invoice ID, timestamp, nonce in signed payload.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Replay"
+  },
+  {
+    "id": "f6e5c25d0eff",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "go"
+    ],
+    "front": "HTTP server middleware chain order?",
+    "back": "Logging → recovery → auth → handler; context carries request ID + user.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Go HTTP"
+  },
+  {
+    "id": "4747f3267c8b",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "go"
+    ],
+    "front": "BitTorrent wire protocol basics?",
+    "back": "Handshake, choke/unchoke, request blocks; tracker (BEP 15) UDP announce for peers.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "BitTorrent"
+  },
+  {
+    "id": "8b6d24a60fea",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "HTTP status for resource created?",
+    "back": "201 — 201 Created",
+    "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "97d6f316b185",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "safe retry for update without side effects?",
+    "back": "put (idempotent) — put",
+    "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "a3db47595702",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "JWT segments count?",
+    "back": "3 — header.payload.signature",
+    "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "d171d5a2065f",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "validate JWT signature with what key type for RS256?",
+    "back": "public — public",
+    "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "98b3c0cfe35b",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "API versioning strategy you used?",
+    "back": "url or header — url",
+    "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "6aa54fc8df14",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "default MySQL InnoDB index structure?",
+    "back": "b-tree or btree — b",
+    "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "0cdb652714b3",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "composite index column order matters for left-prefix rule?",
+    "back": "yes — leftmost prefix rule",
+    "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "c153a08b2a68",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "N+1 problem fixed by?",
+    "back": "eager or join or batch",
+    "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "a8b150a10157",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "connection pool avoids repeated?",
+    "back": "handshake or tcp — handshake",
+    "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "78df0aa71ca1",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "EXPLAIN shows?",
+    "back": "plan or execution plan",
+    "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "4679af38fb5b",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "exponential backoff multiplier base commonly?",
+    "back": "2 — double each attempt",
+    "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "bfa9e727f75d",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "circuit breaker prevents?",
+    "back": "cascade or cascading",
+    "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "97e8c1ff2eb6",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "idempotency key sent in?",
+    "back": "header (common) — header",
+    "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "5f112318ba7c",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "saga pattern coordinates via?",
+    "back": "events or choreography or orchestration",
+    "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "10f5e75f1e69",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "WebRTC media path is?",
+    "back": "peer or p2p — peer",
+    "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "1eb821fca73f",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "signaling carries?",
+    "back": "sdp or session description",
+    "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "f3c3a966256a",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "ICE gathers?",
+    "back": "candidates — candidate",
+    "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "f1c7145b1686",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "STUN discovers public?",
+    "back": "address or ip — address",
+    "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "014a4b8e6acd",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "TURN used when direct P2P?",
+    "back": "fails or blocked — fail",
+    "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "3ea5fea157c9",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "Airflow unit of work?",
+    "back": "task — task",
+    "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "295edd7721f7",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "DAG means?",
+    "back": "directed acyclic graph",
+    "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "5aef058b1d7e",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "failed task safe rerun needs?",
+    "back": "idempotent — idempotent",
+    "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "da9ad153430d",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "RabbitMQ dead letter queue for?",
+    "back": "poison or failed — poison",
+    "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "ab9a3df5e28f",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "work queue pattern?",
+    "back": "consumers — consumer",
+    "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "35618bdd3d5e",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "Docker image built from?",
+    "back": "layers — layer",
+    "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "7099135a5da4",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "CI stage before deploy?",
+    "back": "test — test",
+    "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "49d5c1abbbe7",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "Lambda best for?",
+    "back": "short or event — short",
+    "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "d9f1a6827095",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "CDN caches?",
+    "back": "static — static",
+    "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "9e2f19fcd4aa",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "container health check probes?",
+    "back": "liveness or readiness",
+    "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "3649bbd4114c",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "XSD validates?",
+    "back": "structure or schema — structure",
+    "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "bbf20269bf3f",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "digital signature proves?",
+    "back": "integrity or authenticity",
+    "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "fb04a4ce9ed1",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "signing hash algorithm example?",
+    "back": "sha256 — sha",
+    "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "be37a5f27a92",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "replay attack prevented by?",
+    "back": "nonce or timestamp or id",
+    "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "78e5fb69c0c7",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "audit trail stores?",
+    "back": "who or when — who",
+    "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "ea5c50c9d9eb",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "goroutine scheduling model?",
+    "back": "m:n or multiplexed — m",
+    "source": "drills/backend/explain/blocks/08_go_systems/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "d3876b2ceab8",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "context.Context used for?",
+    "back": "cancellation or deadline",
+    "source": "drills/backend/explain/blocks/08_go_systems/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "b75befc44a41",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "BitTorrent metadata encoding?",
+    "back": "bencode — bencode",
+    "source": "drills/backend/explain/blocks/08_go_systems/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "3ec275341a17",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "HTTP keep-alive reuses?",
+    "back": "connection or tcp — connection",
+    "source": "drills/backend/explain/blocks/08_go_systems/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "a1783221d2f9",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "graceful shutdown closes?",
+    "back": "listener — listener",
+    "source": "drills/backend/explain/blocks/08_go_systems/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "c3ef5d3c6dad",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "core5",
+      "drill"
+    ],
+    "front": "three parts of a JWT, separated by what character?",
+    "back": "dot — Authorization header",
+    "source": "drills/backend/explain/core5/main.go",
+    "section": "Core 5"
+  },
+  {
+    "id": "dc85f167a85f",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "core5",
+      "drill"
+    ],
+    "front": "where is JWT usually sent? one word?",
+    "back": "header — exp claim",
+    "source": "drills/backend/explain/core5/main.go",
+    "section": "Core 5"
+  },
+  {
+    "id": "def5ecaeac07",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "core5",
+      "drill"
+    ],
+    "front": "claim that enforces expiry?",
+    "back": "exp — where",
+    "source": "drills/backend/explain/core5/main.go",
+    "section": "Core 5"
+  },
+  {
+    "id": "8f535e569397",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "core5",
+      "drill"
+    ],
+    "front": "three states?",
+    "back": "closed,open,half-open",
+    "source": "drills/backend/explain/core5/main.go",
+    "section": "Core 5"
+  },
+  {
+    "id": "9faaf7c884c7",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "core5",
+      "drill"
+    ],
+    "front": "open circuit behavior?",
+    "back": "fail fast — HTTP Upgrade",
+    "source": "drills/backend/explain/core5/main.go",
+    "section": "Core 5"
+  },
+  {
+    "id": "99a86e5792a1",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "core5",
+      "drill"
+    ],
+    "front": "index helps which clause? keyword?",
+    "back": "where — duplex push",
+    "source": "drills/backend/explain/core5/main.go",
+    "section": "Core 5"
+  },
+  {
+    "id": "3b3909bf0a3b",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "core5",
+      "drill"
+    ],
+    "front": "pooling reduces what? keyword?",
+    "back": "connection — idempotent",
+    "source": "drills/backend/explain/core5/main.go",
+    "section": "Core 5"
+  },
+  {
+    "id": "30483cf40ce3",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "core5",
+      "drill"
+    ],
+    "front": "WebSocket starts as HTTP?",
+    "back": "upgrade",
+    "source": "drills/backend/explain/core5/main.go",
+    "section": "Core 5"
+  },
+  {
+    "id": "4846881385f3",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "core5",
+      "drill"
+    ],
+    "front": "server-push chat transport?",
+    "back": "websocket",
+    "source": "drills/backend/explain/core5/main.go",
+    "section": "Core 5"
+  },
+  {
+    "id": "237c6a8d3e55",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "core5",
+      "drill"
+    ],
+    "front": "jitter prevents?",
+    "back": "thundering herd",
+    "source": "drills/backend/explain/core5/main.go",
+    "section": "Core 5"
+  },
+  {
+    "id": "547e746304ed",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "core5",
+      "drill"
+    ],
+    "front": "retries need operations?",
+    "back": "idempotent",
+    "source": "drills/backend/explain/core5/main.go",
+    "section": "Core 5"
+  },
+  {
+    "id": "d424f2fb2dd3",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
       "revision"
     ],
-    "front": "Revision Sun: ZATCA step before API submit?",
-    "back": "Cryptographic signing after XSD validation.",
-    "source": "doc/backend/WEEKLY_REVISION.md",
-    "section": "07_go_compliance_mix"
+    "front": "HTTP status for successful GET?",
+    "back": "200 — 200 OK",
+    "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "1ff562ec811b",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "idempotent update verb?",
+    "back": "put — put",
+    "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "db2288a90817",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "JWT sent in HTTP?",
+    "back": "header — Authorization header",
+    "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "208b28a101b1",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "safe POST retry header?",
+    "back": "idempotency-key — idempotency",
+    "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "da233f274fb3",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "API version in URL prefix?",
+    "back": "v1 or /v1 — v1",
+    "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "dc44947368d7",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "first step for slow SQL?",
+    "back": "explain — explain",
+    "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "2dbaf45bf04c",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "index helps which clause?",
+    "back": "where — where",
+    "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "4093892acb36",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "pool reuses?",
+    "back": "connection or connections",
+    "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "6049a1e0593a",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "circuit breaker open behavior?",
+    "back": "fail fast — fail",
+    "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "af4901bff35d",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "backoff multiplier base?",
+    "back": "2 — double each attempt",
+    "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "0e33c3dd165e",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "during partition sacrifice consistency or availability?",
+    "back": "consistency or availability",
+    "source": "drills/backend/explain/revision/03_distributed_realtime/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "a24e32d49154",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "microservices distributed tx pattern?",
+    "back": "saga — saga",
+    "source": "drills/backend/explain/revision/03_distributed_realtime/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "b05db1bf71b4",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "idempotency key location?",
+    "back": "header — header",
+    "source": "drills/backend/explain/revision/03_distributed_realtime/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "a62219136e83",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "relay when P2P fails?",
+    "back": "turn — turn",
+    "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "5895db1dcff0",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "signaling transport?",
+    "back": "websocket — websocket",
+    "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "44c58c9ca52c",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "Airflow graph type?",
+    "back": "dag — dag",
+    "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "ee45e0e50a0d",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "poison messages go to?",
+    "back": "dlq or dead letter — dlq",
+    "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "a3238885e1b0",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "competing consumers pattern?",
+    "back": "work queue — work",
+    "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "4e7e6f93993c",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "Docker health?",
+    "back": "readiness — readiness",
+    "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "f86c393f727f",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "short event handler on AWS?",
+    "back": "lambda — lambda",
+    "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "9e88f1924dca",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "static asset edge cache?",
+    "back": "cdn or cloudfront — cdn",
+    "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "6a34458dd7ca",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "pipeline runs tests before deploy?",
+    "back": "ci or continuous integration",
+    "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "e630523ab33d",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "ZATCA step before submit?",
+    "back": "sign or signing — sign",
+    "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "dd827da346db",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "schema validation format?",
+    "back": "xsd — xsd",
+    "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "f9087da90a5e",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "Go cancellation primitive?",
+    "back": "context — context",
+    "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "15239de18b59",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "HTTP graceful stop method?",
+    "back": "shutdown — shutdown",
+    "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "de88ada54145",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "mock",
+      "scenario"
+    ],
+    "front": "Mock interview: Design REST endpoints for creating, versioning, and publishing pages with role-based permissions.",
+    "back": "Resources: /pages, /pages/{id}/versions, /pages/{id}/publish; Draft vs published snapshot; audit who published; 403 vs 404 for unauthorized vs missing",
+    "source": "drills/backend/scenario/mock_scenarios/main.go",
+    "section": "MST — Page publish API"
+  },
+  {
+    "id": "8ddb2bf850b7",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "mock",
+      "scenario"
+    ],
+    "front": "Mock interview: Analytics query on 10M rows takes 30s. How did you get 35% improvement?",
+    "back": "EXPLAIN → full scan on filter column; Composite index on (tenant_id, created_at); Rewrite subquery; consider summary table",
+    "source": "drills/backend/scenario/mock_scenarios/main.go",
+    "section": "MST — Slow reporting query"
+  },
+  {
+    "id": "e4cde3800733",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "mock",
+      "scenario"
+    ],
+    "front": "Mock interview: Users on corporate VPN cannot connect video. Debug approach?",
+    "back": "Signaling OK? ICE candidates include relay?; Deploy TURN; test UDP blocked; Connection state timeline in client logs",
+    "source": "drills/backend/scenario/mock_scenarios/main.go",
+    "section": "iBind — NAT video failure"
+  },
+  {
+    "id": "89b5313af600",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "mock",
+      "scenario"
+    ],
+    "front": "Mock interview: Payment service flaky. How do you protect your API?",
+    "back": "Timeout every outbound call; Retry idempotent reads with backoff; Circuit breaker; degrade gracefully",
+    "source": "drills/backend/scenario/mock_scenarios/main.go",
+    "section": "iBind — Downstream outage"
+  },
+  {
+    "id": "6527460a0272",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "mock",
+      "scenario"
+    ],
+    "front": "Mock interview: Airflow task retry created duplicate submissions. Fix?",
+    "back": "Idempotent task keyed by invoice ID; Check submission log before POST; DLQ for permanent failures",
+    "source": "drills/backend/scenario/mock_scenarios/main.go",
+    "section": "Opscale — Duplicate invoices"
+  },
+  {
+    "id": "d9a144d0c1c2",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "mock",
+      "scenario"
+    ],
+    "front": "Mock interview: Authority rejected invoice. Trace root cause.",
+    "back": "XSD validation errors in logs; Signature certificate expiry; Compare payload hash to audit store",
+    "source": "drills/backend/scenario/mock_scenarios/main.go",
+    "section": "Opscale — ZATCA rejection"
+  },
+  {
+    "id": "121e4bd8ed87",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "mock",
+      "scenario"
+    ],
+    "front": "Mock interview: Walk through your HTTP server middleware chain.",
+    "back": "Logging → recovery → auth → handler; Context carries request ID + user; Graceful shutdown on SIGTERM",
+    "source": "drills/backend/scenario/mock_scenarios/main.go",
+    "section": "Go — HTTP server design"
+  },
+  {
+    "id": "92c9d7c1895e",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "mock",
+      "scenario"
+    ],
+    "front": "Mock interview: Design a rate limiter for 10k RPS API.",
+    "back": "Token bucket or sliding window per client; Redis for distributed counters; 429 + Retry-After header; MOCK SCENARIOS — 3 minutes each, out loud; ============================================; \\n%d. %s\\n; Q: %s\\n; (After answering, reveal hints:); • %s\\n; \\nFull STAR scripts: doc/backend/STAR_STORIES.md",
+    "source": "drills/backend/scenario/mock_scenarios/main.go",
+    "section": "System design — Rate limiter"
   }
 ]
