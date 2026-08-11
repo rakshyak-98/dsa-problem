@@ -1,396 +1,396 @@
 [
   {
-    "id": "fd6b4a958e35",
+    "id": "e2d0eebb3e96",
     "deck": "backend",
     "tags": [
       "backend",
       "trigger"
     ],
-    "front": "Interview trigger: Slow SQL query?",
-    "back": "I'd lead with: EXPLAIN plan → missing index / bad join → pool or cache.",
+    "front": "How would you debug a slow SQL query?",
+    "back": "EXPLAIN plan first → check for missing index or bad join → tune pool or add cache.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
   {
-    "id": "8a654054a432",
+    "id": "0d89288c3cc2",
     "deck": "backend",
     "tags": [
       "backend",
       "trigger"
     ],
-    "front": "Interview trigger: API design?",
-    "back": "I'd lead with: Resource URLs, verbs, status codes, error contract, versioning.",
+    "front": "How do you approach REST API design?",
+    "back": "Resource URLs, HTTP verbs, status codes, structured error contract, and versioning.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
   {
-    "id": "a7fb8cff21fd",
+    "id": "2c0184988b8c",
     "deck": "backend",
     "tags": [
       "backend",
       "trigger"
     ],
-    "front": "Interview trigger: Auth?",
-    "back": "I'd lead with: JWT claims (exp, iss, aud); validate signature; refresh flow.",
+    "front": "How do you implement API authentication with JWT?",
+    "back": "Validate signature and claims (exp, iss, aud); support refresh token flow.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
   {
-    "id": "b824837b0e89",
+    "id": "da45faa96213",
     "deck": "backend",
     "tags": [
       "backend",
       "trigger"
     ],
-    "front": "Interview trigger: Outage / flakes?",
-    "back": "I'd lead with: Timeouts → retry w/ backoff → circuit breaker → fail fast.",
+    "front": "How do you handle downstream outages and flaky services?",
+    "back": "Timeouts → retry with exponential backoff → circuit breaker → fail fast.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
   {
-    "id": "3f4f8b134250",
+    "id": "6ca18d935a8a",
     "deck": "backend",
     "tags": [
       "backend",
       "trigger"
     ],
-    "front": "Interview trigger: Real-time chat/video?",
-    "back": "I'd lead with: WebSocket signaling; WebRTC P2P media; STUN/TURN for NAT.",
+    "front": "How would you architect real-time chat or video?",
+    "back": "WebSocket for signaling; WebRTC for P2P media; STUN/TURN for NAT traversal.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
   {
-    "id": "4478095add03",
+    "id": "a6ed245eb036",
     "deck": "backend",
     "tags": [
       "backend",
       "trigger"
     ],
-    "front": "Interview trigger: Batch compliance job?",
-    "back": "I'd lead with: Airflow DAG, idempotent tasks, DLQ, audit trail.",
+    "front": "How do you design a batch compliance pipeline?",
+    "back": "Airflow DAG with idempotent tasks, dead-letter queue, and full audit trail.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
   {
-    "id": "1fe94af469ab",
+    "id": "ebcc16f89d80",
     "deck": "backend",
     "tags": [
       "backend",
       "trigger"
     ],
-    "front": "Interview trigger: Deploy process?",
-    "back": "I'd lead with: Jenkins stages; Docker image; health checks; rollback.",
+    "front": "What does your deploy process look like?",
+    "back": "Jenkins pipeline stages; Docker image; health checks; rollback plan.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
   {
-    "id": "a6cf8d31c82a",
+    "id": "3149640ed718",
     "deck": "backend",
     "tags": [
       "backend",
       "trigger"
     ],
-    "front": "Interview trigger: Go concurrency?",
-    "back": "I'd lead with: Goroutines + channels; context for cancel; worker pools.",
+    "front": "What Go concurrency primitives do you use in servers?",
+    "back": "Goroutines and channels; context for cancellation; worker pools for bounded parallelism.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
   {
-    "id": "b5f324fe08c6",
+    "id": "11be8025932c",
     "deck": "backend",
     "tags": [
       "backend",
       "trigger"
     ],
-    "front": "Interview trigger: Invoice rejected?",
-    "back": "I'd lead with: XSD validate → sign → submit → correlate audit + payload hash.",
+    "front": "An invoice was rejected by the authority — how do you trace it?",
+    "back": "XSD validate → sign → submit → correlate audit log and payload hash.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
   {
-    "id": "bdd5376101aa",
+    "id": "a9476f4af297",
     "deck": "backend",
     "tags": [
       "aws",
       "backend"
     ],
-    "front": "When to use AWS EC2?",
-    "back": "Long-running services, full control",
+    "front": "When would you choose AWS EC2?",
+    "back": "Long-running services, full control.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "DevOps & AWS (iBind Jenkins)"
   },
   {
-    "id": "584011d7b255",
+    "id": "fcc25b593720",
     "deck": "backend",
     "tags": [
       "aws",
       "backend"
     ],
-    "front": "When to use AWS Lambda?",
-    "back": "Short event-driven handlers",
+    "front": "When would you choose AWS Lambda?",
+    "back": "Short event-driven handlers.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "DevOps & AWS (iBind Jenkins)"
   },
   {
-    "id": "ed0b006a2f63",
+    "id": "86137ff8c06b",
     "deck": "backend",
     "tags": [
       "aws",
       "backend"
     ],
-    "front": "When to use AWS CDN (CloudFront)?",
-    "back": "Static assets, edge caching",
+    "front": "When would you choose AWS CDN (CloudFront)?",
+    "back": "Static assets, edge caching.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "DevOps & AWS (iBind Jenkins)"
   },
   {
-    "id": "f0f1f01324c6",
+    "id": "8f5ec228c402",
     "deck": "backend",
     "tags": [
       "aws",
       "backend"
     ],
-    "front": "When to use AWS S3?",
-    "back": "Artifacts, backups",
+    "front": "When would you choose AWS S3?",
+    "back": "Artifacts, backups.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "DevOps & AWS (iBind Jenkins)"
   },
   {
-    "id": "3bb5a9f3b12b",
+    "id": "6c577e1f5df0",
     "deck": "backend",
     "tags": [
       "api",
       "backend",
       "concept"
     ],
-    "front": "REST API design (MST, iBind): Resources?",
-    "back": "Resources — nouns, plural (/pages, /pages/{id}/versions).",
+    "front": "What are REST resource naming conventions?",
+    "back": "Nouns, plural paths — e.g. /pages, /pages/{id}/versions.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "REST API design (MST, iBind)"
   },
   {
-    "id": "fe744c246466",
+    "id": "72e155ab8222",
     "deck": "backend",
     "tags": [
       "api",
       "backend",
       "concept"
     ],
-    "front": "REST API design (MST, iBind): Status codes?",
-    "back": "200 OK, 201 Created, 400 client, 401 unauth, 403 forbidden, 404 not found, 409 conflict, 500 server",
+    "front": "What HTTP status codes should a REST API use?",
+    "back": "200 OK, 201 Created, 400 client error, 401 unauth, 403 forbidden, 404 not found, 409 conflict, 500 server error.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "REST API design (MST, iBind)"
   },
   {
-    "id": "2a25324efcad",
+    "id": "3914fdd8754d",
     "deck": "backend",
     "tags": [
       "api",
       "backend",
       "concept"
     ],
-    "front": "REST API design (MST, iBind): Errors?",
-    "back": "{ \"code\": \"PAGE_NOT_FOUND\", \"message\": \"...\", \"details\": {} }",
+    "front": "What shape should structured API errors take?",
+    "back": "{ \"code\": \"PAGE_NOT_FOUND\", \"message\": \"...\", \"details\": {} } — machine-readable code plus human message.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "REST API design (MST, iBind)"
   },
   {
-    "id": "387a3e0ee267",
+    "id": "d0ae1f0d56c8",
     "deck": "backend",
     "tags": [
       "api",
       "backend",
       "concept"
     ],
-    "front": "REST API design (MST, iBind): Versioning?",
-    "back": "/v1/... or Accept-Version header",
+    "front": "How do you version a REST API?",
+    "back": "/v1/... URL prefix or Accept-Version header.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "REST API design (MST, iBind)"
   },
   {
-    "id": "9b530e7fca80",
+    "id": "7dc322822a14",
     "deck": "backend",
     "tags": [
       "api",
       "backend",
       "concept"
     ],
-    "front": "REST API design (MST, iBind): Pagination?",
-    "back": "Pagination — limit + cursor (stable) vs offset (simple).",
+    "front": "What are cursor vs offset pagination trade-offs?",
+    "back": "Cursor: stable under inserts, better for large datasets. Offset: simpler but slow on large offsets.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "REST API design (MST, iBind)"
   },
   {
-    "id": "af28787de31f",
+    "id": "335bfb38483c",
     "deck": "backend",
     "tags": [
       "api",
       "backend",
       "concept"
     ],
-    "front": "REST API design (MST, iBind): Idempotency?",
-    "back": "Idempotency — PUT/DELETE idempotent; POST needs Idempotency-Key for retries.",
+    "front": "Define idempotency in APIs.",
+    "back": "Operation produces the same result regardless of execution count. PUT/DELETE are idempotent; POST needs Idempotency-Key for retries.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "REST API design (MST, iBind)"
   },
   {
-    "id": "889291056d42",
+    "id": "e6bdfe519414",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "jwt"
     ],
-    "front": "JWT — step 1?",
-    "back": "Client logs in → server issues access (+ optional refresh) token",
+    "front": "What is the first step in JWT authentication?",
+    "back": "Client logs in → server issues access (+ optional refresh) token.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "JWT"
   },
   {
-    "id": "227553383eae",
+    "id": "1a9795d2b5b6",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "jwt"
     ],
-    "front": "JWT — step 2?",
-    "back": "Client sends Authorization: Bearer <token>",
+    "front": "How does the client send a JWT on each request?",
+    "back": "Client sends Authorization: Bearer <token>.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "JWT"
   },
   {
-    "id": "07bdb0ce274c",
+    "id": "d8680b0439e8",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "jwt"
     ],
-    "front": "JWT — step 3?",
-    "back": "Middleware validates signature, exp, iss, aud; attaches claims to request context",
+    "front": "What does JWT middleware validate before handling the request?",
+    "back": "Middleware validates signature, exp, iss, aud; attaches claims to request context.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "JWT"
   },
   {
-    "id": "2f3abdcb5ee6",
+    "id": "7be799c24348",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "query_optimization_workflow"
     ],
-    "front": "Query optimization workflow — step 1?",
-    "back": "EXPLAIN ANALYZE — find full table scans",
+    "front": "Query optimization — what is step 1?",
+    "back": "EXPLAIN ANALYZE — find full table scans.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Query optimization workflow"
   },
   {
-    "id": "ae62e57a7094",
+    "id": "e7c96ae36518",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "query_optimization_workflow"
     ],
-    "front": "Query optimization workflow — step 2?",
-    "back": "Rewrite query (subquery → join, remove SELECT *)",
+    "front": "After EXPLAIN, how do you rewrite a slow query?",
+    "back": "Rewrite query (subquery → join, remove SELECT *).",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Query optimization workflow"
   },
   {
-    "id": "657cbb367763",
+    "id": "8abacb276e8d",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "query_optimization_workflow"
     ],
-    "front": "Query optimization workflow — step 3?",
-    "back": "Add/adjust indexes",
+    "front": "When do you add or adjust indexes?",
+    "back": "Add/adjust indexes.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Query optimization workflow"
   },
   {
-    "id": "71b639841307",
+    "id": "d1dea42171fd",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "query_optimization_workflow"
     ],
-    "front": "Query optimization workflow — step 4?",
-    "back": "Cache hot reads (Redis); tune pool",
+    "front": "What do you do after indexing for still-hot queries?",
+    "back": "Cache hot reads (Redis); tune pool.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Query optimization workflow"
   },
   {
-    "id": "3d2cbff041a4",
+    "id": "1f9fb37d934e",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "nat_debug_checklist"
     ],
-    "front": "NAT debug checklist — step 1?",
-    "back": "Signaling connected? (WebSocket open)",
+    "front": "WebRTC NAT debug — what do you check first?",
+    "back": "Signaling connected? (WebSocket open).",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "NAT debug checklist"
   },
   {
-    "id": "f5e703324604",
+    "id": "ab5bee82006a",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "nat_debug_checklist"
     ],
-    "front": "NAT debug checklist — step 2?",
-    "back": "ICE candidates gathered? (host, srflx, relay)",
+    "front": "What ICE candidate types should be gathered?",
+    "back": "ICE candidates gathered? (host, srflx, relay).",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "NAT debug checklist"
   },
   {
-    "id": "69b7ce3c4a75",
+    "id": "2c6641c124aa",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "nat_debug_checklist"
     ],
-    "front": "NAT debug checklist — step 3?",
+    "front": "What connection state confirms success vs failure?",
     "back": "Connection state connected vs failed?",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "NAT debug checklist"
   },
   {
-    "id": "ed9d791a1b29",
+    "id": "6d48ad45fc99",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "nat_debug_checklist"
     ],
-    "front": "NAT debug checklist — step 4?",
-    "back": "Try TURN if only host candidates",
+    "front": "When should you deploy TURN?",
+    "back": "Try TURN if only host candidates.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "NAT debug checklist"
   },
   {
-    "id": "41ce66b20556",
+    "id": "2bde31cd628d",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "nat_debug_checklist"
     ],
-    "front": "NAT debug checklist — step 5?",
-    "back": "Firewall allows UDP ports / TURN TLS",
+    "front": "What firewall rules matter for WebRTC?",
+    "back": "Firewall allows UDP ports / TURN TLS.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "NAT debug checklist"
   },
   {
-    "id": "4ff9a430a009",
+    "id": "5f8a2e58122b",
     "deck": "backend",
     "tags": [
       "airflow",
@@ -398,13 +398,13 @@
       "concept",
       "messaging"
     ],
-    "front": "Apache Airflow: DAG?",
-    "back": "DAG — directed acyclic graph of tasks.",
+    "front": "What is an Airflow DAG?",
+    "back": "Directed acyclic graph of tasks with dependency edges. Defines workflow execution order.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Apache Airflow"
   },
   {
-    "id": "3b661b54ecd1",
+    "id": "1d4da180f9ec",
     "deck": "backend",
     "tags": [
       "airflow",
@@ -412,13 +412,13 @@
       "concept",
       "messaging"
     ],
-    "front": "Apache Airflow: Operators?",
-    "back": "Operators — Python tasks with dependencies.",
+    "front": "What are Airflow operators?",
+    "back": "Python task definitions with dependencies. Each operator is one unit of work in the DAG.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Apache Airflow"
   },
   {
-    "id": "8908791b1d54",
+    "id": "2f1cb891f635",
     "deck": "backend",
     "tags": [
       "airflow",
@@ -426,13 +426,13 @@
       "concept",
       "messaging"
     ],
-    "front": "Apache Airflow: Retries?",
-    "back": "Retries, retry_delay; tasks must be idempotent.",
+    "front": "How should Airflow tasks handle retries?",
+    "back": "Configure retries and retry_delay; tasks must be idempotent so reruns are safe.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Apache Airflow"
   },
   {
-    "id": "640854cae656",
+    "id": "a53294bf69a3",
     "deck": "backend",
     "tags": [
       "airflow",
@@ -440,166 +440,335 @@
       "concept",
       "messaging"
     ],
-    "front": "Apache Airflow: Sensors?",
-    "back": "Sensors — wait for external condition.",
+    "front": "What is an Airflow sensor?",
+    "back": "Task that waits for an external condition before downstream tasks run.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Apache Airflow"
   },
   {
-    "id": "c401ddbcea41",
+    "id": "de663d152537",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "messaging"
     ],
-    "front": "RabbitMQ patterns: Work queue?",
-    "back": "Work queue — competing consumers, ack after processing.",
+    "front": "What is the RabbitMQ work-queue pattern?",
+    "back": "Competing consumers pull jobs; acknowledge only after successful processing.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "RabbitMQ patterns"
   },
   {
-    "id": "6dc5172bec66",
+    "id": "25bbc1ae089c",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "messaging"
     ],
-    "front": "RabbitMQ patterns: Pub/sub?",
-    "back": "Pub/sub — fanout to many subscribers.",
+    "front": "What is RabbitMQ pub/sub?",
+    "back": "Fanout to many subscribers. One message delivered to all bound queues.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "RabbitMQ patterns"
   },
   {
-    "id": "6b783c0672fd",
+    "id": "2909f58a1bab",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "messaging"
     ],
-    "front": "RabbitMQ patterns: DLQ?",
-    "back": "DLQ — poison messages after max retries.",
+    "front": "What is a dead-letter queue for?",
+    "back": "Poison messages after max retries — isolate without blocking the main queue.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "RabbitMQ patterns"
   },
   {
-    "id": "2685ecf8dfb9",
+    "id": "d3d28db12039",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "invoice_submission_flow"
     ],
-    "front": "Invoice submission flow — step 1?",
-    "back": "Generate invoice XML from business data",
+    "front": "ZATCA invoice flow — what is generated first?",
+    "back": "Generate invoice XML from business data.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Invoice submission flow"
   },
   {
-    "id": "2924f711df44",
+    "id": "4b2612ca71c9",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "invoice_submission_flow"
     ],
-    "front": "Invoice submission flow — step 2?",
-    "back": "XSD validation against authority schema",
+    "front": "What validation runs before signing?",
+    "back": "XSD validation against authority schema.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Invoice submission flow"
   },
   {
-    "id": "c9d2d258c0db",
+    "id": "63a0372ff3e3",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "invoice_submission_flow"
     ],
-    "front": "Invoice submission flow — step 3?",
-    "back": "Cryptographic signing (hash + private key)",
+    "front": "How is the invoice signed?",
+    "back": "Cryptographic signing (hash + private key).",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Invoice submission flow"
   },
   {
-    "id": "62513af3f8ef",
+    "id": "d852f1a88154",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "invoice_submission_flow"
     ],
-    "front": "Invoice submission flow — step 4?",
-    "back": "Submit to ZATCA API over TLS",
+    "front": "How is the invoice submitted to the authority?",
+    "back": "Submit to ZATCA API over TLS.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Invoice submission flow"
   },
   {
-    "id": "49931c49e891",
+    "id": "9ec9f3bcc837",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "invoice_submission_flow"
     ],
-    "front": "Invoice submission flow — step 5?",
-    "back": "Store response + audit log (who, when, payload hash)",
+    "front": "What do you store after submission?",
+    "back": "Store response + audit log (who, when, payload hash).",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Invoice submission flow"
   },
   {
-    "id": "e4710ca029ac",
+    "id": "3e80829982d9",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "go"
     ],
-    "front": "BitTorrent client: Tracker (BEP 15)?",
-    "back": "Tracker (BEP 15) — UDP announce → peer list.",
+    "front": "What does a BitTorrent tracker do (BEP 15)?",
+    "back": "UDP announce protocol — clients exchange peer lists to discover download sources.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "BitTorrent client"
   },
   {
-    "id": "cd859e1420fe",
+    "id": "7a79cc9c9cb8",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "go"
     ],
-    "front": "BitTorrent client: bencode?",
-    "back": "Bencode — binary encoding for torrent metadata.",
+    "front": "What is bencode?",
+    "back": "Binary encoding for torrent metadata.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "BitTorrent client"
   },
   {
-    "id": "cc8c73341549",
+    "id": "d9e67c57b2b8",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "go"
     ],
-    "front": "BitTorrent client: Wire protocol?",
-    "back": "Wire protocol — handshake, choke/unchoke, request blocks.",
+    "front": "What does the BitTorrent wire protocol handle?",
+    "back": "Peer handshake, choke/unchoke, and block requests between clients.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "BitTorrent client"
   },
   {
-    "id": "78777feb673c",
+    "id": "3e3d74b103c5",
     "deck": "backend",
     "tags": [
       "backend",
       "concept",
       "go"
     ],
-    "front": "BitTorrent client: Concurrency?",
-    "back": "Concurrency — per-peer goroutines, piece bitmap, work scheduling.",
+    "front": "What is Concurrency?",
+    "back": "Per-peer goroutines, piece bitmap, work scheduling.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "BitTorrent client"
+  },
+  {
+    "id": "5c6ebb739ea0",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "go"
+    ],
+    "front": "What is a mutex? When would you use it over a channel in Go?",
+    "back": "Mutual exclusion lock preventing concurrent access to shared resource. Mutex for protecting state; channels for goroutine communication.",
+    "source": "cards/generate_cards.py",
+    "section": "Concurrency"
+  },
+  {
+    "id": "23be706e2236",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "go"
+    ],
+    "front": "Define deadlock. How do you prevent it?",
+    "back": "Circular wait where goroutines block indefinitely. Prevent via lock ordering, timeouts, and avoiding nested locks.",
+    "source": "cards/generate_cards.py",
+    "section": "Concurrency"
+  },
+  {
+    "id": "a0d951e618b8",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "go"
+    ],
+    "front": "What is a race condition?",
+    "back": "Multiple goroutines access shared data without synchronization, causing unpredictable results. Fix with mutex, channels, or atomic ops.",
+    "source": "cards/generate_cards.py",
+    "section": "Concurrency"
+  },
+  {
+    "id": "5b11d95dc739",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "db"
+    ],
+    "front": "What is a database index? What are the trade-offs?",
+    "back": "Data structure (B-tree, hash) enabling faster query lookups. Trade-off: faster reads, slower writes, increased storage.",
+    "source": "cards/generate_cards.py",
+    "section": "Databases"
+  },
+  {
+    "id": "e90c1546cc63",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "db"
+    ],
+    "front": "Define normalization vs. denormalization.",
+    "back": "Normalization reduces redundancy via separate tables; denormalization duplicates data for faster reads at the cost of consistency complexity.",
+    "source": "cards/generate_cards.py",
+    "section": "Databases"
+  },
+  {
+    "id": "252e6a8d7f35",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "db"
+    ],
+    "front": "What is the N+1 query problem?",
+    "back": "One query fetches parent records, then N additional queries per child. Fix: JOIN or batch loading.",
+    "source": "cards/generate_cards.py",
+    "section": "Databases"
+  },
+  {
+    "id": "f934444eceb0",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "resilience"
+    ],
+    "front": "What is cache invalidation?",
+    "back": "Removing or updating stale cache entries when source data changes. Strategies: TTL, event-based, LRU.",
+    "source": "cards/generate_cards.py",
+    "section": "Caching"
+  },
+  {
+    "id": "202b0c888770",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "resilience"
+    ],
+    "front": "Define cache stampede.",
+    "back": "Multiple requests hit expired cache simultaneously, all query the database. Fix: lock-based refresh or probabilistic early expiration.",
+    "source": "cards/generate_cards.py",
+    "section": "Caching"
+  },
+  {
+    "id": "1f9f52098d06",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "resilience"
+    ],
+    "front": "What is eventual consistency?",
+    "back": "Distributed replicas converge to the same state eventually, not immediately. Trade-off that favors availability over strong consistency.",
+    "source": "cards/generate_cards.py",
+    "section": "Architecture"
+  },
+  {
+    "id": "878ea7e05d08",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "resilience"
+    ],
+    "front": "What is a circuit breaker?",
+    "back": "Pattern halting requests to a failing service after a threshold. States: closed (normal) → open (failing) → half-open (testing).",
+    "source": "cards/generate_cards.py",
+    "section": "Architecture"
+  },
+  {
+    "id": "eee2e1d11668",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "db"
+    ],
+    "front": "Define sharding.",
+    "back": "Horizontal partitioning splitting data across multiple database instances by shard key (user ID, region).",
+    "source": "cards/generate_cards.py",
+    "section": "Architecture"
+  },
+  {
+    "id": "4a5847a96313",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "go"
+    ],
+    "front": "What is a goroutine?",
+    "back": "Lightweight thread managed by the Go runtime. Thousands run concurrently on few OS threads (M:N scheduling).",
+    "source": "cards/generate_cards.py",
+    "section": "Go"
+  },
+  {
+    "id": "733233663324",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "concept",
+      "go"
+    ],
+    "front": "What is an empty interface (any) in Go?",
+    "back": "Type that accepts any value. Used for dynamic typing; requires type assertion or switch to use the concrete value.",
+    "source": "cards/generate_cards.py",
+    "section": "Go"
   },
   {
     "id": "9c39e51c5bf4",
@@ -609,151 +778,151 @@
       "jwt"
     ],
     "front": "Walk through JWT auth flow end-to-end.",
-    "back": "Client logs in → server issues access (+ optional refresh). Client sends Authorization: Bearer <token>. Middleware validates signature, exp, iss, aud; attaches claims to context.",
+    "back": "Client logs in → server issues access (+ optional refresh) token. Client sends Authorization: Bearer <token>. Middleware validates signature, exp, iss, aud; attaches claims to context.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "JWT"
   },
   {
-    "id": "309715d090d9",
+    "id": "078653c9c157",
     "deck": "backend",
     "tags": [
       "backend",
       "resilience"
     ],
-    "front": "Circuit breaker state machine?",
-    "back": "CLOSED → failures ≥ threshold → OPEN (fail fast) → after timeout → HALF-OPEN (probe) → success → CLOSED; failure → OPEN",
+    "front": "What are the circuit breaker states?",
+    "back": "Closed (normal) → failures ≥ threshold → open (fail fast) → after timeout → half-open (probe) → success closes; failure reopens.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Circuit breaker"
   },
   {
-    "id": "bed7a32b7610",
+    "id": "a5e7d5130c96",
     "deck": "backend",
     "tags": [
       "backend",
       "resilience"
     ],
-    "front": "Exponential backoff formula and retry rules?",
-    "back": "delay = min(cap, base * 2^attempt) + jitter. Only retry transient errors. Require idempotent ops or Idempotency-Key.",
+    "front": "What is the exponential backoff formula? When should you retry?",
+    "back": "delay = min(cap, base × 2^attempt) + jitter. Only retry transient errors (timeouts, 503). Require idempotent ops or Idempotency-Key.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Retry"
   },
   {
-    "id": "cd2c3e4d3a44",
+    "id": "0952b6ceafb3",
     "deck": "backend",
     "tags": [
       "backend",
       "cap"
     ],
-    "front": "CAP during partition — what do most web APIs favor?",
-    "back": "Choose CP or AP. Most web APIs favor availability + eventual consistency for reads.",
+    "front": "During a network partition, what do most web APIs favor?",
+    "back": "Availability over strong consistency — eventual consistency for reads is the common trade-off.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "CAP"
   },
   {
-    "id": "968f83df7958",
+    "id": "10129384da0e",
     "deck": "backend",
     "tags": [
       "backend",
       "saga"
     ],
-    "front": "Saga vs 2PC?",
-    "back": "2PC: strong consistency, fragile under partitions. Saga: local txs + compensating actions; common in microservices.",
+    "front": "Saga vs two-phase commit (2PC)?",
+    "back": "2PC: strong consistency, fragile under partitions. Saga: local transactions + compensating actions; common in microservices.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Saga"
   },
   {
-    "id": "178b2fbb92b1",
+    "id": "5ea15a6e720d",
     "deck": "backend",
     "tags": [
       "backend",
       "webrtc"
     ],
-    "front": "WebRTC: signaling vs media paths?",
-    "back": "Signaling (WebSocket): SDP offer/answer, ICE. Media (UDP): encrypted RTP peer-to-peer, not through your server.",
+    "front": "WebRTC: what travels over signaling vs media?",
+    "back": "Signaling (WebSocket): SDP offer/answer, ICE candidates. Media (UDP): encrypted RTP peer-to-peer, not through your server.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "WebRTC"
   },
   {
-    "id": "1d19db4164be",
+    "id": "8b035f6cfdff",
     "deck": "backend",
     "tags": [
       "backend",
       "webrtc"
     ],
-    "front": "STUN vs TURN?",
-    "back": "STUN discovers public IP/port (cheap). TURN relays when P2P fails (costly; symmetric NAT / strict firewalls).",
+    "front": "STUN vs TURN — when do you use each?",
+    "back": "STUN discovers public IP/port (low cost). TURN relays when P2P fails (higher cost; symmetric NAT, strict firewalls).",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "STUN/TURN"
   },
   {
-    "id": "61f13e618ec1",
+    "id": "a5bb0ab6cb75",
     "deck": "backend",
     "tags": [
       "api",
       "backend"
     ],
-    "front": "Idempotency rules for REST verbs?",
-    "back": "PUT/DELETE idempotent; POST needs Idempotency-Key for retries.",
+    "front": "Which REST verbs are idempotent?",
+    "back": "PUT and DELETE are idempotent. POST needs Idempotency-Key header for safe retries.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "REST"
   },
   {
-    "id": "24fb7089dab8",
+    "id": "0884d9886f5d",
     "deck": "backend",
     "tags": [
       "backend",
       "db"
     ],
-    "front": "Composite index column order rule?",
-    "back": "Equality filters first, then range.",
+    "front": "What is the composite index column order rule?",
+    "back": "Equality filter columns first, then range columns. Follows the left-prefix rule.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Indexing"
   },
   {
-    "id": "f85a5ab8e4e6",
+    "id": "e0baac438d6c",
     "deck": "backend",
     "tags": [
       "backend",
       "db"
     ],
-    "front": "Query optimization workflow (4 steps)?",
-    "back": "EXPLAIN ANALYZE → rewrite query → add/adjust indexes → cache hot reads / tune pool.",
+    "front": "What is the query optimization workflow?",
+    "back": "EXPLAIN ANALYZE → rewrite query → add/adjust indexes → cache hot reads and tune connection pool.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Query opt"
   },
   {
-    "id": "7da76086d989",
+    "id": "223c3d7d5bd8",
     "deck": "backend",
     "tags": [
       "backend",
       "db"
     ],
-    "front": "Connection pool sizing rule of thumb?",
-    "back": "≈ (cores × 2) + spindle; measure under load; watch pool exhaustion.",
+    "front": "How do you size a database connection pool?",
+    "back": "Rule of thumb: ≈ (cores × 2) + spindle. Measure under load; watch for pool exhaustion causing latency spikes.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Pooling"
   },
   {
-    "id": "7029b6a83c47",
+    "id": "1b04242d363e",
     "deck": "backend",
     "tags": [
       "backend",
       "nat"
     ],
-    "front": "NAT debug checklist for WebRTC (5 steps)?",
-    "back": "1) Signaling open? 2) ICE candidates gathered? 3) Connection connected vs failed? 4) Try TURN if only host. 5) Firewall UDP/TURN TLS.",
+    "front": "NAT debug checklist for WebRTC?",
+    "back": "1) Signaling connected? 2) ICE candidates gathered (host, srflx, relay)? 3) Connection state connected vs failed? 4) Try TURN if only host candidates. 5) Firewall allows UDP/TURN TLS.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "NAT"
   },
   {
-    "id": "9a632d633d2f",
+    "id": "13f226a743ac",
     "deck": "backend",
     "tags": [
       "airflow",
       "backend"
     ],
-    "front": "Airflow recovery when a task fails?",
-    "back": "Clear failed task, rerun from failed node. Tasks must be idempotent; use retries + retry_delay.",
+    "front": "How do you recover when an Airflow task fails?",
+    "back": "Clear the failed task and rerun from that node. Tasks must be idempotent; configure retries and retry_delay.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Airflow"
   },
@@ -770,25 +939,13 @@
     "section": "RabbitMQ"
   },
   {
-    "id": "525ff94f2b80",
-    "deck": "backend",
-    "tags": [
-      "backend",
-      "messaging"
-    ],
-    "front": "What is a dead letter queue for?",
-    "back": "Poison messages after max retries — isolate without blocking the main queue.",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "DLQ"
-  },
-  {
-    "id": "020edabeca84",
+    "id": "a72872892ebb",
     "deck": "backend",
     "tags": [
       "backend",
       "jenkins"
     ],
-    "front": "Typical Jenkins pipeline stages?",
+    "front": "What are typical Jenkins pipeline stages?",
     "back": "checkout → install → lint → unit test → build → integration → security scan → deploy staging → smoke → deploy prod",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Jenkins"
@@ -818,1250 +975,1239 @@
     "section": "AWS"
   },
   {
-    "id": "b7da3e79c9e9",
+    "id": "341811e84854",
     "deck": "backend",
     "tags": [
       "backend",
       "zatca"
     ],
-    "front": "ZATCA invoice submission flow?",
+    "front": "What is the ZATCA invoice submission flow?",
     "back": "Generate XML → XSD validate → cryptographic sign → submit over TLS → store response + audit (who/when/payload hash).",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "ZATCA"
   },
   {
-    "id": "9e6163a9d66e",
+    "id": "9bac0a1216df",
     "deck": "backend",
     "tags": [
       "backend",
       "go"
     ],
-    "front": "Go concurrency primitives for servers?",
-    "back": "goroutine + channel for worker pools; context.Context for cancel/deadlines; sync.Mutex for shared state (prefer channels for ownership).",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "Go"
-  },
-  {
-    "id": "4b63ac72864b",
-    "deck": "backend",
-    "tags": [
-      "backend",
-      "go"
-    ],
-    "front": "HTTP graceful shutdown in Go?",
-    "back": "Stop accepting new connections (Shutdown(ctx)), drain in-flight requests, then exit.",
+    "front": "How do you implement HTTP graceful shutdown in Go?",
+    "back": "Call Shutdown(ctx) to stop accepting new connections, drain in-flight requests, then exit.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Go HTTP"
   },
   {
-    "id": "37994396013c",
+    "id": "caef9fbbbb2d",
     "deck": "backend",
     "tags": [
       "backend",
       "go"
     ],
-    "front": "BitTorrent piece scheduling at a high level?",
+    "front": "How does BitTorrent piece scheduling work?",
     "back": "Per-peer goroutines, piece bitmap, request rarest pieces first to improve swarm health.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "BitTorrent"
   },
   {
-    "id": "ac42837cbb1f",
+    "id": "4edf9c6edad4",
     "deck": "backend",
     "tags": [
       "backend",
       "db"
     ],
-    "front": "Covering index — when does it help?",
-    "back": "Index includes all columns in SELECT → index-only scan, no table lookup.",
+    "front": "What is a covering index? When does it help?",
+    "back": "Index includes all columns in SELECT → index-only scan with no table lookup.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Indexing"
   },
   {
-    "id": "359602460ac9",
+    "id": "19c3f7f7feb7",
     "deck": "backend",
     "tags": [
       "backend",
       "db"
     ],
-    "front": "Page builder schema pattern for versions?",
-    "back": "Versioned entities: pages, page_versions, audit_log; draft vs published snapshots.",
+    "front": "What is the page-builder schema pattern for versions?",
+    "back": "Versioned entities: pages, page_versions, audit_log; separate draft vs published snapshots.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Schema"
   },
   {
-    "id": "c57df72d114b",
+    "id": "167323661075",
     "deck": "backend",
     "tags": [
       "api",
       "backend"
     ],
-    "front": "Structured API error response shape?",
+    "front": "What shape should a structured API error take?",
     "back": "code (e.g. PAGE_NOT_FOUND), message, optional details object.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "REST errors"
   },
   {
-    "id": "ab9d012be6f5",
+    "id": "cfdf4923392d",
     "deck": "backend",
     "tags": [
       "api",
       "backend"
     ],
-    "front": "Cursor vs offset pagination tradeoff?",
-    "back": "Cursor: stable under inserts; offset: simple but slow on large offsets.",
+    "front": "Cursor vs offset pagination — trade-offs?",
+    "back": "Cursor: stable under inserts. Offset: simple but degrades on large offsets.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Pagination"
   },
   {
-    "id": "b3d1c13fcc7e",
+    "id": "501e8f9673e8",
     "deck": "backend",
     "tags": [
       "backend",
       "webrtc"
     ],
-    "front": "WebSocket use cases in real-time apps?",
-    "back": "Signaling, chat, live notifications; heartbeats/ping detect dead connections.",
+    "front": "What are WebSocket use cases in real-time apps?",
+    "back": "Signaling, chat, live notifications. Use heartbeats/ping to detect dead connections.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "WebSocket"
   },
   {
-    "id": "a53294bf69a3",
-    "deck": "backend",
-    "tags": [
-      "airflow",
-      "backend"
-    ],
-    "front": "What is an Airflow sensor?",
-    "back": "Waits for an external condition before downstream tasks run.",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "Airflow"
-  },
-  {
-    "id": "ebbda9ab1fa7",
+    "id": "ef1f13062ecf",
     "deck": "backend",
     "tags": [
       "backend",
       "zatca"
     ],
-    "front": "Replay protection for signed invoices?",
-    "back": "Unique invoice ID, timestamp, nonce in signed payload.",
+    "front": "How do you protect signed invoices from replay attacks?",
+    "back": "Unique invoice ID, timestamp, and nonce in the signed payload.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Replay"
   },
   {
-    "id": "f6e5c25d0eff",
+    "id": "b20297b12dc4",
     "deck": "backend",
     "tags": [
       "backend",
       "go"
     ],
-    "front": "HTTP server middleware chain order?",
-    "back": "Logging → recovery → auth → handler; context carries request ID + user.",
+    "front": "What order should HTTP middleware run in?",
+    "back": "Logging → recovery → auth → handler. Context carries request ID and user.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Go HTTP"
   },
   {
-    "id": "4747f3267c8b",
+    "id": "d1e1a52619a4",
     "deck": "backend",
     "tags": [
       "backend",
       "go"
     ],
-    "front": "BitTorrent wire protocol basics?",
-    "back": "Handshake, choke/unchoke, request blocks; tracker (BEP 15) UDP announce for peers.",
+    "front": "What are BitTorrent wire protocol basics?",
+    "back": "Handshake, choke/unchoke, request blocks. Tracker (BEP 15) UDP announce for peer discovery.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "BitTorrent"
   },
   {
-    "id": "8b6d24a60fea",
+    "id": "3da12433bab1",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "HTTP status for resource created?",
-    "back": "When a resource is created successfully, return 201 Created.",
+    "front": "What HTTP status code indicates successful resource creation?",
+    "back": "HTTP 201 Created. Returned when a new resource is successfully created on the server.",
     "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
     "section": "blocks"
   },
   {
-    "id": "97d6f316b185",
+    "id": "106bd6ff4713",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "safe retry for update without side effects?",
-    "back": "PUT is idempotent — safe to retry the same update without duplicate side effects.",
+    "front": "Which REST verb is safe to retry for updates without side effects?",
+    "back": "PUT is idempotent; the same request can be retried without duplicate side effects.",
     "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
     "section": "blocks"
   },
   {
-    "id": "a3db47595702",
+    "id": "2daa58535dc6",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "JWT segments count?",
-    "back": "A JWT has three dot-separated parts: header, payload, and signature.",
+    "front": "How many segments does a JWT contain?",
+    "back": "Three segments — header, payload, and signature — separated by dots.",
     "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
     "section": "blocks"
   },
   {
-    "id": "d171d5a2065f",
+    "id": "9df8ef829a04",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "validate JWT signature with what key type for RS256?",
-    "back": "For RS256, verify the JWT signature with the issuer's public key.",
+    "front": "What is validate JWT signature with what key type for RS256? \"public\"?",
+    "back": "RS256 uses public key.",
     "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
     "section": "blocks"
   },
   {
-    "id": "98b3c0cfe35b",
+    "id": "844ff86e5e7d",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "API versioning strategy you used?",
-    "back": "Either URL path versioning (/v1/...) or an Accept-Version header works.",
-    "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
-    "section": "blocks"
-  },
-  {
-    "id": "6aa54fc8df14",
-    "deck": "backend",
-    "tags": [
-      "backend",
-      "block",
-      "drill"
-    ],
-    "front": "default MySQL InnoDB index structure?",
-    "back": "InnoDB uses B-tree indexes by default — good for equality and range scans.",
+    "front": "What is the default index structure in MySQL InnoDB?",
+    "back": "B-tree. Supports equality and range scans on WHERE, JOIN, and ORDER BY columns.",
     "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
     "section": "blocks"
   },
   {
-    "id": "0cdb652714b3",
+    "id": "642be53366bc",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "composite index column order matters for left-prefix rule?",
-    "back": "Yes — composite indexes follow the leftmost-prefix rule, so column order matters.",
+    "front": "Does column order matter in a composite index?",
+    "back": "Yes — composite indexes follow the left-prefix rule; leading columns must match the query filter order.",
     "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
     "section": "blocks"
   },
   {
-    "id": "c153a08b2a68",
+    "id": "0d070a044ae0",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "N+1 problem fixed by?",
-    "back": "Fix N+1 queries with JOINs, eager loading, or batched fetches instead of per-row lookups.",
+    "front": "What is the N+1 query problem? How do you fix it?",
+    "back": "One query fetches parents, then N queries fetch each child. Fix with JOINs, eager loading, or batch fetching.",
     "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
     "section": "blocks"
   },
   {
-    "id": "a8b150a10157",
+    "id": "e4e391907ff5",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "connection pool avoids repeated?",
-    "back": "Pooling avoids repeating the TCP and database authentication handshake on every query.",
+    "front": "What does a database connection pool avoid?",
+    "back": "Repeated TCP and authentication handshakes. Reuses open connections across requests.",
     "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
     "section": "blocks"
   },
   {
-    "id": "78df0aa71ca1",
+    "id": "1357b726fc5b",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "EXPLAIN shows?",
-    "back": "EXPLAIN shows the query execution plan — which indexes are used and estimated row counts.",
+    "front": "What does EXPLAIN show?",
+    "back": "The query execution plan — which indexes are used, join order, and estimated row counts.",
     "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
     "section": "blocks"
   },
   {
-    "id": "4679af38fb5b",
+    "id": "5749efee8a69",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "exponential backoff multiplier base commonly?",
-    "back": "Exponential backoff doubles the delay each attempt (base 2) and adds jitter.",
+    "front": "What is the common base multiplier for exponential backoff?",
+    "back": "2 — double the delay each retry attempt. Add jitter to prevent synchronized retries.",
     "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
     "section": "blocks"
   },
   {
-    "id": "bfa9e727f75d",
+    "id": "176da93c4e67",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "circuit breaker prevents?",
-    "back": "Circuit breakers stop cascading failures by failing fast when a dependency is unhealthy.",
+    "front": "What does a circuit breaker prevent?",
+    "back": "Cascading failures. Halts requests to an unhealthy downstream after a failure threshold.",
     "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
     "section": "blocks"
   },
   {
-    "id": "97e8c1ff2eb6",
+    "id": "e9192d6cbd30",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "idempotency key sent in?",
-    "back": "Put the idempotency key in a request header — typically Idempotency-Key.",
+    "front": "Where is an idempotency key sent?",
+    "back": "Request header (Idempotency-Key). Ensures duplicate POST retries produce the same result.",
     "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
     "section": "blocks"
   },
   {
-    "id": "5f112318ba7c",
+    "id": "aaeaa1d08443",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "saga pattern coordinates via?",
-    "back": "For distributed transactions in microservices, I'd use a saga instead of 2PC.",
+    "front": "What is CAP?",
+    "back": "Pick CP or AP.",
     "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
     "section": "blocks"
   },
   {
-    "id": "10f5e75f1e69",
+    "id": "fa942ee7c65a",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "WebRTC media path is?",
-    "back": "WebRTC media travels peer-to-peer over encrypted UDP — not through your API server.",
+    "front": "How does the saga pattern coordinate distributed transactions?",
+    "back": "Local transactions plus compensating actions, coordinated via events — choreography or orchestration.",
+    "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
+    "section": "blocks"
+  },
+  {
+    "id": "10626aee903a",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "block",
+      "drill"
+    ],
+    "front": "What path does WebRTC media take?",
+    "back": "Peer-to-peer over encrypted UDP. Media does not flow through your signaling server.",
     "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
     "section": "blocks"
   },
   {
-    "id": "1eb821fca73f",
+    "id": "64a0814f9a79",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "signaling carries?",
-    "back": "Signaling exchanges SDP offer/answer to negotiate codecs and media parameters.",
+    "front": "What does WebRTC signaling carry?",
+    "back": "SDP offer/answer and ICE candidates, typically over WebSocket.",
     "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
     "section": "blocks"
   },
   {
-    "id": "f3c3a966256a",
+    "id": "189d4158d202",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "ICE gathers?",
-    "back": "ICE gathers host, server-reflexive (STUN), and relay (TURN) candidates.",
+    "front": "What does ICE gather?",
+    "back": "Connection candidates — host, server-reflexive (STUN), and relay (TURN) — for NAT traversal.",
     "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
     "section": "blocks"
   },
   {
-    "id": "f1c7145b1686",
+    "id": "3a163f2f4d98",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "STUN discovers public?",
-    "back": "STUN discovers the client's public IP and port for NAT hole punching.",
+    "front": "What does STUN discover?",
+    "back": "The client's public IP and port for NAT hole punching.",
     "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
     "section": "blocks"
   },
   {
-    "id": "014a4b8e6acd",
+    "id": "ee8cc859fbdb",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "TURN used when direct P2P?",
-    "back": "NAT often blocks direct peer paths — that's when you need STUN/TURN.",
+    "front": "When is TURN used in WebRTC?",
+    "back": "When direct peer-to-peer fails — symmetric NAT, corporate VPNs, or strict firewalls.",
     "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
     "section": "blocks"
   },
   {
-    "id": "3ea5fea157c9",
+    "id": "7666ee934a95",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "Airflow unit of work?",
-    "back": "In Airflow, operators define tasks — Python units of work wired together in a DAG.",
+    "front": "What is the unit of work in Apache Airflow?",
+    "back": "A task (operator). Tasks are wired together as nodes in a DAG.",
     "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
     "section": "blocks"
   },
   {
-    "id": "295edd7721f7",
+    "id": "1c207634c4b6",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "DAG means?",
-    "back": "A DAG is a directed acyclic graph of tasks with explicit dependencies.",
+    "front": "What does DAG mean in Airflow?",
+    "back": "Directed acyclic graph — tasks with dependency edges and no cycles.",
     "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
     "section": "blocks"
   },
   {
-    "id": "5aef058b1d7e",
+    "id": "48cbeb987395",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "failed task safe rerun needs?",
-    "back": "Tasks need to be idempotent so retries and reruns from a failed node are safe.",
+    "front": "What must Airflow tasks be for safe reruns after failure?",
+    "back": "Idempotent. Clearing and rerunning a failed node must not duplicate side effects.",
     "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
     "section": "blocks"
   },
   {
-    "id": "da9ad153430d",
+    "id": "68bb52c29fc1",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "RabbitMQ dead letter queue for?",
-    "back": "Poison messages go to a dead-letter queue after repeated failures.",
+    "front": "What is a RabbitMQ dead-letter queue for?",
+    "back": "Poison messages that fail after max retries. Isolates them without blocking the main queue.",
     "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
     "section": "blocks"
   },
   {
-    "id": "ab9a3df5e28f",
+    "id": "e39d37c0be37",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "work queue pattern?",
-    "back": "Work-queue pattern — multiple competing consumers, ack after successful processing.",
+    "front": "What is work queue pattern?",
+    "back": "Competing consumers.",
     "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
     "section": "blocks"
   },
   {
-    "id": "35618bdd3d5e",
+    "id": "da5e178cb324",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "Docker image built from?",
-    "back": "Docker images are stacked layers — multi-stage builds keep production images small.",
+    "front": "What is a Docker image built from?",
+    "back": "Stacked filesystem layers. Multi-stage builds keep production images small.",
     "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
     "section": "blocks"
   },
   {
-    "id": "7099135a5da4",
+    "id": "cd360465ce4c",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "CI stage before deploy?",
-    "back": "The CI pipeline runs tests (and lint/security scans) before any deploy artifact ships.",
+    "front": "What runs in CI before deploy?",
+    "back": "Tests, lint, and security scans. Artifact only ships after the pipeline passes.",
     "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
     "section": "blocks"
   },
   {
-    "id": "49d5c1abbbe7",
+    "id": "8e6d11fb2f1f",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "Lambda best for?",
-    "back": "Lambda suits short-lived, event-driven workloads — not always-on services.",
+    "front": "When is AWS Lambda the best fit?",
+    "back": "Short, event-driven handlers. Not suited for long-running or always-on services.",
     "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
     "section": "blocks"
   },
   {
-    "id": "d9f1a6827095",
+    "id": "98cceaceb1b1",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "CDN caches?",
-    "back": "CDN caches static content at the edge to cut latency and origin load.",
+    "front": "What does a CDN cache?",
+    "back": "Static assets at the edge. Cuts latency and reduces load on the origin server.",
     "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
     "section": "blocks"
   },
   {
-    "id": "9e2f19fcd4aa",
+    "id": "8bb4e010ce68",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "container health check probes?",
-    "back": "Use liveness (restart if dead) and readiness (gate traffic) probes in Kubernetes or Docker.",
+    "front": "What are liveness vs readiness health probes?",
+    "back": "Liveness restarts a dead container; readiness gates traffic until the instance can serve requests.",
     "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
     "section": "blocks"
   },
   {
-    "id": "3649bbd4114c",
+    "id": "38063827c83e",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "XSD validates?",
-    "back": "Validate invoice XML against the authority XSD schema before signing.",
+    "front": "What does XSD validation check?",
+    "back": "XML structure against the authority schema. Required before signing and submission.",
     "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
     "section": "blocks"
   },
   {
-    "id": "bbf20269bf3f",
+    "id": "9e5c02331017",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "digital signature proves?",
-    "back": "A digital signature proves integrity (unchanged payload) and authenticity (trusted signer).",
+    "front": "What does a digital signature prove?",
+    "back": "Integrity (payload unchanged) and authenticity (trusted signer).",
     "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
     "section": "blocks"
   },
   {
-    "id": "fb04a4ce9ed1",
+    "id": "5704ac5e7f76",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "signing hash algorithm example?",
-    "back": "Sign with a strong hash like SHA-256 before applying the private key.",
+    "front": "What hash algorithm is commonly used for digital signing?",
+    "back": "SHA-256. Hash the payload, then sign the digest with the private key.",
     "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
     "section": "blocks"
   },
   {
-    "id": "be37a5f27a92",
+    "id": "bb898976cb49",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "replay attack prevented by?",
-    "back": "Prevent replays with a unique invoice ID, timestamp, and nonce in the signed payload.",
+    "front": "How do you prevent replay attacks on signed payloads?",
+    "back": "Unique ID, timestamp, and nonce in the signed payload.",
     "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
     "section": "blocks"
   },
   {
-    "id": "78e5fb69c0c7",
+    "id": "09ec4d9dd14a",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "audit trail stores?",
-    "back": "Audit trails record who changed what and when — actor, timestamp, and payload hash.",
+    "front": "What does an audit trail store?",
+    "back": "Who changed what and when — actor, timestamp, and payload hash.",
     "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
     "section": "blocks"
   },
   {
-    "id": "ea5c50c9d9eb",
+    "id": "1466d111bbf7",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "goroutine scheduling model?",
-    "back": "Go multiplexes many goroutines onto fewer OS threads (M:N scheduling).",
+    "front": "What is Go's goroutine scheduling model?",
+    "back": "M:N multiplexing — many goroutines scheduled onto fewer OS threads by the runtime.",
     "source": "drills/backend/explain/blocks/08_go_systems/main.go",
     "section": "blocks"
   },
   {
-    "id": "d3876b2ceab8",
+    "id": "7859fb9dc649",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "context.Context used for?",
-    "back": "Use context.Context to propagate cancellation and deadlines across goroutines.",
+    "front": "What is context.Context used for in Go?",
+    "back": "Cancellation, deadlines, and request-scoped values propagated across goroutines.",
     "source": "drills/backend/explain/blocks/08_go_systems/main.go",
     "section": "blocks"
   },
   {
-    "id": "b75befc44a41",
+    "id": "a15998627df9",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "BitTorrent metadata encoding?",
-    "back": "BitTorrent metadata uses bencode — a compact binary encoding for .torrent structures.",
+    "front": "How is BitTorrent metadata encoded?",
+    "back": "Bencode — a compact binary format for .torrent file structures.",
     "source": "drills/backend/explain/blocks/08_go_systems/main.go",
     "section": "blocks"
   },
   {
-    "id": "3ec275341a17",
+    "id": "bd37b0bcb659",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "HTTP keep-alive reuses?",
-    "back": "HTTP keep-alive reuses the same TCP connection for multiple requests on one socket.",
+    "front": "What does HTTP keep-alive reuse?",
+    "back": "The same TCP connection for multiple HTTP requests on one socket.",
     "source": "drills/backend/explain/blocks/08_go_systems/main.go",
     "section": "blocks"
   },
   {
-    "id": "a1783221d2f9",
+    "id": "b8fb1690a5a1",
     "deck": "backend",
     "tags": [
       "backend",
       "block",
       "drill"
     ],
-    "front": "graceful shutdown closes?",
-    "back": "Graceful shutdown stops accepting new connections and drains in-flight requests before exit.",
+    "front": "What does graceful HTTP shutdown do?",
+    "back": "Stops accepting new connections, drains in-flight requests, then exits.",
     "source": "drills/backend/explain/blocks/08_go_systems/main.go",
     "section": "blocks"
   },
   {
-    "id": "c3ef5d3c6dad",
+    "id": "e9708cfb6eb3",
     "deck": "backend",
     "tags": [
       "backend",
       "core5",
       "drill"
     ],
-    "front": "three parts of a JWT, separated by what character?",
-    "back": "JWT has three Base64URL parts separated by dots: header, payload, signature.",
+    "front": "What separates the three parts of a JWT?",
+    "back": "Dots. Format: header.payload.signature (Base64URL-encoded).",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
   {
-    "id": "dc85f167a85f",
+    "id": "bfc06184fe33",
     "deck": "backend",
     "tags": [
       "backend",
       "core5",
       "drill"
     ],
-    "front": "where is JWT usually sent? one word?",
-    "back": "Send the JWT in the Authorization header as Bearer <token>.",
+    "front": "What is where is JWT usually sent? one word?",
+    "back": "Authorization header.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
   {
-    "id": "def5ecaeac07",
+    "id": "319517c9eac8",
     "deck": "backend",
     "tags": [
       "backend",
       "core5",
       "drill"
     ],
-    "front": "claim that enforces expiry?",
-    "back": "The exp claim enforces token expiry — reject any JWT past that timestamp.",
+    "front": "What is claim that enforces expiry? \"exp\"?",
+    "back": "Exp claim.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
   {
-    "id": "8f535e569397",
+    "id": "844b7b5b0473",
     "deck": "backend",
     "tags": [
       "backend",
       "core5",
       "drill"
     ],
-    "front": "three states?",
-    "back": "Circuit breaker states: CLOSED (normal), OPEN (fail fast), HALF-OPEN (probing).",
+    "front": "What is three states?",
+    "back": "Closed, open, half-open.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
   {
-    "id": "9faaf7c884c7",
+    "id": "aff919258b7e",
     "deck": "backend",
     "tags": [
       "backend",
       "core5",
       "drill"
     ],
-    "front": "open circuit behavior?",
-    "back": "When the circuit is open, fail fast — return an error immediately without calling the sick service.",
+    "front": "What is open-circuit behavior?",
+    "back": "Fail fast — return an error immediately without calling the unhealthy downstream.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
   {
-    "id": "99a86e5792a1",
+    "id": "c596ca1c62a1",
     "deck": "backend",
     "tags": [
       "backend",
       "core5",
       "drill"
     ],
-    "front": "index helps which clause? keyword?",
-    "back": "Indexes accelerate WHERE filters and JOIN keys — mind the left-prefix rule on composites.",
+    "front": "Which SQL clause does an index primarily accelerate?",
+    "back": "WHERE (and JOIN keys). Composite indexes follow the left-prefix rule.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
   {
-    "id": "3b3909bf0a3b",
+    "id": "74bb649ed3fa",
     "deck": "backend",
     "tags": [
       "backend",
       "core5",
       "drill"
     ],
-    "front": "pooling reduces what? keyword?",
-    "back": "Connection pooling reuses open DB connections instead of opening one per request.",
+    "front": "What does connection pooling reduce?",
+    "back": "Per-request connection overhead. Reuses open DB connections across requests.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
   {
-    "id": "30483cf40ce3",
+    "id": "d1b1ec2edfdc",
     "deck": "backend",
     "tags": [
       "backend",
       "core5",
       "drill"
     ],
-    "front": "WebSocket starts as HTTP?",
-    "back": "WebSocket begins as an HTTP Upgrade request, then switches to full-duplex TCP.",
+    "front": "What is WebSocket starts as HTTP \"upgrade\"?",
+    "back": "HTTP Upgrade.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
   {
-    "id": "4846881385f3",
+    "id": "914991888ba6",
     "deck": "backend",
     "tags": [
       "backend",
       "core5",
       "drill"
     ],
-    "front": "server-push chat transport?",
-    "back": "WebSocket enables server-push — full-duplex, unlike plain HTTP request/response.",
+    "front": "What transport enables server-push for real-time chat?",
+    "back": "WebSocket — full-duplex TCP for signaling, chat, and live notifications.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
   {
-    "id": "237c6a8d3e55",
+    "id": "2851aa2e9468",
     "deck": "backend",
     "tags": [
       "backend",
       "core5",
       "drill"
     ],
-    "front": "jitter prevents?",
-    "back": "Jitter randomizes retry timing so clients don't all retry at once — avoiding a thundering herd.",
+    "front": "What is jitter prevents \"thundering herd\"?",
+    "back": "Thundering herd.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
   {
-    "id": "547e746304ed",
+    "id": "1857d7535734",
     "deck": "backend",
     "tags": [
       "backend",
       "core5",
       "drill"
     ],
-    "front": "retries need operations?",
-    "back": "Only retry idempotent operations, or attach an Idempotency-Key for write retries.",
+    "front": "What kind of operations are safe to retry?",
+    "back": "Idempotent operations. For writes, use an Idempotency-Key header.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
   {
-    "id": "d424f2fb2dd3",
+    "id": "e629f8730c17",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "HTTP status for successful GET?",
-    "back": "For a successful GET, I'd return 200 OK.",
+    "front": "What HTTP status code indicates a successful GET?",
+    "back": "200 OK. Standard response for a successful read with a response body.",
     "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
     "section": "revision"
   },
   {
-    "id": "1ff562ec811b",
+    "id": "0915f314eb36",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "idempotent update verb?",
-    "back": "PUT is idempotent — safe to retry the same update without duplicate side effects.",
+    "front": "Which HTTP verb is idempotent for updates?",
+    "back": "PUT. Safe to retry without creating duplicate side effects.",
     "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
     "section": "revision"
   },
   {
-    "id": "db2288a90817",
+    "id": "cc048827f8f2",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "JWT sent in HTTP?",
-    "back": "Send the JWT in the Authorization header as Bearer <token>.",
+    "front": "Where is a JWT sent in an HTTP request?",
+    "back": "Authorization header as Bearer <token>.",
     "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
     "section": "revision"
   },
   {
-    "id": "208b28a101b1",
+    "id": "f3a3a0914247",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "safe POST retry header?",
-    "back": "Send an Idempotency-Key header so duplicate POST retries are safe.",
+    "front": "Which header makes POST retries safe?",
+    "back": "Idempotency-Key. Duplicate requests with the same key produce the same result.",
     "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
     "section": "revision"
   },
   {
-    "id": "da233f274fb3",
+    "id": "eeb16faa07c4",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "API version in URL prefix?",
-    "back": "Version the API in the URL path — e.g. /v1/pages — or via an Accept-Version header.",
+    "front": "How is API versioning commonly done in the URL?",
+    "back": "Path prefix — e.g. /v1/pages. Keeps version visible and easy to route.",
     "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
     "section": "revision"
   },
   {
-    "id": "dc44947368d7",
+    "id": "966d2ebd9dc1",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "first step for slow SQL?",
-    "back": "I'd start with EXPLAIN ANALYZE to see the execution plan and where time is spent.",
+    "front": "What is the first step when debugging a slow SQL query?",
+    "back": "EXPLAIN ANALYZE. Inspect the execution plan before changing schema or queries.",
     "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
     "section": "revision"
   },
   {
-    "id": "2dbaf45bf04c",
+    "id": "47b9a9259f58",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "index helps which clause?",
-    "back": "Indexes accelerate WHERE filters and JOIN keys — mind the left-prefix rule on composites.",
+    "front": "What does a connection pool reuse?",
+    "back": "Open database connections. Avoids TCP and auth handshake on every query.",
     "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
     "section": "revision"
   },
   {
-    "id": "4093892acb36",
+    "id": "47bc97f320cb",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "pool reuses?",
-    "back": "Connection pooling reuses open DB connections instead of opening one per request.",
+    "front": "What happens when a circuit breaker is open?",
+    "back": "Fail fast — reject calls immediately without hitting the failing dependency.",
     "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
     "section": "revision"
   },
   {
-    "id": "6049a1e0593a",
+    "id": "d3e32d19fc57",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "circuit breaker open behavior?",
-    "back": "An open circuit fails fast — callers get an immediate error without hitting the dependency.",
+    "front": "What is the typical exponential backoff multiplier?",
+    "back": "Base 2 — double the delay each attempt. Add jitter to spread retry timing.",
     "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
     "section": "revision"
   },
   {
-    "id": "af4901bff35d",
+    "id": "9d6360a13f2b",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "backoff multiplier base?",
-    "back": "Exponential backoff doubles the delay each attempt (base 2) and adds jitter.",
-    "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
-    "section": "revision"
-  },
-  {
-    "id": "0e33c3dd165e",
-    "deck": "backend",
-    "tags": [
-      "backend",
-      "drill",
-      "revision"
-    ],
-    "front": "during partition sacrifice consistency or availability?",
-    "back": "During a partition you choose CP or AP — consistency or availability.",
+    "front": "What is during partition sacrifice consistency or availability?",
+    "back": "CP or AP.",
     "source": "drills/backend/explain/revision/03_distributed_realtime/main.go",
     "section": "revision"
   },
   {
-    "id": "a24e32d49154",
+    "id": "5d2ffd35f675",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "microservices distributed tx pattern?",
-    "back": "I'd choose a saga over 2PC — local transactions plus compensating actions, more resilient to partitions.",
+    "front": "What pattern handles distributed transactions in microservices?",
+    "back": "Saga — local transactions plus compensating actions. Prefer over 2PC under partitions.",
     "source": "drills/backend/explain/revision/03_distributed_realtime/main.go",
     "section": "revision"
   },
   {
-    "id": "b05db1bf71b4",
+    "id": "ddbb6c0ba59c",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "idempotency key location?",
-    "back": "Put the idempotency key in a request header — typically Idempotency-Key.",
+    "front": "What does jitter prevent in retry logic?",
+    "back": "Thundering herd — randomized delays stop synchronized retries across clients.",
     "source": "drills/backend/explain/revision/03_distributed_realtime/main.go",
     "section": "revision"
   },
   {
-    "id": "a62219136e83",
+    "id": "e2859ea8bf3c",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "relay when P2P fails?",
-    "back": "TURN relays media when direct peer-to-peer fails — common behind VPNs or strict firewalls.",
+    "front": "How does a WebSocket connection begin?",
+    "back": "HTTP Upgrade request, then full-duplex TCP for bidirectional messaging.",
+    "source": "drills/backend/explain/revision/03_distributed_realtime/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "6c04b3877a7c",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "What relays WebRTC media when P2P fails?",
+    "back": "TURN server. Required when NAT or firewall blocks direct peer paths.",
     "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
     "section": "revision"
   },
   {
-    "id": "5895db1dcff0",
+    "id": "1700d90a7bce",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "signaling transport?",
-    "back": "Use WebSocket for signaling — SDP exchange and ICE trickling.",
+    "front": "What transport carries WebRTC signaling?",
+    "back": "WebSocket — exchanges SDP offer/answer and ICE candidates.",
     "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
     "section": "revision"
   },
   {
-    "id": "44c58c9ca52c",
+    "id": "9bce3942f071",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "Airflow graph type?",
-    "back": "Airflow models workflows as a DAG — directed acyclic graph of dependent tasks.",
+    "front": "What graph type does Airflow use?",
+    "back": "DAG — directed acyclic graph of dependent tasks.",
     "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
     "section": "revision"
   },
   {
-    "id": "ee45e0e50a0d",
+    "id": "97b9f9ce5263",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "poison messages go to?",
-    "back": "Route poison messages to a dead-letter queue after max retries so the main queue isn't blocked.",
+    "front": "Where do poison messages go after max retries?",
+    "back": "Dead-letter queue (DLQ). Isolates failures without blocking the main queue.",
     "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
     "section": "revision"
   },
   {
-    "id": "a3238885e1b0",
+    "id": "826b8c67e8a7",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "competing consumers pattern?",
-    "back": "Work-queue pattern — competing consumers pull jobs and ack only after processing.",
+    "front": "What is the competing consumers pattern?",
+    "back": "Multiple workers pull from one queue; each message processed by exactly one consumer.",
     "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
     "section": "revision"
   },
   {
-    "id": "4e7e6f93993c",
+    "id": "1b10cddc654e",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "Docker health?",
-    "back": "Readiness probe gates traffic — the load balancer skips instances that aren't ready.",
+    "front": "Which Docker/K8s probe gates traffic to a container?",
+    "back": "Readiness probe. Endpoint removed from load balancing until ready.",
     "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
     "section": "revision"
   },
   {
-    "id": "f86c393f727f",
+    "id": "4a4732a041fd",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "short event handler on AWS?",
-    "back": "AWS Lambda fits short, event-driven handlers — not long-running services.",
+    "front": "Which Docker/K8s probe restarts a container?",
+    "back": "Liveness probe. Restarts the container if the process is hung or dead.",
     "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
     "section": "revision"
   },
   {
-    "id": "9e88f1924dca",
+    "id": "b0f183afd64a",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "static asset edge cache?",
-    "back": "Use a CDN like CloudFront to cache static assets at the edge, close to users.",
+    "front": "What AWS service fits short event-driven handlers?",
+    "back": "Lambda. Billed per invocation; not for long-running workloads.",
     "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
     "section": "revision"
   },
   {
-    "id": "6a34458dd7ca",
+    "id": "a92bffe38647",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "pipeline runs tests before deploy?",
-    "back": "Run CI — tests, lint, and security scans — before any deploy to production.",
+    "front": "What caches static assets at the edge?",
+    "back": "CDN (e.g. CloudFront). Serves files close to users, reducing origin load.",
     "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
     "section": "revision"
   },
   {
-    "id": "e630523ab33d",
+    "id": "23902b410ecf",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "ZATCA step before submit?",
-    "back": "Cryptographically sign the payload — hash with SHA-256, then sign with the private key.",
-    "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
+    "front": "What runs before deploy in a typical pipeline?",
+    "back": "CI — tests, lint, security scan. Deploy only after the pipeline passes.",
+    "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
     "section": "revision"
   },
   {
-    "id": "dd827da346db",
+    "id": "e3a82c50eaf7",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "schema validation format?",
-    "back": "Run XSD validation against the authority schema before signing and submission.",
+    "front": "What ZATCA step happens before API submission?",
+    "back": "Cryptographic signing — hash payload with SHA-256, sign with private key.",
     "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
     "section": "revision"
   },
   {
-    "id": "f9087da90a5e",
+    "id": "b289a1dc71e3",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "Go cancellation primitive?",
-    "back": "Context.Context carries cancellation, deadlines, and request-scoped values.",
+    "front": "What format validates invoice XML schema?",
+    "back": "XSD. Validate structure against the authority schema before signing.",
     "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
     "section": "revision"
   },
   {
-    "id": "15239de18b59",
+    "id": "b4d4d3939d03",
     "deck": "backend",
     "tags": [
       "backend",
       "drill",
       "revision"
     ],
-    "front": "HTTP graceful stop method?",
-    "back": "Call http.Server.Shutdown(ctx) — stop accepting new connections and drain in-flight requests.",
+    "front": "What is Go's cancellation primitive?",
+    "back": "context.Context — propagates cancel signals and deadlines across goroutines.",
     "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
     "section": "revision"
   },
   {
-    "id": "de88ada54145",
+    "id": "40562b986ebc",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "drill",
+      "revision"
+    ],
+    "front": "How do you gracefully stop an HTTP server in Go?",
+    "back": "http.Server.Shutdown(ctx) — stop accepting, drain in-flight, then exit.",
+    "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
+    "section": "revision"
+  },
+  {
+    "id": "fc8b3d0479c6",
     "deck": "backend",
     "tags": [
       "backend",
       "mock",
       "scenario"
     ],
-    "front": "Mock interview: Design REST endpoints for creating, versioning, and publishing pages with role-based permissions.",
-    "back": "I'd structure my answer: 1) Resources: /pages, /pages/{id}/versions, /pages/{id}/publish; 2) Draft vs published snapshot; audit who published; 3) 403 vs 404 for unauthorized vs missing.",
+    "front": "Design REST endpoints for creating, versioning, and publishing pages with role-based permissions.",
+    "back": "1) Resources: /pages, /pages/{id}/versions, /pages/{id}/publish. 2) Draft vs published snapshot; audit who published. 3) 403 vs 404 for unauthorized vs missing.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "MST — Page publish API"
   },
   {
-    "id": "8ddb2bf850b7",
+    "id": "894fd63f1b44",
     "deck": "backend",
     "tags": [
       "backend",
       "mock",
       "scenario"
     ],
-    "front": "Mock interview: Analytics query on 10M rows takes 30s. How did you get 35% improvement?",
-    "back": "I'd structure my answer: 1) EXPLAIN → full scan on filter column; 2) Composite index on (tenant_id, created_at); 3) Rewrite subquery; consider summary table.",
+    "front": "Analytics query on 10M rows takes 30s. How did you get 35% improvement?",
+    "back": "1) EXPLAIN → full scan on filter column. 2) Composite index on (tenant_id, created_at). 3) Rewrite subquery; consider summary table.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "MST — Slow reporting query"
   },
   {
-    "id": "e4cde3800733",
+    "id": "e36e7eaa237a",
     "deck": "backend",
     "tags": [
       "backend",
       "mock",
       "scenario"
     ],
-    "front": "Mock interview: Users on corporate VPN cannot connect video. Debug approach?",
-    "back": "I'd structure my answer: 1) Signaling OK? ICE candidates include relay?; 2) Deploy TURN; test UDP blocked; 3) Connection state timeline in client logs.",
+    "front": "Users on corporate VPN cannot connect video. Debug approach?",
+    "back": "1) Signaling OK? ICE candidates include relay?. 2) Deploy TURN; test UDP blocked. 3) Connection state timeline in client logs.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "iBind — NAT video failure"
   },
   {
-    "id": "89b5313af600",
+    "id": "3affbc00c133",
     "deck": "backend",
     "tags": [
       "backend",
       "mock",
       "scenario"
     ],
-    "front": "Mock interview: Payment service flaky. How do you protect your API?",
-    "back": "I'd structure my answer: 1) Timeout every outbound call; 2) Retry idempotent reads with backoff; 3) Circuit breaker; degrade gracefully.",
+    "front": "Payment service flaky. How do you protect your API?",
+    "back": "1) Timeout every outbound call. 2) Retry idempotent reads with backoff. 3) Circuit breaker; degrade gracefully.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "iBind — Downstream outage"
   },
   {
-    "id": "6527460a0272",
+    "id": "4479125597e4",
     "deck": "backend",
     "tags": [
       "backend",
       "mock",
       "scenario"
     ],
-    "front": "Mock interview: Airflow task retry created duplicate submissions. Fix?",
-    "back": "I'd structure my answer: 1) Idempotent task keyed by invoice ID; 2) Check submission log before POST; 3) DLQ for permanent failures.",
+    "front": "Airflow task retry created duplicate submissions. Fix?",
+    "back": "1) Idempotent task keyed by invoice ID. 2) Check submission log before POST. 3) DLQ for permanent failures.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "Opscale — Duplicate invoices"
   },
   {
-    "id": "d9a144d0c1c2",
+    "id": "e664902df3b4",
     "deck": "backend",
     "tags": [
       "backend",
       "mock",
       "scenario"
     ],
-    "front": "Mock interview: Authority rejected invoice. Trace root cause.",
-    "back": "I'd structure my answer: 1) XSD validation errors in logs; 2) Signature certificate expiry; 3) Compare payload hash to audit store.",
+    "front": "Authority rejected invoice. Trace root cause.",
+    "back": "1) XSD validation errors in logs. 2) Signature certificate expiry. 3) Compare payload hash to audit store.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "Opscale — ZATCA rejection"
   },
   {
-    "id": "121e4bd8ed87",
+    "id": "6dd509e3f0d3",
     "deck": "backend",
     "tags": [
       "backend",
       "mock",
       "scenario"
     ],
-    "front": "Mock interview: Walk through your HTTP server middleware chain.",
-    "back": "I'd structure my answer: 1) Logging → recovery → auth → handler; 2) Context carries request ID + user; 3) Graceful shutdown on SIGTERM.",
+    "front": "Walk through your HTTP server middleware chain.",
+    "back": "1) Logging → recovery → auth → handler. 2) Context carries request ID + user. 3) Graceful shutdown on SIGTERM.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "Go — HTTP server design"
   },
   {
-    "id": "92c9d7c1895e",
+    "id": "8869371c7c4e",
     "deck": "backend",
     "tags": [
       "backend",
       "mock",
       "scenario"
     ],
-    "front": "Mock interview: Design a rate limiter for 10k RPS API.",
-    "back": "I'd structure my answer: 1) Token bucket or sliding window per client; 2) Redis for distributed counters; 3) 429 + Retry-After header.",
+    "front": "Design a rate limiter for 10k RPS API.",
+    "back": "1) Token bucket or sliding window per client. 2) Redis for distributed counters. 3) 429 + Retry-After header.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "System design — Rate limiter"
   }

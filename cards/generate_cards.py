@@ -116,6 +116,19 @@ def parse_assert_hints(text: str) -> list[str]:
     return hints
 
 
+def prompt_key(body: str) -> str:
+    m = re.match(r'^(.+?):\s*"', body)
+    if m:
+        key = clean(m.group(1))
+    else:
+        key = re.sub(r'"([^"]*)"', r"\1", body)
+        key = re.sub(r"\([^)]*\)", "", key)
+        key = clean(key)
+    key = re.sub(r"\bkeyword\b", "", key, flags=re.I)
+    key = re.sub(r"\bone word:?\b", "", key, flags=re.I)
+    return re.sub(r"\s+", " ", key).lower().rstrip("?:").strip()
+
+
 def cap_sentence(s: str) -> str:
     s = clean(s)
     if not s:
@@ -127,310 +140,599 @@ def cap_sentence(s: str) -> str:
     return s
 
 
-def either_phrase(options: str) -> str:
-    parts = [p.strip() for p in re.split(r"\s+or\s+", options, flags=re.I) if p.strip()]
-    if len(parts) == 2:
-        return f"Either {parts[0]} or {parts[1]}"
-    if len(parts) > 2:
-        return ", or ".join(parts[:-1]) + f", or {parts[-1]}"
-    return options
-
-
-# Assert hints from explain drills → spoken interview phrasing.
-HINT_INTERVIEW: dict[str, str] = {
-    "200 ok": "For a successful GET, I'd return 200 OK.",
-    "201 created": "When a resource is created successfully, return 201 Created.",
-    "authorization header": "Send the JWT in the Authorization header as Bearer <token>.",
-    "b-tree indexes": "InnoDB uses B-tree indexes by default — good for equality and range scans.",
-    "cdn at edge": "Use a CDN like CloudFront to cache static assets at the edge, close to users.",
-    "ci before cd": "Run CI — tests, lint, and security scans — before any deploy to production.",
-    "cp or ap": "During a partition you choose CP or AP — consistency or availability.",
-    "dag definition": "A DAG is a directed acyclic graph of tasks with explicit dependencies.",
-    "docker image": "A Docker image is a layered filesystem snapshot used to run containers.",
-    "explain analyze first": "I'd start with EXPLAIN ANALYZE to see the execution plan and where time is spent.",
-    "explain plan": "Lead with the EXPLAIN plan — look for full table scans, missing indexes, or bad joins.",
-    "http upgrade": "WebSocket begins as an HTTP Upgrade request, then switches to full-duplex TCP.",
-    "ice candidates": "ICE gathers host, server-reflexive (STUN), and relay (TURN) candidates.",
-    "idempotency-key": "Send an Idempotency-Key header so duplicate POST retries are safe.",
-    "idempotency-key header": "Put the idempotency key in a request header — typically Idempotency-Key.",
-    "lambda for events": "AWS Lambda fits short, event-driven handlers — not long-running services.",
-    "m goroutines on n threads": "Go multiplexes many goroutines onto fewer OS threads (M:N scheduling).",
-    "nat blocks direct path": "NAT often blocks direct peer paths — that's when you need STUN/TURN.",
-    "put is idempotent": "PUT is idempotent — safe to retry the same update without duplicate side effects.",
-    "rest resources": "Design around REST resources — nouns, plural URLs, proper verbs and status codes.",
-    "rs256 uses public key": "For RS256, verify the JWT signature with the issuer's public key.",
-    "sdp offer/answer": "Signaling exchanges SDP offer/answer to negotiate codecs and media parameters.",
-    "sha-256 common": "Sign with a strong hash like SHA-256 before applying the private key.",
-    "tcp reuse": "HTTP keep-alive reuses the same TCP connection for multiple requests on one socket.",
-    "tcp/auth handshake": "Pooling avoids repeating the TCP and database authentication handshake on every query.",
-    "turn relays media": "TURN relays media when direct peer-to-peer fails — common behind VPNs or strict firewalls.",
-    "url versioning": "Version the API in the URL path — e.g. /v1/pages — or via an Accept-Version header.",
-    "where / join": "Indexes accelerate WHERE filters and JOIN keys — mind the left-prefix rule on composites.",
-    "where/join": "Indexes accelerate WHERE filters and JOIN keys — mind the left-prefix rule on composites.",
-    "websocket": "WebSocket gives full-duplex TCP — ideal for signaling, chat, and live notifications.",
-    "websocket signaling": "Use WebSocket for signaling — SDP exchange and ICE trickling.",
-    "xml schema": "Validate invoice XML against the authority XSD schema before signing.",
-    "xsd validation": "Run XSD validation against the authority schema before signing and submission.",
-    "actor + timestamp": "Audit trails record who changed what and when — actor, timestamp, and payload hash.",
-    "batch/join": "Fix N+1 queries with JOINs, eager loading, or batched fetches instead of per-row lookups.",
-    "bencode format": "BitTorrent metadata uses bencode — a compact binary encoding for .torrent structures.",
-    "bencode metadata": "BitTorrent .torrent files encode metadata in bencode format.",
-    "cancel/deadline": "Use context.Context to propagate cancellation and deadlines across goroutines.",
-    "cascading failures": "Circuit breakers stop cascading failures by failing fast when a dependency is unhealthy.",
-    "closed, open, half-open": "Circuit breaker states: CLOSED (normal), OPEN (fail fast), HALF-OPEN (probing).",
-    "competing consumers": "Work-queue pattern — multiple competing consumers, ack after successful processing.",
-    "connection reuse": "Connection pooling reuses open DB connections instead of opening one per request.",
-    "context.context": "context.Context carries cancellation, deadlines, and request-scoped values.",
-    "cryptographic signing": "Cryptographically sign the payload — hash with SHA-256, then sign with the private key.",
-    "dead letter queue": "Route poison messages to a dead-letter queue after max retries so the main queue isn't blocked.",
-    "directed acyclic graph": "Airflow models workflows as a DAG — directed acyclic graph of dependent tasks.",
-    "distributed tx pattern": "For distributed transactions in microservices, I'd use a saga instead of 2PC.",
-    "dots separate parts": "JWT has three Base64URL parts separated by dots: header, payload, signature.",
-    "double each attempt": "Exponential backoff doubles the delay each attempt (base 2) and adds jitter.",
-    "duplex push": "WebSocket enables server-push — full-duplex, unlike plain HTTP request/response.",
-    "execution plan": "EXPLAIN shows the query execution plan — which indexes are used and estimated row counts.",
-    "exp claim": "The exp claim enforces token expiry — reject any JWT past that timestamp.",
-    "fail fast": "When the circuit is open, fail fast — return an error immediately without calling the sick service.",
-    "goroutines": "Use goroutines for concurrency — lightweight threads scheduled by the Go runtime.",
-    "header.payload.signature": "A JWT has three dot-separated parts: header, payload, and signature.",
-    "http.server.shutdown": "Call http.Server.Shutdown(ctx) — stop accepting new connections and drain in-flight requests.",
-    "idempotent ops": "Only retry idempotent operations, or attach an Idempotency-Key for write retries.",
-    "idempotent tasks": "Airflow tasks must be idempotent so clearing and rerunning a failed node is safe.",
-    "integrity/authenticity": "A digital signature proves integrity (unchanged payload) and authenticity (trusted signer).",
-    "k8s/docker health": "Use liveness (restart if dead) and readiness (gate traffic) probes in Kubernetes or Docker.",
-    "layered filesystem": "Docker images are stacked layers — multi-stage builds keep production images small.",
-    "leftmost prefix rule": "Yes — composite indexes follow the leftmost-prefix rule, so column order matters.",
-    "liveness restarts pod": "Liveness probe restarts the container if the process is hung or dead.",
-    "open circuit fails fast": "An open circuit fails fast — callers get an immediate error without hitting the dependency.",
-    "operators/tasks": "In Airflow, operators define tasks — Python units of work wired together in a DAG.",
-    "path or header version": "Either URL path versioning (/v1/...) or an Accept-Version header works.",
-    "peer-to-peer media": "WebRTC media travels peer-to-peer over encrypted UDP — not through your API server.",
-    "pick cp or ap": "During a partition, pick CP or AP — you sacrifice either consistency or availability.",
-    "poison messages": "Poison messages go to a dead-letter queue after repeated failures.",
-    "public ip": "STUN discovers the client's public IP and port for NAT hole punching.",
-    "readiness gates traffic": "Readiness probe gates traffic — the load balancer skips instances that aren't ready.",
-    "retry/backoff": "On outages I'd use timeouts, retries with exponential backoff, then circuit breakers.",
-    "safe retries": "Tasks need to be idempotent so retries and reruns from a failed node are safe.",
-    "saga over 2pc": "I'd choose a saga over 2PC — local transactions plus compensating actions, more resilient to partitions.",
-    "short-lived/event-driven": "Lambda suits short-lived, event-driven workloads — not always-on services.",
-    "static content edge cache": "CDN caches static content at the edge to cut latency and origin load.",
-    "stop accepting, drain": "Graceful shutdown stops accepting new connections and drains in-flight requests before exit.",
-    "tests in pipeline": "The CI pipeline runs tests (and lint/security scans) before any deploy artifact ships.",
-    "thundering herd": "Jitter randomizes retry timing so clients don't all retry at once — avoiding a thundering herd.",
-    "unique request id": "Prevent replays with a unique invoice ID, timestamp, and nonce in the signed payload.",
-    "work queue pattern": "Work-queue pattern — competing consumers pull jobs and ack only after processing.",
+# Drill prompt key → (interview question, definition-style answer).
+DRILL_QA: dict[str, tuple[str, str]] = {
+    "http status for resource created": (
+        "What HTTP status code indicates successful resource creation?",
+        "HTTP 201 Created. Returned when a new resource is successfully created on the server.",
+    ),
+    "safe retry for update without side effects": (
+        "Which REST verb is safe to retry for updates without side effects?",
+        "PUT is idempotent; the same request can be retried without duplicate side effects.",
+    ),
+    "jwt segments count": (
+        "How many segments does a JWT contain?",
+        "Three segments — header, payload, and signature — separated by dots.",
+    ),
+    "validate jwt signature with what key type for rs256": (
+        "What key type verifies an RS256 JWT signature?",
+        "The issuer's public key. RS256 is asymmetric — sign with private key, verify with public key.",
+    ),
+    "api versioning strategy you used": (
+        "How do you version a REST API?",
+        "URL path prefix (/v1/...) or Accept-Version header. Both keep clients on stable contracts.",
+    ),
+    "default mysql innodb index structure": (
+        "What is the default index structure in MySQL InnoDB?",
+        "B-tree. Supports equality and range scans on WHERE, JOIN, and ORDER BY columns.",
+    ),
+    "composite index column order matters for left-prefix rule": (
+        "Does column order matter in a composite index?",
+        "Yes — composite indexes follow the left-prefix rule; leading columns must match the query filter order.",
+    ),
+    "n+1 problem fixed by": (
+        "What is the N+1 query problem? How do you fix it?",
+        "One query fetches parents, then N queries fetch each child. Fix with JOINs, eager loading, or batch fetching.",
+    ),
+    "connection pool avoids repeated": (
+        "What does a database connection pool avoid?",
+        "Repeated TCP and authentication handshakes. Reuses open connections across requests.",
+    ),
+    "explain shows": (
+        "What does EXPLAIN show?",
+        "The query execution plan — which indexes are used, join order, and estimated row counts.",
+    ),
+    "exponential backoff multiplier base commonly": (
+        "What is the common base multiplier for exponential backoff?",
+        "2 — double the delay each retry attempt. Add jitter to prevent synchronized retries.",
+    ),
+    "circuit breaker prevents": (
+        "What does a circuit breaker prevent?",
+        "Cascading failures. Halts requests to an unhealthy downstream after a failure threshold.",
+    ),
+    "idempotency key sent in": (
+        "Where is an idempotency key sent?",
+        "Request header (Idempotency-Key). Ensures duplicate POST retries produce the same result.",
+    ),
+    "cap": (
+        "During a network partition, what does CAP force you to sacrifice?",
+        "Consistency or availability. Most web APIs favor availability with eventual consistency for reads.",
+    ),
+    "saga pattern coordinates via": (
+        "How does the saga pattern coordinate distributed transactions?",
+        "Local transactions plus compensating actions, coordinated via events — choreography or orchestration.",
+    ),
+    "webrtc media path is": (
+        "What path does WebRTC media take?",
+        "Peer-to-peer over encrypted UDP. Media does not flow through your signaling server.",
+    ),
+    "signaling carries": (
+        "What does WebRTC signaling carry?",
+        "SDP offer/answer and ICE candidates, typically over WebSocket.",
+    ),
+    "ice gathers": (
+        "What does ICE gather?",
+        "Connection candidates — host, server-reflexive (STUN), and relay (TURN) — for NAT traversal.",
+    ),
+    "stun discovers public": (
+        "What does STUN discover?",
+        "The client's public IP and port for NAT hole punching.",
+    ),
+    "turn used when direct p2p": (
+        "When is TURN used in WebRTC?",
+        "When direct peer-to-peer fails — symmetric NAT, corporate VPNs, or strict firewalls.",
+    ),
+    "airflow unit of work": (
+        "What is the unit of work in Apache Airflow?",
+        "A task (operator). Tasks are wired together as nodes in a DAG.",
+    ),
+    "dag means": (
+        "What does DAG mean in Airflow?",
+        "Directed acyclic graph — tasks with dependency edges and no cycles.",
+    ),
+    "failed task safe rerun needs": (
+        "What must Airflow tasks be for safe reruns after failure?",
+        "Idempotent. Clearing and rerunning a failed node must not duplicate side effects.",
+    ),
+    "rabbitmq dead letter queue for": (
+        "What is a RabbitMQ dead-letter queue for?",
+        "Poison messages that fail after max retries. Isolates them without blocking the main queue.",
+    ),
+    "work queue pattern": (
+        "What is the RabbitMQ work-queue pattern?",
+        "Competing consumers pull jobs from a shared queue; ack only after successful processing.",
+    ),
+    "docker image built from": (
+        "What is a Docker image built from?",
+        "Stacked filesystem layers. Multi-stage builds keep production images small.",
+    ),
+    "ci stage before deploy": (
+        "What runs in CI before deploy?",
+        "Tests, lint, and security scans. Artifact only ships after the pipeline passes.",
+    ),
+    "lambda best for": (
+        "When is AWS Lambda the best fit?",
+        "Short, event-driven handlers. Not suited for long-running or always-on services.",
+    ),
+    "cdn caches": (
+        "What does a CDN cache?",
+        "Static assets at the edge. Cuts latency and reduces load on the origin server.",
+    ),
+    "container health check probes": (
+        "What are liveness vs readiness health probes?",
+        "Liveness restarts a dead container; readiness gates traffic until the instance can serve requests.",
+    ),
+    "xsd validates": (
+        "What does XSD validation check?",
+        "XML structure against the authority schema. Required before signing and submission.",
+    ),
+    "digital signature proves": (
+        "What does a digital signature prove?",
+        "Integrity (payload unchanged) and authenticity (trusted signer).",
+    ),
+    "signing hash algorithm example": (
+        "What hash algorithm is commonly used for digital signing?",
+        "SHA-256. Hash the payload, then sign the digest with the private key.",
+    ),
+    "replay attack prevented by": (
+        "How do you prevent replay attacks on signed payloads?",
+        "Unique ID, timestamp, and nonce in the signed payload.",
+    ),
+    "audit trail stores": (
+        "What does an audit trail store?",
+        "Who changed what and when — actor, timestamp, and payload hash.",
+    ),
+    "goroutine scheduling model": (
+        "What is Go's goroutine scheduling model?",
+        "M:N multiplexing — many goroutines scheduled onto fewer OS threads by the runtime.",
+    ),
+    "context.context used for": (
+        "What is context.Context used for in Go?",
+        "Cancellation, deadlines, and request-scoped values propagated across goroutines.",
+    ),
+    "bittorrent metadata encoding": (
+        "How is BitTorrent metadata encoded?",
+        "Bencode — a compact binary format for .torrent file structures.",
+    ),
+    "http keep-alive reuses": (
+        "What does HTTP keep-alive reuse?",
+        "The same TCP connection for multiple HTTP requests on one socket.",
+    ),
+    "graceful shutdown closes": (
+        "What does graceful HTTP shutdown do?",
+        "Stops accepting new connections, drains in-flight requests, then exits.",
+    ),
+    "three parts of a jwt, separated by what character": (
+        "What separates the three parts of a JWT?",
+        "Dots. Format: header.payload.signature (Base64URL-encoded).",
+    ),
+    "where is jwt usually sent? one word": (
+        "Where is a JWT typically sent in HTTP?",
+        "Authorization header as Bearer <token>.",
+    ),
+    "claim that enforces expiry": (
+        "Which JWT claim enforces token expiry?",
+        "exp. Reject any token whose exp timestamp is in the past.",
+    ),
+    "three states": (
+        "What are the three circuit breaker states?",
+        "Closed (normal) → open (fail fast) → half-open (probe). Success closes; failure reopens.",
+    ),
+    "open circuit behavior": (
+        "What is open-circuit behavior?",
+        "Fail fast — return an error immediately without calling the unhealthy downstream.",
+    ),
+    "index helps which clause? keyword \"where\"": (
+        "Which SQL clause does an index primarily accelerate?",
+        "WHERE (and JOIN keys). Composite indexes also follow the left-prefix rule.",
+    ),
+    "pooling reduces what? keyword \"connection\"": (
+        "What does connection pooling reduce?",
+        "Per-request connection overhead. Reuses open DB connections across requests.",
+    ),
+    "websocket starts as http \"upgrade\"": (
+        "How does a WebSocket connection start?",
+        "HTTP Upgrade handshake, then switches to full-duplex TCP.",
+    ),
+    "server-push chat transport": (
+        "What transport enables server-push for real-time chat?",
+        "WebSocket — full-duplex TCP for signaling, chat, and live notifications.",
+    ),
+    "jitter prevents \"thundering herd\"": (
+        "What does jitter prevent in retry logic?",
+        "Thundering herd — randomizing delays stops all clients from retrying simultaneously.",
+    ),
+    "retries need \"idempotent\" operations": (
+        "What kind of operations are safe to retry?",
+        "Idempotent operations. For writes, use an Idempotency-Key header.",
+    ),
+    "http status for successful get": (
+        "What HTTP status code indicates a successful GET?",
+        "200 OK. Standard response for a successful read with a response body.",
+    ),
+    "idempotent update verb": (
+        "Which HTTP verb is idempotent for updates?",
+        "PUT. Safe to retry without creating duplicate side effects.",
+    ),
+    "jwt sent in http": (
+        "Where is a JWT sent in an HTTP request?",
+        "Authorization header as Bearer <token>.",
+    ),
+    "safe post retry header": (
+        "Which header makes POST retries safe?",
+        "Idempotency-Key. Duplicate requests with the same key produce the same result.",
+    ),
+    "api version in url prefix": (
+        "How is API versioning commonly done in the URL?",
+        "Path prefix — e.g. /v1/pages. Keeps version visible and easy to route.",
+    ),
+    "first step for slow sql": (
+        "What is the first step when debugging a slow SQL query?",
+        "EXPLAIN ANALYZE. Inspect the execution plan before changing schema or queries.",
+    ),
+    "index helps which clause": (
+        "Which SQL clause does an index primarily accelerate?",
+        "WHERE and JOIN keys. Mind column order on composite indexes (left-prefix rule).",
+    ),
+    "pool reuses": (
+        "What does a connection pool reuse?",
+        "Open database connections. Avoids TCP and auth handshake on every query.",
+    ),
+    "circuit breaker open behavior": (
+        "What happens when a circuit breaker is open?",
+        "Fail fast — reject calls immediately without hitting the failing dependency.",
+    ),
+    "backoff multiplier base": (
+        "What is the typical exponential backoff multiplier?",
+        "Base 2 — double the delay each attempt. Add jitter to spread retry timing.",
+    ),
+    "during partition sacrifice consistency or availability": (
+        "During a network partition, what do you sacrifice?",
+        "Consistency or availability (CAP). Most web APIs favor availability.",
+    ),
+    "microservices distributed tx pattern": (
+        "What pattern handles distributed transactions in microservices?",
+        "Saga — local transactions plus compensating actions. Prefer over 2PC under partitions.",
+    ),
+    "jitter prevents": (
+        "What does jitter prevent in retry logic?",
+        "Thundering herd — randomized delays stop synchronized retries across clients.",
+    ),
+    "websocket starts as http": (
+        "How does a WebSocket connection begin?",
+        "HTTP Upgrade request, then full-duplex TCP for bidirectional messaging.",
+    ),
+    "idempotency key location": (
+        "Where is an idempotency key sent?",
+        "Request header (Idempotency-Key). Critical for safe POST retries.",
+    ),
+    "relay when p2p fails": (
+        "What relays WebRTC media when P2P fails?",
+        "TURN server. Required when NAT or firewall blocks direct peer paths.",
+    ),
+    "signaling transport": (
+        "What transport carries WebRTC signaling?",
+        "WebSocket — exchanges SDP offer/answer and ICE candidates.",
+    ),
+    "airflow graph type": (
+        "What graph type does Airflow use?",
+        "DAG — directed acyclic graph of dependent tasks.",
+    ),
+    "poison messages go to": (
+        "Where do poison messages go after max retries?",
+        "Dead-letter queue (DLQ). Isolates failures without blocking the main queue.",
+    ),
+    "competing consumers pattern": (
+        "What is the competing consumers pattern?",
+        "Multiple workers pull from one queue; each message processed by exactly one consumer.",
+    ),
+    "docker health: traffic gate uses": (
+        "Which Docker/K8s probe gates traffic to a container?",
+        "Readiness probe. Endpoint removed from load balancing until ready.",
+    ),
+    "docker health: restart probe": (
+        "Which Docker/K8s probe restarts a container?",
+        "Liveness probe. Restarts the container if the process is hung or dead.",
+    ),
+    "short event handler on aws": (
+        "What AWS service fits short event-driven handlers?",
+        "Lambda. Billed per invocation; not for long-running workloads.",
+    ),
+    "static asset edge cache": (
+        "What caches static assets at the edge?",
+        "CDN (e.g. CloudFront). Serves files close to users, reducing origin load.",
+    ),
+    "pipeline runs tests before deploy": (
+        "What runs before deploy in a typical pipeline?",
+        "CI — tests, lint, security scan. Deploy only after the pipeline passes.",
+    ),
+    "zatca step before submit": (
+        "What ZATCA step happens before API submission?",
+        "Cryptographic signing — hash payload with SHA-256, sign with private key.",
+    ),
+    "schema validation format": (
+        "What format validates invoice XML schema?",
+        "XSD. Validate structure against the authority schema before signing.",
+    ),
+    "go cancellation primitive": (
+        "What is Go's cancellation primitive?",
+        "context.Context — propagates cancel signals and deadlines across goroutines.",
+    ),
+    "http graceful stop method": (
+        "How do you gracefully stop an HTTP server in Go?",
+        "http.Server.Shutdown(ctx) — stop accepting, drain in-flight, then exit.",
+    ),
+    "index helps which clause? where": (
+        "Which SQL clause does an index primarily accelerate?",
+        "WHERE (and JOIN keys). Composite indexes follow the left-prefix rule.",
+    ),
+    "pooling reduces what? connection": (
+        "What does connection pooling reduce?",
+        "Per-request connection overhead. Reuses open DB connections across requests.",
+    ),
+    "retries need idempotent operations": (
+        "What kind of operations are safe to retry?",
+        "Idempotent operations. For writes, use an Idempotency-Key header.",
+    ),
 }
 
 
-def hint_interview_line(hint: str) -> str | None:
-    if not hint:
-        return None
-    key = hint.lower().strip().rstrip(".")
-    return HINT_INTERVIEW.get(key)
+def lookup_drill_qa(body: str, hint: str = "") -> tuple[str, str]:
+    key = prompt_key(body)
+    if key in DRILL_QA:
+        return DRILL_QA[key]
+    # Fallback: build question from stem, answer from hint
+    colon = body.find(":")
+    stem = body[:colon].strip() if colon > 0 else body
+    question = format_fallback_question(stem)
+    answer = hint or re.findall(r'"([^"]+)"', body)[0] if re.findall(r'"([^"]+)"', body) else stem
+    return question, cap_sentence(answer)
 
 
-def expand_terse_answer(front: str, raw: str, hint: str) -> str:
-    """Turn drill keywords into spoken interview phrasing."""
-    fl = front.lower().rstrip("?").strip()
-    base = hint or raw
-    al = base.lower()
-    rl = raw.lower()
-
-    if re.fullmatch(r"\d{3}", base):
-        label = hint if hint and not re.fullmatch(r"\d{3}", hint) else ""
-        if label:
-            return f"I'd return HTTP {base} ({label})."
-        return f"I'd return HTTP {base}."
-
-    if "http status" in fl and re.search(r"\d{3}", base):
-        return cap_sentence(base)
-
-    if "idempotent" in fl and ("put" in al or "put" in rl):
-        return "PUT is idempotent, so it's safe to retry updates without duplicate side effects."
-
-    if ("retry" in fl or "safe" in fl) and ("update" in fl or "side effects" in fl):
-        return "PUT is idempotent, so it's safe to retry updates without duplicate side effects."
-
-    if "retry" in fl and "post" in fl:
-        return "Use an Idempotency-Key header so POST retries are safe."
-
-    if "jwt" in fl and ("sent" in fl or "header" in fl or "location" in fl):
-        return "Send it in the Authorization header as Bearer <token>."
-
-    if "jwt" in fl and ("segment" in fl or "parts" in fl or raw == "3" or base == "3"):
-        return "Three dot-separated Base64URL parts: header, payload, and signature."
-
-    if "jwt" in fl and ("rs256" in fl or "signature" in fl or "key" in fl):
-        return "Verify RS256 signatures with the issuer's public key."
-
-    if "version" in fl and ("api" in fl or "url" in fl):
-        return "Either URL path versioning (/v1/...) or an Accept-Version header."
-
-    if "slow sql" in fl or ("first step" in fl and "sql" in fl):
-        return "Start with EXPLAIN ANALYZE to inspect the execution plan."
-
-    if "index" in fl and "clause" in fl:
-        return "Indexes help WHERE, JOIN, and ORDER BY — composite indexes follow the left-prefix rule."
-
-    if "pool" in fl and ("reuses" in fl or "reduces" in fl or "avoids" in fl):
-        return "Connection pooling reuses TCP connections and avoids repeated handshake overhead."
-
-    if "circuit breaker" in fl and "open" in fl:
-        return "When open, the circuit breaker fails fast instead of hammering a sick dependency."
-
-    if "backoff" in fl or "multiplier" in fl:
-        return "Use exponential backoff with base multiplier 2 — double each attempt and add jitter."
-
-    if "partition" in fl and ("consistency" in rl or "availability" in rl):
-        return (
-            "During a partition you choose CP or AP — sacrifice consistency or availability. "
-            "Most web APIs favor availability with eventual consistency."
-        )
-
-    if "saga" in fl:
-        return "Sagas coordinate distributed transactions via events — choreography or orchestration."
-
-    if "jitter" in fl:
-        return "Jitter spreads retry delays so clients don't retry in sync (thundering herd)."
-
-    if "retries need" in fl or ("retry" in fl and "operation" in fl):
-        return "Only retry idempotent operations, or use an Idempotency-Key for writes."
-
-    if "idempotency key" in fl:
-        return "Send the idempotency key in a request header (e.g. Idempotency-Key)."
-
-    if "websocket" in fl and "upgrade" in fl:
-        return "WebSocket starts as an HTTP Upgrade handshake, then runs full-duplex over TCP."
-
-    if "websocket" in fl or ("chat" in fl and "transport" in fl):
-        return "WebSocket — full-duplex TCP for signaling, chat, and live push notifications."
-
-    if "webrtc" in fl and "media" in fl:
-        return "Media flows peer-to-peer over encrypted UDP — not through your signaling server."
-
-    if "signaling" in fl:
-        return "Signaling carries SDP offer/answer and ICE candidates over WebSocket."
-
-    if "ice" in fl:
-        return "ICE gathers host, server-reflexive, and relay candidates for NAT traversal."
-
-    if "stun" in fl:
-        return "STUN discovers the client's public IP and port for NAT hole punching."
-
-    if "turn" in fl or ("p2p" in fl and "relay" in fl):
-        return "TURN relays media when direct peer-to-peer fails (symmetric NAT, strict firewalls)."
-
-    if "dag" in fl:
-        return "DAG — a directed acyclic graph of tasks with dependency edges."
-
-    if "airflow" in fl and "unit" in fl:
-        return "A task is the unit of work; tasks are wired together in a DAG."
-
-    if "dead letter" in fl or "dlq" in al or "poison" in rl:
-        return "Dead-letter queues isolate poison messages after max retries so the main queue keeps moving."
-
-    if "work queue" in fl or ("competing" in fl and "consumer" in fl):
-        return "Work queue — competing consumers pull jobs; ack only after successful processing."
-
-    if "liveness" in fl or ("restart" in fl and "health" in fl):
-        return "Liveness probe — restart the container if the process is dead."
-
-    if "readiness" in fl or ("traffic" in fl and "health" in fl):
-        return "Readiness probe — remove the instance from load balancing until it's ready for traffic."
-
-    if "lambda" in fl:
-        return "Lambda fits short, event-driven handlers — not long-running services."
-
-    if "cdn" in fl or "cloudfront" in al:
-        return "Use a CDN (e.g. CloudFront) to cache static assets at the edge."
-
-    if "docker" in fl and "layer" in fl:
-        return "Images are built from stacked layers; multi-stage builds keep production images small."
-
-    if "xsd" in fl:
-        return "XSD validates invoice XML structure against the authority schema before signing."
-
-    if "sign" in fl and ("zatca" in fl or "submit" in fl):
-        return "Cryptographically sign the payload (hash + private key) before submission."
-
-    if "context" in fl and "go" in fl:
-        return "context.Context carries cancellation, deadlines, and request-scoped values."
-
-    if "graceful" in fl and "shutdown" in fl:
-        return "Call http.Server.Shutdown(ctx) — stop accepting new connections and drain in-flight requests."
-
-    if "bencode" in fl:
-        return "BitTorrent metadata is bencode — a compact binary encoding for .torrent files."
-
-    if "keep-alive" in fl:
-        return "HTTP keep-alive reuses the same TCP connection for multiple requests."
-
-    if "goroutine" in fl and "scheduling" in fl:
-        return "Go uses an M:N scheduler — many goroutines multiplexed onto fewer OS threads."
-
-    if "exp" in al and "claim" in fl:
-        return "The exp claim enforces JWT expiry — reject tokens past that timestamp."
-
-    if "three states" in fl or "closed,open,half-open" in al.replace(" ", ""):
-        return "CLOSED (normal) → OPEN (fail fast) → HALF-OPEN (probe) → back to CLOSED on success."
-
-    if "n+1" in fl:
-        return "Fix N+1 with eager loading, JOINs, or batched queries instead of per-row lookups."
-
-    if "explain" in al and len(base) <= 10:
-        return "EXPLAIN shows the query execution plan — use EXPLAIN ANALYZE to measure cost."
-
-    if "b-tree" in al or "btree" in al:
-        return "InnoDB's default index structure is a B-tree — great for range scans and equality filters."
-
-    if "left-prefix" in fl or ("composite" in fl and "order" in fl):
-        return "Yes — composite indexes follow the left-prefix rule; column order matters."
-
-    if re.search(r"\s+or\s+", base, re.I) and len(base) < 40:
-        return cap_sentence(either_phrase(base) + " — both are acceptable")
-
-    if len(base) <= 12 and base.islower() and " or " not in base:
-        return cap_sentence(base)
-
-    return base
+def format_fallback_question(stem: str) -> str:
+    s = clean(stem).rstrip("?")
+    low = s.lower()
+    if low.startswith(("what ", "how ", "when ", "which ", "define ", "why ")):
+        return s + "?" if not s.endswith("?") else s
+    if low.startswith("explain "):
+        return cap_sentence(s).rstrip(".") + "?"
+    return f"What is {s}?"
 
 
-def interview_answer(front: str, raw: str, hint: str = "") -> str:
-    raw = clean(raw)
-    hint = clean(hint)
-    scripted = hint_interview_line(hint)
-    if scripted:
-        return cap_sentence(scripted)
-    answer = expand_terse_answer(front, raw, hint or raw)
-    return cap_sentence(answer)
+def drill_card(body: str, hint: str = "") -> tuple[str, str]:
+    return lookup_drill_qa(body, hint)
 
 
-def format_trigger_answer(defin: str) -> str:
-    defin = clean(defin)
-    if defin.lower().startswith("i'd"):
-        return cap_sentence(defin)
-    return cap_sentence(f"I'd lead with: {defin}")
+TRIGGER_QA: dict[str, tuple[str, str]] = {
+    "slow sql query": (
+        "How would you debug a slow SQL query?",
+        "EXPLAIN plan first → check for missing index or bad join → tune pool or add cache.",
+    ),
+    "api design": (
+        "How do you approach REST API design?",
+        "Resource URLs, HTTP verbs, status codes, structured error contract, and versioning.",
+    ),
+    "auth": (
+        "How do you implement API authentication with JWT?",
+        "Validate signature and claims (exp, iss, aud); support refresh token flow.",
+    ),
+    "outage / flakes": (
+        "How do you handle downstream outages and flaky services?",
+        "Timeouts → retry with exponential backoff → circuit breaker → fail fast.",
+    ),
+    "real-time chat/video": (
+        "How would you architect real-time chat or video?",
+        "WebSocket for signaling; WebRTC for P2P media; STUN/TURN for NAT traversal.",
+    ),
+    "batch compliance job": (
+        "How do you design a batch compliance pipeline?",
+        "Airflow DAG with idempotent tasks, dead-letter queue, and full audit trail.",
+    ),
+    "deploy process": (
+        "What does your deploy process look like?",
+        "Jenkins pipeline stages; Docker image; health checks; rollback plan.",
+    ),
+    "go concurrency": (
+        "What Go concurrency primitives do you use in servers?",
+        "Goroutines and channels; context for cancellation; worker pools for bounded parallelism.",
+    ),
+    "invoice rejected": (
+        "An invoice was rejected by the authority — how do you trace it?",
+        "XSD validate → sign → submit → correlate audit log and payload hash.",
+    ),
+}
 
 
-def format_mock_answer(hints: list[str]) -> str:
+def trigger_card(term: str, defin: str) -> tuple[str, str]:
+    key = term.lower().strip()
+    if key in TRIGGER_QA:
+        return TRIGGER_QA[key]
+    return f"How would you approach {term}?", cap_sentence(defin)
+
+
+CONCEPT_QA: dict[str, tuple[str, str]] = {
+    "resources": (
+        "What are REST resource naming conventions?",
+        "Nouns, plural paths — e.g. /pages, /pages/{id}/versions.",
+    ),
+    "status codes": (
+        "What HTTP status codes should a REST API use?",
+        "200 OK, 201 Created, 400 client error, 401 unauth, 403 forbidden, 404 not found, 409 conflict, 500 server error.",
+    ),
+    "errors": (
+        "What shape should structured API errors take?",
+        '{ "code": "PAGE_NOT_FOUND", "message": "...", "details": {} } — machine-readable code plus human message.',
+    ),
+    "versioning": (
+        "How do you version a REST API?",
+        "/v1/... URL prefix or Accept-Version header.",
+    ),
+    "pagination": (
+        "What are cursor vs offset pagination trade-offs?",
+        "Cursor: stable under inserts, better for large datasets. Offset: simpler but slow on large offsets.",
+    ),
+    "idempotency": (
+        "Define idempotency in APIs.",
+        "Operation produces the same result regardless of execution count. PUT/DELETE are idempotent; POST needs Idempotency-Key for retries.",
+    ),
+    "dag": (
+        "What is an Airflow DAG?",
+        "Directed acyclic graph of tasks with dependency edges. Defines workflow execution order.",
+    ),
+    "operators": (
+        "What are Airflow operators?",
+        "Python task definitions with dependencies. Each operator is one unit of work in the DAG.",
+    ),
+    "retries": (
+        "How should Airflow tasks handle retries?",
+        "Configure retries and retry_delay; tasks must be idempotent so reruns are safe.",
+    ),
+    "sensors": (
+        "What is an Airflow sensor?",
+        "Task that waits for an external condition before downstream tasks run.",
+    ),
+    "work queue": (
+        "What is the RabbitMQ work-queue pattern?",
+        "Competing consumers pull jobs; acknowledge only after successful processing.",
+    ),
+    "pub/sub": (
+        "What is RabbitMQ pub/sub?",
+        "Fanout to many subscribers. One message delivered to all bound queues.",
+    ),
+    "dlq": (
+        "What is a dead-letter queue for?",
+        "Poison messages after max retries — isolate without blocking the main queue.",
+    ),
+    "tracker (bep 15)": (
+        "What does a BitTorrent tracker do (BEP 15)?",
+        "UDP announce protocol — clients exchange peer lists to discover download sources.",
+    ),
+    "wire protocol": (
+        "What does the BitTorrent wire protocol handle?",
+        "Peer handshake, choke/unchoke, and block requests between clients.",
+    ),
+    "concurrency model": (
+        "What is BitTorrent's concurrency model?",
+        "Per-peer goroutines with a piece bitmap and work scheduling across the swarm.",
+    ),
+}
+
+
+def concept_card(term: str, defin: str, section: str = "") -> tuple[str, str]:
+    key = term.lower().strip()
+    if key in CONCEPT_QA:
+        return CONCEPT_QA[key]
+    low_term = term.lower()
+    if low_term in ("b-tree default for `where`, `join`, `order by` left-prefix",):
+        pass
+    # Generic patterns
+    if "step" in section.lower() or re.search(r"step \d", section, re.I):
+        return f"{section}: {term}?", cap_sentence(defin)
+    return f"What is {term}?", cap_sentence(defin)
+
+
+def service_card(svc: str, use: str) -> tuple[str, str]:
+    return (
+        f"When would you choose AWS {svc}?",
+        cap_sentence(use),
+    )
+
+
+def mock_card(prompt: str, hints: list[str]) -> tuple[str, str]:
     parts = [cap_sentence(h).rstrip(".") for h in hints if h.strip()]
-    if not parts:
-        return ""
     if len(parts) == 1:
-        return cap_sentence(parts[0])
-    return "I'd structure my answer: " + "; ".join(f"{i + 1}) {p}" for i, p in enumerate(parts)) + "."
+        return prompt, cap_sentence(parts[0])
+    back = ". ".join(f"{i + 1}) {p}" for i, p in enumerate(parts)) + "."
+    return prompt, back
 
 
-def format_concept_answer(term: str, defin: str) -> str:
-    defin = clean(defin)
-    if len(defin) >= 72 or defin.count(".") >= 2:
-        return defin
-    low = defin.lower()
-    if low.startswith(term.lower()):
-        return cap_sentence(defin)
-    if defin.startswith("{") or defin.startswith("/"):
-        return cap_sentence(f"{term}: {defin}")
-    return cap_sentence(f"{term} — {defin}")
+# General fundamentals — definition + trade-off/fix pattern (complements resume-specific cards).
+FUNDAMENTALS: list[tuple[list[str], str, str, str]] = [
+    (
+        ["backend", "go", "concept"],
+        "What is a mutex? When would you use it over a channel in Go?",
+        "Mutual exclusion lock preventing concurrent access to shared resource. Mutex for protecting state; channels for goroutine communication.",
+        "Concurrency",
+    ),
+    (
+        ["backend", "go", "concept"],
+        "Define deadlock. How do you prevent it?",
+        "Circular wait where goroutines block indefinitely. Prevent via lock ordering, timeouts, and avoiding nested locks.",
+        "Concurrency",
+    ),
+    (
+        ["backend", "go", "concept"],
+        "What is a race condition?",
+        "Multiple goroutines access shared data without synchronization, causing unpredictable results. Fix with mutex, channels, or atomic ops.",
+        "Concurrency",
+    ),
+    (
+        ["backend", "db", "concept"],
+        "What is a database index? What are the trade-offs?",
+        "Data structure (B-tree, hash) enabling faster query lookups. Trade-off: faster reads, slower writes, increased storage.",
+        "Databases",
+    ),
+    (
+        ["backend", "db", "concept"],
+        "Define normalization vs. denormalization.",
+        "Normalization reduces redundancy via separate tables; denormalization duplicates data for faster reads at the cost of consistency complexity.",
+        "Databases",
+    ),
+    (
+        ["backend", "db", "concept"],
+        "What is the N+1 query problem?",
+        "One query fetches parent records, then N additional queries per child. Fix: JOIN or batch loading.",
+        "Databases",
+    ),
+    (
+        ["backend", "concept", "resilience"],
+        "What is cache invalidation?",
+        "Removing or updating stale cache entries when source data changes. Strategies: TTL, event-based, LRU.",
+        "Caching",
+    ),
+    (
+        ["backend", "concept", "resilience"],
+        "Define cache stampede.",
+        "Multiple requests hit expired cache simultaneously, all query the database. Fix: lock-based refresh or probabilistic early expiration.",
+        "Caching",
+    ),
+    (
+        ["backend", "api", "concept"],
+        "Define idempotency in APIs.",
+        "Operation produces the same result regardless of execution count. Critical for safe retries on payments and transfers.",
+        "API",
+    ),
+    (
+        ["backend", "resilience", "concept"],
+        "What is eventual consistency?",
+        "Distributed replicas converge to the same state eventually, not immediately. Trade-off that favors availability over strong consistency.",
+        "Architecture",
+    ),
+    (
+        ["backend", "resilience", "concept"],
+        "What is a circuit breaker?",
+        "Pattern halting requests to a failing service after a threshold. States: closed (normal) → open (failing) → half-open (testing).",
+        "Architecture",
+    ),
+    (
+        ["backend", "db", "concept"],
+        "Define sharding.",
+        "Horizontal partitioning splitting data across multiple database instances by shard key (user ID, region).",
+        "Architecture",
+    ),
+    (
+        ["backend", "go", "concept"],
+        "What is a goroutine?",
+        "Lightweight thread managed by the Go runtime. Thousands run concurrently on few OS threads (M:N scheduling).",
+        "Go",
+    ),
+    (
+        ["backend", "go", "concept"],
+        "What is an empty interface (any) in Go?",
+        "Type that accepts any value. Used for dynamic typing; requires type assertion or switch to use the concrete value.",
+        "Go",
+    ),
+]
 
 
 def infer_drill_meta(path: Path, lines: list[str]) -> tuple[str, list[str], str]:
@@ -475,9 +777,9 @@ def parse_explain_drills() -> None:
             parsed = parse_explain_prompt(m.group(1))
             if not parsed:
                 continue
-            front, raw = parsed
+            body = m.group(1)
             hint = hints[hint_i] if hint_i < len(hints) else ""
-            back = interview_answer(front, raw, hint)
+            front, back = drill_card(body, hint)
             hint_i += 1
             add(
                 "backend",
@@ -506,11 +808,11 @@ def parse_mock_scenarios() -> None:
         if not title_m or not prompt_m or not hints:
             continue
         title, prompt = title_m.group(1), prompt_m.group(1)
-        back = format_mock_answer(hints)
+        front, back = mock_card(prompt, hints)
         add(
             "backend",
             ["backend", "scenario", "mock"],
-            f"Mock interview: {prompt}",
+            front,
             back,
             source,
             title,
@@ -545,11 +847,12 @@ def parse_trigger_tables(text: str, source: str) -> None:
                 if term_idx < len(cols) and def_idx < len(cols):
                     term, defin = cols[term_idx], cols[def_idx]
                     if term and defin and not term.startswith("-"):
+                        front, back = trigger_card(term, defin)
                         add(
                             "backend",
                             ["backend", "trigger"],
-                            f"Interview trigger: {term}?",
-                            format_trigger_answer(defin),
+                            front,
+                            back,
                             source,
                             section,
                         )
@@ -578,11 +881,12 @@ def parse_service_tables(text: str, source: str) -> None:
                     if svc_idx < len(cols) and use_idx < len(cols):
                         svc, use = cols[svc_idx], cols[use_idx]
                         if svc and use and not svc.startswith("-"):
+                            front, back = service_card(svc, use)
                             add(
                                 "backend",
                                 ["backend", "aws"],
-                                f"When to use AWS {svc}?",
-                                use,
+                                front,
+                                back,
                                 source,
                                 section,
                             )
@@ -635,64 +939,108 @@ def parse_concept_bullets(text: str, source: str) -> None:
             ]:
                 if key in low:
                     tags.append(t)
+            front, back = concept_card(term, defin, sec)
             add(
                 "backend",
                 tags,
-                f"{sec}: {term}?",
-                format_concept_answer(term, defin),
+                front,
+                back,
                 source,
                 sec,
             )
         m_num = re.match(r"^(\d+)\.\s+(.+)$", line.strip())
         if m_num and subsection:
             step, body = m_num.group(1), m_num.group(2)
+            front, back = step_card(subsection, step, body)
             add(
                 "backend",
                 ["backend", "concept", subsection.lower().replace(" ", "_")],
-                f"{subsection} — step {step}?",
-                body,
+                front,
+                back,
                 source,
                 subsection,
             )
 
 
+STEP_QUESTIONS: dict[str, list[str]] = {
+    "jwt": [
+        "What is the first step in JWT authentication?",
+        "How does the client send a JWT on each request?",
+        "What does JWT middleware validate before handling the request?",
+    ],
+    "query optimization workflow": [
+        "Query optimization — what is step 1?",
+        "After EXPLAIN, how do you rewrite a slow query?",
+        "When do you add or adjust indexes?",
+        "What do you do after indexing for still-hot queries?",
+    ],
+    "nat debug checklist": [
+        "WebRTC NAT debug — what do you check first?",
+        "What ICE candidate types should be gathered?",
+        "What connection state confirms success vs failure?",
+        "When should you deploy TURN?",
+        "What firewall rules matter for WebRTC?",
+    ],
+    "invoice submission flow": [
+        "ZATCA invoice flow — what is generated first?",
+        "What validation runs before signing?",
+        "How is the invoice signed?",
+        "How is the invoice submitted to the authority?",
+        "What do you store after submission?",
+    ],
+}
+
+
+def step_card(subsection: str, step: str, body: str) -> tuple[str, str]:
+    key = subsection.lower().strip()
+    idx = int(step) - 1
+    if key in STEP_QUESTIONS and idx < len(STEP_QUESTIONS[key]):
+        return STEP_QUESTIONS[key][idx], cap_sentence(body)
+    return f"{subsection} — what is step {step}?", cap_sentence(body)
+
+
 def build_synthesis_cards() -> None:
-    """High-level interview answers not covered by one-line drill prompts."""
+    """High-level Q&A not covered by one-line drill prompts."""
     source = "doc/backend/DRILL_CONCEPTS.md"
     curated = [
-        (["backend", "jwt"], "Walk through JWT auth flow end-to-end.", "Client logs in → server issues access (+ optional refresh). Client sends Authorization: Bearer <token>. Middleware validates signature, exp, iss, aud; attaches claims to context.", "JWT"),
-        (["backend", "resilience"], "Circuit breaker state machine?", "CLOSED → failures ≥ threshold → OPEN (fail fast) → after timeout → HALF-OPEN (probe) → success → CLOSED; failure → OPEN", "Circuit breaker"),
-        (["backend", "resilience"], "Exponential backoff formula and retry rules?", "delay = min(cap, base * 2^attempt) + jitter. Only retry transient errors. Require idempotent ops or Idempotency-Key.", "Retry"),
-        (["backend", "cap"], "CAP during partition — what do most web APIs favor?", "Choose CP or AP. Most web APIs favor availability + eventual consistency for reads.", "CAP"),
-        (["backend", "saga"], "Saga vs 2PC?", "2PC: strong consistency, fragile under partitions. Saga: local txs + compensating actions; common in microservices.", "Saga"),
-        (["backend", "webrtc"], "WebRTC: signaling vs media paths?", "Signaling (WebSocket): SDP offer/answer, ICE. Media (UDP): encrypted RTP peer-to-peer, not through your server.", "WebRTC"),
-        (["backend", "webrtc"], "STUN vs TURN?", "STUN discovers public IP/port (cheap). TURN relays when P2P fails (costly; symmetric NAT / strict firewalls).", "STUN/TURN"),
-        (["backend", "api"], "Idempotency rules for REST verbs?", "PUT/DELETE idempotent; POST needs Idempotency-Key for retries.", "REST"),
-        (["backend", "db"], "Composite index column order rule?", "Equality filters first, then range.", "Indexing"),
-        (["backend", "db"], "Query optimization workflow (4 steps)?", "EXPLAIN ANALYZE → rewrite query → add/adjust indexes → cache hot reads / tune pool.", "Query opt"),
-        (["backend", "db"], "Connection pool sizing rule of thumb?", "≈ (cores × 2) + spindle; measure under load; watch pool exhaustion.", "Pooling"),
-        (["backend", "nat"], "NAT debug checklist for WebRTC (5 steps)?", "1) Signaling open? 2) ICE candidates gathered? 3) Connection connected vs failed? 4) Try TURN if only host. 5) Firewall UDP/TURN TLS.", "NAT"),
-        (["backend", "airflow"], "Airflow recovery when a task fails?", "Clear failed task, rerun from failed node. Tasks must be idempotent; use retries + retry_delay.", "Airflow"),
+        (["backend", "jwt"], "Walk through JWT auth flow end-to-end.", "Client logs in → server issues access (+ optional refresh) token. Client sends Authorization: Bearer <token>. Middleware validates signature, exp, iss, aud; attaches claims to context.", "JWT"),
+        (["backend", "resilience"], "What are the circuit breaker states?", "Closed (normal) → failures ≥ threshold → open (fail fast) → after timeout → half-open (probe) → success closes; failure reopens.", "Circuit breaker"),
+        (["backend", "resilience"], "What is the exponential backoff formula? When should you retry?", "delay = min(cap, base × 2^attempt) + jitter. Only retry transient errors (timeouts, 503). Require idempotent ops or Idempotency-Key.", "Retry"),
+        (["backend", "cap"], "During a network partition, what do most web APIs favor?", "Availability over strong consistency — eventual consistency for reads is the common trade-off.", "CAP"),
+        (["backend", "saga"], "Saga vs two-phase commit (2PC)?", "2PC: strong consistency, fragile under partitions. Saga: local transactions + compensating actions; common in microservices.", "Saga"),
+        (["backend", "webrtc"], "WebRTC: what travels over signaling vs media?", "Signaling (WebSocket): SDP offer/answer, ICE candidates. Media (UDP): encrypted RTP peer-to-peer, not through your server.", "WebRTC"),
+        (["backend", "webrtc"], "STUN vs TURN — when do you use each?", "STUN discovers public IP/port (low cost). TURN relays when P2P fails (higher cost; symmetric NAT, strict firewalls).", "STUN/TURN"),
+        (["backend", "api"], "Which REST verbs are idempotent?", "PUT and DELETE are idempotent. POST needs Idempotency-Key header for safe retries.", "REST"),
+        (["backend", "db"], "What is the composite index column order rule?", "Equality filter columns first, then range columns. Follows the left-prefix rule.", "Indexing"),
+        (["backend", "db"], "What is the query optimization workflow?", "EXPLAIN ANALYZE → rewrite query → add/adjust indexes → cache hot reads and tune connection pool.", "Query opt"),
+        (["backend", "db"], "How do you size a database connection pool?", "Rule of thumb: ≈ (cores × 2) + spindle. Measure under load; watch for pool exhaustion causing latency spikes.", "Pooling"),
+        (["backend", "nat"], "NAT debug checklist for WebRTC?", "1) Signaling connected? 2) ICE candidates gathered (host, srflx, relay)? 3) Connection state connected vs failed? 4) Try TURN if only host candidates. 5) Firewall allows UDP/TURN TLS.", "NAT"),
+        (["backend", "airflow"], "How do you recover when an Airflow task fails?", "Clear the failed task and rerun from that node. Tasks must be idempotent; configure retries and retry_delay.", "Airflow"),
         (["backend", "messaging"], "RabbitMQ work queue vs pub/sub?", "Work queue: competing consumers, ack after processing. Pub/sub: fanout to many subscribers.", "RabbitMQ"),
-        (["backend", "messaging"], "What is a dead letter queue for?", "Poison messages after max retries — isolate without blocking the main queue.", "DLQ"),
-        (["backend", "jenkins"], "Typical Jenkins pipeline stages?", "checkout → install → lint → unit test → build → integration → security scan → deploy staging → smoke → deploy prod", "Jenkins"),
+        (["backend", "messaging"], "What is a dead-letter queue for?", "Poison messages after max retries — isolate without blocking the main queue.", "DLQ"),
+        (["backend", "jenkins"], "What are typical Jenkins pipeline stages?", "checkout → install → lint → unit test → build → integration → security scan → deploy staging → smoke → deploy prod", "Jenkins"),
         (["backend", "docker"], "Liveness vs readiness health checks?", "Liveness: restart if dead. Readiness: whether to send traffic.", "Docker"),
         (["backend", "aws"], "When to use EC2 vs Lambda vs CDN?", "EC2: long-running services. Lambda: short event handlers. CDN: static assets at the edge.", "AWS"),
-        (["backend", "zatca"], "ZATCA invoice submission flow?", "Generate XML → XSD validate → cryptographic sign → submit over TLS → store response + audit (who/when/payload hash).", "ZATCA"),
-        (["backend", "go"], "Go concurrency primitives for servers?", "goroutine + channel for worker pools; context.Context for cancel/deadlines; sync.Mutex for shared state (prefer channels for ownership).", "Go"),
-        (["backend", "go"], "HTTP graceful shutdown in Go?", "Stop accepting new connections (Shutdown(ctx)), drain in-flight requests, then exit.", "Go HTTP"),
-        (["backend", "go"], "BitTorrent piece scheduling at a high level?", "Per-peer goroutines, piece bitmap, request rarest pieces first to improve swarm health.", "BitTorrent"),
-        (["backend", "db"], "Covering index — when does it help?", "Index includes all columns in SELECT → index-only scan, no table lookup.", "Indexing"),
-        (["backend", "db"], "Page builder schema pattern for versions?", "Versioned entities: pages, page_versions, audit_log; draft vs published snapshots.", "Schema"),
-        (["backend", "api"], "Structured API error response shape?", "code (e.g. PAGE_NOT_FOUND), message, optional details object.", "REST errors"),
-        (["backend", "api"], "Cursor vs offset pagination tradeoff?", "Cursor: stable under inserts; offset: simple but slow on large offsets.", "Pagination"),
-        (["backend", "webrtc"], "WebSocket use cases in real-time apps?", "Signaling, chat, live notifications; heartbeats/ping detect dead connections.", "WebSocket"),
-        (["backend", "airflow"], "What is an Airflow sensor?", "Waits for an external condition before downstream tasks run.", "Airflow"),
-        (["backend", "zatca"], "Replay protection for signed invoices?", "Unique invoice ID, timestamp, nonce in signed payload.", "Replay"),
-        (["backend", "go"], "HTTP server middleware chain order?", "Logging → recovery → auth → handler; context carries request ID + user.", "Go HTTP"),
-        (["backend", "go"], "BitTorrent wire protocol basics?", "Handshake, choke/unchoke, request blocks; tracker (BEP 15) UDP announce for peers.", "BitTorrent"),
+        (["backend", "zatca"], "What is the ZATCA invoice submission flow?", "Generate XML → XSD validate → cryptographic sign → submit over TLS → store response + audit (who/when/payload hash).", "ZATCA"),
+        (["backend", "go"], "What Go concurrency primitives do you use in servers?", "Goroutines and channels for worker pools; context.Context for cancel/deadlines; sync.Mutex for shared state.", "Go"),
+        (["backend", "go"], "How do you implement HTTP graceful shutdown in Go?", "Call Shutdown(ctx) to stop accepting new connections, drain in-flight requests, then exit.", "Go HTTP"),
+        (["backend", "go"], "How does BitTorrent piece scheduling work?", "Per-peer goroutines, piece bitmap, request rarest pieces first to improve swarm health.", "BitTorrent"),
+        (["backend", "db"], "What is a covering index? When does it help?", "Index includes all columns in SELECT → index-only scan with no table lookup.", "Indexing"),
+        (["backend", "db"], "What is the page-builder schema pattern for versions?", "Versioned entities: pages, page_versions, audit_log; separate draft vs published snapshots.", "Schema"),
+        (["backend", "api"], "What shape should a structured API error take?", "code (e.g. PAGE_NOT_FOUND), message, optional details object.", "REST errors"),
+        (["backend", "api"], "Cursor vs offset pagination — trade-offs?", "Cursor: stable under inserts. Offset: simple but degrades on large offsets.", "Pagination"),
+        (["backend", "webrtc"], "What are WebSocket use cases in real-time apps?", "Signaling, chat, live notifications. Use heartbeats/ping to detect dead connections.", "WebSocket"),
+        (["backend", "zatca"], "How do you protect signed invoices from replay attacks?", "Unique invoice ID, timestamp, and nonce in the signed payload.", "Replay"),
+        (["backend", "go"], "What order should HTTP middleware run in?", "Logging → recovery → auth → handler. Context carries request ID and user.", "Go HTTP"),
+        (["backend", "go"], "What are BitTorrent wire protocol basics?", "Handshake, choke/unchoke, request blocks. Tracker (BEP 15) UDP announce for peer discovery.", "BitTorrent"),
     ]
     for tags, front, back, sec in curated:
+        add("backend", tags, front, back, source, sec)
+
+
+def build_fundamentals_cards() -> None:
+    source = "cards/generate_cards.py"
+    for tags, front, back, sec in FUNDAMENTALS:
         add("backend", tags, front, back, source, sec)
 
 
@@ -704,6 +1052,7 @@ def build_backend_cards() -> None:
     # WEEKLY_REVISION trigger table overlaps DRILL_CONCEPTS — skip duplicate triggers
     parse_service_tables(concepts, "doc/backend/DRILL_CONCEPTS.md")
     parse_concept_bullets(concepts, "doc/backend/DRILL_CONCEPTS.md")
+    build_fundamentals_cards()
     build_synthesis_cards()
     parse_explain_drills()
     parse_mock_scenarios()
