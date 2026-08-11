@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Extract spaced-repetition cards from the Back2Basics Obsidian vault.
+"""Optional: extract cards from the Back2Basics Obsidian vault.
 
-Default vault path: sibling ../Back2Basics (override with BACK2BASICS_ROOT).
-Writes decks as cards/decks/b2b-<folder>.json and merges into manifest.json.
-Does not delete existing DSA decks from doc/.
+NOTE: Full-note b2b-* decks are no longer part of the default flashcard set.
+The main study_cards flow uses backend + star decks from generate_cards.py only.
+
+To regenerate legacy b2b decks (not recommended for daily review):
+  BACK2BASICS_ROOT=/path/to/Back2Basics python3 cards/generate_back2basics.py
 """
 from __future__ import annotations
 

@@ -36,7 +36,7 @@ func isKnownTrack(track drillTrack) bool {
 }
 
 func isDrillKind(s string) bool {
-	return s == "core" || s == "reflex"
+	return s == "core" || s == "reflex" || s == "revision"
 }
 
 func isRunSideFlag(s string) bool {

@@ -25,6 +25,9 @@ Then open **[`doc/drills.md`](doc/drills.md)** — all practice files live under
 ```bash
 go run .                              # unified daily plan (DSA: read + write)
 go run . -- --track backend           # backend interview prep only
+go run . -- --track backend -- --drill revision   # today's weekly revision drill
+go run . -- --track backend -- --run revision     # check revision answers
+go run . -- --track backend -- --catalog          # blocks + revision cycle + topics
 go run . -- --track read              # DSA reading drills only
 go run . -- --track write             # DSA writing drills only
 go run . -- --track cards             # spaced-repetition flashcards
@@ -46,7 +49,7 @@ dsa-problem/
 │   ├── read/                # reading drill guides
 │   └── backend/             # backend interview prep
 ├── cards/                   # ★ SPACED REPETITION (flashcards from doc/)
-│   ├── decks/               # jargon, patterns, math, reading, backend, star
+│   ├── decks/               # backend + star interview flashcards
 │   └── README.md            # terminal review via bin/study_cards
 ├── drills/                  # ★ PRACTICE (by topic)
 │   ├── write/               # reflex drills: core5, reflex, variants
@@ -80,4 +83,5 @@ dsa-problem/
 - [`doc/write/START_HERE.md`](doc/write/START_HERE.md) — writing reflex flow
 - [`doc/read/START_HERE.md`](doc/read/START_HERE.md) — reading drill flow
 - [`doc/backend/START_HERE.md`](doc/backend/START_HERE.md) — backend interview cram
+- [`doc/backend/WEEKLY_REVISION.md`](doc/backend/WEEKLY_REVISION.md) — weekly revision cycle + topic index
 - [`reference/problems/CATEGORIES.md`](reference/problems/CATEGORIES.md) — problem index by topic

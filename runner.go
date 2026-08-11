@@ -54,14 +54,19 @@ Options:
       --run [KIND] [-r|-w]     run tests; KIND: core, reflex, or both if omitted
                                -r, --read   reading drills only
                                -w, --write  writing drills only
-      --drill KIND           show drill plan: core or reflex (required)
+      --drill KIND           show drill plan: core, reflex, or revision (backend)
       --solution KIND        show solution file path: core or reflex (required)
       --catalog            list drills in track (forwarded to track)
+
+Backend track (--track=backend) also accepts:
+      --run revision         validate today's weekly revision drill
+      --drill revision       show today's revision drill path
+      --cram                 interview cram schedule
 
 Cards track (--track=cards) also accepts:
       --due, --stats, --list, --review, --reset
       --deck=NAME, --tag=TAG, --limit=N, --new=N, --no-shuffle
-      (decks: jargon/patterns/… plus b2b-* from Back2Basics)
+      (decks: backend, star — interview Q&A only)
 
 `)
 }
@@ -78,7 +83,7 @@ func printDrillArgError(missing bool, unknown string) {
 	} else {
 		fmt.Fprintf(os.Stderr, "unknown drill kind %q\n", unknown)
 	}
-	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex")
+	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex, revision (revision: backend track)")
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
@@ -98,7 +103,7 @@ func printSolutionArgError(missing bool, unknown string) {
 	} else {
 		fmt.Fprintf(os.Stderr, "unknown solution kind %q\n", unknown)
 	}
-	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex")
+	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex, revision (revision: backend track)")
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 

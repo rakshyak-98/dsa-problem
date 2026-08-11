@@ -6,7 +6,7 @@ import (
 )
 
 func isRunKind(s string) bool {
-	return s == "core" || s == "reflex"
+	return s == "core" || s == "reflex" || s == "revision"
 }
 
 func isDrillKind(s string) bool {
@@ -19,7 +19,7 @@ func printDrillArgError(missing bool, unknown string) {
 	} else {
 		fmt.Fprintf(os.Stderr, "unknown drill kind %q\n", unknown)
 	}
-	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex")
+	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex, revision")
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 

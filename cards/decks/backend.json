@@ -108,237 +108,6 @@
     "section": "Trigger table (if they ask X → you say Y)"
   },
   {
-    "id": "c5a5d1082d49",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "What is AWS EC2 typically used for?",
-    "back": "Long-running services, full control",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "DevOps & AWS (iBind Jenkins)"
-  },
-  {
-    "id": "834a5ac6b5d7",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "What is AWS Lambda typically used for?",
-    "back": "Short event-driven handlers",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "DevOps & AWS (iBind Jenkins)"
-  },
-  {
-    "id": "b40f33c8c577",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "What is AWS CDN (CloudFront) typically used for?",
-    "back": "Static assets, edge caching",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "DevOps & AWS (iBind Jenkins)"
-  },
-  {
-    "id": "d6a066e555ce",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "What is AWS S3 typically used for?",
-    "back": "Artifacts, backups",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "DevOps & AWS (iBind Jenkins)"
-  },
-  {
-    "id": "92edb9f3ad53",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — REST API design (MST, iBind): Resources?",
-    "back": "nouns, plural (/pages, /pages/{id}/versions)",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "REST API design (MST, iBind)"
-  },
-  {
-    "id": "4e1a28f537b4",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — REST API design (MST, iBind): Status codes?",
-    "back": "200 OK, 201 Created, 400 client, 401 unauth, 403 forbidden, 404 not found, 409 conflict, 500 server",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "REST API design (MST, iBind)"
-  },
-  {
-    "id": "904131a5ecda",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — REST API design (MST, iBind): Errors?",
-    "back": "{ \"code\": \"PAGE_NOT_FOUND\", \"message\": \"...\", \"details\": {} }",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "REST API design (MST, iBind)"
-  },
-  {
-    "id": "571844d6fa93",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — REST API design (MST, iBind): Versioning?",
-    "back": "/v1/... or Accept-Version header",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "REST API design (MST, iBind)"
-  },
-  {
-    "id": "e84aefb65439",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — REST API design (MST, iBind): Pagination?",
-    "back": "limit + cursor (stable) vs offset (simple)",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "REST API design (MST, iBind)"
-  },
-  {
-    "id": "1174b14713d6",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — REST API design (MST, iBind): Idempotency?",
-    "back": "PUT/DELETE idempotent; POST needs Idempotency-Key for retries",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "REST API design (MST, iBind)"
-  },
-  {
-    "id": "c0f12d7bb3ed",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — Apache Airflow: DAG?",
-    "back": "directed acyclic graph of tasks",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "Apache Airflow"
-  },
-  {
-    "id": "0394191cff7f",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — Apache Airflow: Operators?",
-    "back": "Python tasks with dependencies",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "Apache Airflow"
-  },
-  {
-    "id": "f1f615c8f3de",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — Apache Airflow: Retries?",
-    "back": "retries, retry_delay; tasks must be idempotent",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "Apache Airflow"
-  },
-  {
-    "id": "987b54593909",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — Apache Airflow: Sensors?",
-    "back": "wait for external condition",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "Apache Airflow"
-  },
-  {
-    "id": "a8f16276142a",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — RabbitMQ patterns: Work queue?",
-    "back": "competing consumers, ack after processing",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "RabbitMQ patterns"
-  },
-  {
-    "id": "b319ecaf7120",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — RabbitMQ patterns: Pub/sub?",
-    "back": "fanout to many subscribers",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "RabbitMQ patterns"
-  },
-  {
-    "id": "4ddb3666f8a6",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — RabbitMQ patterns: DLQ?",
-    "back": "poison messages after max retries",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "RabbitMQ patterns"
-  },
-  {
-    "id": "03a1bfee299e",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — BitTorrent client: Tracker (BEP 15)?",
-    "back": "UDP announce → peer list",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "BitTorrent client"
-  },
-  {
-    "id": "36d1f6bf8b13",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — BitTorrent client: bencode?",
-    "back": "binary encoding for torrent metadata",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "BitTorrent client"
-  },
-  {
-    "id": "463e172b6900",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — BitTorrent client: Wire protocol?",
-    "back": "handshake, choke/unchoke, request blocks",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "BitTorrent client"
-  },
-  {
-    "id": "c4ea3329d9ca",
-    "deck": "backend",
-    "tags": [
-      "backend"
-    ],
-    "front": "Backend — BitTorrent client: Concurrency?",
-    "back": "per-peer goroutines, piece bitmap, work scheduling",
-    "source": "doc/backend/DRILL_CONCEPTS.md",
-    "section": "BitTorrent client"
-  },
-  {
     "id": "b103d69dd498",
     "deck": "backend",
     "tags": [
@@ -459,6 +228,18 @@
     "section": "Query opt"
   },
   {
+    "id": "7da76086d989",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "db"
+    ],
+    "front": "Connection pool sizing rule of thumb?",
+    "back": "≈ (cores × 2) + spindle; measure under load; watch pool exhaustion.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Pooling"
+  },
+  {
     "id": "7029b6a83c47",
     "deck": "backend",
     "tags": [
@@ -481,6 +262,30 @@
     "back": "Clear failed task, rerun from failed node. Tasks must be idempotent; use retries + retry_delay.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Airflow"
+  },
+  {
+    "id": "e01950ddc65f",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "messaging"
+    ],
+    "front": "RabbitMQ work queue vs pub/sub?",
+    "back": "Work queue: competing consumers, ack after processing. Pub/sub: fanout to many subscribers.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "RabbitMQ"
+  },
+  {
+    "id": "525ff94f2b80",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "messaging"
+    ],
+    "front": "What is a dead letter queue for?",
+    "back": "Poison messages after max retries — isolate without blocking the main queue.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "DLQ"
   },
   {
     "id": "020edabeca84",
@@ -507,6 +312,18 @@
     "section": "Docker"
   },
   {
+    "id": "beb342a41940",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "aws"
+    ],
+    "front": "When to use EC2 vs Lambda vs CDN?",
+    "back": "EC2: long-running services. Lambda: short event handlers. CDN: static assets at the edge.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "AWS"
+  },
+  {
     "id": "b7da3e79c9e9",
     "deck": "backend",
     "tags": [
@@ -529,5 +346,113 @@
     "back": "goroutine + channel for worker pools; context.Context for cancel/deadlines; sync.Mutex for shared state (prefer channels for ownership).",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Go"
+  },
+  {
+    "id": "4b63ac72864b",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "go"
+    ],
+    "front": "HTTP graceful shutdown in Go?",
+    "back": "Stop accepting new connections (Shutdown(ctx)), drain in-flight requests, then exit.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "Go HTTP"
+  },
+  {
+    "id": "37994396013c",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "go"
+    ],
+    "front": "BitTorrent piece scheduling at a high level?",
+    "back": "Per-peer goroutines, piece bitmap, request rarest pieces first to improve swarm health.",
+    "source": "doc/backend/DRILL_CONCEPTS.md",
+    "section": "BitTorrent"
+  },
+  {
+    "id": "7ae8fce8ca7a",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "revision"
+    ],
+    "front": "Revision Mon: API auth recap — idempotent update verb?",
+    "back": "PUT (safe to retry without side effects).",
+    "source": "doc/backend/WEEKLY_REVISION.md",
+    "section": "01_api_auth_recap"
+  },
+  {
+    "id": "6120ed4c7210",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "revision"
+    ],
+    "front": "Revision Tue: slow SQL — first diagnostic step?",
+    "back": "EXPLAIN (or EXPLAIN ANALYZE) the query plan.",
+    "source": "doc/backend/WEEKLY_REVISION.md",
+    "section": "02_data_resilience_recap"
+  },
+  {
+    "id": "7866fce1b10e",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "revision"
+    ],
+    "front": "Revision Wed: circuit breaker prevents what?",
+    "back": "Cascading failures across downstream services.",
+    "source": "doc/backend/WEEKLY_REVISION.md",
+    "section": "03_distributed_realtime"
+  },
+  {
+    "id": "e5c8350b0a58",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "revision"
+    ],
+    "front": "Revision Thu: when P2P WebRTC fails, use what?",
+    "back": "TURN relay server.",
+    "source": "doc/backend/WEEKLY_REVISION.md",
+    "section": "04_realtime_messaging"
+  },
+  {
+    "id": "cee020f8bffc",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "revision"
+    ],
+    "front": "Revision Fri: readiness probe gates what?",
+    "back": "Whether the pod receives traffic.",
+    "source": "doc/backend/WEEKLY_REVISION.md",
+    "section": "05_devops_orchestration"
+  },
+  {
+    "id": "06ade4a29bf0",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "revision"
+    ],
+    "front": "Revision Sat: all 9 triggers — invoice rejected?",
+    "back": "XSD validate → sign → submit → correlate audit + payload hash.",
+    "source": "doc/backend/WEEKLY_REVISION.md",
+    "section": "06_full_week_sweep"
+  },
+  {
+    "id": "d4584c91af53",
+    "deck": "backend",
+    "tags": [
+      "backend",
+      "revision"
+    ],
+    "front": "Revision Sun: ZATCA step before API submit?",
+    "back": "Cryptographic signing after XSD validation.",
+    "source": "doc/backend/WEEKLY_REVISION.md",
+    "section": "07_go_compliance_mix"
   }
 ]

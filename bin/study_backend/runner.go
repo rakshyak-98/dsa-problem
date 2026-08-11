@@ -58,12 +58,21 @@ func runBackend(drillKind string, catalog, cram, setup bool, runMode string) int
 		fmt.Printf("path: drills/backend/explain/blocks/%s/\n", b.file)
 		return 0
 	}
+	if drillKind == "revision" {
+		r := todayRevision()
+		fmt.Printf("BACKEND %s | revision %s — %s\n", r.day, r.file, r.label)
+		fmt.Printf("path: drills/backend/explain/revision/%s/\n", r.file)
+		return 0
+	}
 
 	b := todayBlock()
+	r := todayRevision()
 	fmt.Printf("BACKEND %s | %s — %s\n", b.day, b.file, b.topic)
 	fmt.Printf("path: drills/backend/explain/blocks/%s/\n", b.file)
+	printRevision(r)
 	fmt.Println("run:    go run . -- --run core")
 	fmt.Println("        go run . -- --run reflex")
+	fmt.Println("        go run . -- --run revision")
 
 	switch runMode {
 	case "core":
@@ -72,6 +81,11 @@ func runBackend(drillKind string, catalog, cram, setup bool, runMode string) int
 		}
 	case "reflex":
 		if err := runExplainBlock(b.file); err != nil {
+			return 1
+		}
+	case "revision":
+		r := todayRevision()
+		if err := runRevisionDrill(r.file); err != nil {
 			return 1
 		}
 	case "all":
@@ -100,6 +114,10 @@ func runCoreDrills() error {
 
 func runExplainBlock(block string) error {
 	return goRun(explainBlockDir(findRepoRoot(mustCwd()), block))
+}
+
+func runRevisionDrill(file string) error {
+	return goRun(explainRevisionDir(findRepoRoot(mustCwd()), file))
 }
 
 func goRun(dir string) error {
