@@ -16,14 +16,13 @@ func isDrillKind(s string) bool {
 func printHelp() {
 	fmt.Print(`Usage: go run ./bin/study_play -- [OPTION]...
 
-Reflex writing drills (Core 5 + today's weekday specialty).
+Run reflex writing drills (Core 5 + today's weekday specialty).
 
 Options:
   -h, --help               display this help message and exit
-      --drill core|reflex  show Core 5 or today's reflex write plan
-      --solution core|reflex
-                           show solution file path
-      --run [core|reflex]  run write drill tests (default: core + reflex)
+      --drill KIND         show drill plan (KIND: core or reflex)
+      --solution KIND      show solution file path (KIND: core or reflex)
+      --run [KIND]         run write drill tests (KIND: core or reflex; default: all)
       --run-core5          run Core 5 tests only
       --run-math           run math reflex add-on drill
       --catalog            list weekday write drills

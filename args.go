@@ -19,7 +19,7 @@ type trackInfo struct {
 }
 
 var availableTracks = []trackInfo{
-	{trackDSA, "dsa", "reflex reading and reflex writing"},
+	{trackDSA, "dsa", "reflex writing drills (Core 5 + weekday specialty)"},
 	{trackRead, "read", "reflex reading drills only"},
 	{trackWrite, "write", "writing drills only"},
 	{trackBackend, "backend", "interview prep"},

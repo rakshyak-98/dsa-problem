@@ -43,40 +43,36 @@ func printTrackList() {
 func printHelp() {
 	fmt.Print(`Usage: go run . -- [OPTION]...
 
-Run daily practice drills.
+Run daily DSA and interview-prep drills from the repo root.
 
 Options:
   -h, --help               display this help message and exit
       --list-tracks        list practice tracks and exit
-  -t, --track=NAME         practice track: dsa, read, write, backend, or cards
-                             (default: "dsa")
-      --core5              run Core 5 reflex write drill
+  -t, --track=NAME         practice track (default: "dsa")
+                             dsa: reflex writing (Core 5 + weekday specialty)
+                             read: reflex code-reading drills
+                             write: same as dsa writing drills
+                             backend: interview prep
+                             cards: spaced-repetition flashcards
+      --core5              run the Core 5 write drill
+      --drill KIND         show today's drill plan (KIND: core or reflex)
+      --solution KIND      show solution file path (KIND: core or reflex)
+      --run [KIND]         run drill tests (KIND: core or reflex; default: all)
+      --catalog            list drills in the active track
 
-DSA / write tracks (--track=dsa or --track=write):
-      --drill core|reflex  show Core 5 or reflex write plan
-      --solution core|reflex
-                           show write solution path
-      --run core|reflex -w run write drill tests
-
-Read track (--track=read) and reflex read on DSA track:
+Read track (--track=read):
       --drill reflex       show today's reflex read plan
       --solution reflex    show read answer key section
-      --run reflex -r      run today's reflex read tests
+      --run [reflex]       run today's reflex read tests
 
-DSA track (--track=dsa, default):
-      --run reflex -r|-w   run reflex read or write tests
-      --run core -w        run Core 5 write tests (no core read)
-      --catalog            list drills in active track
-
-Backend track (--track=backend) also accepts:
-      --run revision       validate today's weekly revision drill
+Backend track (--track=backend):
       --drill revision     show today's revision drill path
-      --cram               interview cram schedule
+      --run revision       validate today's revision drill
+      --cram               show interview cram schedule
 
-Cards track (--track=cards) also accepts:
+Cards track (--track=cards):
       --due, --stats, --list, --review, --reset
       --deck=NAME, --tag=TAG, --limit=N, --new=N, --no-shuffle
-      (decks: backend, star — interview Q&A only)
 
 `)
 }
@@ -97,18 +93,13 @@ func printDrillArgError(track drillTrack, missing bool, unknown string) {
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
-func printRunSideRequired() {
-	fmt.Fprintln(os.Stderr, "option '--run' with KIND requires -r/--read or -w/--write")
+func printReadUseTrack() {
+	fmt.Fprintln(os.Stderr, "reflex reading drills are on the read track; use --track read")
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
 func printRunSideConflict() {
 	fmt.Fprintln(os.Stderr, "cannot use both -r/--read and -w/--write")
-	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
-}
-
-func printCoreReadRemoved() {
-	fmt.Fprintln(os.Stderr, "core reading drills were removed; use --run reflex -r")
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
@@ -130,7 +121,7 @@ func printUnifiedHeader(track drillTrack) {
 	fmt.Println()
 	switch track {
 	case trackDSA:
-		fmt.Println("Track: DSA — Reflex read + Core 5 + Write specialty")
+		fmt.Println("Track: DSA — Core 5 + reflex writing specialty")
 	case trackRead:
 		fmt.Println("Track: DSA reflex reading — today's specialty")
 	case trackWrite:
@@ -198,25 +189,13 @@ func runUnified(root string, opts dailyOptions) int {
 				printRunSideConflict()
 				return 1
 			}
-			if hasRunKind(opts.passArgs) && opts.runSide == "" {
-				printRunSideRequired()
-				return 1
-			}
-			if opts.runSide == "read" && runKindInArgs(opts.passArgs) == "core" {
-				printCoreReadRemoved()
+			if opts.runSide == "read" {
+				printReadUseTrack()
 				return 1
 			}
 			runArgs := opts.passArgs
-			readArgs := filterReadPassArgs(runArgs)
-			if opts.runSide == "" || opts.runSide == "read" {
-				if code := runModule(root, "study_code", readArgs, true); code != 0 {
-					return code
-				}
-			}
-			if opts.runSide == "" || opts.runSide == "write" {
-				if code := runModule(root, "study_play", runArgs, true); code != 0 {
-					return code
-				}
+			if code := runModule(root, "study_play", runArgs, true); code != 0 {
+				return code
 			}
 			return 0
 		}
@@ -227,19 +206,15 @@ func runUnified(root string, opts dailyOptions) int {
 			fmt.Printf(" | solution %s", solutionKind)
 		}
 		fmt.Println()
-		if code := runModule(root, "study_code", filterReadPassArgs(briefArgs), false); code != 0 {
-			return code
-		}
 		if code := runModule(root, "study_play", briefArgs, false); code != 0 {
 			return code
 		}
 		if drillKind == "" && solutionKind == "" {
-			fmt.Println("read:   go run . -- --drill reflex")
-			fmt.Println("        go run . -- --run reflex -r")
-			fmt.Println("write:  go run . -- --drill core")
+			fmt.Println("drill:  go run . -- --drill core")
 			fmt.Println("        go run . -- --drill reflex")
-			fmt.Println("        go run . -- --run core -w")
-			fmt.Println("        go run . -- --run reflex -w")
+			fmt.Println("run:    go run . -- --run core")
+			fmt.Println("        go run . -- --run reflex")
+			fmt.Println("read:   go run . -- --track read")
 			fmt.Println("math:   go run ./bin/study_play -- --run-math")
 		}
 	case trackRead:
@@ -262,15 +237,6 @@ func runUnified(root string, opts dailyOptions) int {
 		}
 	}
 	return 0
-}
-
-func runKindInArgs(passArgs []string) string {
-	for i, a := range passArgs {
-		if a == "--run" && i+1 < len(passArgs) && isDrillKind(passArgs[i+1]) {
-			return passArgs[i+1]
-		}
-	}
-	return ""
 }
 
 func filterReadPassArgs(passArgs []string) []string {

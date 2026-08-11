@@ -16,7 +16,7 @@ func isDrillKind(s string) bool {
 func printHelp() {
 	fmt.Print(`Usage: go run ./bin/study_code -- [OPTION]...
 
-Reflex code-reading drills (today's weekday specialty).
+Run reflex code-reading drills for today's weekday specialty.
 
 Options:
   -h, --help               display this help message and exit

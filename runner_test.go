@@ -36,8 +36,8 @@ func TestRunUnifiedDSA(t *testing.T) {
 	if code != 0 {
 		t.Fatal("expected success")
 	}
-	if len(calls) != 2 {
-		t.Fatalf("expected 2 calls, got %d", len(calls))
+	if len(calls) != 1 || !containsAll(calls[0], "study_play") {
+		t.Fatalf("expected study_play only, got %v", calls)
 	}
 }
 
@@ -124,7 +124,7 @@ func TestRunUnifiedCoreReadRemoved(t *testing.T) {
 		track:    trackDSA,
 		run:      true,
 		runSide:  "read",
-		passArgs: []string{"--run", "core", "-r"},
+		passArgs: []string{"--run", "reflex", "-r"},
 	}
 	if code := runUnified("/tmp/repo", opts); code != 1 {
 		t.Fatalf("expected exit 1, got %d", code)
@@ -141,7 +141,7 @@ func TestPrintHelp(t *testing.T) {
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
 	out := buf.String()
-	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "--core5", "--drill reflex", "--run reflex -r", "(default:", "cards"} {
+	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "--core5", "--drill KIND", "--track=read", "cards"} {
 		if !strings.Contains(out, want) {
 			t.Fatalf("help missing %q:\n%s", want, out)
 		}
@@ -166,10 +166,9 @@ func TestRunUnifiedRunReadOnly(t *testing.T) {
 	defer func() { commandRunner = runIn }()
 
 	opts := dailyOptions{
-		track:    trackDSA,
+		track:    trackRead,
 		run:      true,
-		runSide:  "read",
-		passArgs: []string{"--run", "reflex", "-r"},
+		passArgs: []string{"--run", "reflex"},
 	}
 	if code := runUnified("/tmp/repo", opts); code != 0 {
 		t.Fatal("expected success")
@@ -179,14 +178,24 @@ func TestRunUnifiedRunReadOnly(t *testing.T) {
 	}
 }
 
-func TestRunUnifiedRunRequiresSide(t *testing.T) {
+func TestRunUnifiedRunWriteDefault(t *testing.T) {
+	calls := []string{}
+	commandRunner = func(dir string, args ...string) error {
+		calls = append(calls, dir)
+		return nil
+	}
+	defer func() { commandRunner = runIn }()
+
 	opts := dailyOptions{
 		track:    trackDSA,
 		run:      true,
 		passArgs: []string{"--run", "reflex"},
 	}
-	if code := runUnified("/tmp/repo", opts); code != 1 {
-		t.Fatalf("expected exit 1, got %d", code)
+	if code := runUnified("/tmp/repo", opts); code != 0 {
+		t.Fatal("expected success")
+	}
+	if len(calls) != 1 || !containsAll(calls[0], "study_play") {
+		t.Fatalf("expected study_play only, got %v", calls)
 	}
 }
 
@@ -200,7 +209,7 @@ func TestRunUnifiedFailOnRun(t *testing.T) {
 		track:    trackDSA,
 		run:      true,
 		runSide:  "read",
-		passArgs: []string{"--run", "core", "-r"},
+		passArgs: []string{"--run", "reflex", "-r"},
 	}
 	if code := runUnified("/tmp", opts); code != 1 {
 		t.Fatalf("expected exit 1, got %d", code)

@@ -1,12 +1,11 @@
-// Unified daily practice — reflex read + write in one command
+// Unified daily practice — reflex writing from the repo root.
 //
-// RUN:              go run .          (from repo root)
-// RUN with tests:   go run . -- --run reflex -r|-w
-// Write Core 5:    go run . -- --drill core
-// Reflex read:     go run . -- --track read
-// Select track:    go run . -- -t dsa|read|write|backend|cards
-// List tracks:     go run . -- --list-tracks
-// Cards:           go run . -- --track cards --due
+// RUN:              go run .
+// RUN with tests:   go run . -- --run reflex
+// Core 5:           go run . -- --drill core
+// Reflex read:      go run . -- --track read
+// Select track:     go run . -- -t dsa|read|write|backend|cards
+// List tracks:      go run . -- --list-tracks
 package main
 
 import (
