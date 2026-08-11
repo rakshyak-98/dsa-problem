@@ -8,7 +8,7 @@ import (
 func findRepoRoot(from string) string {
 	dir := from
 	for {
-		if _, err := os.Stat(filepath.Join(dir, "drills", "read", "core")); err == nil {
+		if _, err := os.Stat(filepath.Join(dir, "drills", "read", "weekday")); err == nil {
 			return dir
 		}
 		parent := filepath.Dir(dir)
@@ -20,9 +20,6 @@ func findRepoRoot(from string) string {
 }
 
 func readDrillDir(repoRoot, file string) string {
-	if file == "00_core_read" {
-		return filepath.Join(repoRoot, "drills", "read", "core", file)
-	}
 	return filepath.Join(repoRoot, "drills", "read", "weekday", file)
 }
 
