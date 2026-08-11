@@ -10,8 +10,7 @@ import (
 //   drills/write/reflex/   — weekday + bonus reflex drills
 //   drills/write/core5/    — daily Core 5
 //   drills/write/variants/ — medium variants
-//   drills/read/core/      — core reading drill
-//   drills/read/weekday/   — reading specialty drills
+//   drills/read/weekday/   — reflex reading drills
 //   drills/solutions/      — write drill solutions (peek after attempt)
 //   drills/tracker/        — browser study tracker
 

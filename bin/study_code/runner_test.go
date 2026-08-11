@@ -12,7 +12,7 @@ func TestRunStudyCodeCatalog(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
-	code := runStudyCode("core", "", false, true, false, "")
+	code := runStudyCode("reflex", "", true, false, "")
 	w.Close()
 	os.Stdout = old
 	var buf bytes.Buffer
@@ -26,12 +26,12 @@ func TestRunStudyCodeDrill(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
-	code := runStudyCode("core", "", false, false, false, "")
+	code := runStudyCode("reflex", "", false, false, "")
 	w.Close()
 	os.Stdout = old
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
-	if code != 0 || !strings.Contains(buf.String(), "core 3") {
+	if code != 0 || !strings.Contains(buf.String(), "READ") {
 		t.Fatal("drill mode")
 	}
 }
@@ -40,7 +40,7 @@ func TestRunStudyCodeDefault(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
-	code := runStudyCode("", "", false, false, false, "")
+	code := runStudyCode("", "", false, false, "")
 	w.Close()
 	os.Stdout = old
 	var buf bytes.Buffer

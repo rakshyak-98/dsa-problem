@@ -4,22 +4,6 @@ Do **not** memorize these. Re-trace the snippet after reading a line.
 
 ---
 
-## 00_core_read
-
-| Var | Answer |
-|-----|--------|
-| `aPattern` | `fixed sliding window` |
-| `aTrace` | `9` (windows: 2+1+5=8, 1+5+1=7, 5+1+3=9, 1+3+2=6) |
-| `aTime` | `O(n)` |
-| `bPattern` | `hash complement` / `map two sum` |
-| `bTrace` | `0,1` |
-| `bMutates` | `no` |
-| `cPattern` | `two pointers opposite ends` |
-| `cTrace` | `true` |
-| `cAsk` | e.g. check whether the string is a palindrome |
-
----
-
 ## 01_scan_structure
 
 | Var | Answer |
@@ -107,20 +91,3 @@ Do **not** memorize these. Re-trace the snippet after reading a line.
 | `pair2Pick` | `v2b` |
 | `pair3Mutates` | `yes` |
 | `pair3Space` | `v3a` |
-
----
-
-## 08_math_concepts
-
-| Var | Answer |
-|-----|--------|
-| `m1GCD` | `6` |
-| `m2ModPow` | `81` |
-| `m3nCr` | `56` |
-| `m4Sum` | `210` |
-| `m5Fib` | `13` |
-| `m6Master` | `O(n log n)` |
-| `m7Recurrence` | `O(log n)` |
-| `m8Bits` | `3` |
-| `m9Prime` | `no` |
-| `m10Height` | `3` |

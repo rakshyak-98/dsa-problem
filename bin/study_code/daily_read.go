@@ -1,9 +1,8 @@
-// Daily code-reading helper — Core Read 3 + specialty drill
+// Daily code-reading helper — reflex specialty drill
 //
 // RUN:              go run .
 // RUN with checks:  go run . -- --run
-// Math add-on:      go run . -- --run-math
-// Core only:        go run . -- --drill core
+// Reflex only:      go run . -- --drill reflex
 // Full catalog:     go run . -- --catalog
 package main
 
@@ -14,24 +13,12 @@ import (
 	"time"
 )
 
-type coreItem struct {
-	skill  string
-	prompt string
-	sec    int
-}
-
 type drill struct {
 	day    string
 	file   string
 	skill  string
 	focus  []string
 	warmup string
-}
-
-var core3 = []coreItem{
-	{"Signature + state", "Name in/out and what each binder means across the loop", 90},
-	{"Trace one sample", "Build a step table until you can predict the return", 120},
-	{"Pattern + bound", "Name the template and give O(time) / O(space)", 60},
 }
 
 var drills = []drill{
@@ -107,8 +94,6 @@ var drills = []drill{
 	},
 }
 
-const mathReadFile = "08_math_concepts"
-
 func todayDrill() drill {
 	wd := int(time.Now().Weekday())
 	idx := (wd + 6) % 7
@@ -116,19 +101,7 @@ func todayDrill() drill {
 }
 
 func drillOpenPath(file string) string {
-	if file == "00_core_read" {
-		return "drills/read/core/00_core_read/main.go"
-	}
 	return fmt.Sprintf("drills/read/weekday/%s/main.go", file)
-}
-
-func printDrill(brief bool) {
-	if brief {
-		fmt.Println("read:  drills/read/core/00_core_read/")
-		return
-	}
-	fmt.Println("READ | core 3")
-	fmt.Println("path: drills/read/core/00_core_read/")
 }
 
 func printReflexDrill(d drill, brief bool) {
@@ -138,16 +111,6 @@ func printReflexDrill(d drill, brief bool) {
 	}
 	fmt.Printf("READ %s | %s — %s\n", d.day, d.file, d.skill)
 	fmt.Printf("path: %s\n", drillOpenPath(d.file))
-}
-
-func printSolutionCore(brief bool) {
-	if brief {
-		fmt.Println("read:  drills/read/answers/ANSWER_KEY.md")
-		return
-	}
-	fmt.Println("READ solution | core 3")
-	fmt.Println("path: drills/read/answers/ANSWER_KEY.md")
-	fmt.Println("section: 00_core_read")
 }
 
 func printSolutionReflex(d drill, brief bool) {
@@ -167,8 +130,7 @@ func printToday(d drill, brief bool) {
 	}
 	fmt.Printf("READ %s | %s — %s\n", d.day, d.file, d.skill)
 	fmt.Printf("path: %s\n", drillOpenPath(d.file))
-	fmt.Println("run:    go run . -- --run core")
-	fmt.Println("        go run . -- --run reflex")
+	fmt.Println("run:    go run . -- --run reflex")
 }
 
 func printCatalog() {
@@ -176,7 +138,6 @@ func printCatalog() {
 	for _, d := range drills {
 		fmt.Printf("%-9s  %-22s  %s\n", d.day, d.file, d.skill)
 	}
-	fmt.Printf("%-9s  %-22s  %s\n", "Daily", mathReadFile, "Math formulas & traces")
 }
 
 func runDrill(file string) error {
@@ -193,11 +154,11 @@ func runDrill(file string) error {
 }
 
 func main() {
-	drillKind, solutionKind, runMath, catalog, brief, runMode, parseErr := parseReadArgs(os.Args[1:])
+	drillKind, solutionKind, catalog, brief, runMode, parseErr := parseReadArgs(os.Args[1:])
 	if parseErr {
 		os.Exit(1)
 	}
-	if code := runStudyCode(drillKind, solutionKind, runMath, catalog, brief, runMode); code != 0 {
+	if code := runStudyCode(drillKind, solutionKind, catalog, brief, runMode); code != 0 {
 		os.Exit(code)
 	}
 }

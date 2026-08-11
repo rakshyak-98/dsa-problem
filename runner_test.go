@@ -108,6 +108,29 @@ func TestFilterCardsPassArgs(t *testing.T) {
 	}
 }
 
+func TestFilterReadPassArgs(t *testing.T) {
+	got := filterReadPassArgs([]string{"--brief", "--drill", "core", "--solution", "reflex"})
+	if len(got) != 3 || got[0] != "--brief" || got[1] != "--solution" || got[2] != "reflex" {
+		t.Fatalf("got %v", got)
+	}
+	got = filterReadPassArgs([]string{"--run", "core", "-w"})
+	if len(got) != 2 || got[0] != "--run" || got[1] != "-w" {
+		t.Fatalf("got %v", got)
+	}
+}
+
+func TestRunUnifiedCoreReadRemoved(t *testing.T) {
+	opts := dailyOptions{
+		track:    trackDSA,
+		run:      true,
+		runSide:  "read",
+		passArgs: []string{"--run", "core", "-r"},
+	}
+	if code := runUnified("/tmp/repo", opts); code != 1 {
+		t.Fatalf("expected exit 1, got %d", code)
+	}
+}
+
 func TestPrintHelp(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
