@@ -1,11 +1,12 @@
-// Unified daily practice — read + write + asks in one command
+// Unified daily practice — reflex read + write in one command
 //
 // RUN:              go run .          (from repo root)
-// RUN with tests:   go run . -- --run
-// Core only:        go run . -- --drill core
-// Select track:     go run . -- -t dsa|read|write|backend|cards
-// List tracks:      go run . -- --list-tracks
-// Cards:            go run . -- --track cards --due
+// RUN with tests:   go run . -- --run reflex -r|-w
+// Write Core 5:    go run . -- --drill core
+// Reflex read:     go run . -- --track read
+// Select track:    go run . -- -t dsa|read|write|backend|cards
+// List tracks:     go run . -- --list-tracks
+// Cards:           go run . -- --track cards --due
 package main
 
 import (
@@ -50,19 +51,19 @@ func main() {
 		return
 	}
 	if opts.drillMissing {
-		printDrillArgError(true, "")
+		printDrillArgError(opts.track, true, "")
 		os.Exit(1)
 	}
 	if opts.drillUnknown != "" {
-		printDrillArgError(false, opts.drillUnknown)
+		printDrillArgError(opts.track, false, opts.drillUnknown)
 		os.Exit(1)
 	}
 	if opts.solutionMissing {
-		printSolutionArgError(true, "")
+		printSolutionArgError(opts.track, true, "")
 		os.Exit(1)
 	}
 	if opts.solutionUnknown != "" {
-		printSolutionArgError(false, opts.solutionUnknown)
+		printSolutionArgError(opts.track, false, opts.solutionUnknown)
 		os.Exit(1)
 	}
 	if opts.core5 {

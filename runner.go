@@ -50,18 +50,28 @@ Options:
       --list-tracks        list practice tracks and exit
   -t, --track=NAME         practice track: dsa, read, write, backend, or cards
                              (default: "dsa")
-      --core5                run Core 5 reflex drill
-      --run [KIND] [-r|-w]     run tests; KIND: core, reflex, or both if omitted
-                               -r, --read   reading drills only
-                               -w, --write  writing drills only
-      --drill KIND           show drill plan: core, reflex, or revision (backend)
-      --solution KIND        show solution file path: core or reflex (required)
-      --catalog            list drills in track (forwarded to track)
+      --core5              run Core 5 reflex write drill
+
+DSA / write tracks (--track=dsa or --track=write):
+      --drill core|reflex  show Core 5 or reflex write plan
+      --solution core|reflex
+                           show write solution path
+      --run core|reflex -w run write drill tests
+
+Read track (--track=read) and reflex read on DSA track:
+      --drill reflex       show today's reflex read plan
+      --solution reflex    show read answer key section
+      --run reflex -r      run today's reflex read tests
+
+DSA track (--track=dsa, default):
+      --run reflex -r|-w   run reflex read or write tests
+      --run core -w        run Core 5 write tests (no core read)
+      --catalog            list drills in active track
 
 Backend track (--track=backend) also accepts:
-      --run revision         validate today's weekly revision drill
-      --drill revision       show today's revision drill path
-      --cram                 interview cram schedule
+      --run revision       validate today's weekly revision drill
+      --drill revision     show today's revision drill path
+      --cram               interview cram schedule
 
 Cards track (--track=cards) also accepts:
       --due, --stats, --list, --review, --reset
@@ -77,13 +87,13 @@ func printUnknownTrack(track drillTrack) {
 	fmt.Fprint(os.Stderr, "Try 'go run . -- --help' for more information.\n")
 }
 
-func printDrillArgError(missing bool, unknown string) {
+func printDrillArgError(track drillTrack, missing bool, unknown string) {
 	if missing {
 		fmt.Fprintln(os.Stderr, "option '--drill' requires an argument")
 	} else {
 		fmt.Fprintf(os.Stderr, "unknown drill kind %q\n", unknown)
 	}
-	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex, revision (revision: backend track)")
+	fmt.Fprintf(os.Stderr, "Valid arguments: %s\n", formatDrillKinds(track))
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
@@ -102,13 +112,13 @@ func printCoreReadRemoved() {
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
-func printSolutionArgError(missing bool, unknown string) {
+func printSolutionArgError(track drillTrack, missing bool, unknown string) {
 	if missing {
 		fmt.Fprintln(os.Stderr, "option '--solution' requires an argument")
 	} else {
 		fmt.Fprintf(os.Stderr, "unknown solution kind %q\n", unknown)
 	}
-	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex, revision (revision: backend track)")
+	fmt.Fprintf(os.Stderr, "Valid arguments: %s\n", formatDrillKinds(track))
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
@@ -224,17 +234,16 @@ func runUnified(root string, opts dailyOptions) int {
 			return code
 		}
 		if drillKind == "" && solutionKind == "" {
-			fmt.Println("drill:  go run . -- --drill core")
-			fmt.Println("        go run . -- --drill reflex")
-			fmt.Println("solution: go run . -- --solution core")
-			fmt.Println("          go run . -- --solution reflex")
-			fmt.Println("run:    go run . -- --run core -w")
+			fmt.Println("read:   go run . -- --drill reflex")
 			fmt.Println("        go run . -- --run reflex -r")
+			fmt.Println("write:  go run . -- --drill core")
+			fmt.Println("        go run . -- --drill reflex")
+			fmt.Println("        go run . -- --run core -w")
 			fmt.Println("        go run . -- --run reflex -w")
 			fmt.Println("math:   go run ./bin/study_play -- --run-math")
 		}
 	case trackRead:
-		if code := runModule(root, "study_code", opts.passArgs, opts.run); code != 0 {
+		if code := runModule(root, "study_code", filterReadPassArgs(opts.passArgs), opts.run); code != 0 {
 			return code
 		}
 	case trackWrite:

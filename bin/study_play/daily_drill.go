@@ -253,9 +253,13 @@ func main() {
 	repoRoot := findRepoRoot(root)
 	_, drillPath := resolvePlayPaths(root, today.file)
 
-	drillKind, solutionKind, brief, runMath, runMode, parseErr := parsePlayArgs(os.Args[1:])
+	drillKind, solutionKind, help, brief, runMath, runMode, parseErr := parsePlayArgs(os.Args[1:])
 	if parseErr {
 		os.Exit(1)
+	}
+	if help {
+		printHelp()
+		return
 	}
 
 	if hasFlag("--weak") {

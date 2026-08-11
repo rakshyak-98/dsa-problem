@@ -92,6 +92,11 @@ func TestParseDailyArgs(t *testing.T) {
 	if !opts.core5 || opts.track != trackDSA {
 		t.Fatalf("core5: %+v", opts)
 	}
+
+	opts = parseDailyArgs([]string{"--track", "read", "--drill", "core"})
+	if opts.drillUnknown != "core" || opts.drillKind != "" {
+		t.Fatalf("read track should reject core drill: %+v", opts)
+	}
 }
 
 func TestIsKnownTrack(t *testing.T) {

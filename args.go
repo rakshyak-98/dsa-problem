@@ -39,6 +39,35 @@ func isDrillKind(s string) bool {
 	return s == "core" || s == "reflex" || s == "revision"
 }
 
+func validDrillKinds(track drillTrack) []string {
+	switch track {
+	case trackRead:
+		return []string{"reflex"}
+	case trackBackend:
+		return []string{"core", "reflex", "revision"}
+	default:
+		return []string{"core", "reflex"}
+	}
+}
+
+func isDrillKindForTrack(track drillTrack, kind string) bool {
+	for _, k := range validDrillKinds(track) {
+		if k == kind {
+			return true
+		}
+	}
+	return false
+}
+
+func formatDrillKinds(track drillTrack) string {
+	kinds := validDrillKinds(track)
+	out := kinds[0]
+	for _, k := range kinds[1:] {
+		out += ", " + k
+	}
+	return out
+}
+
 func isRunSideFlag(s string) bool {
 	return s == "-r" || s == "--read" || s == "-w" || s == "--write"
 }
@@ -104,7 +133,7 @@ func parseDailyArgs(args []string) dailyOptions {
 				continue
 			}
 			kind := args[i+1]
-			if !isDrillKind(kind) {
+			if !isDrillKindForTrack(opts.track, kind) {
 				opts.drillUnknown = kind
 				i++
 				continue
@@ -118,7 +147,7 @@ func parseDailyArgs(args []string) dailyOptions {
 				continue
 			}
 			kind := args[i+1]
-			if !isDrillKind(kind) {
+			if !isDrillKindForTrack(opts.track, kind) {
 				opts.solutionUnknown = kind
 				i++
 				continue

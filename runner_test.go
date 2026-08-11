@@ -141,7 +141,7 @@ func TestPrintHelp(t *testing.T) {
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
 	out := buf.String()
-	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "--core5", "--drill KIND", "--solution KIND", "-r, --read", "(default:", "cards"} {
+	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "--core5", "--drill reflex", "--run reflex -r", "(default:", "cards"} {
 		if !strings.Contains(out, want) {
 			t.Fatalf("help missing %q:\n%s", want, out)
 		}
@@ -217,7 +217,7 @@ func TestPrintDrillArgError(t *testing.T) {
 	old := os.Stderr
 	r, w, _ := os.Pipe()
 	os.Stderr = w
-	printDrillArgError(true, "")
+	printDrillArgError(trackDSA, true, "")
 	w.Close()
 	os.Stderr = old
 	var buf bytes.Buffer
@@ -227,6 +227,20 @@ func TestPrintDrillArgError(t *testing.T) {
 		if !strings.Contains(out, want) {
 			t.Fatalf("missing %q:\n%s", want, out)
 		}
+	}
+}
+
+func TestPrintDrillArgErrorReadTrack(t *testing.T) {
+	old := os.Stderr
+	r, w, _ := os.Pipe()
+	os.Stderr = w
+	printDrillArgError(trackRead, false, "core")
+	w.Close()
+	os.Stderr = old
+	var buf bytes.Buffer
+	_, _ = io.Copy(&buf, r)
+	if !strings.Contains(buf.String(), "Valid arguments: reflex") {
+		t.Fatalf("read track help: %s", buf.String())
 	}
 }
 

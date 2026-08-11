@@ -5,7 +5,7 @@ All practice files live in this folder. Full guide: [`../doc/drills.md`](../doc/
 ```bash
 go run .                              # unified daily plan (DSA: read + write)
 go run . -- --track backend           # backend interview prep
-go run . -- --track read              # reading drills only
+go run . -- --track read              # reflex reading drills only
 go run . -- --track write             # writing drills only
 go run ./bin/study_play               # write drills CLI
 go run ./bin/study_code               # read drills CLI

@@ -28,7 +28,7 @@ go run . -- --track backend           # backend interview prep only
 go run . -- --track backend -- --drill revision   # today's weekly revision drill
 go run . -- --track backend -- --run revision     # check revision answers
 go run . -- --track backend -- --catalog          # blocks + revision cycle + topics
-go run . -- --track read              # DSA reading drills only
+go run . -- --track read              # DSA reflex reading drills only
 go run . -- --track write             # DSA writing drills only
 go run . -- --track cards             # spaced-repetition flashcards
 go run . -- --track cards --due       # cards due today

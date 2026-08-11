@@ -22,41 +22,49 @@ func TestDrillsCatalog(t *testing.T) {
 }
 
 func TestParseReadArgs(t *testing.T) {
-	drillKind, solutionKind, catalog, brief, runMode, parseErr := parseReadArgs([]string{"--", "--drill", "reflex", "--run", "reflex", "--catalog", "--brief"})
-	if parseErr || drillKind != "reflex" || solutionKind != "" || runMode != "reflex" || !catalog || !brief {
+	drillKind, solutionKind, help, catalog, brief, runMode, parseErr := parseReadArgs([]string{"--", "--drill", "reflex", "--run", "reflex", "--catalog", "--brief"})
+	if parseErr || drillKind != "reflex" || solutionKind != "" || runMode != "reflex" || !catalog || !brief || help {
 		t.Fatal("parseReadArgs all flags")
 	}
-	drillKind, solutionKind, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--drill", "reflex"})
-	if parseErr || drillKind != "reflex" || solutionKind != "" || catalog || brief || runMode != "" {
+	drillKind, solutionKind, help, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--drill", "reflex"})
+	if parseErr || drillKind != "reflex" || solutionKind != "" || help || catalog || brief || runMode != "" {
 		t.Fatal("parseReadArgs reflex drill")
 	}
-	_, solutionKind, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--solution", "reflex"})
-	if parseErr || solutionKind != "reflex" || catalog || brief || runMode != "" {
+	_, solutionKind, help, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--solution", "reflex"})
+	if parseErr || solutionKind != "reflex" || help || catalog || brief || runMode != "" {
 		t.Fatal("parseReadArgs solution reflex")
 	}
-	drillKind, solutionKind, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--run", "reflex"})
-	if parseErr || runMode != "reflex" || drillKind != "" || solutionKind != "" || catalog || brief {
+	drillKind, solutionKind, help, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--run", "reflex"})
+	if parseErr || runMode != "reflex" || drillKind != "" || solutionKind != "" || help || catalog || brief {
 		t.Fatal("parseReadArgs reflex run")
 	}
-	drillKind, solutionKind, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--run"})
-	if parseErr || runMode != "reflex" {
+	drillKind, solutionKind, help, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--run"})
+	if parseErr || runMode != "reflex" || help {
 		t.Fatal("parseReadArgs bare run")
 	}
-	drillKind, solutionKind, catalog, brief, runMode, parseErr = parseReadArgs(nil)
-	if parseErr || drillKind != "" || solutionKind != "" || catalog || brief || runMode != "" {
+	drillKind, solutionKind, help, catalog, brief, runMode, parseErr = parseReadArgs(nil)
+	if parseErr || drillKind != "" || solutionKind != "" || help || catalog || brief || runMode != "" {
 		t.Fatal("parseReadArgs empty")
 	}
-	_, _, _, _, _, parseErr = parseReadArgs([]string{"--drill"})
+	_, _, _, _, _, _, parseErr = parseReadArgs([]string{"--drill"})
 	if !parseErr {
 		t.Fatal("bare drill should error")
 	}
-	_, _, _, _, _, parseErr = parseReadArgs([]string{"--solution"})
+	_, _, _, _, _, _, parseErr = parseReadArgs([]string{"--solution"})
 	if !parseErr {
 		t.Fatal("bare solution should error")
 	}
-	_, _, _, _, _, parseErr = parseReadArgs([]string{"--drill", "core"})
+	_, _, _, _, _, _, parseErr = parseReadArgs([]string{"--drill", "core"})
 	if !parseErr {
 		t.Fatal("core drill should error")
+	}
+	_, _, _, _, _, _, parseErr = parseReadArgs([]string{"--run", "core"})
+	if !parseErr {
+		t.Fatal("core run should error")
+	}
+	_, _, help, _, _, _, parseErr = parseReadArgs([]string{"--help"})
+	if parseErr || !help {
+		t.Fatal("help flag")
 	}
 }
 
@@ -103,5 +111,20 @@ func TestPrintFunctions(t *testing.T) {
 	_, _ = io.Copy(&buf, r)
 	if len(buf.String()) < 30 {
 		t.Fatal("print output too short")
+	}
+}
+
+func TestPrintHelp(t *testing.T) {
+	old := os.Stdout
+	r, w, _ := os.Pipe()
+	os.Stdout = w
+	printHelp()
+	w.Close()
+	os.Stdout = old
+	var buf bytes.Buffer
+	_, _ = io.Copy(&buf, r)
+	out := buf.String()
+	if !bytes.Contains(buf.Bytes(), []byte("reflex")) || !bytes.Contains(buf.Bytes(), []byte("--catalog")) {
+		t.Fatalf("help missing reflex options:\n%s", out)
 	}
 }
