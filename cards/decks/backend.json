@@ -7,7 +7,7 @@
       "trigger"
     ],
     "front": "Interview trigger: Slow SQL query?",
-    "back": "EXPLAIN plan → missing index / bad join → pool or cache",
+    "back": "I'd lead with: EXPLAIN plan → missing index / bad join → pool or cache.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
@@ -19,7 +19,7 @@
       "trigger"
     ],
     "front": "Interview trigger: API design?",
-    "back": "Resource URLs, verbs, status codes, error contract, versioning",
+    "back": "I'd lead with: Resource URLs, verbs, status codes, error contract, versioning.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
@@ -31,7 +31,7 @@
       "trigger"
     ],
     "front": "Interview trigger: Auth?",
-    "back": "JWT claims (exp, iss, aud); validate signature; refresh flow",
+    "back": "I'd lead with: JWT claims (exp, iss, aud); validate signature; refresh flow.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
@@ -43,7 +43,7 @@
       "trigger"
     ],
     "front": "Interview trigger: Outage / flakes?",
-    "back": "Timeouts → retry w/ backoff → circuit breaker → fail fast",
+    "back": "I'd lead with: Timeouts → retry w/ backoff → circuit breaker → fail fast.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
@@ -55,7 +55,7 @@
       "trigger"
     ],
     "front": "Interview trigger: Real-time chat/video?",
-    "back": "WebSocket signaling; WebRTC P2P media; STUN/TURN for NAT",
+    "back": "I'd lead with: WebSocket signaling; WebRTC P2P media; STUN/TURN for NAT.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
@@ -67,7 +67,7 @@
       "trigger"
     ],
     "front": "Interview trigger: Batch compliance job?",
-    "back": "Airflow DAG, idempotent tasks, DLQ, audit trail",
+    "back": "I'd lead with: Airflow DAG, idempotent tasks, DLQ, audit trail.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
@@ -79,7 +79,7 @@
       "trigger"
     ],
     "front": "Interview trigger: Deploy process?",
-    "back": "Jenkins stages; Docker image; health checks; rollback",
+    "back": "I'd lead with: Jenkins stages; Docker image; health checks; rollback.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
@@ -91,7 +91,7 @@
       "trigger"
     ],
     "front": "Interview trigger: Go concurrency?",
-    "back": "Goroutines + channels; context for cancel; worker pools",
+    "back": "I'd lead with: Goroutines + channels; context for cancel; worker pools.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
@@ -103,7 +103,7 @@
       "trigger"
     ],
     "front": "Interview trigger: Invoice rejected?",
-    "back": "XSD validate → sign → submit → correlate audit + payload hash",
+    "back": "I'd lead with: XSD validate → sign → submit → correlate audit + payload hash.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Trigger table (if they ask X → you say Y)"
   },
@@ -164,7 +164,7 @@
       "concept"
     ],
     "front": "REST API design (MST, iBind): Resources?",
-    "back": "nouns, plural (/pages, /pages/{id}/versions)",
+    "back": "Resources — nouns, plural (/pages, /pages/{id}/versions).",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "REST API design (MST, iBind)"
   },
@@ -216,7 +216,7 @@
       "concept"
     ],
     "front": "REST API design (MST, iBind): Pagination?",
-    "back": "limit + cursor (stable) vs offset (simple)",
+    "back": "Pagination — limit + cursor (stable) vs offset (simple).",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "REST API design (MST, iBind)"
   },
@@ -229,7 +229,7 @@
       "concept"
     ],
     "front": "REST API design (MST, iBind): Idempotency?",
-    "back": "PUT/DELETE idempotent; POST needs Idempotency-Key for retries",
+    "back": "Idempotency — PUT/DELETE idempotent; POST needs Idempotency-Key for retries.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "REST API design (MST, iBind)"
   },
@@ -399,7 +399,7 @@
       "messaging"
     ],
     "front": "Apache Airflow: DAG?",
-    "back": "directed acyclic graph of tasks",
+    "back": "DAG — directed acyclic graph of tasks.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Apache Airflow"
   },
@@ -413,7 +413,7 @@
       "messaging"
     ],
     "front": "Apache Airflow: Operators?",
-    "back": "Python tasks with dependencies",
+    "back": "Operators — Python tasks with dependencies.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Apache Airflow"
   },
@@ -427,7 +427,7 @@
       "messaging"
     ],
     "front": "Apache Airflow: Retries?",
-    "back": "retries, retry_delay; tasks must be idempotent",
+    "back": "Retries, retry_delay; tasks must be idempotent.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Apache Airflow"
   },
@@ -441,7 +441,7 @@
       "messaging"
     ],
     "front": "Apache Airflow: Sensors?",
-    "back": "wait for external condition",
+    "back": "Sensors — wait for external condition.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "Apache Airflow"
   },
@@ -454,7 +454,7 @@
       "messaging"
     ],
     "front": "RabbitMQ patterns: Work queue?",
-    "back": "competing consumers, ack after processing",
+    "back": "Work queue — competing consumers, ack after processing.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "RabbitMQ patterns"
   },
@@ -467,7 +467,7 @@
       "messaging"
     ],
     "front": "RabbitMQ patterns: Pub/sub?",
-    "back": "fanout to many subscribers",
+    "back": "Pub/sub — fanout to many subscribers.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "RabbitMQ patterns"
   },
@@ -480,7 +480,7 @@
       "messaging"
     ],
     "front": "RabbitMQ patterns: DLQ?",
-    "back": "poison messages after max retries",
+    "back": "DLQ — poison messages after max retries.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "RabbitMQ patterns"
   },
@@ -558,7 +558,7 @@
       "go"
     ],
     "front": "BitTorrent client: Tracker (BEP 15)?",
-    "back": "UDP announce → peer list",
+    "back": "Tracker (BEP 15) — UDP announce → peer list.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "BitTorrent client"
   },
@@ -571,7 +571,7 @@
       "go"
     ],
     "front": "BitTorrent client: bencode?",
-    "back": "binary encoding for torrent metadata",
+    "back": "Bencode — binary encoding for torrent metadata.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "BitTorrent client"
   },
@@ -584,7 +584,7 @@
       "go"
     ],
     "front": "BitTorrent client: Wire protocol?",
-    "back": "handshake, choke/unchoke, request blocks",
+    "back": "Wire protocol — handshake, choke/unchoke, request blocks.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "BitTorrent client"
   },
@@ -597,7 +597,7 @@
       "go"
     ],
     "front": "BitTorrent client: Concurrency?",
-    "back": "per-peer goroutines, piece bitmap, work scheduling",
+    "back": "Concurrency — per-peer goroutines, piece bitmap, work scheduling.",
     "source": "doc/backend/DRILL_CONCEPTS.md",
     "section": "BitTorrent client"
   },
@@ -982,7 +982,7 @@
       "drill"
     ],
     "front": "HTTP status for resource created?",
-    "back": "201 — 201 Created",
+    "back": "When a resource is created successfully, return 201 Created.",
     "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
     "section": "blocks"
   },
@@ -995,7 +995,7 @@
       "drill"
     ],
     "front": "safe retry for update without side effects?",
-    "back": "put (idempotent) — put",
+    "back": "PUT is idempotent — safe to retry the same update without duplicate side effects.",
     "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
     "section": "blocks"
   },
@@ -1008,7 +1008,7 @@
       "drill"
     ],
     "front": "JWT segments count?",
-    "back": "3 — header.payload.signature",
+    "back": "A JWT has three dot-separated parts: header, payload, and signature.",
     "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
     "section": "blocks"
   },
@@ -1021,7 +1021,7 @@
       "drill"
     ],
     "front": "validate JWT signature with what key type for RS256?",
-    "back": "public — public",
+    "back": "For RS256, verify the JWT signature with the issuer's public key.",
     "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
     "section": "blocks"
   },
@@ -1034,7 +1034,7 @@
       "drill"
     ],
     "front": "API versioning strategy you used?",
-    "back": "url or header — url",
+    "back": "Either URL path versioning (/v1/...) or an Accept-Version header works.",
     "source": "drills/backend/explain/blocks/01_rest_api_jwt/main.go",
     "section": "blocks"
   },
@@ -1047,7 +1047,7 @@
       "drill"
     ],
     "front": "default MySQL InnoDB index structure?",
-    "back": "b-tree or btree — b",
+    "back": "InnoDB uses B-tree indexes by default — good for equality and range scans.",
     "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
     "section": "blocks"
   },
@@ -1060,7 +1060,7 @@
       "drill"
     ],
     "front": "composite index column order matters for left-prefix rule?",
-    "back": "yes — leftmost prefix rule",
+    "back": "Yes — composite indexes follow the leftmost-prefix rule, so column order matters.",
     "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
     "section": "blocks"
   },
@@ -1073,7 +1073,7 @@
       "drill"
     ],
     "front": "N+1 problem fixed by?",
-    "back": "eager or join or batch",
+    "back": "Fix N+1 queries with JOINs, eager loading, or batched fetches instead of per-row lookups.",
     "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
     "section": "blocks"
   },
@@ -1086,7 +1086,7 @@
       "drill"
     ],
     "front": "connection pool avoids repeated?",
-    "back": "handshake or tcp — handshake",
+    "back": "Pooling avoids repeating the TCP and database authentication handshake on every query.",
     "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
     "section": "blocks"
   },
@@ -1099,7 +1099,7 @@
       "drill"
     ],
     "front": "EXPLAIN shows?",
-    "back": "plan or execution plan",
+    "back": "EXPLAIN shows the query execution plan — which indexes are used and estimated row counts.",
     "source": "drills/backend/explain/blocks/02_databases_sql/main.go",
     "section": "blocks"
   },
@@ -1112,7 +1112,7 @@
       "drill"
     ],
     "front": "exponential backoff multiplier base commonly?",
-    "back": "2 — double each attempt",
+    "back": "Exponential backoff doubles the delay each attempt (base 2) and adds jitter.",
     "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
     "section": "blocks"
   },
@@ -1125,7 +1125,7 @@
       "drill"
     ],
     "front": "circuit breaker prevents?",
-    "back": "cascade or cascading",
+    "back": "Circuit breakers stop cascading failures by failing fast when a dependency is unhealthy.",
     "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
     "section": "blocks"
   },
@@ -1138,7 +1138,7 @@
       "drill"
     ],
     "front": "idempotency key sent in?",
-    "back": "header (common) — header",
+    "back": "Put the idempotency key in a request header — typically Idempotency-Key.",
     "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
     "section": "blocks"
   },
@@ -1151,7 +1151,7 @@
       "drill"
     ],
     "front": "saga pattern coordinates via?",
-    "back": "events or choreography or orchestration",
+    "back": "For distributed transactions in microservices, I'd use a saga instead of 2PC.",
     "source": "drills/backend/explain/blocks/03_distributed_resilience/main.go",
     "section": "blocks"
   },
@@ -1164,7 +1164,7 @@
       "drill"
     ],
     "front": "WebRTC media path is?",
-    "back": "peer or p2p — peer",
+    "back": "WebRTC media travels peer-to-peer over encrypted UDP — not through your API server.",
     "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
     "section": "blocks"
   },
@@ -1177,7 +1177,7 @@
       "drill"
     ],
     "front": "signaling carries?",
-    "back": "sdp or session description",
+    "back": "Signaling exchanges SDP offer/answer to negotiate codecs and media parameters.",
     "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
     "section": "blocks"
   },
@@ -1190,7 +1190,7 @@
       "drill"
     ],
     "front": "ICE gathers?",
-    "back": "candidates — candidate",
+    "back": "ICE gathers host, server-reflexive (STUN), and relay (TURN) candidates.",
     "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
     "section": "blocks"
   },
@@ -1203,7 +1203,7 @@
       "drill"
     ],
     "front": "STUN discovers public?",
-    "back": "address or ip — address",
+    "back": "STUN discovers the client's public IP and port for NAT hole punching.",
     "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
     "section": "blocks"
   },
@@ -1216,7 +1216,7 @@
       "drill"
     ],
     "front": "TURN used when direct P2P?",
-    "back": "fails or blocked — fail",
+    "back": "NAT often blocks direct peer paths — that's when you need STUN/TURN.",
     "source": "drills/backend/explain/blocks/04_realtime_webrtc/main.go",
     "section": "blocks"
   },
@@ -1229,7 +1229,7 @@
       "drill"
     ],
     "front": "Airflow unit of work?",
-    "back": "task — task",
+    "back": "In Airflow, operators define tasks — Python units of work wired together in a DAG.",
     "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
     "section": "blocks"
   },
@@ -1242,7 +1242,7 @@
       "drill"
     ],
     "front": "DAG means?",
-    "back": "directed acyclic graph",
+    "back": "A DAG is a directed acyclic graph of tasks with explicit dependencies.",
     "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
     "section": "blocks"
   },
@@ -1255,7 +1255,7 @@
       "drill"
     ],
     "front": "failed task safe rerun needs?",
-    "back": "idempotent — idempotent",
+    "back": "Tasks need to be idempotent so retries and reruns from a failed node are safe.",
     "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
     "section": "blocks"
   },
@@ -1268,7 +1268,7 @@
       "drill"
     ],
     "front": "RabbitMQ dead letter queue for?",
-    "back": "poison or failed — poison",
+    "back": "Poison messages go to a dead-letter queue after repeated failures.",
     "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
     "section": "blocks"
   },
@@ -1281,7 +1281,7 @@
       "drill"
     ],
     "front": "work queue pattern?",
-    "back": "consumers — consumer",
+    "back": "Work-queue pattern — multiple competing consumers, ack after successful processing.",
     "source": "drills/backend/explain/blocks/05_workflows_messaging/main.go",
     "section": "blocks"
   },
@@ -1294,7 +1294,7 @@
       "drill"
     ],
     "front": "Docker image built from?",
-    "back": "layers — layer",
+    "back": "Docker images are stacked layers — multi-stage builds keep production images small.",
     "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
     "section": "blocks"
   },
@@ -1307,7 +1307,7 @@
       "drill"
     ],
     "front": "CI stage before deploy?",
-    "back": "test — test",
+    "back": "The CI pipeline runs tests (and lint/security scans) before any deploy artifact ships.",
     "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
     "section": "blocks"
   },
@@ -1320,7 +1320,7 @@
       "drill"
     ],
     "front": "Lambda best for?",
-    "back": "short or event — short",
+    "back": "Lambda suits short-lived, event-driven workloads — not always-on services.",
     "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
     "section": "blocks"
   },
@@ -1333,7 +1333,7 @@
       "drill"
     ],
     "front": "CDN caches?",
-    "back": "static — static",
+    "back": "CDN caches static content at the edge to cut latency and origin load.",
     "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
     "section": "blocks"
   },
@@ -1346,7 +1346,7 @@
       "drill"
     ],
     "front": "container health check probes?",
-    "back": "liveness or readiness",
+    "back": "Use liveness (restart if dead) and readiness (gate traffic) probes in Kubernetes or Docker.",
     "source": "drills/backend/explain/blocks/06_devops_aws/main.go",
     "section": "blocks"
   },
@@ -1359,7 +1359,7 @@
       "drill"
     ],
     "front": "XSD validates?",
-    "back": "structure or schema — structure",
+    "back": "Validate invoice XML against the authority XSD schema before signing.",
     "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
     "section": "blocks"
   },
@@ -1372,7 +1372,7 @@
       "drill"
     ],
     "front": "digital signature proves?",
-    "back": "integrity or authenticity",
+    "back": "A digital signature proves integrity (unchanged payload) and authenticity (trusted signer).",
     "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
     "section": "blocks"
   },
@@ -1385,7 +1385,7 @@
       "drill"
     ],
     "front": "signing hash algorithm example?",
-    "back": "sha256 — sha",
+    "back": "Sign with a strong hash like SHA-256 before applying the private key.",
     "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
     "section": "blocks"
   },
@@ -1398,7 +1398,7 @@
       "drill"
     ],
     "front": "replay attack prevented by?",
-    "back": "nonce or timestamp or id",
+    "back": "Prevent replays with a unique invoice ID, timestamp, and nonce in the signed payload.",
     "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
     "section": "blocks"
   },
@@ -1411,7 +1411,7 @@
       "drill"
     ],
     "front": "audit trail stores?",
-    "back": "who or when — who",
+    "back": "Audit trails record who changed what and when — actor, timestamp, and payload hash.",
     "source": "drills/backend/explain/blocks/07_compliance_security/main.go",
     "section": "blocks"
   },
@@ -1424,7 +1424,7 @@
       "drill"
     ],
     "front": "goroutine scheduling model?",
-    "back": "m:n or multiplexed — m",
+    "back": "Go multiplexes many goroutines onto fewer OS threads (M:N scheduling).",
     "source": "drills/backend/explain/blocks/08_go_systems/main.go",
     "section": "blocks"
   },
@@ -1437,7 +1437,7 @@
       "drill"
     ],
     "front": "context.Context used for?",
-    "back": "cancellation or deadline",
+    "back": "Use context.Context to propagate cancellation and deadlines across goroutines.",
     "source": "drills/backend/explain/blocks/08_go_systems/main.go",
     "section": "blocks"
   },
@@ -1450,7 +1450,7 @@
       "drill"
     ],
     "front": "BitTorrent metadata encoding?",
-    "back": "bencode — bencode",
+    "back": "BitTorrent metadata uses bencode — a compact binary encoding for .torrent structures.",
     "source": "drills/backend/explain/blocks/08_go_systems/main.go",
     "section": "blocks"
   },
@@ -1463,7 +1463,7 @@
       "drill"
     ],
     "front": "HTTP keep-alive reuses?",
-    "back": "connection or tcp — connection",
+    "back": "HTTP keep-alive reuses the same TCP connection for multiple requests on one socket.",
     "source": "drills/backend/explain/blocks/08_go_systems/main.go",
     "section": "blocks"
   },
@@ -1476,7 +1476,7 @@
       "drill"
     ],
     "front": "graceful shutdown closes?",
-    "back": "listener — listener",
+    "back": "Graceful shutdown stops accepting new connections and drains in-flight requests before exit.",
     "source": "drills/backend/explain/blocks/08_go_systems/main.go",
     "section": "blocks"
   },
@@ -1489,7 +1489,7 @@
       "drill"
     ],
     "front": "three parts of a JWT, separated by what character?",
-    "back": "dot — Authorization header",
+    "back": "JWT has three Base64URL parts separated by dots: header, payload, signature.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
@@ -1502,7 +1502,7 @@
       "drill"
     ],
     "front": "where is JWT usually sent? one word?",
-    "back": "header — exp claim",
+    "back": "Send the JWT in the Authorization header as Bearer <token>.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
@@ -1515,7 +1515,7 @@
       "drill"
     ],
     "front": "claim that enforces expiry?",
-    "back": "exp — where",
+    "back": "The exp claim enforces token expiry — reject any JWT past that timestamp.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
@@ -1528,7 +1528,7 @@
       "drill"
     ],
     "front": "three states?",
-    "back": "closed,open,half-open",
+    "back": "Circuit breaker states: CLOSED (normal), OPEN (fail fast), HALF-OPEN (probing).",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
@@ -1541,7 +1541,7 @@
       "drill"
     ],
     "front": "open circuit behavior?",
-    "back": "fail fast — HTTP Upgrade",
+    "back": "When the circuit is open, fail fast — return an error immediately without calling the sick service.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
@@ -1554,7 +1554,7 @@
       "drill"
     ],
     "front": "index helps which clause? keyword?",
-    "back": "where — duplex push",
+    "back": "Indexes accelerate WHERE filters and JOIN keys — mind the left-prefix rule on composites.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
@@ -1567,7 +1567,7 @@
       "drill"
     ],
     "front": "pooling reduces what? keyword?",
-    "back": "connection — idempotent",
+    "back": "Connection pooling reuses open DB connections instead of opening one per request.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
@@ -1580,7 +1580,7 @@
       "drill"
     ],
     "front": "WebSocket starts as HTTP?",
-    "back": "upgrade",
+    "back": "WebSocket begins as an HTTP Upgrade request, then switches to full-duplex TCP.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
@@ -1593,7 +1593,7 @@
       "drill"
     ],
     "front": "server-push chat transport?",
-    "back": "websocket",
+    "back": "WebSocket enables server-push — full-duplex, unlike plain HTTP request/response.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
@@ -1606,7 +1606,7 @@
       "drill"
     ],
     "front": "jitter prevents?",
-    "back": "thundering herd",
+    "back": "Jitter randomizes retry timing so clients don't all retry at once — avoiding a thundering herd.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
@@ -1619,7 +1619,7 @@
       "drill"
     ],
     "front": "retries need operations?",
-    "back": "idempotent",
+    "back": "Only retry idempotent operations, or attach an Idempotency-Key for write retries.",
     "source": "drills/backend/explain/core5/main.go",
     "section": "Core 5"
   },
@@ -1632,7 +1632,7 @@
       "revision"
     ],
     "front": "HTTP status for successful GET?",
-    "back": "200 — 200 OK",
+    "back": "For a successful GET, I'd return 200 OK.",
     "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
     "section": "revision"
   },
@@ -1645,7 +1645,7 @@
       "revision"
     ],
     "front": "idempotent update verb?",
-    "back": "put — put",
+    "back": "PUT is idempotent — safe to retry the same update without duplicate side effects.",
     "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
     "section": "revision"
   },
@@ -1658,7 +1658,7 @@
       "revision"
     ],
     "front": "JWT sent in HTTP?",
-    "back": "header — Authorization header",
+    "back": "Send the JWT in the Authorization header as Bearer <token>.",
     "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
     "section": "revision"
   },
@@ -1671,7 +1671,7 @@
       "revision"
     ],
     "front": "safe POST retry header?",
-    "back": "idempotency-key — idempotency",
+    "back": "Send an Idempotency-Key header so duplicate POST retries are safe.",
     "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
     "section": "revision"
   },
@@ -1684,7 +1684,7 @@
       "revision"
     ],
     "front": "API version in URL prefix?",
-    "back": "v1 or /v1 — v1",
+    "back": "Version the API in the URL path — e.g. /v1/pages — or via an Accept-Version header.",
     "source": "drills/backend/explain/revision/01_api_auth_recap/main.go",
     "section": "revision"
   },
@@ -1697,7 +1697,7 @@
       "revision"
     ],
     "front": "first step for slow SQL?",
-    "back": "explain — explain",
+    "back": "I'd start with EXPLAIN ANALYZE to see the execution plan and where time is spent.",
     "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
     "section": "revision"
   },
@@ -1710,7 +1710,7 @@
       "revision"
     ],
     "front": "index helps which clause?",
-    "back": "where — where",
+    "back": "Indexes accelerate WHERE filters and JOIN keys — mind the left-prefix rule on composites.",
     "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
     "section": "revision"
   },
@@ -1723,7 +1723,7 @@
       "revision"
     ],
     "front": "pool reuses?",
-    "back": "connection or connections",
+    "back": "Connection pooling reuses open DB connections instead of opening one per request.",
     "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
     "section": "revision"
   },
@@ -1736,7 +1736,7 @@
       "revision"
     ],
     "front": "circuit breaker open behavior?",
-    "back": "fail fast — fail",
+    "back": "An open circuit fails fast — callers get an immediate error without hitting the dependency.",
     "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
     "section": "revision"
   },
@@ -1749,7 +1749,7 @@
       "revision"
     ],
     "front": "backoff multiplier base?",
-    "back": "2 — double each attempt",
+    "back": "Exponential backoff doubles the delay each attempt (base 2) and adds jitter.",
     "source": "drills/backend/explain/revision/02_data_resilience_recap/main.go",
     "section": "revision"
   },
@@ -1762,7 +1762,7 @@
       "revision"
     ],
     "front": "during partition sacrifice consistency or availability?",
-    "back": "consistency or availability",
+    "back": "During a partition you choose CP or AP — consistency or availability.",
     "source": "drills/backend/explain/revision/03_distributed_realtime/main.go",
     "section": "revision"
   },
@@ -1775,7 +1775,7 @@
       "revision"
     ],
     "front": "microservices distributed tx pattern?",
-    "back": "saga — saga",
+    "back": "I'd choose a saga over 2PC — local transactions plus compensating actions, more resilient to partitions.",
     "source": "drills/backend/explain/revision/03_distributed_realtime/main.go",
     "section": "revision"
   },
@@ -1788,7 +1788,7 @@
       "revision"
     ],
     "front": "idempotency key location?",
-    "back": "header — header",
+    "back": "Put the idempotency key in a request header — typically Idempotency-Key.",
     "source": "drills/backend/explain/revision/03_distributed_realtime/main.go",
     "section": "revision"
   },
@@ -1801,7 +1801,7 @@
       "revision"
     ],
     "front": "relay when P2P fails?",
-    "back": "turn — turn",
+    "back": "TURN relays media when direct peer-to-peer fails — common behind VPNs or strict firewalls.",
     "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
     "section": "revision"
   },
@@ -1814,7 +1814,7 @@
       "revision"
     ],
     "front": "signaling transport?",
-    "back": "websocket — websocket",
+    "back": "Use WebSocket for signaling — SDP exchange and ICE trickling.",
     "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
     "section": "revision"
   },
@@ -1827,7 +1827,7 @@
       "revision"
     ],
     "front": "Airflow graph type?",
-    "back": "dag — dag",
+    "back": "Airflow models workflows as a DAG — directed acyclic graph of dependent tasks.",
     "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
     "section": "revision"
   },
@@ -1840,7 +1840,7 @@
       "revision"
     ],
     "front": "poison messages go to?",
-    "back": "dlq or dead letter — dlq",
+    "back": "Route poison messages to a dead-letter queue after max retries so the main queue isn't blocked.",
     "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
     "section": "revision"
   },
@@ -1853,7 +1853,7 @@
       "revision"
     ],
     "front": "competing consumers pattern?",
-    "back": "work queue — work",
+    "back": "Work-queue pattern — competing consumers pull jobs and ack only after processing.",
     "source": "drills/backend/explain/revision/04_realtime_messaging/main.go",
     "section": "revision"
   },
@@ -1866,7 +1866,7 @@
       "revision"
     ],
     "front": "Docker health?",
-    "back": "readiness — readiness",
+    "back": "Readiness probe gates traffic — the load balancer skips instances that aren't ready.",
     "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
     "section": "revision"
   },
@@ -1879,7 +1879,7 @@
       "revision"
     ],
     "front": "short event handler on AWS?",
-    "back": "lambda — lambda",
+    "back": "AWS Lambda fits short, event-driven handlers — not long-running services.",
     "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
     "section": "revision"
   },
@@ -1892,7 +1892,7 @@
       "revision"
     ],
     "front": "static asset edge cache?",
-    "back": "cdn or cloudfront — cdn",
+    "back": "Use a CDN like CloudFront to cache static assets at the edge, close to users.",
     "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
     "section": "revision"
   },
@@ -1905,7 +1905,7 @@
       "revision"
     ],
     "front": "pipeline runs tests before deploy?",
-    "back": "ci or continuous integration",
+    "back": "Run CI — tests, lint, and security scans — before any deploy to production.",
     "source": "drills/backend/explain/revision/05_devops_orchestration/main.go",
     "section": "revision"
   },
@@ -1918,7 +1918,7 @@
       "revision"
     ],
     "front": "ZATCA step before submit?",
-    "back": "sign or signing — sign",
+    "back": "Cryptographically sign the payload — hash with SHA-256, then sign with the private key.",
     "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
     "section": "revision"
   },
@@ -1931,7 +1931,7 @@
       "revision"
     ],
     "front": "schema validation format?",
-    "back": "xsd — xsd",
+    "back": "Run XSD validation against the authority schema before signing and submission.",
     "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
     "section": "revision"
   },
@@ -1944,7 +1944,7 @@
       "revision"
     ],
     "front": "Go cancellation primitive?",
-    "back": "context — context",
+    "back": "Context.Context carries cancellation, deadlines, and request-scoped values.",
     "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
     "section": "revision"
   },
@@ -1957,7 +1957,7 @@
       "revision"
     ],
     "front": "HTTP graceful stop method?",
-    "back": "shutdown — shutdown",
+    "back": "Call http.Server.Shutdown(ctx) — stop accepting new connections and drain in-flight requests.",
     "source": "drills/backend/explain/revision/07_go_compliance_mix/main.go",
     "section": "revision"
   },
@@ -1970,7 +1970,7 @@
       "scenario"
     ],
     "front": "Mock interview: Design REST endpoints for creating, versioning, and publishing pages with role-based permissions.",
-    "back": "Resources: /pages, /pages/{id}/versions, /pages/{id}/publish; Draft vs published snapshot; audit who published; 403 vs 404 for unauthorized vs missing",
+    "back": "I'd structure my answer: 1) Resources: /pages, /pages/{id}/versions, /pages/{id}/publish; 2) Draft vs published snapshot; audit who published; 3) 403 vs 404 for unauthorized vs missing.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "MST — Page publish API"
   },
@@ -1983,7 +1983,7 @@
       "scenario"
     ],
     "front": "Mock interview: Analytics query on 10M rows takes 30s. How did you get 35% improvement?",
-    "back": "EXPLAIN → full scan on filter column; Composite index on (tenant_id, created_at); Rewrite subquery; consider summary table",
+    "back": "I'd structure my answer: 1) EXPLAIN → full scan on filter column; 2) Composite index on (tenant_id, created_at); 3) Rewrite subquery; consider summary table.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "MST — Slow reporting query"
   },
@@ -1996,7 +1996,7 @@
       "scenario"
     ],
     "front": "Mock interview: Users on corporate VPN cannot connect video. Debug approach?",
-    "back": "Signaling OK? ICE candidates include relay?; Deploy TURN; test UDP blocked; Connection state timeline in client logs",
+    "back": "I'd structure my answer: 1) Signaling OK? ICE candidates include relay?; 2) Deploy TURN; test UDP blocked; 3) Connection state timeline in client logs.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "iBind — NAT video failure"
   },
@@ -2009,7 +2009,7 @@
       "scenario"
     ],
     "front": "Mock interview: Payment service flaky. How do you protect your API?",
-    "back": "Timeout every outbound call; Retry idempotent reads with backoff; Circuit breaker; degrade gracefully",
+    "back": "I'd structure my answer: 1) Timeout every outbound call; 2) Retry idempotent reads with backoff; 3) Circuit breaker; degrade gracefully.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "iBind — Downstream outage"
   },
@@ -2022,7 +2022,7 @@
       "scenario"
     ],
     "front": "Mock interview: Airflow task retry created duplicate submissions. Fix?",
-    "back": "Idempotent task keyed by invoice ID; Check submission log before POST; DLQ for permanent failures",
+    "back": "I'd structure my answer: 1) Idempotent task keyed by invoice ID; 2) Check submission log before POST; 3) DLQ for permanent failures.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "Opscale — Duplicate invoices"
   },
@@ -2035,7 +2035,7 @@
       "scenario"
     ],
     "front": "Mock interview: Authority rejected invoice. Trace root cause.",
-    "back": "XSD validation errors in logs; Signature certificate expiry; Compare payload hash to audit store",
+    "back": "I'd structure my answer: 1) XSD validation errors in logs; 2) Signature certificate expiry; 3) Compare payload hash to audit store.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "Opscale — ZATCA rejection"
   },
@@ -2048,7 +2048,7 @@
       "scenario"
     ],
     "front": "Mock interview: Walk through your HTTP server middleware chain.",
-    "back": "Logging → recovery → auth → handler; Context carries request ID + user; Graceful shutdown on SIGTERM",
+    "back": "I'd structure my answer: 1) Logging → recovery → auth → handler; 2) Context carries request ID + user; 3) Graceful shutdown on SIGTERM.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "Go — HTTP server design"
   },
@@ -2061,7 +2061,7 @@
       "scenario"
     ],
     "front": "Mock interview: Design a rate limiter for 10k RPS API.",
-    "back": "Token bucket or sliding window per client; Redis for distributed counters; 429 + Retry-After header; MOCK SCENARIOS — 3 minutes each, out loud; ============================================; \\n%d. %s\\n; Q: %s\\n; (After answering, reveal hints:); • %s\\n; \\nFull STAR scripts: doc/backend/STAR_STORIES.md",
+    "back": "I'd structure my answer: 1) Token bucket or sliding window per client; 2) Redis for distributed counters; 3) 429 + Retry-After header.",
     "source": "drills/backend/scenario/mock_scenarios/main.go",
     "section": "System design — Rate limiter"
   }
