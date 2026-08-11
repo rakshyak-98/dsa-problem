@@ -37,6 +37,9 @@ go run . -- --run reflex        # check reflex specialty answers
 go run . -- --drill core        # core only (Core Read 3 + Core 5)
 go run . -- --drill reflex       # today's specialty only
 go run . -- --track backend   # backend interview track
+go run . -- --track backend -- --drill revision   # weekly revision drill
+go run . -- --track backend -- --run revision     # check revision answers
+go run . -- --track backend -- --catalog          # blocks + revision cycle
 go run . -- --track read      # reading only
 go run . -- --track write     # writing only
 go run . -- --track cards     # spaced-repetition flashcards
@@ -69,11 +72,17 @@ Guide: [`doc/read/START_HERE.md`](../doc/read/START_HERE.md)
 ## Backend interview prep
 
 ```bash
-go run ./bin/study_backend -- --cram    # cram schedule until interview
-go run ./bin/study_backend -- --run     # validate answers
+go run ./bin/study_backend                    # today's block + revision plan
+go run ./bin/study_backend -- --drill revision  # revision drill only
+go run ./bin/study_backend -- --run revision    # validate revision answers
+go run ./bin/study_backend -- --run core         # Core 5 explain + write
+go run ./bin/study_backend -- --run reflex       # today's resume block
+go run ./bin/study_backend -- --catalog         # blocks + weekly revision cycle
+go run ./bin/study_backend -- --cram            # cram schedule until interview
 ```
 
-Guide: [`doc/backend/START_HERE.md`](../doc/backend/START_HERE.md)
+Guide: [`doc/backend/START_HERE.md`](../doc/backend/START_HERE.md)  
+Weekly revision: [`doc/backend/WEEKLY_REVISION.md`](../doc/backend/WEEKLY_REVISION.md)
 
 ## Solutions (after honest attempt)
 

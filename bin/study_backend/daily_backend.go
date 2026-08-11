@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -13,13 +14,27 @@ type coreItem struct {
 }
 
 type block struct {
-	day     string
-	file    string
-	topic   string
-	resume  string
-	focus   []string
-	warmup  string
+	day      string
+	file     string
+	topic    string
+	resume   string
+	focus    []string
+	warmup   string
 	scenario string
+}
+
+type revisionDay struct {
+	day           string
+	file          string
+	label         string
+	topics        []string
+	revisitBlocks []string
+	activity      string
+}
+
+type topicGroup struct {
+	group  string
+	topics []string
 }
 
 var coreExplain = []coreItem{
@@ -38,7 +53,8 @@ var coreWrite = []coreItem{
 	{"parseBearerToken", "Extract token from Authorization header", 90},
 }
 
-var blocks = []block{
+// weekdayBlocks — Mon→Sun resume blocks (block 08 is bonus / Sunday revision add-on).
+var weekdayBlocks = []block{
 	{
 		day: "Monday", file: "01_rest_api_jwt",
 		topic: "REST API design & JWT",
@@ -123,32 +139,163 @@ var blocks = []block{
 		},
 		scenario: "Invoice rejected by ZATCA — how do you trace root cause?",
 	},
+}
+
+var bonusBlock = block{
+	day: "Bonus", file: "08_go_systems",
+	topic: "Go systems programming",
+	resume: "BitTorrent client; HTTP server from scratch",
+	warmup: "Goroutine per connection vs worker pool — tradeoffs.",
+	focus: []string{
+		"Goroutines, channels, context cancellation",
+		"TCP lifecycle, HTTP/1.1 keep-alive",
+		"bencode, peer wire protocol, piece scheduling",
+	},
+	scenario: "Explain your HTTP server middleware chain design.",
+}
+
+// blocks is the full catalog (weekday + bonus) for cram/catalog views.
+var blocks = append(weekdayBlocks, bonusBlock)
+
+// revisionCycle — weekly cross-topic revision (re-run prior blocks from memory).
+var revisionCycle = []revisionDay{
 	{
-		day: "Interview eve", file: "08_go_systems",
-		topic: "Go systems programming",
-		resume: "BitTorrent client; HTTP server from scratch",
-		warmup: "Goroutine per connection vs worker pool — tradeoffs.",
-		focus: []string{
-			"Goroutines, channels, context cancellation",
-			"TCP lifecycle, HTTP/1.1 keep-alive",
-			"bencode, peer wire protocol, piece scheduling",
+		day: "Monday", file: "01_api_auth_recap",
+		label: "API & auth recap",
+		topics: []string{
+			"REST resource naming, status codes, error contract",
+			"JWT flow: access/refresh, exp/iss/aud validation",
+			"Idempotency-Key for safe POST retries",
 		},
-		scenario: "Explain your HTTP server middleware chain design.",
+		revisitBlocks: []string{},
+		activity:      "Say trigger rows (API design, Auth) out loud; run today's block 01 from memory.",
+	},
+	{
+		day: "Tuesday", file: "02_data_resilience_recap",
+		label: "Data layer + resilience recap",
+		topics: []string{
+			"EXPLAIN → index → rewrite → pool/cache",
+			"Composite index column order",
+			"Circuit breaker states + exponential backoff",
+		},
+		revisitBlocks: []string{"01_rest_api_jwt"},
+		activity:      "Re-run block 01 explain without peeking; then today's block 02.",
+	},
+	{
+		day: "Wednesday", file: "03_distributed_realtime",
+		label: "Distributed + real-time recap",
+		topics: []string{
+			"CAP trade-off during partition",
+			"Saga vs 2PC",
+			"WebSocket upgrade vs REST polling",
+		},
+		revisitBlocks: []string{"02_databases_sql"},
+		activity:      "Re-run block 02; draw outage isolation diagram for block 03.",
+	},
+	{
+		day: "Thursday", file: "04_realtime_messaging",
+		label: "Real-time + messaging recap",
+		topics: []string{
+			"SDP/ICE/STUN/TURN NAT checklist",
+			"Airflow idempotent tasks + DLQ",
+			"RabbitMQ work queue vs pub/sub",
+		},
+		revisitBlocks: []string{"03_distributed_resilience"},
+		activity:      "Re-run block 03; rehearse WebRTC NAT debug scenario out loud.",
+	},
+	{
+		day: "Friday", file: "05_devops_orchestration",
+		label: "DevOps + orchestration recap",
+		topics: []string{
+			"Jenkins pipeline stages",
+			"Docker liveness vs readiness",
+			"Lambda vs EC2 vs CDN quick map",
+		},
+		revisitBlocks: []string{"04_realtime_webrtc", "05_workflows_messaging"},
+		activity:      "Re-run blocks 04–05; walk Jenkins setup from resume.",
+	},
+	{
+		day: "Saturday", file: "06_full_week_sweep",
+		label: "Full-week trigger sweep",
+		topics: []string{
+			"All 9 trigger-table rows (DRILL_CONCEPTS.md)",
+			"Cross-block scenario: flake → retry → breaker → DLQ",
+			"STAR story pick: latency 40% or ZATCA pipeline",
+		},
+		revisitBlocks: []string{
+			"01_rest_api_jwt", "02_databases_sql", "03_distributed_resilience",
+			"04_realtime_webrtc", "05_workflows_messaging", "06_devops_aws",
+		},
+		activity:      "Run all 6 weekday blocks (--run reflex); cards: go run . -- --track cards --deck=backend --due",
+	},
+	{
+		day: "Sunday", file: "07_go_compliance_mix",
+		label: "Go systems + compliance mix",
+		topics: []string{
+			"ZATCA: XSD → sign → submit → audit",
+			"Go: goroutine pools, context cancel, graceful shutdown",
+			"HTTP keep-alive + BitTorrent piece scheduling",
+		},
+		revisitBlocks: []string{"07_compliance_security", "08_go_systems"},
+		activity:      "Re-run blocks 07 + 08; rest or light cards review (--deck=star).",
 	},
 }
 
+// backendTopics — collected topic index for catalog and docs.
+var backendTopics = []topicGroup{
+	{group: "API & auth", topics: []string{
+		"REST design", "JWT", "versioning", "pagination", "idempotency", "structured errors",
+	}},
+	{group: "Data layer", topics: []string{
+		"MySQL indexing", "EXPLAIN", "connection pooling", "schema design", "read replicas", "N+1",
+	}},
+	{group: "Distributed systems", topics: []string{
+		"Retry + backoff", "circuit breaker", "CAP", "saga vs 2PC", "idempotency keys", "bulkhead",
+	}},
+	{group: "Real-time", topics: []string{
+		"WebSocket", "WebRTC signaling", "SDP/ICE", "STUN/TURN", "NAT debug",
+	}},
+	{group: "Workflows & messaging", topics: []string{
+		"Airflow DAGs", "idempotent tasks", "RabbitMQ", "DLQ", "pub/sub",
+	}},
+	{group: "DevOps & cloud", topics: []string{
+		"Docker multi-stage", "Jenkins pipelines", "EC2", "Lambda", "CDN", "health checks",
+	}},
+	{group: "Compliance & security", topics: []string{
+		"ZATCA XML/XSD", "cryptographic signing", "audit trail", "replay protection",
+	}},
+	{group: "Go systems", topics: []string{
+		"goroutines/channels", "context", "HTTP server", "BitTorrent", "worker pools",
+	}},
+	{group: "Cards (b2b decks)", topics: []string{
+		"b2b-docker", "b2b-database", "b2b-networking", "b2b-golang", "b2b-devops",
+		"b2b-aws", "b2b-nginx", "b2b-kubernates", "b2b-system-design",
+	}},
+}
+
+func weekdayIndex(wd time.Weekday) int {
+	dayIndex := int(wd)
+	idx := dayIndex - 1
+	if dayIndex == 0 {
+		idx = 6
+	}
+	return idx
+}
+
 func todayBlock() block {
-	// Interview cram: Aug 6 eve → block 08; Aug 7 morning → rotate through high-priority
+	// Interview cram: Aug 6 eve → block 08; Aug 7 morning → resilience
 	now := time.Now()
 	if now.Year() == 2026 && now.Month() == time.August && now.Day() == 6 {
-		return blocks[7] // Go systems + projects
+		return bonusBlock
 	}
 	if now.Year() == 2026 && now.Month() == time.August && now.Day() == 7 && now.Hour() < 16 {
-		return blocks[2] // resilience — common backend interview topic
+		return weekdayBlocks[2]
 	}
-	wd := int(now.Weekday())
-	idx := wd % len(blocks)
-	return blocks[idx]
+	return weekdayBlocks[weekdayIndex(now.Weekday())]
+}
+
+func todayRevision() revisionDay {
+	return revisionCycle[weekdayIndex(time.Now().Weekday())]
 }
 
 func printCoreExplain() {
@@ -193,15 +340,50 @@ func printBlock(b block) {
 	fmt.Println()
 }
 
+func printRevision(r revisionDay) {
+	fmt.Println("════════════════════════════════════════")
+	fmt.Printf(" WEEKLY REVISION — %s (%s)\n", r.day, r.file)
+	fmt.Println("════════════════════════════════════════")
+	fmt.Printf("  Label:    %s\n", r.label)
+	fmt.Println("  Topics:")
+	for _, t := range r.topics {
+		fmt.Printf("    • %s\n", t)
+	}
+	if len(r.revisitBlocks) > 0 {
+		fmt.Println("  Revisit blocks (no peeking):")
+		for _, b := range r.revisitBlocks {
+			fmt.Printf("    → drills/backend/explain/blocks/%s/\n", b)
+		}
+	}
+	fmt.Printf("\n  Activity: %s\n", r.activity)
+	fmt.Printf("\n  Open:  drills/backend/explain/revision/%s/\n", r.file)
+	fmt.Println()
+}
+
 func printCatalog() {
 	fmt.Println("BACKEND INTERVIEW BLOCK CATALOG (from resume)")
 	fmt.Println("----------------------------------------------")
-	for _, b := range blocks {
-		fmt.Printf("%-12s  %-22s  %s\n", b.day, b.file, b.topic)
+	for _, b := range weekdayBlocks {
+		fmt.Printf("%-9s  %-22s  %s\n", b.day, b.file, b.topic)
+	}
+	fmt.Printf("%-9s  %-22s  %s\n", bonusBlock.day, bonusBlock.file, bonusBlock.topic)
+	fmt.Println()
+	fmt.Println("WEEKLY REVISION CYCLE")
+	fmt.Println("---------------------")
+	for _, r := range revisionCycle {
+		fmt.Printf("%-9s  %-24s  %s\n", r.day, r.file, r.label)
+	}
+	fmt.Println()
+	fmt.Println("TOPIC GROUPS")
+	fmt.Println("------------")
+	for _, g := range backendTopics {
+		fmt.Printf("%-28s  %s\n", g.group, strings.Join(g.topics, ", "))
 	}
 	fmt.Println()
 	fmt.Println("Core explain: drills/backend/explain/core5/")
 	fmt.Println("Core write:   drills/backend/write/core5/")
+	fmt.Println("Revision:     drills/backend/explain/revision/")
+	fmt.Println("Weekly plan:  doc/backend/WEEKLY_REVISION.md")
 	fmt.Println("Cram plan:    doc/backend/INTERVIEW_CRAM_PLAN.md")
 }
 

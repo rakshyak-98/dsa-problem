@@ -9,7 +9,7 @@ import (
 //   drills/backend/explain/core5/     — daily Core 5 verbal drills
 //   drills/backend/explain/blocks/  — resume-themed concept blocks
 //   drills/backend/write/core5/     — Go reflex implementations
-//   drills/backend/scenario/        — STAR / mock interview prompts
+//   drills/backend/explain/revision/ — weekly cross-topic revision drills
 
 func findRepoRoot(from string) string {
 	dir := from
@@ -45,6 +45,10 @@ func explainBlockDir(repoRoot, block string) string {
 
 func writeCore5Dir(repoRoot string) string {
 	return filepath.Join(repoRoot, "drills", "backend", "write", "core5")
+}
+
+func explainRevisionDir(repoRoot, file string) string {
+	return filepath.Join(repoRoot, "drills", "backend", "explain", "revision", file)
 }
 
 func scenarioDir(repoRoot string) string {
