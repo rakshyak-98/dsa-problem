@@ -66,7 +66,7 @@ Backend track (--track=backend) also accepts:
 Cards track (--track=cards) also accepts:
       --due, --stats, --list, --review, --reset
       --deck=NAME, --tag=TAG, --limit=N, --new=N, --no-shuffle
-      (decks: jargon/patterns/… plus b2b-* from Back2Basics)
+      (decks: backend, star — interview Q&A only)
 
 `)
 }

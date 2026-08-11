@@ -4,7 +4,7 @@
 // DUE:       go run ./bin/study_cards -- --due
 // STATS:     go run ./bin/study_cards -- --stats
 // CATALOG:   go run ./bin/study_cards -- --catalog
-// DECK:      go run ./bin/study_cards -- --deck=jargon --limit=15
+// DECK:      go run ./bin/study_cards -- --deck=backend --limit=15
 package main
 
 import (

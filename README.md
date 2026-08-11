@@ -49,7 +49,7 @@ dsa-problem/
 │   ├── read/                # reading drill guides
 │   └── backend/             # backend interview prep
 ├── cards/                   # ★ SPACED REPETITION (flashcards from doc/)
-│   ├── decks/               # jargon, patterns, math, reading, backend, star
+│   ├── decks/               # backend + star interview flashcards
 │   └── README.md            # terminal review via bin/study_cards
 ├── drills/                  # ★ PRACTICE (by topic)
 │   ├── write/               # reflex drills: core5, reflex, variants

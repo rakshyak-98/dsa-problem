@@ -69,12 +69,10 @@ Cross-topic revision drills that pair with the 7 weekday resume blocks. Repeat e
 ### Flashcard decks (spaced repetition)
 
 ```bash
-go run . -- --track cards --deck=backend --due    # concepts from DRILL_CONCEPTS
-go run . -- --track cards --deck=star --due       # STAR stories
-go run . -- --track cards --deck=b2b-docker --due # Back2Basics add-ons
+go run . -- --track cards --due                    # backend + star cards due today
+go run . -- --track cards --deck=backend --due     # concept triggers + interview Q&A
+go run . -- --track cards --deck=star --due        # STAR story rehearsals
 ```
-
-Relevant b2b decks: `b2b-docker`, `b2b-database`, `b2b-networking`, `b2b-golang`, `b2b-devops`, `b2b-aws`, `b2b-nginx`, `b2b-kubernates`, `b2b-system-design`, `b2b-messaging`, `b2b-security`.
 
 ## Commands
 

@@ -295,7 +295,7 @@ Options:
       --new=N              max new cards to introduce (default: 5)
       --no-shuffle         keep deck order instead of shuffling
 
-DSA decks come from doc/; Back2Basics decks are b2b-* (see cards/README.md).
+DSA decks come from doc/backend/ (backend + star interview Q&A).
 
 During review, rate each card:
   1  again   (forgot — due tomorrow)

@@ -267,10 +267,6 @@ var backendTopics = []topicGroup{
 	{group: "Go systems", topics: []string{
 		"goroutines/channels", "context", "HTTP server", "BitTorrent", "worker pools",
 	}},
-	{group: "Cards (b2b decks)", topics: []string{
-		"b2b-docker", "b2b-database", "b2b-networking", "b2b-golang", "b2b-devops",
-		"b2b-aws", "b2b-nginx", "b2b-kubernates", "b2b-system-design",
-	}},
 }
 
 func weekdayIndex(wd time.Weekday) int {

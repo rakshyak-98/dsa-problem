@@ -72,16 +72,16 @@ func TestCardMatches(t *testing.T) {
 }
 
 func TestParseArgsGNU(t *testing.T) {
-	opts := parseArgs([]string{"--", "--stats", "--deck=math", "--limit=5", "--new=2"})
+	opts := parseArgs([]string{"--", "--stats", "--deck=backend", "--limit=5", "--new=2"})
 	if opts.parseErr {
 		t.Fatal("unexpected parse error")
 	}
-	if !opts.stats || opts.deck != "math" || opts.limit != 5 || opts.newN != 2 {
+	if !opts.stats || opts.deck != "backend" || opts.limit != 5 || opts.newN != 2 {
 		t.Fatalf("%+v", opts)
 	}
 
-	opts = parseArgs([]string{"--due", "-d", "jargon", "-t", "dsa", "-n", "10"})
-	if opts.parseErr || !opts.due || opts.deck != "jargon" || opts.tag != "dsa" || opts.limit != 10 {
+	opts = parseArgs([]string{"--due", "-d", "star", "-t", "backend", "-n", "10"})
+	if opts.parseErr || !opts.due || opts.deck != "star" || opts.tag != "backend" || opts.limit != 10 {
 		t.Fatalf("%+v", opts)
 	}
 
