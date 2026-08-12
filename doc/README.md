@@ -5,7 +5,6 @@ All study guides and reference docs live here.
 | Topic | Start here |
 |-------|------------|
 | **DSA jargon (plain English)** | [`DSA_JARGON.md`](DSA_JARGON.md) |
-| **Spaced repetition cards** | [`../cards/README.md`](../cards/README.md) |
 | Drills overview | [`drills.md`](drills.md) |
 | Write reflex (DSA) | [`write/START_HERE.md`](write/START_HERE.md) |
 | Code reading | [`read/START_HERE.md`](read/START_HERE.md) |

@@ -30,12 +30,9 @@ go run . -- --track backend -- --run revision     # check revision answers
 go run . -- --track backend -- --catalog          # blocks + revision cycle + topics
 go run . -- --track read              # DSA reflex reading drills only
 go run . -- --track write             # DSA writing drills only
-go run . -- --track cards             # spaced-repetition flashcards
-go run . -- --track cards --due       # cards due today
 go run . -- --list-tracks             # show all available tracks
 go run . -- --run                     # check today's answers
 go run . -- --core5                   # Core 5 reflex
-go run ./bin/study_cards              # same as --track cards
 open drills/tracker/study_tracker.html
 ```
 
@@ -48,9 +45,6 @@ dsa-problem/
 │   ├── write/               # write reflex study plans
 │   ├── read/                # reading drill guides
 │   └── backend/             # backend interview prep
-├── cards/                   # ★ SPACED REPETITION (flashcards from doc/)
-│   ├── decks/               # backend + star interview flashcards
-│   └── README.md            # terminal review via bin/study_cards
 ├── drills/                  # ★ PRACTICE (by topic)
 │   ├── write/               # reflex drills: core5, reflex, variants
 │   ├── read/                # reading drills: core, weekday, answers
@@ -61,7 +55,6 @@ dsa-problem/
 │   ├── study_play/          # write-drill CLI + templates
 │   ├── study_code/          # read-drill CLI
 │   ├── study_backend/       # backend interview CLI
-│   ├── study_cards/         # spaced-repetition flashcard CLI
 │   └── scripts/             # test coverage gate
 ├── reference/               # unrelated reference material
 │   ├── problems/            # problem catalog + simulation
@@ -79,7 +72,6 @@ dsa-problem/
 ## More docs
 
 - [`doc/DSA_JARGON.md`](doc/DSA_JARGON.md) — plain-English glossary for DSA terms
-- [`cards/README.md`](cards/README.md) — spaced-repetition flashcards (terminal)
 - [`doc/write/START_HERE.md`](doc/write/START_HERE.md) — writing reflex flow
 - [`doc/read/START_HERE.md`](doc/read/START_HERE.md) — reading drill flow
 - [`doc/backend/START_HERE.md`](doc/backend/START_HERE.md) — backend interview cram

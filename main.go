@@ -4,7 +4,7 @@
 // RUN with tests:   go run . -- --run reflex
 // Core 5:           go run . -- --drill core
 // Reflex read:      go run . -- --track read
-// Select track:     go run . -- -t dsa|read|write|backend|cards
+// Select track:     go run . -- -t dsa|read|write|backend
 // List tracks:      go run . -- --list-tracks
 package main
 

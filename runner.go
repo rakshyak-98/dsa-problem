@@ -53,7 +53,6 @@ Options:
                              read: reflex code-reading drills
                              write: same as dsa writing drills
                              backend: interview prep
-                             cards: spaced-repetition flashcards
       --core5              run the Core 5 write drill
       --drill KIND         show today's drill plan (KIND: core or reflex)
       --solution KIND      show solution file path (KIND: core or reflex)
@@ -70,16 +69,12 @@ Backend track (--track=backend):
       --run revision       validate today's revision drill
       --cram               show interview cram schedule
 
-Cards track (--track=cards):
-      --due, --stats, --list, --review, --reset
-      --deck=NAME, --tag=TAG, --limit=N, --new=N, --no-shuffle
-
 `)
 }
 
 func printUnknownTrack(track drillTrack) {
 	fmt.Fprintf(os.Stderr, "unknown track %q\n", track)
-	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, backend, cards\n")
+	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, backend\n")
 	fmt.Fprint(os.Stderr, "Try 'go run . -- --help' for more information.\n")
 }
 
@@ -128,8 +123,6 @@ func printUnifiedHeader(track drillTrack) {
 		fmt.Println("Track: DSA writing — Core 5 + today's reflex specialty")
 	case trackBackend:
 		fmt.Println("Track: Backend interview — Core 5 explain/write + resume block")
-	case trackCards:
-		fmt.Println("Track: Cards — spaced-repetition flashcards from doc/")
 	}
 	fmt.Println()
 }
@@ -229,12 +222,6 @@ func runUnified(root string, opts dailyOptions) int {
 		if code := runModule(root, "study_backend", opts.passArgs, opts.run); code != 0 {
 			return code
 		}
-	case trackCards:
-		// Flashcard flags (--due, --deck, …) are forwarded; ignore DSA --run.
-		cardArgs := filterCardsPassArgs(opts.passArgs)
-		if code := runModule(root, "study_cards", cardArgs, true); code != 0 {
-			return code
-		}
 	}
 	return 0
 }
@@ -264,25 +251,6 @@ func filterReadPassArgs(passArgs []string) []string {
 				i++
 				out = append(out, passArgs[i])
 			}
-		default:
-			out = append(out, a)
-		}
-	}
-	return out
-}
-
-func filterCardsPassArgs(passArgs []string) []string {
-	out := make([]string, 0, len(passArgs))
-	for i := 0; i < len(passArgs); i++ {
-		a := passArgs[i]
-		switch a {
-		case "--run":
-			if i+1 < len(passArgs) && isDrillKind(passArgs[i+1]) {
-				i++
-			}
-			continue
-		case "-r", "--read", "-w", "--write":
-			continue
 		default:
 			out = append(out, a)
 		}
