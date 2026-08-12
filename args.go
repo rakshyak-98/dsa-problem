@@ -9,7 +9,6 @@ const (
 	trackBackend drillTrack = "backend"
 	trackRead    drillTrack = "read"
 	trackWrite   drillTrack = "write"
-	trackCards   drillTrack = "cards"
 )
 
 type trackInfo struct {
@@ -23,7 +22,6 @@ var availableTracks = []trackInfo{
 	{trackRead, "read", "reflex reading drills only"},
 	{trackWrite, "write", "writing drills only"},
 	{trackBackend, "backend", "interview prep"},
-	{trackCards, "cards", "spaced-repetition flashcards"},
 }
 
 func isKnownTrack(track drillTrack) bool {

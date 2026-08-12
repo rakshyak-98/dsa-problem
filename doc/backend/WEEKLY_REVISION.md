@@ -66,14 +66,6 @@ Cross-topic revision drills that pair with the 7 weekday resume blocks. Repeat e
 | Go concurrency | Goroutines + channels; context; worker pools |
 | Invoice rejected | XSD → sign → submit → audit + payload hash |
 
-### Flashcard decks (spaced repetition)
-
-```bash
-go run . -- --track cards --due                    # backend + star cards due today
-go run . -- --track cards --deck=backend --due     # concept triggers + interview Q&A
-go run . -- --track cards --deck=star --due        # STAR story rehearsals
-```
-
 ## Commands
 
 ```bash

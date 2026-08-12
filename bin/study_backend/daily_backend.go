@@ -226,7 +226,7 @@ var revisionCycle = []revisionDay{
 			"01_rest_api_jwt", "02_databases_sql", "03_distributed_resilience",
 			"04_realtime_webrtc", "05_workflows_messaging", "06_devops_aws",
 		},
-		activity:      "Run all 6 weekday blocks (--run reflex); cards: go run . -- --track cards --deck=backend --due",
+		activity:      "Run all 6 weekday blocks (--run reflex)",
 	},
 	{
 		day: "Sunday", file: "07_go_compliance_mix",
@@ -237,7 +237,7 @@ var revisionCycle = []revisionDay{
 			"HTTP keep-alive + BitTorrent piece scheduling",
 		},
 		revisitBlocks: []string{"07_compliance_security", "08_go_systems"},
-		activity:      "Re-run blocks 07 + 08; rest or light cards review (--deck=star).",
+		activity:      "Re-run blocks 07 + 08; rest or light review.",
 	},
 }
 

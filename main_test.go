@@ -53,11 +53,6 @@ func TestParseDailyArgs(t *testing.T) {
 		t.Fatalf("backend track: %+v", opts)
 	}
 
-	opts = parseDailyArgs([]string{"--track=cards", "--due", "--deck=jargon"})
-	if opts.track != trackCards || len(opts.passArgs) != 2 || opts.passArgs[0] != "--due" || opts.passArgs[1] != "--deck=jargon" {
-		t.Fatalf("cards track: %+v", opts)
-	}
-
 	opts = parseDailyArgs([]string{"-t", "write", "--run"})
 	if opts.track != trackWrite || !opts.run {
 		t.Fatalf("write track: %+v", opts)
@@ -100,7 +95,7 @@ func TestParseDailyArgs(t *testing.T) {
 }
 
 func TestIsKnownTrack(t *testing.T) {
-	if !isKnownTrack(trackDSA) || !isKnownTrack(trackBackend) || !isKnownTrack(trackCards) {
+	if !isKnownTrack(trackDSA) || !isKnownTrack(trackBackend) || !isKnownTrack(trackRead) || !isKnownTrack(trackWrite) {
 		t.Fatal("known tracks")
 	}
 	if isKnownTrack("nope") {

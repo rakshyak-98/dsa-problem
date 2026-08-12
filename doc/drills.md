@@ -42,8 +42,6 @@ go run . -- --track backend -- --run revision     # check revision answers
 go run . -- --track backend -- --catalog          # blocks + revision cycle
 go run . -- --track read      # reading only
 go run . -- --track write     # writing only
-go run . -- --track cards     # spaced-repetition flashcards
-go run . -- --track cards --due
 ```
 
 ## Write drills
