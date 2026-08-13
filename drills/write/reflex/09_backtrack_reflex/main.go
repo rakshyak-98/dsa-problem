@@ -55,15 +55,18 @@ func sortedSlices(in [][]int) [][]int {
 func main() {
 	assert("subsets count", len(subsets([]int{1, 2, 3})) == 8)
 	assert("subsets empty", reflect.DeepEqual(subsets([]int{}), [][]int{{}}))
+	assert("subsets single", reflect.DeepEqual(subsets([]int{1}), [][]int{{}, {1}}))
 
 	perms := permute([]int{1, 2, 3})
 	assert("permute count", len(perms) == 6)
+	assert("permute single", reflect.DeepEqual(permute([]int{7}), [][]int{{7}}))
 
 	combs := combine(4, 2)
 	assert("combine count", len(combs) == 6)
 	assert("combine sample", reflect.DeepEqual(sortedSlices(combs)[0], []int{1, 2}))
 	assert("combine k=1", len(combine(3, 1)) == 3)
 	assert("combine k=n", len(combine(3, 3)) == 1)
+	assert("combine n=1", reflect.DeepEqual(combine(1, 1), [][]int{{1}}))
 
 	fmt.Println("\nAll backtracking reflex drills passed.")
 	fmt.Println("Primary: backtracking/medium/subsets.js")

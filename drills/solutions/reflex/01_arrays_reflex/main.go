@@ -80,6 +80,15 @@ func main() {
 
 	assert("runningSum", reflect.DeepEqual(runningSum([]int{1, 2, 3, 4}), []int{1, 3, 6, 10}))
 	assert("runningSum single", reflect.DeepEqual(runningSum([]int{5}), []int{5}))
+	assert("runningSum empty", reflect.DeepEqual(runningSum([]int{}), []int{}))
+	assert("runningSum negatives", reflect.DeepEqual(runningSum([]int{1, -1, 2}), []int{1, 0, 2}))
+
+	assert("reverseInPlace two", reflect.DeepEqual(reverseInPlace([]int{1, 2}), []int{2, 1}))
+	assert("indexOfMax ties", indexOfMax([]int{5, 5, 5}) == 0)
+	assert("indexOfMax negatives", indexOfMax([]int{-10, -3, -7}) == 1)
+	assert("arraySum negatives", arraySum([]int{-1, 2, -3}) == -2)
+	assert("rotateRight empty", reflect.DeepEqual(rotateRight([]int{}, 3), []int{}))
+	assert("rotateRight full", reflect.DeepEqual(rotateRight([]int{1, 2, 3}, 3), []int{1, 2, 3}))
 
 	fmt.Println("\nAll array reflex drills passed.")
 }

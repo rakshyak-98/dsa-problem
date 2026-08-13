@@ -87,17 +87,24 @@ func main() {
 	got := twoSum([]int{2, 7, 11, 15}, 9)
 	assert("twoSum", len(got) == 2 && got[0] == 0 && got[1] == 1)
 	assert("twoSum negatives", reflectDeepEqual(twoSum([]int{-1, -2, -3, -4, -5}, -8), []int{2, 4}))
+	assert("twoSum duplicates", reflectDeepEqual(twoSum([]int{3, 3}, 6), []int{0, 1}))
+	assert("twoSum zero", reflectDeepEqual(twoSum([]int{0, 4, 3, 0}, 0), []int{0, 3}))
 
 	assert("containsDuplicate true", containsDuplicate([]int{1, 2, 3, 1}))
 	assert("containsDuplicate false", !containsDuplicate([]int{1, 2, 3, 4}))
 	assert("containsDuplicate single", !containsDuplicate([]int{1}))
+	assert("containsDuplicate empty", !containsDuplicate([]int{}))
+	assert("containsDuplicate pair", containsDuplicate([]int{2, 2}))
 
 	freq := frequencyMap([]string{"a", "b", "a", "c"})
 	assert("frequencyMap", freq["a"] == 2 && freq["b"] == 1)
 	assert("frequencyMap empty", len(frequencyMap([]string{})) == 0)
+	assert("frequencyMap single", frequencyMap([]string{"x"})["x"] == 1)
 
 	assert("firstUniqueChar", firstUniqueChar("leetcode") == "l")
 	assert("firstUniqueChar none", firstUniqueChar("aabb") == "")
+	assert("firstUniqueChar single", firstUniqueChar("z") == "z")
+	assert("firstUniqueChar empty", firstUniqueChar("") == "")
 
 	groups := groupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"})
 	ok := len(groups) == 3
@@ -116,6 +123,7 @@ func main() {
 	}
 	assert("groupAnagrams count", ok)
 	assert("groupAnagrams empty", len(groupAnagrams([]string{})) == 0)
+	assert("groupAnagrams single", len(groupAnagrams([]string{"abc"})) == 1)
 
 	fmt.Println("\nAll hashing reflex drills passed.")
 }

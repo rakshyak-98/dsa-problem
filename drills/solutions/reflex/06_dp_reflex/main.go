@@ -60,17 +60,24 @@ func main() {
 	assert("fib", fib(10) == 55)
 	assert("fib base", fib(0) == 0)
 	assert("fib one", fib(1) == 1)
+	assert("fib two", fib(2) == 1)
 
 	assert("minCostClimbingStairs", minCostClimbingStairs([]int{10, 15, 20}) == 15)
 	assert("minCostClimbingStairs two", minCostClimbingStairs([]int{1, 100}) == 1)
+	assert("minCostClimbingStairs single", minCostClimbingStairs([]int{5}) == 0)
+	assert("minCostClimbingStairs equal", minCostClimbingStairs([]int{5, 5, 5}) == 5)
 
 	assert("rob", rob([]int{2, 7, 9, 3, 1}) == 12)
 	assert("rob single", rob([]int{5}) == 5)
 	assert("rob two", rob([]int{2, 1}) == 2)
+	assert("rob empty", rob([]int{}) == 0)
+	assert("rob alternating", rob([]int{5, 1, 5, 1}) == 10)
 
 	assert("climbStairs", climbStairs(5) == 8)
 	assert("climbStairs one", climbStairs(1) == 1)
 	assert("climbStairs two", climbStairs(2) == 2)
+	assert("climbStairs three", climbStairs(3) == 3)
+	assert("climbStairs zero", climbStairs(0) == 0)
 
 	fmt.Println("\nAll DP reflex drills passed.")
 }

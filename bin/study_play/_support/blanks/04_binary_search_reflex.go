@@ -42,16 +42,23 @@ func main() {
 	assert("binarySearch empty", binarySearch([]int{}, 1) == -1)
 	assert("binarySearch single hit", binarySearch([]int{5}, 5) == 0)
 	assert("binarySearch single miss", binarySearch([]int{5}, 2) == -1)
+	assert("binarySearch first", binarySearch([]int{1, 2, 3, 4, 5}, 1) == 0)
+	assert("binarySearch last", binarySearch([]int{1, 2, 3, 4, 5}, 5) == 4)
 
 	assert("searchInsert exist", searchInsert([]int{1, 3, 5, 6}, 5) == 2)
 	assert("searchInsert new", searchInsert([]int{1, 3, 5, 6}, 2) == 1)
 	assert("searchInsert end", searchInsert([]int{1, 3, 5, 6}, 7) == 4)
+	assert("searchInsert empty", searchInsert([]int{}, 5) == 0)
+	assert("searchInsert start", searchInsert([]int{2, 4, 6}, 1) == 0)
 
 	assert("findMinRotated", findMinRotated([]int{4, 5, 6, 7, 0, 1, 2}) == 0)
 	assert("findMinRotated two", findMinRotated([]int{3, 1}) == 1)
+	assert("findMinRotated sorted", findMinRotated([]int{1, 2, 3, 4}) == 1)
+	assert("findMinRotated single", findMinRotated([]int{2}) == 2)
 
 	assert("isTargetPresent true", isTargetPresent([]int{1, 2, 3, 4, 5}, 3) == true)
 	assert("isTargetPresent false", isTargetPresent([]int{1, 2, 3, 4, 5}, 6) == false)
+	assert("isTargetPresent empty", isTargetPresent([]int{}, 1) == false)
 
 	fmt.Println("\nAll binary search reflex drills passed.")
 	fmt.Println("Primary: binary_search/easy/search_insertion_position.js")

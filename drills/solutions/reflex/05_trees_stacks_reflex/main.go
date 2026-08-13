@@ -87,20 +87,27 @@ func main() {
 	}
 	assert("inorderTraversal", reflect.DeepEqual(inorderTraversal(tree), []int{2, 1, 4, 3}))
 	assert("inorderTraversal nil", reflect.DeepEqual(inorderTraversal(nil), []int{}))
+	single := &TreeNode{Val: 5}
+	assert("inorderTraversal single", reflect.DeepEqual(inorderTraversal(single), []int{5}))
 
 	assert("maxDepth", maxDepth(tree) == 3)
 	assert("maxDepth nil", maxDepth(nil) == 0)
+	assert("maxDepth single", maxDepth(single) == 1)
 
 	assert("isValidParentheses true", isValidParentheses("()[]{}"))
 	assert("isValidParentheses false", !isValidParentheses("(]"))
 	assert("isValidParentheses empty", isValidParentheses(""))
 	assert("isValidParentheses open only", !isValidParentheses("("))
+	assert("isValidParentheses nested", isValidParentheses("((()))"))
+	assert("isValidParentheses interleaved false", !isValidParentheses("([)]"))
 
 	assert("dailyTemperatures", reflect.DeepEqual(
 		dailyTemperatures([]int{73, 74, 75, 71, 69, 72, 76, 73}),
 		[]int{1, 1, 4, 2, 1, 1, 0, 0},
 	))
 	assert("dailyTemperatures single", reflect.DeepEqual(dailyTemperatures([]int{50}), []int{0}))
+	assert("dailyTemperatures decreasing", reflect.DeepEqual(dailyTemperatures([]int{5, 4, 3}), []int{0, 0, 0}))
+	assert("dailyTemperatures equal", reflect.DeepEqual(dailyTemperatures([]int{70, 70, 70}), []int{0, 0, 0}))
 
 	fmt.Println("\nAll trees/stacks reflex drills passed.")
 }

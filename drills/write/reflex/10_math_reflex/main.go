@@ -51,25 +51,33 @@ func main() {
 	assert("gcd basic", gcd(48, 18) == 6)
 	assert("gcd coprime", gcd(17, 13) == 1)
 	assert("gcd zero", gcd(0, 7) == 7)
+	assert("gcd negatives", gcd(-48, 18) == 6)
 
 	assert("lcm basic", lcm(4, 6) == 12)
 	assert("lcm coprime", lcm(7, 11) == 77)
+	assert("lcm zero", lcm(0, 5) == 0)
 
 	assert("modPow small", modPow(2, 10, 1000) == 24)
 	assert("modPow base", modPow(3, 4, 100) == 81)
 	assert("modPow mod1", modPow(5, 100, 1) == 0)
+	assert("modPow exp0", modPow(2, 0, 100) == 1)
 
 	assert("nCr basic", nCr(5, 2) == 10)
 	assert("nCr symmetry", nCr(10, 8) == 45)
 	assert("nCr invalid", nCr(5, 6) == 0)
+	assert("nCr k0", nCr(5, 0) == 1)
+	assert("nCr kn", nCr(5, 5) == 1)
 
 	assert("isPrime true", isPrime(17) == true)
 	assert("isPrime false", isPrime(1) == false)
 	assert("isPrime composite", isPrime(15) == false)
+	assert("isPrime two", isPrime(2) == true)
 
 	assert("powOfTwo true", powOfTwo(64) == true)
 	assert("powOfTwo false", powOfTwo(6) == false)
 	assert("powOfTwo zero", powOfTwo(0) == false)
+	assert("powOfTwo one", powOfTwo(1) == true)
+	assert("powOfTwo two", powOfTwo(2) == true)
 
 	fmt.Println("\nAll math reflex drills passed.")
 	fmt.Println("Reference: doc/write/MATH_CONCEPTS.md")
