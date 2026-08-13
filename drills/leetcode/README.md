@@ -45,10 +45,11 @@ go -C bin/study_leetcode run .            # direct CLI
 ## How fetching works
 
 1. Includes today's [LeetCode daily challenge](https://leetcode.com/) when its tags match the weekday topic
-2. Fills remaining slots from a topic seed pool using a date-based shuffle
-3. Skips paid-only problems
-4. Writes results to `drills/leetcode/daily.json` (cached for the rest of the day)
-5. Falls back to cached `daily.json` if the API is unreachable
+2. Randomly picks the rest from LeetCode's live topic catalog (same tags as the weekday), using a date-based shuffle so the set is stable for the day
+3. Falls back to the curated seed pool only if the topic API cannot fill all 10 slots
+4. Skips paid-only problems
+5. Writes results to `drills/leetcode/daily.json` (cached for the rest of the day)
+6. Falls back to cached `daily.json` if the API is unreachable
 
 ## Notes
 
