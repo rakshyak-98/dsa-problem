@@ -49,6 +49,20 @@ func dailyMarkdownIsCurrent(path string) bool {
 	return strings.HasPrefix(string(data), header)
 }
 
+func writeDailyOutputs(repoRoot string, set practiceSet, fetchedAt string, refresh bool) error {
+	var msgs []string
+	if err := writeDailyMarkdown(repoRoot, set, fetchedAt, refresh); err != nil {
+		msgs = append(msgs, "daily.md: "+err.Error())
+	}
+	if err := writeDailyGo(repoRoot, set, fetchedAt, refresh); err != nil {
+		msgs = append(msgs, "daily.go: "+err.Error())
+	}
+	if len(msgs) > 0 {
+		return fmt.Errorf("%s", strings.Join(msgs, "; "))
+	}
+	return nil
+}
+
 func writeDailyMarkdown(repoRoot string, set practiceSet, fetchedAt string, refresh bool) error {
 	path := dailyMarkdownPath(repoRoot)
 	if !refresh && dailyMarkdownIsCurrent(path) {

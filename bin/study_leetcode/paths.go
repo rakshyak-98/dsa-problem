@@ -26,3 +26,7 @@ func dailyJSONPath(repoRoot string) string {
 func dailyMarkdownPath(repoRoot string) string {
 	return filepath.Join(repoRoot, "drills", "leetcode", "daily.md")
 }
+
+func dailyGoPath(repoRoot string) string {
+	return filepath.Join(repoRoot, "drills", "leetcode", "daily.go")
+}

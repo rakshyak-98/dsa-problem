@@ -99,8 +99,8 @@ func ensureTodaySet(repoRoot string, refresh bool) (practiceSet, error) {
 	if !refresh {
 		if cached, ok := loadDailyFile(path); ok && cached.Date == todayDate() && len(cached.Problems) == 10 {
 			set := fileToSet(cached)
-			if err := writeDailyMarkdown(repoRoot, set, cached.FetchedAt, false); err != nil {
-				fmt.Fprintf(os.Stderr, "warning: could not write daily.md (%v)\n", err)
+			if err := writeDailyOutputs(repoRoot, set, cached.FetchedAt, false); err != nil {
+				fmt.Fprintf(os.Stderr, "warning: could not write daily output files (%v)\n", err)
 			}
 			return set, nil
 		}
@@ -111,8 +111,8 @@ func ensureTodaySet(repoRoot string, refresh bool) (practiceSet, error) {
 		if cached, ok := loadDailyFile(path); ok && len(cached.Problems) > 0 {
 			fmt.Fprintf(os.Stderr, "warning: leetcode fetch failed (%v); using cached set from %s\n", err, cached.Date)
 			set := fileToSet(cached)
-			if werr := writeDailyMarkdown(repoRoot, set, cached.FetchedAt, false); werr != nil {
-				fmt.Fprintf(os.Stderr, "warning: could not write daily.md (%v)\n", werr)
+			if werr := writeDailyOutputs(repoRoot, set, cached.FetchedAt, false); werr != nil {
+				fmt.Fprintf(os.Stderr, "warning: could not write daily output files (%v)\n", werr)
 			}
 			return set, nil
 		}
@@ -131,8 +131,8 @@ func ensureTodaySet(repoRoot string, refresh bool) (practiceSet, error) {
 	if err := saveDailyFile(path, file); err != nil {
 		return set, fmt.Errorf("save daily.json: %w", err)
 	}
-	if err := writeDailyMarkdown(repoRoot, set, file.FetchedAt, refresh); err != nil {
-		fmt.Fprintf(os.Stderr, "warning: could not write daily.md (%v)\n", err)
+	if err := writeDailyOutputs(repoRoot, set, file.FetchedAt, refresh); err != nil {
+		fmt.Fprintf(os.Stderr, "warning: could not write daily output files (%v)\n", err)
 	}
 	return set, nil
 }

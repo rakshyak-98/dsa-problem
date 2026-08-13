@@ -10,6 +10,7 @@ bin/study_play/.drill_log.json
 # LeetCode daily practice cache (refreshed via --track leetcode)
 drills/leetcode/daily.json
 drills/leetcode/daily.md
+drills/leetcode/daily.go
 
 # OS / editor
 .DS_Store
