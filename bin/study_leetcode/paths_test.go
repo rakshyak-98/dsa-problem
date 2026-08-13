@@ -17,9 +17,9 @@ func TestFindRepoRoot(t *testing.T) {
 	}
 }
 
-func TestPracticeSetPath(t *testing.T) {
-	p := practiceSetPath("/tmp/repo", "monday.md")
-	if p != "/tmp/repo/drills/leetcode/sets/monday.md" {
+func TestDailyJSONPath(t *testing.T) {
+	p := dailyJSONPath("/tmp/repo")
+	if p != "/tmp/repo/drills/leetcode/daily.json" {
 		t.Fatalf("unexpected path: %s", p)
 	}
 }

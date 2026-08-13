@@ -19,6 +19,6 @@ func findRepoRoot(from string) string {
 	}
 }
 
-func practiceSetPath(repoRoot, file string) string {
-	return filepath.Join(repoRoot, "drills", "leetcode", "sets", file)
+func dailyJSONPath(repoRoot string) string {
+	return filepath.Join(repoRoot, "drills", "leetcode", "daily.json")
 }

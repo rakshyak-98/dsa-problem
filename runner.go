@@ -61,6 +61,7 @@ Options:
 
 LeetCode track (--track=leetcode):
       --set                show today's 10 LeetCode problems (default)
+      --refresh            re-fetch from LeetCode API and update daily.json
       --catalog            list all weekday practice sets
 
 Read track (--track=read):

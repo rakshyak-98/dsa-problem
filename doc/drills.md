@@ -49,7 +49,8 @@ go run . -- --track leetcode  # 10 LeetCode problems matching today's topic
 ## LeetCode practice (separate from reflex drills)
 
 ```bash
-go run . -- --track leetcode              # today's 10 problems + links
+go run . -- --track leetcode              # fetch + show today's 10 problems
+go run . -- --track leetcode -- --refresh # force re-fetch from LeetCode API
 go run . -- --track leetcode -- --catalog # all weekday sets
 go run ./bin/study_leetcode               # direct CLI (or: go -C bin/study_leetcode run .)
 ```
