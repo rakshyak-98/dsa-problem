@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -35,6 +36,46 @@ func TestFetchTodayProblemsMock(t *testing.T) {
 			})
 			return
 		}
+		if req.OperationName == "problemsetQuestionList" {
+			filters, _ := req.Variables["filters"].(map[string]any)
+			tags, _ := filters["tags"].([]any)
+			tag, _ := tags[0].(string)
+			limit, _ := req.Variables["limit"].(float64)
+			skip, _ := req.Variables["skip"].(float64)
+			if limit <= 1 {
+				json.NewEncoder(w).Encode(map[string]any{
+					"data": map[string]any{
+						"problemsetQuestionList": map[string]any{
+							"totalNum": 12,
+							"data":     []any{},
+						},
+					},
+				})
+				return
+			}
+			questions := make([]map[string]any, 0, int(limit))
+			for i := 0; i < int(limit); i++ {
+				idx := int(skip) + i + 1
+				slug := fmt.Sprintf("topic-%s-%d", tag, idx)
+				questions = append(questions, map[string]any{
+					"questionFrontendId": fmt.Sprintf("%d", 200+idx),
+					"title":              slug,
+					"titleSlug":          slug,
+					"difficulty":         "Easy",
+					"isPaidOnly":         false,
+					"topicTags":          []map[string]string{{"name": "Binary Search", "slug": "binary-search"}},
+				})
+			}
+			json.NewEncoder(w).Encode(map[string]any{
+				"data": map[string]any{
+					"problemsetQuestionList": map[string]any{
+						"totalNum": 12,
+						"data":     questions,
+					},
+				},
+			})
+			return
+		}
 		slug, _ := req.Variables["titleSlug"].(string)
 		json.NewEncoder(w).Encode(map[string]any{
 			"data": map[string]any{
@@ -55,15 +96,105 @@ func TestFetchTodayProblemsMock(t *testing.T) {
 	defer func() { leetcodeGraphQL = oldURL }()
 
 	meta := practiceSets[3]
-	meta.seedSlugs = []string{
-		"s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11",
-	}
 	problems, err := fetchTodayProblems(meta)
 	if err != nil {
 		t.Fatalf("fetchTodayProblems: %v", err)
 	}
 	if len(problems) != 10 {
 		t.Fatalf("expected 10 problems, got %d", len(problems))
+	}
+	dailyCount := 0
+	for _, p := range problems {
+		if p.Daily {
+			dailyCount++
+		}
+	}
+	if dailyCount != 1 {
+		t.Fatalf("expected 1 daily challenge, got %d", dailyCount)
+	}
+}
+
+func TestFetchTodayProblemsUsesTopicPoolNotSeeds(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		var req gqlRequest
+		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+			http.Error(w, err.Error(), 400)
+			return
+		}
+		switch req.OperationName {
+		case "questionOfToday":
+			json.NewEncoder(w).Encode(map[string]any{"data": map[string]any{
+				"activeDailyCodingChallengeQuestion": map[string]any{"question": map[string]any{}},
+			}})
+		case "problemsetQuestionList":
+			limit, _ := req.Variables["limit"].(float64)
+			if limit <= 1 {
+				json.NewEncoder(w).Encode(map[string]any{"data": map[string]any{
+					"problemsetQuestionList": map[string]any{"totalNum": 15, "data": []any{}},
+				}})
+				return
+			}
+			questions := make([]map[string]any, 15)
+			for i := range questions {
+				slug := fmt.Sprintf("pool-problem-%02d", i+1)
+				questions[i] = map[string]any{
+					"questionFrontendId": fmt.Sprintf("%d", 300+i),
+					"title":              slug,
+					"titleSlug":          slug,
+					"difficulty":         "Easy",
+					"isPaidOnly":         false,
+					"topicTags":          []map[string]string{{"name": "Array", "slug": "array"}},
+				}
+			}
+			json.NewEncoder(w).Encode(map[string]any{"data": map[string]any{
+				"problemsetQuestionList": map[string]any{"totalNum": 15, "data": questions},
+			}})
+		default:
+			t.Fatalf("unexpected operation %q", req.OperationName)
+		}
+	}))
+	defer srv.Close()
+	oldURL := leetcodeGraphQL
+	leetcodeGraphQL = srv.URL
+	defer func() { leetcodeGraphQL = oldURL }()
+
+	meta := practiceSets[0]
+	problems, err := fetchTodayProblems(meta)
+	if err != nil {
+		t.Fatalf("fetchTodayProblems: %v", err)
+	}
+	if len(problems) != 10 {
+		t.Fatalf("expected 10 problems, got %d", len(problems))
+	}
+	for _, p := range problems {
+		if len(p.Slug) < 5 || p.Slug[:5] != "pool-" {
+			t.Fatalf("expected topic pool slug, got %q", p.Slug)
+		}
+	}
+}
+
+func TestSeededShuffleDeterministic(t *testing.T) {
+	slugs := []string{"a", "b", "c", "d", "e"}
+	a := shuffledSeeds(slugs, "2026-08-13", "Thursday")
+	b := shuffledSeeds(slugs, "2026-08-13", "Thursday")
+	if len(a) != len(slugs) {
+		t.Fatalf("expected %d slugs, got %d", len(slugs), len(a))
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			t.Fatalf("shuffle not deterministic: %v vs %v", a, b)
+		}
+	}
+	c := shuffledSeeds(slugs, "2026-08-14", "Thursday")
+	same := true
+	for i := range a {
+		if a[i] != c[i] {
+			same = false
+			break
+		}
+	}
+	if same {
+		t.Fatal("expected different order for different dates")
 	}
 }
 

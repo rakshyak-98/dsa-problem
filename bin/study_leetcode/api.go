@@ -151,6 +151,55 @@ func patternFromTags(tags []struct {
 	return strings.Join(names, ", ")
 }
 
+const topicPoolPageSize = 50
+
+func fetchProblemsByTag(tag string, limit, skip int) (int, []gqlQuestion, error) {
+	if limit <= 0 {
+		limit = topicPoolPageSize
+	}
+	var resp struct {
+		Data struct {
+			ProblemsetQuestionList struct {
+				Total     int           `json:"totalNum"`
+				Questions []gqlQuestion `json:"data"`
+			} `json:"problemsetQuestionList"`
+		} `json:"data"`
+		Errors []any `json:"errors"`
+	}
+	err := postGraphQL(gqlRequest{
+		Query: `query problemsetQuestionList($categorySlug: String, $limit: Int, $skip: Int, $filters: QuestionListFilterInput) {
+			problemsetQuestionList: questionList(
+				categorySlug: $categorySlug
+				limit: $limit
+				skip: $skip
+				filters: $filters
+			) {
+				totalNum
+				data {
+					questionFrontendId
+					title
+					titleSlug
+					difficulty
+					isPaidOnly
+					topicTags { name slug }
+				}
+			}
+		}`,
+		Variables: map[string]any{
+			"categorySlug": "",
+			"skip":         skip,
+			"limit":        limit,
+			"filters":      map[string]any{"tags": []string{tag}},
+		},
+		OperationName: "problemsetQuestionList",
+	}, &resp)
+	if err != nil {
+		return 0, nil, err
+	}
+	list := resp.Data.ProblemsetQuestionList
+	return list.Total, list.Questions, nil
+}
+
 func matchesTopicTags(q gqlQuestion, required []string) bool {
 	if len(required) == 0 {
 		return true
