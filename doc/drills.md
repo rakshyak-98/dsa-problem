@@ -20,6 +20,7 @@ drills/
 │   ├── explain/           # verbal concept drills
 │   ├── write/             # Go reflex implementations
 │   └── scenario/          # STAR / mock interview prompts
+├── leetcode/              # daily 10-question LeetCode practice sets
 ├── solutions/             # write drill solutions (peek after attempt)
 │   ├── reflex/            # runnable Go solution per reflex drill
 │   ├── core5.md
@@ -42,7 +43,18 @@ go run . -- --track backend -- --run revision     # check revision answers
 go run . -- --track backend -- --catalog          # blocks + revision cycle
 go run . -- --track read      # reading only
 go run . -- --track write     # writing only
+go run . -- --track leetcode  # 10 LeetCode problems matching today's topic
 ```
+
+## LeetCode practice (separate from reflex drills)
+
+```bash
+go run . -- --track leetcode              # today's 10 problems + links
+go run . -- --track leetcode -- --catalog # all weekday sets
+go run ./bin/study_leetcode               # direct CLI (or: go -C bin/study_leetcode run .)
+```
+
+Guide: [`drills/leetcode/README.md`](leetcode/README.md)
 
 ## Write drills
 

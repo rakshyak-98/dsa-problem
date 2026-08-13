@@ -95,7 +95,7 @@ func TestParseDailyArgs(t *testing.T) {
 }
 
 func TestIsKnownTrack(t *testing.T) {
-	if !isKnownTrack(trackDSA) || !isKnownTrack(trackBackend) || !isKnownTrack(trackRead) || !isKnownTrack(trackWrite) {
+	if !isKnownTrack(trackDSA) || !isKnownTrack(trackBackend) || !isKnownTrack(trackRead) || !isKnownTrack(trackWrite) || !isKnownTrack(trackLeetcode) {
 		t.Fatal("known tracks")
 	}
 	if isKnownTrack("nope") {

@@ -59,6 +59,10 @@ Options:
       --run [KIND]         run drill tests (KIND: core or reflex; default: all)
       --catalog            list drills in the active track
 
+LeetCode track (--track=leetcode):
+      --set                show today's 10 LeetCode problems (default)
+      --catalog            list all weekday practice sets
+
 Read track (--track=read):
       --drill reflex       show today's reflex read plan
       --solution reflex    show read answer key section
@@ -74,7 +78,7 @@ Backend track (--track=backend):
 
 func printUnknownTrack(track drillTrack) {
 	fmt.Fprintf(os.Stderr, "unknown track %q\n", track)
-	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, backend\n")
+	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, leetcode, backend\n")
 	fmt.Fprint(os.Stderr, "Try 'go run . -- --help' for more information.\n")
 }
 
@@ -121,6 +125,8 @@ func printUnifiedHeader(track drillTrack) {
 		fmt.Println("Track: DSA reflex reading — today's specialty")
 	case trackWrite:
 		fmt.Println("Track: DSA writing — Core 5 + today's reflex specialty")
+	case trackLeetcode:
+		fmt.Println("Track: LeetCode — 10 full problems matching today's reflex topic")
 	case trackBackend:
 		fmt.Println("Track: Backend interview — Core 5 explain/write + resume block")
 	}
@@ -216,6 +222,15 @@ func runUnified(root string, opts dailyOptions) int {
 		}
 	case trackWrite:
 		if code := runModule(root, "study_play", opts.passArgs, opts.run); code != 0 {
+			return code
+		}
+	case trackLeetcode:
+		if opts.run {
+			fmt.Fprintln(os.Stderr, "leetcode practice sets are solved on leetcode.com; no local --run")
+			fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
+			return 1
+		}
+		if code := runModule(root, "study_leetcode", withBrief(opts.passArgs), false); code != 0 {
 			return code
 		}
 	case trackBackend:

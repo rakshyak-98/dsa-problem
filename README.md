@@ -30,6 +30,7 @@ go run . -- --track backend -- --run revision     # check revision answers
 go run . -- --track backend -- --catalog          # blocks + revision cycle + topics
 go run . -- --track read              # DSA reflex reading drills only
 go run . -- --track write             # DSA writing drills only
+go run . -- --track leetcode          # daily 10 LeetCode problems (weekday topic)
 go run . -- --list-tracks             # show all available tracks
 go run . -- --run                     # check today's answers
 go run . -- --core5                   # Core 5 reflex
@@ -49,11 +50,13 @@ dsa-problem/
 │   ├── write/               # reflex drills: core5, reflex, variants
 │   ├── read/                # reading drills: core, weekday, answers
 │   ├── backend/             # backend interview drills
+│   ├── leetcode/            # daily 10-question LeetCode practice sets
 │   ├── solutions/           # write drill solutions (after attempt)
 │   └── tracker/             # browser study tracker
 ├── bin/                     # internal CLI tooling
 │   ├── study_play/          # write-drill CLI + templates
 │   ├── study_code/          # read-drill CLI
+│   ├── study_leetcode/      # daily LeetCode practice set CLI
 │   ├── study_backend/       # backend interview CLI
 │   └── scripts/             # test coverage gate
 ├── reference/               # unrelated reference material

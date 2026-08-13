@@ -5,10 +5,11 @@ import "strings"
 type drillTrack string
 
 const (
-	trackDSA     drillTrack = "dsa"
-	trackBackend drillTrack = "backend"
-	trackRead    drillTrack = "read"
-	trackWrite   drillTrack = "write"
+	trackDSA       drillTrack = "dsa"
+	trackBackend   drillTrack = "backend"
+	trackRead      drillTrack = "read"
+	trackWrite     drillTrack = "write"
+	trackLeetcode  drillTrack = "leetcode"
 )
 
 type trackInfo struct {
@@ -21,6 +22,7 @@ var availableTracks = []trackInfo{
 	{trackDSA, "dsa", "reflex writing drills (Core 5 + weekday specialty)"},
 	{trackRead, "read", "reflex reading drills only"},
 	{trackWrite, "write", "writing drills only"},
+	{trackLeetcode, "leetcode", "daily 10-question LeetCode practice set (weekday topic)"},
 	{trackBackend, "backend", "interview prep"},
 }
 

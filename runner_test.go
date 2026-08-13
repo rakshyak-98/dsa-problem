@@ -58,6 +58,30 @@ func TestRunUnifiedReadOnly(t *testing.T) {
 	}
 }
 
+func TestRunUnifiedLeetcode(t *testing.T) {
+	calls := []string{}
+	commandRunner = func(dir string, args ...string) error {
+		calls = append(calls, dir)
+		return nil
+	}
+	defer func() { commandRunner = runIn }()
+
+	code := runUnified("/tmp/repo", dailyOptions{track: trackLeetcode})
+	if code != 0 {
+		t.Fatal("expected success")
+	}
+	if len(calls) != 1 || !containsAll(calls[0], "study_leetcode") {
+		t.Fatalf("expected study_leetcode only, got %v", calls)
+	}
+}
+
+func TestRunUnifiedLeetcodeRunRejected(t *testing.T) {
+	opts := dailyOptions{track: trackLeetcode, run: true, passArgs: []string{"--run"}}
+	if code := runUnified("/tmp/repo", opts); code != 1 {
+		t.Fatalf("expected exit 1, got %d", code)
+	}
+}
+
 func TestRunUnifiedBackend(t *testing.T) {
 	calls := []string{}
 	commandRunner = func(dir string, args ...string) error {
