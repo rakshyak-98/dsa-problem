@@ -49,11 +49,15 @@ func main() {
 		{'0', '1', '0'},
 		{'1', '0', '1'},
 	}
-	assert("numIslands", numIslands(grid1) == 3)
+
+	// numIslands — multi, all water/land, empty, single, diagonal, row
+	assert("numIslands basic", numIslands(grid1) == 3)
 	assert("numIslands all water", numIslands([][]byte{{'0'}}) == 0)
 	assert("numIslands all land", numIslands([][]byte{{'1', '1'}, {'1', '1'}}) == 1)
 	assert("numIslands empty", numIslands([][]byte{}) == 0)
 	assert("numIslands single land", numIslands([][]byte{{'1'}}) == 1)
+	assert("numIslands diagonal", numIslands([][]byte{{'1', '0'}, {'0', '1'}}) == 2)
+	assert("numIslands row", numIslands([][]byte{{'1', '1', '1', '0', '1'}}) == 2)
 
 	img := [][]int{
 		{1, 1, 1},
@@ -65,23 +69,35 @@ func main() {
 		{2, 2, 0},
 		{2, 0, 1},
 	}
-	assert("floodFill", reflect.DeepEqual(floodFill(cloneGrid(img), 1, 1, 2), want))
+
+	// floodFill — region, same color, single pixel, corner, isolated pixel
+	assert("floodFill basic", reflect.DeepEqual(floodFill(cloneGrid(img), 1, 1, 2), want))
 	sameColor := [][]int{{3}}
 	assert("floodFill same color", reflect.DeepEqual(floodFill(cloneGrid(sameColor), 0, 0, 3), sameColor))
 	singlePixel := [][]int{{0}}
 	assert("floodFill single", reflect.DeepEqual(floodFill(cloneGrid(singlePixel), 0, 0, 9), [][]int{{9}}))
+	corner := [][]int{{1, 0}, {0, 0}}
+	assert("floodFill corner", reflect.DeepEqual(floodFill(cloneGrid(corner), 0, 0, 7), [][]int{{7, 0}, {0, 0}}))
+	isolated := [][]int{{1, 0, 1}, {0, 1, 0}, {1, 0, 1}}
+	assert("floodFill isolated", reflect.DeepEqual(floodFill(cloneGrid(isolated), 1, 1, 9), [][]int{{1, 0, 1}, {0, 9, 0}, {1, 0, 1}}))
 
 	pathGrid := [][]int{
 		{0, 0, 0},
 		{1, 1, 0},
 		{0, 0, 0},
 	}
-	assert("shortestPathGrid", shortestPathGrid(pathGrid) == 4)
+
+	// shortestPathGrid — detour, blocked, single, start/end blocked, straight, end wall
+	assert("shortestPathGrid detour", shortestPathGrid(pathGrid) == 4)
 	assert("shortestPathGrid blocked", shortestPathGrid([][]int{{0, 1}, {1, 0}}) == -1)
 	assert("shortestPathGrid single", shortestPathGrid([][]int{{0}}) == 1)
 	assert("shortestPathGrid start blocked", shortestPathGrid([][]int{{1}}) == -1)
 	openPath := [][]int{{0, 0, 0, 0}}
 	assert("shortestPathGrid straight", shortestPathGrid(openPath) == 3)
+	endBlocked := [][]int{{0, 0}, {0, 1}}
+	assert("shortestPathGrid end blocked", shortestPathGrid(endBlocked) == -1)
+	open2x2 := [][]int{{0, 0}, {0, 0}}
+	assert("shortestPathGrid open 2x2", shortestPathGrid(open2x2) == 2)
 
 	fmt.Println("\nAll graph reflex drills passed.")
 	fmt.Println("Primary: graphs/medium/number_of_islands.js")
