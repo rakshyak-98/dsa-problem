@@ -51,22 +51,41 @@ func main() {
 		Left:  &TreeNode{Val: 2},
 		Right: &TreeNode{Val: 3, Left: &TreeNode{Val: 4}},
 	}
-	assert("inorderTraversal", reflect.DeepEqual(inorderTraversal(tree), []int{2, 1, 4, 3}))
+	single := &TreeNode{Val: 5}
+	leftSkew := &TreeNode{Val: 1, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 3}}}
+
+	// inorderTraversal — full, nil, single, left skew
+	assert("inorderTraversal basic", reflect.DeepEqual(inorderTraversal(tree), []int{2, 1, 4, 3}))
 	assert("inorderTraversal nil", reflect.DeepEqual(inorderTraversal(nil), []int{}))
+	assert("inorderTraversal single", reflect.DeepEqual(inorderTraversal(single), []int{5}))
+	assert("inorderTraversal left skew", reflect.DeepEqual(inorderTraversal(leftSkew), []int{3, 2, 1}))
 
-	assert("maxDepth", maxDepth(tree) == 3)
+	// maxDepth — full, nil, single, left skew
+	assert("maxDepth basic", maxDepth(tree) == 3)
 	assert("maxDepth nil", maxDepth(nil) == 0)
+	assert("maxDepth single", maxDepth(single) == 1)
+	assert("maxDepth left skew", maxDepth(leftSkew) == 3)
 
-	assert("isValidParentheses true", isValidParentheses("()[]{}") == true)
-	assert("isValidParentheses false", isValidParentheses("(]") == false)
+	// isValidParentheses — valid types, invalid, empty, unmatched open/close, nested, interleaved
+	assert("isValidParentheses basic", isValidParentheses("()[]{}") == true)
+	assert("isValidParentheses invalid", isValidParentheses("(]") == false)
 	assert("isValidParentheses empty", isValidParentheses("") == true)
 	assert("isValidParentheses open only", isValidParentheses("(") == false)
+	assert("isValidParentheses close only", isValidParentheses(")") == false)
+	assert("isValidParentheses nested", isValidParentheses("((()))") == true)
+	assert("isValidParentheses interleaved false", isValidParentheses("([)]") == false)
+	assert("isValidParentheses mixed valid", isValidParentheses("{[()()]}") == true)
 
-	assert("dailyTemperatures", reflect.DeepEqual(
+	// dailyTemperatures — classic, single, decreasing, equal, increasing, pair
+	assert("dailyTemperatures basic", reflect.DeepEqual(
 		dailyTemperatures([]int{73, 74, 75, 71, 69, 72, 76, 73}),
 		[]int{1, 1, 4, 2, 1, 1, 0, 0},
 	))
 	assert("dailyTemperatures single", reflect.DeepEqual(dailyTemperatures([]int{50}), []int{0}))
+	assert("dailyTemperatures decreasing", reflect.DeepEqual(dailyTemperatures([]int{5, 4, 3}), []int{0, 0, 0}))
+	assert("dailyTemperatures equal", reflect.DeepEqual(dailyTemperatures([]int{70, 70, 70}), []int{0, 0, 0}))
+	assert("dailyTemperatures increasing", reflect.DeepEqual(dailyTemperatures([]int{60, 61, 62}), []int{1, 1, 0}))
+	assert("dailyTemperatures pair", reflect.DeepEqual(dailyTemperatures([]int{55, 56}), []int{1, 0}))
 
 	fmt.Println("\nAll trees/stacks reflex drills passed.")
 	fmt.Println("Primary: stacks/easy/valid_parentheses.js")
