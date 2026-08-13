@@ -16,6 +16,8 @@ Problems are **fetched live from the LeetCode GraphQL API** when you run today's
 
 ```bash
 go run . -- --track leetcode              # fetch (if needed) + show today's 10 problems
+go run . -- --run leetcode                 # same from default DSA track
+go run . -- --run -l                       # short flag (like -w for write reflex)
 go run . -- --track leetcode -- --refresh # force re-fetch from LeetCode API
 go run . -- --track leetcode -- --catalog # all weekday sets
 go -C bin/study_leetcode run .            # direct CLI

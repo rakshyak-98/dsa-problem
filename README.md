@@ -32,7 +32,9 @@ go run . -- --track read              # DSA reflex reading drills only
 go run . -- --track write             # DSA writing drills only
 go run . -- --track leetcode          # daily 10 LeetCode problems (weekday topic)
 go run . -- --list-tracks             # show all available tracks
-go run . -- --run                     # check today's answers
+go run . -- --run                     # check today's reflex answers
+go run . -- --run leetcode            # fetch today's 10 LeetCode problems
+go run . -- --run -l                  # same as --run leetcode
 go run . -- --core5                   # Core 5 reflex
 open drills/tracker/study_tracker.html
 ```

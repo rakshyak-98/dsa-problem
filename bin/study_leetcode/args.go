@@ -16,6 +16,7 @@ Options:
   -h, --help               display this help message and exit
       --catalog            list all weekday practice sets
       --set                show today's 10 problems (default)
+      --run                fetch + show today's 10 problems (unified runner)
       --refresh            re-fetch from LeetCode even if daily.json is current
       --brief              one-line output for unified daily runner
 
@@ -36,14 +37,15 @@ func parseLeetcodeArgs(args []string) (help, catalog, brief, showSet, refresh bo
 			showSet = false
 		case "--set":
 			showSet = true
+		case "--run", "-l", "--leetcode":
+			showSet = true
+			brief = false
 		case "--refresh":
 			refresh = true
 		case "--brief":
 			brief = true
-		case "--run":
-			fmt.Fprintln(os.Stderr, "leetcode practice sets are solved on leetcode.com; no local --run")
-			fmt.Fprintln(os.Stderr, "Try 'go run ./bin/study_leetcode -- --help' for more information.")
-			return help, catalog, brief, showSet, refresh, true
+		case "-r", "--read", "-w", "--write":
+			// consumed by root CLI when selecting run side
 		default:
 			fmt.Fprintf(os.Stderr, "unknown option %q\n", args[i])
 			fmt.Fprintln(os.Stderr, "Try 'go run ./bin/study_leetcode -- --help' for more information.")

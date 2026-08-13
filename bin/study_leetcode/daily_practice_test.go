@@ -150,9 +150,13 @@ func TestParseLeetcodeArgs(t *testing.T) {
 	if parseErr || !refresh {
 		t.Fatal("refresh flag")
 	}
-	_, _, _, _, _, parseErr = parseLeetcodeArgs([]string{"--run"})
-	if !parseErr {
-		t.Fatal("run should error")
+	_, _, _, showSet, _, parseErr = parseLeetcodeArgs([]string{"--run"})
+	if parseErr || !showSet {
+		t.Fatal("--run should show today's set")
+	}
+	_, _, brief, _, _, parseErr = parseLeetcodeArgs([]string{"--run"})
+	if parseErr || brief {
+		t.Fatal("--run should not use brief mode")
 	}
 }
 

@@ -75,10 +75,53 @@ func TestRunUnifiedLeetcode(t *testing.T) {
 	}
 }
 
-func TestRunUnifiedLeetcodeRunRejected(t *testing.T) {
+func TestRunUnifiedLeetcodeRun(t *testing.T) {
+	calls := [][]string{}
+	commandRunner = func(dir string, args ...string) error {
+		calls = append(calls, append([]string{dir}, args...))
+		return nil
+	}
+	defer func() { commandRunner = runIn }()
+
 	opts := dailyOptions{track: trackLeetcode, run: true, passArgs: []string{"--run"}}
-	if code := runUnified("/tmp/repo", opts); code != 1 {
-		t.Fatalf("expected exit 1, got %d", code)
+	if code := runUnified("/tmp/repo", opts); code != 0 {
+		t.Fatalf("expected success, got %d", code)
+	}
+	if len(calls) != 1 || !containsAll(calls[0][0], "study_leetcode") || !containsAll(strings.Join(calls[0], " "), "--run") {
+		t.Fatalf("expected study_leetcode --run, got %v", calls)
+	}
+}
+
+func TestRunUnifiedDSALeetcodeSide(t *testing.T) {
+	calls := [][]string{}
+	commandRunner = func(dir string, args ...string) error {
+		calls = append(calls, append([]string{dir}, args...))
+		return nil
+	}
+	defer func() { commandRunner = runIn }()
+
+	opts := dailyOptions{
+		track:    trackDSA,
+		run:      true,
+		runSide:  "leetcode",
+		passArgs: []string{"--run", "-l"},
+	}
+	if code := runUnified("/tmp/repo", opts); code != 0 {
+		t.Fatalf("expected success, got %d", code)
+	}
+	if len(calls) != 1 || !containsAll(calls[0][0], "study_leetcode") {
+		t.Fatalf("expected study_leetcode, got %v", calls)
+	}
+}
+
+func TestFilterLeetcodePassArgs(t *testing.T) {
+	got := filterLeetcodePassArgs([]string{"--run", "leetcode", "-l", "--refresh"})
+	if len(got) != 2 || got[0] != "--run" || got[1] != "--refresh" {
+		t.Fatalf("got %v", got)
+	}
+	got = filterLeetcodePassArgs([]string{"--run", "reflex", "-w"})
+	if len(got) != 1 || got[0] != "--run" {
+		t.Fatalf("got %v", got)
 	}
 }
 

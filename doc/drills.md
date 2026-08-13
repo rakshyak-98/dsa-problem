@@ -35,6 +35,8 @@ drills/
 go run .                      # daily drill: read + write (DSA track)
 go run . -- --run core          # check core answers
 go run . -- --run reflex        # check reflex specialty answers
+go run . -- --run leetcode      # fetch today's 10 LeetCode problems
+go run . -- --run -l            # same as --run leetcode
 go run . -- --drill core        # core only (Core Read 3 + Core 5)
 go run . -- --drill reflex       # today's specialty only
 go run . -- --track backend   # backend interview track
@@ -50,6 +52,8 @@ go run . -- --track leetcode  # 10 LeetCode problems matching today's topic
 
 ```bash
 go run . -- --track leetcode              # fetch + show today's 10 problems
+go run . -- --run leetcode                 # same from default DSA track
+go run . -- --run -l                       # short flag (like -w for write reflex)
 go run . -- --track leetcode -- --refresh # force re-fetch from LeetCode API
 go run . -- --track leetcode -- --catalog # all weekday sets
 go run ./bin/study_leetcode               # direct CLI (or: go -C bin/study_leetcode run .)

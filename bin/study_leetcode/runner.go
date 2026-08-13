@@ -44,7 +44,9 @@ func printTodaySet(s practiceSet, brief bool) {
 		fmt.Printf("  %d. %s\n", i+1, tip)
 	}
 	fmt.Println()
-	fmt.Println("refresh: go run . -- --track leetcode -- --refresh")
+	fmt.Println("run:     go run . -- --run leetcode")
+	fmt.Println("         go run . -- --run -l")
+	fmt.Println("refresh: go run . -- --run leetcode -- --refresh")
 	fmt.Println("catalog: go run . -- --track leetcode -- --catalog")
 	fmt.Println("reflex:  go run . -- --drill reflex   (in-repo micro-functions)")
 }
@@ -56,7 +58,7 @@ func printCatalog() {
 		fmt.Printf("%-9s  %-18s  %-22s  tags: %v\n", s.day, s.topic, s.reflex, s.topicTags)
 	}
 	fmt.Println()
-	fmt.Println("Run today's set: go run . -- --track leetcode")
+	fmt.Println("Run today's set: go run . -- --run leetcode")
 }
 
 func runStudyLeetcode(repoRoot string, catalog, brief, showSet, refresh bool) int {
