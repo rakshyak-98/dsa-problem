@@ -22,3 +22,11 @@ func findRepoRoot(from string) string {
 func dailyJSONPath(repoRoot string) string {
 	return filepath.Join(repoRoot, "drills", "leetcode", "daily.json")
 }
+
+func dailyMarkdownPath(repoRoot string) string {
+	return filepath.Join(repoRoot, "drills", "leetcode", "daily.md")
+}
+
+func dailyGoPath(repoRoot string) string {
+	return filepath.Join(repoRoot, "drills", "leetcode", "daily.go")
+}
