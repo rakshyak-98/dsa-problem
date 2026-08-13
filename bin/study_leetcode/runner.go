@@ -31,6 +31,7 @@ func printTodaySet(s practiceSet, brief bool) {
 	fmt.Printf("Reflex drill (separate): drills/write/reflex/%s\n", s.reflex)
 	fmt.Printf("Warmup: %s\n", s.warmup)
 	fmt.Printf("Saved:  drills/leetcode/daily.json\n")
+	fmt.Printf("        drills/leetcode/daily.md   (full problem statements)\n")
 	fmt.Println()
 	fmt.Println("Solve on LeetCode — log progress in drills/tracker/study_tracker.html")
 	fmt.Println()

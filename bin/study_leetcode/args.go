@@ -10,7 +10,7 @@ func printHelp() {
 
 Daily 10-question LeetCode practice set aligned with today's reflex topic.
 Fetches live problem data from the LeetCode GraphQL API and saves to
-drills/leetcode/daily.json. Solve on leetcode.com — separate from reflex drills.
+drills/leetcode/daily.json and drills/leetcode/daily.md (full statements).
 
 Options:
   -h, --help               display this help message and exit
