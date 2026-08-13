@@ -20,6 +20,7 @@ drills/
 │   ├── explain/           # verbal concept drills
 │   ├── write/             # Go reflex implementations
 │   └── scenario/          # STAR / mock interview prompts
+├── leetcode/              # daily 10-question LeetCode practice sets
 ├── solutions/             # write drill solutions (peek after attempt)
 │   ├── reflex/            # runnable Go solution per reflex drill
 │   ├── core5.md
@@ -34,6 +35,8 @@ drills/
 go run .                      # daily drill: read + write (DSA track)
 go run . -- --run core          # check core answers
 go run . -- --run reflex        # check reflex specialty answers
+go run . -- --run leetcode      # fetch today's 10 LeetCode problems
+go run . -- --run -l            # same as --run leetcode
 go run . -- --drill core        # core only (Core Read 3 + Core 5)
 go run . -- --drill reflex       # today's specialty only
 go run . -- --track backend   # backend interview track
@@ -42,7 +45,21 @@ go run . -- --track backend -- --run revision     # check revision answers
 go run . -- --track backend -- --catalog          # blocks + revision cycle
 go run . -- --track read      # reading only
 go run . -- --track write     # writing only
+go run . -- --track leetcode  # 10 LeetCode problems matching today's topic
 ```
+
+## LeetCode practice (separate from reflex drills)
+
+```bash
+go run . -- --track leetcode              # fetch + show today's 10 problems
+go run . -- --run leetcode                 # same from default DSA track
+go run . -- --run -l                       # short flag (like -w for write reflex)
+go run . -- --track leetcode -- --refresh # force re-fetch from LeetCode API
+go run . -- --track leetcode -- --catalog # all weekday sets
+go run ./bin/study_leetcode               # direct CLI (or: go -C bin/study_leetcode run .)
+```
+
+Guide: [`drills/leetcode/README.md`](leetcode/README.md)
 
 ## Write drills
 

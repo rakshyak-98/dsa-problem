@@ -43,6 +43,21 @@ func TestParseDailyArgs(t *testing.T) {
 		t.Fatalf("expected run side conflict: %+v", opts)
 	}
 
+	opts = parseDailyArgs([]string{"--", "--run", "leetcode"})
+	if !opts.run || opts.runSide != "leetcode" || len(opts.passArgs) != 1 || opts.passArgs[0] != "--run" {
+		t.Fatalf("parseDailyArgs run leetcode: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--run", "-l"})
+	if !opts.run || opts.runSide != "leetcode" {
+		t.Fatalf("parseDailyArgs run -l: %+v", opts)
+	}
+
+	opts = parseDailyArgs([]string{"--run", "reflex", "-l"})
+	if !opts.run || opts.runSide != "leetcode" {
+		t.Fatalf("parseDailyArgs run reflex -l prefers leetcode: %+v", opts)
+	}
+
 	opts = parseDailyArgs([]string{"--", "--run", "reflex"})
 	if !opts.run || len(opts.passArgs) != 2 || opts.passArgs[1] != "reflex" {
 		t.Fatalf("parseDailyArgs reflex: %+v", opts)
@@ -95,7 +110,7 @@ func TestParseDailyArgs(t *testing.T) {
 }
 
 func TestIsKnownTrack(t *testing.T) {
-	if !isKnownTrack(trackDSA) || !isKnownTrack(trackBackend) || !isKnownTrack(trackRead) || !isKnownTrack(trackWrite) {
+	if !isKnownTrack(trackDSA) || !isKnownTrack(trackBackend) || !isKnownTrack(trackRead) || !isKnownTrack(trackWrite) || !isKnownTrack(trackLeetcode) {
 		t.Fatal("known tracks")
 	}
 	if isKnownTrack("nope") {

@@ -56,8 +56,15 @@ Options:
       --core5              run the Core 5 write drill
       --drill KIND         show today's drill plan (KIND: core or reflex)
       --solution KIND      show solution file path (KIND: core or reflex)
-      --run [KIND]         run drill tests (KIND: core or reflex; default: all)
+      --run [KIND]         run drill tests (KIND: core, reflex, or leetcode)
       --catalog            list drills in the active track
+  -l, --leetcode           with --run: fetch today's 10 LeetCode problems (like -w for write)
+
+LeetCode track (--track=leetcode):
+      --run                fetch + show today's 10 problems (same as --set)
+      --set                show today's 10 LeetCode problems (default)
+      --refresh            re-fetch from LeetCode API and update daily.json
+      --catalog            list all weekday practice sets
 
 Read track (--track=read):
       --drill reflex       show today's reflex read plan
@@ -74,7 +81,7 @@ Backend track (--track=backend):
 
 func printUnknownTrack(track drillTrack) {
 	fmt.Fprintf(os.Stderr, "unknown track %q\n", track)
-	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, backend\n")
+	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, leetcode, backend\n")
 	fmt.Fprint(os.Stderr, "Try 'go run . -- --help' for more information.\n")
 }
 
@@ -94,7 +101,7 @@ func printReadUseTrack() {
 }
 
 func printRunSideConflict() {
-	fmt.Fprintln(os.Stderr, "cannot use both -r/--read and -w/--write")
+	fmt.Fprintln(os.Stderr, "cannot combine -r/--read, -w/--write, and -l/--leetcode on the same --run")
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
@@ -121,6 +128,8 @@ func printUnifiedHeader(track drillTrack) {
 		fmt.Println("Track: DSA reflex reading — today's specialty")
 	case trackWrite:
 		fmt.Println("Track: DSA writing — Core 5 + today's reflex specialty")
+	case trackLeetcode:
+		fmt.Println("Track: LeetCode — 10 full problems matching today's reflex topic")
 	case trackBackend:
 		fmt.Println("Track: Backend interview — Core 5 explain/write + resume block")
 	}
@@ -186,6 +195,12 @@ func runUnified(root string, opts dailyOptions) int {
 				printReadUseTrack()
 				return 1
 			}
+			if opts.runSide == "leetcode" {
+				if code := runLeetcode(root, opts.passArgs, true); code != 0 {
+					return code
+				}
+				return 0
+			}
 			runArgs := opts.passArgs
 			if code := runModule(root, "study_play", runArgs, true); code != 0 {
 				return code
@@ -207,6 +222,8 @@ func runUnified(root string, opts dailyOptions) int {
 			fmt.Println("        go run . -- --drill reflex")
 			fmt.Println("run:    go run . -- --run core")
 			fmt.Println("        go run . -- --run reflex")
+			fmt.Println("        go run . -- --run leetcode")
+			fmt.Println("        go run . -- --run -l")
 			fmt.Println("read:   go run . -- --track read")
 			fmt.Println("math:   go run ./bin/study_play -- --run-math")
 		}
@@ -218,12 +235,49 @@ func runUnified(root string, opts dailyOptions) int {
 		if code := runModule(root, "study_play", opts.passArgs, opts.run); code != 0 {
 			return code
 		}
+	case trackLeetcode:
+		if opts.run {
+			if code := runLeetcode(root, opts.passArgs, true); code != 0 {
+				return code
+			}
+			return 0
+		}
+		if code := runModule(root, "study_leetcode", withBrief(opts.passArgs), false); code != 0 {
+			return code
+		}
 	case trackBackend:
 		if code := runModule(root, "study_backend", opts.passArgs, opts.run); code != 0 {
 			return code
 		}
 	}
 	return 0
+}
+
+func runLeetcode(root string, passArgs []string, run bool) int {
+	args := filterLeetcodePassArgs(passArgs)
+	if run && !hasArg(args, "--run") {
+		args = append(args, "--run")
+	}
+	return runModule(root, "study_leetcode", args, run)
+}
+
+func filterLeetcodePassArgs(passArgs []string) []string {
+	out := make([]string, 0, len(passArgs))
+	for i := 0; i < len(passArgs); i++ {
+		a := passArgs[i]
+		switch a {
+		case "-r", "--read", "-w", "--write", "-l", "--leetcode":
+			continue
+		case "--run":
+			out = append(out, a)
+			if i+1 < len(passArgs) && isRunTarget(passArgs[i+1]) {
+				i++
+			}
+		default:
+			out = append(out, a)
+		}
+	}
+	return out
 }
 
 func filterReadPassArgs(passArgs []string) []string {

@@ -5,10 +5,11 @@ import "strings"
 type drillTrack string
 
 const (
-	trackDSA     drillTrack = "dsa"
-	trackBackend drillTrack = "backend"
-	trackRead    drillTrack = "read"
-	trackWrite   drillTrack = "write"
+	trackDSA       drillTrack = "dsa"
+	trackBackend   drillTrack = "backend"
+	trackRead      drillTrack = "read"
+	trackWrite     drillTrack = "write"
+	trackLeetcode  drillTrack = "leetcode"
 )
 
 type trackInfo struct {
@@ -21,6 +22,7 @@ var availableTracks = []trackInfo{
 	{trackDSA, "dsa", "reflex writing drills (Core 5 + weekday specialty)"},
 	{trackRead, "read", "reflex reading drills only"},
 	{trackWrite, "write", "writing drills only"},
+	{trackLeetcode, "leetcode", "daily 10-question LeetCode practice set (weekday topic)"},
 	{trackBackend, "backend", "interview prep"},
 }
 
@@ -67,14 +69,22 @@ func formatDrillKinds(track drillTrack) string {
 }
 
 func isRunSideFlag(s string) bool {
-	return s == "-r" || s == "--read" || s == "-w" || s == "--write"
+	return s == "-r" || s == "--read" || s == "-w" || s == "--write" || s == "-l" || s == "--leetcode"
 }
 
 func parseRunSide(s string) string {
-	if s == "-r" || s == "--read" {
+	switch s {
+	case "-r", "--read":
 		return "read"
+	case "-l", "--leetcode":
+		return "leetcode"
+	default:
+		return "write"
 	}
-	return "write"
+}
+
+func isRunTarget(s string) bool {
+	return s == "leetcode" || isDrillKind(s)
 }
 
 func hasRunKind(passArgs []string) bool {
@@ -156,7 +166,14 @@ func parseDailyArgs(args []string) dailyOptions {
 		case a == "--run":
 			opts.run = true
 			opts.passArgs = append(opts.passArgs, a)
-			if i+1 < len(args) && isDrillKind(args[i+1]) {
+			if i+1 < len(args) && args[i+1] == "leetcode" {
+				i++
+				if opts.runSide != "" && opts.runSide != "leetcode" {
+					opts.runSide = "conflict"
+				} else {
+					opts.runSide = "leetcode"
+				}
+			} else if i+1 < len(args) && isDrillKind(args[i+1]) {
 				i++
 				opts.passArgs = append(opts.passArgs, args[i])
 			}
