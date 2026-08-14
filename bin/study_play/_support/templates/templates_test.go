@@ -127,6 +127,15 @@ func TestTreesStacks(t *testing.T) {
 	if !reflect.DeepEqual(InorderTraversalTemplate(nil), []int{}) {
 		t.Fatal("inorder nil")
 	}
+	if !reflect.DeepEqual(PreorderTraversalTemplate(tree), []int{1, 2, 3, 4}) {
+		t.Fatal("preorder")
+	}
+	if !reflect.DeepEqual(PostorderTraversalTemplate(tree), []int{2, 4, 3, 1}) {
+		t.Fatal("postorder")
+	}
+	if !reflect.DeepEqual(LevelOrderTraversalTemplate(tree), []int{1, 2, 3, 4}) {
+		t.Fatal("levelOrder")
+	}
 	if MaxDepthTemplate(tree) != 3 {
 		t.Fatal("maxDepth")
 	}

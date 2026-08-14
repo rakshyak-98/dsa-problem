@@ -3,6 +3,15 @@
 ## inorderTraversal (iterative)
 - **Pattern:** stack simulates recursion; go left, process, go right
 
+## preorderTraversal (iterative)
+- **Pattern:** process node, then push right then left (stack LIFO gives left first)
+
+## postorderTraversal (iterative)
+- **Pattern:** reverse-preorder (process, push left then right, reverse result)
+
+## levelOrderTraversal (BFS)
+- **Pattern:** queue; dequeue node, enqueue children left-to-right
+
 ## maxDepth
 - **Recurrence:** 1 + max(left, right); base nil → 0
 

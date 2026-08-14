@@ -38,6 +38,9 @@ var problemMap = map[string][]problemLink{
 	},
 	"05_trees_stacks_reflex": {
 		{"inorderTraversal", "trees/easy/binary_tree_inorder_traversal.js", "Return inorder traversal of binary tree"},
+		{"preorderTraversal", "trees/easy/binary_tree_preorder_traversal.js", "Return preorder traversal of binary tree"},
+		{"postorderTraversal", "trees/easy/binary_tree_postorder_traversal.js", "Return postorder traversal of binary tree"},
+		{"levelOrderTraversal", "trees/medium/binary_tree_level_order_traversal.js", "Return level-order traversal of binary tree"},
 		{"maxDepth", "trees/easy/maximum_depth_of_binary_tree.js", "Maximum depth of binary tree"},
 		{"isValidParentheses", "stacks/easy/valid_parentheses.js", "Are brackets properly matched"},
 		{"dailyTemperatures", "stacks/medium/daily_temperatures.js", "Days until warmer temperature"},

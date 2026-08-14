@@ -86,10 +86,11 @@ var drills = []drill{
 	},
 	{
 		day: "Friday", file: "05_trees_stacks_reflex",
-		patterns:  "inorder, depth, parens, mono stack",
-		functions: []string{"inorderTraversal", "maxDepth", "isValidParentheses", "dailyTemperatures"},
+		patterns:  "inorder, preorder, postorder, level-order, depth, parens, mono stack",
+		functions: []string{"inorderTraversal", "preorderTraversal", "postorderTraversal", "levelOrderTraversal", "maxDepth", "isValidParentheses", "dailyTemperatures"},
 		triggers: []string{
-			"tree order without recursion → stack / iterative inorder",
+			"tree order without recursion → stack / iterative DFS",
+			"row-by-row tree visit → BFS queue (level-order)",
 			"matching brackets → stack of opens",
 			"next greater element → monotonic decreasing stack",
 		},
@@ -135,7 +136,7 @@ var essentialCatalog = []struct {
 	{"Hashing", []string{"twoSum", "containsDuplicate", "frequencyMap", "firstUniqueChar", "groupAnagrams"}},
 	{"Two pointers & window", []string{"removeDuplicates", "moveZeroes", "maxArea", "isPalindrome", "maxSumSubarrayK"}},
 	{"Binary search", []string{"binarySearch", "searchInsert", "findMinRotated", "isTargetPresent"}},
-	{"Trees & stacks", []string{"inorderTraversal", "maxDepth", "isValidParentheses", "dailyTemperatures"}},
+	{"Trees & stacks", []string{"inorderTraversal", "preorderTraversal", "postorderTraversal", "levelOrderTraversal", "maxDepth", "isValidParentheses", "dailyTemperatures"}},
 	{"DP", []string{"fib", "climbStairs", "minCostClimbingStairs", "rob"}},
 	{"Graphs", []string{"numIslands", "floodFill", "shortestPathGrid"}},
 	{"Math", []string{"gcd", "lcm", "modPow", "nCr", "isPrime", "powOfTwo"}},

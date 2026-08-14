@@ -112,7 +112,7 @@ After Core 5, open today’s file and implement every `TODO: REFLEX` from empty 
 | **Tue** | `drills/write/reflex/02_hashing_reflex/` | `twoSum`, `containsDuplicate`, `frequencyMap`, `firstUniqueChar`, `groupAnagrams` |
 | **Wed** | `drills/write/reflex/03_two_pointers_reflex/` | `removeDuplicates`, `moveZeroes`, `maxArea`, `isPalindrome`, `maxSumSubarrayK` |
 | **Thu** | `drills/write/reflex/04_binary_search_reflex/` | `binarySearch`, `searchInsert`, `findMinRotated`, `isTargetPresent` |
-| **Fri** | `drills/write/reflex/05_trees_stacks_reflex/` | `inorderTraversal`, `maxDepth`, `isValidParentheses`, `dailyTemperatures` |
+| **Fri** | `drills/write/reflex/05_trees_stacks_reflex/` | `inorderTraversal`, `preorderTraversal`, `postorderTraversal`, `levelOrderTraversal`, `maxDepth`, `isValidParentheses`, `dailyTemperatures` |
 | **Sat** | `drills/write/reflex/06_dp_reflex/` | `fib`, `minCostClimbingStairs`, `rob`, `climbStairs` |
 | **Sun** | `drills/write/reflex/07_graphs_reflex/` | `numIslands`, `floodFill`, `shortestPathGrid` |
 
