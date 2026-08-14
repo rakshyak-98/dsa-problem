@@ -252,6 +252,24 @@ func main() {
 	assert("inorderTraversal single", reflect.DeepEqual(inorderTraversal(single), []int{5}))
 	assert("inorderTraversal left skew", reflect.DeepEqual(inorderTraversal(leftSkew), []int{3, 2, 1}))
 
+	// preorderTraversal — full, nil, single, left skew
+	assert("preorderTraversal basic", reflect.DeepEqual(preorderTraversal(tree), []int{1, 2, 3, 4}))
+	assert("preorderTraversal nil", reflect.DeepEqual(preorderTraversal(nil), []int{}))
+	assert("preorderTraversal single", reflect.DeepEqual(preorderTraversal(single), []int{5}))
+	assert("preorderTraversal left skew", reflect.DeepEqual(preorderTraversal(leftSkew), []int{1, 2, 3}))
+
+	// postorderTraversal — full, nil, single, left skew
+	assert("postorderTraversal basic", reflect.DeepEqual(postorderTraversal(tree), []int{2, 4, 3, 1}))
+	assert("postorderTraversal nil", reflect.DeepEqual(postorderTraversal(nil), []int{}))
+	assert("postorderTraversal single", reflect.DeepEqual(postorderTraversal(single), []int{5}))
+	assert("postorderTraversal left skew", reflect.DeepEqual(postorderTraversal(leftSkew), []int{3, 2, 1}))
+
+	// levelOrderTraversal — full, nil, single, left skew
+	assert("levelOrderTraversal basic", reflect.DeepEqual(levelOrderTraversal(tree), []int{1, 2, 3, 4}))
+	assert("levelOrderTraversal nil", reflect.DeepEqual(levelOrderTraversal(nil), []int{}))
+	assert("levelOrderTraversal single", reflect.DeepEqual(levelOrderTraversal(single), []int{5}))
+	assert("levelOrderTraversal left skew", reflect.DeepEqual(levelOrderTraversal(leftSkew), []int{1, 2, 3}))
+
 	// maxDepth — full, nil, single, left skew
 	assert("maxDepth basic", maxDepth(tree) == 3)
 	assert("maxDepth nil", maxDepth(nil) == 0)

@@ -283,6 +283,69 @@ func InorderTraversal(root *TreeNode) []int {
 	return out
 }
 
+func PreorderTraversal(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+	out := []int{}
+	stack := []*TreeNode{root}
+	for len(stack) > 0 {
+		cur := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		out = append(out, cur.Val)
+		if cur.Right != nil {
+			stack = append(stack, cur.Right)
+		}
+		if cur.Left != nil {
+			stack = append(stack, cur.Left)
+		}
+	}
+	return out
+}
+
+func PostorderTraversal(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+	out := []int{}
+	stack := []*TreeNode{root}
+	for len(stack) > 0 {
+		cur := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		out = append(out, cur.Val)
+		if cur.Left != nil {
+			stack = append(stack, cur.Left)
+		}
+		if cur.Right != nil {
+			stack = append(stack, cur.Right)
+		}
+	}
+	for i, j := 0, len(out)-1; i < j; i, j = i+1, j-1 {
+		out[i], out[j] = out[j], out[i]
+	}
+	return out
+}
+
+func LevelOrderTraversal(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+	out := []int{}
+	queue := []*TreeNode{root}
+	for len(queue) > 0 {
+		cur := queue[0]
+		queue = queue[1:]
+		out = append(out, cur.Val)
+		if cur.Left != nil {
+			queue = append(queue, cur.Left)
+		}
+		if cur.Right != nil {
+			queue = append(queue, cur.Right)
+		}
+	}
+	return out
+}
+
 func MaxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
