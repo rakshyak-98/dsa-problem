@@ -81,8 +81,26 @@ func parseTestOutput(output string) (passed, failed []string) {
 	return passed, failed
 }
 
+func hasTestFiles(dir string) bool {
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		return false
+	}
+	for _, e := range entries {
+		if strings.HasSuffix(e.Name(), "_test.go") {
+			return true
+		}
+	}
+	return false
+}
+
 func runDrillWithLog(drillPath string) (bool, string, error) {
-	cmd := exec.Command("go", "run", ".")
+	var cmd *exec.Cmd
+	if hasTestFiles(drillPath) {
+		cmd = exec.Command("go", "test", "-v", "-count=1", "-vet=off", ".")
+	} else {
+		cmd = exec.Command("go", "run", ".")
+	}
 	cmd.Dir = drillPath
 	var buf bytes.Buffer
 	cmd.Stdout = &buf
