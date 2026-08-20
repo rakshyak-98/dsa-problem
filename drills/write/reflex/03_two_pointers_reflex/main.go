@@ -7,15 +7,7 @@ package main
 
 // TODO: REFLEX — remove duplicates from sorted array, return new length
 func removeDuplicates(nums []int) int {
-	write, read := 0, 0
-	for read < len(nums) {
-		if nums[read] != nums[write] {
-			nums[write] = nums[read]
-			write++
-		}
-		read++
-	}
-	return write
+	panic("Implement from memory")
 }
 
 // TODO: REFLEX — move all zeroes to end in-place
