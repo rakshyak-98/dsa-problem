@@ -74,7 +74,7 @@ func TestMaxSumSubarrayK(t *testing.T) {
 	assert(t, "maxSumSubarrayK k=1", maxSumSubarrayK([]int{4, 2, 9}, 1) == 9)
 	assert(t, "maxSumSubarrayK k=len", maxSumSubarrayK([]int{1, 2, 3}, 3) == 6)
 	assert(t, "maxSumSubarrayK negatives", maxSumSubarrayK([]int{-1, -2, -3}, 2) == -3)
-	assert(t, "maxSumSubarrayK window slide", maxSumSubarrayK([]int{1, 4, 2, 10, 2, 1}, 2) == 14)
+	assert(t, "maxSumSubarrayK window slide", maxSumSubarrayK([]int{1, 4, 2, 10, 2, 1}, 2) == 12)
 }
 
 func TestAll(t *testing.T) {
