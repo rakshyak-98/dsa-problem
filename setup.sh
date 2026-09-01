@@ -9,10 +9,6 @@ command -v go >/dev/null || { echo "Go is required (1.22+). Install from https:/
 go version
 
 echo
-echo "==> Initializing backend interview drills"
-(go run -C bin/study_backend . -- --setup)
-
-echo
 echo "==> Initializing write drills (7 daily + 2 bonus)"
 (go run -C bin/study_play . -- --setup)
 
@@ -34,10 +30,8 @@ echo
 echo "Next steps:"
 echo "  START HERE:                 open doc/drills.md"
 echo "  unified daily:              go run ."
-echo "  backend interview prep:     go run -C bin/study_backend . -- --cram"
-echo "  write drills CLI:           go run -C bin/study_play ."
+echo "  today's session:            go run . -- --refresh"
+echo "  level scoreboard:           go run . -- --levels"
 echo "  Core 5:                     go run -C drills/write/core5 ."
 echo "  read drills CLI:            go run -C bin/study_code ."
-echo "  study tracker (browser):    open drills/tracker/study_tracker.html"
-echo "  visualizer (browser):       open reference/visualizer/index.html"
 echo "  problem index:              reference/problems/CATEGORIES.md"

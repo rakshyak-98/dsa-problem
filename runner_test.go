@@ -125,23 +125,6 @@ func TestFilterLeetcodePassArgs(t *testing.T) {
 	}
 }
 
-func TestRunUnifiedBackend(t *testing.T) {
-	calls := []string{}
-	commandRunner = func(dir string, args ...string) error {
-		calls = append(calls, dir)
-		return nil
-	}
-	defer func() { commandRunner = runIn }()
-
-	code := runUnified("/tmp/repo", dailyOptions{track: trackBackend, passArgs: []string{"--cram"}})
-	if code != 0 {
-		t.Fatal("expected success")
-	}
-	if len(calls) != 1 || !containsAll(calls[0], "study_backend") {
-		t.Fatalf("expected study_backend only, got %v", calls)
-	}
-}
-
 func TestFilterReadPassArgs(t *testing.T) {
 	got := filterReadPassArgs([]string{"--brief", "--drill", "core", "--solution", "reflex"})
 	if len(got) != 3 || got[0] != "--brief" || got[1] != "--solution" || got[2] != "reflex" {
@@ -175,13 +158,15 @@ func TestPrintHelp(t *testing.T) {
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
 	out := buf.String()
-	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "--core5", "--drill KIND", "--track=read", "backend"} {
+	for _, want := range []string{"Usage:", "Options:", "-h, --help", "--track=NAME", "--core5", "--drill KIND", "--track=read", "--refresh", "--levels"} {
 		if !strings.Contains(out, want) {
 			t.Fatalf("help missing %q:\n%s", want, out)
 		}
 	}
-	if strings.Contains(out, "cards") {
-		t.Fatal("help should not mention cards track")
+	for _, gone := range []string{"cards", "backend", "revision", "cram"} {
+		if strings.Contains(out, gone) {
+			t.Fatalf("help should not mention %q track", gone)
+		}
 	}
 	if strings.Contains(out, "Examples:") {
 		t.Fatal("help should not include examples section")

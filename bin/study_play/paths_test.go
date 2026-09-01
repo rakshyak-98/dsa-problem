@@ -51,8 +51,7 @@ func TestWriteDrillPathHelpers(t *testing.T) {
 	repo := t.TempDir()
 	core5 := filepath.Join(repo, "drills", "write", "core5")
 	variants := filepath.Join(repo, "drills", "write", "variants")
-	tracker := filepath.Join(repo, "drills", "tracker")
-	for _, p := range []string{core5, variants, tracker} {
+	for _, p := range []string{core5, variants} {
 		if err := os.MkdirAll(p, 0o755); err != nil {
 			t.Fatal(err)
 		}
@@ -62,9 +61,6 @@ func TestWriteDrillPathHelpers(t *testing.T) {
 	}
 	if writeVariantsDir(repo) != variants {
 		t.Fatalf("variants: %s", writeVariantsDir(repo))
-	}
-	if trackerDir(repo) != tracker {
-		t.Fatalf("tracker: %s", trackerDir(repo))
 	}
 
 }

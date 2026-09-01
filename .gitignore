@@ -1,5 +1,8 @@
 # Go build artifacts
+/dsa-problem
 bin/study_play/study_play
+bin/study_code/study_code
+bin/study_leetcode/study_leetcode
 *.exe
 *.test
 
@@ -13,6 +16,7 @@ drills/leetcode/daily.md
 drills/leetcode/daily.go
 
 # OS / editor
+.cursor/
 .DS_Store
 .idea/
 .vscode/

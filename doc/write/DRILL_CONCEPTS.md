@@ -52,12 +52,13 @@ Functions: `binarySearch`, `searchInsert`, `findMinRotated`, `isTargetPresent`
 
 ## Drill 05: Trees and Stacks
 
-Functions: `inorderTraversal`, `maxDepth`, `isValidParentheses`, `dailyTemperatures`
+Functions: `inorderTraversal`, `preorderTraversal`, `postorderTraversal`, `levelOrderTraversal`, `maxDepth`, `isValidParentheses`, `dailyTemperatures`
 
 - **Core idea:** Use stack discipline for nested structure and next-greater relations.
 - **When this pattern appears:** Tree traversal, bracket matching, nearest next condition.
 - **Key concepts:**
   - **Traversal state:** Recursion or explicit stack to simulate call stack.
+  - **Order picks the use:** inorder for sorted BST output, preorder for copy/serialize, postorder when children must resolve first, level-order (BFS queue) for row-by-row.
   - **Depth recurrence:** Tree answers often combine left and right subtree results.
   - **LIFO matching:** Parentheses validation uses most recent unmatched opener.
   - **Monotonic stack:** Maintain decreasing/increasing stack for next-greater problems.

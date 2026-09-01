@@ -368,8 +368,8 @@ Revisit date: (+3 days)
 ### Daily reflex block (see `DAILY_30MIN_DRILL.md`)
 
 ```bash
-go run ./bin/study_play        # today's file + prompts
-go run ./bin/study_play -- --run  # run tests after implementing
+go run .        # today's file + prompts
+go run . -- --run  # run tests after implementing
 ```
 
 1. Open today's drill with answers **covered**.

@@ -39,10 +39,6 @@ func renderDailyGo(set practiceSet, fetchedAt string) (string, error) {
 	fmt.Fprintf(&b, "import \"fmt\"\n\n")
 
 	for i, p := range set.problems {
-		raw, err := fetchQuestionContent(p.Slug)
-		if err != nil {
-			return "", fmt.Errorf("problem #%d %s: %w", p.Num, p.Slug, err)
-		}
 		dailyMark := ""
 		if p.Daily {
 			dailyMark = " · daily challenge"
@@ -55,14 +51,12 @@ func renderDailyGo(set practiceSet, fetchedAt string) (string, error) {
 		if p.ReflexFn != "" {
 			fmt.Fprintf(&b, "// Reflex: %s\n", p.ReflexFn)
 		}
-		fmt.Fprintf(&b, "//\n")
-		b.WriteString(textToGoComments(htmlToText(raw)))
 		fmt.Fprintf(&b, "//\n\n")
 	}
 
 	b.WriteString("func main() {\n")
 	fmt.Fprintf(&b, "\tfmt.Println(\"Daily LeetCode — %s (%s | %s)\")\n", todayDate(), set.day, set.topic)
-	fmt.Fprintf(&b, "\tfmt.Println(\"%d problems — read statements in comments above.\")\n", len(set.problems))
+	fmt.Fprintf(&b, "\tfmt.Println(\"%d problems — click links below.\")\n", len(set.problems))
 	b.WriteString("\tfmt.Println()\n")
 	for i, p := range set.problems {
 		dailyMark := ""

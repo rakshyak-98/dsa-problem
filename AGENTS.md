@@ -1,31 +1,70 @@
 # AGENTS.md
 
-## Cursor Cloud specific instructions
+This repo is a **pure Go (stdlib-only) DSA drill workspace**. There is no server,
+database, or external service, and no third-party Go dependencies (no `go.sum`).
+Go 1.22+ is the only required toolchain.
 
-This repo is a **pure Go (stdlib-only) DSA interview-prep workspace** plus two static-HTML tools. There is no server, database, or external service, and there are no third-party Go dependencies (no `go.sum`). Go 1.22+ is the only required toolchain (already installed in the cloud image).
+## Modules
 
-### Modules and how to run them
+Four separate Go modules with **no `go.work`**, so run `go` commands per module
+(or use `go -C <dir> ...`):
 
-There are four separate Go modules with **no `go.work`**, so run `go` commands from each module directory (or use `go -C <module> ...`). Standard run commands are documented in `README.md`; briefly:
+| Module | Purpose |
+|--------|---------|
+| `.` (root) | unified daily runner — delegates to the others |
+| `bin/study_play/` | write-reflex drills: levels, `--refresh` session, problem set |
+| `bin/study_code/` | code-reading drills |
+| `bin/study_leetcode/` | daily 10-question LeetCode set (hits the LeetCode API) |
 
-- `study_play/` — write-reflex drills + tracker. `go -C study_play run .` (plan), `... run . -- --run`, `... run . -- --catalog`.
-- `study_code/` — code-reading drills. `go -C study_code run .`.
-- `daily/` — unified daily runner. `go -C daily run .`.
-- `practice/` — scratch problem module (not part of the test suite).
+Because they are separate modules, `go run ./bin/study_play` **fails** from the
+repo root — the root module cannot resolve that package path. Use `go run . --
+<flags>`, which delegates, or `go -C bin/study_play run .`.
 
-**Solving a drill (the core end-to-end flow):** edit the TODO stubs in `study_play/drills/<NN>_*/main.go`, then run that drill directly, e.g. `go -C study_play run ./drills/05_trees_stacks_reflex`. All asserts print `PASS:` and it ends with `All ... reflex drills passed.` when correct.
+## Everyday commands
 
-**Static GUIs:** open `study_play/study_tracker.html` and `visualizer/index.html` directly in a browser. The visualizer loads CodeMirror from the Cloudflare CDN, so it needs internet access.
+```bash
+go run .                    # today's plan (read + write)
+go run . -- --refresh       # today's level-matched write session
+go run . -- --levels        # what each function has earned: L1 / L2 / L3
+go run . -- --run reflex    # run today's specialty drill and log the result
+```
 
-### Lint / test
+## Solving a drill (the core end-to-end flow)
 
-- Tests: `study_code` and `daily` pass with plain `go test .`. The coverage helper is `tools/scripts/test-coverage.sh`.
-- **Known caveat — `study_play` `go test` fails on `go vet`:** `daily_drill.go` has an unreachable duplicate `--setup` block whose `fmt.Println("...\n")` trips vet ("redundant newline"). Since `go test` runs vet by default, run study_play tests with `go -C study_play test . ./_support/templates -vet=off`.
-- **Known caveat — 4 study_play tests fail regardless of vet:** `TestBlankContent`, `TestWriteDrillFromBlank`, `TestSetupAllDrills`, `TestResetTodayDrill` fail because `reset.go` embeds `_support/blanks/*` but reads `blanks/<file>.go`. The `_support/templates` package tests and all other study_play tests pass.
+Edit the `TODO: REFLEX` stubs in `drills/write/reflex/<NN>_*/main.go`, then:
 
-### Setup / drill-generation caveats (pre-existing, non-blocking)
+```bash
+go run -C drills/write/reflex/05_trees_stacks_reflex .
+# or, to also update .drill_log.json:
+go run . -- --run reflex
+```
 
-- The generated drills are **already committed** under `study_play/drills/`, so no setup is needed to use the product.
-- `study_play --setup` and `--reset` are broken by the same `reset.go` embed-path bug above (`no blank template ...`). Do not rely on them to (re)generate drills.
-- `setup.sh` contains an unresolved git merge conflict near the end and will not complete cleanly; the useful setup steps are already covered by the committed drills.
-- `practice/go.mod` declares `go 1.26.4` (higher than the installed toolchain), so any `go` command in `practice/` triggers a `go1.26.4` toolchain download. It is a scratch module and is excluded from `tools/scripts/test-coverage.sh`.
+Every assert prints `PASS:` / `FAIL:`; `--run` rolls those up into one result per
+function and grades the function's level from the history.
+
+## Lint / test
+
+```bash
+./bin/scripts/test-coverage.sh    # the real gate: the four source modules only
+```
+
+- `gofmt -l` and `go vet ./...` are clean in the root module and `bin/study_play`.
+- **Do not judge the repo by `go test ./...` from the root.** That walks into
+  `drills/**`, which are *practice files* — they are supposed to fail whenever a
+  drill is blank or half-written. The coverage script excludes them.
+- The coverage gate has a long-standing shortfall: it demands 80% and the tree
+  sits in the mid-70s. That predates any recent work.
+
+## Known issues
+
+- `bin/study_leetcode` `TestRenderDailyGoMock` fails (`renderDailyGo missing
+  "Search in sorted array"`) against the uncommitted change in `render_go.go`.
+- `bin/study_leetcode/api.go` and `content.go` are not gofmt-clean.
+
+## Conventions
+
+- `levels.go` (cue table) and `primaries.go` (one LeetCode problem per function)
+  must stay in sync: `levels_test.go` fails if a function has no cue, no primary,
+  or a cue that names its own answer.
+- `bin/study_leetcode/reflex_map.go` maps LeetCode slugs back to drill functions;
+  keep it in step with `primaries.go` when adding problems.

@@ -59,7 +59,7 @@ var problemMap = map[string][]problemLink{
 	"08_heap_reflex": {
 		{"kthLargest", "heaps/medium/kth_largest_element_in_an_array.js", "Kth largest element in array"},
 		{"lastStoneWeight", "heaps/easy/last_stone_weight.js", "Simulate stone smashing with max heap"},
-		{"mergeKSortedLists", "heaps/hard/merge_k_sorted_lists.js", "Merge k sorted linked lists"},
+		{"mergeKSorted", "heaps/hard/merge_k_sorted_lists.js", "Merge k sorted linked lists"},
 	},
 	"09_backtrack_reflex": {
 		{"subsets", "backtracking/medium/subsets.js", "Return all subsets of nums"},
@@ -84,22 +84,39 @@ var core5Problems = []problemLink{
 	{"frequencyMap", "hashing/easy/top_k_ferquent_element.js", "Count frequency of each element"},
 }
 
+// printProblemMap shows what to solve once the drill's tests pass. The
+// headline is the curated LeetCode primary from primaries.go — the local
+// reference/problems/ mirror is only a partial index, so it is shown as a
+// secondary hint and never as the target.
 func printProblemMap(drillFile string) {
 	links, ok := problemMap[drillFile]
 	if !ok {
 		return
 	}
-	fmt.Println("\n── DRILL → PRIMARY PROBLEMS ───────────────────────────")
+	fmt.Println("\n── AFTER TESTS PASS: SOLVE THESE ──────────────────────")
 	for _, l := range links {
-		fmt.Printf("  • %s → %s\n", l.function, l.problem)
-		fmt.Printf("    Ask: %s\n", l.ask)
+		p, hasPrimary := primaries[l.function]
+		if !hasPrimary {
+			fmt.Printf("  • %s → %s\n", l.function, l.problem)
+			continue
+		}
+		fmt.Printf("  • %-20s %-6s %s\n", l.function, p.diff, p.title)
+		if c, ok := cueByFn[l.function]; ok {
+			fmt.Printf("    ask: %s\n", c.ask)
+		}
+		fmt.Printf("    %s\n", problemURL(p.slug))
 	}
-	fmt.Println("\n  After tests pass: solve the primary without peeking at this drill.")
+	fmt.Println("\n  Solve without reopening the drill. Stuck twice → that is an L1 function again.")
 }
 
 func printCore5Problems() {
 	fmt.Println("\n── CORE 5 → PRIMARY PROBLEMS ──────────────────────────")
 	for _, l := range core5Problems {
-		fmt.Printf("  • %s → %s\n", l.function, l.problem)
+		p, ok := primaries[l.function]
+		if !ok {
+			fmt.Printf("  • %s → %s\n", l.function, l.problem)
+			continue
+		}
+		fmt.Printf("  • %-20s %-6s %-40s %s\n", l.function, p.diff, p.title, problemURL(p.slug))
 	}
 }

@@ -6,7 +6,7 @@ Use this as the follow-through version of `study_play/STUDY_PLAN.md`. Check item
 
 - [ ] Restate the ask in one plain sentence (translation test)
 - [ ] Fill literacy notes: input, output, example trace, edges
-- [ ] Run today's reflex drill (`go run ./bin/study_play`)
+- [ ] Run today's reflex drill (`go run .`)
 - [ ] Solve **one** primary problem (stretch is optional)
 - [ ] Write brute force before optimizing (on mediums)
 - [ ] Run the pattern scan only after you understand the ask

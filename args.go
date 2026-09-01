@@ -5,11 +5,10 @@ import "strings"
 type drillTrack string
 
 const (
-	trackDSA       drillTrack = "dsa"
-	trackBackend   drillTrack = "backend"
-	trackRead      drillTrack = "read"
-	trackWrite     drillTrack = "write"
-	trackLeetcode  drillTrack = "leetcode"
+	trackDSA      drillTrack = "dsa"
+	trackRead     drillTrack = "read"
+	trackWrite    drillTrack = "write"
+	trackLeetcode drillTrack = "leetcode"
 )
 
 type trackInfo struct {
@@ -23,7 +22,6 @@ var availableTracks = []trackInfo{
 	{trackRead, "read", "reflex reading drills only"},
 	{trackWrite, "write", "writing drills only"},
 	{trackLeetcode, "leetcode", "daily 10-question LeetCode practice set (weekday topic)"},
-	{trackBackend, "backend", "interview prep"},
 }
 
 func isKnownTrack(track drillTrack) bool {
@@ -36,15 +34,13 @@ func isKnownTrack(track drillTrack) bool {
 }
 
 func isDrillKind(s string) bool {
-	return s == "core" || s == "reflex" || s == "revision"
+	return s == "core" || s == "reflex"
 }
 
 func validDrillKinds(track drillTrack) []string {
 	switch track {
 	case trackRead:
 		return []string{"reflex"}
-	case trackBackend:
-		return []string{"core", "reflex", "revision"}
 	default:
 		return []string{"core", "reflex"}
 	}

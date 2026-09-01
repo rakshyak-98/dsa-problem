@@ -14,7 +14,7 @@ func isDrillKind(s string) bool {
 }
 
 func printHelp() {
-	fmt.Print(`Usage: go run ./bin/study_play -- [OPTION]...
+	fmt.Print(`Usage: go run . -- [OPTION]...
 
 Run reflex writing drills (Core 5 + today's weekday specialty).
 
@@ -25,9 +25,14 @@ Options:
       --run [KIND]         run write drill tests (KIND: core or reflex; default: all)
       --run-core5          run Core 5 tests only
       --run-math           run math reflex add-on drill
+      --refresh            today's level-matched session (recognise → rebuild)
+      --show               reveal answers in the --refresh recognition round
+      --levels             what each function has earned: L1 / L2 / L3
+      --problems           curated primary problem per function, by level
+      --triggers           full cross-topic pattern trigger table
       --catalog            list weekday write drills
       --brief              one-line output for unified daily runner
-      --weak               show weakest functions from tracker log
+      --weak               show weakest functions from the drill log
       --setup              generate drills from blank templates
       --reset              reset today's drill to blank template
 
@@ -49,7 +54,7 @@ func printKindArgError(flag, label string, missing bool, unknown string) {
 		fmt.Fprintf(os.Stderr, "unknown %s %q\n", label, unknown)
 	}
 	fmt.Fprintln(os.Stderr, "Valid arguments: core, reflex")
-	fmt.Fprintln(os.Stderr, "Try 'go run ./bin/study_play -- --help' for more information.")
+	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
 func parsePlayArgs(args []string) (drillKind, solutionKind string, help, brief, runMath bool, runMode string, parseErr bool) {

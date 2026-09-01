@@ -15,7 +15,7 @@ Pattern:    which template fits (after understanding, not before)
 
 ## How to use
 
-1. Run `go run ./bin/study_play` — today's ask is printed in the **Question Literacy** section.
+1. Run `go run .` — today's ask is printed in the **Question Literacy** section.
 2. Cover the hints and fill each bullet from the statement alone.
 3. Only then open the matching reflex drill or primary problem.
 
@@ -35,4 +35,4 @@ If you cannot write the **Ask** line without mentioning a data structure, you do
 | Sat | Min cost stairs | `dynamic_programming/easy/min_cost_climbing_staris.js` |
 | Sun | Number of islands | `graphs/medium/number_of_islands.js` |
 
-After the ask drill: run Core 5 → specialty reflex → solve the primary problem → log in `study_tracker.html`.
+After the ask drill: run Core 5 → specialty reflex → solve the primary problem → check `go run . -- --levels`.

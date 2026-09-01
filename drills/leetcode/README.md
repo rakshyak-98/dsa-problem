@@ -10,7 +10,7 @@ Problems are **fetched live from the LeetCode GraphQL API** when you run today's
 |-------|------|--------|
 | Reflex drill | 4–6 tiny functions from memory | `drills/write/reflex/` |
 | **LeetCode practice** | **10 API-fetched full problems** | **`daily.json` + `--track leetcode`** |
-| Progress | Session log + LeetCode links | `drills/tracker/study_tracker.html` |
+| Progress | Level per function, derived from runs | `.drill_log.json` + `--levels` |
 
 ## Commands
 
@@ -40,7 +40,7 @@ go -C bin/study_leetcode run .            # direct CLI
 1. Run reflex drill: `go run . -- --drill reflex` then implement in `drills/write/reflex/`
 2. Run LeetCode set: `go run . -- --track leetcode` (updates `daily.json`)
 3. Solve 2–3 problems on LeetCode (or all 10 if you have time)
-4. Log URLs in the study tracker
+4. Check what moved: `go run . -- --levels`
 
 ## How fetching works
 

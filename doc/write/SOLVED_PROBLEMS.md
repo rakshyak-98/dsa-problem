@@ -1,6 +1,6 @@
 # Solved Problems Log
 
-> Generated from `study_play/study_tracker.html`.
+> Hand-kept log: one entry per solved problem, with the lesson that made it stick.
 
 ## Summary
 - Total entries: 4

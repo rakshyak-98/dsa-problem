@@ -36,14 +36,14 @@ func withBrief(args []string) []string {
 
 func printTrackList() {
 	for _, t := range availableTracks {
-		fmt.Printf("  %-8s%s\n", t.name, t.description)
+		fmt.Printf("  %-10s%s\n", t.name, t.description)
 	}
 }
 
 func printHelp() {
 	fmt.Print(`Usage: go run . -- [OPTION]...
 
-Run daily DSA and interview-prep drills from the repo root.
+Run daily DSA drills from the repo root.
 
 Options:
   -h, --help               display this help message and exit
@@ -52,7 +52,7 @@ Options:
                              dsa: reflex writing (Core 5 + weekday specialty)
                              read: reflex code-reading drills
                              write: same as dsa writing drills
-                             backend: interview prep
+                             leetcode: daily 10-question practice set
       --core5              run the Core 5 write drill
       --drill KIND         show today's drill plan (KIND: core or reflex)
       --solution KIND      show solution file path (KIND: core or reflex)
@@ -60,10 +60,19 @@ Options:
       --catalog            list drills in the active track
   -l, --leetcode           with --run: fetch today's 10 LeetCode problems (like -w for write)
 
+Write drills (default track):
+      --refresh            today's level-matched session (recognise -> rebuild)
+      --show               with --refresh: reveal the recognition answers
+      --levels             what each function has earned: L1 / L2 / L3
+      --problems           curated primary problem per function, by level
+      --triggers           full cross-topic pattern trigger table
+      --weak               weakest functions from the drill log
+
 LeetCode track (--track=leetcode):
       --run                fetch + show today's 10 problems (same as --set)
       --set                show today's 10 LeetCode problems (default)
       --refresh            re-fetch from LeetCode API and update daily.json
+                             (on the default track --refresh is the write session)
       --catalog            list all weekday practice sets
 
 Read track (--track=read):
@@ -71,17 +80,12 @@ Read track (--track=read):
       --solution reflex    show read answer key section
       --run [reflex]       run today's reflex read tests
 
-Backend track (--track=backend):
-      --drill revision     show today's revision drill path
-      --run revision       validate today's revision drill
-      --cram               show interview cram schedule
-
 `)
 }
 
 func printUnknownTrack(track drillTrack) {
 	fmt.Fprintf(os.Stderr, "unknown track %q\n", track)
-	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, leetcode, backend\n")
+	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, leetcode\n")
 	fmt.Fprint(os.Stderr, "Try 'go run . -- --help' for more information.\n")
 }
 
@@ -130,8 +134,6 @@ func printUnifiedHeader(track drillTrack) {
 		fmt.Println("Track: DSA writing — Core 5 + today's reflex specialty")
 	case trackLeetcode:
 		fmt.Println("Track: LeetCode — 10 full problems matching today's reflex topic")
-	case trackBackend:
-		fmt.Println("Track: Backend interview — Core 5 explain/write + resume block")
 	}
 	fmt.Println()
 }
@@ -139,15 +141,11 @@ func printUnifiedHeader(track drillTrack) {
 func printDSAExtras() {
 	fmt.Println()
 	fmt.Println("━━━ MATH (daily add-on) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-	fmt.Println("  Write: go run ./bin/study_play -- --run-math")
+	fmt.Println("  Write: go run . -- --run-math")
 	fmt.Println("  Guide: doc/write/MATH_CONCEPTS.md")
 	fmt.Println()
 	fmt.Println("━━━ VARIANTS (optional stretch) ━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println("  go run -C drills/write/variants .")
-	fmt.Println()
-	fmt.Println("━━━ TRACK & VISUALIZE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-	fmt.Println("  Tracker:    drills/tracker/study_tracker.html")
-	fmt.Println("  Visualizer: reference/visualizer/index.html")
 	fmt.Println()
 }
 
@@ -225,7 +223,7 @@ func runUnified(root string, opts dailyOptions) int {
 			fmt.Println("        go run . -- --run leetcode")
 			fmt.Println("        go run . -- --run -l")
 			fmt.Println("read:   go run . -- --track read")
-			fmt.Println("math:   go run ./bin/study_play -- --run-math")
+			fmt.Println("math:   go run . -- --run-math")
 		}
 	case trackRead:
 		if code := runModule(root, "study_code", filterReadPassArgs(opts.passArgs), opts.run); code != 0 {
@@ -243,10 +241,6 @@ func runUnified(root string, opts dailyOptions) int {
 			return 0
 		}
 		if code := runModule(root, "study_leetcode", withBrief(opts.passArgs), false); code != 0 {
-			return code
-		}
-	case trackBackend:
-		if code := runModule(root, "study_backend", opts.passArgs, opts.run); code != 0 {
 			return code
 		}
 	}

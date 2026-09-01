@@ -124,3 +124,98 @@ func TestLogPath(t *testing.T) {
 	}
 	_ = os.Remove(p)
 }
+
+// `go test -v` frames every test with lines like "--- FAIL: TestRotateRight
+// (0.00s)". An unanchored FAIL pattern captured those as if they were drill
+// functions, and they then dominated the weak list.
+func TestParseTestOutputIgnoresGoTestFraming(t *testing.T) {
+	output := `=== RUN   TestRotateRight
+PASS: rotateRight k=0
+FAIL: rotateRight k=1
+    main_test.go:13: FAIL: rotateRight k=1
+--- FAIL: TestRotateRight (0.00s)
+=== RUN   TestArraySum
+PASS: arraySum basic
+--- PASS: TestArraySum (0.00s)
+FAIL
+FAIL	github.com/rakshyak-98/dsa-problem/drills/write/reflex/01_arrays_reflex	0.004s
+`
+	passed, failed := parseTestOutput(output)
+	wantPass := []string{"rotateRight k=0", "arraySum basic"}
+	wantFail := []string{"rotateRight k=1"}
+	if !equalStrings(passed, wantPass) {
+		t.Errorf("passed = %q, want %q", passed, wantPass)
+	}
+	if !equalStrings(failed, wantFail) {
+		t.Errorf("failed = %q, want %q", failed, wantFail)
+	}
+}
+
+func TestUpdateLogRollsAssertsUpToTheirFunction(t *testing.T) {
+	root := t.TempDir()
+	output := `PASS: arraySum basic
+PASS: arraySum empty
+PASS: arraySum negatives
+PASS: rotateRight k=0
+FAIL: rotateRight k=1
+--- FAIL: TestRotateRight (0.00s)
+`
+	updateLogFromOutput(root, output, []string{"arraySum", "rotateRight", "runningSum"})
+	log := loadLog(root)
+
+	// Three passing asserts are still one pass for the function.
+	if got := log.Functions["arraySum"]; got.Passes != 1 || got.Fails != 0 {
+		t.Errorf("arraySum = %+v, want 1 pass 0 fails", got)
+	}
+	// One failing assert fails the whole function, even alongside a pass.
+	if got := log.Functions["rotateRight"]; got.Passes != 0 || got.Fails != 1 {
+		t.Errorf("rotateRight = %+v, want 0 passes 1 fail", got)
+	}
+	// Never reached during a failing run: unfinished, not untouched.
+	if got := log.Functions["runningSum"]; got.Fails != 1 {
+		t.Errorf("runningSum = %+v, want 1 fail", got)
+	}
+	// Per-assert detail is kept.
+	if got := log.Functions["arraySum basic"]; got.Passes != 1 {
+		t.Errorf("assert detail lost: %+v", got)
+	}
+	// Framing lines are never recorded.
+	for name := range log.Functions {
+		if name == "TestRotateRight (0.00s)" {
+			t.Error("go test framing leaked into the log")
+		}
+	}
+}
+
+func TestPruneLogNoiseKeepsRealEntries(t *testing.T) {
+	log := drillLog{Functions: map[string]fnRecord{
+		"twoSum":                          {Passes: 3},
+		"rotateRight k=1":                 {Fails: 2},
+		"TestRotateRight (0.00s)":         {Fails: 9},
+		"TestAll/maxSumSubarrayK (0.00s)": {Fails: 7},
+		"TestAll (0.00s)":                 {Fails: 8},
+	}}
+	pruneLogNoise(&log)
+	for _, keep := range []string{"twoSum", "rotateRight k=1"} {
+		if _, ok := log.Functions[keep]; !ok {
+			t.Errorf("pruned a real entry: %s", keep)
+		}
+	}
+	for _, drop := range []string{"TestRotateRight (0.00s)", "TestAll/maxSumSubarrayK (0.00s)", "TestAll (0.00s)"} {
+		if _, ok := log.Functions[drop]; ok {
+			t.Errorf("kept framing noise: %s", drop)
+		}
+	}
+}
+
+func equalStrings(a, b []string) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}

@@ -25,7 +25,7 @@ type drillLog struct {
 }
 
 var passRE = regexp.MustCompile(`^PASS: (.+)$`)
-var failRE = regexp.MustCompile(`FAIL: (.+)`)
+var failRE = regexp.MustCompile(`^FAIL: (.+)$`)
 
 func logPath(root string) string {
 	return filepath.Join(root, ".drill_log.json")
@@ -113,31 +113,83 @@ func updateLogFromOutput(root string, output string, allFunctions []string) {
 	log := loadLog(root)
 	passed, failed := parseTestOutput(output)
 
-	seen := map[string]bool{}
+	// Per-assert detail ("rotateRight k>len") stays in the log as edge-case
+	// history; the function-level roll-up below is what levels are graded on.
 	for _, name := range passed {
-		recordResult(&log, name, true)
-		seen[name] = true
+		if _, isFn := cueByFn[name]; !isFn {
+			recordResult(&log, name, true)
+		}
 	}
 	for _, name := range failed {
-		recordResult(&log, name, false)
-		seen[name] = true
+		if _, isFn := cueByFn[name]; !isFn {
+			recordResult(&log, name, false)
+		}
 	}
 
-	// If full pass with no per-test names, mark all drill functions
+	// One roll-up per function per run: it passed only if every assert naming
+	// it passed. Without this a seven-assert function outscored a one-assert
+	// one purely on assert count.
+	ran := map[string]bool{}
+	broke := map[string]bool{}
+	for _, name := range passed {
+		if fn, ok := owningFunction(name); ok {
+			ran[fn] = true
+		}
+	}
+	for _, name := range failed {
+		if fn, ok := owningFunction(name); ok {
+			ran[fn] = true
+			broke[fn] = true
+		}
+	}
+	for fn := range ran {
+		recordResult(&log, fn, !broke[fn])
+	}
+
+	// A drill with no per-assert output (plain `go run .`): the exit code is
+	// the only signal, so credit the whole set.
 	if len(passed) == 0 && len(failed) == 0 {
 		for _, fn := range allFunctions {
 			recordResult(&log, fn, true)
 		}
 	} else {
-		// Functions not reached before failure count as fail only if run failed
+		// Functions that never reported while the run was failing were never
+		// reached — count them as unfinished, not as untouched.
 		for _, fn := range allFunctions {
-			if !seen[fn] && len(failed) > 0 {
+			if !ran[fn] && len(failed) > 0 {
 				recordResult(&log, fn, false)
 			}
 		}
 	}
 
+	pruneLogNoise(&log)
 	_ = saveLog(root, log)
+}
+
+// testFramingRE matches the `go test -v` summary lines that the unanchored
+// FAIL pattern used to capture — "TestRotateRight (0.00s)", "TestAll (0.01s)".
+// Nothing a drill asserts ends in a timing, so this cannot swallow real data.
+var testFramingRE = regexp.MustCompile(`\(\d+(\.\d+)?s\)$`)
+
+// pruneLogNoise removes framing lines that earlier runs recorded as if they
+// were functions. They out-failed everything real and sat at the top of the
+// weak list.
+func pruneLogNoise(log *drillLog) {
+	for name := range log.Functions {
+		if testFramingRE.MatchString(name) {
+			delete(log.Functions, name)
+		}
+	}
+}
+
+// isFunctionEntry reports whether a log key names a function rather than one of
+// its asserts ("rotateRight k=1") or a line of go test framing.
+func isFunctionEntry(name string) bool {
+	if testFramingRE.MatchString(name) {
+		return false
+	}
+	owner, ok := owningFunction(name)
+	return !ok || owner == name
 }
 
 type weakEntry struct {
@@ -155,6 +207,9 @@ func printWeakFunctions(root string, limit int) {
 
 	var entries []weakEntry
 	for name, rec := range log.Functions {
+		if !isFunctionEntry(name) {
+			continue
+		}
 		total := rec.Passes + rec.Fails
 		failRate := 0.0
 		if total > 0 {

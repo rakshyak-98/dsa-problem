@@ -1,6 +1,10 @@
 // Daily reflex practice helper — Core 5 + specialty drill
 //
 // RUN:              go run .
+// Today's session:  go run . -- --refresh        (level-matched, log-driven)
+// Reveal answers:   go run . -- --refresh --show
+// Level scoreboard: go run . -- --levels
+// Problem set:      go run . -- --problems
 // RUN with tests:   go run . -- --run
 // Core 5 only:      go run . -- --drill core
 // Full catalog:     go run . -- --catalog
@@ -172,10 +176,54 @@ func core5Names() string {
 	return strings.Join(names, ", ")
 }
 
+func formatInColumns(fns []string, indent string) string {
+	if len(fns) == 0 {
+		return ""
+	}
+
+	termWidth := 120
+	indentLen := len(indent)
+	availWidth := termWidth - indentLen
+
+	maxWidth := 0
+	for _, fn := range fns {
+		if len(fn) > maxWidth {
+			maxWidth = len(fn)
+		}
+	}
+	colWidth := maxWidth + 2
+
+	cols := availWidth / colWidth
+	if cols < 1 {
+		cols = 1
+	}
+
+	rows := (len(fns) + cols - 1) / cols
+
+	var result strings.Builder
+	for row := 0; row < rows; row++ {
+		result.WriteString(indent)
+		for col := 0; col < cols; col++ {
+			idx := col*rows + row
+			if idx >= len(fns) {
+				break
+			}
+			fn := fns[idx]
+			result.WriteString(fn)
+			if col < cols-1 && idx < len(fns)-1 {
+				result.WriteString(strings.Repeat(" ", colWidth-len(fn)))
+			}
+		}
+		result.WriteString("\n")
+	}
+
+	return result.String()
+}
+
 func printCatalog() {
 	fmt.Println("WRITE catalog")
 	for _, entry := range essentialCatalog {
-		fmt.Printf("%s: %s\n", entry.group, strings.Join(entry.fns, ", "))
+		fmt.Printf("%s:\n%s\n", entry.group, formatInColumns(entry.fns, "  "))
 	}
 }
 
@@ -187,6 +235,12 @@ func printDrill(today drill, brief bool) {
 	fmt.Printf("WRITE %s | core 5\n", today.day)
 	fmt.Printf("core5: %s\n", core5Names())
 	fmt.Println("path: drills/write/core5/")
+	fmt.Println("\n── SAY THE ASK, THEN WRITE ────────────────────────────")
+	for _, fn := range core5 {
+		fmt.Printf("  • %-28s %s\n", fn.name, fn.ask)
+		fmt.Printf("    %-28s %s · target %ds\n", "", fn.pattern, fn.sec)
+	}
+	printCore5Problems()
 }
 
 func printReflexDrill(today drill, brief bool) {
@@ -229,9 +283,38 @@ func printToday(today drill, brief bool) {
 	fmt.Printf("core5: %s\n", core5Names())
 	fmt.Printf("specialty: %s\n", strings.Join(today.functions, ", "))
 	fmt.Printf("path: drills/write/reflex/%s/\n", today.file)
-	fmt.Println("run:    go run . -- --run core")
+
+	// Recognition before recall: the triggers and the one-sentence ask are read
+	// out loud before any code is typed. They exist so the session rehearses
+	// "which move does this want", not just "can I still type this function".
+	printTriggers(today)
+	printAskWarmup(today.day)
+	printProblemMap(today.file)
+
+	fmt.Println("\nrun:    go run . -- --run core")
 	fmt.Println("        go run . -- --run reflex")
 	fmt.Printf("math:   go run . -- --run-math  (%s)\n", mathReflexFile)
+	fmt.Println("today:  go run . -- --refresh   (level-matched session)")
+}
+
+func printTriggers(today drill) {
+	fmt.Println("\n── PATTERN TRIGGERS (say these before you type) ────────")
+	for _, t := range today.triggers {
+		fmt.Printf("  • %s\n", t)
+	}
+	if today.understandWarmup != "" {
+		fmt.Printf("\n  Warm-up ask: %s\n", today.understandWarmup)
+	}
+}
+
+// printAllTriggers is the full cross-topic table — the one to scan on a day
+// when nothing else gets done.
+func printAllTriggers() {
+	fmt.Println("PATTERN TRIGGERS — all topics")
+	for _, t := range allTriggers {
+		fmt.Printf("  • %s\n", t)
+	}
+	fmt.Println("\n  Quiz yourself instead: go run . -- --refresh")
 }
 
 func hasFlag(flag string) bool {
@@ -281,6 +364,22 @@ func main() {
 
 	if hasFlag("--catalog") {
 		printCatalog()
+		return
+	}
+	if hasFlag("--triggers") {
+		printAllTriggers()
+		return
+	}
+	if hasFlag("--problems") {
+		printProblemSet(repoRoot)
+		return
+	}
+	if hasFlag("--levels") {
+		printLevels(repoRoot)
+		return
+	}
+	if hasFlag("--refresh") {
+		printRefresh(buildRefresh(repoRoot, today, time.Now()), hasFlag("--show"))
 		return
 	}
 	if drillKind == "core" {

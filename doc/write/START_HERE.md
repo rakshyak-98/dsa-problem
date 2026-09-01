@@ -8,12 +8,12 @@ Open **`DAILY_30MIN_DRILL.md`** for the daily ritual.
 1. Read **The consistency rule** and **Understand the question first** in `STUDY_PLAN.md` (10 min).
 2. Run the daily helper:
    ```bash
-   go run ./bin/study_play
+   go run .
    ```
 3. Open today's drill and implement every `TODO: REFLEX` from memory.
 4. Run tests:
    ```bash
-   go run ./bin/study_play -- --run
+   go run . -- --run
    ```
 5. Stuck after 15 min? Peek at `drills/solutions/`, then close it and re-type.
 6. Primary problem: `hashing/easy/two_sum.js` — **restate the ask in one sentence before coding**.
@@ -30,11 +30,11 @@ bin/study_play/            ← CLI + blank templates (_support/)
 ## Every study day
 
 ```bash
-go run ./bin/study_play              # Core 5 + today's specialty
-go run ./bin/study_play -- --run     # run specialty tests
-go run ./bin/study_play -- --reset   # wipe today's drill back to TODO stubs
-go run ./bin/study_play -- --drill core   # Core 5 only (low energy)
-go run ./bin/study_play -- --catalog # full essential checklist
+go run .              # Core 5 + today's specialty
+go run . -- --run     # run specialty tests
+go run . -- --reset   # wipe today's drill back to TODO stubs
+go run . -- --drill core   # Core 5 only (low energy)
+go run . -- --catalog # full essential checklist
 ```
 
 **Reflex tier:** Core 5 + specialty drill.  

@@ -63,9 +63,9 @@ func TestParseDailyArgs(t *testing.T) {
 		t.Fatalf("parseDailyArgs reflex: %+v", opts)
 	}
 
-	opts = parseDailyArgs([]string{"--track", "backend", "--cram"})
-	if opts.track != trackBackend || len(opts.passArgs) != 1 || opts.passArgs[0] != "--cram" {
-		t.Fatalf("backend track: %+v", opts)
+	opts = parseDailyArgs([]string{"--track", "leetcode", "--catalog"})
+	if opts.track != trackLeetcode || len(opts.passArgs) != 1 || opts.passArgs[0] != "--catalog" {
+		t.Fatalf("leetcode track: %+v", opts)
 	}
 
 	opts = parseDailyArgs([]string{"-t", "write", "--run"})
@@ -110,10 +110,10 @@ func TestParseDailyArgs(t *testing.T) {
 }
 
 func TestIsKnownTrack(t *testing.T) {
-	if !isKnownTrack(trackDSA) || !isKnownTrack(trackBackend) || !isKnownTrack(trackRead) || !isKnownTrack(trackWrite) || !isKnownTrack(trackLeetcode) {
+	if !isKnownTrack(trackDSA) || !isKnownTrack(trackRead) || !isKnownTrack(trackWrite) || !isKnownTrack(trackLeetcode) {
 		t.Fatal("known tracks")
 	}
-	if isKnownTrack("nope") {
+	if isKnownTrack("nope") || isKnownTrack("backend") {
 		t.Fatal("unknown track should fail")
 	}
 }

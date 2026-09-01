@@ -12,7 +12,6 @@ import (
 //   drills/write/variants/ — medium variants
 //   drills/read/weekday/   — reflex reading drills
 //   drills/solutions/      — write drill solutions (peek after attempt)
-//   drills/tracker/        — browser study tracker
 
 func findRepoRoot(from string) string {
 	dir := from
@@ -43,10 +42,6 @@ func writeCore5Dir(repoRoot string) string {
 
 func writeVariantsDir(repoRoot string) string {
 	return filepath.Join(repoRoot, "drills", "write", "variants")
-}
-
-func trackerDir(repoRoot string) string {
-	return filepath.Join(repoRoot, "drills", "tracker")
 }
 
 func solutionsDir(repoRoot string) string {
