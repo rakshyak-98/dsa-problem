@@ -140,10 +140,6 @@ func printUnifiedHeader(track drillTrack) {
 
 func printDSAExtras() {
 	fmt.Println()
-	fmt.Println("━━━ MATH (daily add-on) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-	fmt.Println("  Write: go run . -- --run-math")
-	fmt.Println("  Guide: doc/write/MATH_CONCEPTS.md")
-	fmt.Println()
 	fmt.Println("━━━ VARIANTS (optional stretch) ━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println("  go run -C drills/write/variants .")
 	fmt.Println()
@@ -223,7 +219,6 @@ func runUnified(root string, opts dailyOptions) int {
 			fmt.Println("        go run . -- --run leetcode")
 			fmt.Println("        go run . -- --run -l")
 			fmt.Println("read:   go run . -- --track read")
-			fmt.Println("math:   go run . -- --run-math")
 		}
 	case trackRead:
 		if code := runModule(root, "study_code", filterReadPassArgs(opts.passArgs), opts.run); code != 0 {

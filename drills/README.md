@@ -12,5 +12,5 @@ go -C bin/study_code run .            # read drills CLI
 go run -C drills/write/core5 .        # Core 5
 ```
 
-Math reference: [`../doc/write/MATH_CONCEPTS.md`](../doc/write/MATH_CONCEPTS.md)  
-Math write drill: [`write/reflex/10_math_reflex/`](write/reflex/10_math_reflex/)
+Stretch set: [`write/variants/`](write/variants/) — intervals, spiral, consecutive runs  
+Math reference (no drill): [`../doc/write/MATH_CONCEPTS.md`](../doc/write/MATH_CONCEPTS.md)

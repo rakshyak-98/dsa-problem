@@ -135,6 +135,25 @@ func dailyTemperatures(temps []int) []int {
 	return out
 }
 
+func isValidBST(root *TreeNode) bool {
+	// Every node is bounded by the turns taken to reach it, not just by its
+	// parent — the classic wrong answer only compares against the parent.
+	var check func(n *TreeNode, lo, hi *int) bool
+	check = func(n *TreeNode, lo, hi *int) bool {
+		if n == nil {
+			return true
+		}
+		if lo != nil && n.Val <= *lo {
+			return false
+		}
+		if hi != nil && n.Val >= *hi {
+			return false
+		}
+		return check(n.Left, lo, &n.Val) && check(n.Right, &n.Val, hi)
+	}
+	return check(root, nil, nil)
+}
+
 func assert(name string, cond bool) {
 	if !cond {
 		panic(fmt.Sprintf("FAIL: %s", name))
@@ -201,6 +220,21 @@ func main() {
 	assert("dailyTemperatures equal", reflect.DeepEqual(dailyTemperatures([]int{70, 70, 70}), []int{0, 0, 0}))
 	assert("dailyTemperatures increasing", reflect.DeepEqual(dailyTemperatures([]int{60, 61, 62}), []int{1, 1, 0}))
 	assert("dailyTemperatures pair", reflect.DeepEqual(dailyTemperatures([]int{55, 56}), []int{1, 0}))
+
+	// isValidBST — empty, single, valid, equal values, deep violation
+	assert("isValidBST empty", isValidBST(nil))
+	assert("isValidBST single", isValidBST(&TreeNode{Val: 1}))
+	valid := &TreeNode{Val: 2, Left: &TreeNode{Val: 1}, Right: &TreeNode{Val: 3}}
+	assert("isValidBST valid", isValidBST(valid))
+	swapped := &TreeNode{Val: 2, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 1}}
+	assert("isValidBST swapped", !isValidBST(swapped))
+	dupe := &TreeNode{Val: 2, Left: &TreeNode{Val: 2}}
+	assert("isValidBST equal values", !isValidBST(dupe))
+	// 5 / (1, 4 / (3, 6)) — 3 is legal under its parent but not under the root.
+	deep := &TreeNode{Val: 5,
+		Left:  &TreeNode{Val: 1},
+		Right: &TreeNode{Val: 4, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 6}}}
+	assert("isValidBST deep violation", !isValidBST(deep))
 
 	fmt.Println("\nAll trees/stacks reflex drills passed.")
 	fmt.Println("Primary: stacks/easy/valid_parentheses.js")

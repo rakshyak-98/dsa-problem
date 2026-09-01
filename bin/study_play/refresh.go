@@ -29,9 +29,9 @@ var drillPriority = map[string]int{
 	"01_arrays_reflex":        4,
 	"06_dp_reflex":            5,
 	"07_graphs_reflex":        6,
-	"08_heap_reflex":          7,
-	"09_backtrack_reflex":     8,
-	"10_math_reflex":          9,
+	"08_heap_reflex":          8,
+	"09_backtrack_reflex":     9,
+	"10_linked_list_reflex":   7,
 }
 
 const (

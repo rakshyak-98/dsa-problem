@@ -25,11 +25,12 @@ type primaryProblem struct {
 
 var primaries = map[string]primaryProblem{
 	// 01 — arrays & prefix
-	"reverseInPlace": {"Reverse String", "reverse-string", "Easy", "Reverse Words in a String II"},
-	"indexOfMax":     {"Largest Number At Least Twice of Others", "largest-number-at-least-twice-of-others", "Easy", "Third Maximum Number"},
-	"arraySum":       {"Running Sum of 1d Array", "running-sum-of-1d-array", "Easy", "Find Pivot Index"},
-	"rotateRight":    {"Rotate Array", "rotate-array", "Medium", "Rotate List"},
-	"runningSum":     {"Find Pivot Index", "find-pivot-index", "Easy", "Subarray Sum Equals K"},
+	"reverseInPlace":    {"Reverse String", "reverse-string", "Easy", "Reverse Words in a String II"},
+	"rotateRight":       {"Rotate Array", "rotate-array", "Medium", "Rotate List"},
+	"runningSum":        {"Find Pivot Index", "find-pivot-index", "Easy", "Subarray Sum Equals K"},
+	"subarraySumK":      {"Subarray Sum Equals K", "subarray-sum-equals-k", "Medium", "Continuous Subarray Sum"},
+	"productExceptSelf": {"Product of Array Except Self", "product-of-array-except-self", "Medium", "Maximum Product Subarray"},
+	"maxSubarraySum":    {"Maximum Subarray", "maximum-subarray", "Medium", "Maximum Product Subarray"},
 
 	// 02 — hashing
 	"twoSum":            {"Two Sum", "two-sum", "Easy", "3Sum"},
@@ -39,17 +40,18 @@ var primaries = map[string]primaryProblem{
 	"groupAnagrams":     {"Group Anagrams", "group-anagrams", "Medium", "Longest Consecutive Sequence"},
 
 	// 03 — two pointers & window
-	"removeDuplicates": {"Remove Duplicates from Sorted Array", "remove-duplicates-from-sorted-array", "Easy", "Remove Duplicates from Sorted Array II"},
-	"moveZeroes":       {"Move Zeroes", "move-zeroes", "Easy", "Sort Colors"},
-	"maxArea":          {"Container With Most Water", "container-with-most-water", "Medium", "Trapping Rain Water"},
-	"isPalindrome":     {"Valid Palindrome", "valid-palindrome", "Easy", "Valid Palindrome II"},
-	"maxSumSubarrayK":  {"Maximum Average Subarray I", "maximum-average-subarray-i", "Easy", "Longest Substring Without Repeating Characters"},
+	"removeDuplicates":       {"Remove Duplicates from Sorted Array", "remove-duplicates-from-sorted-array", "Easy", "Remove Duplicates from Sorted Array II"},
+	"moveZeroes":             {"Move Zeroes", "move-zeroes", "Easy", "Sort Colors"},
+	"maxArea":                {"Container With Most Water", "container-with-most-water", "Medium", "Trapping Rain Water"},
+	"isPalindrome":           {"Valid Palindrome", "valid-palindrome", "Easy", "Valid Palindrome II"},
+	"maxSumSubarrayK":        {"Maximum Average Subarray I", "maximum-average-subarray-i", "Easy", "Longest Substring Without Repeating Characters"},
+	"longestUniqueSubstring": {"Longest Substring Without Repeating Characters", "longest-substring-without-repeating-characters", "Medium", "Minimum Window Substring"},
 
 	// 04 — binary search
-	"binarySearch":    {"Binary Search", "binary-search", "Easy", "Search in Rotated Sorted Array"},
-	"searchInsert":    {"Search Insert Position", "search-insert-position", "Easy", "Find First and Last Position of Element in Sorted Array"},
-	"findMinRotated":  {"Find Minimum in Rotated Sorted Array", "find-minimum-in-rotated-sorted-array", "Medium", "Median of Two Sorted Arrays"},
-	"isTargetPresent": {"Find Smallest Letter Greater Than Target", "find-smallest-letter-greater-than-target", "Easy", "Search a 2D Matrix"},
+	"binarySearch":   {"Binary Search", "binary-search", "Easy", "Search in Rotated Sorted Array"},
+	"searchInsert":   {"Search Insert Position", "search-insert-position", "Easy", "Find First and Last Position of Element in Sorted Array"},
+	"findMinRotated": {"Find Minimum in Rotated Sorted Array", "find-minimum-in-rotated-sorted-array", "Medium", "Median of Two Sorted Arrays"},
+	"minEatingSpeed": {"Koko Eating Bananas", "koko-eating-bananas", "Medium", "Capacity To Ship Packages Within D Days"},
 
 	// 05 — trees & stacks
 	"inorderTraversal":    {"Binary Tree Inorder Traversal", "binary-tree-inorder-traversal", "Easy", "Kth Smallest Element in a BST"},
@@ -57,37 +59,38 @@ var primaries = map[string]primaryProblem{
 	"postorderTraversal":  {"Binary Tree Postorder Traversal", "binary-tree-postorder-traversal", "Easy", "Diameter of Binary Tree"},
 	"levelOrderTraversal": {"Binary Tree Level Order Traversal", "binary-tree-level-order-traversal", "Medium", "Binary Tree Right Side View"},
 	"maxDepth":            {"Maximum Depth of Binary Tree", "maximum-depth-of-binary-tree", "Easy", "Balanced Binary Tree"},
+	"isValidBST":          {"Validate Binary Search Tree", "validate-binary-search-tree", "Medium", "Recover Binary Search Tree"},
 	"isValidParentheses":  {"Valid Parentheses", "valid-parentheses", "Easy", "Minimum Remove to Make Valid Parentheses"},
 	"dailyTemperatures":   {"Daily Temperatures", "daily-temperatures", "Medium", "Largest Rectangle in Histogram"},
 
 	// 06 — dp
-	"fib":                   {"Fibonacci Number", "fibonacci-number", "Easy", "N-th Tribonacci Number"},
 	"climbStairs":           {"Climbing Stairs", "climbing-stairs", "Easy", "Decode Ways"},
 	"minCostClimbingStairs": {"Min Cost Climbing Stairs", "min-cost-climbing-stairs", "Easy", "Triangle"},
 	"rob":                   {"House Robber", "house-robber", "Medium", "House Robber II"},
+	"coinChange":            {"Coin Change", "coin-change", "Medium", "Coin Change II"},
 
 	// 07 — graphs
 	"numIslands":       {"Number of Islands", "number-of-islands", "Medium", "Max Area of Island"},
 	"floodFill":        {"Flood Fill", "flood-fill", "Easy", "Surrounded Regions"},
 	"shortestPathGrid": {"Shortest Path in Binary Matrix", "shortest-path-in-binary-matrix", "Medium", "Rotting Oranges"},
+	"canFinish":        {"Course Schedule", "course-schedule", "Medium", "Course Schedule II"},
 
 	// 08 — heaps
 	"kthLargest":      {"Kth Largest Element in an Array", "kth-largest-element-in-an-array", "Medium", "Kth Largest Element in a Stream"},
 	"lastStoneWeight": {"Last Stone Weight", "last-stone-weight", "Easy", "Minimum Cost to Connect Sticks"},
 	"mergeKSorted":    {"Merge k Sorted Lists", "merge-k-sorted-lists", "Hard", "Smallest Range Covering Elements from K Lists"},
 
+	// 10 — linked lists
+	"reverseList":      {"Reverse Linked List", "reverse-linked-list", "Easy", "Reverse Linked List II"},
+	"hasCycle":         {"Linked List Cycle", "linked-list-cycle", "Easy", "Linked List Cycle II"},
+	"middleNode":       {"Middle of the Linked List", "middle-of-the-linked-list", "Easy", "Reorder List"},
+	"mergeTwoLists":    {"Merge Two Sorted Lists", "merge-two-sorted-lists", "Easy", "Merge k Sorted Lists"},
+	"removeNthFromEnd": {"Remove Nth Node From End of List", "remove-nth-node-from-end-of-list", "Medium", "Remove Duplicates from Sorted List II"},
+
 	// 09 — backtracking
 	"subsets": {"Subsets", "subsets", "Medium", "Subsets II"},
 	"permute": {"Permutations", "permutations", "Medium", "Permutations II"},
 	"combine": {"Combinations", "combinations", "Medium", "Combination Sum"},
-
-	// 10 — math
-	"gcd":      {"Greatest Common Divisor of Strings", "greatest-common-divisor-of-strings", "Easy", "Find Greatest Common Divisor of Array"},
-	"lcm":      {"Range Addition II", "range-addition-ii", "Easy", "Nth Magical Number"},
-	"modPow":   {"Pow(x, n)", "powx-n", "Medium", "Super Pow"},
-	"nCr":      {"Pascal's Triangle", "pascals-triangle", "Easy", "Unique Paths"},
-	"isPrime":  {"Count Primes", "count-primes", "Medium", "Prime Arrangements"},
-	"powOfTwo": {"Power of Two", "power-of-two", "Easy", "Number of 1 Bits"},
 }
 
 func problemURL(slug string) string {

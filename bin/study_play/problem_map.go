@@ -11,10 +11,11 @@ type problemLink struct {
 var problemMap = map[string][]problemLink{
 	"01_arrays_reflex": {
 		{"reverseInPlace", "arrays/easy/plus_one.js", "Increment array as if it were a number"},
-		{"indexOfMax", "arrays/easy/largest_number_at_least_twice_of_others.js", "Find dominant element or return -1"},
-		{"arraySum", "arrays/easy/concatenation_of_array.js", "Build concatenated array from two halves"},
 		{"rotateRight", "arrays/easy/shuffle_the_array.js", "Interleave two halves of an array"},
-		{"runningSum", "arrays/easy/find_closest_number_to_zero.js", "Track running best while scanning"},
+		{"runningSum", "misc/easy/running_sum_of_1d_array.js", "Running total while scanning"},
+		{"subarraySumK", "misc/medium/subarray_sum_divisible_by_k.js", "Count subarrays by prefix remainder"},
+		{"productExceptSelf", "misc/medium/product_of_array_except_self.js", "Product of all other elements"},
+		{"maxSubarraySum", "arrays/medium/max_product_subarray.js", "Best contiguous run, product variant"},
 	},
 	"02_hashing_reflex": {
 		{"twoSum", "hashing/easy/two_sum.js", "Return indices of two numbers that add to target"},
@@ -28,13 +29,14 @@ var problemMap = map[string][]problemLink{
 		{"moveZeroes", "two_pointers/easy/move_zeroes.js", "Move all zeroes to end in-place"},
 		{"maxArea", "two_pointers/medium/container_with_most_water.js", "Max water between two vertical lines"},
 		{"isPalindrome", "two_pointers/easy/valid_palindrome.js", "Is string a palindrome ignoring non-alphanumeric"},
-		{"maxSumSubarrayK", "sliding_window/easy/maximum_average_subarray_1.js", "Max sum of subarray of size k"},
+		{"maxSumSubarrayK", "misc/easy/maximum_average_subarray_1.js", "Max sum of subarray of size k"},
+		{"longestUniqueSubstring", "strings/medium/longest_substring_without_repeating.js", "Longest run with no repeat"},
 	},
 	"04_binary_search_reflex": {
 		{"binarySearch", "binary_search/easy/search_insertion_position.js", "Find target index in sorted array"},
 		{"searchInsert", "binary_search/easy/search_insertion_position.js", "Insertion index for target in sorted array"},
 		{"findMinRotated", "binary_search/medium/find_minimum_in_rotated_sorted_array.js", "Minimum in rotated sorted array"},
-		{"isTargetPresent", "binary_search/easy/find_smallest_letter_greater_than_target.js", "Is target present in sorted data"},
+		{"minEatingSpeed", "binary_search/medium/koko_eating_bananas.js", "Slowest rate that still finishes in time"},
 	},
 	"05_trees_stacks_reflex": {
 		{"inorderTraversal", "trees/easy/binary_tree_inorder_traversal.js", "Return inorder traversal of binary tree"},
@@ -42,19 +44,21 @@ var problemMap = map[string][]problemLink{
 		{"postorderTraversal", "trees/easy/binary_tree_postorder_traversal.js", "Return postorder traversal of binary tree"},
 		{"levelOrderTraversal", "trees/medium/binary_tree_level_order_traversal.js", "Return level-order traversal of binary tree"},
 		{"maxDepth", "trees/easy/maximum_depth_of_binary_tree.js", "Maximum depth of binary tree"},
+		{"isValidBST", "trees/medium/validate_binary_search_tree.js", "Is every node within its ancestor bounds"},
 		{"isValidParentheses", "stacks/easy/valid_parentheses.js", "Are brackets properly matched"},
 		{"dailyTemperatures", "stacks/medium/daily_temperatures.js", "Days until warmer temperature"},
 	},
 	"06_dp_reflex": {
-		{"fib", "dynamic_programming/easy/fibonacci_number.js", "Nth Fibonacci number"},
 		{"minCostClimbingStairs", "dynamic_programming/easy/min_cost_climbing_staris.js", "Min cost to reach top of stairs"},
 		{"rob", "dynamic_programming/medium/house_robber.js", "Max money robbing non-adjacent houses"},
 		{"climbStairs", "dynamic_programming/easy/climbing_stairs.js", "Count ways to climb n stairs"},
+		{"coinChange", "dynamic_programming/medium/coin_change.js", "Fewest coins making an exact total"},
 	},
 	"07_graphs_reflex": {
 		{"numIslands", "graphs/medium/number_of_islands.js", "Count connected land regions in grid"},
 		{"floodFill", "graphs/easy/flood_fill.js", "Recolor connected pixels from start"},
 		{"shortestPathGrid", "graphs/medium/shortest_path_in_binary_matrix.js", "Shortest path in unweighted grid"},
+		{"canFinish", "graphs/medium/course_schedule.js", "Ordering with prerequisites / cycle check"},
 	},
 	"08_heap_reflex": {
 		{"kthLargest", "heaps/medium/kth_largest_element_in_an_array.js", "Kth largest element in array"},
@@ -66,13 +70,12 @@ var problemMap = map[string][]problemLink{
 		{"permute", "backtracking/medium/permutations.js", "Return all permutations of nums"},
 		{"combine", "backtracking/medium/combinations.js", "All combinations of k numbers from 1..n"},
 	},
-	"10_math_reflex": {
-		{"gcd", "math_geometry/easy/range_addition_2.js", "Modular arithmetic and cycle alignment"},
-		{"lcm", "math_geometry/easy/range_addition_2.js", "Merge repeating intervals with lcm periods"},
-		{"modPow", "math_geometry/easy/largest_triangle_area.js", "Numeric computation with overflow control"},
-		{"nCr", "backtracking/medium/combinations.js", "Count k-combinations from n items"},
-		{"isPrime", "math_geometry/easy/projection_area_of_3d_shapes.js", "Prime / factor checks in geometry grids"},
-		{"powOfTwo", "binary_search/easy/search_insertion_position.js", "Halving search space — powers of two"},
+	"10_linked_list_reflex": {
+		{"reverseList", "linked_list/easy/reverse_linked_list.js", "Reverse the list in place"},
+		{"hasCycle", "linked_list/easy/linked_list_cycle.js", "Detect a loop with slow + fast"},
+		{"middleNode", "linked_list/easy/middle_of_the_linked_list.js", "Middle node in one pass"},
+		{"mergeTwoLists", "linked_list/easy/merge_two_sorted_lists.js", "Merge two sorted lists"},
+		{"removeNthFromEnd", "linked_list/medium/remove_nth_node_from_end.js", "Drop the nth node from the end"},
 	},
 }
 

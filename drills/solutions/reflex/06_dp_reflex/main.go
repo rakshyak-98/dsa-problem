@@ -3,17 +3,6 @@ package main
 
 import "fmt"
 
-func fib(n int) int {
-	if n <= 1 {
-		return n
-	}
-	a, b := 0, 1
-	for i := 2; i <= n; i++ {
-		a, b = b, a+b
-	}
-	return b
-}
-
 func minCostClimbingStairs(cost []int) int {
 	a, b := 0, 0
 	for i := 2; i <= len(cost); i++ {
@@ -49,6 +38,25 @@ func climbStairs(n int) int {
 	return b
 }
 
+func coinChange(coins []int, amount int) int {
+	// dp[a] = fewest coins that make exactly a. Unbounded: each coin may be
+	// reused, so the inner loop runs forward over amounts.
+	const unreachable = 1 << 30
+	dp := make([]int, amount+1)
+	for a := 1; a <= amount; a++ {
+		dp[a] = unreachable
+		for _, c := range coins {
+			if c <= a && dp[a-c]+1 < dp[a] {
+				dp[a] = dp[a-c] + 1
+			}
+		}
+	}
+	if dp[amount] >= unreachable {
+		return -1
+	}
+	return dp[amount]
+}
+
 func assert(name string, cond bool) {
 	if !cond {
 		panic(fmt.Sprintf("FAIL: %s", name))
@@ -57,15 +65,6 @@ func assert(name string, cond bool) {
 }
 
 func main() {
-	// fib — base cases and several n
-	assert("fib ten", fib(10) == 55)
-	assert("fib zero", fib(0) == 0)
-	assert("fib one", fib(1) == 1)
-	assert("fib two", fib(2) == 1)
-	assert("fib three", fib(3) == 2)
-	assert("fib five", fib(5) == 5)
-	assert("fib twenty", fib(20) == 6765)
-
 	// minCostClimbingStairs — 3-step, 2-step, single, equal, cheap first
 	assert("minCostClimbingStairs basic", minCostClimbingStairs([]int{10, 15, 20}) == 15)
 	assert("minCostClimbingStairs two", minCostClimbingStairs([]int{1, 100}) == 1)
@@ -90,6 +89,14 @@ func main() {
 	assert("climbStairs zero", climbStairs(0) == 0)
 	assert("climbStairs four", climbStairs(4) == 5)
 	assert("climbStairs six", climbStairs(6) == 13)
+
+	// coinChange — exact, impossible, zero amount, single coin, greedy trap
+	assert("coinChange basic", coinChange([]int{1, 2, 5}, 11) == 3)
+	assert("coinChange impossible", coinChange([]int{2}, 3) == -1)
+	assert("coinChange zero", coinChange([]int{1}, 0) == 0)
+	assert("coinChange single coin", coinChange([]int{7}, 14) == 2)
+	assert("coinChange greedy trap", coinChange([]int{1, 3, 4}, 6) == 2)
+	assert("coinChange no coins", coinChange([]int{}, 5) == -1)
 
 	fmt.Println("\nAll DP reflex drills passed.")
 	fmt.Println("Primary: dynamic_programming/easy/fibonacci_number.js")

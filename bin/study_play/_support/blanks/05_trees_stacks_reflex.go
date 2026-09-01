@@ -48,4 +48,9 @@ func dailyTemperatures(temps []int) []int {
 	panic("Implement from memory")
 }
 
+// TODO: REFLEX — is this a valid BST (bound each node by the turns taken to reach it)
+func isValidBST(root *TreeNode) bool {
+	panic("Implement from memory")
+}
+
 func main() {}

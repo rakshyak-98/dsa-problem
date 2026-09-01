@@ -14,16 +14,6 @@ func assert(t *testing.T, name string, cond bool) {
 	fmt.Printf("PASS: %s\n", name)
 }
 
-func TestFib(t *testing.T) {
-	assert(t, "fib ten", fib(10) == 55)
-	assert(t, "fib zero", fib(0) == 0)
-	assert(t, "fib one", fib(1) == 1)
-	assert(t, "fib two", fib(2) == 1)
-	assert(t, "fib three", fib(3) == 2)
-	assert(t, "fib five", fib(5) == 5)
-	assert(t, "fib twenty", fib(20) == 6765)
-}
-
 func TestMinCostClimbingStairs(t *testing.T) {
 	assert(t, "minCostClimbingStairs basic", minCostClimbingStairs([]int{10, 15, 20}) == 15)
 	assert(t, "minCostClimbingStairs two", minCostClimbingStairs([]int{1, 100}) == 1)
@@ -52,10 +42,19 @@ func TestClimbStairs(t *testing.T) {
 	assert(t, "climbStairs six", climbStairs(6) == 13)
 }
 
+func TestCoinChange(t *testing.T) {
+	assert(t, "coinChange basic", coinChange([]int{1, 2, 5}, 11) == 3)
+	assert(t, "coinChange impossible", coinChange([]int{2}, 3) == -1)
+	assert(t, "coinChange zero", coinChange([]int{1}, 0) == 0)
+	assert(t, "coinChange single coin", coinChange([]int{7}, 14) == 2)
+	assert(t, "coinChange greedy trap", coinChange([]int{1, 3, 4}, 6) == 2)
+	assert(t, "coinChange no coins", coinChange([]int{}, 5) == -1)
+}
+
 func TestAll(t *testing.T) {
-	t.Run("fib", TestFib)
 	t.Run("minCostClimbingStairs", TestMinCostClimbingStairs)
 	t.Run("rob", TestRob)
 	t.Run("climbStairs", TestClimbStairs)
+	t.Run("coinChange", TestCoinChange)
 	fmt.Println("\nAll DP reflex drills passed.")
 }

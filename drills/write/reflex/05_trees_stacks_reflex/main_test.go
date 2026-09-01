@@ -87,6 +87,21 @@ func TestDailyTemperatures(t *testing.T) {
 	assert(t, "dailyTemperatures pair", reflect.DeepEqual(dailyTemperatures([]int{55, 56}), []int{1, 0}))
 }
 
+func TestIsValidBST(t *testing.T) {
+	assert(t, "isValidBST empty", isValidBST(nil))
+	assert(t, "isValidBST single", isValidBST(&TreeNode{Val: 1}))
+	valid := &TreeNode{Val: 2, Left: &TreeNode{Val: 1}, Right: &TreeNode{Val: 3}}
+	assert(t, "isValidBST valid", isValidBST(valid))
+	swapped := &TreeNode{Val: 2, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 1}}
+	assert(t, "isValidBST swapped", !isValidBST(swapped))
+	dupe := &TreeNode{Val: 2, Left: &TreeNode{Val: 2}}
+	assert(t, "isValidBST equal values", !isValidBST(dupe))
+	deep := &TreeNode{Val: 5,
+		Left:  &TreeNode{Val: 1},
+		Right: &TreeNode{Val: 4, Left: &TreeNode{Val: 3}, Right: &TreeNode{Val: 6}}}
+	assert(t, "isValidBST deep violation", !isValidBST(deep))
+}
+
 func TestAll(t *testing.T) {
 	t.Run("inorderTraversal", TestInorderTraversal)
 	t.Run("preorderTraversal", TestPreorderTraversal)
@@ -95,5 +110,6 @@ func TestAll(t *testing.T) {
 	t.Run("maxDepth", TestMaxDepth)
 	t.Run("isValidParentheses", TestIsValidParentheses)
 	t.Run("dailyTemperatures", TestDailyTemperatures)
+	t.Run("isValidBST", TestIsValidBST)
 	fmt.Println("\nAll trees/stacks reflex drills passed.")
 }

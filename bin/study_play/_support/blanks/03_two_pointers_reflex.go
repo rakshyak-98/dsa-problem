@@ -32,4 +32,9 @@ func maxSumSubarrayK(nums []int, k int) int {
 	panic("Implement from memory")
 }
 
+// TODO: REFLEX — length of the longest substring with no repeated character
+func longestUniqueSubstring(s string) int {
+	panic("Implement from memory")
+}
+
 func main() {}

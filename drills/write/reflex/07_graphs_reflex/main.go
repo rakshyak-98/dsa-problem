@@ -21,4 +21,9 @@ func shortestPathGrid(grid [][]int) int {
 	panic("Implement from memory")
 }
 
+// TODO: REFLEX — can every course be finished (topological sort / cycle check)
+func canFinish(numCourses int, prerequisites [][]int) bool {
+	panic("Implement from memory")
+}
+
 func main() {}

@@ -78,9 +78,19 @@ func TestShortestPathGrid(t *testing.T) {
 	assert(t, "shortestPathGrid open 2x2", shortestPathGrid(open2x2) == 2)
 }
 
+func TestCanFinish(t *testing.T) {
+	assert(t, "canFinish no prereqs", canFinish(3, [][]int{}))
+	assert(t, "canFinish chain", canFinish(3, [][]int{{1, 0}, {2, 1}}))
+	assert(t, "canFinish simple cycle", !canFinish(2, [][]int{{1, 0}, {0, 1}}))
+	assert(t, "canFinish self cycle", !canFinish(1, [][]int{{0, 0}}))
+	assert(t, "canFinish diamond", canFinish(4, [][]int{{1, 0}, {2, 0}, {3, 1}, {3, 2}}))
+	assert(t, "canFinish cycle in tail", !canFinish(4, [][]int{{1, 0}, {2, 1}, {1, 2}}))
+}
+
 func TestAll(t *testing.T) {
 	t.Run("numIslands", TestNumIslands)
 	t.Run("floodFill", TestFloodFill)
 	t.Run("shortestPathGrid", TestShortestPathGrid)
+	t.Run("canFinish", TestCanFinish)
 	fmt.Println("\nAll graph reflex drills passed.")
 }

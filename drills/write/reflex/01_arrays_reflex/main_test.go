@@ -25,25 +25,6 @@ func TestReverseInPlace(t *testing.T) {
 	assert(t, "reverseInPlace palindrome", reflect.DeepEqual(reverseInPlace([]int{1, 2, 1}), []int{1, 2, 1}))
 }
 
-func TestIndexOfMax(t *testing.T) {
-	assert(t, "indexOfMax basic", indexOfMax([]int{3, 1, 4, 4}) == 2)
-	assert(t, "indexOfMax single", indexOfMax([]int{5}) == 0)
-	assert(t, "indexOfMax empty", indexOfMax([]int{}) == 0)
-	assert(t, "indexOfMax ties", indexOfMax([]int{5, 5, 5}) == 0)
-	assert(t, "indexOfMax at start", indexOfMax([]int{9, 1, 2}) == 0)
-	assert(t, "indexOfMax at end", indexOfMax([]int{1, 2, 9}) == 2)
-	assert(t, "indexOfMax negatives", indexOfMax([]int{-10, -3, -7}) == 1)
-}
-
-func TestArraySum(t *testing.T) {
-	assert(t, "arraySum basic", arraySum([]int{1, 2, 3, 4}) == 10)
-	assert(t, "arraySum empty", arraySum([]int{}) == 0)
-	assert(t, "arraySum single", arraySum([]int{5}) == 5)
-	assert(t, "arraySum negatives", arraySum([]int{-1, 2, -3}) == -2)
-	assert(t, "arraySum all negative", arraySum([]int{-2, -3}) == -5)
-	assert(t, "arraySum zeros", arraySum([]int{0, 0, 0}) == 0)
-}
-
 func TestRotateRight(t *testing.T) {
 	assert(t, "rotateRight k=1", reflect.DeepEqual(rotateRight([]int{1, 2, 3, 4}, 1), []int{4, 1, 2, 3}))
 	assert(t, "rotateRight k=2", reflect.DeepEqual(rotateRight([]int{1, 2, 3, 4, 5}, 2), []int{4, 5, 1, 2, 3}))
@@ -65,11 +46,40 @@ func TestRunningSum(t *testing.T) {
 	assert(t, "runningSum constant", reflect.DeepEqual(runningSum([]int{2, 2, 2}), []int{2, 4, 6}))
 }
 
+func TestSubarraySumK(t *testing.T) {
+	assert(t, "subarraySumK basic", subarraySumK([]int{1, 1, 1}, 2) == 2)
+	assert(t, "subarraySumK whole", subarraySumK([]int{1, 2, 3}, 6) == 1)
+	assert(t, "subarraySumK none", subarraySumK([]int{1, 2, 3}, 7) == 0)
+	assert(t, "subarraySumK empty", subarraySumK([]int{}, 0) == 0)
+	assert(t, "subarraySumK negatives", subarraySumK([]int{1, -1, 0}, 0) == 3)
+	assert(t, "subarraySumK zeros", subarraySumK([]int{0, 0, 0}, 0) == 6)
+	assert(t, "subarraySumK single hit", subarraySumK([]int{3}, 3) == 1)
+}
+
+func TestProductExceptSelf(t *testing.T) {
+	assert(t, "productExceptSelf basic", reflect.DeepEqual(productExceptSelf([]int{1, 2, 3, 4}), []int{24, 12, 8, 6}))
+	assert(t, "productExceptSelf one zero", reflect.DeepEqual(productExceptSelf([]int{1, 0, 3}), []int{0, 3, 0}))
+	assert(t, "productExceptSelf two zeros", reflect.DeepEqual(productExceptSelf([]int{0, 0, 3}), []int{0, 0, 0}))
+	assert(t, "productExceptSelf negatives", reflect.DeepEqual(productExceptSelf([]int{-1, 2, -3}), []int{-6, 3, -2}))
+	assert(t, "productExceptSelf two", reflect.DeepEqual(productExceptSelf([]int{2, 5}), []int{5, 2}))
+	assert(t, "productExceptSelf single", reflect.DeepEqual(productExceptSelf([]int{9}), []int{1}))
+}
+
+func TestMaxSubarraySum(t *testing.T) {
+	assert(t, "maxSubarraySum basic", maxSubarraySum([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4}) == 6)
+	assert(t, "maxSubarraySum all negative", maxSubarraySum([]int{-3, -1, -2}) == -1)
+	assert(t, "maxSubarraySum all positive", maxSubarraySum([]int{1, 2, 3}) == 6)
+	assert(t, "maxSubarraySum single", maxSubarraySum([]int{5}) == 5)
+	assert(t, "maxSubarraySum empty", maxSubarraySum([]int{}) == 0)
+	assert(t, "maxSubarraySum restart", maxSubarraySum([]int{-5, 8, -1, 3}) == 10)
+}
+
 func TestAll(t *testing.T) {
 	t.Run("reverseInPlace", TestReverseInPlace)
-	t.Run("indexOfMax", TestIndexOfMax)
-	t.Run("arraySum", TestArraySum)
 	t.Run("rotateRight", TestRotateRight)
 	t.Run("runningSum", TestRunningSum)
+	t.Run("subarraySumK", TestSubarraySumK)
+	t.Run("productExceptSelf", TestProductExceptSelf)
+	t.Run("maxSubarraySum", TestMaxSubarraySum)
 	fmt.Println("\nAll array reflex drills passed.")
 }

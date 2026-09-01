@@ -77,11 +77,22 @@ func TestMaxSumSubarrayK(t *testing.T) {
 	assert(t, "maxSumSubarrayK window slide", maxSumSubarrayK([]int{1, 4, 2, 10, 2, 1}, 2) == 12)
 }
 
+func TestLongestUniqueSubstring(t *testing.T) {
+	assert(t, "longestUniqueSubstring basic", longestUniqueSubstring("abcabcbb") == 3)
+	assert(t, "longestUniqueSubstring all same", longestUniqueSubstring("bbbb") == 1)
+	assert(t, "longestUniqueSubstring all unique", longestUniqueSubstring("abcdef") == 6)
+	assert(t, "longestUniqueSubstring empty", longestUniqueSubstring("") == 0)
+	assert(t, "longestUniqueSubstring single", longestUniqueSubstring("a") == 1)
+	assert(t, "longestUniqueSubstring pwwkew", longestUniqueSubstring("pwwkew") == 3)
+	assert(t, "longestUniqueSubstring stale left", longestUniqueSubstring("abba") == 2)
+}
+
 func TestAll(t *testing.T) {
 	t.Run("removeDuplicates", TestRemoveDuplicates)
 	t.Run("moveZeroes", TestMoveZeroes)
 	t.Run("maxArea", TestMaxArea)
 	t.Run("isPalindrome", TestIsPalindrome)
 	t.Run("maxSumSubarrayK", TestMaxSumSubarrayK)
+	t.Run("longestUniqueSubstring", TestLongestUniqueSubstring)
 	fmt.Println("\nAll two-pointer reflex drills passed.")
 }

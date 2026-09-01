@@ -27,8 +27,8 @@ session asks it in the form that matches its grade:
 | **L2 pattern** | ≥2 passes, under a third failing | read a cue with no function name in it and name the move |
 | **L3 transfer** | ≥5 passes, near-clean, passed recently | apply the move to a variant that was never drilled |
 
-A function is never graded above its intrinsic tier — typing `arraySum` fifty
-times does not turn it into a transfer question. Levels decay: an L2 function
+A function is never graded above its intrinsic tier — typing `reverseInPlace`
+fifty times does not turn it into a transfer question. Levels decay: an L2 function
 untouched for 3 days, or an L3 for 7, comes back as due.
 
 ## What `--refresh` picks

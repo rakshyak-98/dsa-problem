@@ -11,3 +11,9 @@
 ## shortestPathGrid
 - **Pattern:** BFS from (0,0); first time reaching (n-1,m-1) is shortest
 - **Return -1** if queue exhausts without reaching goal
+
+## canFinish
+- **Trigger:** prerequisites, ordering, "is there a cycle" on a directed graph
+- **Pattern:** Kahn — in-degree array + queue of zero-in-degree nodes
+- **Cycle test:** if fewer than numCourses nodes come off the queue, one remains
+- **Bug:** building edges backwards — `[course, need]` means an edge need → course

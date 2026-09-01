@@ -45,8 +45,31 @@ func findMinRotated(nums []int) int {
 	return nums[lo]
 }
 
-func isTargetPresent(nums []int, target int) bool {
-	return binarySearch(nums, target) != -1
+func minEatingSpeed(piles []int, h int) int {
+	// The search space is the answer itself (1..max pile), not an index. feasible
+	// is monotonic: if speed s finishes in time, so does every speed above it.
+	hours := func(speed int) int {
+		total := 0
+		for _, p := range piles {
+			total += (p + speed - 1) / speed
+		}
+		return total
+	}
+	lo, hi := 1, 0
+	for _, p := range piles {
+		if p > hi {
+			hi = p
+		}
+	}
+	for lo < hi {
+		mid := lo + (hi-lo)/2
+		if hours(mid) <= h {
+			hi = mid
+		} else {
+			lo = mid + 1
+		}
+	}
+	return lo
 }
 
 func assert(name string, cond bool) {
@@ -84,12 +107,13 @@ func main() {
 	assert("findMinRotated single", findMinRotated([]int{2}) == 2)
 	assert("findMinRotated pivot end", findMinRotated([]int{2, 3, 4, 5, 1}) == 1)
 
-	// isTargetPresent — mirrors search outcomes
-	assert("isTargetPresent true mid", isTargetPresent([]int{1, 2, 3, 4, 5}, 3))
-	assert("isTargetPresent false", !isTargetPresent([]int{1, 2, 3, 4, 5}, 6))
-	assert("isTargetPresent empty", !isTargetPresent([]int{}, 1))
-	assert("isTargetPresent first", isTargetPresent([]int{1, 2, 3}, 1))
-	assert("isTargetPresent last", isTargetPresent([]int{1, 2, 3}, 3))
+	// minEatingSpeed — exact fit, one pile, h == len(piles), huge h
+	assert("minEatingSpeed basic", minEatingSpeed([]int{3, 6, 7, 11}, 8) == 4)
+	assert("minEatingSpeed tight", minEatingSpeed([]int{30, 11, 23, 4, 20}, 5) == 30)
+	assert("minEatingSpeed loose", minEatingSpeed([]int{30, 11, 23, 4, 20}, 6) == 23)
+	assert("minEatingSpeed single pile", minEatingSpeed([]int{12}, 3) == 4)
+	assert("minEatingSpeed huge h", minEatingSpeed([]int{1, 1, 1}, 100) == 1)
+	assert("minEatingSpeed h equals piles", minEatingSpeed([]int{5, 5, 5}, 3) == 5)
 
 	fmt.Println("\nAll binary search reflex drills passed.")
 	fmt.Println("Primary: binary_search/easy/search_insertion_position.js")

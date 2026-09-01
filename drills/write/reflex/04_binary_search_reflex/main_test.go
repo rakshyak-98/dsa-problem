@@ -44,18 +44,19 @@ func TestFindMinRotated(t *testing.T) {
 	assert(t, "findMinRotated pivot end", findMinRotated([]int{2, 3, 4, 5, 1}) == 1)
 }
 
-func TestIsTargetPresent(t *testing.T) {
-	assert(t, "isTargetPresent true mid", isTargetPresent([]int{1, 2, 3, 4, 5}, 3) == true)
-	assert(t, "isTargetPresent false", isTargetPresent([]int{1, 2, 3, 4, 5}, 6) == false)
-	assert(t, "isTargetPresent empty", isTargetPresent([]int{}, 1) == false)
-	assert(t, "isTargetPresent first", isTargetPresent([]int{1, 2, 3}, 1) == true)
-	assert(t, "isTargetPresent last", isTargetPresent([]int{1, 2, 3}, 3) == true)
+func TestMinEatingSpeed(t *testing.T) {
+	assert(t, "minEatingSpeed basic", minEatingSpeed([]int{3, 6, 7, 11}, 8) == 4)
+	assert(t, "minEatingSpeed tight", minEatingSpeed([]int{30, 11, 23, 4, 20}, 5) == 30)
+	assert(t, "minEatingSpeed loose", minEatingSpeed([]int{30, 11, 23, 4, 20}, 6) == 23)
+	assert(t, "minEatingSpeed single pile", minEatingSpeed([]int{12}, 3) == 4)
+	assert(t, "minEatingSpeed huge h", minEatingSpeed([]int{1, 1, 1}, 100) == 1)
+	assert(t, "minEatingSpeed h equals piles", minEatingSpeed([]int{5, 5, 5}, 3) == 5)
 }
 
 func TestAll(t *testing.T) {
 	t.Run("binarySearch", TestBinarySearch)
 	t.Run("searchInsert", TestSearchInsert)
 	t.Run("findMinRotated", TestFindMinRotated)
-	t.Run("isTargetPresent", TestIsTargetPresent)
+	t.Run("minEatingSpeed", TestMinEatingSpeed)
 	fmt.Println("\nAll binary search reflex drills passed.")
 }

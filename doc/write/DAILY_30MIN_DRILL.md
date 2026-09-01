@@ -63,8 +63,8 @@ go run . -- --problems   # the problem to solve next, ordered by that level
 
 Two rules keep the grade honest:
 
-- **Capped by tier.** `arraySum` is a tier-1 function. Passing it fifty times
-  leaves it at L1 — it is not a transfer question and never becomes one.
+- **Capped by tier.** `reverseInPlace` is a tier-1 function. Passing it fifty
+  times leaves it at L1 — it is not a transfer question and never becomes one.
 - **Decays.** An L2 function untouched for 3 days, or an L3 for 7, comes back
   as due. `→` in `--levels` marks it.
 
@@ -145,13 +145,13 @@ After Core 5, open today’s file and implement every `TODO: REFLEX` from empty 
 
 | Day | File | Essential functions you must own |
 |-----|------|----------------------------------|
-| **Mon** | `drills/write/reflex/01_arrays_reflex/` | `reverseInPlace`, `indexOfMax`, `arraySum`, `rotateRight`, `runningSum` |
+| **Mon** | `drills/write/reflex/01_arrays_reflex/` | `reverseInPlace`, `rotateRight`, `runningSum`, `subarraySumK`, `productExceptSelf`, `maxSubarraySum` |
 | **Tue** | `drills/write/reflex/02_hashing_reflex/` | `twoSum`, `containsDuplicate`, `frequencyMap`, `firstUniqueChar`, `groupAnagrams` |
-| **Wed** | `drills/write/reflex/03_two_pointers_reflex/` | `removeDuplicates`, `moveZeroes`, `maxArea`, `isPalindrome`, `maxSumSubarrayK` |
-| **Thu** | `drills/write/reflex/04_binary_search_reflex/` | `binarySearch`, `searchInsert`, `findMinRotated`, `isTargetPresent` |
-| **Fri** | `drills/write/reflex/05_trees_stacks_reflex/` | `inorderTraversal`, `preorderTraversal`, `postorderTraversal`, `levelOrderTraversal`, `maxDepth`, `isValidParentheses`, `dailyTemperatures` |
-| **Sat** | `drills/write/reflex/06_dp_reflex/` | `fib`, `minCostClimbingStairs`, `rob`, `climbStairs` |
-| **Sun** | `drills/write/reflex/07_graphs_reflex/` | `numIslands`, `floodFill`, `shortestPathGrid` |
+| **Wed** | `drills/write/reflex/03_two_pointers_reflex/` | `removeDuplicates`, `moveZeroes`, `maxArea`, `isPalindrome`, `maxSumSubarrayK`, `longestUniqueSubstring` |
+| **Thu** | `drills/write/reflex/04_binary_search_reflex/` | `binarySearch`, `searchInsert`, `findMinRotated`, `minEatingSpeed` |
+| **Fri** | `drills/write/reflex/05_trees_stacks_reflex/` | `inorderTraversal`, `preorderTraversal`, `postorderTraversal`, `levelOrderTraversal`, `maxDepth`, `isValidBST`, `isValidParentheses`, `dailyTemperatures` |
+| **Sat** | `drills/write/reflex/06_dp_reflex/` | `climbStairs`, `minCostClimbingStairs`, `rob`, `coinChange` |
+| **Sun** | `drills/write/reflex/07_graphs_reflex/` | `numIslands`, `floodFill`, `shortestPathGrid`, `canFinish` |
 
 ```bash
 go run -C drills/write/reflex/0X_... .
@@ -308,29 +308,28 @@ Log line:
 Use this as a master checklist. Specialty days cover these in rotation; Core 5 keeps the spine sharp.
 
 ### Arrays & prefix
-- [ ] `reverseInPlace` · `indexOfMax` · `arraySum` · `rotateRight` · `runningSum`
+- [ ] `reverseInPlace` · `rotateRight` · `runningSum` · `subarraySumK` · `productExceptSelf` · `maxSubarraySum`
 
 ### Hashing
 - [ ] `twoSum` · `containsDuplicate` · `frequencyMap` · `firstUniqueChar` · `groupAnagrams`
 
 ### Two pointers & window
-- [ ] `removeDuplicates` · `moveZeroes` · `maxArea` · `isPalindrome` · `maxSumSubarrayK`
+- [ ] `removeDuplicates` · `moveZeroes` · `maxArea` · `isPalindrome` · `maxSumSubarrayK` · `longestUniqueSubstring`
 
 ### Binary search
-- [ ] `binarySearch` · `searchInsert` (lower bound) · `findMinRotated` · `isTargetPresent`
+- [ ] `binarySearch` · `searchInsert` (lower bound) · `findMinRotated` · `minEatingSpeed` (search the answer)
 
 ### Trees & stacks
-- [ ] `inorderTraversal` · `maxDepth` · `isValidParentheses` · `dailyTemperatures`
+- [ ] `inorderTraversal` · `preorderTraversal` · `postorderTraversal` · `levelOrderTraversal` · `maxDepth` · `isValidBST` · `isValidParentheses` · `dailyTemperatures`
 
 ### DP
-- [ ] `fib` · `climbStairs` · `minCostClimbingStairs` · `rob`
+- [ ] `climbStairs` · `minCostClimbingStairs` · `rob` · `coinChange`
 
 ### Graphs
-- [ ] `numIslands` · `floodFill` · `shortestPathGrid`
+- [ ] `numIslands` · `floodFill` · `shortestPathGrid` · `canFinish`
 
-### Math (daily add-on)
-- [ ] `gcd` · `lcm` · `modPow` · `nCr` · `isPrime` · `powOfTwo`
-- [ ] Math read drill: `drills/read/weekday/08_math_concepts`
+### Linked lists (bonus)
+- [ ] `reverseList` · `hasCycle` · `middleNode` · `mergeTwoLists` · `removeNthFromEnd`
 
 ---
 

@@ -109,11 +109,11 @@ func TestOwningFunction(t *testing.T) {
 }
 
 func TestEarnedLevelIsCappedByTier(t *testing.T) {
-	// arraySum is a tier-1 function: passing it fifty times still does not make
-	// it a transfer question.
-	easy := cueByFn["arraySum"]
+	// reverseInPlace is a tier-1 function: passing it fifty times still does not
+	// make it a transfer question.
+	easy := cueByFn["reverseInPlace"]
 	if got := earnedLevel(easy, 50, 0, true); got != levelRecall {
-		t.Errorf("arraySum earned %s, want L1 (its tier)", got.label())
+		t.Errorf("reverseInPlace earned %s, want L1 (its tier)", got.label())
 	}
 	hard := cueByFn["groupAnagrams"]
 	if got := earnedLevel(hard, 10, 0, true); got != levelTransfer {

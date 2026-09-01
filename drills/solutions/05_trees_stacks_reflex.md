@@ -22,3 +22,10 @@
 ## dailyTemperatures
 - **Pattern:** monotonic decreasing stack of indices
 - **Pop** when current temp warmer; set answer for popped index
+
+## isValidBST
+- **Trigger:** BST validity, or any rule that ancestors constrain
+- **Pattern:** recurse carrying `(lo, hi)`; going left tightens hi, right tightens lo
+- **Classic wrong answer:** comparing each node only against its parent — that
+  accepts `5 / (1, 4 / (3, 6))`, where 3 is fine under 4 but not under 5
+- **Bug:** using `<=` / `>=` backwards on equal values (a BST here rejects dupes)

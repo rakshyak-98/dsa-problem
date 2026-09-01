@@ -24,7 +24,6 @@ Options:
       --solution KIND      show solution file path (KIND: core or reflex)
       --run [KIND]         run write drill tests (KIND: core or reflex; default: all)
       --run-core5          run Core 5 tests only
-      --run-math           run math reflex add-on drill
       --refresh            today's level-matched session (recognise → rebuild)
       --show               reveal answers in the --refresh recognition round
       --levels             what each function has earned: L1 / L2 / L3
@@ -57,7 +56,7 @@ func printKindArgError(flag, label string, missing bool, unknown string) {
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
-func parsePlayArgs(args []string) (drillKind, solutionKind string, help, brief, runMath bool, runMode string, parseErr bool) {
+func parsePlayArgs(args []string) (drillKind, solutionKind string, help, brief bool, runMode string, parseErr bool) {
 	if len(args) > 0 && args[0] == "--" {
 		args = args[1:]
 	}
@@ -68,24 +67,24 @@ func parsePlayArgs(args []string) (drillKind, solutionKind string, help, brief, 
 		case "--drill":
 			if i+1 >= len(args) {
 				printDrillArgError(true, "")
-				return "", "", help, brief, runMath, runMode, true
+				return "", "", help, brief, runMode, true
 			}
 			kind := args[i+1]
 			if !isDrillKind(kind) {
 				printDrillArgError(false, kind)
-				return "", "", help, brief, runMath, runMode, true
+				return "", "", help, brief, runMode, true
 			}
 			i++
 			drillKind = kind
 		case "--solution":
 			if i+1 >= len(args) {
 				printSolutionArgError(true, "")
-				return "", "", help, brief, runMath, runMode, true
+				return "", "", help, brief, runMode, true
 			}
 			kind := args[i+1]
 			if !isDrillKind(kind) {
 				printSolutionArgError(false, kind)
-				return "", "", help, brief, runMath, runMode, true
+				return "", "", help, brief, runMode, true
 			}
 			i++
 			solutionKind = kind
@@ -93,8 +92,6 @@ func parsePlayArgs(args []string) (drillKind, solutionKind string, help, brief, 
 			brief = true
 		case "-r", "--read", "-w", "--write":
 			// consumed by root CLI when selecting read/write side
-		case "--run-math":
-			runMath = true
 		case "--run-core5":
 			runMode = "core"
 		case "--run":
@@ -106,5 +103,5 @@ func parsePlayArgs(args []string) (drillKind, solutionKind string, help, brief, 
 			}
 		}
 	}
-	return drillKind, solutionKind, help, brief, runMath, runMode, false
+	return drillKind, solutionKind, help, brief, runMode, false
 }

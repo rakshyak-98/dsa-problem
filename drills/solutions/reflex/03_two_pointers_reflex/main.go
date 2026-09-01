@@ -92,6 +92,23 @@ func maxSumSubarrayK(nums []int, k int) int {
 	return best
 }
 
+func longestUniqueSubstring(s string) int {
+	// Variable window: right always advances, left jumps past the previous
+	// occurrence whenever the incoming byte is already inside the window.
+	last := map[byte]int{}
+	best, left := 0, 0
+	for right := 0; right < len(s); right++ {
+		if seen, ok := last[s[right]]; ok && seen >= left {
+			left = seen + 1
+		}
+		last[s[right]] = right
+		if right-left+1 > best {
+			best = right - left + 1
+		}
+	}
+	return best
+}
+
 func assert(name string, cond bool) {
 	if !cond {
 		panic(fmt.Sprintf("FAIL: %s", name))
@@ -155,7 +172,16 @@ func main() {
 	assert("maxSumSubarrayK k=1", maxSumSubarrayK([]int{4, 2, 9}, 1) == 9)
 	assert("maxSumSubarrayK k=len", maxSumSubarrayK([]int{1, 2, 3}, 3) == 6)
 	assert("maxSumSubarrayK negatives", maxSumSubarrayK([]int{-1, -2, -3}, 2) == -3)
-	assert("maxSumSubarrayK window slide", maxSumSubarrayK([]int{1, 4, 2, 10, 2, 1}, 2) == 14)
+	assert("maxSumSubarrayK window slide", maxSumSubarrayK([]int{1, 4, 2, 10, 2, 1}, 2) == 12)
+
+	// longestUniqueSubstring — empty, all same, all unique, repeat outside window
+	assert("longestUniqueSubstring basic", longestUniqueSubstring("abcabcbb") == 3)
+	assert("longestUniqueSubstring all same", longestUniqueSubstring("bbbb") == 1)
+	assert("longestUniqueSubstring all unique", longestUniqueSubstring("abcdef") == 6)
+	assert("longestUniqueSubstring empty", longestUniqueSubstring("") == 0)
+	assert("longestUniqueSubstring single", longestUniqueSubstring("a") == 1)
+	assert("longestUniqueSubstring pwwkew", longestUniqueSubstring("pwwkew") == 3)
+	assert("longestUniqueSubstring stale left", longestUniqueSubstring("abba") == 2)
 
 	fmt.Println("\nAll two-pointer reflex drills passed.")
 	fmt.Println("Primary: two_pointers/easy/move_zeroes.js")

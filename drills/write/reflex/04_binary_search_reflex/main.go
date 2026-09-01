@@ -20,8 +20,9 @@ func findMinRotated(nums []int) int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — is target in nums (classic template with lo <= hi)
-func isTargetPresent(nums []int, target int) bool {
+// TODO: REFLEX — slowest speed that still clears every pile within h hours
+// (binary search the answer, not an index)
+func minEatingSpeed(piles []int, h int) int {
 	panic("Implement from memory")
 }
 

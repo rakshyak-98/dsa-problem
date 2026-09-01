@@ -46,14 +46,16 @@ var core5 = []coreFn{
 var drills = []drill{
 	{
 		day: "Monday", file: "01_arrays_reflex",
-		patterns:  "reverse, max index, sum, rotate, prefix",
-		functions: []string{"reverseInPlace", "indexOfMax", "arraySum", "rotateRight", "runningSum"},
+		patterns:  "reverse, rotate, prefix, prefix+map, Kadane",
+		functions: []string{"reverseInPlace", "rotateRight", "runningSum", "subarraySumK", "productExceptSelf", "maxSubarraySum"},
 		triggers: []string{
 			"in-place mutate / reverse → two pointers L/R swap",
-			"running total → prefix / accumulate",
+			"range sum / running total → prefix array",
+			"count subarrays summing to k → prefix sum + map of seen prefixes",
+			"best contiguous run → Kadane (extend or restart at nums[i])",
 			"rotate by k → k %= n, then reverse sections (or copy with modulo)",
 		},
-		understandWarmup: "Rotate right by k: same-length array; last k elements move to the front.",
+		understandWarmup: "Subarray sum equals k: count contiguous runs, not pairs — a prefix seen before means the gap between them sums to k.",
 	},
 	{
 		day: "Tuesday", file: "02_hashing_reflex",
@@ -68,33 +70,36 @@ var drills = []drill{
 	},
 	{
 		day: "Wednesday", file: "03_two_pointers_reflex",
-		patterns:  "dedupe, zeroes, container, palindrome, window",
-		functions: []string{"removeDuplicates", "moveZeroes", "maxArea", "isPalindrome", "maxSumSubarrayK"},
+		patterns:  "dedupe, zeroes, container, palindrome, fixed + variable window",
+		functions: []string{"removeDuplicates", "moveZeroes", "maxArea", "isPalindrome", "maxSumSubarrayK", "longestUniqueSubstring"},
 		triggers: []string{
 			"sorted + two values → L/R two pointers",
 			"in-place filter / dedupe → read/write pointers",
-			"subarray length k → fixed sliding window",
+			"subarray length k stated → fixed sliding window",
+			"longest/shortest run with a property → variable window, shrink from the left",
 		},
-		understandWarmup: "Container with most water: max area between two lines = width × min(height).",
+		understandWarmup: "Fixed vs variable window: k given in the problem means fixed; \"longest such that…\" means the left edge moves on its own.",
 	},
 	{
 		day: "Thursday", file: "04_binary_search_reflex",
-		patterns:  "exact BS, lower bound, rotated min, present?",
-		functions: []string{"binarySearch", "searchInsert", "findMinRotated", "isTargetPresent"},
+		patterns:  "exact BS, lower bound, rotated min, search the answer",
+		functions: []string{"binarySearch", "searchInsert", "findMinRotated", "minEatingSpeed"},
 		triggers: []string{
 			"sorted + find exact → lo <= hi, mid compare",
 			"first position ≥ target → lower bound / searchInsert",
 			"rotated sorted min → decide which half is sorted",
+			"minimum rate / capacity that still works → binary search the answer space",
 		},
-		understandWarmup: "Lower bound: first index where value is ≥ target (insertion point).",
+		understandWarmup: "Searching the answer: when the input is not sorted but \"does speed s work?\" is monotonic, binary search over s.",
 	},
 	{
 		day: "Friday", file: "05_trees_stacks_reflex",
-		patterns:  "inorder, preorder, postorder, level-order, depth, parens, mono stack",
-		functions: []string{"inorderTraversal", "preorderTraversal", "postorderTraversal", "levelOrderTraversal", "maxDepth", "isValidParentheses", "dailyTemperatures"},
+		patterns:  "inorder, preorder, postorder, level-order, depth, BST bounds, parens, mono stack",
+		functions: []string{"inorderTraversal", "preorderTraversal", "postorderTraversal", "levelOrderTraversal", "maxDepth", "isValidBST", "isValidParentheses", "dailyTemperatures"},
 		triggers: []string{
 			"tree order without recursion → stack / iterative DFS",
 			"row-by-row tree visit → BFS queue (level-order)",
+			"BST validity → carry (lo, hi) bounds down, never compare to the parent alone",
 			"matching brackets → stack of opens",
 			"next greater element → monotonic decreasing stack",
 		},
@@ -102,50 +107,50 @@ var drills = []drill{
 	},
 	{
 		day: "Saturday", file: "06_dp_reflex",
-		patterns:  "fib, min cost, rob, climb stairs",
-		functions: []string{"fib", "minCostClimbingStairs", "rob", "climbStairs"},
+		patterns:  "climb stairs, min cost, rob, coin change",
+		functions: []string{"climbStairs", "minCostClimbingStairs", "rob", "coinChange"},
 		triggers: []string{
 			"min cost / max ways on a line → 1D DP",
 			"define dp[i] in English before coding",
 			"rob houses → cannot take adjacent → max(take, skip)",
+			"fewest items making a total, reuse allowed → unbounded knapsack over amounts",
 		},
-		understandWarmup: "Min cost climbing: from i you pay cost[i], then jump 1 or 2 steps; reach top with min total.",
+		understandWarmup: "Coin change: dp[a] is the fewest coins making exactly a; greedy fails, so try every coin at every amount.",
 	},
 	{
 		day: "Sunday", file: "07_graphs_reflex",
-		patterns:  "islands, flood fill, BFS path",
-		functions: []string{"numIslands", "floodFill", "shortestPathGrid"},
+		patterns:  "islands, flood fill, BFS path, topological order",
+		functions: []string{"numIslands", "floodFill", "shortestPathGrid", "canFinish"},
 		triggers: []string{
 			"grid regions / components → DFS or BFS + visited",
 			"shortest path unweighted grid → BFS",
 			"flood fill → DFS/BFS from start, recolor connected cells",
+			"prerequisites / ordering / \"is there a cycle\" → topological sort on in-degrees",
 		},
-		understandWarmup: "Island count: each unvisited land cell starts one DFS/BFS component.",
+		understandWarmup: "Topological sort: repeatedly take a node whose prerequisites are all met; anything left over sits on a cycle.",
 	},
 }
 
 var bonusDrills = []string{
 	"08_heap_reflex",
 	"09_backtrack_reflex",
-	"10_math_reflex",
+	"10_linked_list_reflex",
 }
-
-const mathReflexFile = "10_math_reflex"
 
 var essentialCatalog = []struct {
 	group string
 	fns   []string
 }{
-	{"Arrays & prefix", []string{"reverseInPlace", "indexOfMax", "arraySum", "rotateRight", "runningSum"}},
+	{"Arrays & prefix", []string{"reverseInPlace", "rotateRight", "runningSum", "subarraySumK", "productExceptSelf", "maxSubarraySum"}},
 	{"Hashing", []string{"twoSum", "containsDuplicate", "frequencyMap", "firstUniqueChar", "groupAnagrams"}},
-	{"Two pointers & window", []string{"removeDuplicates", "moveZeroes", "maxArea", "isPalindrome", "maxSumSubarrayK"}},
-	{"Binary search", []string{"binarySearch", "searchInsert", "findMinRotated", "isTargetPresent"}},
-	{"Trees & stacks", []string{"inorderTraversal", "preorderTraversal", "postorderTraversal", "levelOrderTraversal", "maxDepth", "isValidParentheses", "dailyTemperatures"}},
-	{"DP", []string{"fib", "climbStairs", "minCostClimbingStairs", "rob"}},
-	{"Graphs", []string{"numIslands", "floodFill", "shortestPathGrid"}},
-	{"Math", []string{"gcd", "lcm", "modPow", "nCr", "isPrime", "powOfTwo"}},
+	{"Two pointers & window", []string{"removeDuplicates", "moveZeroes", "maxArea", "isPalindrome", "maxSumSubarrayK", "longestUniqueSubstring"}},
+	{"Binary search", []string{"binarySearch", "searchInsert", "findMinRotated", "minEatingSpeed"}},
+	{"Trees & stacks", []string{"inorderTraversal", "preorderTraversal", "postorderTraversal", "levelOrderTraversal", "maxDepth", "isValidBST", "isValidParentheses", "dailyTemperatures"}},
+	{"DP", []string{"climbStairs", "minCostClimbingStairs", "rob", "coinChange"}},
+	{"Graphs", []string{"numIslands", "floodFill", "shortestPathGrid", "canFinish"}},
 	{"Heaps (bonus)", []string{"kthLargest", "lastStoneWeight", "mergeKSorted"}},
 	{"Backtracking (bonus)", []string{"subsets", "permute", "combine"}},
+	{"Linked lists (bonus)", []string{"reverseList", "hasCycle", "middleNode", "mergeTwoLists", "removeNthFromEnd"}},
 }
 
 var allTriggers = []string{
@@ -160,8 +165,11 @@ var allTriggers = []string{
 	"min cost / ways → 1D DP (define dp[i] first)",
 	"grid regions / fill → DFS or BFS + visited",
 	"shortest unweighted path → BFS",
-	"gcd / lcm / modPow → Euclidean + fast exponentiation",
-	"count combinations → nCr with symmetry k = min(k, n-k)",
+	"prerequisites / ordering → topological sort",
+	"count subarrays summing to k → prefix sum + map",
+	"longest run with a property → variable sliding window",
+	"min rate / capacity that works → binary search the answer",
+	"reverse / detect a loop in a list → prev-cur rewire, or slow+fast pointers",
 }
 
 func core5Names() string {
@@ -293,7 +301,6 @@ func printToday(today drill, brief bool) {
 
 	fmt.Println("\nrun:    go run . -- --run core")
 	fmt.Println("        go run . -- --run reflex")
-	fmt.Printf("math:   go run . -- --run-math  (%s)\n", mathReflexFile)
 	fmt.Println("today:  go run . -- --refresh   (level-matched session)")
 }
 
@@ -337,7 +344,7 @@ func main() {
 	repoRoot := findRepoRoot(root)
 	_, drillPath := resolvePlayPaths(root, today.file)
 
-	drillKind, solutionKind, help, brief, runMath, runMode, parseErr := parsePlayArgs(os.Args[1:])
+	drillKind, solutionKind, help, brief, runMode, parseErr := parsePlayArgs(os.Args[1:])
 	if parseErr {
 		os.Exit(1)
 	}
@@ -408,19 +415,6 @@ func main() {
 
 	if runMode == "" {
 		printToday(today, brief)
-	}
-
-	if runMath {
-		mathPath := writeReflexDir(repoRoot, mathReflexFile)
-		ok, output, _ := runDrillWithLog(mathPath)
-		fmt.Print(output)
-		mathFns := []string{"gcd", "lcm", "modPow", "nCr", "isPrime", "powOfTwo"}
-		if !ok {
-			updateLogFromOutput(repoRoot, output, mathFns)
-			os.Exit(1)
-		}
-		updateLogFromOutput(repoRoot, output, mathFns)
-		return
 	}
 
 	core5Fns := []string{"twoSum", "binarySearch", "removeDuplicates", "maxSumSubarrayK", "frequencyMap"}

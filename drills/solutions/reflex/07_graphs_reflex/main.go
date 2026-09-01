@@ -93,6 +93,37 @@ func shortestPathGrid(grid [][]int) int {
 	return -1
 }
 
+func canFinish(numCourses int, prerequisites [][]int) bool {
+	// Kahn: build an adjacency list plus in-degrees, then repeatedly take a
+	// node with no unmet prerequisite. A leftover node means a cycle.
+	next := make([][]int, numCourses)
+	indeg := make([]int, numCourses)
+	for _, p := range prerequisites {
+		course, need := p[0], p[1]
+		next[need] = append(next[need], course)
+		indeg[course]++
+	}
+	queue := []int{}
+	for i, d := range indeg {
+		if d == 0 {
+			queue = append(queue, i)
+		}
+	}
+	done := 0
+	for len(queue) > 0 {
+		n := queue[0]
+		queue = queue[1:]
+		done++
+		for _, m := range next[n] {
+			indeg[m]--
+			if indeg[m] == 0 {
+				queue = append(queue, m)
+			}
+		}
+	}
+	return done == numCourses
+}
+
 func assert(name string, cond bool) {
 	if !cond {
 		panic(fmt.Sprintf("FAIL: %s", name))
@@ -163,6 +194,14 @@ func main() {
 	assert("shortestPathGrid end blocked", shortestPathGrid(endBlocked) == -1)
 	open2x2 := [][]int{{0, 0}, {0, 0}}
 	assert("shortestPathGrid open 2x2", shortestPathGrid(open2x2) == 2)
+
+	// canFinish — no edges, chain, self cycle, two-node cycle, diamond
+	assert("canFinish no prereqs", canFinish(3, [][]int{}))
+	assert("canFinish chain", canFinish(3, [][]int{{1, 0}, {2, 1}}))
+	assert("canFinish simple cycle", !canFinish(2, [][]int{{1, 0}, {0, 1}}))
+	assert("canFinish self cycle", !canFinish(1, [][]int{{0, 0}}))
+	assert("canFinish diamond", canFinish(4, [][]int{{1, 0}, {2, 0}, {3, 1}, {3, 2}}))
+	assert("canFinish cycle in tail", !canFinish(4, [][]int{{1, 0}, {2, 1}, {1, 2}}))
 
 	fmt.Println("\nAll graph reflex drills passed.")
 	fmt.Println("Primary: graphs/medium/number_of_islands.js")

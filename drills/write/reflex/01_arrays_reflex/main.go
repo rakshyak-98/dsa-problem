@@ -1,34 +1,37 @@
-// REFLEX DRILL 01 — Arrays
+// REFLEX DRILL 01 — Arrays & Prefix
 //
-// GOAL: Write every function from memory in < 3 minutes each.
 // RUN: go run -C drills/write/reflex/01_arrays_reflex .
 //
-// AFTER PASSING: arrays/easy/plus_one.js
+// AFTER PASSING: https://leetcode.com/problems/subarray-sum-equals-k/
 package main
 
-// TODO: REFLEX — reverse array in-place, return the same slice
-// INVARIANT: L/R move inward; swap until they meet
+// TODO: REFLEX — reverse in place, return the same slice
 func reverseInPlace(arr []int) []int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — return index of max element (first max if ties)
-func indexOfMax(arr []int) int {
-	panic("Implement from memory")
-}
-
-// TODO: REFLEX — return sum of all elements
-func arraySum(arr []int) int {
-	panic("Implement from memory")
-}
-
-// TODO: REFLEX — rotate right by k steps (use modulo on k)
+// TODO: REFLEX — shift right by k (k may exceed len)
 func rotateRight(arr []int, k int) []int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — return new slice: running sum (prefix as output)
+// TODO: REFLEX — out[i] = sum of arr[0..i]
 func runningSum(arr []int) []int {
+	panic("Implement from memory")
+}
+
+// TODO: REFLEX — count subarrays summing to k (prefix sum + map, one pass)
+func subarraySumK(nums []int, k int) int {
+	panic("Implement from memory")
+}
+
+// TODO: REFLEX — out[i] = product of everything except nums[i], no division
+func productExceptSelf(nums []int) []int {
+	panic("Implement from memory")
+}
+
+// TODO: REFLEX — largest sum of any contiguous subarray (Kadane)
+func maxSubarraySum(nums []int) int {
 	panic("Implement from memory")
 }
 
