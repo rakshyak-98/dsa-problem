@@ -21,6 +21,10 @@ Then open **[`doc/drills.md`](doc/drills.md)** — all practice files live under
 
 ## Quick commands (from repo root)
 
+Options follow the GNU conventions: `--help` / `-h`, `--version` / `-V`,
+`--option=value` (or `--option value`), and any unambiguous abbreviation
+(`--ref` for `--refresh`). An unknown option is an error, not a silent no-op.
+
 ```bash
 go run .                              # today's plan: read + write
 go run . -- --refresh                 # level-matched write session (start here)
@@ -30,13 +34,18 @@ go run . -- --problems                # curated primary problem per function, by
 go run . -- --triggers                # full cross-topic pattern trigger table
 go run . -- --weak                    # weakest functions from the drill log
 go run . -- --run                     # check today's reflex answers
-go run . -- --core5                   # Core 5 reflex
-go run . -- --track read              # reflex reading drills only
-go run . -- --track write             # writing drills only
-go run . -- --track leetcode          # daily 10 LeetCode problems (weekday topic)
-go run . -- --run leetcode            # fetch today's 10 LeetCode problems
+go run . -- --run=core                # check the Core 5 tests
+go run . -- --core5                   # run the standalone Core 5 drill
+go run . -- --track=read              # reflex reading drills only
+go run . -- --track=write             # writing drills only
+go run . -- --track=leetcode          # daily 10 LeetCode problems (weekday topic)
+go run . -- --track=leetcode --run    # fetch today's 10 LeetCode problems
 go run . -- --list-tracks             # show all available tracks
+go run . -- --help                    # full option reference
 ```
+
+`--run leetcode` and the `-r` / `-w` / `-l` run-side flags still work but are
+superseded by `--track`.
 
 ## Repository layout
 

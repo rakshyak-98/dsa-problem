@@ -109,6 +109,47 @@ func TestParseDailyArgs(t *testing.T) {
 	}
 }
 
+func TestParseDailyArgsGNU(t *testing.T) {
+	// --version is handled by the shared front-end.
+	if opts := parseDailyArgs([]string{"--version"}); !opts.version || opts.help {
+		t.Fatalf("expected version: %+v", opts)
+	}
+	if opts := parseDailyArgs([]string{"-V"}); !opts.version {
+		t.Fatalf("expected version from -V: %+v", opts)
+	}
+
+	// --option=value is split for the switch that follows.
+	opts := parseDailyArgs([]string{"--drill=core", "--run=reflex"})
+	if opts.drillKind != "core" || !opts.run {
+		t.Fatalf("--opt=value: %+v", opts)
+	}
+	if opts := parseDailyArgs([]string{"--track=leetcode"}); opts.track != trackLeetcode {
+		t.Fatalf("--track=value: %+v", opts)
+	}
+
+	// Unambiguous abbreviation resolves to the full option.
+	if opts := parseDailyArgs([]string{"--ref"}); !containsStrDaily(opts.passArgs, "--refresh") {
+		t.Fatalf("--ref should expand to --refresh: %+v", opts)
+	}
+
+	// An unknown or ambiguous option is a usage error, not a silent passthrough.
+	if opts := parseDailyArgs([]string{"--bogus"}); !opts.usageErr {
+		t.Fatalf("--bogus should be a usage error: %+v", opts)
+	}
+	if opts := parseDailyArgs([]string{"--r"}); !opts.usageErr {
+		t.Fatalf("ambiguous --r should be a usage error: %+v", opts)
+	}
+}
+
+func containsStrDaily(s []string, want string) bool {
+	for _, v := range s {
+		if v == want {
+			return true
+		}
+	}
+	return false
+}
+
 func TestIsKnownTrack(t *testing.T) {
 	if !isKnownTrack(trackDSA) || !isKnownTrack(trackRead) || !isKnownTrack(trackWrite) || !isKnownTrack(trackLeetcode) {
 		t.Fatal("known tracks")

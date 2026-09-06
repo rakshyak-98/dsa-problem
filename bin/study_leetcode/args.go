@@ -1,56 +1,79 @@
 package main
 
-import (
-	"fmt"
-	"os"
-)
+import "fmt"
+
+const leetcodeProg = "study_leetcode"
+
+var leetcodeLongOpts = []string{
+	"help", "version",
+	"catalog", "show", "run", "refresh", "brief",
+	"read", "write", "leetcode", // consumed by the root runner when picking a side
+}
+
+var leetcodeAliases = map[string][]string{
+	"set": {"--show"}, // superseded by: --show
+}
+
+func leetcodeSpec() gnuSpec {
+	return gnuSpec{prog: leetcodeProg, canonical: leetcodeLongOpts, aliases: leetcodeAliases}
+}
 
 func printHelp() {
-	fmt.Print(`Usage: go run ./bin/study_leetcode -- [OPTION]...
+	fmt.Print(`Usage: go run . -- [OPTION]...
 
 Daily 10-question LeetCode practice set aligned with today's reflex topic.
-Fetches live problem data from the LeetCode GraphQL API and saves to
-drills/leetcode/daily.json, daily.go, and daily.md (full statements).
+Statements are fetched from the LeetCode GraphQL API and written to
+drills/leetcode/daily.json (plus daily.go and daily.md). With no option it
+shows today's set.
 
-Options:
-  -h, --help               display this help message and exit
-      --catalog            list all weekday practice sets
-      --set                show today's 10 problems (default)
-      --run                fetch + show today's 10 problems (unified runner)
-      --refresh            re-fetch from LeetCode even if daily.json is current
-      --brief              one-line output for unified daily runner
+Long options may be abbreviated while unambiguous, and every value-taking
+option also accepts the --option=value form.
 
+  -h, --help       display this help and exit
+  -V, --version    display version information and exit
+      --show       show today's 10 problems (default)
+      --run        fetch if needed, then show today's 10 problems
+      --refresh    re-fetch from the LeetCode API even if the cache is current
+      --catalog    list every weekday practice set
+      --brief      one-line output for the unified daily runner
+
+Deprecated (still accepted): --set is now --show.
+
+Exit status: 0 success, 1 a fetch failed, 2 a command-line usage error.
 `)
 }
 
-func parseLeetcodeArgs(args []string) (help, catalog, brief, showSet, refresh bool, parseErr bool) {
-	showSet = true
-	if len(args) > 0 && args[0] == "--" {
-		args = args[1:]
+// leetcodeOpts is the fully parsed command line for the LeetCode set CLI.
+type leetcodeOpts struct {
+	catalog bool
+	brief   bool
+	showSet bool
+	refresh bool
+}
+
+func parseLeetcode(args []string) (opts leetcodeOpts, ctl gnuCtl, parseErr bool) {
+	opts.showSet = true
+	norm, ctl := gnuPre(args, leetcodeSpec())
+	if ctl != gnuOK {
+		return opts, ctl, false
 	}
-	for i := 0; i < len(args); i++ {
-		switch args[i] {
-		case "-h", "--help":
-			help = true
+	for _, a := range norm {
+		switch a {
 		case "--catalog":
-			catalog = true
-			showSet = false
-		case "--set":
-			showSet = true
+			opts.catalog = true
+			opts.showSet = false
+		case "--show":
+			opts.showSet = true
 		case "--run", "-l", "--leetcode":
-			showSet = true
-			brief = false
+			opts.showSet = true
+			opts.brief = false
 		case "--refresh":
-			refresh = true
+			opts.refresh = true
 		case "--brief":
-			brief = true
-		case "-r", "--read", "-w", "--write":
-			// consumed by root CLI when selecting run side
-		default:
-			fmt.Fprintf(os.Stderr, "unknown option %q\n", args[i])
-			fmt.Fprintln(os.Stderr, "Try 'go run ./bin/study_leetcode -- --help' for more information.")
-			return help, catalog, brief, showSet, refresh, true
+			opts.brief = true
+		case "--read", "--write", "-r", "-w":
+			// selected by the root runner; nothing to do here
 		}
 	}
-	return help, catalog, brief, showSet, refresh, false
+	return opts, gnuOK, false
 }

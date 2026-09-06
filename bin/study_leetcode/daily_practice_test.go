@@ -272,22 +272,42 @@ func TestPracticeSetsCatalog(t *testing.T) {
 	}
 }
 
-func TestParseLeetcodeArgs(t *testing.T) {
-	help, catalog, brief, showSet, refresh, parseErr := parseLeetcodeArgs([]string{"--", "--catalog", "--brief"})
-	if parseErr || !catalog || !brief || showSet || help || refresh {
-		t.Fatalf("catalog brief: help=%v catalog=%v brief=%v showSet=%v refresh=%v err=%v", help, catalog, brief, showSet, refresh, parseErr)
+func TestParseLeetcode(t *testing.T) {
+	opts, ctl, perr := parseLeetcode([]string{"--", "--catalog", "--brief"})
+	if perr || ctl != gnuOK || !opts.catalog || !opts.brief || opts.showSet || opts.refresh {
+		t.Fatalf("catalog brief: %+v ctl=%v perr=%v", opts, ctl, perr)
 	}
-	_, _, _, _, refresh, parseErr = parseLeetcodeArgs([]string{"--refresh"})
-	if parseErr || !refresh {
-		t.Fatal("refresh flag")
+
+	opts, _, _ = parseLeetcode([]string{"--refresh"})
+	if !opts.refresh || !opts.showSet {
+		t.Fatalf("refresh: %+v", opts)
 	}
-	_, _, _, showSet, _, parseErr = parseLeetcodeArgs([]string{"--run"})
-	if parseErr || !showSet {
-		t.Fatal("--run should show today's set")
+
+	opts, _, _ = parseLeetcode([]string{"--run"})
+	if !opts.showSet || opts.brief {
+		t.Fatalf("--run shows today's set without brief: %+v", opts)
 	}
-	_, _, brief, _, _, parseErr = parseLeetcodeArgs([]string{"--run"})
-	if parseErr || brief {
-		t.Fatal("--run should not use brief mode")
+
+	// --set is a retired spelling of --show.
+	opts, _, _ = parseLeetcode([]string{"--catalog", "--set"})
+	if !opts.showSet {
+		t.Fatalf("--set alias -> --show: %+v", opts)
+	}
+
+	// Unambiguous abbreviation.
+	opts, _, _ = parseLeetcode([]string{"--ref"})
+	if !opts.refresh {
+		t.Fatalf("--ref -> --refresh: %+v", opts)
+	}
+
+	if _, ctl, _ := parseLeetcode([]string{"--help"}); ctl != gnuHelp {
+		t.Fatal("--help -> gnuHelp")
+	}
+	if _, ctl, _ := parseLeetcode([]string{"-V"}); ctl != gnuVersion {
+		t.Fatal("-V -> gnuVersion")
+	}
+	if _, ctl, _ := parseLeetcode([]string{"--bogus"}); ctl != gnuErr {
+		t.Fatal("--bogus -> gnuErr")
 	}
 }
 

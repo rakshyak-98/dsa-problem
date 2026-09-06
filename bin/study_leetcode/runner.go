@@ -83,16 +83,22 @@ func runStudyLeetcode(repoRoot string, catalog, brief, showSet, refresh bool) in
 }
 
 func main() {
-	help, catalog, brief, showSet, refresh, parseErr := parseLeetcodeArgs(os.Args[1:])
-	if parseErr {
-		os.Exit(1)
-	}
-	if help {
+	opts, ctl, parseErr := parseLeetcode(os.Args[1:])
+	switch ctl {
+	case gnuHelp:
 		printHelp()
 		return
+	case gnuVersion:
+		printVersion(leetcodeProg)
+		return
+	case gnuErr:
+		os.Exit(2)
+	}
+	if parseErr {
+		os.Exit(2)
 	}
 	repoRoot := findRepoRoot(mustGetwd())
-	if code := runStudyLeetcode(repoRoot, catalog, brief, showSet, refresh); code != 0 {
+	if code := runStudyLeetcode(repoRoot, opts.catalog, opts.brief, opts.showSet, opts.refresh); code != 0 {
 		os.Exit(code)
 	}
 }

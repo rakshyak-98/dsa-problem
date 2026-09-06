@@ -6,8 +6,9 @@ All practice files live in this folder. Full guide: [`../doc/drills.md`](../doc/
 go run .                              # unified daily plan (DSA: read + write)
 go run . -- --refresh                 # today's level-matched write session
 go run . -- --levels                  # what each function has earned
-go run . -- --track read              # reflex reading drills only
-go run . -- --track write             # writing drills only
+go run . -- --track=read              # reflex reading drills only
+go run . -- --track=write             # writing drills only
+go run . -- --help                    # full option reference
 go -C bin/study_code run .            # read drills CLI
 go run -C drills/write/core5 .        # Core 5
 ```

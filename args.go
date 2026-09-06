@@ -92,12 +92,29 @@ func hasRunKind(passArgs []string) bool {
 	return false
 }
 
+// dailyProg is the program name shown in usage messages and --version.
+const dailyProg = "dsa-drills"
+
+// dailyLongOpts is every long option the root runner accepts. Options it does
+// not act on itself (they are forwarded to the active track's module) are still
+// listed so a typo is reported here instead of silently ignored downstream.
+var dailyLongOpts = []string{
+	"help", "version", "list-tracks", "track", "core5",
+	"drill", "solution", "run", "catalog",
+	"refresh", "show", "levels", "problems", "triggers", "weak", "brief",
+	"read", "write", "leetcode", // deprecated run-side selectors; prefer --track
+}
+
+var dailyAliases = map[string][]string{}
+
 type dailyOptions struct {
 	track           drillTrack
 	passArgs        []string
 	run             bool
 	runSide         string // "read", "write", or ""
 	help            bool
+	version         bool
+	usageErr        bool
 	listTracks      bool
 	catalog         bool
 	core5           bool
@@ -111,14 +128,22 @@ type dailyOptions struct {
 
 func parseDailyArgs(args []string) dailyOptions {
 	opts := dailyOptions{track: trackDSA}
-	if len(args) > 0 && args[0] == "--" {
-		args = args[1:]
+	norm, ctl := gnuPre(args, gnuSpec{prog: dailyProg, canonical: dailyLongOpts, aliases: dailyAliases})
+	switch ctl {
+	case gnuHelp:
+		opts.help = true
+		return opts
+	case gnuVersion:
+		opts.version = true
+		return opts
+	case gnuErr:
+		opts.usageErr = true
+		return opts
 	}
+	args = norm
 	for i := 0; i < len(args); i++ {
 		a := args[i]
 		switch {
-		case a == "--help" || a == "-h":
-			opts.help = true
 		case a == "--list-tracks":
 			opts.listTracks = true
 		case a == "--catalog":
@@ -126,13 +151,12 @@ func parseDailyArgs(args []string) dailyOptions {
 			opts.passArgs = append(opts.passArgs, a)
 		case a == "--track" || a == "-t":
 			if i+1 >= len(args) {
-				opts.help = true
-				continue
+				printNeedsArg("--track")
+				opts.usageErr = true
+				return opts
 			}
 			i++
 			opts.track = drillTrack(strings.ToLower(args[i]))
-		case strings.HasPrefix(a, "--track="):
-			opts.track = drillTrack(strings.ToLower(strings.TrimPrefix(a, "--track=")))
 		case a == "--core5":
 			opts.core5 = true
 		case a == "--drill":

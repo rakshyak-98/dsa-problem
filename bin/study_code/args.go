@@ -5,6 +5,20 @@ import (
 	"os"
 )
 
+const readProg = "study_code"
+
+var readLongOpts = []string{
+	"help", "version",
+	"drill", "solution", "run", "catalog", "brief",
+	"read", "write", // consumed by the root runner when picking a side
+}
+
+var readAliases = map[string][]string{}
+
+func readSpec() gnuSpec {
+	return gnuSpec{prog: readProg, canonical: readLongOpts, aliases: readAliases}
+}
+
 func isRunKind(s string) bool {
 	return s == "reflex"
 }
@@ -14,113 +28,91 @@ func isDrillKind(s string) bool {
 }
 
 func printHelp() {
-	fmt.Print(`Usage: go run ./bin/study_code -- [OPTION]...
+	fmt.Print(`Usage: go run . -- [OPTION]...
 
-Run reflex code-reading drills for today's weekday specialty.
+Reflex code-reading drills for today's weekday specialty. With no option it
+prints today's plan.
 
-Options:
-  -h, --help               display this help message and exit
-      --drill reflex       show today's reflex read plan
-      --solution reflex    show answer key section for today
-      --run [reflex]       run today's read drill tests (default: reflex)
-      --catalog            list weekday read drills
-      --brief              one-line output for unified daily runner
+Long options may be abbreviated while unambiguous, and every value-taking
+option also accepts the --option=value form. The only KIND is "reflex", so
+the value may be omitted.
 
+  -h, --help            display this help and exit
+  -V, --version         display version information and exit
+      --drill[=reflex]  show today's reflex reading plan
+      --solution[=reflex]
+                        show the reading answer-key section for today
+      --run[=reflex]    run today's reflex reading tests
+      --catalog         list the weekday reading drills
+      --brief           one-line output for the unified daily runner
+
+Exit status: 0 success, 1 a drill failed, 2 a command-line usage error.
 `)
 }
 
-func printDrillArgError(missing bool, unknown string) {
-	printKindArgError("--drill", "drill kind", missing, unknown)
-}
-
-func printSolutionArgError(missing bool, unknown string) {
-	printKindArgError("--solution", "solution kind", missing, unknown)
-}
-
-func printRunArgError(unknown string) {
-	fmt.Fprintf(os.Stderr, "unknown run kind %q\n", unknown)
-	fmt.Fprintln(os.Stderr, "Valid arguments: reflex")
-	fmt.Fprintln(os.Stderr, "Try 'go run ./bin/study_code -- --help' for more information.")
-}
-
 func printCoreReadRemoved() {
-	fmt.Fprintln(os.Stderr, "core reading drills were removed; use --run reflex")
-	fmt.Fprintln(os.Stderr, "Try 'go run ./bin/study_code -- --help' for more information.")
+	fmt.Fprintf(os.Stderr, "%s: core reading drills were removed; use --run (reflex is implied)\n", readProg)
+	fmt.Fprintln(os.Stderr, gnuTryHelp(readProg))
 }
 
-func printKindArgError(flag, label string, missing bool, unknown string) {
-	if missing {
-		fmt.Fprintf(os.Stderr, "option %q requires an argument\n", flag)
-	} else {
-		fmt.Fprintf(os.Stderr, "unknown %s %q\n", label, unknown)
-	}
-	fmt.Fprintln(os.Stderr, "Valid arguments: reflex")
-	fmt.Fprintln(os.Stderr, "Try 'go run ./bin/study_code -- --help' for more information.")
+// readOpts is the fully parsed command line for the read-drill CLI.
+type readOpts struct {
+	drillKind    string // "reflex" | ""
+	solutionKind string // "reflex" | ""
+	runMode      string // "reflex" | ""
+	catalog      bool
+	brief        bool
 }
 
-func parseReadArgs(args []string) (drillKind, solutionKind string, help, catalog, brief bool, runMode string, parseErr bool) {
-	if len(args) > 0 && args[0] == "--" {
-		args = args[1:]
+// parseRead applies the GNU front-end, then reads the normalised tokens.
+func parseRead(args []string) (opts readOpts, ctl gnuCtl, parseErr bool) {
+	norm, ctl := gnuPre(args, readSpec())
+	if ctl != gnuOK {
+		return opts, ctl, false
 	}
-	for i := 0; i < len(args); i++ {
-		switch args[i] {
-		case "-h", "--help":
-			help = true
-		case "--drill":
-			if i+1 >= len(args) {
-				printDrillArgError(true, "")
-				return "", "", help, catalog, brief, runMode, true
-			}
-			kind := args[i+1]
-			if kind == "core" {
+	// value for --drill / --solution / --run: an attached KIND token, else the
+	// implied default "reflex". "core" is a removed spelling and is rejected.
+	kindValue := func(i *int) (string, bool) {
+		if *i+1 < len(norm) {
+			next := norm[*i+1]
+			if next == "core" {
 				printCoreReadRemoved()
-				return "", "", help, catalog, brief, runMode, true
+				return "", false
 			}
-			if !isDrillKind(kind) {
-				printDrillArgError(false, kind)
-				return "", "", help, catalog, brief, runMode, true
+			if isRunKind(next) {
+				*i++
+				return next, true
 			}
-			i++
-			drillKind = kind
-		case "--solution":
-			if i+1 >= len(args) {
-				printSolutionArgError(true, "")
-				return "", "", help, catalog, brief, runMode, true
-			}
-			kind := args[i+1]
-			if kind == "core" {
-				printCoreReadRemoved()
-				return "", "", help, catalog, brief, runMode, true
-			}
-			if !isDrillKind(kind) {
-				printSolutionArgError(false, kind)
-				return "", "", help, catalog, brief, runMode, true
-			}
-			i++
-			solutionKind = kind
+		}
+		return "reflex", true
+	}
+	for i := 0; i < len(norm); i++ {
+		switch norm[i] {
 		case "--catalog":
-			catalog = true
+			opts.catalog = true
 		case "--brief":
-			brief = true
-		case "-r", "--read", "-w", "--write":
-			// consumed by root CLI when selecting read/write side
-		case "--run":
-			if i+1 < len(args) {
-				kind := args[i+1]
-				if kind == "core" {
-					printCoreReadRemoved()
-					return "", "", help, catalog, brief, runMode, true
-				}
-				if isRunKind(kind) {
-					i++
-					runMode = kind
-					continue
-				}
-				printRunArgError(kind)
-				return "", "", help, catalog, brief, runMode, true
+			opts.brief = true
+		case "--read", "--write", "-r", "-w":
+			// selected by the root runner; nothing to do here
+		case "--drill":
+			kind, ok := kindValue(&i)
+			if !ok {
+				return opts, gnuOK, true
 			}
-			runMode = "reflex"
+			opts.drillKind = kind
+		case "--solution":
+			kind, ok := kindValue(&i)
+			if !ok {
+				return opts, gnuOK, true
+			}
+			opts.solutionKind = kind
+		case "--run":
+			kind, ok := kindValue(&i)
+			if !ok {
+				return opts, gnuOK, true
+			}
+			opts.runMode = kind
 		}
 	}
-	return drillKind, solutionKind, help, catalog, brief, runMode, false
+	return opts, gnuOK, false
 }

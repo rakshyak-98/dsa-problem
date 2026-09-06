@@ -45,25 +45,32 @@ func main() {
 		printHelp()
 		return
 	}
+	if opts.version {
+		printVersion(dailyProg)
+		return
+	}
+	if opts.usageErr {
+		os.Exit(2)
+	}
 	if opts.listTracks {
 		printTrackList()
 		return
 	}
 	if opts.drillMissing {
 		printDrillArgError(opts.track, true, "")
-		os.Exit(1)
+		os.Exit(2)
 	}
 	if opts.drillUnknown != "" {
 		printDrillArgError(opts.track, false, opts.drillUnknown)
-		os.Exit(1)
+		os.Exit(2)
 	}
 	if opts.solutionMissing {
 		printSolutionArgError(opts.track, true, "")
-		os.Exit(1)
+		os.Exit(2)
 	}
 	if opts.solutionUnknown != "" {
 		printSolutionArgError(opts.track, false, opts.solutionUnknown)
-		os.Exit(1)
+		os.Exit(2)
 	}
 	if opts.core5 {
 		if code := runCore5(root); code != 0 {

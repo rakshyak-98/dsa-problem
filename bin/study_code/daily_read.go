@@ -155,15 +155,21 @@ func runDrill(file string) error {
 }
 
 func main() {
-	drillKind, solutionKind, help, catalog, brief, runMode, parseErr := parseReadArgs(os.Args[1:])
-	if parseErr {
-		os.Exit(1)
-	}
-	if help {
+	opts, ctl, parseErr := parseRead(os.Args[1:])
+	switch ctl {
+	case gnuHelp:
 		printHelp()
 		return
+	case gnuVersion:
+		printVersion(readProg)
+		return
+	case gnuErr:
+		os.Exit(2)
 	}
-	if code := runStudyCode(drillKind, solutionKind, catalog, brief, runMode); code != 0 {
+	if parseErr {
+		os.Exit(2)
+	}
+	if code := runStudyCode(opts.drillKind, opts.solutionKind, opts.catalog, opts.brief, opts.runMode); code != 0 {
 		os.Exit(code)
 	}
 }

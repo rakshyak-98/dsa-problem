@@ -12,8 +12,10 @@ go run . -- --levels              # what each function has earned: L1 / L2 / L3
 go run . -- --problems            # curated primary problem per function, by level
 go run . -- --triggers            # full cross-topic pattern trigger table
 go run . -- --run                 # test today's specialty + log progress
+go run . -- --run=core            # test the Core 5 (was --run-core5)
 go run . -- --weak                # weakest functions from the drill log
 go run . -- --setup               # scaffold drills from blank templates
+go run . -- --help                # full option reference (GNU-style: -h/-V, --opt=value, abbreviations)
 ```
 
 ## Understanding levels

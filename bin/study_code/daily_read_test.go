@@ -21,50 +21,53 @@ func TestDrillsCatalog(t *testing.T) {
 	}
 }
 
-func TestParseReadArgs(t *testing.T) {
-	drillKind, solutionKind, help, catalog, brief, runMode, parseErr := parseReadArgs([]string{"--", "--drill", "reflex", "--run", "reflex", "--catalog", "--brief"})
-	if parseErr || drillKind != "reflex" || solutionKind != "" || runMode != "reflex" || !catalog || !brief || help {
-		t.Fatal("parseReadArgs all flags")
+func TestParseRead(t *testing.T) {
+	opts, ctl, perr := parseRead([]string{"--", "--drill", "reflex", "--run", "reflex", "--catalog", "--brief"})
+	if perr || ctl != gnuOK || opts.drillKind != "reflex" || opts.runMode != "reflex" || !opts.catalog || !opts.brief {
+		t.Fatalf("parseRead all flags: %+v", opts)
 	}
-	drillKind, solutionKind, help, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--drill", "reflex"})
-	if parseErr || drillKind != "reflex" || solutionKind != "" || help || catalog || brief || runMode != "" {
-		t.Fatal("parseReadArgs reflex drill")
+
+	// The KIND value is optional: bare --drill implies reflex.
+	opts, _, _ = parseRead([]string{"--drill"})
+	if opts.drillKind != "reflex" {
+		t.Fatalf("bare --drill implies reflex: %+v", opts)
 	}
-	_, solutionKind, help, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--solution", "reflex"})
-	if parseErr || solutionKind != "reflex" || help || catalog || brief || runMode != "" {
-		t.Fatal("parseReadArgs solution reflex")
+	opts, _, _ = parseRead([]string{"--solution=reflex"})
+	if opts.solutionKind != "reflex" {
+		t.Fatalf("--solution=reflex: %+v", opts)
 	}
-	drillKind, solutionKind, help, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--run", "reflex"})
-	if parseErr || runMode != "reflex" || drillKind != "" || solutionKind != "" || help || catalog || brief {
-		t.Fatal("parseReadArgs reflex run")
+	opts, _, _ = parseRead([]string{"--run"})
+	if opts.runMode != "reflex" {
+		t.Fatalf("bare --run implies reflex: %+v", opts)
 	}
-	drillKind, solutionKind, help, catalog, brief, runMode, parseErr = parseReadArgs([]string{"--run"})
-	if parseErr || runMode != "reflex" || help {
-		t.Fatal("parseReadArgs bare run")
+
+	opts, _, _ = parseRead(nil)
+	if opts.drillKind != "" || opts.runMode != "" || opts.catalog || opts.brief {
+		t.Fatalf("parseRead empty: %+v", opts)
 	}
-	drillKind, solutionKind, help, catalog, brief, runMode, parseErr = parseReadArgs(nil)
-	if parseErr || drillKind != "" || solutionKind != "" || help || catalog || brief || runMode != "" {
-		t.Fatal("parseReadArgs empty")
+
+	// Unambiguous abbreviation.
+	opts, _, _ = parseRead([]string{"--cat"})
+	if !opts.catalog {
+		t.Fatalf("--cat -> --catalog: %+v", opts)
 	}
-	_, _, _, _, _, _, parseErr = parseReadArgs([]string{"--drill"})
-	if !parseErr {
-		t.Fatal("bare drill should error")
+
+	// "core" is a removed spelling.
+	if _, _, perr := parseRead([]string{"--drill", "core"}); !perr {
+		t.Fatal("core drill should be a usage error")
 	}
-	_, _, _, _, _, _, parseErr = parseReadArgs([]string{"--solution"})
-	if !parseErr {
-		t.Fatal("bare solution should error")
+	if _, _, perr := parseRead([]string{"--run", "core"}); !perr {
+		t.Fatal("core run should be a usage error")
 	}
-	_, _, _, _, _, _, parseErr = parseReadArgs([]string{"--drill", "core"})
-	if !parseErr {
-		t.Fatal("core drill should error")
+
+	if _, ctl, _ := parseRead([]string{"--help"}); ctl != gnuHelp {
+		t.Fatal("--help -> gnuHelp")
 	}
-	_, _, _, _, _, _, parseErr = parseReadArgs([]string{"--run", "core"})
-	if !parseErr {
-		t.Fatal("core run should error")
+	if _, ctl, _ := parseRead([]string{"-V"}); ctl != gnuVersion {
+		t.Fatal("-V -> gnuVersion")
 	}
-	_, _, help, _, _, _, parseErr = parseReadArgs([]string{"--help"})
-	if parseErr || !help {
-		t.Fatal("help flag")
+	if _, ctl, _ := parseRead([]string{"--bogus"}); ctl != gnuErr {
+		t.Fatal("--bogus -> gnuErr")
 	}
 }
 

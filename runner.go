@@ -18,15 +18,6 @@ func todayName() string {
 	return weekdayNames[time.Now().Weekday()]
 }
 
-func hasArg(args []string, flag string) bool {
-	for _, a := range args {
-		if a == flag {
-			return true
-		}
-	}
-	return false
-}
-
 func withBrief(args []string) []string {
 	if hasArg(args, "--brief") {
 		return args
@@ -40,46 +31,58 @@ func printTrackList() {
 	}
 }
 
+func printNeedsArg(opt string) {
+	fmt.Fprintf(os.Stderr, "%s: option '%s' requires an argument\n", dailyProg, opt)
+	fmt.Fprintln(os.Stderr, gnuTryHelp(dailyProg))
+}
+
 func printHelp() {
 	fmt.Print(`Usage: go run . -- [OPTION]...
 
-Run daily DSA drills from the repo root.
+Run the daily DSA practice session from the repo root. With no options it
+prints today's plan for the default track.
 
-Options:
-  -h, --help               display this help message and exit
-      --list-tracks        list practice tracks and exit
-  -t, --track=NAME         practice track (default: "dsa")
-                             dsa: reflex writing (Core 5 + weekday specialty)
-                             read: reflex code-reading drills
-                             write: same as dsa writing drills
-                             leetcode: daily 10-question practice set
-      --core5              run the Core 5 write drill
-      --drill KIND         show today's drill plan (KIND: core or reflex)
-      --solution KIND      show solution file path (KIND: core or reflex)
-      --run [KIND]         run drill tests (KIND: core, reflex, or leetcode)
-      --catalog            list drills in the active track
-  -l, --leetcode           with --run: fetch today's 10 LeetCode problems (like -w for write)
+Long options may be abbreviated while unambiguous, and any option that takes
+a value also accepts the --option=value form.
 
-Write drills (default track):
-      --refresh            today's level-matched session (recognise -> rebuild)
-      --show               with --refresh: reveal the recognition answers
+  -h, --help               display this help and exit
+  -V, --version            display version information and exit
+      --list-tracks        list the practice tracks and exit
+
+  -t, --track=NAME         select the practice track (default: dsa)
+                             dsa       Core 5 + today's reflex writing specialty
+                             read      reflex code-reading drills
+                             write     writing drills only
+                             leetcode  daily 10-question practice set
+      --drill[=KIND]       show a drill plan (KIND: core or reflex; default reflex)
+      --solution[=KIND]    show the matching solution file (KIND: core or reflex)
+      --run[=KIND]         run drill tests and log the result
+                             (KIND: core, reflex, or leetcode)
+      --core5              run the standalone Core 5 write drill
+      --catalog            list every drill in the active track
+
+Writing track (dsa / write):
+      --refresh            today's level-matched session (recognise then rebuild)
+      --show               with --refresh, reveal the recognition answers
       --levels             what each function has earned: L1 / L2 / L3
-      --problems           curated primary problem per function, by level
-      --triggers           full cross-topic pattern trigger table
-      --weak               weakest functions from the drill log
+      --problems           the curated primary problem per function, by level
+      --triggers           the full cross-topic pattern-trigger table
+      --weak               the weakest functions in the drill log
 
 LeetCode track (--track=leetcode):
-      --run                fetch + show today's 10 problems (same as --set)
-      --set                show today's 10 LeetCode problems (default)
-      --refresh            re-fetch from LeetCode API and update daily.json
-                             (on the default track --refresh is the write session)
-      --catalog            list all weekday practice sets
+      --run                fetch and show today's 10 problems
+      --refresh            re-fetch from the LeetCode API and rewrite daily.json
+      --catalog            list every weekday practice set
 
 Read track (--track=read):
-      --drill reflex       show today's reflex read plan
-      --solution reflex    show read answer key section
-      --run [reflex]       run today's reflex read tests
+      --drill[=reflex]     show today's reflex reading plan
+      --solution[=reflex]  show the reading answer-key section
+      --run[=reflex]       run today's reflex reading tests
 
+Deprecated (still accepted): --read, --write, --leetcode as run-side selectors
+(-r, -w, -l) are superseded by --track.
+
+Exit status: 0 success, 1 a drill failed, 2 a command-line usage error.
 `)
 }
 

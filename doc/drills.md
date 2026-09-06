@@ -26,29 +26,33 @@ drills/
 ## Daily flow (recommended)
 
 ```bash
-go run .                      # daily drill: read + write (DSA track)
-go run . -- --refresh         # today's level-matched write session
-go run . -- --levels          # what each function has earned: L1 / L2 / L3
-go run . -- --problems        # curated primary problem per function
-go run . -- --run core          # check core answers
-go run . -- --run reflex        # check reflex specialty answers
-go run . -- --run leetcode      # fetch today's 10 LeetCode problems
-go run . -- --run -l            # same as --run leetcode
-go run . -- --drill core        # core only (Core Read 3 + Core 5)
-go run . -- --drill reflex       # today's specialty only
-go run . -- --track read      # reading only
-go run . -- --track write     # writing only
-go run . -- --track leetcode  # 10 LeetCode problems matching today's topic
+go run .                       # daily drill: read + write (DSA track)
+go run . -- --refresh          # today's level-matched write session
+go run . -- --levels           # what each function has earned: L1 / L2 / L3
+go run . -- --problems         # curated primary problem per function
+go run . -- --run=core         # check core answers
+go run . -- --run=reflex       # check reflex specialty answers
+go run . -- --track=leetcode --run   # fetch today's 10 LeetCode problems
+go run . -- --drill=core        # core only (Core Read 3 + Core 5)
+go run . -- --drill=reflex      # today's specialty only
+go run . -- --track=read        # reading only
+go run . -- --track=write       # writing only
+go run . -- --track=leetcode    # 10 LeetCode problems matching today's topic
+go run . -- --help              # full option reference
 ```
+
+Options are GNU-style: `-h`/`--help`, `-V`/`--version`, `--option=value` (space
+still works), any unambiguous abbreviation, and an unknown option is an error.
+The older `--run leetcode` and the `-r`/`-w`/`-l` run-side flags still work but
+`--track` is the preferred selector.
 
 ## LeetCode practice (separate from reflex drills)
 
 ```bash
-go run . -- --track leetcode              # fetch + show today's 10 problems
-go run . -- --run leetcode                 # same from default DSA track
-go run . -- --run -l                       # short flag (like -w for write reflex)
-go run . -- --track leetcode -- --refresh # force re-fetch from LeetCode API
-go run . -- --track leetcode -- --catalog # all weekday sets
+go run . -- --track=leetcode              # fetch + show today's 10 problems
+go run . -- --track=leetcode --run        # same, explicit fetch
+go run . -- --track=leetcode --refresh    # force re-fetch from LeetCode API
+go run . -- --track=leetcode --catalog    # all weekday sets
 go -C bin/study_leetcode run .            # direct CLI
 ```
 

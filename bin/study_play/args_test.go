@@ -2,37 +2,75 @@ package main
 
 import "testing"
 
-func TestParsePlayArgs(t *testing.T) {
-	drillKind, solutionKind, help, brief, runMode, parseErr := parsePlayArgs([]string{"--", "--drill", "core", "--brief", "--run", "core"})
-	if parseErr || drillKind != "core" || solutionKind != "" || !brief || runMode != "core" || help {
-		t.Fatal("parsePlayArgs core")
+func TestParsePlay(t *testing.T) {
+	opts, ctl, perr := parsePlay([]string{"--", "--drill", "core", "--brief", "--run", "core"})
+	if ctl != gnuOK || perr || opts.drillKind != "core" || opts.solutionKind != "" || !opts.brief || opts.runMode != "core" {
+		t.Fatalf("parsePlay core: %+v ctl=%v perr=%v", opts, ctl, perr)
 	}
-	drillKind, solutionKind, help, _, runMode, parseErr = parsePlayArgs([]string{"--drill", "reflex"})
-	if parseErr || drillKind != "reflex" || solutionKind != "" || help || runMode != "" {
-		t.Fatal("parsePlayArgs reflex")
+
+	opts, ctl, perr = parsePlay([]string{"--drill", "reflex"})
+	if ctl != gnuOK || perr || opts.drillKind != "reflex" || opts.runMode != "" {
+		t.Fatalf("parsePlay reflex: %+v", opts)
 	}
-	_, solutionKind, help, _, runMode, parseErr = parsePlayArgs([]string{"--solution", "core"})
-	if parseErr || solutionKind != "core" || help || runMode != "" {
-		t.Fatal("parsePlayArgs solution core")
+
+	// --option=value form.
+	opts, _, _ = parsePlay([]string{"--drill=reflex", "--run=core"})
+	if opts.drillKind != "reflex" || opts.runMode != "core" {
+		t.Fatalf("parsePlay --opt=value: %+v", opts)
 	}
-	_, _, help, _, runMode, parseErr = parsePlayArgs([]string{"--run-core5"})
-	if parseErr || runMode != "core" || help {
-		t.Fatal("parsePlayArgs run-core5")
+
+	opts, _, _ = parsePlay([]string{"--solution", "core"})
+	if opts.solutionKind != "core" || opts.runMode != "" {
+		t.Fatalf("parsePlay solution core: %+v", opts)
 	}
-	_, _, help, _, runMode, parseErr = parsePlayArgs([]string{"--run"})
-	if parseErr || runMode != "all" || help {
-		t.Fatal("parsePlayArgs bare run")
+
+	// --run-core5 is a retired spelling of --run=core.
+	opts, _, perr = parsePlay([]string{"--run-core5"})
+	if perr || opts.runMode != "core" {
+		t.Fatalf("parsePlay run-core5 alias: %+v perr=%v", opts, perr)
 	}
-	_, _, help, _, _, parseErr = parsePlayArgs([]string{"--drill"})
-	if !parseErr || help {
-		t.Fatal("bare drill should error")
+
+	opts, _, _ = parsePlay([]string{"--run"})
+	if opts.runMode != "all" {
+		t.Fatalf("parsePlay bare run: %+v", opts)
 	}
-	_, _, help, _, _, parseErr = parsePlayArgs([]string{"--solution"})
-	if !parseErr || help {
-		t.Fatal("bare solution should error")
+
+	// Session-view flags land on the struct.
+	opts, _, _ = parsePlay([]string{"--refresh", "--show"})
+	if !opts.refresh || !opts.show {
+		t.Fatalf("parsePlay refresh/show: %+v", opts)
 	}
-	_, _, help, _, _, parseErr = parsePlayArgs([]string{"--help"})
-	if parseErr || !help {
-		t.Fatal("help flag")
+	opts, _, _ = parsePlay([]string{"--weak"})
+	if !opts.weak {
+		t.Fatalf("parsePlay weak: %+v", opts)
+	}
+
+	// Unambiguous abbreviation.
+	opts, _, _ = parsePlay([]string{"--prob"})
+	if !opts.problems {
+		t.Fatalf("parsePlay --prob -> --problems: %+v", opts)
+	}
+
+	_, _, perr = parsePlay([]string{"--drill"})
+	if !perr {
+		t.Fatal("bare --drill should be a usage error")
+	}
+	_, _, perr = parsePlay([]string{"--solution"})
+	if !perr {
+		t.Fatal("bare --solution should be a usage error")
+	}
+	_, _, perr = parsePlay([]string{"--drill", "bogus"})
+	if !perr {
+		t.Fatal("unknown drill kind should be a usage error")
+	}
+
+	if _, ctl, _ := parsePlay([]string{"--help"}); ctl != gnuHelp {
+		t.Fatal("--help -> gnuHelp")
+	}
+	if _, ctl, _ := parsePlay([]string{"-V"}); ctl != gnuVersion {
+		t.Fatal("-V -> gnuVersion")
+	}
+	if _, ctl, _ := parsePlay([]string{"--nonsense"}); ctl != gnuErr {
+		t.Fatal("--nonsense -> gnuErr")
 	}
 }

@@ -26,8 +26,14 @@ repo root — the root module cannot resolve that package path. Use `go run . --
 go run .                    # today's plan (read + write)
 go run . -- --refresh       # today's level-matched write session
 go run . -- --levels        # what each function has earned: L1 / L2 / L3
-go run . -- --run reflex    # run today's specialty drill and log the result
+go run . -- --run=reflex    # run today's specialty drill and log the result
 ```
+
+Every entry point (root + the three `bin/` CLIs) shares one GNU-style option
+front-end (`argutil.go`): `--help`/`-h`, `--version`/`-V`, `--opt=value`,
+unambiguous long-option abbreviation, and an unknown `--option` is a usage
+error (exit 2). Retired spellings still resolve: `--run-core5` → `--run=core`,
+leetcode `--set` → `--show`, root `-r`/`-w`/`-l` → `--track`.
 
 ## Solving a drill (the core end-to-end flow)
 
@@ -36,7 +42,7 @@ Edit the `TODO: REFLEX` stubs in `drills/write/reflex/<NN>_*/main.go`, then:
 ```bash
 go run -C drills/write/reflex/05_trees_stacks_reflex .
 # or, to also update .drill_log.json:
-go run . -- --run reflex
+go run . -- --run=reflex
 ```
 
 Every assert prints `PASS:` / `FAIL:`; `--run` rolls those up into one result per
@@ -68,3 +74,8 @@ function and grades the function's level from the history.
   or a cue that names its own answer.
 - `bin/study_leetcode/reflex_map.go` maps LeetCode slugs back to drill functions;
   keep it in step with `primaries.go` when adding problems.
+- `argutil.go` is copied verbatim into all four modules (they are separate Go
+  modules with no `go.work`). Edit one, then re-copy to the other three; each
+  module supplies its own `gnuSpec` (program name, `canonical` option list,
+  `aliases`). Add a new `--flag` to that module's `canonical` list or `gnuPre`
+  rejects it as unrecognised. Bump `cliVersion` when the option surface changes.

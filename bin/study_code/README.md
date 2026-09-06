@@ -5,10 +5,12 @@ Internal tooling for the **code reading** workflow. Practice files are in [`../.
 ## Commands (from repo root)
 
 ```bash
-go run ./bin/study_code              # today's reflex reading plan
-go run ./bin/study_code -- --run     # check answers
-go run ./bin/study_code -- --catalog # full catalog
-go run ./bin/study_code -- --drill reflex   # today's reflex read only
+go -C bin/study_code run .              # today's reflex reading plan
+go -C bin/study_code run . -- --run     # check answers
+go -C bin/study_code run . -- --catalog # full catalog
+go -C bin/study_code run . -- --drill   # today's reflex read only ("reflex" is implied)
+go -C bin/study_code run . -- --help    # option reference
 ```
 
-Guide: [`../../doc/read/START_HERE.md`](../../doc/read/START_HERE.md)
+Options follow the GNU conventions (`--help`, `--version`, `--opt=value`,
+abbreviations). Guide: [`../../doc/read/START_HERE.md`](../../doc/read/START_HERE.md)

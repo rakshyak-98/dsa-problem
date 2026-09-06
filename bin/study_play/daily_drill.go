@@ -349,6 +349,8 @@ func printAllTriggers() {
 	fmt.Println("\n  Quiz yourself instead: go run . -- --refresh")
 }
 
+// hasFlag reports whether flag was passed on the command line. Retained for
+// callers that inspect os.Args directly; main uses the parsed playOpts.
 func hasFlag(flag string) bool {
 	for _, a := range os.Args[1:] {
 		if a == flag {
@@ -369,20 +371,28 @@ func main() {
 	repoRoot := findRepoRoot(root)
 	_, drillPath := resolvePlayPaths(root, today.file)
 
-	drillKind, solutionKind, help, brief, runMode, parseErr := parsePlayArgs(os.Args[1:])
-	if parseErr {
-		os.Exit(1)
-	}
-	if help {
+	opts, ctl, parseErr := parsePlay(os.Args[1:])
+	switch ctl {
+	case gnuHelp:
 		printHelp()
 		return
+	case gnuVersion:
+		printVersion(playProg)
+		return
+	case gnuErr:
+		os.Exit(2)
 	}
+	if parseErr {
+		os.Exit(2)
+	}
+	brief := opts.brief
+	runMode := opts.runMode
 
-	if hasFlag("--weak") {
+	if opts.weak {
 		printWeakFunctions(repoRoot, 5)
 		return
 	}
-	if hasFlag("--setup") {
+	if opts.setup {
 		fmt.Println("Setting up write reflex drills from blanks/ ...")
 		fmt.Println()
 		if err := setupAllDrills(repoRoot); err != nil {
@@ -394,43 +404,43 @@ func main() {
 		return
 	}
 
-	if hasFlag("--catalog") {
+	if opts.catalog {
 		printCatalog()
 		return
 	}
-	if hasFlag("--triggers") {
+	if opts.triggers {
 		printAllTriggers()
 		return
 	}
-	if hasFlag("--problems") {
+	if opts.problems {
 		printProblemSet(repoRoot)
 		return
 	}
-	if hasFlag("--levels") {
+	if opts.levels {
 		printLevels(repoRoot)
 		return
 	}
-	if hasFlag("--refresh") {
-		printRefresh(buildRefresh(repoRoot, today, time.Now()), hasFlag("--show"))
+	if opts.refresh {
+		printRefresh(buildRefresh(repoRoot, today, time.Now()), opts.show)
 		return
 	}
-	if drillKind == "core" {
+	if opts.drillKind == "core" {
 		printDrill(today, brief)
 		return
 	}
-	if drillKind == "reflex" {
+	if opts.drillKind == "reflex" {
 		printReflexDrill(today, brief)
 		return
 	}
-	if solutionKind == "core" {
+	if opts.solutionKind == "core" {
 		printSolutionCore(brief)
 		return
 	}
-	if solutionKind == "reflex" {
+	if opts.solutionKind == "reflex" {
 		printSolutionReflex(today, brief)
 		return
 	}
-	if hasFlag("--reset") {
+	if opts.reset {
 		if err := resetTodayDrill(today, drillPath); err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
