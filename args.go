@@ -99,6 +99,7 @@ type dailyOptions struct {
 	runSide         string // "read", "write", or ""
 	help            bool
 	listTracks      bool
+	catalog         bool
 	core5           bool
 	drillKind       string
 	drillMissing    bool
@@ -120,6 +121,9 @@ func parseDailyArgs(args []string) dailyOptions {
 			opts.help = true
 		case a == "--list-tracks":
 			opts.listTracks = true
+		case a == "--catalog":
+			opts.catalog = true
+			opts.passArgs = append(opts.passArgs, a)
 		case a == "--track" || a == "-t":
 			if i+1 >= len(args) {
 				opts.help = true

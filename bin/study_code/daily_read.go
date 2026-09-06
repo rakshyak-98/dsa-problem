@@ -134,9 +134,10 @@ func printToday(d drill, brief bool) {
 }
 
 func printCatalog() {
-	fmt.Println("READ catalog")
+	fmt.Println("Reflex read drills, by weekday:")
+	fmt.Println()
 	for _, d := range drills {
-		fmt.Printf("%-9s  %-22s  %s\n", d.day, d.file, d.skill)
+		fmt.Printf("  %-9s  %-22s  %s\n", d.day, d.file, d.skill)
 	}
 }
 

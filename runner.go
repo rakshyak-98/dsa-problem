@@ -168,10 +168,28 @@ func runCore5(root string) int {
 	return 0
 }
 
+// catalogModule maps a track to the drill module that owns its --catalog listing.
+func catalogModule(track drillTrack) string {
+	switch track {
+	case trackRead:
+		return "study_code"
+	case trackLeetcode:
+		return "study_leetcode"
+	default:
+		return "study_play"
+	}
+}
+
 func runUnified(root string, opts dailyOptions) int {
 	if !isKnownTrack(opts.track) {
 		printUnknownTrack(opts.track)
 		return 1
+	}
+
+	// --catalog is a terminal listing: delegate straight to the active track's
+	// module with no other args, skipping the daily header/footer scaffolding.
+	if opts.catalog {
+		return runModule(root, catalogModule(opts.track), []string{"--catalog"}, true)
 	}
 
 	drillKind := opts.drillKind

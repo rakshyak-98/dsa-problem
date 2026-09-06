@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func printProblem(p lcProblem, n int) {
@@ -54,13 +55,14 @@ func printTodaySet(s practiceSet, brief bool) {
 }
 
 func printCatalog() {
-	fmt.Println("LEETCODE PRACTICE catalog — 10 API-fetched problems per weekday")
+	fmt.Println("LeetCode practice sets, by weekday (10 problems each):")
 	fmt.Println()
 	for _, s := range practiceSets {
-		fmt.Printf("%-9s  %-18s  %-22s  tags: %v\n", s.day, s.topic, s.reflex, s.topicTags)
+		fmt.Printf("  %-9s  %-20s  %-24s  %s\n",
+			s.day, s.topic, s.reflex, strings.Join(s.topicTags, ", "))
 	}
 	fmt.Println()
-	fmt.Println("Run today's set: go run . -- --run leetcode")
+	fmt.Println("Run today's set with 'go run . -- --run leetcode'.")
 }
 
 func runStudyLeetcode(repoRoot string, catalog, brief, showSet, refresh bool) int {

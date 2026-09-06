@@ -64,7 +64,7 @@ func TestParseDailyArgs(t *testing.T) {
 	}
 
 	opts = parseDailyArgs([]string{"--track", "leetcode", "--catalog"})
-	if opts.track != trackLeetcode || len(opts.passArgs) != 1 || opts.passArgs[0] != "--catalog" {
+	if opts.track != trackLeetcode || !opts.catalog || len(opts.passArgs) != 1 || opts.passArgs[0] != "--catalog" {
 		t.Fatalf("leetcode track: %+v", opts)
 	}
 
@@ -74,7 +74,7 @@ func TestParseDailyArgs(t *testing.T) {
 	}
 
 	opts = parseDailyArgs([]string{"--catalog"})
-	if opts.run || len(opts.passArgs) != 1 || opts.passArgs[0] != "--catalog" {
+	if opts.run || !opts.catalog || opts.track != trackDSA || len(opts.passArgs) != 1 || opts.passArgs[0] != "--catalog" {
 		t.Fatalf("catalog passthrough: %+v", opts)
 	}
 

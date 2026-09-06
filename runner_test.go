@@ -41,6 +41,49 @@ func TestRunUnifiedDSA(t *testing.T) {
 	}
 }
 
+func TestRunUnifiedCatalog(t *testing.T) {
+	cases := []struct {
+		track  drillTrack
+		module string
+	}{
+		{trackDSA, "study_play"},
+		{trackWrite, "study_play"},
+		{trackRead, "study_code"},
+		{trackLeetcode, "study_leetcode"},
+	}
+	for _, tc := range cases {
+		var calls [][]string
+		commandRunner = func(dir string, args ...string) error {
+			calls = append(calls, append([]string{dir}, args...))
+			return nil
+		}
+		code := runUnified("/tmp/repo", dailyOptions{
+			track:    tc.track,
+			catalog:  true,
+			passArgs: []string{"--catalog"},
+		})
+		commandRunner = runIn
+		if code != 0 {
+			t.Fatalf("%s: expected success, got %d", tc.track, code)
+		}
+		if len(calls) != 1 || !containsAll(calls[0][0], tc.module) {
+			t.Fatalf("%s: expected %s, got %v", tc.track, tc.module, calls)
+		}
+		if len(calls[0]) != 2 || calls[0][1] != "--catalog" {
+			t.Fatalf("%s: expected sole --catalog arg, got %v", tc.track, calls[0])
+		}
+	}
+}
+
+func TestRunUnifiedCatalogFail(t *testing.T) {
+	commandRunner = func(dir string, args ...string) error { return errTest }
+	defer func() { commandRunner = runIn }()
+
+	if code := runUnified("/tmp/repo", dailyOptions{track: trackDSA, catalog: true}); code != 1 {
+		t.Fatalf("expected exit 1, got %d", code)
+	}
+}
+
 func TestRunUnifiedReadOnly(t *testing.T) {
 	calls := []string{}
 	commandRunner = func(dir string, args ...string) error {

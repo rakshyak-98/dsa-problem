@@ -184,54 +184,58 @@ func core5Names() string {
 	return strings.Join(names, ", ")
 }
 
-func formatInColumns(fns []string, indent string) string {
+// formatInColumns lays names out in fixed-width columns, filled top-to-bottom
+// then left-to-right like `ls`. colContent is the widest name across the whole
+// listing, so callers pass one shared value and every block's columns line up.
+// termWidth caps the line length (80 is the GNU default for a non-tty).
+func formatInColumns(fns []string, indent string, colContent, termWidth int) string {
 	if len(fns) == 0 {
 		return ""
 	}
 
-	termWidth := 120
-	indentLen := len(indent)
-	availWidth := termWidth - indentLen
-
-	maxWidth := 0
-	for _, fn := range fns {
-		if len(fn) > maxWidth {
-			maxWidth = len(fn)
-		}
-	}
-	colWidth := maxWidth + 2
-
-	cols := availWidth / colWidth
+	colWidth := colContent + 2
+	cols := (termWidth - len(indent)) / colWidth
 	if cols < 1 {
 		cols = 1
 	}
-
 	rows := (len(fns) + cols - 1) / cols
 
-	var result strings.Builder
+	var b strings.Builder
 	for row := 0; row < rows; row++ {
-		result.WriteString(indent)
+		b.WriteString(indent)
 		for col := 0; col < cols; col++ {
 			idx := col*rows + row
 			if idx >= len(fns) {
 				break
 			}
 			fn := fns[idx]
-			result.WriteString(fn)
-			if col < cols-1 && idx < len(fns)-1 {
-				result.WriteString(strings.Repeat(" ", colWidth-len(fn)))
+			b.WriteString(fn)
+			if (col+1)*rows+row < len(fns) {
+				b.WriteString(strings.Repeat(" ", colWidth-len(fn)))
 			}
 		}
-		result.WriteString("\n")
+		b.WriteString("\n")
 	}
 
-	return result.String()
+	return b.String()
 }
 
 func printCatalog() {
-	fmt.Println("WRITE catalog")
+	fmt.Println("Write drills, grouped by pattern:")
+
+	colContent := 0
 	for _, entry := range essentialCatalog {
-		fmt.Printf("%s:\n%s\n", entry.group, formatInColumns(entry.fns, "  "))
+		for _, fn := range entry.fns {
+			if len(fn) > colContent {
+				colContent = len(fn)
+			}
+		}
+	}
+
+	for _, entry := range essentialCatalog {
+		fmt.Println()
+		fmt.Printf("%s:\n", entry.group)
+		fmt.Print(formatInColumns(entry.fns, "  ", colContent, 80))
 	}
 }
 
