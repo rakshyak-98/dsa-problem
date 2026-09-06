@@ -87,6 +87,15 @@ func TestLongestUniqueSubstring(t *testing.T) {
 	assert(t, "longestUniqueSubstring stale left", longestUniqueSubstring("abba") == 2)
 }
 
+func TestDutchFlag(t *testing.T) {
+	assert(t, "dutchFlag basic", reflect.DeepEqual(dutchFlag([]int{2, 0, 2, 1, 1, 0}), []int{0, 0, 1, 1, 2, 2}))
+	assert(t, "dutchFlag already sorted", reflect.DeepEqual(dutchFlag([]int{0, 1, 2}), []int{0, 1, 2}))
+	assert(t, "dutchFlag all same", reflect.DeepEqual(dutchFlag([]int{1, 1, 1}), []int{1, 1, 1}))
+	assert(t, "dutchFlag empty", reflect.DeepEqual(dutchFlag([]int{}), []int{}))
+	assert(t, "dutchFlag no ones", reflect.DeepEqual(dutchFlag([]int{2, 0, 2, 0}), []int{0, 0, 2, 2}))
+	assert(t, "dutchFlag reverse", reflect.DeepEqual(dutchFlag([]int{2, 2, 1, 1, 0, 0}), []int{0, 0, 1, 1, 2, 2}))
+}
+
 func TestAll(t *testing.T) {
 	t.Run("removeDuplicates", TestRemoveDuplicates)
 	t.Run("moveZeroes", TestMoveZeroes)
@@ -94,5 +103,6 @@ func TestAll(t *testing.T) {
 	t.Run("isPalindrome", TestIsPalindrome)
 	t.Run("maxSumSubarrayK", TestMaxSumSubarrayK)
 	t.Run("longestUniqueSubstring", TestLongestUniqueSubstring)
+	t.Run("dutchFlag", TestDutchFlag)
 	fmt.Println("\nAll two-pointer reflex drills passed.")
 }

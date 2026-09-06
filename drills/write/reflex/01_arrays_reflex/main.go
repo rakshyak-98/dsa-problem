@@ -35,4 +35,19 @@ func maxSubarraySum(nums []int) int {
 	panic("Implement from memory")
 }
 
+// TODO: REFLEX — merge sort: stable, split in half, sort each side, merge
+func mergeSort(nums []int) []int {
+	panic("Implement from memory")
+}
+
+// TODO: REFLEX — quick sort: partition around a pivot, recurse on each side
+func quickSort(nums []int) []int {
+	panic("Implement from memory")
+}
+
+// TODO: REFLEX — sieve of Eratosthenes: every prime <= n
+func sieve(n int) []int {
+	panic("Implement from memory")
+}
+
 func main() {}

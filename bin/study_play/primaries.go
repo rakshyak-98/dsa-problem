@@ -91,6 +91,29 @@ var primaries = map[string]primaryProblem{
 	"subsets": {"Subsets", "subsets", "Medium", "Subsets II"},
 	"permute": {"Permutations", "permutations", "Medium", "Permutations II"},
 	"combine": {"Combinations", "combinations", "Medium", "Combination Sum"},
+
+	// 01 — sorting & sieve (folded into the arrays drill)
+	"mergeSort": {"Sort an Array", "sort-an-array", "Medium", "Count of Smaller Numbers After Self"},
+	"quickSort": {"Sort an Array", "sort-an-array", "Medium", "Kth Largest Element in an Array"},
+	"sieve":     {"Count Primes", "count-primes", "Medium", "Closest Prime Numbers in Range"},
+
+	// 02 — XOR single number (folded into the hashing drill)
+	"singleNumber": {"Single Number", "single-number", "Easy", "Single Number II"},
+
+	// 03 — Dutch national flag (folded into the two-pointer drill)
+	"dutchFlag": {"Sort Colors", "sort-colors", "Medium", "Wiggle Sort II"},
+
+	// 04 — divide & conquer / log reduction (folded into the binary search drill)
+	"quickSelect": {"Kth Largest Element in an Array", "kth-largest-element-in-an-array", "Medium", "K Closest Points to Origin"},
+	"fastPow":     {"Pow(x, n)", "powx-n", "Medium", "Super Pow"},
+	"gcd":         {"Find Greatest Common Divisor of Array", "find-greatest-common-divisor-of-array", "Easy", "Water and Jug Problem"},
+
+	// 07 — adjacency-list graph algorithms (folded into the graphs drill)
+	"dfs":             {"Number of Provinces", "number-of-provinces", "Medium", "Number of Connected Components in an Undirected Graph"},
+	"bfs":             {"Snakes and Ladders", "snakes-and-ladders", "Medium", "Word Ladder"},
+	"bfsShortestPath": {"Minimum Genetic Mutation", "minimum-genetic-mutation", "Medium", "Word Ladder"},
+	"topoSort":        {"Course Schedule II", "course-schedule-ii", "Medium", "Alien Dictionary"},
+	"dijkstra":        {"Network Delay Time", "network-delay-time", "Medium", "Cheapest Flights Within K Stops"},
 }
 
 func problemURL(slug string) string {

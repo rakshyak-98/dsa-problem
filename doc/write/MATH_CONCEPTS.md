@@ -743,7 +743,7 @@ Shoelace area:      ½|Σ(x_i y_{i+1} - x_{i+1} y_i)|
 2. Write the key formulas on paper from memory.
 3. Solve one “count / bound / modulo” sub-step of a medium problem using only this sheet.
 4. Cross-link with `DRILL_CONCEPTS.md` for pattern triggers and `drills/read/weekday/05_complexity_glance` for complexity drills.
-5. **Reference only.** There is no math drill in the rotation — number theory was cut in favour of linked lists (`drills/write/reflex/10_linked_list_reflex`). Keep this page for the identities themselves.
+5. **Reference companion.** The runnable number-theory functions are folded into the weekday drills — `gcd` and `fastPow` in `04_binary_search_reflex`, `sieve` in `01_arrays_reflex`, `singleNumber` in `02_hashing_reflex`; this page holds the wider identities and bounds behind them.
 6. Log one formula you forgot and where it would have saved time.
 
 **Related docs:** `DRILL_CONCEPTS.md` (patterns), `STUDY_PLAN.md` (schedule), `READING_PATTERNS.md` (complexity pass in code reading).

@@ -86,6 +86,82 @@ func maxSubarraySum(nums []int) int {
 	return best
 }
 
+// mergeSort — stable divide and conquer: O(n log n) time, O(n) space.
+func mergeSort(nums []int) []int {
+	if len(nums) <= 1 {
+		out := make([]int, len(nums))
+		copy(out, nums)
+		return out
+	}
+	mid := len(nums) / 2
+	return merge(mergeSort(nums[:mid]), mergeSort(nums[mid:]))
+}
+
+func merge(a, b []int) []int {
+	out := make([]int, 0, len(a)+len(b))
+	i, j := 0, 0
+	for i < len(a) && j < len(b) {
+		if a[i] <= b[j] { // <= keeps equal keys stable
+			out = append(out, a[i])
+			i++
+		} else {
+			out = append(out, b[j])
+			j++
+		}
+	}
+	out = append(out, a[i:]...)
+	out = append(out, b[j:]...)
+	return out
+}
+
+// quickSort — Lomuto partition around the last element, recurse on each side.
+func quickSort(nums []int) []int {
+	out := make([]int, len(nums))
+	copy(out, nums)
+	qsort(out, 0, len(out)-1)
+	return out
+}
+
+func qsort(a []int, lo, hi int) {
+	if lo >= hi {
+		return
+	}
+	pivot := a[hi]
+	i := lo
+	for j := lo; j < hi; j++ {
+		if a[j] < pivot {
+			a[i], a[j] = a[j], a[i]
+			i++
+		}
+	}
+	a[i], a[hi] = a[hi], a[i]
+	qsort(a, lo, i-1)
+	qsort(a, i+1, hi)
+}
+
+// sieve — sieve of Eratosthenes: cross out multiples of each prime from p*p.
+func sieve(n int) []int {
+	primes := []int{}
+	if n < 2 {
+		return primes
+	}
+	composite := make([]bool, n+1)
+	for p := 2; p*p <= n; p++ {
+		if composite[p] {
+			continue
+		}
+		for m := p * p; m <= n; m += p {
+			composite[m] = true
+		}
+	}
+	for v := 2; v <= n; v++ {
+		if !composite[v] {
+			primes = append(primes, v)
+		}
+	}
+	return primes
+}
+
 func assert(name string, cond bool) {
 	if !cond {
 		panic(fmt.Sprintf("FAIL: %s", name))
@@ -146,6 +222,18 @@ func main() {
 	assert("maxSubarraySum single", maxSubarraySum([]int{5}) == 5)
 	assert("maxSubarraySum empty", maxSubarraySum([]int{}) == 0)
 	assert("maxSubarraySum restart", maxSubarraySum([]int{-5, 8, -1, 3}) == 10)
+
+	// mergeSort / quickSort — empty, single, duplicates, reverse, negatives
+	assert("mergeSort basic", reflect.DeepEqual(mergeSort([]int{5, 2, 3, 1}), []int{1, 2, 3, 5}))
+	assert("mergeSort duplicates", reflect.DeepEqual(mergeSort([]int{5, 1, 1, 2, 0, 0}), []int{0, 0, 1, 1, 2, 5}))
+	assert("mergeSort negatives", reflect.DeepEqual(mergeSort([]int{-3, 4, -1, 0, -2}), []int{-3, -2, -1, 0, 4}))
+	assert("quickSort basic", reflect.DeepEqual(quickSort([]int{5, 2, 3, 1}), []int{1, 2, 3, 5}))
+	assert("quickSort reverse", reflect.DeepEqual(quickSort([]int{9, 7, 5, 3, 1}), []int{1, 3, 5, 7, 9}))
+
+	// sieve — primes up to n, n below 2
+	assert("sieve to 10", reflect.DeepEqual(sieve(10), []int{2, 3, 5, 7}))
+	assert("sieve to 1", len(sieve(1)) == 0)
+	assert("sieve to 20", reflect.DeepEqual(sieve(20), []int{2, 3, 5, 7, 11, 13, 17, 19}))
 
 	fmt.Println("\nAll array reflex drills passed.")
 	fmt.Println("Primary: https://leetcode.com/problems/subarray-sum-equals-k/")

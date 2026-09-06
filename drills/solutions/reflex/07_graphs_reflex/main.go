@@ -2,6 +2,7 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
 	"reflect"
 )
@@ -13,23 +14,23 @@ func numIslands(grid [][]byte) int {
 	rows, cols := len(grid), len(grid[0])
 	count := 0
 
-	var dfs func(r, c int)
-	dfs = func(r, c int) {
+	var sink func(r, c int)
+	sink = func(r, c int) {
 		if r < 0 || c < 0 || r >= rows || c >= cols || grid[r][c] != '1' {
 			return
 		}
 		grid[r][c] = '0'
-		dfs(r+1, c)
-		dfs(r-1, c)
-		dfs(r, c+1)
-		dfs(r, c-1)
+		sink(r+1, c)
+		sink(r-1, c)
+		sink(r, c+1)
+		sink(r, c-1)
 	}
 
 	for r := 0; r < rows; r++ {
 		for c := 0; c < cols; c++ {
 			if grid[r][c] == '1' {
 				count++
-				dfs(r, c)
+				sink(r, c)
 			}
 		}
 	}
@@ -124,6 +125,155 @@ func canFinish(numCourses int, prerequisites [][]int) bool {
 	return done == numCourses
 }
 
+// dfs — recursive preorder over an adjacency list. Mark on entry, append,
+// recurse into unseen neighbours in list order.
+func dfs(graph [][]int, start int) []int {
+	seen := make([]bool, len(graph))
+	var order []int
+	var visit func(u int)
+	visit = func(u int) {
+		seen[u] = true
+		order = append(order, u)
+		for _, v := range graph[u] {
+			if !seen[v] {
+				visit(v)
+			}
+		}
+	}
+	visit(start)
+	return order
+}
+
+// bfs — queue, mark on enqueue (never on dequeue, or a node enters twice).
+func bfs(graph [][]int, start int) []int {
+	seen := make([]bool, len(graph))
+	seen[start] = true
+	q := []int{start}
+	var order []int
+	for len(q) > 0 {
+		u := q[0]
+		q = q[1:]
+		order = append(order, u)
+		for _, v := range graph[u] {
+			if !seen[v] {
+				seen[v] = true
+				q = append(q, v)
+			}
+		}
+	}
+	return order
+}
+
+// bfsShortestPath — level-by-level BFS; the number of levels crossed is the
+// edge count. Unweighted shortest path is BFS, never DFS.
+func bfsShortestPath(graph [][]int, src, dst int) int {
+	if src == dst {
+		return 0
+	}
+	seen := make([]bool, len(graph))
+	seen[src] = true
+	q := []int{src}
+	dist := 0
+	for len(q) > 0 {
+		dist++
+		var next []int
+		for _, u := range q {
+			for _, v := range graph[u] {
+				if v == dst {
+					return dist
+				}
+				if !seen[v] {
+					seen[v] = true
+					next = append(next, v)
+				}
+			}
+		}
+		q = next
+	}
+	return -1
+}
+
+// topoSort — Kahn. Repeatedly take a zero-in-degree node (smallest index on
+// ties), remove its out-edges. Fewer than n emitted means a cycle blocked it.
+func topoSort(n int, edges [][]int) []int {
+	adj := make([][]int, n)
+	indeg := make([]int, n)
+	for _, e := range edges {
+		adj[e[0]] = append(adj[e[0]], e[1])
+		indeg[e[1]]++
+	}
+	order := make([]int, 0, n)
+	used := make([]bool, n)
+	for len(order) < n {
+		pick := -1
+		for v := 0; v < n; v++ {
+			if !used[v] && indeg[v] == 0 {
+				pick = v
+				break
+			}
+		}
+		if pick == -1 {
+			return nil
+		}
+		used[pick] = true
+		order = append(order, pick)
+		for _, v := range adj[pick] {
+			indeg[v]--
+		}
+	}
+	return order
+}
+
+type distNode struct{ v, d int }
+
+type distHeap []distNode
+
+func (h distHeap) Len() int            { return len(h) }
+func (h distHeap) Less(i, j int) bool  { return h[i].d < h[j].d }
+func (h distHeap) Swap(i, j int)       { h[i], h[j] = h[j], h[i] }
+func (h *distHeap) Push(x interface{}) { *h = append(*h, x.(distNode)) }
+func (h *distHeap) Pop() interface{} {
+	old := *h
+	n := len(old)
+	v := old[n-1]
+	*h = old[:n-1]
+	return v
+}
+
+// dijkstra — greedy shortest paths, non-negative weights. Pop the closest
+// frontier node, relax its edges, skip stale heap entries (d > dist[v]).
+func dijkstra(n int, edges [][]int, src int) []int {
+	adj := make([][][2]int, n)
+	for _, e := range edges {
+		adj[e[0]] = append(adj[e[0]], [2]int{e[1], e[2]})
+	}
+	const inf = 1 << 60
+	dist := make([]int, n)
+	for i := range dist {
+		dist[i] = inf
+	}
+	dist[src] = 0
+	pq := &distHeap{{src, 0}}
+	for pq.Len() > 0 {
+		cur := heap.Pop(pq).(distNode)
+		if cur.d > dist[cur.v] {
+			continue
+		}
+		for _, nb := range adj[cur.v] {
+			if nd := cur.d + nb[1]; nd < dist[nb[0]] {
+				dist[nb[0]] = nd
+				heap.Push(pq, distNode{nb[0], nd})
+			}
+		}
+	}
+	for i := range dist {
+		if dist[i] == inf {
+			dist[i] = -1
+		}
+	}
+	return dist
+}
+
 func assert(name string, cond bool) {
 	if !cond {
 		panic(fmt.Sprintf("FAIL: %s", name))
@@ -202,6 +352,31 @@ func main() {
 	assert("canFinish self cycle", !canFinish(1, [][]int{{0, 0}}))
 	assert("canFinish diamond", canFinish(4, [][]int{{1, 0}, {2, 0}, {3, 1}, {3, 2}}))
 	assert("canFinish cycle in tail", !canFinish(4, [][]int{{1, 0}, {2, 1}, {1, 2}}))
+
+	// dfs / bfs — diamond adjacency list, disconnected, start not zero
+	diamond := [][]int{{1, 2}, {0, 3}, {0, 3}, {1, 2}}
+	assert("dfs diamond", reflect.DeepEqual(dfs(diamond, 0), []int{0, 1, 3, 2}))
+	assert("dfs disconnected", reflect.DeepEqual(dfs([][]int{{1}, {0}, {3}, {2}}, 0), []int{0, 1}))
+	assert("bfs diamond", reflect.DeepEqual(bfs(diamond, 0), []int{0, 1, 2, 3}))
+	assert("bfs star", reflect.DeepEqual(bfs([][]int{{1, 2, 3}, {0}, {0}, {0}}, 0), []int{0, 1, 2, 3}))
+
+	// bfsShortestPath — reachable, same node, unreachable
+	assert("bfsShortestPath diamond", bfsShortestPath(diamond, 0, 3) == 2)
+	assert("bfsShortestPath same", bfsShortestPath(diamond, 0, 0) == 0)
+	assert("bfsShortestPath unreachable", bfsShortestPath([][]int{{1}, {0}, {3}, {2}}, 0, 3) == -1)
+
+	// topoSort — DAG, cycle, course-schedule ordering
+	assert("topoSort dag", reflect.DeepEqual(topoSort(4, [][]int{{0, 1}, {0, 2}, {1, 3}, {2, 3}}), []int{0, 1, 2, 3}))
+	assert("topoSort cycle", len(topoSort(3, [][]int{{0, 1}, {1, 2}, {2, 0}})) == 0)
+	assert("topoSort course schedule", reflect.DeepEqual(
+		topoSort(6, [][]int{{5, 2}, {5, 0}, {4, 0}, {4, 1}, {2, 3}, {3, 1}}),
+		[]int{4, 5, 0, 2, 3, 1}))
+
+	// dijkstra — weighted, unreachable, parallel edges
+	dg := [][]int{{0, 1, 4}, {0, 2, 1}, {2, 1, 2}, {1, 3, 1}, {2, 3, 5}}
+	assert("dijkstra weighted", reflect.DeepEqual(dijkstra(5, dg, 0), []int{0, 3, 1, 4, -1}))
+	assert("dijkstra unreachable", reflect.DeepEqual(dijkstra(3, [][]int{{0, 1, 10}}, 0), []int{0, 10, -1}))
+	assert("dijkstra parallel edges", reflect.DeepEqual(dijkstra(2, [][]int{{0, 1, 5}, {0, 1, 3}}, 0), []int{0, 3}))
 
 	fmt.Println("\nAll graph reflex drills passed.")
 	fmt.Println("Primary: graphs/medium/number_of_islands.js")

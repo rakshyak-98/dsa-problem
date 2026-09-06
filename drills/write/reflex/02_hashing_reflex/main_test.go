@@ -86,11 +86,21 @@ func TestGroupAnagrams(t *testing.T) {
 	assert(t, "groupAnagrams all anagrams", len(allA) == 1 && len(allA[0]) == 3)
 }
 
+func TestSingleNumber(t *testing.T) {
+	assert(t, "singleNumber basic", singleNumber([]int{2, 2, 1}) == 1)
+	assert(t, "singleNumber middle", singleNumber([]int{4, 1, 2, 1, 2}) == 4)
+	assert(t, "singleNumber single", singleNumber([]int{7}) == 7)
+	assert(t, "singleNumber negatives", singleNumber([]int{-1, -1, -3}) == -3)
+	assert(t, "singleNumber zero", singleNumber([]int{0, 1, 1}) == 0)
+	assert(t, "singleNumber last", singleNumber([]int{5, 3, 3}) == 5)
+}
+
 func TestAll(t *testing.T) {
 	t.Run("twoSum", TestTwoSum)
 	t.Run("containsDuplicate", TestContainsDuplicate)
 	t.Run("frequencyMap", TestFrequencyMap)
 	t.Run("firstUniqueChar", TestFirstUniqueChar)
 	t.Run("groupAnagrams", TestGroupAnagrams)
+	t.Run("singleNumber", TestSingleNumber)
 	fmt.Println("\nAll hashing reflex drills passed.")
 }

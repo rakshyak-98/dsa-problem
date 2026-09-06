@@ -16,3 +16,8 @@
 
 ## isPalindrome
 - **Pattern:** skip non-alphanumeric; compare lowercased
+
+## dutchFlag
+- **Trigger:** array of only a few distinct values, sort in one pass, O(1) space
+- **Pattern:** `low`/`mid`/`high` — on 0 swap to `low`, on 2 swap to `high`, on 1 step `mid`
+- **Bug:** advancing `mid` after a swap with `high` skips the just-pulled-in value

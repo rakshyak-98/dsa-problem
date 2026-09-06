@@ -18,3 +18,8 @@
 - **Trigger:** count then second pass
 - **Pattern:** freq map → scan string for count==1
 - **Bug:** return byte not string
+
+## singleNumber
+- **Trigger:** one unpaired value, O(1) space demanded — the no-hash alternative to a seen-set
+- **Pattern:** XOR the whole slice; equal values cancel to 0, the loner survives
+- **Twist:** rest appear 3× → bit-count mod 3, not a plain XOR

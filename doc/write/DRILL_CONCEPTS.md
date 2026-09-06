@@ -4,7 +4,7 @@ This file explains the concepts behind each reflex drill in `drills/write/reflex
 
 ## Drill 01: Arrays
 
-Functions: `reverseInPlace`, `rotateRight`, `runningSum`, `subarraySumK`, `productExceptSelf`, `maxSubarraySum`
+Functions: `reverseInPlace`, `rotateRight`, `runningSum`, `subarraySumK`, `productExceptSelf`, `maxSubarraySum`, `mergeSort`, `quickSort`, `sieve`
 
 - **Core idea:** Precompute along the array so each query is O(1).
 - **When this pattern appears:** Range sums, "count the subarrays that…", best contiguous run.
@@ -17,10 +17,19 @@ Functions: `reverseInPlace`, `rotateRight`, `runningSum`, `subarraySumK`, `produ
   - **Two-directional prefix:** Product-except-self needs everything left *and*
     right of i, so it is a prefix pass followed by a suffix pass.
   - **Kadane:** `cur = max(x, cur+x)` — extend the run or restart at x.
+- **Also drilled here — the array algorithms you hand-write from scratch:**
+  - **Merge sort:** Split in half, recurse both, merge with two read pointers.
+    `<=` in the merge keeps equal keys stable (and lets the merge step count
+    inversions). Returning the input slice on the base case aliases the caller.
+  - **Quick sort:** Lomuto partition — pivot last, `i` tracks the `< pivot`
+    frontier, swap pivot home, recurse `lo..i-1` and `i+1..hi`. O(n log n)
+    average, O(n²) when the pivot is always an extreme.
+  - **Sieve of Eratosthenes:** Cross out multiples of each prime from `p*p`;
+    survivors are prime. O(n log log n).
 
 ## Drill 02: Hashing
 
-Functions: `twoSum`, `containsDuplicate`, `frequencyMap`, `firstUniqueChar`, `groupAnagrams`
+Functions: `twoSum`, `containsDuplicate`, `frequencyMap`, `firstUniqueChar`, `groupAnagrams`, `singleNumber`
 
 - **Core idea:** Trade memory for fast lookup.
 - **When this pattern appears:** Need membership checks, counting, grouping by signature.
@@ -29,10 +38,13 @@ Functions: `twoSum`, `containsDuplicate`, `frequencyMap`, `firstUniqueChar`, `gr
   - **Seen set:** Detect duplicates in O(1) average lookup per element.
   - **Frequency table:** Count occurrences with `map[key]++`.
   - **Canonical key:** Group equivalent strings (anagrams) by a normalized form.
+  - **XOR instead of a set:** `singleNumber` finds the one unpaired value by
+    XORing the whole array — equal values cancel to 0. O(1) space, the no-hash
+    counterpart to a seen-set. (Rest appear 3× → bit-count mod 3, not plain XOR.)
 
 ## Drill 03: Two Pointers and Sliding Window
 
-Functions: `removeDuplicates`, `moveZeroes`, `maxArea`, `isPalindrome`, `maxSumSubarrayK`, `longestUniqueSubstring`
+Functions: `removeDuplicates`, `moveZeroes`, `maxArea`, `isPalindrome`, `maxSumSubarrayK`, `longestUniqueSubstring`, `dutchFlag`
 
 - **Core idea:** Keep constraints with pointer movement instead of nested loops.
 - **When this pattern appears:** Sorted arrays, in-place filtering, contiguous window metrics.
@@ -43,10 +55,13 @@ Functions: `removeDuplicates`, `moveZeroes`, `maxArea`, `isPalindrome`, `maxSumS
   - **Variable window:** Right always advances; left moves only to restore the
     property. "Subarray of size k" is fixed; "longest such that…" is variable.
   - **Invariant thinking:** Each pointer move must preserve correctness condition.
+  - **Three-way partition (Dutch national flag):** `low`/`mid`/`high` sort an
+    array of 0/1/2 in one pass, O(1) space. After a swap with `high`, do **not**
+    advance `mid` — the value pulled in is unexamined.
 
 ## Drill 04: Binary Search
 
-Functions: `binarySearch`, `searchInsert`, `findMinRotated`, `minEatingSpeed`
+Functions: `binarySearch`, `searchInsert`, `findMinRotated`, `minEatingSpeed`, `quickSelect`, `fastPow`, `gcd`
 
 - **Core idea:** Use sorted structure to discard half each step.
 - **When this pattern appears:** Exact search, insertion point, rotated sorted arrays.
@@ -58,6 +73,13 @@ Functions: `binarySearch`, `searchInsert`, `findMinRotated`, `minEatingSpeed`
   - **Searching the answer, not the array:** When the input is unsorted but
     "does x work?" is monotonic, binary search over x. This is the leap that
     turns binary search from a lookup into a general technique.
+- **Also drilled here — same "discard a half / halve each step" idea:**
+  - **Quickselect:** Partition, then recurse only into the side holding rank `k`.
+    Average O(n); the answer to "kth largest without a full sort".
+  - **Binary exponentiation (`fastPow`):** Fold `n` bit by bit — square the base
+    each step, multiply it in on a set bit. Negative `n` → invert the base first.
+    Same shape works for `x^n mod m` and matrix power.
+  - **Euclid's gcd:** `for b != 0 { a, b = b, a%b }`. `lcm(a,b) = a/gcd*b`.
 
 ## Drill 05: Trees and Stacks
 
@@ -90,7 +112,7 @@ Functions: `climbStairs`, `minCostClimbingStairs`, `rob`, `coinChange`
 
 ## Drill 07: Graphs (Grids and Dependencies)
 
-Functions: `numIslands`, `floodFill`, `shortestPathGrid`, `canFinish`
+Functions: `numIslands`, `floodFill`, `shortestPathGrid`, `canFinish`, `dfs`, `bfs`, `bfsShortestPath`, `topoSort`, `dijkstra`
 
 - **Core idea:** Explore connected cells with traversal rules.
 - **When this pattern appears:** Components in grids, fill regions, shortest unweighted path.
@@ -101,6 +123,17 @@ Functions: `numIslands`, `floodFill`, `shortestPathGrid`, `canFinish`
   - **BFS distance layers:** First time reaching a node gives shortest path in unweighted graphs.
   - **Adjacency list + in-degrees:** Not every graph is a grid. Prerequisites,
     ordering, and "is there a cycle" all mean topological sort (Kahn's algorithm).
+- **Also drilled here — the same algorithms on a plain adjacency list (`graph[u]` = neighbours):**
+  - **`dfs`:** Recursive preorder — mark on entry, append, recurse into unseen
+    neighbours. Marking *after* the recursion revisits nodes on a cycle.
+  - **`bfs`:** Queue, marking each node **on enqueue** — mark on dequeue and a
+    node enters the queue twice.
+  - **`bfsShortestPath`:** Level-by-level BFS; the count of levels crossed is the
+    edge count. Never DFS for a shortest path.
+  - **`topoSort` (Kahn):** Queue zero-in-degree nodes (smallest index on ties),
+    pop, decrement targets. Fewer than `n` emitted → a cycle → return nil.
+  - **`dijkstra`:** Min-heap of `(node, dist)`; pop the closest, relax its edges,
+    skip a stale `(v, d)` where `d > dist[v]`. Non-negative weights only.
 
 ## Drill 10: Linked Lists
 
@@ -136,6 +169,12 @@ Use this quick mapping when solving:
 - Min rate/capacity that still works -> **Binary search the answer**
 - Prerequisites / ordering / cycle -> **Topological sort**
 - Reverse, loop, or nth-from-end on a list -> **Pointer rewiring (Drill 10)**
+- Implement a sort, or kth largest in O(n) -> **Merge/quick sort, quickselect (Drills 01 + 04)**
+- Array of only 0/1/2, sort in one pass -> **Dutch national flag (Drill 03)**
+- gcd/lcm, fast exponent, primes up to n, one unpaired value -> **Euclid / binary exp / sieve / XOR (Drills 04 + 01 + 02)**
+- Traverse a graph, reach every node -> **DFS / BFS on an adjacency list (Drill 07)**
+- Fewest edges between two nodes -> **BFS shortest path (Drill 07)**
+- Directed order or cycle check, weighted shortest path -> **Topological sort / Dijkstra (Drill 07)**
 
 ## How to Study This File
 
@@ -145,4 +184,4 @@ Use this quick mapping when solving:
 4. Run the matching drill tests.
 5. Log one mistake and the corrected invariant.
 
-**Math behind the patterns:** See `MATH_CONCEPTS.md` for complexity formulas, combinatorics, recurrences, and geometry. It is reference only — number theory is no longer a drill.
+**Math behind the patterns:** See `MATH_CONCEPTS.md` for complexity formulas, combinatorics, recurrences, and geometry. The runnable number-theory functions (`gcd`, `fastPow`, `sieve`) live in Drills 04 and 01; that page is the wider reference behind them.

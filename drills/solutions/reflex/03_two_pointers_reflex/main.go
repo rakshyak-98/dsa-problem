@@ -109,6 +109,28 @@ func longestUniqueSubstring(s string) int {
 	return best
 }
 
+// dutchFlag — three-way partition in one pass, O(1) space. low/high bound the
+// settled 0- and 2-regions; mid scans the unknown middle.
+func dutchFlag(nums []int) []int {
+	a := make([]int, len(nums))
+	copy(a, nums)
+	low, mid, high := 0, 0, len(a)-1
+	for mid <= high {
+		switch a[mid] {
+		case 0:
+			a[low], a[mid] = a[mid], a[low]
+			low++
+			mid++
+		case 1:
+			mid++
+		default: // 2
+			a[mid], a[high] = a[high], a[mid]
+			high-- // do NOT advance mid — the swapped-in value is unexamined
+		}
+	}
+	return a
+}
+
 func assert(name string, cond bool) {
 	if !cond {
 		panic(fmt.Sprintf("FAIL: %s", name))
@@ -182,6 +204,12 @@ func main() {
 	assert("longestUniqueSubstring single", longestUniqueSubstring("a") == 1)
 	assert("longestUniqueSubstring pwwkew", longestUniqueSubstring("pwwkew") == 3)
 	assert("longestUniqueSubstring stale left", longestUniqueSubstring("abba") == 2)
+
+	// dutchFlag — mixed, sorted, all same, no ones, reverse
+	assert("dutchFlag basic", reflect.DeepEqual(dutchFlag([]int{2, 0, 2, 1, 1, 0}), []int{0, 0, 1, 1, 2, 2}))
+	assert("dutchFlag no ones", reflect.DeepEqual(dutchFlag([]int{2, 0, 2, 0}), []int{0, 0, 2, 2}))
+	assert("dutchFlag all same", reflect.DeepEqual(dutchFlag([]int{1, 1, 1}), []int{1, 1, 1}))
+	assert("dutchFlag reverse", reflect.DeepEqual(dutchFlag([]int{2, 2, 1, 1, 0, 0}), []int{0, 0, 1, 1, 2, 2}))
 
 	fmt.Println("\nAll two-pointer reflex drills passed.")
 	fmt.Println("Primary: two_pointers/easy/move_zeroes.js")

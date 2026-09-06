@@ -30,3 +30,18 @@
 - **Trigger:** best contiguous run
 - **Pattern:** Kadane — `cur = max(x, cur+x)`, `best = max(best, cur)`
 - **Bug:** initialising `best = 0`, which returns 0 for an all-negative input
+
+## mergeSort
+- **Trigger:** "implement a sort", stability matters, or count while sorting
+- **Pattern:** split in half, recurse both, merge with two pointers (`<=` = stable)
+- **Bug:** returning the input slice on the base case aliases the caller's array — copy it
+
+## quickSort
+- **Trigger:** in-place O(n log n) sort, no second array
+- **Pattern:** Lomuto — pivot last, `i` tracks the `< pivot` frontier, swap pivot home
+- **Bug:** recursing on `lo..i` instead of `lo..i-1` never terminates
+
+## sieve
+- **Trigger:** "all primes up to n", many primality checks over a range
+- **Pattern:** cross out multiples of each `p` starting at `p*p`; survivors are prime
+- **Cost:** O(n log log n) time, O(n) space

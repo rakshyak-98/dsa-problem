@@ -72,6 +72,78 @@ func minEatingSpeed(piles []int, h int) int {
 	return lo
 }
 
+// quickSelect — quicksort that recurses only into the side holding rank k.
+// Average O(n); the interview answer to "kth largest without a full sort".
+func quickSelect(nums []int, k int) int {
+	a := make([]int, len(nums))
+	copy(a, nums)
+	lo, hi, target := 0, len(a)-1, k-1
+	for {
+		p := partition(a, lo, hi)
+		switch {
+		case p == target:
+			return a[p]
+		case p < target:
+			lo = p + 1
+		default:
+			hi = p - 1
+		}
+	}
+}
+
+func partition(a []int, lo, hi int) int {
+	pivot := a[hi]
+	i := lo
+	for j := lo; j < hi; j++ {
+		if a[j] < pivot {
+			a[i], a[j] = a[j], a[i]
+			i++
+		}
+	}
+	a[i], a[hi] = a[hi], a[i]
+	return i
+}
+
+// fastPow — binary exponentiation. Fold n bit by bit: square the base each
+// step, multiply it into the result when the low bit is set.
+func fastPow(x float64, n int) float64 {
+	if n < 0 {
+		x = 1 / x
+		n = -n
+	}
+	result := 1.0
+	for n > 0 {
+		if n&1 == 1 {
+			result *= x
+		}
+		x *= x
+		n >>= 1
+	}
+	return result
+}
+
+// gcd — Euclid: gcd(a, b) = gcd(b, a mod b), stopping when b hits 0.
+func gcd(a, b int) int {
+	if a < 0 {
+		a = -a
+	}
+	if b < 0 {
+		b = -b
+	}
+	for b != 0 {
+		a, b = b, a%b
+	}
+	return a
+}
+
+func almostEqual(a, b float64) bool {
+	d := a - b
+	if d < 0 {
+		d = -d
+	}
+	return d < 1e-6
+}
+
 func assert(name string, cond bool) {
 	if !cond {
 		panic(fmt.Sprintf("FAIL: %s", name))
@@ -114,6 +186,23 @@ func main() {
 	assert("minEatingSpeed single pile", minEatingSpeed([]int{12}, 3) == 4)
 	assert("minEatingSpeed huge h", minEatingSpeed([]int{1, 1, 1}, 100) == 1)
 	assert("minEatingSpeed h equals piles", minEatingSpeed([]int{5, 5, 5}, 3) == 5)
+
+	// quickSelect — smallest, kth, median, largest, duplicates
+	assert("quickSelect smallest", quickSelect([]int{3, 2, 1, 5, 6, 4}, 1) == 1)
+	assert("quickSelect median", quickSelect([]int{7, 10, 4, 3, 20, 15}, 3) == 7)
+	assert("quickSelect largest", quickSelect([]int{7, 10, 4, 3, 20, 15}, 6) == 20)
+	assert("quickSelect duplicates", quickSelect([]int{2, 2, 2, 2}, 3) == 2)
+
+	// fastPow — square, zero/one/negative exponent, fractional base
+	assert("fastPow square", almostEqual(fastPow(2, 10), 1024))
+	assert("fastPow zero exponent", almostEqual(fastPow(5, 0), 1))
+	assert("fastPow negative exponent", almostEqual(fastPow(2, -2), 0.25))
+	assert("fastPow fractional base", almostEqual(fastPow(2.1, 3), 9.261))
+
+	// gcd — basic, coprime, divides, with zero
+	assert("gcd basic", gcd(12, 18) == 6)
+	assert("gcd coprime", gcd(7, 13) == 1)
+	assert("gcd with zero", gcd(0, 5) == 5)
 
 	fmt.Println("\nAll binary search reflex drills passed.")
 	fmt.Println("Primary: binary_search/easy/search_insertion_position.js")

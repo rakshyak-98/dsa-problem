@@ -2,8 +2,8 @@
 package main
 
 import (
-	"slices"
 	"fmt"
+	"slices"
 )
 
 func twoSum(nums []int, target int) []int {
@@ -60,6 +60,16 @@ func groupAnagrams(strs []string) [][]string {
 	out := make([][]string, 0, len(m))
 	for _, g := range m {
 		out = append(out, g)
+	}
+	return out
+}
+
+// singleNumber — XOR the whole slice: equal values cancel, the loner survives.
+// O(1) space, the no-hashing counterpart to a seen-set.
+func singleNumber(nums []int) int {
+	out := 0
+	for _, v := range nums {
+		out ^= v
 	}
 	return out
 }
@@ -138,6 +148,12 @@ func main() {
 	assert("groupAnagrams no shared", len(groupAnagrams([]string{"ab", "cd", "ef"})) == 3)
 	allA := groupAnagrams([]string{"abc", "bca", "cab"})
 	assert("groupAnagrams all anagrams", len(allA) == 1 && len(allA[0]) == 3)
+
+	// singleNumber — basic, middle, single, negatives, zero
+	assert("singleNumber basic", singleNumber([]int{2, 2, 1}) == 1)
+	assert("singleNumber middle", singleNumber([]int{4, 1, 2, 1, 2}) == 4)
+	assert("singleNumber negatives", singleNumber([]int{-1, -1, -3}) == -3)
+	assert("singleNumber zero", singleNumber([]int{0, 1, 1}) == 0)
 
 	fmt.Println("\nAll hashing reflex drills passed.")
 	fmt.Println("Primary: hashing/easy/two_sum.js")

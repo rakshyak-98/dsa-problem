@@ -16,6 +16,9 @@ var problemMap = map[string][]problemLink{
 		{"subarraySumK", "misc/medium/subarray_sum_divisible_by_k.js", "Count subarrays by prefix remainder"},
 		{"productExceptSelf", "misc/medium/product_of_array_except_self.js", "Product of all other elements"},
 		{"maxSubarraySum", "arrays/medium/max_product_subarray.js", "Best contiguous run, product variant"},
+		{"mergeSort", "sorting/medium/sort_an_array.js", "Stable O(n log n) sort by split and merge"},
+		{"quickSort", "sorting/medium/sort_an_array.js", "In-place O(n log n) sort by partitioning"},
+		{"sieve", "math/medium/count_primes.js", "All primes up to n via sieve of Eratosthenes"},
 	},
 	"02_hashing_reflex": {
 		{"twoSum", "hashing/easy/two_sum.js", "Return indices of two numbers that add to target"},
@@ -23,6 +26,7 @@ var problemMap = map[string][]problemLink{
 		{"frequencyMap", "hashing/easy/top_k_ferquent_element.js", "Count frequency of each element"},
 		{"firstUniqueChar", "hashing/easy/first_unique_character_in_a_string.js", "First non-repeating character"},
 		{"groupAnagrams", "hashing/medium/group_anagram.js", "Group strings that are anagrams"},
+		{"singleNumber", "bit_manipulation/easy/single_number.js", "The one unpaired value via XOR"},
 	},
 	"03_two_pointers_reflex": {
 		{"removeDuplicates", "two_pointers/easy/remove_duplicates_from_sorted_array.js", "In-place dedupe sorted array, return new length"},
@@ -31,12 +35,16 @@ var problemMap = map[string][]problemLink{
 		{"isPalindrome", "two_pointers/easy/valid_palindrome.js", "Is string a palindrome ignoring non-alphanumeric"},
 		{"maxSumSubarrayK", "misc/easy/maximum_average_subarray_1.js", "Max sum of subarray of size k"},
 		{"longestUniqueSubstring", "strings/medium/longest_substring_without_repeating.js", "Longest run with no repeat"},
+		{"dutchFlag", "sorting/medium/sort_colors.js", "One-pass three-way partition of 0/1/2"},
 	},
 	"04_binary_search_reflex": {
 		{"binarySearch", "binary_search/easy/search_insertion_position.js", "Find target index in sorted array"},
 		{"searchInsert", "binary_search/easy/search_insertion_position.js", "Insertion index for target in sorted array"},
 		{"findMinRotated", "binary_search/medium/find_minimum_in_rotated_sorted_array.js", "Minimum in rotated sorted array"},
 		{"minEatingSpeed", "binary_search/medium/koko_eating_bananas.js", "Slowest rate that still finishes in time"},
+		{"quickSelect", "sorting/medium/kth_largest_element_in_an_array.js", "Kth smallest without fully sorting"},
+		{"fastPow", "math/medium/powx_n.js", "x^n in O(log n) by binary exponentiation"},
+		{"gcd", "math/easy/find_greatest_common_divisor_of_array.js", "Greatest common divisor via Euclid"},
 	},
 	"05_trees_stacks_reflex": {
 		{"inorderTraversal", "trees/easy/binary_tree_inorder_traversal.js", "Return inorder traversal of binary tree"},
@@ -59,6 +67,11 @@ var problemMap = map[string][]problemLink{
 		{"floodFill", "graphs/easy/flood_fill.js", "Recolor connected pixels from start"},
 		{"shortestPathGrid", "graphs/medium/shortest_path_in_binary_matrix.js", "Shortest path in unweighted grid"},
 		{"canFinish", "graphs/medium/course_schedule.js", "Ordering with prerequisites / cycle check"},
+		{"dfs", "graphs/medium/number_of_provinces.js", "Reachable nodes / components via depth-first search"},
+		{"bfs", "graphs/medium/snakes_and_ladders.js", "Reachable nodes level by level via breadth-first search"},
+		{"bfsShortestPath", "graphs/medium/minimum_genetic_mutation.js", "Fewest edges between two nodes via BFS"},
+		{"topoSort", "graphs/medium/course_schedule_ii.js", "Linear order of a DAG via Kahn's algorithm"},
+		{"dijkstra", "graphs/medium/network_delay_time.js", "Weighted shortest paths from a source"},
 	},
 	"08_heap_reflex": {
 		{"kthLargest", "heaps/medium/kth_largest_element_in_an_array.js", "Kth largest element in array"},

@@ -74,6 +74,33 @@ func TestMaxSubarraySum(t *testing.T) {
 	assert(t, "maxSubarraySum restart", maxSubarraySum([]int{-5, 8, -1, 3}) == 10)
 }
 
+func TestMergeSort(t *testing.T) {
+	assert(t, "mergeSort basic", reflect.DeepEqual(mergeSort([]int{5, 2, 3, 1}), []int{1, 2, 3, 5}))
+	assert(t, "mergeSort empty", reflect.DeepEqual(mergeSort([]int{}), []int{}))
+	assert(t, "mergeSort single", reflect.DeepEqual(mergeSort([]int{7}), []int{7}))
+	assert(t, "mergeSort duplicates", reflect.DeepEqual(mergeSort([]int{5, 1, 1, 2, 0, 0}), []int{0, 0, 1, 1, 2, 5}))
+	assert(t, "mergeSort already sorted", reflect.DeepEqual(mergeSort([]int{1, 2, 3, 4}), []int{1, 2, 3, 4}))
+	assert(t, "mergeSort negatives", reflect.DeepEqual(mergeSort([]int{-3, 4, -1, 0, -2}), []int{-3, -2, -1, 0, 4}))
+}
+
+func TestQuickSort(t *testing.T) {
+	assert(t, "quickSort basic", reflect.DeepEqual(quickSort([]int{5, 2, 3, 1}), []int{1, 2, 3, 5}))
+	assert(t, "quickSort empty", reflect.DeepEqual(quickSort([]int{}), []int{}))
+	assert(t, "quickSort single", reflect.DeepEqual(quickSort([]int{7}), []int{7}))
+	assert(t, "quickSort duplicates", reflect.DeepEqual(quickSort([]int{3, 3, 3, 1, 2}), []int{1, 2, 3, 3, 3}))
+	assert(t, "quickSort reverse", reflect.DeepEqual(quickSort([]int{9, 7, 5, 3, 1}), []int{1, 3, 5, 7, 9}))
+	assert(t, "quickSort negatives", reflect.DeepEqual(quickSort([]int{-3, 4, -1, 0, -2}), []int{-3, -2, -1, 0, 4}))
+}
+
+func TestSieve(t *testing.T) {
+	assert(t, "sieve to 10", reflect.DeepEqual(sieve(10), []int{2, 3, 5, 7}))
+	assert(t, "sieve to 2", reflect.DeepEqual(sieve(2), []int{2}))
+	assert(t, "sieve to 1", len(sieve(1)) == 0)
+	assert(t, "sieve to 0", len(sieve(0)) == 0)
+	assert(t, "sieve to 20", reflect.DeepEqual(sieve(20), []int{2, 3, 5, 7, 11, 13, 17, 19}))
+	assert(t, "sieve prime bound", reflect.DeepEqual(sieve(13), []int{2, 3, 5, 7, 11, 13}))
+}
+
 func TestAll(t *testing.T) {
 	t.Run("reverseInPlace", TestReverseInPlace)
 	t.Run("rotateRight", TestRotateRight)
@@ -81,5 +108,8 @@ func TestAll(t *testing.T) {
 	t.Run("subarraySumK", TestSubarraySumK)
 	t.Run("productExceptSelf", TestProductExceptSelf)
 	t.Run("maxSubarraySum", TestMaxSubarraySum)
+	t.Run("mergeSort", TestMergeSort)
+	t.Run("quickSort", TestQuickSort)
+	t.Run("sieve", TestSieve)
 	fmt.Println("\nAll array reflex drills passed.")
 }
