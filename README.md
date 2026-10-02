@@ -36,15 +36,15 @@ go run . -- --weak                    # weakest functions from the drill log
 go run . -- --run                     # check today's reflex answers
 go run . -- --run=core                # check the Core 5 tests
 go run . -- --core5                   # run the standalone Core 5 drill
-go run . -- --track=read              # reflex reading drills only
 go run . -- --track=write             # writing drills only
+go run . -- --reset                   # restore today's reflex drill to blank
 go run . -- --track=leetcode          # daily 10 LeetCode problems (weekday topic)
 go run . -- --track=leetcode --run    # fetch today's 10 LeetCode problems
 go run . -- --list-tracks             # show all available tracks
 go run . -- --help                    # full option reference
 ```
 
-`--run leetcode` and the `-r` / `-w` / `-l` run-side flags still work but are
+`--run leetcode` and the `-w` / `-l` run-side flags still work but are
 superseded by `--track`.
 
 ## Repository layout
@@ -53,16 +53,13 @@ superseded by `--track`.
 dsa-problem/
 ├── doc/                     # ★ DOCUMENTATION (all guides)
 │   ├── drills.md            # drills overview
-│   ├── write/               # write reflex study plans
-│   └── read/                # reading drill guides
+│   └── write/               # write reflex study plans
 ├── drills/                  # ★ PRACTICE (by topic)
-│   ├── write/               # reflex drills: core5, reflex, variants
-│   ├── read/                # reading drills: core, weekday, answers
+│   ├── write/               # reflex drills: core5, reflex
 │   ├── leetcode/            # daily 10-question LeetCode practice sets
 │   └── solutions/           # write drill solutions (after attempt)
 ├── bin/                     # internal CLI tooling
 │   ├── study_play/          # write-drill CLI: levels, refresh, problem set
-│   ├── study_code/          # read-drill CLI
 │   ├── study_leetcode/      # daily LeetCode practice set CLI
 │   └── scripts/             # test coverage gate
 ├── reference/problems/      # problem catalog by topic + solved simulations
@@ -81,6 +78,5 @@ dsa-problem/
 - [`bin/study_play/README.md`](bin/study_play/README.md) — understanding levels and how `--refresh` picks a session
 - [`doc/write/DAILY_30MIN_DRILL.md`](doc/write/DAILY_30MIN_DRILL.md) — the daily session, start to finish
 - [`doc/write/START_HERE.md`](doc/write/START_HERE.md) — writing reflex flow
-- [`doc/read/START_HERE.md`](doc/read/START_HERE.md) — reading drill flow
 - [`doc/DSA_JARGON.md`](doc/DSA_JARGON.md) — plain-English glossary for DSA terms
 - [`reference/problems/CATEGORIES.md`](reference/problems/CATEGORIES.md) — problem index by topic

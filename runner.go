@@ -51,7 +51,6 @@ a value also accepts the --option=value form.
 
   -t, --track=NAME         select the practice track (default: dsa)
                              dsa       Core 5 + today's reflex writing specialty
-                             read      reflex code-reading drills
                              write     writing drills only
                              leetcode  daily 10-question practice set
       --drill[=KIND]       show a drill plan (KIND: core or reflex; default reflex)
@@ -59,6 +58,7 @@ a value also accepts the --option=value form.
       --run[=KIND]         run drill tests and log the result
                              (KIND: core, reflex, or leetcode)
       --core5              run the standalone Core 5 write drill
+      --reset              restore today's reflex drill to its blank template
       --catalog            list every drill in the active track
 
 Writing track (dsa / write):
@@ -76,13 +76,8 @@ LeetCode track (--track=leetcode):
       --refresh            re-fetch from the LeetCode API and rewrite daily.json
       --catalog            list every weekday practice set
 
-Read track (--track=read):
-      --drill[=reflex]     show today's reflex reading plan
-      --solution[=reflex]  show the reading answer-key section
-      --run[=reflex]       run today's reflex reading tests
-
-Deprecated (still accepted): --read, --write, --leetcode as run-side selectors
-(-r, -w, -l) are superseded by --track.
+Deprecated (still accepted): --write, --leetcode as run-side selectors
+(-w, -l) are superseded by --track.
 
 Exit status: 0 success, 1 a drill failed, 2 a command-line usage error.
 `)
@@ -90,7 +85,7 @@ Exit status: 0 success, 1 a drill failed, 2 a command-line usage error.
 
 func printUnknownTrack(track drillTrack) {
 	fmt.Fprintf(os.Stderr, "unknown track %q\n", track)
-	fmt.Fprint(os.Stderr, "Valid tracks: dsa, read, write, leetcode\n")
+	fmt.Fprint(os.Stderr, "Valid tracks: dsa, write, leetcode\n")
 	fmt.Fprint(os.Stderr, "Try 'go run . -- --help' for more information.\n")
 }
 
@@ -104,13 +99,8 @@ func printDrillArgError(track drillTrack, missing bool, unknown string) {
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
-func printReadUseTrack() {
-	fmt.Fprintln(os.Stderr, "reflex reading drills are on the read track; use --track read")
-	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
-}
-
 func printRunSideConflict() {
-	fmt.Fprintln(os.Stderr, "cannot combine -r/--read, -w/--write, and -l/--leetcode on the same --run")
+	fmt.Fprintln(os.Stderr, "cannot combine -w/--write and -l/--leetcode on the same --run")
 	fmt.Fprintln(os.Stderr, "Try 'go run . -- --help' for more information.")
 }
 
@@ -133,20 +123,11 @@ func printUnifiedHeader(track drillTrack) {
 	switch track {
 	case trackDSA:
 		fmt.Println("Track: DSA — Core 5 + reflex writing specialty")
-	case trackRead:
-		fmt.Println("Track: DSA reflex reading — today's specialty")
 	case trackWrite:
 		fmt.Println("Track: DSA writing — Core 5 + today's reflex specialty")
 	case trackLeetcode:
 		fmt.Println("Track: LeetCode — 10 full problems matching today's reflex topic")
 	}
-	fmt.Println()
-}
-
-func printDSAExtras() {
-	fmt.Println()
-	fmt.Println("━━━ VARIANTS (optional stretch) ━━━━━━━━━━━━━━━━━━━━━━━━")
-	fmt.Println("  go run -C drills/write/variants .")
 	fmt.Println()
 }
 
@@ -176,8 +157,6 @@ func runCore5(root string) int {
 // catalogModule maps a track to the drill module that owns its --catalog listing.
 func catalogModule(track drillTrack) string {
 	switch track {
-	case trackRead:
-		return "study_code"
 	case trackLeetcode:
 		return "study_leetcode"
 	default:
@@ -197,6 +176,12 @@ func runUnified(root string, opts dailyOptions) int {
 		return runModule(root, catalogModule(opts.track), []string{"--catalog"}, true)
 	}
 
+	// --reset rewrites today's drill file, so it skips the daily header and
+	// goes straight to the writing module.
+	if opts.reset {
+		return runModule(root, "study_play", []string{"--reset"}, true)
+	}
+
 	drillKind := opts.drillKind
 	solutionKind := opts.solutionKind
 	briefArgs := withBrief(opts.passArgs)
@@ -206,10 +191,6 @@ func runUnified(root string, opts dailyOptions) int {
 		if opts.run {
 			if opts.runSide == "conflict" {
 				printRunSideConflict()
-				return 1
-			}
-			if opts.runSide == "read" {
-				printReadUseTrack()
 				return 1
 			}
 			if opts.runSide == "leetcode" {
@@ -241,11 +222,6 @@ func runUnified(root string, opts dailyOptions) int {
 			fmt.Println("        go run . -- --run reflex")
 			fmt.Println("        go run . -- --run leetcode")
 			fmt.Println("        go run . -- --run -l")
-			fmt.Println("read:   go run . -- --track read")
-		}
-	case trackRead:
-		if code := runModule(root, "study_code", filterReadPassArgs(opts.passArgs), opts.run); code != 0 {
-			return code
 		}
 	case trackWrite:
 		if code := runModule(root, "study_play", opts.passArgs, opts.run); code != 0 {
@@ -284,38 +260,6 @@ func filterLeetcodePassArgs(passArgs []string) []string {
 			out = append(out, a)
 			if i+1 < len(passArgs) && isRunTarget(passArgs[i+1]) {
 				i++
-			}
-		default:
-			out = append(out, a)
-		}
-	}
-	return out
-}
-
-func filterReadPassArgs(passArgs []string) []string {
-	out := make([]string, 0, len(passArgs))
-	for i := 0; i < len(passArgs); i++ {
-		a := passArgs[i]
-		switch a {
-		case "--drill", "--solution":
-			if i+1 < len(passArgs) && passArgs[i+1] == "core" {
-				i++
-				continue
-			}
-			out = append(out, a)
-			if i+1 < len(passArgs) {
-				i++
-				out = append(out, passArgs[i])
-			}
-		case "--run":
-			out = append(out, a)
-			if i+1 < len(passArgs) && passArgs[i+1] == "core" {
-				i++
-				continue
-			}
-			if i+1 < len(passArgs) && isDrillKind(passArgs[i+1]) {
-				i++
-				out = append(out, passArgs[i])
 			}
 		default:
 			out = append(out, a)

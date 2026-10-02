@@ -44,11 +44,6 @@ func TestSetupAllDrills(t *testing.T) {
 			t.Fatalf("missing %s: %v", d.file, err)
 		}
 	}
-	for _, file := range bonusDrills {
-		if _, err := os.Stat(writeReflexDir(repo, file)); err != nil {
-			t.Fatalf("missing bonus %s: %v", file, err)
-		}
-	}
 }
 
 func TestResetTodayDrill(t *testing.T) {

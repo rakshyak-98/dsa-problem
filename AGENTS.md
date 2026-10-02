@@ -6,14 +6,13 @@ Go 1.22+ is the only required toolchain.
 
 ## Modules
 
-Four separate Go modules with **no `go.work`**, so run `go` commands per module
+Three separate Go modules with **no `go.work`**, so run `go` commands per module
 (or use `go -C <dir> ...`):
 
 | Module | Purpose |
 |--------|---------|
 | `.` (root) | unified daily runner — delegates to the others |
 | `bin/study_play/` | write-reflex drills: levels, `--refresh` session, problem set |
-| `bin/study_code/` | code-reading drills |
 | `bin/study_leetcode/` | daily 10-question LeetCode set (hits the LeetCode API) |
 
 Because they are separate modules, `go run ./bin/study_play` **fails** from the
@@ -23,17 +22,18 @@ repo root — the root module cannot resolve that package path. Use `go run . --
 ## Everyday commands
 
 ```bash
-go run .                    # today's plan (read + write)
+go run .                    # today's plan (Core 5 + reflex write)
 go run . -- --refresh       # today's level-matched write session
 go run . -- --levels        # what each function has earned: L1 / L2 / L3
 go run . -- --run=reflex    # run today's specialty drill and log the result
+go run . -- --reset         # restore today's reflex drill to its blank template
 ```
 
 Every entry point (root + the three `bin/` CLIs) shares one GNU-style option
 front-end (`argutil.go`): `--help`/`-h`, `--version`/`-V`, `--opt=value`,
 unambiguous long-option abbreviation, and an unknown `--option` is a usage
 error (exit 2). Retired spellings still resolve: `--run-core5` → `--run=core`,
-leetcode `--set` → `--show`, root `-r`/`-w`/`-l` → `--track`.
+leetcode `--set` → `--show`, root `-w`/`-l` → `--track`.
 
 ## Solving a drill (the core end-to-end flow)
 
@@ -51,7 +51,7 @@ function and grades the function's level from the history.
 ## Lint / test
 
 ```bash
-./bin/scripts/test-coverage.sh    # the real gate: the four source modules only
+./bin/scripts/test-coverage.sh    # the real gate: the three source modules only
 ```
 
 - `gofmt -l` and `go vet ./...` are clean in the root module and `bin/study_play`.
@@ -72,12 +72,11 @@ function and grades the function's level from the history.
 - `levels.go` (cue table) and `primaries.go` (one LeetCode problem per function)
   must stay in sync: `levels_test.go` fails if a function has no cue, no primary,
   or a cue that names its own answer.
-- Small-skill questions: `skillBank` in `bin/study_play/asks.go` (writing) and
-  `readSkills` in `bin/study_code/daily_read.go` (reading). Compute answers; do not
+- Small-skill questions: `skillBank` in `bin/study_play/asks.go`. Compute answers; do not
   eyeball them. `--missed`/`--got` store misses under `skills` in `.drill_log.json`.
 - `bin/study_leetcode/reflex_map.go` maps LeetCode slugs back to drill functions;
   keep it in step with `primaries.go` when adding problems.
-- `argutil.go` is copied verbatim into all four modules (they are separate Go
+- `argutil.go` is copied verbatim into all three modules (they are separate Go
   modules with no `go.work`). Edit one, then re-copy to the other three; each
   module supplies its own `gnuSpec` (program name, `canonical` option list,
   `aliases`). Add a new `--flag` to that module's `canonical` list or `gnuPre`

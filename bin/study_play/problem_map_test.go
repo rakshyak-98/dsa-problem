@@ -22,11 +22,6 @@ func TestProblemMapCoverage(t *testing.T) {
 			}
 		}
 	}
-	for _, b := range bonusDrills {
-		if _, ok := problemMap[b]; !ok {
-			t.Fatalf("missing bonus map %s", b)
-		}
-	}
 	if len(core5Problems) != 5 {
 		t.Fatal("core5 problems")
 	}

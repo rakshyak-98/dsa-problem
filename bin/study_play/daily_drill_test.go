@@ -67,8 +67,3 @@ func TestCore5Metadata(t *testing.T) {
 		t.Fatal("triggers list")
 	}
 }
-func TestBonusDrills(t *testing.T) {
-	if len(bonusDrills) != 3 {
-		t.Fatal("bonus drills")
-	}
-}

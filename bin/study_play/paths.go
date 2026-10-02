@@ -7,10 +7,8 @@ import (
 )
 
 // User-facing drill layout (repo root):
-//   drills/write/reflex/   — weekday + bonus reflex drills
+//   drills/write/reflex/   — weekday reflex drills
 //   drills/write/core5/    — daily Core 5
-//   drills/write/variants/ — medium variants
-//   drills/read/weekday/   — reflex reading drills
 //   drills/solutions/      — write drill solutions (peek after attempt)
 
 func findRepoRoot(from string) string {
@@ -38,10 +36,6 @@ func writeReflexDir(repoRoot, drillFile string) string {
 
 func writeCore5Dir(repoRoot string) string {
 	return filepath.Join(repoRoot, "drills", "write", "core5")
-}
-
-func writeVariantsDir(repoRoot string) string {
-	return filepath.Join(repoRoot, "drills", "write", "variants")
 }
 
 func solutionsDir(repoRoot string) string {

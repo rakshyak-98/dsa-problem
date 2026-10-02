@@ -11,7 +11,6 @@ trap 'rm -f "$OUT"' EXIT
 
 (cd "$ROOT/bin/study_play" && go test . ./_support/templates -covermode=atomic) | tee -a "$OUT"
 (cd "$ROOT" && go test . -covermode=atomic) | tee -a "$OUT"
-(cd "$ROOT/bin/study_code" && go test . -covermode=atomic) | tee -a "$OUT"
 
 echo
 echo "==> Coverage by package"

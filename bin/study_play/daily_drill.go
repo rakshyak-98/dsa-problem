@@ -141,12 +141,6 @@ var drills = []drill{
 	},
 }
 
-var bonusDrills = []string{
-	"08_heap_reflex",
-	"09_backtrack_reflex",
-	"10_linked_list_reflex",
-}
-
 var essentialCatalog = []struct {
 	group string
 	fns   []string
@@ -158,9 +152,6 @@ var essentialCatalog = []struct {
 	{"Trees & stacks", []string{"inorderTraversal", "preorderTraversal", "postorderTraversal", "levelOrderTraversal", "maxDepth", "isValidBST", "isValidParentheses", "dailyTemperatures"}},
 	{"DP", []string{"climbStairs", "minCostClimbingStairs", "rob", "coinChange"}},
 	{"Graphs", []string{"numIslands", "floodFill", "shortestPathGrid", "canFinish", "dfs", "bfs", "bfsShortestPath", "topoSort", "dijkstra"}},
-	{"Heaps (bonus)", []string{"kthLargest", "lastStoneWeight", "mergeKSorted"}},
-	{"Backtracking (bonus)", []string{"subsets", "permute", "combine"}},
-	{"Linked lists (bonus)", []string{"reverseList", "hasCycle", "middleNode", "mergeTwoLists", "removeNthFromEnd"}},
 }
 
 var allTriggers = []string{

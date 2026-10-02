@@ -23,11 +23,6 @@ func TestParseDailyArgs(t *testing.T) {
 		t.Fatalf("drill unknown: %+v", opts)
 	}
 
-	opts = parseDailyArgs([]string{"--", "--run", "reflex", "-r"})
-	if !opts.run || opts.runSide != "read" || len(opts.passArgs) != 3 {
-		t.Fatalf("parseDailyArgs run reflex -r: %+v", opts)
-	}
-
 	opts = parseDailyArgs([]string{"--run", "reflex", "--write"})
 	if !opts.run || opts.runSide != "write" {
 		t.Fatalf("parseDailyArgs run reflex --write: %+v", opts)
@@ -38,7 +33,7 @@ func TestParseDailyArgs(t *testing.T) {
 		t.Fatalf("parseDailyArgs run reflex no side: %+v", opts)
 	}
 
-	opts = parseDailyArgs([]string{"--run", "reflex", "-r", "-w"})
+	opts = parseDailyArgs([]string{"--run", "reflex", "-l", "-w"})
 	if opts.runSide != "conflict" {
 		t.Fatalf("expected run side conflict: %+v", opts)
 	}
@@ -103,10 +98,6 @@ func TestParseDailyArgs(t *testing.T) {
 		t.Fatalf("core5: %+v", opts)
 	}
 
-	opts = parseDailyArgs([]string{"--track", "read", "--drill", "core"})
-	if opts.drillUnknown != "core" || opts.drillKind != "" {
-		t.Fatalf("read track should reject core drill: %+v", opts)
-	}
 }
 
 func TestParseDailyArgsGNU(t *testing.T) {
@@ -151,7 +142,7 @@ func containsStrDaily(s []string, want string) bool {
 }
 
 func TestIsKnownTrack(t *testing.T) {
-	if !isKnownTrack(trackDSA) || !isKnownTrack(trackRead) || !isKnownTrack(trackWrite) || !isKnownTrack(trackLeetcode) {
+	if !isKnownTrack(trackDSA) || !isKnownTrack(trackWrite) || !isKnownTrack(trackLeetcode) {
 		t.Fatal("known tracks")
 	}
 	if isKnownTrack("nope") || isKnownTrack("backend") {

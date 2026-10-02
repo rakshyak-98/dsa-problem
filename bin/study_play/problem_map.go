@@ -73,23 +73,6 @@ var problemMap = map[string][]problemLink{
 		{"topoSort", "graphs/medium/course_schedule_ii.js", "Linear order of a DAG via Kahn's algorithm"},
 		{"dijkstra", "graphs/medium/network_delay_time.js", "Weighted shortest paths from a source"},
 	},
-	"08_heap_reflex": {
-		{"kthLargest", "heaps/medium/kth_largest_element_in_an_array.js", "Kth largest element in array"},
-		{"lastStoneWeight", "heaps/easy/last_stone_weight.js", "Simulate stone smashing with max heap"},
-		{"mergeKSorted", "heaps/hard/merge_k_sorted_lists.js", "Merge k sorted linked lists"},
-	},
-	"09_backtrack_reflex": {
-		{"subsets", "backtracking/medium/subsets.js", "Return all subsets of nums"},
-		{"permute", "backtracking/medium/permutations.js", "Return all permutations of nums"},
-		{"combine", "backtracking/medium/combinations.js", "All combinations of k numbers from 1..n"},
-	},
-	"10_linked_list_reflex": {
-		{"reverseList", "linked_list/easy/reverse_linked_list.js", "Reverse the list in place"},
-		{"hasCycle", "linked_list/easy/linked_list_cycle.js", "Detect a loop with slow + fast"},
-		{"middleNode", "linked_list/easy/middle_of_the_linked_list.js", "Middle node in one pass"},
-		{"mergeTwoLists", "linked_list/easy/merge_two_sorted_lists.js", "Merge two sorted lists"},
-		{"removeNthFromEnd", "linked_list/medium/remove_nth_node_from_end.js", "Drop the nth node from the end"},
-	},
 }
 
 var core5Problems = []problemLink{

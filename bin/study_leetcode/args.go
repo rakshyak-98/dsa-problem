@@ -7,7 +7,7 @@ const leetcodeProg = "study_leetcode"
 var leetcodeLongOpts = []string{
 	"help", "version",
 	"catalog", "show", "run", "refresh", "brief",
-	"read", "write", "leetcode", // consumed by the root runner when picking a side
+	"write", "leetcode", // consumed by the root runner when picking a side
 }
 
 var leetcodeAliases = map[string][]string{
@@ -71,7 +71,7 @@ func parseLeetcode(args []string) (opts leetcodeOpts, ctl gnuCtl, parseErr bool)
 			opts.refresh = true
 		case "--brief":
 			opts.brief = true
-		case "--read", "--write", "-r", "-w":
+		case "--write", "-w":
 			// selected by the root runner; nothing to do here
 		}
 	}

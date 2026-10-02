@@ -13,7 +13,6 @@ func TestPrintUnifiedHeaderFooter(t *testing.T) {
 	r, w, _ := os.Pipe()
 	os.Stdout = w
 	printUnifiedHeader(trackDSA)
-	printDSAExtras()
 	w.Close()
 	os.Stdout = old
 	var buf bytes.Buffer
@@ -48,7 +47,6 @@ func TestRunUnifiedCatalog(t *testing.T) {
 	}{
 		{trackDSA, "study_play"},
 		{trackWrite, "study_play"},
-		{trackRead, "study_code"},
 		{trackLeetcode, "study_leetcode"},
 	}
 	for _, tc := range cases {
@@ -81,23 +79,6 @@ func TestRunUnifiedCatalogFail(t *testing.T) {
 
 	if code := runUnified("/tmp/repo", dailyOptions{track: trackDSA, catalog: true}); code != 1 {
 		t.Fatalf("expected exit 1, got %d", code)
-	}
-}
-
-func TestRunUnifiedReadOnly(t *testing.T) {
-	calls := []string{}
-	commandRunner = func(dir string, args ...string) error {
-		calls = append(calls, dir)
-		return nil
-	}
-	defer func() { commandRunner = runIn }()
-
-	code := runUnified("/tmp/repo", dailyOptions{track: trackRead})
-	if code != 0 {
-		t.Fatal("expected success")
-	}
-	if len(calls) != 1 || !containsAll(calls[0], "study_code") {
-		t.Fatalf("expected study_code only, got %v", calls)
 	}
 }
 
@@ -168,29 +149,6 @@ func TestFilterLeetcodePassArgs(t *testing.T) {
 	}
 }
 
-func TestFilterReadPassArgs(t *testing.T) {
-	got := filterReadPassArgs([]string{"--brief", "--drill", "core", "--solution", "reflex"})
-	if len(got) != 3 || got[0] != "--brief" || got[1] != "--solution" || got[2] != "reflex" {
-		t.Fatalf("got %v", got)
-	}
-	got = filterReadPassArgs([]string{"--run", "core", "-w"})
-	if len(got) != 2 || got[0] != "--run" || got[1] != "-w" {
-		t.Fatalf("got %v", got)
-	}
-}
-
-func TestRunUnifiedCoreReadRemoved(t *testing.T) {
-	opts := dailyOptions{
-		track:    trackDSA,
-		run:      true,
-		runSide:  "read",
-		passArgs: []string{"--run", "reflex", "-r"},
-	}
-	if code := runUnified("/tmp/repo", opts); code != 1 {
-		t.Fatalf("expected exit 1, got %d", code)
-	}
-}
-
 func TestPrintHelp(t *testing.T) {
 	old := os.Stdout
 	r, w, _ := os.Pipe()
@@ -201,7 +159,7 @@ func TestPrintHelp(t *testing.T) {
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
 	out := buf.String()
-	for _, want := range []string{"Usage:", "-h, --help", "-V, --version", "--track=NAME", "--core5", "--drill[=KIND]", "--track=read", "--refresh", "--levels", "Exit status:"} {
+	for _, want := range []string{"Usage:", "-h, --help", "-V, --version", "--track=NAME", "--core5", "--drill[=KIND]", "--refresh", "--levels", "Exit status:"} {
 		if !strings.Contains(out, want) {
 			t.Fatalf("help missing %q:\n%s", want, out)
 		}
@@ -219,27 +177,6 @@ func TestPrintHelp(t *testing.T) {
 func TestRunUnifiedUnknownTrack(t *testing.T) {
 	if code := runUnified("/tmp/repo", dailyOptions{track: "nope"}); code != 1 {
 		t.Fatalf("expected exit 1, got %d", code)
-	}
-}
-
-func TestRunUnifiedRunReadOnly(t *testing.T) {
-	calls := []string{}
-	commandRunner = func(dir string, args ...string) error {
-		calls = append(calls, dir)
-		return nil
-	}
-	defer func() { commandRunner = runIn }()
-
-	opts := dailyOptions{
-		track:    trackRead,
-		run:      true,
-		passArgs: []string{"--run", "reflex"},
-	}
-	if code := runUnified("/tmp/repo", opts); code != 0 {
-		t.Fatal("expected success")
-	}
-	if len(calls) != 1 || !containsAll(calls[0], "study_code") {
-		t.Fatalf("expected study_code only, got %v", calls)
 	}
 }
 
@@ -273,8 +210,7 @@ func TestRunUnifiedFailOnRun(t *testing.T) {
 	opts := dailyOptions{
 		track:    trackDSA,
 		run:      true,
-		runSide:  "read",
-		passArgs: []string{"--run", "reflex", "-r"},
+		passArgs: []string{"--run", "reflex"},
 	}
 	if code := runUnified("/tmp", opts); code != 1 {
 		t.Fatalf("expected exit 1, got %d", code)
@@ -304,20 +240,6 @@ func TestPrintDrillArgError(t *testing.T) {
 	}
 }
 
-func TestPrintDrillArgErrorReadTrack(t *testing.T) {
-	old := os.Stderr
-	r, w, _ := os.Pipe()
-	os.Stderr = w
-	printDrillArgError(trackRead, false, "core")
-	w.Close()
-	os.Stderr = old
-	var buf bytes.Buffer
-	_, _ = io.Copy(&buf, r)
-	if !strings.Contains(buf.String(), "Valid arguments: reflex") {
-		t.Fatalf("read track help: %s", buf.String())
-	}
-}
-
 func TestRunCore5(t *testing.T) {
 	called := false
 	core5Runner = func(root string) error {
@@ -343,5 +265,26 @@ func TestRunCore5Fail(t *testing.T) {
 
 	if code := runCore5("/tmp/repo"); code != 1 {
 		t.Fatalf("expected exit 1, got %d", code)
+	}
+}
+
+func TestRunUnifiedReset(t *testing.T) {
+	var gotDir string
+	var gotArgs []string
+	commandRunner = func(dir string, args ...string) error {
+		gotDir, gotArgs = dir, args
+		return nil
+	}
+	defer func() { commandRunner = runIn }()
+
+	opts := parseDailyArgs([]string{"--reset"})
+	if !opts.reset {
+		t.Fatalf("--reset not parsed: %+v", opts)
+	}
+	if code := runUnified("/tmp/repo", opts); code != 0 {
+		t.Fatal("expected success")
+	}
+	if !containsAll(gotDir, "study_play") || len(gotArgs) != 1 || gotArgs[0] != "--reset" {
+		t.Fatalf("expected study_play --reset, got %s %v", gotDir, gotArgs)
 	}
 }

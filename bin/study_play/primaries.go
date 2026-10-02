@@ -76,21 +76,10 @@ var primaries = map[string]primaryProblem{
 	"canFinish":        {"Course Schedule", "course-schedule", "Medium", "Course Schedule II"},
 
 	// 08 — heaps
-	"kthLargest":      {"Kth Largest Element in an Array", "kth-largest-element-in-an-array", "Medium", "Kth Largest Element in a Stream"},
-	"lastStoneWeight": {"Last Stone Weight", "last-stone-weight", "Easy", "Minimum Cost to Connect Sticks"},
-	"mergeKSorted":    {"Merge k Sorted Lists", "merge-k-sorted-lists", "Hard", "Smallest Range Covering Elements from K Lists"},
 
 	// 10 — linked lists
-	"reverseList":      {"Reverse Linked List", "reverse-linked-list", "Easy", "Reverse Linked List II"},
-	"hasCycle":         {"Linked List Cycle", "linked-list-cycle", "Easy", "Linked List Cycle II"},
-	"middleNode":       {"Middle of the Linked List", "middle-of-the-linked-list", "Easy", "Reorder List"},
-	"mergeTwoLists":    {"Merge Two Sorted Lists", "merge-two-sorted-lists", "Easy", "Merge k Sorted Lists"},
-	"removeNthFromEnd": {"Remove Nth Node From End of List", "remove-nth-node-from-end-of-list", "Medium", "Remove Duplicates from Sorted List II"},
 
 	// 09 — backtracking
-	"subsets": {"Subsets", "subsets", "Medium", "Subsets II"},
-	"permute": {"Permutations", "permutations", "Medium", "Permutations II"},
-	"combine": {"Combinations", "combinations", "Medium", "Combination Sum"},
 
 	// 01 — sorting & sieve (folded into the arrays drill)
 	"mergeSort": {"Sort an Array", "sort-an-array", "Medium", "Count of Smaller Numbers After Self"},

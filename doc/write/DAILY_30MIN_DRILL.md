@@ -328,9 +328,6 @@ Use this as a master checklist. Specialty days cover these in rotation; Core 5 k
 ### Graphs
 - [ ] `numIslands` · `floodFill` · `shortestPathGrid` · `canFinish`
 
-### Linked lists (bonus)
-- [ ] `reverseList` · `hasCycle` · `middleNode` · `mergeTwoLists` · `removeNthFromEnd`
-
 ---
 
 ## After reflex (Standard tier only)

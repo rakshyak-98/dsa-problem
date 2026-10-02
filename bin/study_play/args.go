@@ -14,7 +14,7 @@ var playLongOpts = []string{
 	"drill", "solution", "run",
 	"refresh", "show", "levels", "problems", "triggers", "missed", "got",
 	"catalog", "brief", "weak", "setup", "reset",
-	"read", "write", // consumed by the root runner when picking a side
+	"write", // consumed by the root runner when picking a side
 }
 
 // playAliases rewrites retired spellings to the current option.
@@ -127,7 +127,7 @@ func parsePlay(args []string) (opts playOpts, ctl gnuCtl, parseErr bool) {
 		switch norm[i] {
 		case "--brief":
 			opts.brief = true
-		case "--read", "--write", "-r", "-w":
+		case "--write", "-w":
 			// selected by the root runner; nothing to do here
 		case "--refresh":
 			opts.refresh = true

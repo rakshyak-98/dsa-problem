@@ -10,32 +10,25 @@ Everything you **practice** lives under `drills/`, organized by topic. CLI helpe
 drills/
 ├── write/                 # DSA reflex writing
 │   ├── core5/             # daily Core 5 essentials
-│   ├── reflex/            # weekday + bonus reflex drills
-│   └── variants/          # medium pattern variants
-├── read/                  # code reading
-│   ├── core/              # Core Read 3 (every day)
-│   ├── weekday/           # specialty reading drills
-│   └── answers/           # peek only after honest attempt
+│   └── reflex/            # weekday reflex drills
 ├── leetcode/              # daily 10-question LeetCode practice sets
 └── solutions/             # write drill solutions (peek after attempt)
     ├── reflex/            # runnable Go solution per reflex drill
-    ├── core5.md
-    └── variants.md
+    └── core5.md
 ```
 
 ## Daily flow (recommended)
 
 ```bash
-go run .                       # daily drill: read + write (DSA track)
+go run .                       # daily drill: Core 5 + weekday reflex (DSA track)
 go run . -- --refresh          # today's level-matched write session
 go run . -- --levels           # what each function has earned: L1 / L2 / L3
 go run . -- --problems         # curated primary problem per function
 go run . -- --run=core         # check core answers
 go run . -- --run=reflex       # check reflex specialty answers
 go run . -- --track=leetcode --run   # fetch today's 10 LeetCode problems
-go run . -- --drill=core        # core only (Core Read 3 + Core 5)
+go run . -- --drill=core        # Core 5 only
 go run . -- --drill=reflex      # today's specialty only
-go run . -- --track=read        # reading only
 go run . -- --track=write       # writing only
 go run . -- --track=leetcode    # 10 LeetCode problems matching today's topic
 go run . -- --help              # full option reference
@@ -43,7 +36,7 @@ go run . -- --help              # full option reference
 
 Options are GNU-style: `-h`/`--help`, `-V`/`--version`, `--option=value` (space
 still works), any unambiguous abbreviation, and an unknown option is an error.
-The older `--run leetcode` and the `-r`/`-w`/`-l` run-side flags still work but
+The older `--run leetcode` and the `-w`/`-l` run-side flags still work but
 `--track` is the preferred selector.
 
 ## LeetCode practice (separate from reflex drills)
@@ -70,22 +63,10 @@ go run . -- --run           # test + log
 Guide: [`doc/write/START_HERE.md`](../doc/write/START_HERE.md)  
 Math reference: [`doc/write/MATH_CONCEPTS.md`](../doc/write/MATH_CONCEPTS.md)
 
-## Read drills
-
-```bash
-go -C bin/study_code run .
-go run -C drills/read/core/00_core_read .
-go run -C drills/read/weekday/03_name_the_pattern .
-go -C bin/study_code run . -- --run
-```
-
-Guide: [`doc/read/START_HERE.md`](../doc/read/START_HERE.md)
-
 ## Solutions (after honest attempt)
 
 **Reflex Go solutions:** [`solutions/reflex/`](solutions/reflex/) — runnable `main.go` per drill  
 **Quick notes:** [`solutions/*.md`](solutions/) — triggers and bugs  
-Read answer keys: [`read/answers/`](read/answers/)
 
 ## Track progress
 

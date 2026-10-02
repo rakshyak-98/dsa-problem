@@ -9,16 +9,14 @@ command -v go >/dev/null || { echo "Go is required (1.22+). Install from https:/
 go version
 
 echo
-echo "==> Initializing write drills (7 daily + 2 bonus)"
+echo "==> Initializing write drills (7 daily)"
 (go run -C bin/study_play . -- --setup)
 
 echo
 echo "==> Verifying helpers"
 (go run -C bin/study_play . -- --catalog >/dev/null)
-(go run -C bin/study_code . -- --catalog >/dev/null)
 (go build -o /dev/null .)
 (go build -C drills/write/core5 -o /dev/null .)
-(go build -C drills/write/variants -o /dev/null .)
 
 echo
 echo "==> Running coverage gate (80%)"
@@ -33,5 +31,4 @@ echo "  unified daily:              go run ."
 echo "  today's session:            go run . -- --refresh"
 echo "  level scoreboard:           go run . -- --levels"
 echo "  Core 5:                     go run -C drills/write/core5 ."
-echo "  read drills CLI:            go run -C bin/study_code ."
 echo "  problem index:              reference/problems/CATEGORIES.md"

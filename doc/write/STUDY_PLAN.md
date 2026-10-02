@@ -145,10 +145,6 @@ go run . -- --missed=index,range    # these return as "redo" questions (up to 2/
 go run . -- --got=index             # recovered: removes one miss
 ```
 
-The read track (`go run . -- --track read`) has its own SMALL SKILLS block per
-weekday (loop bounds, window math, invariants, cost, stating the ask), with
-`--show` for the answers.
-
 ## The 5-phase roadmap (12 weeks)
 
 ```
