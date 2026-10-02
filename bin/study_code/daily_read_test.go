@@ -131,3 +131,24 @@ func TestPrintHelp(t *testing.T) {
 		t.Fatalf("help missing reflex options:\n%s", out)
 	}
 }
+
+func TestEveryReadDayHasSkillQuestions(t *testing.T) {
+	for _, d := range drills {
+		qs := readSkills[d.day]
+		if len(qs) < 3 {
+			t.Fatalf("%s: want at least 3 small-skill questions, got %d", d.day, len(qs))
+		}
+		for _, q := range qs {
+			if q.q == "" || q.answer == "" {
+				t.Fatalf("%s: incomplete question %+v", d.day, q)
+			}
+		}
+	}
+}
+
+func TestParseReadShow(t *testing.T) {
+	opts, _, perr := parseRead([]string{"--show"})
+	if perr || !opts.show {
+		t.Fatalf("--show: %+v", opts)
+	}
+}

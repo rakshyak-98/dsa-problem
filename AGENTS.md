@@ -72,6 +72,9 @@ function and grades the function's level from the history.
 - `levels.go` (cue table) and `primaries.go` (one LeetCode problem per function)
   must stay in sync: `levels_test.go` fails if a function has no cue, no primary,
   or a cue that names its own answer.
+- Small-skill questions: `skillBank` in `bin/study_play/asks.go` (writing) and
+  `readSkills` in `bin/study_code/daily_read.go` (reading). Compute answers; do not
+  eyeball them. `--missed`/`--got` store misses under `skills` in `.drill_log.json`.
 - `bin/study_leetcode/reflex_map.go` maps LeetCode slugs back to drill functions;
   keep it in step with `primaries.go` when adding problems.
 - `argutil.go` is copied verbatim into all four modules (they are separate Go

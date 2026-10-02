@@ -101,7 +101,7 @@ const dailyProg = "dsa-drills"
 var dailyLongOpts = []string{
 	"help", "version", "list-tracks", "track", "core5",
 	"drill", "solution", "run", "catalog",
-	"refresh", "show", "levels", "problems", "triggers", "weak", "brief",
+	"refresh", "show", "levels", "problems", "triggers", "weak", "brief", "missed", "got",
 	"read", "write", "leetcode", // deprecated run-side selectors; prefer --track
 }
 

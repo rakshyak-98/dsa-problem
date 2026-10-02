@@ -20,8 +20,16 @@ type fnRecord struct {
 	LastFail string `json:"lastFail,omitempty"`
 }
 
+// skillRecord is how often a small-skill question was marked missed, and when
+// last. It only feeds the redo block of the daily small-skills round.
+type skillRecord struct {
+	Misses   int    `json:"misses"`
+	LastMiss string `json:"lastMiss"`
+}
+
 type drillLog struct {
-	Functions map[string]fnRecord `json:"functions"`
+	Functions map[string]fnRecord    `json:"functions"`
+	Skills    map[string]skillRecord `json:"skills,omitempty"`
 }
 
 var passRE = regexp.MustCompile(`^PASS: (.+)$`)
@@ -246,4 +254,72 @@ func orDash(s string) string {
 		return "—"
 	}
 	return s
+}
+
+// recordSkills marks skill ids missed (miss=true) or recovered. A recovery
+// removes one miss; a skill at zero drops out of the log.
+func recordSkills(root string, ids []string, miss bool) error {
+	for _, id := range ids {
+		if !isSkillID(id) {
+			return fmt.Errorf("unknown skill %q (see doc/write/STUDY_PLAN.md, Mechanics)", id)
+		}
+	}
+	log := loadLog(root)
+	if log.Skills == nil {
+		log.Skills = map[string]skillRecord{}
+	}
+	for _, id := range ids {
+		rec := log.Skills[id]
+		if miss {
+			rec.Misses++
+			rec.LastMiss = today()
+			log.Skills[id] = rec
+			continue
+		}
+		rec.Misses--
+		if rec.Misses <= 0 {
+			delete(log.Skills, id)
+		} else {
+			log.Skills[id] = rec
+		}
+	}
+	return saveLog(root, log)
+}
+
+func isSkillID(id string) bool {
+	for _, s := range skillOrder {
+		if s == id {
+			return true
+		}
+	}
+	return false
+}
+
+// weakSkills returns skills missed within skillMissWindow days, most-missed
+// first; ties break alphabetically so the pick is stable.
+func weakSkills(log drillLog, now time.Time) []string {
+	var ids []string
+	for id, rec := range log.Skills {
+		t, err := time.Parse("2006-01-02", rec.LastMiss)
+		if err != nil || rec.Misses <= 0 || now.Sub(t) > skillMissWindow*24*time.Hour {
+			continue
+		}
+		ids = append(ids, id)
+	}
+	sort.Slice(ids, func(i, j int) bool {
+		a, b := log.Skills[ids[i]], log.Skills[ids[j]]
+		if a.Misses != b.Misses {
+			return a.Misses > b.Misses
+		}
+		return ids[i] < ids[j]
+	})
+	return ids
+}
+
+func weakSkillsNow(now time.Time) []string {
+	wd, err := os.Getwd()
+	if err != nil {
+		return nil
+	}
+	return weakSkills(loadLog(findRepoRoot(wd)), now)
 }

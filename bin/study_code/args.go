@@ -9,7 +9,7 @@ const readProg = "study_code"
 
 var readLongOpts = []string{
 	"help", "version",
-	"drill", "solution", "run", "catalog", "brief",
+	"drill", "solution", "run", "catalog", "brief", "show",
 	"read", "write", // consumed by the root runner when picking a side
 }
 
@@ -45,6 +45,7 @@ the value may be omitted.
       --run[=reflex]    run today's reflex reading tests
       --catalog         list the weekday reading drills
       --brief           one-line output for the unified daily runner
+      --show            reveal the answers to the SMALL SKILLS questions
 
 Exit status: 0 success, 1 a drill failed, 2 a command-line usage error.
 `)
@@ -62,6 +63,7 @@ type readOpts struct {
 	runMode      string // "reflex" | ""
 	catalog      bool
 	brief        bool
+	show         bool
 }
 
 // parseRead applies the GNU front-end, then reads the normalised tokens.
@@ -92,6 +94,8 @@ func parseRead(args []string) (opts readOpts, ctl gnuCtl, parseErr bool) {
 			opts.catalog = true
 		case "--brief":
 			opts.brief = true
+		case "--show":
+			opts.show = true
 		case "--read", "--write", "-r", "-w":
 			// selected by the root runner; nothing to do here
 		case "--drill":

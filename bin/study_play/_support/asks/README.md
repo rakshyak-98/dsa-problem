@@ -19,6 +19,15 @@ Pattern:    which template fits (after understanding, not before)
 2. Cover the hints and fill each bullet from the statement alone.
 3. Only then open the matching reflex drill or primary problem.
 
+## Small skills (same section, every day)
+
+Under each ask sits a **SMALL SKILLS** block: short questions on the mechanics
+the day's pattern is built from (index math, ranges, invariants, why a pointer
+moves, what a variable means, complexity, and more). Four focus questions feed
+today's drill; four cross-topic ones rotate through every other skill. Say the
+answer *and the reason* first; `go run . -- --show` reveals them. The bank is
+`skillBank` in `asks.go`; the curriculum is in `doc/write/STUDY_PLAN.md`.
+
 ## Rule
 
 If you cannot write the **Ask** line without mentioning a data structure, you do not understand the problem yet.

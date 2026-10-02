@@ -93,6 +93,62 @@ Full solve process continues in [The problem-solving framework](#the-problem-sol
 
 ---
 
+## Mechanics — the small skills under the patterns
+
+Patterns are built from small moves. Miss one (an index formula, an
+inclusive/exclusive length, the *reason* a pointer advances) and the pattern is
+recalled but buggy. The daily plan prints a **SMALL SKILLS** block of short
+questions for exactly these; `go run . -- --show` reveals the answers. Say the
+answer **and the reason** aloud first.
+
+```text
+Problem solving → Pattern recognition → Algorithmic techniques
+   → Data structures → Core operations → Mathematical / logical primitives
+```
+
+Skills are drilled bottom-up; the tag in brackets (`[index]`) is the skill id.
+
+| Phase | Skill (`id`) | Become fluent at | Why it matters |
+|-------|--------------|------------------|----------------|
+| 1 | Index computation (`index`) | mirror `n-1-i`, wrap `(i+k)%n`, middle `l+(r-l)/2` | off-by-one errors |
+| 1 | Inclusive vs exclusive (`range`) | `[l,r]` is `r-l+1`, `[l,r)` is `r-l` | binary search, windows, partitions |
+| 1 | Coordinate transformation (`coord`) | `r*cols+c`, `/cols`, `%cols`, neighbour deltas, rotate/transpose | grids, matrices |
+| 1 | Value/index mapping (`mapping`) | value `v` lives at `v-1`; digits via `%10`, `/10`; `c-'a'` | cyclic sort, missing/duplicate |
+| 1 | State variables (`state`) | one phrase for what every variable means | derivable instead of memorized code |
+| 2 | Loop invariants (`invariant`) | what is true before/after each iteration | windows, binary search, partitions |
+| 2 | Pointer movement (`pointer`) | *why* `left++` / `right--` / `fast+=2` | two pointers, lists, merging |
+| 2 | Prefix / suffix / difference (`prefix`) | cumulative state, range queries, range updates | subarray problems |
+| 2 | Frequency & state compression (`freq`) | counts, distinct counters, last-seen | strings, duplicates, windows |
+| 2 | Binary-search reasoning (`bsearch`) | space, predicate, what `mid` says, which half dies | exact, bounds, search on answer |
+| 2 | Monotonicity (`mono`) | a property that only flips one way | stacks, deques, binary search |
+| 3 | Stack & queue discipline (`stack`) | what the container stores; LIFO vs FIFO | brackets, BFS levels, next-greater |
+| 3 | Linked-list surgery (`list`) | save `next`, dummy head, gap pointers | reverse, remove, merge, cycle |
+| 3 | Tree recursion (`tree`) | return-vs-record, traversal order, bounds | depth, diameter, BST |
+| 3 | Heap invariants (`heap`) | parent/child index math, sift, costs | top-k, merge-k, scheduling |
+| 4 | Recursion & backtracking (`recur`) | state, choice, base case, what to undo | subsets, permutations, memo |
+| 5 | Graph modeling (`graph`) | node, edge, visited rule, degree, components | BFS/DFS, topo sort, union-find, Dijkstra |
+| 6 | DP state design (`dp`) | `dp[i]` in English, legal transitions, loop direction | 1D/2D/knapsack/subsequence |
+| 7 | Greedy & sorting as preprocessing (`greedy`) | sort key, exchange argument | intervals, scheduling |
+| 7 | Complexity & amortized (`complexity`) | total work across the run, recurrences | choosing algorithms |
+| 7 | Bit & number primitives (`bits`) | `x&(x-1)`, XOR, shifts, safe mod, gcd, fast power | math and bit problems |
+
+**How the daily block is chosen:** four *focus* questions from two skills that
+feed today's weekday drill, rotating week by week; four more from other skills,
+walking the whole bank so every skill and question comes up in rotation. It
+shows in `go run .` and `go run . -- --refresh`. The bank is `skillBank` in
+`bin/study_play/asks.go`.
+
+**Weak skills come back.** After checking with `--show`, record what you missed:
+
+```bash
+go run . -- --missed=index,range    # these return as "redo" questions (up to 2/day, 14 days)
+go run . -- --got=index             # recovered: removes one miss
+```
+
+The read track (`go run . -- --track read`) has its own SMALL SKILLS block per
+weekday (loop bounds, window math, invariants, cost, stating the ask), with
+`--show` for the answers.
+
 ## The 5-phase roadmap (12 weeks)
 
 ```

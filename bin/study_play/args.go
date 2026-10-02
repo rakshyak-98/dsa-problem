@@ -12,7 +12,7 @@ const playProg = "study_play"
 var playLongOpts = []string{
 	"help", "version",
 	"drill", "solution", "run",
-	"refresh", "show", "levels", "problems", "triggers",
+	"refresh", "show", "levels", "problems", "triggers", "missed", "got",
 	"catalog", "brief", "weak", "setup", "reset",
 	"read", "write", // consumed by the root runner when picking a side
 }
@@ -63,6 +63,11 @@ Session views (writing track):
       --triggers        the full cross-topic pattern-trigger table
       --weak            the weakest functions in the drill log
 
+Small skills (the SMALL SKILLS block of the daily plan):
+      --show            reveal the answers (with the plan or --refresh)
+      --missed=A,B      mark skills you missed; they return as "redo" questions
+      --got=A           mark a skill recovered (removes one miss)
+
 Maintenance:
       --setup           scaffold every drill from the blank templates
       --reset           reset today's drill to its blank template
@@ -104,6 +109,8 @@ type playOpts struct {
 	triggers     bool
 	catalog      bool
 	weak         bool
+	missed       string
+	got          string
 	setup        bool
 	reset        bool
 }
@@ -136,6 +143,18 @@ func parsePlay(args []string) (opts playOpts, ctl gnuCtl, parseErr bool) {
 			opts.catalog = true
 		case "--weak":
 			opts.weak = true
+		case "--missed", "--got":
+			if i+1 >= len(norm) {
+				fmt.Fprintf(os.Stderr, "%s: option '%s' requires an argument\n", playProg, norm[i])
+				fmt.Fprintln(os.Stderr, gnuTryHelp(playProg))
+				return opts, gnuOK, true
+			}
+			i++
+			if norm[i-1] == "--missed" {
+				opts.missed = norm[i]
+			} else {
+				opts.got = norm[i]
+			}
 		case "--setup":
 			opts.setup = true
 		case "--reset":

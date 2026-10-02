@@ -310,6 +310,7 @@ func printToday(today drill, brief bool) {
 		fmt.Printf("write: %s\n", today.file)
 		fmt.Printf("       core5: %s\n", core5Names())
 		fmt.Printf("       specialty: %s\n", strings.Join(today.functions, ", "))
+		printSkillQuestions(today.day)
 		return
 	}
 	fmt.Printf("WRITE %s | %s\n", today.day, today.file)
@@ -386,10 +387,37 @@ func main() {
 		os.Exit(2)
 	}
 	brief := opts.brief
+	revealSkillAnswers = opts.show
 	runMode := opts.runMode
 
 	if opts.weak {
 		printWeakFunctions(repoRoot, 5)
+		return
+	}
+	if opts.missed != "" || opts.got != "" {
+		code := 0
+		for _, c := range []struct {
+			list string
+			miss bool
+		}{{opts.missed, true}, {opts.got, false}} {
+			if c.list == "" {
+				continue
+			}
+			ids := strings.Split(c.list, ",")
+			if err := recordSkills(repoRoot, ids, c.miss); err != nil {
+				fmt.Fprintf(os.Stderr, "%s: %v\n", playProg, err)
+				code = 2
+				continue
+			}
+			verb := "missed"
+			if !c.miss {
+				verb = "recovered"
+			}
+			fmt.Printf("skills %s: %s\n", verb, strings.Join(ids, ", "))
+		}
+		if code != 0 {
+			os.Exit(code)
+		}
 		return
 	}
 	if opts.setup {

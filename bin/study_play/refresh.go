@@ -220,6 +220,8 @@ func printRefresh(s refreshSession, showAnswers bool) {
 	for _, t := range s.specialty.triggers {
 		fmt.Printf("   trigger: %s\n", t)
 	}
+	revealSkillAnswers = showAnswers
+	printSkillQuestions(s.day)
 
 	if len(s.stretch) > 0 {
 		fmt.Println("\n5. STRETCH — you own the move; apply it somewhere new.")

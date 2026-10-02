@@ -68,6 +68,8 @@ Writing track (dsa / write):
       --problems           the curated primary problem per function, by level
       --triggers           the full cross-topic pattern-trigger table
       --weak               the weakest functions in the drill log
+      --missed=A,B         mark small skills you missed; they return as "redo"
+      --got=A              mark a small skill recovered
 
 LeetCode track (--track=leetcode):
       --run                fetch and show today's 10 problems
