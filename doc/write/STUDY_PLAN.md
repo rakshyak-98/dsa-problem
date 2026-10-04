@@ -135,7 +135,7 @@ Skills are drilled bottom-up; the tag in brackets (`[index]`) is the skill id.
 **How the daily block is chosen:** four *focus* questions from two skills that
 feed today's weekday drill, rotating week by week; four more from other skills,
 walking the whole bank so every skill and question comes up in rotation. It
-shows in `go run .` and `go run . -- --refresh`. The bank is `skillBank` in
+shows in `go run .`. The bank is `skillBank` in
 `bin/study_play/asks.go`.
 
 **Weak skills come back.** After checking with `--show`, record what you missed:

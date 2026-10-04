@@ -28,7 +28,5 @@ echo
 echo "Next steps:"
 echo "  START HERE:                 open doc/drills.md"
 echo "  unified daily:              go run ."
-echo "  today's session:            go run . -- --refresh"
-echo "  level scoreboard:           go run . -- --levels"
 echo "  Core 5:                     go run -C drills/write/core5 ."
 echo "  problem index:              reference/problems/CATEGORIES.md"

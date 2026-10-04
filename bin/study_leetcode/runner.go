@@ -35,7 +35,7 @@ func printTodaySet(s practiceSet, brief bool) {
 	fmt.Printf("        drills/leetcode/daily.go    (full problem statements)\n")
 	fmt.Printf("        drills/leetcode/daily.md    (markdown copy)\n")
 	fmt.Println()
-	fmt.Println("Solve on LeetCode — then run: go run . -- --levels")
+	fmt.Println("Solve on LeetCode.")
 	fmt.Println()
 	fmt.Println("━━━ TODAY'S 10 PROBLEMS (from LeetCode API) ━━━━━━━━━━━━")
 	for i, p := range s.problems {

@@ -100,12 +100,10 @@ func printProblemMap(drillFile string) {
 			continue
 		}
 		fmt.Printf("  • %-20s %-6s %s\n", l.function, p.diff, p.title)
-		if c, ok := cueByFn[l.function]; ok {
-			fmt.Printf("    ask: %s\n", c.ask)
-		}
+		fmt.Printf("    ask: %s\n", l.ask)
 		fmt.Printf("    %s\n", problemURL(p.slug))
 	}
-	fmt.Println("\n  Solve without reopening the drill. Stuck twice → that is an L1 function again.")
+	fmt.Println("\n  Solve without reopening the drill. Stuck twice → blind-write it again tomorrow.")
 }
 
 func printCore5Problems() {

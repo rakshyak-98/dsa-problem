@@ -62,11 +62,8 @@ a value also accepts the --option=value form.
       --catalog            list every drill in the active track
 
 Writing track (dsa / write):
-      --refresh            today's level-matched session (recognise then rebuild)
-      --show               with --refresh, reveal the recognition answers
-      --levels             what each function has earned: L1 / L2 / L3
-      --problems           the curated primary problem per function, by level
-      --triggers           the full cross-topic pattern-trigger table
+      --show               reveal the small-skill answers
+      --problems           the curated primary problem per function
       --weak               the weakest functions in the drill log
       --missed=A,B         mark small skills you missed; they return as "redo"
       --got=A              mark a small skill recovered

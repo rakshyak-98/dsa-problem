@@ -12,7 +12,7 @@ const playProg = "study_play"
 var playLongOpts = []string{
 	"help", "version",
 	"drill", "solution", "run",
-	"refresh", "show", "levels", "problems", "triggers", "missed", "got",
+	"show", "problems", "missed", "got",
 	"catalog", "brief", "weak", "setup", "reset",
 	"write", // consumed by the root runner when picking a side
 }
@@ -56,15 +56,11 @@ option also accepts the --option=value form.
       --brief           one-line output for the unified daily runner
 
 Session views (writing track):
-      --refresh         today's level-matched session (recognise then rebuild)
-      --show            with --refresh, reveal the recognition answers
-      --levels          what each function has earned: L1 / L2 / L3
-      --problems        the curated primary problem per function, by level
-      --triggers        the full cross-topic pattern-trigger table
+      --problems        the curated primary problem per function
       --weak            the weakest functions in the drill log
 
 Small skills (the SMALL SKILLS block of the daily plan):
-      --show            reveal the answers (with the plan or --refresh)
+      --show            reveal the answers (with the plan)
       --missed=A,B      mark skills you missed; they return as "redo" questions
       --got=A           mark a skill recovered (removes one miss)
 
@@ -102,11 +98,8 @@ type playOpts struct {
 	drillKind    string // "core" | "reflex" | ""
 	solutionKind string // "core" | "reflex" | ""
 	runMode      string // "core" | "reflex" | "all" | ""
-	refresh      bool
 	show         bool
-	levels       bool
 	problems     bool
-	triggers     bool
 	catalog      bool
 	weak         bool
 	missed       string
@@ -129,16 +122,10 @@ func parsePlay(args []string) (opts playOpts, ctl gnuCtl, parseErr bool) {
 			opts.brief = true
 		case "--write", "-w":
 			// selected by the root runner; nothing to do here
-		case "--refresh":
-			opts.refresh = true
 		case "--show":
 			opts.show = true
-		case "--levels":
-			opts.levels = true
 		case "--problems":
 			opts.problems = true
-		case "--triggers":
-			opts.triggers = true
 		case "--catalog":
 			opts.catalog = true
 		case "--weak":

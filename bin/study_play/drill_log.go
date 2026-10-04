@@ -102,6 +102,25 @@ func hasTestFiles(dir string) bool {
 	return false
 }
 
+// owningFunction maps an assert case name back to the function it exercises,
+// so "maxSumSubarrayK window slide" counts toward maxSumSubarrayK.
+func owningFunction(caseName string) (string, bool) {
+	best := ""
+	for fn := range primaries {
+		if len(fn) > len(best) && hasPrefixWord(caseName, fn) {
+			best = fn
+		}
+	}
+	return best, best != ""
+}
+
+func hasPrefixWord(s, prefix string) bool {
+	if len(s) < len(prefix) || s[:len(prefix)] != prefix {
+		return false
+	}
+	return len(s) == len(prefix) || s[len(prefix)] == ' '
+}
+
 func runDrillWithLog(drillPath string) (bool, string, error) {
 	var cmd *exec.Cmd
 	if hasTestFiles(drillPath) {
@@ -122,14 +141,14 @@ func updateLogFromOutput(root string, output string, allFunctions []string) {
 	passed, failed := parseTestOutput(output)
 
 	// Per-assert detail ("rotateRight k>len") stays in the log as edge-case
-	// history; the function-level roll-up below is what levels are graded on.
+	// history; the function-level roll-up below is what the weak list reads.
 	for _, name := range passed {
-		if _, isFn := cueByFn[name]; !isFn {
+		if _, isFn := primaries[name]; !isFn {
 			recordResult(&log, name, true)
 		}
 	}
 	for _, name := range failed {
-		if _, isFn := cueByFn[name]; !isFn {
+		if _, isFn := primaries[name]; !isFn {
 			recordResult(&log, name, false)
 		}
 	}

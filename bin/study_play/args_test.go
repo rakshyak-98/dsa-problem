@@ -36,9 +36,12 @@ func TestParsePlay(t *testing.T) {
 	}
 
 	// Session-view flags land on the struct.
-	opts, _, _ = parsePlay([]string{"--refresh", "--show"})
-	if !opts.refresh || !opts.show {
-		t.Fatalf("parsePlay refresh/show: %+v", opts)
+	opts, _, _ = parsePlay([]string{"--show"})
+	if !opts.show {
+		t.Fatalf("parsePlay show: %+v", opts)
+	}
+	if _, ctl, _ := parsePlay([]string{"--levels"}); ctl != gnuErr {
+		t.Fatal("--levels was removed and should be a usage error")
 	}
 	opts, _, _ = parsePlay([]string{"--weak"})
 	if !opts.weak {

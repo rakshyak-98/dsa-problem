@@ -12,7 +12,7 @@ Three separate Go modules with **no `go.work`**, so run `go` commands per module
 | Module | Purpose |
 |--------|---------|
 | `.` (root) | unified daily runner — delegates to the others |
-| `bin/study_play/` | write-reflex drills: levels, `--refresh` session, problem set |
+| `bin/study_play/` | write-reflex drills: drill log, problem set |
 | `bin/study_leetcode/` | daily 10-question LeetCode set (hits the LeetCode API) |
 
 Because they are separate modules, `go run ./bin/study_play` **fails** from the
@@ -23,8 +23,7 @@ repo root — the root module cannot resolve that package path. Use `go run . --
 
 ```bash
 go run .                    # today's plan (Core 5 + reflex write)
-go run . -- --refresh       # today's level-matched write session
-go run . -- --levels        # what each function has earned: L1 / L2 / L3
+go run . -- --problems      # curated LeetCode problem per function
 go run . -- --run=reflex    # run today's specialty drill and log the result
 go run . -- --reset         # restore today's reflex drill to its blank template
 ```
@@ -46,7 +45,7 @@ go run . -- --run=reflex
 ```
 
 Every assert prints `PASS:` / `FAIL:`; `--run` rolls those up into one result per
-function and grades the function's level from the history.
+function in `.drill_log.json`.
 
 ## Lint / test
 
@@ -69,9 +68,9 @@ function and grades the function's level from the history.
 
 ## Conventions
 
-- `levels.go` (cue table) and `primaries.go` (one LeetCode problem per function)
-  must stay in sync: `levels_test.go` fails if a function has no cue, no primary,
-  or a cue that names its own answer.
+- `primaries.go` (one LeetCode problem per function) is also the function
+  registry the drill log uses to map asserts to functions; `primaries_test.go`
+  fails if a catalog function has no primary.
 - Small-skill questions: `skillBank` in `bin/study_play/asks.go`. Compute answers; do not
   eyeball them. `--missed`/`--got` store misses under `skills` in `.drill_log.json`.
 - `bin/study_leetcode/reflex_map.go` maps LeetCode slugs back to drill functions;

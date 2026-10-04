@@ -159,7 +159,7 @@ func TestPrintHelp(t *testing.T) {
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
 	out := buf.String()
-	for _, want := range []string{"Usage:", "-h, --help", "-V, --version", "--track=NAME", "--core5", "--drill[=KIND]", "--refresh", "--levels", "Exit status:"} {
+	for _, want := range []string{"Usage:", "-h, --help", "-V, --version", "--track=NAME", "--core5", "--drill[=KIND]", "--refresh", "--problems", "Exit status:"} {
 		if !strings.Contains(out, want) {
 			t.Fatalf("help missing %q:\n%s", want, out)
 		}

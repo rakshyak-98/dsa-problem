@@ -1,17 +1,11 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+import "fmt"
 
 // Primary problems
 //
 // Each drilled function gets one canonical problem to solve *after* the drill
-// passes, plus one step up. The pair is chosen so the difficulty matches the
-// level the function is graded at: an L1 function gets a problem that only
-// needs the move typed out, an L3 function gets one where the move has to be
-// recognised through a disguise first.
+// passes, plus one step up.
 //
 // These are LeetCode slugs rather than paths into reference/problems/, which
 // indexes only a partial local mirror — bin/study_leetcode resolves slugs
@@ -109,51 +103,19 @@ func problemURL(slug string) string {
 	return "https://leetcode.com/problems/" + slug + "/"
 }
 
-// printPrimary shows the problem to solve after the drill passes. Above L1 it
-// also shows the step up, because a function you already own is only worth
-// practising on a statement that hides it.
-func printPrimary(fn string, earned level) {
-	p, ok := primaries[fn]
-	if !ok {
-		return
-	}
-	fmt.Printf("     solve: %s (%s) %s\n", p.title, p.diff, problemURL(p.slug))
-	if earned > levelRecall && p.nextUp != "" {
-		fmt.Printf("     then:  %s\n", p.nextUp)
-	}
-}
-
-// printProblemSet lists the curated problem for every function, ordered by the
-// level it is currently graded at — the answer to "what should I actually
-// solve next".
-func printProblemSet(root string) {
-	report := masteryReport(root)
-	sort.Slice(report, func(i, j int) bool {
-		if report[i].earned != report[j].earned {
-			return report[i].earned < report[j].earned
-		}
-		pi, pj := drillPriority[report[i].cue.drill], drillPriority[report[j].cue.drill]
-		if pi != pj {
-			return pi < pj
-		}
-		return report[i].cue.fn < report[j].cue.fn
-	})
-
-	fmt.Println("PROBLEM SET — one primary per function, ordered by the level you are at")
-	current := level(0)
-	for _, m := range report {
-		if m.earned != current {
-			current = m.earned
-			fmt.Printf("\n%s — solve these as written\n", current.label())
-		}
-		p, ok := primaries[m.cue.fn]
-		if !ok {
-			continue
-		}
-		fmt.Printf("  %-22s %-6s %-44s %s\n", m.cue.fn, p.diff, p.title, problemURL(p.slug))
-		if m.earned > levelRecall {
+// printProblemSet lists the curated problem for every function, grouped by
+// drill file.
+func printProblemSet() {
+	fmt.Println("PROBLEM SET — one primary per function")
+	for _, d := range drills {
+		fmt.Printf("\n%s\n", d.file)
+		for _, l := range problemMap[d.file] {
+			p, ok := primaries[l.function]
+			if !ok {
+				continue
+			}
+			fmt.Printf("  %-22s %-6s %-44s %s\n", l.function, p.diff, p.title, problemURL(p.slug))
 			fmt.Printf("  %-22s %-6s step up: %s\n", "", "", p.nextUp)
 		}
 	}
-	fmt.Println("\n  Level is earned from .drill_log.json: go run . -- --levels")
 }

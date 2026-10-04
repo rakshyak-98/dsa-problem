@@ -21,8 +21,6 @@ drills/
 
 ```bash
 go run .                       # daily drill: Core 5 + weekday reflex (DSA track)
-go run . -- --refresh          # today's level-matched write session
-go run . -- --levels           # what each function has earned: L1 / L2 / L3
 go run . -- --problems         # curated primary problem per function
 go run . -- --run=core         # check core answers
 go run . -- --run=reflex       # check reflex specialty answers
@@ -71,7 +69,6 @@ Math reference: [`doc/write/MATH_CONCEPTS.md`](../doc/write/MATH_CONCEPTS.md)
 ## Track progress
 
 ```bash
-go run . -- --levels    # every function, grouped by the level it has earned
 go run . -- --weak      # the five worst, worst first
 ```
 

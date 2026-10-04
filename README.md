@@ -23,15 +23,12 @@ Then open **[`doc/drills.md`](doc/drills.md)** — all practice files live under
 
 Options follow the GNU conventions: `--help` / `-h`, `--version` / `-V`,
 `--option=value` (or `--option value`), and any unambiguous abbreviation
-(`--ref` for `--refresh`). An unknown option is an error, not a silent no-op.
+(`--prob` for `--problems`). An unknown option is an error, not a silent no-op.
 
 ```bash
 go run .                              # today's plan: read + write
-go run . -- --refresh                 # level-matched write session (start here)
-go run . -- --refresh --show          # same, with the recognition answers revealed
-go run . -- --levels                  # what each function has earned: L1 / L2 / L3
-go run . -- --problems                # curated primary problem per function, by level
-go run . -- --triggers                # full cross-topic pattern trigger table
+go run . -- --show                    # today's plan with the small-skill answers revealed
+go run . -- --problems                # curated primary problem per function
 go run . -- --weak                    # weakest functions from the drill log
 go run . -- --run                     # check today's reflex answers
 go run . -- --run=core                # check the Core 5 tests
@@ -59,7 +56,7 @@ dsa-problem/
 │   ├── leetcode/            # daily 10-question LeetCode practice sets
 │   └── solutions/           # write drill solutions (after attempt)
 ├── bin/                     # internal CLI tooling
-│   ├── study_play/          # write-drill CLI: levels, refresh, problem set
+│   ├── study_play/          # write-drill CLI: drills, drill log, problem set
 │   ├── study_leetcode/      # daily LeetCode practice set CLI
 │   └── scripts/             # test coverage gate
 ├── reference/problems/      # problem catalog by topic + solved simulations
@@ -75,7 +72,7 @@ dsa-problem/
 
 ## More docs
 
-- [`bin/study_play/README.md`](bin/study_play/README.md) — understanding levels and how `--refresh` picks a session
+- [`bin/study_play/README.md`](bin/study_play/README.md) — write-drill commands and layout
 - [`doc/write/DAILY_30MIN_DRILL.md`](doc/write/DAILY_30MIN_DRILL.md) — the daily session, start to finish
 - [`doc/write/START_HERE.md`](doc/write/START_HERE.md) — writing reflex flow
 - [`doc/DSA_JARGON.md`](doc/DSA_JARGON.md) — plain-English glossary for DSA terms

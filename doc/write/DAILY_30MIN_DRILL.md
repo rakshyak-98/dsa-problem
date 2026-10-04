@@ -2,90 +2,23 @@
 
 > **Purpose:** Build automatic DSA reflexes so medium problems don’t stall on basics.
 > **Rule:** Blind write only. No `drills/solutions/` until the blind block is done.
-> **Helper:** `go run . -- --refresh`
+> **Helper:** `go run .`
 
-This file is the full daily practice. The shape is the same every day; what it
-asks you is not — the session is rebuilt each morning from what your drill log
-says decayed.
-
----
-
-## How every session works
-
-```
-1. Recognise    →  4 cues, no code. Which move does this want?
-2. Rebuild      →  the weakest functions in your log, not today's weekday
-3. New ground   →  something never attempted, highest-value family first
-4. Specialty    →  today's weekday drill
-5. Stretch      →  a move you own, applied to a variant you have not seen
-```
-
-One command builds that session from `.drill_log.json`:
+This file is the full daily practice: Core 5 every day, then today's weekday
+specialty drill.
 
 ```bash
-go run . -- --refresh          # today's session
-go run . -- --refresh --show   # reveal the recognition answers
+go run .                 # today's plan
+go run . -- --weak       # the weakest functions from your drill log
 ```
-
-Only step 4 is chosen by the weekday. Steps 1–3 and 5 are chosen by what you can
-actually do today, which is why the session changes even when the day does not.
 
 | Tier | Time | Do |
 |------|------|----|
-| **Minimum** | ~20–30 min | Recognise + Core 5 + log |
-| **Reflex** | ~30–40 min | Recognise + Core 5 + Rebuild + today's specialty |
-| **Standard** | 45–60 min | Reflex tier + the primary problem for one rebuilt function |
+| **Minimum** | ~20–30 min | Core 5 + log |
+| **Reflex** | ~30–40 min | Core 5 + today's specialty |
+| **Standard** | 45–60 min | Reflex tier + the primary problem for one function (`--problems`) |
 
-Missed a day? Do **not** catch up. Run `--refresh` — it already knows what
-decayed.
-
----
-
-## Understanding levels
-
-Recall and recognition are different skills, and the second is the one an
-interview tests. A function you can type from memory is not one you can *spot*
-inside a statement that never names it. So every function carries a level, and
-the session asks it in the matching form.
-
-| Level | Earned when | Asked as |
-|-------|-------------|----------|
-| **L1 recall** | never passed, or failing often | "here is the ask — write the shape" |
-| **L2 pattern** | ≥2 passes, under a third failing | "here is a cue — name the move" |
-| **L3 transfer** | ≥5 passes, near-clean, passed recently | "here is a twist — apply the move" |
-
-Levels are computed from your drill log, never declared:
-
-```bash
-go run . -- --levels     # every function, grouped by the level it has earned
-go run . -- --problems   # the problem to solve next, ordered by that level
-```
-
-Two rules keep the grade honest:
-
-- **Capped by tier.** `reverseInPlace` is a tier-1 function. Passing it fifty
-  times leaves it at L1 — it is not a transfer question and never becomes one.
-- **Decays.** An L2 function untouched for 3 days, or an L3 for 7, comes back
-  as due. `→` in `--levels` marks it.
-
----
-
-## The recognition round (why it is first)
-
-```
-1) you see: sorted but rotated — the pivot is the answer
-   you write: ______________________________
-
-2) you see: 'first non-repeating' anything
-   you write: ______________________________
-```
-
-The cues never name the function, and the four are drawn from four *different*
-pattern families on purpose. A themed round ("today is binary search day") lets
-you answer from the heading instead of the statement, which trains nothing. Two
-minutes, out loud, before any code.
-
-Full table any time: `go run . -- --triggers`.
+Missed a day? Do **not** catch up. Run today's plan; `--weak` shows what to redo.
 
 ---
 
@@ -169,42 +102,14 @@ go run . -- --run reflex
 
 | Min | Block | Action |
 |-----|-------|--------|
-| 0–2 | **Recognise** | `--refresh`, answer the 4 cues out loud, then `--show` |
+| 0–2 | **Warm-up** | Read today's warm-up ask out loud |
 | 2–10 | **Core 5** | Blind write the five essentials |
-| 10–20 | **Rebuild** | The weakest functions the refresh listed — blind, then run |
-| 20–32 | **Specialty** | All `TODO: REFLEX` in today's file |
+| 10 | **Weak** | `--weak`: redo the worst function blind |
+| 10–32 | **Specialty** | All `TODO: REFLEX` in today's file |
 | 32–37 | **Run & fix** | `go run . -- --run reflex` — one fix pass, no solutions |
-| 37–40 | **Log** | `--levels`: did anything move up a level? |
+| 37–40 | **Log** | Note any fail for a +1 day revisit |
 
-Low energy? Stop after Recognise + Core 5. That still counts as Minimum tier,
-and the recognition round is the part that compounds.
-
----
-
-## Part D — Essential pattern triggers (memorize)
-
-Scan these every day until they fire automatically:
-
-| When you see… | Hands write… | Drill that owns it |
-|---------------|--------------|--------------------|
-| pair sums to target | `Map` + complement | Core + Tue |
-| seen before? / duplicates | `Set` or freq map | Tue |
-| anagram / same letter counts | sorted key or count[26] | Tue |
-| sorted + two values / area / palindrome | two pointers L/R | Wed |
-| in-place filter / dedupe / move zeroes | read/write pointers | Wed + Core |
-| subarray of size k | fixed sliding window | Wed + Core |
-| longest/shortest subarray with property | variable window L expand/shrink | cheat sheet §6 |
-| sorted + find index / insert pos | binary search `lo <= hi` or lower bound | Thu + Core |
-| rotated sorted min | half-sorted decide which side | Thu |
-| range sum / running total | prefix array | Mon |
-| matching brackets | stack | Fri |
-| next greater / warmer day | monotonic stack | Fri |
-| tree order / depth | DFS / BFS / iterative stack | Fri |
-| min cost / ways / fib-style | 1D DP — define `dp[i]` first | Sat |
-| cannot take adjacent | DP `max(take, skip)` | Sat |
-| grid components / fill | DFS or BFS + visited | Sun |
-| shortest path unweighted grid | BFS queue | Sun |
-| subarray (contiguous) vs subsequence | confirm ask first → window/prefix vs DP | always |
+Low energy? Stop after Core 5. That still counts as Minimum tier.
 
 ---
 
@@ -252,18 +157,13 @@ dp := make([]int, n+1)
 
 ## Part F — Reflex ownership criteria
 
-You **own** a function when it is graded **L3 transfer** in `--levels`, which
-takes all of:
+You **own** a function when all of these hold:
 
 - [ ] Wrote it blind (no peek)
 - [ ] Tests pass (or hand-trace is correct for Core 5)
 - [ ] Can state the ask in one sentence
 - [ ] Can name time/space in one breath
-- [ ] Named the move from its cue alone, with the function name hidden
 - [ ] Specialty set finishes under **15 min**; Core 5 under **8 min**
-
-Tier-1 functions cap at L1 by design. "Owning" them means the recognition round
-never catches you out, not that the grade climbs.
 
 **Speed Round** (after you own all 7 specialty files):
 
@@ -337,7 +237,7 @@ One primary problem from `STUDY_PLAN.md`:
 1. Restate ask in one sentence  
 2. Trace the sample by hand  
 3. Name brute force  
-4. Pattern scan (Part D)  
+4. Pattern scan  
 5. Code → log ask + pattern + lesson  
 
 Reflex first. Understanding before code. Core 5 every day — that is how reflexes stick.

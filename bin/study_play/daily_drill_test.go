@@ -63,7 +63,4 @@ func TestCore5Metadata(t *testing.T) {
 	if len(core5) != 5 {
 		t.Fatal("core5 length")
 	}
-	if len(allTriggers) < 10 {
-		t.Fatal("triggers list")
-	}
 }

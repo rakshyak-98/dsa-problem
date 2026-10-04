@@ -14,7 +14,6 @@ Use this as the follow-through version of `study_play/STUDY_PLAN.md`. Check item
 
 ## Daily Reflex Checklist
 
-- [ ] Trigger scan completed (out loud)
 - [ ] Core 5 written blind (twoSum, binarySearch, removeDuplicates, maxSumSubarrayK, frequencyMap)
 - [ ] Specialty drill file implemented from memory
 - [ ] Specialty tests run once
