@@ -31,7 +31,7 @@ func TestRunUnifiedDSA(t *testing.T) {
 	}
 	defer func() { commandRunner = runIn }()
 
-	code := runUnified("/tmp/repo", dailyOptions{track: trackDSA, drillKind: "core", passArgs: []string{"--drill", "core"}})
+	code := runUnified("/tmp/repo", dailyOptions{track: trackDSA, drillKind: "reflex", passArgs: []string{"--drill", "reflex"}})
 	if code != 0 {
 		t.Fatal("expected success")
 	}
@@ -159,7 +159,7 @@ func TestPrintHelp(t *testing.T) {
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
 	out := buf.String()
-	for _, want := range []string{"Usage:", "-h, --help", "-V, --version", "--track=NAME", "--core5", "--drill[=KIND]", "--refresh", "--problems", "Exit status:"} {
+	for _, want := range []string{"Usage:", "-h, --help", "-V, --version", "--track=NAME", "--drill[=KIND]", "--refresh", "--problems", "Exit status:"} {
 		if !strings.Contains(out, want) {
 			t.Fatalf("help missing %q:\n%s", want, out)
 		}
@@ -233,38 +233,10 @@ func TestPrintDrillArgError(t *testing.T) {
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
 	out := buf.String()
-	for _, want := range []string{"requires an argument", "Valid arguments: core, reflex"} {
+	for _, want := range []string{"requires an argument", "Valid arguments: reflex"} {
 		if !strings.Contains(out, want) {
 			t.Fatalf("missing %q:\n%s", want, out)
 		}
-	}
-}
-
-func TestRunCore5(t *testing.T) {
-	called := false
-	core5Runner = func(root string) error {
-		called = true
-		if !strings.Contains(root, "repo") {
-			t.Fatalf("unexpected root: %s", root)
-		}
-		return nil
-	}
-	defer func() { core5Runner = runCore5In }()
-
-	if code := runCore5("/tmp/repo"); code != 0 {
-		t.Fatalf("expected success, got %d", code)
-	}
-	if !called {
-		t.Fatal("expected core5Runner to be called")
-	}
-}
-
-func TestRunCore5Fail(t *testing.T) {
-	core5Runner = func(root string) error { return errTest }
-	defer func() { core5Runner = runCore5In }()
-
-	if code := runCore5("/tmp/repo"); code != 1 {
-		t.Fatalf("expected exit 1, got %d", code)
 	}
 }
 

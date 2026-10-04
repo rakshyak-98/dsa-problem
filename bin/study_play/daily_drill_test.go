@@ -47,20 +47,14 @@ func TestPrintFunctionsNoPanic(t *testing.T) {
 	if len(out) < 30 {
 		t.Fatal("printToday empty")
 	}
-	out = capture(func() { printDrill(drills[0], false) })
+	out = capture(func() { printReflexDrill(drills[0], false) })
 	if len(out) < 20 {
-		t.Fatal("printDrill empty")
+		t.Fatal("printReflexDrill empty")
 	}
 }
 
 func TestEssentialCatalog(t *testing.T) {
 	if len(essentialCatalog) < 7 {
 		t.Fatal("catalog too small")
-	}
-}
-
-func TestCore5Metadata(t *testing.T) {
-	if len(core5) != 5 {
-		t.Fatal("core5 length")
 	}
 }

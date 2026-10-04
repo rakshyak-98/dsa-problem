@@ -66,7 +66,6 @@ func writeTestLog(t *testing.T, fns map[string]fnRecord) string {
 func TestPrintersDoNotPanic(t *testing.T) {
 	mustPrint(t, "printProblemSet", printProblemSet)
 	mustPrint(t, "printProblemMap", func() { printProblemMap("03_two_pointers_reflex") })
-	mustPrint(t, "printCore5Problems", printCore5Problems)
 }
 
 func mustPrint(t *testing.T, name string, fn func()) {

@@ -22,9 +22,6 @@ func TestProblemMapCoverage(t *testing.T) {
 			}
 		}
 	}
-	if len(core5Problems) != 5 {
-		t.Fatal("core5 problems")
-	}
 }
 
 func TestPrintProblemMapNoPanic(t *testing.T) {
@@ -32,7 +29,6 @@ func TestPrintProblemMapNoPanic(t *testing.T) {
 	r, w, _ := os.Pipe()
 	os.Stdout = w
 	printProblemMap("01_arrays_reflex")
-	printCore5Problems()
 	w.Close()
 	os.Stdout = old
 	var buf bytes.Buffer

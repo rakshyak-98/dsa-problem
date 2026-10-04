@@ -1,10 +1,9 @@
-// Daily reflex practice helper — Core 5 + specialty drill
+// Daily reflex practice helper — weekday specialty drill
 //
 // RUN:              go run .
 // Reveal answers:   go run . -- --show
 // Problem set:      go run . -- --problems
 // RUN with tests:   go run . -- --run
-// Core 5 only:      go run . -- --drill core
 // Full catalog:     go run . -- --catalog
 // Reset today:      go run . -- --reset
 // First-time setup: go run . -- --setup
@@ -17,27 +16,12 @@ import (
 	"time"
 )
 
-type coreFn struct {
-	name    string
-	ask     string
-	pattern string
-	sec     int
-}
-
 type drill struct {
 	day              string
 	file             string
 	patterns         string
 	functions        []string
 	understandWarmup string
-}
-
-var core5 = []coreFn{
-	{"twoSum(nums, target)", "indices of two values that sum to target", "map + complement", 90},
-	{"binarySearch(nums, target)", "index of target in sorted array, or -1", "lo <= hi binary search", 60},
-	{"removeDuplicates(nums)", "in-place unique prefix length on sorted array", "read/write two pointers", 90},
-	{"maxSumSubarrayK(nums, k)", "max sum of any contiguous window of size k", "fixed sliding window", 90},
-	{"frequencyMap(arr)", "map each value to its count", "freq map loop", 60},
 }
 
 var drills = []drill{
@@ -98,18 +82,6 @@ var essentialCatalog = []struct {
 	{"Graphs", []string{"numIslands", "floodFill", "shortestPathGrid", "canFinish", "dfs", "bfs", "bfsShortestPath", "topoSort", "dijkstra"}},
 }
 
-func core5Names() string {
-	names := make([]string, len(core5))
-	for i, fn := range core5 {
-		name := fn.name
-		if idx := strings.Index(name, "("); idx > 0 {
-			name = name[:idx]
-		}
-		names[i] = name
-	}
-	return strings.Join(names, ", ")
-}
-
 // formatInColumns lays names out in fixed-width columns, filled top-to-bottom
 // then left-to-right like `ls`. colContent is the widest name across the whole
 // listing, so callers pass one shared value and every block's columns line up.
@@ -165,22 +137,6 @@ func printCatalog() {
 	}
 }
 
-func printDrill(today drill, brief bool) {
-	if brief {
-		fmt.Println("write: drills/write/core5/")
-		return
-	}
-	fmt.Printf("WRITE %s | core 5\n", today.day)
-	fmt.Printf("core5: %s\n", core5Names())
-	fmt.Println("path: drills/write/core5/")
-	fmt.Println("\n── SAY THE ASK, THEN WRITE ────────────────────────────")
-	for _, fn := range core5 {
-		fmt.Printf("  • %-28s %s\n", fn.name, fn.ask)
-		fmt.Printf("    %-28s %s · target %ds\n", "", fn.pattern, fn.sec)
-	}
-	printCore5Problems()
-}
-
 func printReflexDrill(today drill, brief bool) {
 	if brief {
 		fmt.Printf("write: %s\n", today.file)
@@ -189,15 +145,6 @@ func printReflexDrill(today drill, brief bool) {
 	fmt.Printf("WRITE %s | %s\n", today.day, today.file)
 	fmt.Printf("specialty: %s\n", strings.Join(today.functions, ", "))
 	fmt.Printf("path: drills/write/reflex/%s/\n", today.file)
-}
-
-func printSolutionCore(brief bool) {
-	if brief {
-		fmt.Println("write: drills/solutions/core5.md")
-		return
-	}
-	fmt.Println("WRITE solution | core 5")
-	fmt.Println("path: drills/solutions/core5.md")
 }
 
 func printSolutionReflex(today drill, brief bool) {
@@ -213,13 +160,11 @@ func printSolutionReflex(today drill, brief bool) {
 func printToday(today drill, brief bool) {
 	if brief {
 		fmt.Printf("write: %s\n", today.file)
-		fmt.Printf("       core5: %s\n", core5Names())
 		fmt.Printf("       specialty: %s\n", strings.Join(today.functions, ", "))
 		printSkillQuestions(today.day)
 		return
 	}
 	fmt.Printf("WRITE %s | %s\n", today.day, today.file)
-	fmt.Printf("core5: %s\n", core5Names())
 	fmt.Printf("specialty: %s\n", strings.Join(today.functions, ", "))
 	fmt.Printf("path: drills/write/reflex/%s/\n", today.file)
 
@@ -229,8 +174,7 @@ func printToday(today drill, brief bool) {
 	printAskWarmup(today.day)
 	printProblemMap(today.file)
 
-	fmt.Println("\nrun:    go run . -- --run core")
-	fmt.Println("        go run . -- --run reflex")
+	fmt.Println("\nrun:    go run . -- --run reflex")
 }
 
 // hasFlag reports whether flag was passed on the command line. Retained for
@@ -323,16 +267,8 @@ func main() {
 		printProblemSet()
 		return
 	}
-	if opts.drillKind == "core" {
-		printDrill(today, brief)
-		return
-	}
 	if opts.drillKind == "reflex" {
 		printReflexDrill(today, brief)
-		return
-	}
-	if opts.solutionKind == "core" {
-		printSolutionCore(brief)
 		return
 	}
 	if opts.solutionKind == "reflex" {
@@ -351,33 +287,9 @@ func main() {
 		printToday(today, brief)
 	}
 
-	core5Fns := []string{"twoSum", "binarySearch", "removeDuplicates", "maxSumSubarrayK", "frequencyMap"}
-	core5Path := writeCore5Dir(repoRoot)
-
 	switch runMode {
-	case "core":
-		ok, output, _ := runDrillWithLog(core5Path)
-		fmt.Print(output)
-		if !ok {
-			os.Exit(1)
-		}
-		updateLogFromOutput(repoRoot, output, core5Fns)
-	case "reflex":
+	case "reflex", "all":
 		ok, output, _ := runDrillWithLog(drillPath)
-		fmt.Print(output)
-		if !ok {
-			updateLogFromOutput(repoRoot, output, today.functions)
-			os.Exit(1)
-		}
-		updateLogFromOutput(repoRoot, output, today.functions)
-	case "all":
-		ok, output, _ := runDrillWithLog(core5Path)
-		fmt.Print(output)
-		if !ok {
-			os.Exit(1)
-		}
-		updateLogFromOutput(repoRoot, output, core5Fns)
-		ok, output, _ = runDrillWithLog(drillPath)
 		fmt.Print(output)
 		if !ok {
 			updateLogFromOutput(repoRoot, output, today.functions)

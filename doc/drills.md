@@ -9,23 +9,19 @@ Everything you **practice** lives under `drills/`, organized by topic. CLI helpe
 ```
 drills/
 ├── write/                 # DSA reflex writing
-│   ├── core5/             # daily Core 5 essentials
 │   └── reflex/            # weekday reflex drills
 ├── leetcode/              # daily 10-question LeetCode practice sets
 └── solutions/             # write drill solutions (peek after attempt)
-    ├── reflex/            # runnable Go solution per reflex drill
-    └── core5.md
+    └── reflex/            # runnable Go solution per reflex drill
 ```
 
 ## Daily flow (recommended)
 
 ```bash
-go run .                       # daily drill: Core 5 + weekday reflex (DSA track)
+go run .                       # daily drill: weekday reflex (DSA track)
 go run . -- --problems         # curated primary problem per function
-go run . -- --run=core         # check core answers
 go run . -- --run=reflex       # check reflex specialty answers
 go run . -- --track=leetcode --run   # fetch today's 10 LeetCode problems
-go run . -- --drill=core        # Core 5 only
 go run . -- --drill=reflex      # today's specialty only
 go run . -- --track=write       # writing only
 go run . -- --track=leetcode    # 10 LeetCode problems matching today's topic
@@ -53,7 +49,6 @@ Guide: [`drills/leetcode/README.md`](leetcode/README.md)
 
 ```bash
 go run .                    # today's plan
-go run -C drills/write/core5 .             # Core 5
 go run -C drills/write/reflex/02_hashing_reflex .
 go run . -- --run           # test + log
 ```

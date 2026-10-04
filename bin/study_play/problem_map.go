@@ -75,14 +75,6 @@ var problemMap = map[string][]problemLink{
 	},
 }
 
-var core5Problems = []problemLink{
-	{"twoSum", "hashing/easy/two_sum.js", "Return indices of two numbers that add to target"},
-	{"binarySearch", "binary_search/easy/search_insertion_position.js", "Find target index in sorted array"},
-	{"removeDuplicates", "two_pointers/easy/remove_duplicates_from_sorted_array.js", "In-place dedupe sorted array"},
-	{"maxSumSubarrayK", "sliding_window/easy/maximum_average_subarray_1.js", "Max sum of subarray of size k"},
-	{"frequencyMap", "hashing/easy/top_k_ferquent_element.js", "Count frequency of each element"},
-}
-
 // printProblemMap shows what to solve once the drill's tests pass. The
 // headline is the curated LeetCode primary from primaries.go — the local
 // reference/problems/ mirror is only a partial index, so it is shown as a
@@ -104,16 +96,4 @@ func printProblemMap(drillFile string) {
 		fmt.Printf("    %s\n", problemURL(p.slug))
 	}
 	fmt.Println("\n  Solve without reopening the drill. Stuck twice → blind-write it again tomorrow.")
-}
-
-func printCore5Problems() {
-	fmt.Println("\n── CORE 5 → PRIMARY PROBLEMS ──────────────────────────")
-	for _, l := range core5Problems {
-		p, ok := primaries[l.function]
-		if !ok {
-			fmt.Printf("  • %s → %s\n", l.function, l.problem)
-			continue
-		}
-		fmt.Printf("  • %-20s %-6s %-40s %s\n", l.function, p.diff, p.title, problemURL(p.slug))
-	}
 }

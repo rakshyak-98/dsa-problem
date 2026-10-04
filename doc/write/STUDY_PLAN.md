@@ -29,7 +29,7 @@
 
 ```
 1. Understand  →  restate the question in your own words
-2. Reflex      →  Core 5 + specialty (`DAILY_30MIN_DRILL.md`)
+2. Reflex      →  specialty drill (`DAILY_30MIN_DRILL.md`)
 3. Primary     →  ONE problem from this week's table
 4. Log         →  one sentence lesson + revisit date
 ```
@@ -38,8 +38,8 @@
 
 | Tier | Time | What you do |
 |------|------|-------------|
-| **Minimum** | ~20–30 min | Core 5 only + 1-line log |
-| **Standard** | 45–60 min | Core 5 + specialty drill + **one** primary problem |
+| **Minimum** | ~20–30 min | Specialty drill only + 1-line log |
+| **Standard** | 45–60 min | Specialty drill + **one** primary problem |
 | **Stretch** | 75–90 min | Standard + optional second problem **or** re-solve yesterday's |
 
 Rules that protect consistency:

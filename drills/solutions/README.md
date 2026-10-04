@@ -25,7 +25,6 @@ go run -C drills/solutions/reflex/02_hashing_reflex .
 
 | File | Matches |
 |------|---------|
-| `core5.md` | `drills/write/core5/` |
 | `01_arrays_reflex.md` … `07_graphs_reflex.md` | pattern triggers + common bugs |
 | `reference.go` | all functions in one file (do not import) |
 

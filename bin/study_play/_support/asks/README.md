@@ -44,4 +44,4 @@ If you cannot write the **Ask** line without mentioning a data structure, you do
 | Sat | Min cost stairs | `dynamic_programming/easy/min_cost_climbing_staris.js` |
 | Sun | Number of islands | `graphs/medium/number_of_islands.js` |
 
-After the ask drill: run Core 5 → specialty reflex → solve the primary problem → check `go run . -- --levels`.
+After the ask drill: run the specialty reflex → solve the primary problem → check `go run . -- --weak`.

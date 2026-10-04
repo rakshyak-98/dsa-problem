@@ -7,7 +7,6 @@ go run .                              # unified daily plan (DSA: read + write)
 go run . -- --problems                # curated primary problem per function
 go run . -- --track=write             # writing drills only
 go run . -- --help                    # full option reference
-go run -C drills/write/core5 .        # Core 5
 ```
 
 Math reference (no drill): [`../doc/write/MATH_CONCEPTS.md`](../doc/write/MATH_CONCEPTS.md)

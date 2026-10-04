@@ -17,7 +17,7 @@ type trackInfo struct {
 }
 
 var availableTracks = []trackInfo{
-	{trackDSA, "dsa", "reflex writing drills (Core 5 + weekday specialty)"},
+	{trackDSA, "dsa", "reflex writing drills (weekday specialty)"},
 	{trackWrite, "write", "writing drills only"},
 	{trackLeetcode, "leetcode", "daily 10-question LeetCode practice set (weekday topic)"},
 }
@@ -32,11 +32,11 @@ func isKnownTrack(track drillTrack) bool {
 }
 
 func isDrillKind(s string) bool {
-	return s == "core" || s == "reflex"
+	return s == "reflex"
 }
 
 func validDrillKinds(_ drillTrack) []string {
-	return []string{"core", "reflex"}
+	return []string{"reflex"}
 }
 
 func isDrillKindForTrack(track drillTrack, kind string) bool {
@@ -90,7 +90,7 @@ const dailyProg = "dsa-drills"
 // not act on itself (they are forwarded to the active track's module) are still
 // listed so a typo is reported here instead of silently ignored downstream.
 var dailyLongOpts = []string{
-	"help", "version", "list-tracks", "track", "core5",
+	"help", "version", "list-tracks", "track",
 	"drill", "solution", "run", "catalog",
 	"refresh", "reset", "show", "problems", "weak", "brief", "missed", "got",
 	"write", "leetcode", // deprecated run-side selectors; prefer --track
@@ -108,7 +108,6 @@ type dailyOptions struct {
 	usageErr        bool
 	listTracks      bool
 	catalog         bool
-	core5           bool
 	reset           bool
 	drillKind       string
 	drillMissing    bool
@@ -149,8 +148,6 @@ func parseDailyArgs(args []string) dailyOptions {
 			}
 			i++
 			opts.track = drillTrack(strings.ToLower(args[i]))
-		case a == "--core5":
-			opts.core5 = true
 		case a == "--drill":
 			if i+1 >= len(args) {
 				opts.drillMissing = true

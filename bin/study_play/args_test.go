@@ -3,9 +3,9 @@ package main
 import "testing"
 
 func TestParsePlay(t *testing.T) {
-	opts, ctl, perr := parsePlay([]string{"--", "--drill", "core", "--brief", "--run", "core"})
-	if ctl != gnuOK || perr || opts.drillKind != "core" || opts.solutionKind != "" || !opts.brief || opts.runMode != "core" {
-		t.Fatalf("parsePlay core: %+v ctl=%v perr=%v", opts, ctl, perr)
+	opts, ctl, perr := parsePlay([]string{"--", "--drill", "reflex", "--brief", "--run", "reflex"})
+	if ctl != gnuOK || perr || opts.drillKind != "reflex" || opts.solutionKind != "" || !opts.brief || opts.runMode != "reflex" {
+		t.Fatalf("parsePlay reflex run: %+v ctl=%v perr=%v", opts, ctl, perr)
 	}
 
 	opts, ctl, perr = parsePlay([]string{"--drill", "reflex"})
@@ -14,20 +14,14 @@ func TestParsePlay(t *testing.T) {
 	}
 
 	// --option=value form.
-	opts, _, _ = parsePlay([]string{"--drill=reflex", "--run=core"})
-	if opts.drillKind != "reflex" || opts.runMode != "core" {
+	opts, _, _ = parsePlay([]string{"--drill=reflex", "--run=reflex"})
+	if opts.drillKind != "reflex" || opts.runMode != "reflex" {
 		t.Fatalf("parsePlay --opt=value: %+v", opts)
 	}
 
-	opts, _, _ = parsePlay([]string{"--solution", "core"})
-	if opts.solutionKind != "core" || opts.runMode != "" {
-		t.Fatalf("parsePlay solution core: %+v", opts)
-	}
-
-	// --run-core5 is a retired spelling of --run=core.
-	opts, _, perr = parsePlay([]string{"--run-core5"})
-	if perr || opts.runMode != "core" {
-		t.Fatalf("parsePlay run-core5 alias: %+v perr=%v", opts, perr)
+	opts, _, _ = parsePlay([]string{"--solution", "reflex"})
+	if opts.solutionKind != "reflex" || opts.runMode != "" {
+		t.Fatalf("parsePlay solution reflex: %+v", opts)
 	}
 
 	opts, _, _ = parsePlay([]string{"--run"})

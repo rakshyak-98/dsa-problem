@@ -17,17 +17,15 @@ var playLongOpts = []string{
 	"write", // consumed by the root runner when picking a side
 }
 
-// playAliases rewrites retired spellings to the current option.
-var playAliases = map[string][]string{
-	"run-core5": {"--run", "core"}, // superseded by: --run=core
-}
+// playAliases rewrites retired spellings to the current option. None remain.
+var playAliases = map[string][]string{}
 
 func playSpec() gnuSpec {
 	return gnuSpec{prog: playProg, canonical: playLongOpts, aliases: playAliases}
 }
 
 func isRunKind(s string) bool {
-	return s == "core" || s == "reflex"
+	return s == "reflex"
 }
 
 func isDrillKind(s string) bool {
@@ -37,7 +35,7 @@ func isDrillKind(s string) bool {
 func printHelp() {
 	fmt.Print(`Usage: go run . -- [OPTION]...
 
-Reflex writing drills: Core 5 plus today's weekday specialty. With no option
+Reflex writing drills: today's weekday specialty. With no option
 it prints today's plan.
 
 Long options may be abbreviated while unambiguous, and every value-taking
@@ -46,10 +44,9 @@ option also accepts the --option=value form.
   -h, --help            display this help and exit
   -V, --version         display version information and exit
 
-      --drill=KIND      show a drill plan (KIND: core or reflex)
-      --solution=KIND   show the solution file path (KIND: core or reflex)
+      --drill=KIND      show a drill plan (KIND: reflex)
+      --solution=KIND   show the solution file path (KIND: reflex)
       --run[=KIND]      run drill tests and log the result
-                          core    the Core 5 tests
                           reflex  today's specialty tests
                           (default: both)
       --catalog         list the weekday write drills
@@ -67,8 +64,6 @@ Small skills (the SMALL SKILLS block of the daily plan):
 Maintenance:
       --setup           scaffold every drill from the blank templates
       --reset           reset today's drill to its blank template
-
-Deprecated (still accepted): --run-core5 is now --run=core.
 
 Exit status: 0 success, 1 a drill failed, 2 a command-line usage error.
 `)
@@ -88,16 +83,16 @@ func printKindArgError(flag, label string, missing bool, unknown string) {
 	} else {
 		fmt.Fprintf(os.Stderr, "%s: unknown %s %q\n", playProg, label, unknown)
 	}
-	fmt.Fprintln(os.Stderr, "valid arguments: core, reflex")
+	fmt.Fprintln(os.Stderr, "valid arguments: reflex")
 	fmt.Fprintln(os.Stderr, gnuTryHelp(playProg))
 }
 
 // playOpts is the fully parsed command line for the write-drill CLI.
 type playOpts struct {
 	brief        bool
-	drillKind    string // "core" | "reflex" | ""
-	solutionKind string // "core" | "reflex" | ""
-	runMode      string // "core" | "reflex" | "all" | ""
+	drillKind    string // "reflex" | ""
+	solutionKind string // "reflex" | ""
+	runMode      string // "reflex" | "all" | ""
 	show         bool
 	problems     bool
 	catalog      bool

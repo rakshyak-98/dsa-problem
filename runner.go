@@ -3,14 +3,12 @@ package main
 import (
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"strings"
 	"time"
 )
 
 var commandRunner = runIn
-var core5Runner = runCore5In
 
 var weekdayNames = []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
 
@@ -50,14 +48,13 @@ a value also accepts the --option=value form.
       --list-tracks        list the practice tracks and exit
 
   -t, --track=NAME         select the practice track (default: dsa)
-                             dsa       Core 5 + today's reflex writing specialty
+                             dsa       today's reflex writing specialty
                              write     writing drills only
                              leetcode  daily 10-question practice set
-      --drill[=KIND]       show a drill plan (KIND: core or reflex; default reflex)
-      --solution[=KIND]    show the matching solution file (KIND: core or reflex)
+      --drill[=KIND]       show a drill plan (KIND: reflex)
+      --solution[=KIND]    show the matching solution file (KIND: reflex)
       --run[=KIND]         run drill tests and log the result
-                             (KIND: core, reflex, or leetcode)
-      --core5              run the standalone Core 5 write drill
+                             (KIND: reflex or leetcode)
       --reset              restore today's reflex drill to its blank template
       --catalog            list every drill in the active track
 
@@ -119,9 +116,9 @@ func printUnifiedHeader(track drillTrack) {
 	fmt.Println()
 	switch track {
 	case trackDSA:
-		fmt.Println("Track: DSA — Core 5 + reflex writing specialty")
+		fmt.Println("Track: DSA — reflex writing specialty")
 	case trackWrite:
-		fmt.Println("Track: DSA writing — Core 5 + today's reflex specialty")
+		fmt.Println("Track: DSA writing — today's reflex specialty")
 	case trackLeetcode:
 		fmt.Println("Track: LeetCode — 10 full problems matching today's reflex topic")
 	}
@@ -130,22 +127,6 @@ func printUnifiedHeader(track drillTrack) {
 
 func runModule(root, module string, passArgs []string, run bool) int {
 	if err := commandRunner(filepath.Join(root, "bin", module), passArgs...); err != nil && run {
-		return 1
-	}
-	return 0
-}
-
-func runCore5In(root string) error {
-	core5Dir := filepath.Join(root, "drills", "write", "core5")
-	cmd := exec.Command("go", "run", ".")
-	cmd.Dir = core5Dir
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	return cmd.Run()
-}
-
-func runCore5(root string) int {
-	if err := core5Runner(root); err != nil {
 		return 1
 	}
 	return 0
@@ -213,10 +194,8 @@ func runUnified(root string, opts dailyOptions) int {
 			return code
 		}
 		if drillKind == "" && solutionKind == "" {
-			fmt.Println("drill:  go run . -- --drill core")
-			fmt.Println("        go run . -- --drill reflex")
-			fmt.Println("run:    go run . -- --run core")
-			fmt.Println("        go run . -- --run reflex")
+			fmt.Println("drill:  go run . -- --drill reflex")
+			fmt.Println("run:    go run . -- --run reflex")
 			fmt.Println("        go run . -- --run leetcode")
 			fmt.Println("        go run . -- --run -l")
 		}

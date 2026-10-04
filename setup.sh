@@ -16,7 +16,6 @@ echo
 echo "==> Verifying helpers"
 (go run -C bin/study_play . -- --catalog >/dev/null)
 (go build -o /dev/null .)
-(go build -C drills/write/core5 -o /dev/null .)
 
 echo
 echo "==> Running coverage gate (80%)"
@@ -28,5 +27,4 @@ echo
 echo "Next steps:"
 echo "  START HERE:                 open doc/drills.md"
 echo "  unified daily:              go run ."
-echo "  Core 5:                     go run -C drills/write/core5 ."
 echo "  problem index:              reference/problems/CATEGORIES.md"

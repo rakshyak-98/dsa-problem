@@ -2,7 +2,6 @@
 //
 // RUN:              go run .
 // RUN with tests:   go run . -- --run reflex
-// Core 5:           go run . -- --drill core
 // Select track:     go run . -- -t dsa|write|leetcode
 // List tracks:      go run . -- --list-tracks
 package main
@@ -70,12 +69,6 @@ func main() {
 	if opts.solutionUnknown != "" {
 		printSolutionArgError(opts.track, false, opts.solutionUnknown)
 		os.Exit(2)
-	}
-	if opts.core5 {
-		if code := runCore5(root); code != 0 {
-			os.Exit(code)
-		}
-		return
 	}
 	if code := runUnified(root, opts); code != 0 {
 		os.Exit(code)

@@ -30,14 +30,12 @@ bin/study_play/            ← CLI + blank templates (_support/)
 ## Every study day
 
 ```bash
-go run .              # Core 5 + today's specialty
+go run .              # today's specialty
 go run . -- --run     # run specialty tests
 go run . -- --reset   # wipe today's drill back to TODO stubs
-go run . -- --drill core   # Core 5 only (low energy)
 go run . -- --catalog # full essential checklist
 ```
 
-**Reflex tier:** Core 5 + specialty drill.  
-**Minimum tier:** Core 5 only. Still builds reflexes.
+**Reflex tier:** today's specialty drill.
 
 Full pack: **`DAILY_30MIN_DRILL.md`**. Consistency beats marathon sessions.

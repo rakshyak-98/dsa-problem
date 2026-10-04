@@ -8,7 +8,7 @@ import (
 )
 
 // cliVersion is reported by --version. Bump it when the option surface changes.
-const cliVersion = "0.5.0"
+const cliVersion = "0.6.0"
 
 // GNU-style option handling shared by every entry point.
 //

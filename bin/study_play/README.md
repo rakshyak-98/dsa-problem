@@ -9,7 +9,6 @@ go run .                          # today's drill plan: ask → drill → proble
 go run . -- --show                # today's plan with the small-skill answers revealed
 go run . -- --problems            # curated primary problem per function
 go run . -- --run                 # test today's specialty + log progress
-go run . -- --run=core            # test the Core 5 (was --run-core5)
 go run . -- --weak                # weakest functions from the drill log
 go run . -- --setup               # scaffold drills from blank templates
 go run . -- --help                # full option reference (GNU-style: -h/-V, --opt=value, abbreviations)

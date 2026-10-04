@@ -47,17 +47,6 @@ func TestFindRepoRoot(t *testing.T) {
 	}
 }
 
-func TestWriteDrillPathHelpers(t *testing.T) {
-	repo := t.TempDir()
-	core5 := filepath.Join(repo, "drills", "write", "core5")
-	if err := os.MkdirAll(core5, 0o755); err != nil {
-		t.Fatal(err)
-	}
-	if writeCore5Dir(repo) != core5 {
-		t.Fatalf("core5: %s", writeCore5Dir(repo))
-	}
-}
-
 func TestSolutionsDir(t *testing.T) {
 	repo := t.TempDir()
 	solutions := filepath.Join(repo, "drills", "solutions")

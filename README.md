@@ -31,8 +31,6 @@ go run . -- --show                    # today's plan with the small-skill answer
 go run . -- --problems                # curated primary problem per function
 go run . -- --weak                    # weakest functions from the drill log
 go run . -- --run                     # check today's reflex answers
-go run . -- --run=core                # check the Core 5 tests
-go run . -- --core5                   # run the standalone Core 5 drill
 go run . -- --track=write             # writing drills only
 go run . -- --reset                   # restore today's reflex drill to blank
 go run . -- --track=leetcode          # daily 10 LeetCode problems (weekday topic)
@@ -52,7 +50,7 @@ dsa-problem/
 │   ├── drills.md            # drills overview
 │   └── write/               # write reflex study plans
 ├── drills/                  # ★ PRACTICE (by topic)
-│   ├── write/               # reflex drills: core5, reflex
+│   ├── write/               # reflex drills
 │   ├── leetcode/            # daily 10-question LeetCode practice sets
 │   └── solutions/           # write drill solutions (after attempt)
 ├── bin/                     # internal CLI tooling

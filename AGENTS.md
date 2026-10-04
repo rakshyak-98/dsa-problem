@@ -22,7 +22,7 @@ repo root — the root module cannot resolve that package path. Use `go run . --
 ## Everyday commands
 
 ```bash
-go run .                    # today's plan (Core 5 + reflex write)
+go run .                    # today's plan (weekday reflex write)
 go run . -- --problems      # curated LeetCode problem per function
 go run . -- --run=reflex    # run today's specialty drill and log the result
 go run . -- --reset         # restore today's reflex drill to its blank template
@@ -31,7 +31,7 @@ go run . -- --reset         # restore today's reflex drill to its blank template
 Every entry point (root + the three `bin/` CLIs) shares one GNU-style option
 front-end (`argutil.go`): `--help`/`-h`, `--version`/`-V`, `--opt=value`,
 unambiguous long-option abbreviation, and an unknown `--option` is a usage
-error (exit 2). Retired spellings still resolve: `--run-core5` → `--run=core`,
+error (exit 2). Retired spellings still resolve:
 leetcode `--set` → `--show`, root `-w`/`-l` → `--track`.
 
 ## Solving a drill (the core end-to-end flow)
