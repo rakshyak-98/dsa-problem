@@ -13,12 +13,32 @@ import (
 	"time"
 )
 
+// fnRecord is one function's history. Passes/Fails count graded days: only
+// the first graded run of a day is scored, because re-running while you fix
+// the code is learning, not recall. Box/Due are its spaced-repetition slot.
 type fnRecord struct {
-	Passes   int    `json:"passes"`
-	Fails    int    `json:"fails"`
-	LastPass string `json:"lastPass,omitempty"`
-	LastFail string `json:"lastFail,omitempty"`
+	Passes   int       `json:"passes"`
+	Fails    int       `json:"fails"`
+	LastPass string    `json:"lastPass,omitempty"`
+	LastFail string    `json:"lastFail,omitempty"`
+	Box      int       `json:"box,omitempty"`
+	Due      string    `json:"due,omitempty"`
+	Started  string    `json:"started,omitempty"` // RFC3339: when it was last blanked (--fn / --reset)
+	Attempts []attempt `json:"attempts,omitempty"`
 }
+
+// attempt is one day's work on a function.
+type attempt struct {
+	Date       string `json:"date"`
+	FirstTry   bool   `json:"firstTry"`             // the first graded run that day passed
+	Passed     bool   `json:"passed"`               // some run that day passed
+	Runs       int    `json:"runs"`                 // graded runs that day
+	Start      string `json:"start"`                // RFC3339: blank time if blanked that day, else the first run
+	SecsToPass int    `json:"secsToPass,omitempty"` // from Start to the first passing run
+}
+
+// maxAttempts caps the per-function history kept in the log.
+const maxAttempts = 30
 
 // skillRecord is how often a small-skill question was marked missed, and when
 // last. It only feeds the redo block of the daily small-skills round.
@@ -28,8 +48,9 @@ type skillRecord struct {
 }
 
 type drillLog struct {
-	Functions map[string]fnRecord    `json:"functions"`
-	Skills    map[string]skillRecord `json:"skills,omitempty"`
+	Functions   map[string]fnRecord    `json:"functions"`
+	Skills      map[string]skillRecord `json:"skills,omitempty"`
+	Recognition map[string]skillRecord `json:"recognition,omitempty"` // --recognize misses, by question id
 }
 
 var passRE = regexp.MustCompile(`^PASS: (.+)$`)
@@ -209,20 +230,65 @@ func pruneLogNoise(log *drillLog) {
 	}
 }
 
-// isFunctionEntry reports whether a log key names a function rather than one of
-// its asserts ("rotateRight k=1") or a line of go test framing.
+// pruneRetired drops log entries for functions no drill has any more
+// ("arraySum", "fib") along with their per-assert detail, so they stop topping
+// the weak list. The first time it removes anything it copies the log to
+// .drill_log.json.bak, so the old history can be recovered.
+func pruneRetired(root string, log *drillLog) {
+	var gone []string
+	for name := range log.Functions {
+		if _, ok := owningFunction(name); !ok {
+			gone = append(gone, name)
+		}
+	}
+	if len(gone) == 0 {
+		return
+	}
+	backup := logPath(root) + ".bak"
+	if _, err := os.Stat(backup); os.IsNotExist(err) {
+		if data, err := os.ReadFile(logPath(root)); err == nil {
+			_ = os.WriteFile(backup, data, 0o644)
+		}
+	}
+	for _, name := range gone {
+		delete(log.Functions, name)
+	}
+}
+
+// isFunctionEntry reports whether a log key names a catalog function rather
+// than one of its asserts ("rotateRight k=1"), a retired function, or a line of
+// go test framing.
 func isFunctionEntry(name string) bool {
 	if testFramingRE.MatchString(name) {
 		return false
 	}
-	owner, ok := owningFunction(name)
-	return !ok || owner == name
+	_, ok := primaries[name]
+	return ok
 }
 
 type weakEntry struct {
 	name  string
 	score float64
 	fails int
+}
+
+// weakScore ranks how much a function needs work. Fails count less the longer
+// ago the last one was, so a function you have since fixed sinks over a few
+// weeks instead of staying on top forever.
+func weakScore(rec fnRecord, now time.Time) float64 {
+	total := rec.Passes + rec.Fails
+	if total == 0 {
+		return 0
+	}
+	failRate := float64(rec.Fails) / float64(total)
+	score := failRate*10 + float64(rec.Fails)
+	if rec.LastPass == "" && rec.Fails > 0 {
+		score += 5
+	}
+	if t, err := time.Parse(dateLayout, rec.LastFail); err == nil {
+		score /= 1 + float64(daysBetween(t, now))/14
+	}
+	return score
 }
 
 func printWeakFunctions(root string, limit int) {
@@ -232,21 +298,13 @@ func printWeakFunctions(root string, limit int) {
 		return
 	}
 
+	now := time.Now()
 	var entries []weakEntry
 	for name, rec := range log.Functions {
 		if !isFunctionEntry(name) {
 			continue
 		}
-		total := rec.Passes + rec.Fails
-		failRate := 0.0
-		if total > 0 {
-			failRate = float64(rec.Fails) / float64(total)
-		}
-		score := failRate*10 + float64(rec.Fails)
-		if rec.LastPass == "" && rec.Fails > 0 {
-			score += 5
-		}
-		entries = append(entries, weakEntry{name: name, score: score, fails: rec.Fails})
+		entries = append(entries, weakEntry{name: name, score: weakScore(rec, now), fails: rec.Fails})
 	}
 
 	sort.Slice(entries, func(i, j int) bool {
@@ -262,10 +320,10 @@ func printWeakFunctions(root string, limit int) {
 			break
 		}
 		rec := log.Functions[e.name]
-		fmt.Printf("  %d. %s — fails:%d passes:%d lastPass:%s\n",
-			i+1, e.name, rec.Fails, rec.Passes, orDash(rec.LastPass))
+		fmt.Printf("  %d. %s — fails:%d passes:%d lastPass:%s due:%s\n",
+			i+1, e.name, rec.Fails, rec.Passes, orDash(rec.LastPass), orDash(rec.Due))
 	}
-	fmt.Println("\n  Tip: go run . -- --reset then blind-write weak functions.")
+	fmt.Println("\n  Tip: go run . -- --fn=NAME blanks one function; write it cold, then --run --fn=NAME.")
 }
 
 func orDash(s string) string {

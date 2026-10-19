@@ -20,7 +20,7 @@ func runningSum(arr []int) []int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — count subarrays summing to k (prefix sum + map, one pass)
+// TODO: REFLEX — count contiguous subarrays summing to k (values may be negative)
 func subarraySumK(nums []int, k int) int {
 	panic("Implement from memory")
 }
@@ -30,22 +30,22 @@ func productExceptSelf(nums []int) []int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — largest sum of any contiguous subarray (Kadane)
+// TODO: REFLEX — largest sum of any contiguous subarray
 func maxSubarraySum(nums []int) int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — merge sort: stable, split in half, sort each side, merge
+// TODO: REFLEX — merge sort (stable)
 func mergeSort(nums []int) []int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — quick sort: partition around a pivot, recurse on each side
+// TODO: REFLEX — quick sort (in place)
 func quickSort(nums []int) []int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — sieve of Eratosthenes: every prime <= n
+// TODO: REFLEX — every prime <= n, faster than testing each number
 func sieve(n int) []int {
 	panic("Implement from memory")
 }

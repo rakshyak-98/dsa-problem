@@ -28,18 +28,18 @@ func minEatingSpeed(piles []int, h int) int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — kth smallest value (k is 1-indexed) without fully sorting
+// TODO: REFLEX — kth smallest value (k is 1-indexed), average O(n)
 // (quickselect: partition, then recurse into the one half that holds rank k)
 func quickSelect(nums []int, k int) int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — x^n in O(log n); n may be negative (binary exponentiation)
+// TODO: REFLEX — x^n in O(log n); n may be negative
 func fastPow(x float64, n int) float64 {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — greatest common divisor (Euclid: a, b = b, a mod b)
+// TODO: REFLEX — greatest common divisor
 func gcd(a, b int) int {
 	panic("Implement from memory")
 }

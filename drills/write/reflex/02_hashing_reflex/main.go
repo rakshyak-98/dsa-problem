@@ -31,7 +31,7 @@ func groupAnagrams(strs []string) [][]string {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — the one value that appears once; every other appears twice (XOR)
+// TODO: REFLEX — the one value that appears once; every other appears twice (O(1) space)
 func singleNumber(nums []int) int {
 	panic("Implement from memory")
 }

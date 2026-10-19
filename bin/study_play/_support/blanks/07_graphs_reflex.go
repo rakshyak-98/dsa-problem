@@ -26,7 +26,7 @@ func shortestPathGrid(grid [][]int) int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — can every course be finished (topological sort / cycle check)
+// TODO: REFLEX — can every course be finished ([a, b] means b before a)
 func canFinish(numCourses int, prerequisites [][]int) bool {
 	panic("Implement from memory")
 }
@@ -46,7 +46,7 @@ func bfsShortestPath(graph [][]int, src, dst int) int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — Kahn topological order of a directed graph (edges u->v);
+// TODO: REFLEX — topological order of a directed graph (edges u->v);
 // smallest node index first on ties; nil if the graph has a cycle
 func topoSort(n int, edges [][]int) []int {
 	panic("Implement from memory")

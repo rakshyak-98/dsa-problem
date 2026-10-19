@@ -1,12 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strings"
+)
 
 const leetcodeProg = "study_leetcode"
 
 var leetcodeLongOpts = []string{
 	"help", "version",
 	"catalog", "show", "run", "refresh", "brief",
+	"answers", "log", "gaps",
 	"write", "leetcode", // consumed by the root runner when picking a side
 }
 
@@ -36,6 +41,14 @@ option also accepts the --option=value form.
       --refresh    re-fetch from the LeetCode API even if the cache is current
       --catalog    list every weekday practice set
       --brief      one-line output for the unified daily runner
+      --answers    also show the topic, tags and reflex links (hidden by
+                   default: name each pattern before you look)
+
+Solved-problem cards (drills/leetcode/cards.json):
+      --log=SLUG   record a solved problem, or review one that is due: your
+                   pattern guess, the signal, the one-line insight. Schedules
+                   the next re-solve (1, 3, 7, 14, 30, 60 days)
+      --gaps       patterns on your cards that no reflex drill covers yet
 
 Deprecated (still accepted): --set is now --show.
 
@@ -49,6 +62,9 @@ type leetcodeOpts struct {
 	brief   bool
 	showSet bool
 	refresh bool
+	answers bool
+	gaps    bool
+	log     string // --log slug
 }
 
 func parseLeetcode(args []string) (opts leetcodeOpts, ctl gnuCtl, parseErr bool) {
@@ -57,8 +73,20 @@ func parseLeetcode(args []string) (opts leetcodeOpts, ctl gnuCtl, parseErr bool)
 	if ctl != gnuOK {
 		return opts, ctl, false
 	}
-	for _, a := range norm {
-		switch a {
+	for i := 0; i < len(norm); i++ {
+		switch a := norm[i]; a {
+		case "--answers":
+			opts.answers = true
+		case "--gaps":
+			opts.gaps = true
+		case "--log":
+			if i+1 >= len(norm) || strings.HasPrefix(norm[i+1], "-") {
+				fmt.Fprintf(os.Stderr, "%s: option '--log' requires a problem slug\n", leetcodeProg)
+				fmt.Fprintln(os.Stderr, gnuTryHelp(leetcodeProg))
+				return opts, gnuOK, true
+			}
+			i++
+			opts.log = norm[i]
 		case "--catalog":
 			opts.catalog = true
 			opts.showSet = false

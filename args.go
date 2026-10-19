@@ -93,6 +93,8 @@ var dailyLongOpts = []string{
 	"help", "version", "list-tracks", "track",
 	"drill", "solution", "run", "catalog",
 	"refresh", "reset", "show", "problems", "weak", "brief", "missed", "got",
+	"fn", "hint", "recognize", // writing track
+	"log", "gaps", "answers", // leetcode cards; routed to study_leetcode on any track
 	"write", "leetcode", // deprecated run-side selectors; prefer --track
 }
 

@@ -10,7 +10,8 @@ Problems are **fetched live from the LeetCode GraphQL API** when you run today's
 |-------|------|--------|
 | Reflex drill | 4–6 tiny functions from memory | `drills/write/reflex/` |
 | **LeetCode practice** | **10 API-fetched full problems** | **`daily.json` + `--track leetcode`** |
-| Progress | Level per function, derived from runs | `.drill_log.json` + `--levels` |
+| Progress | First-try result and next review per function | `.drill_log.json` + `--weak` |
+| **Cards** | **Per solved problem: your pattern guess, the signal, the insight, the next re-solve** | **`cards.json` + `--log` / `--gaps`** |
 
 ## Commands
 
@@ -21,7 +22,14 @@ go run . -- --run -l                       # short flag (like -w for write refle
 go run . -- --track leetcode -- --refresh # force re-fetch from LeetCode API
 go run . -- --track leetcode -- --catalog # all weekday sets
 go -C bin/study_leetcode run .            # direct CLI
+go run . -- --track leetcode -- --answers # also show topic, tags and reflex links
+go run . -- --log=two-sum                 # record (or review) a solved problem
+go run . -- --gaps                        # patterns on your cards with no reflex drill
 ```
+
+Topic, tags and reflex links are **hidden** in the terminal listing and moved
+to an *Answers* section at the end of `daily.md` / `daily.go`: naming the
+pattern yourself is the first thing to practise.
 
 ## Weekday topics
 
@@ -39,8 +47,17 @@ go -C bin/study_leetcode run .            # direct CLI
 
 1. Run reflex drill: `go run . -- --drill reflex` then implement in `drills/write/reflex/`
 2. Run LeetCode set: `go run . -- --track leetcode` (updates `daily.json`)
-3. Solve 2–3 problems on LeetCode (or all 10 if you have time)
-4. Check what moved: `go run . -- --levels`
+3. **Re-solve the due cards first** (listed under RE-SOLVE): read the statement,
+   name the pattern within 60 s, write the skeleton, then `--log=SLUG`
+4. For 2–3 new problems: write your pattern guess and the words that point to
+   it **before** reading the Answers section, solve, then `--log=SLUG`
+5. Every week or so: `--gaps` — a pattern on 2+ cards with no reflex drill is
+   the next drill file to write
+
+A card moves up a box (re-solve in 3, 7, 14, 30, 60 days) when you named the
+pattern **and** solved it clean; one of the two keeps its box; neither, or
+reading the solution, brings it back tomorrow. Cards also appear in
+`--recognize`.
 
 ## How fetching works
 

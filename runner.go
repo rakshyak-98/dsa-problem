@@ -53,13 +53,17 @@ a value also accepts the --option=value form.
                              leetcode  daily 10-question practice set
       --drill[=KIND]       show a drill plan (KIND: reflex)
       --solution[=KIND]    show the matching solution file (KIND: reflex)
-      --run[=KIND]         run drill tests and log the result
+      --run[=KIND]         grade drill functions and log the result
                              (KIND: reflex or leetcode)
       --reset              restore today's reflex drill to its blank template
       --catalog            list every drill in the active track
 
 Writing track (dsa / write):
-      --show               reveal the small-skill answers
+      --fn=A,B             blank just these functions (any drill file);
+                           with --run, grade only these
+      --hint=A,B           show a function's pattern and technique
+      --recognize          name the pattern for 5 unlabeled problems
+      --show               reveal the small-skill answers and warm-up pattern
       --problems           the curated primary problem per function
       --weak               the weakest functions in the drill log
       --missed=A,B         mark small skills you missed; they return as "redo"
@@ -68,7 +72,13 @@ Writing track (dsa / write):
 LeetCode track (--track=leetcode):
       --run                fetch and show today's 10 problems
       --refresh            re-fetch from the LeetCode API and rewrite daily.json
+      --answers            also show topic tags and reflex links (hidden by default)
       --catalog            list every weekday practice set
+
+LeetCode review log (any track):
+      --log=SLUG           record or review a solved problem: your pattern guess,
+                           the signal, the one-line insight; schedules a re-solve
+      --gaps               patterns in that log that no reflex drill covers yet
 
 Deprecated (still accepted): --write, --leetcode as run-side selectors
 (-w, -l) are superseded by --track.
@@ -160,6 +170,11 @@ func runUnified(root string, opts dailyOptions) int {
 		return runModule(root, "study_play", []string{"--reset"}, true)
 	}
 
+	// LeetCode cards live in study_leetcode whichever track is active.
+	if hasArg(opts.passArgs, "--log") || hasArg(opts.passArgs, "--gaps") {
+		return runModule(root, "study_leetcode", filterLeetcodePassArgs(opts.passArgs), true)
+	}
+
 	drillKind := opts.drillKind
 	solutionKind := opts.solutionKind
 	briefArgs := withBrief(opts.passArgs)
@@ -193,7 +208,8 @@ func runUnified(root string, opts dailyOptions) int {
 		if code := runModule(root, "study_play", briefArgs, false); code != 0 {
 			return code
 		}
-		if drillKind == "" && solutionKind == "" {
+		if drillKind == "" && solutionKind == "" && len(opts.passArgs) == 0 {
+			fmt.Println("recognize: go run . -- --recognize")
 			fmt.Println("drill:  go run . -- --drill reflex")
 			fmt.Println("run:    go run . -- --run reflex")
 			fmt.Println("        go run . -- --run leetcode")

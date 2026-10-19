@@ -27,7 +27,7 @@ func isPalindrome(s string) bool {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — max sum of subarray of size k (sliding window fixed)
+// TODO: REFLEX — max sum of a contiguous subarray of size k
 func maxSumSubarrayK(nums []int, k int) int {
 	panic("Implement from memory")
 }
@@ -37,7 +37,7 @@ func longestUniqueSubstring(s string) int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — Dutch national flag: sort an array of 0/1/2 in one pass
+// TODO: REFLEX — sort an array of 0/1/2 in place, in one pass
 func dutchFlag(nums []int) []int {
 	panic("Implement from memory")
 }

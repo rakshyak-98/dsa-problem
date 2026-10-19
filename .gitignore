@@ -8,12 +8,16 @@ bin/study_leetcode/study_leetcode
 
 # Drill progress log (local)
 .drill_log.json
+.drill_log.json.bak
 bin/study_play/.drill_log.json
 
 # LeetCode daily practice cache (refreshed via --track leetcode)
 drills/leetcode/daily.json
 drills/leetcode/daily.md
 drills/leetcode/daily.go
+
+# Solved-problem cards (local progress, like .drill_log.json)
+drills/leetcode/cards.json
 
 # OS / editor
 .cursor/

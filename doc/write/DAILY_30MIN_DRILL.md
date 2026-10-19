@@ -7,8 +7,12 @@
 This file is the full daily practice: today's weekday specialty drill.
 
 ```bash
-go run .                 # today's plan
-go run . -- --weak       # the weakest functions from your drill log
+go run .                         # today's plan: specialty + mixed-topic review queue
+go run . -- --recognize          # name the pattern for 5 unlabeled problems
+go run . -- --fn=A,B             # blank just these functions (from the review queue)
+go run . -- --run --fn=A,B       # grade only those; --run alone grades today's file
+go run . -- --hint=A             # the pattern + technique, after an honest attempt
+go run . -- --weak               # the weakest functions from your drill log
 ```
 
 | Tier | Time | Do |
@@ -17,7 +21,15 @@ go run . -- --weak       # the weakest functions from your drill log
 | **Reflex** | ~30–40 min | Today's specialty |
 | **Standard** | 45–60 min | Reflex tier + the primary problem for one function (`--problems`) |
 
-Missed a day? Do **not** catch up. Run today's plan; `--weak` shows what to redo.
+Missed a day? Do **not** catch up. Run today's plan: the review queue already
+puts the overdue functions first.
+
+**How grading works.** Each function's test runs on its own, so a blank stub
+shows as `todo` instead of failing the rest. Only the **first graded run of a
+day** counts: it sets the function's next review (1, 3, 7, 14, 30, 60 days on a
+clean first try, back to tomorrow on a miss). Re-running while you fix the code
+is fine and does not count against you. A run that loops forever is stopped
+after 2 s or 1 GB.
 
 ---
 
@@ -51,13 +63,16 @@ go run . -- --run reflex
 
 | Min | Block | Action |
 |-----|-------|--------|
-| 0–2 | **Warm-up** | Read today's warm-up ask out loud |
-| 2–5 | **Weak** | `--weak`: redo the worst function blind |
-| 5–30 | **Specialty** | All `TODO: REFLEX` in today's file |
-| 30–37 | **Run & fix** | `go run . -- --run reflex` — one fix pass, no solutions |
-| 37–40 | **Log** | Note any fail for a +1 day revisit |
+| 0–5 | **Recognise** | `go run . -- --recognize` — name the pattern for 5 unlabeled problems |
+| 5–15 | **Review** | `--fn=…` from the plan's REVIEW block: say the pattern, write the skeleton (invariant, loop, update), then the code; `--run --fn=…` once |
+| 15–35 | **Specialty** | All `TODO: REFLEX` in today's file, then `go run . -- --run reflex` once |
+| 35–40 | **Fix & explain** | Fix the misses (`--hint` only after an honest try); write one line on *why* each fix works |
 
-Low energy? Do half of today's specialty. That still counts as Minimum tier.
+Low energy? Do the recognition round and the review block. That still counts as Minimum tier.
+
+The stub comments say **what** to compute, not **how**: picking the technique
+is part of the drill. The warm-up's `Pattern:` line is hidden too (`--show`
+reveals it).
 
 ---
 
@@ -127,7 +142,7 @@ You **own** a function when all of these hold:
 |-----------|---------|
 | Stuck 10+ min on one specialty fn | Skip it, finish others; peek **only that one**; re-type blind in last 5 min |
 | All specialty tests fail | Yesterday’s specialty file (recovery day) |
-| No time | One specialty function, blind |
+| No time | One due function, blind: `go run . -- --fn=NAME`, then `--run --fn=NAME` |
 
 ---
 

@@ -14,6 +14,7 @@ var playLongOpts = []string{
 	"drill", "solution", "run",
 	"show", "problems", "missed", "got",
 	"catalog", "brief", "weak", "setup", "reset",
+	"fn", "hint", "recognize",
 	"write", // consumed by the root runner when picking a side
 }
 
@@ -46,15 +47,20 @@ option also accepts the --option=value form.
 
       --drill=KIND      show a drill plan (KIND: reflex)
       --solution=KIND   show the solution file path (KIND: reflex)
-      --run[=KIND]      run drill tests and log the result
-                          reflex  today's specialty tests
-                          (default: both)
+      --run[=KIND]      grade drill functions and log the result
+                          reflex  today's specialty tests (the default)
+                        each function's test runs on its own, so a blank
+                        stub shows as todo instead of failing the rest
+      --fn=A,B          blank just these functions (any drill file);
+                        with --run, grade only these
+      --hint=A,B        show the pattern and technique for a function
       --catalog         list the weekday write drills
       --brief           one-line output for the unified daily runner
 
 Session views (writing track):
       --problems        the curated primary problem per function
       --weak            the weakest functions in the drill log
+      --recognize       name the pattern for 5 unlabeled problems (reads stdin)
 
 Small skills (the SMALL SKILLS block of the daily plan):
       --show            reveal the answers (with the plan)
@@ -101,6 +107,9 @@ type playOpts struct {
 	got          string
 	setup        bool
 	reset        bool
+	fns          string // --fn value, comma-separated
+	hint         string // --hint value, comma-separated
+	recognize    bool
 }
 
 // parsePlay applies the GNU front-end, then reads the normalised tokens. The
@@ -125,6 +134,20 @@ func parsePlay(args []string) (opts playOpts, ctl gnuCtl, parseErr bool) {
 			opts.catalog = true
 		case "--weak":
 			opts.weak = true
+		case "--recognize":
+			opts.recognize = true
+		case "--fn", "--hint":
+			if i+1 >= len(norm) {
+				fmt.Fprintf(os.Stderr, "%s: option '%s' requires an argument\n", playProg, norm[i])
+				fmt.Fprintln(os.Stderr, gnuTryHelp(playProg))
+				return opts, gnuOK, true
+			}
+			i++
+			if norm[i-1] == "--fn" {
+				opts.fns = norm[i]
+			} else {
+				opts.hint = norm[i]
+			}
 		case "--missed", "--got":
 			if i+1 >= len(norm) {
 				fmt.Fprintf(os.Stderr, "%s: option '%s' requires an argument\n", playProg, norm[i])

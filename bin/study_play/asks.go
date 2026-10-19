@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -104,6 +105,10 @@ func printAskWarmup(day string) {
 	fmt.Printf("  Problem: %s\n\n", ask.statement)
 	fmt.Println("  Fill in (on paper or aloud):")
 	for _, h := range ask.hints {
+		// The pattern is the answer you are meant to find; --show reveals it.
+		if strings.HasPrefix(h, "Pattern:") && !revealSkillAnswers {
+			h = "Pattern: ? — name it before you code (check with --show)"
+		}
 		fmt.Printf("    • %s\n", h)
 	}
 	printSkillQuestions(day)

@@ -95,9 +95,10 @@ func TestLoadLogInvalidJSON(t *testing.T) {
 
 func TestPrintWeakFunctionsSorted(t *testing.T) {
 	dir := t.TempDir()
-	updateLogFromOutput(dir, "FAIL: slow\n", []string{"slow"})
-	updateLogFromOutput(dir, "PASS: fast\n", []string{"fast"})
-	updateLogFromOutput(dir, "FAIL: slow\n", []string{"slow"})
+	updateLogFromOutput(dir, "FAIL: floodFill\n", []string{"floodFill"})
+	updateLogFromOutput(dir, "PASS: twoSum\n", []string{"twoSum"})
+	updateLogFromOutput(dir, "FAIL: floodFill\n", []string{"floodFill"})
+	updateLogFromOutput(dir, "FAIL: retiredFn\n", []string{"retiredFn"})
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
@@ -106,8 +107,12 @@ func TestPrintWeakFunctionsSorted(t *testing.T) {
 	os.Stdout = old
 	var buf bytes.Buffer
 	_, _ = io.Copy(&buf, r)
-	if !strings.Contains(buf.String(), "slow") {
-		t.Fatal("expected slow ranked weak")
+	if !strings.Contains(buf.String(), "1. floodFill") {
+		t.Fatalf("expected floodFill ranked weakest:\n%s", buf.String())
+	}
+	// Functions no drill has any more are not listed.
+	if strings.Contains(buf.String(), "retiredFn") {
+		t.Fatalf("retired function listed:\n%s", buf.String())
 	}
 }
 

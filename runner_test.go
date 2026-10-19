@@ -260,3 +260,22 @@ func TestRunUnifiedReset(t *testing.T) {
 		t.Fatalf("expected study_play --reset, got %s %v", gotDir, gotArgs)
 	}
 }
+
+func TestRunUnifiedRoutesCardsToLeetcode(t *testing.T) {
+	for _, track := range []drillTrack{trackDSA, trackWrite, trackLeetcode} {
+		var calls [][]string
+		commandRunner = func(dir string, args ...string) error {
+			calls = append(calls, append([]string{dir}, args...))
+			return nil
+		}
+		code := runUnified("/tmp/repo", dailyOptions{track: track, passArgs: []string{"--log", "two-sum"}})
+		commandRunner = runIn
+		if code != 0 || len(calls) != 1 || !containsAll(calls[0][0], "study_leetcode") || !hasArg(calls[0], "two-sum") {
+			t.Fatalf("%s: --log should go to study_leetcode alone, got %v", track, calls)
+		}
+	}
+	opts := parseDailyArgs([]string{"--fn=rob", "--recog"})
+	if opts.usageErr || !hasArg(opts.passArgs, "--fn") || !hasArg(opts.passArgs, "--recognize") {
+		t.Fatalf("new writing options must pass through: %+v", opts)
+	}
+}

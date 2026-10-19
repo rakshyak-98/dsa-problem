@@ -11,22 +11,22 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-// TODO: REFLEX — inorder traversal (iterative with stack preferred)
+// TODO: REFLEX — inorder traversal (iterative preferred)
 func inorderTraversal(root *TreeNode) []int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — preorder traversal (iterative with stack preferred)
+// TODO: REFLEX — preorder traversal (iterative preferred)
 func preorderTraversal(root *TreeNode) []int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — postorder traversal (iterative with stack preferred)
+// TODO: REFLEX — postorder traversal (iterative preferred)
 func postorderTraversal(root *TreeNode) []int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — level-order traversal (BFS with queue)
+// TODO: REFLEX — level-order traversal (top to bottom, left to right)
 func levelOrderTraversal(root *TreeNode) []int {
 	panic("Implement from memory")
 }
@@ -41,12 +41,12 @@ func isValidParentheses(s string) bool {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — daily temperatures (next greater to the right) — monotonic stack
+// TODO: REFLEX — for each day, days until a warmer one (0 if none), O(n)
 func dailyTemperatures(temps []int) []int {
 	panic("Implement from memory")
 }
 
-// TODO: REFLEX — is this a valid BST (bound each node by the turns taken to reach it)
+// TODO: REFLEX — is this a valid BST (strictly ordered, no duplicates)
 func isValidBST(root *TreeNode) bool {
 	panic("Implement from memory")
 }

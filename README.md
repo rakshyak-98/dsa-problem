@@ -30,7 +30,13 @@ go run .                              # today's plan: read + write
 go run . -- --show                    # today's plan with the small-skill answers revealed
 go run . -- --problems                # curated primary problem per function
 go run . -- --weak                    # weakest functions from the drill log
-go run . -- --run                     # check today's reflex answers
+go run . -- --run                     # grade today's reflex answers (each function on its own)
+go run . -- --recognize               # name the pattern for 5 unlabeled problems
+go run . -- --fn=rob,floodFill        # blank just these functions (the plan's review queue)
+go run . -- --run --fn=rob,floodFill  # grade only those
+go run . -- --hint=rob                # pattern + technique for one function
+go run . -- --log=two-sum             # record a solved LeetCode problem; schedules a re-solve
+go run . -- --gaps                    # patterns on your cards with no reflex drill yet
 go run . -- --track=write             # writing drills only
 go run . -- --reset                   # restore today's reflex drill to blank
 go run . -- --track=leetcode          # daily 10 LeetCode problems (weekday topic)

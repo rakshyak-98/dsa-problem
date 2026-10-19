@@ -6,6 +6,8 @@
 // RUN with tests:   go run . -- --run
 // Full catalog:     go run . -- --catalog
 // Reset today:      go run . -- --reset
+// One function:     go run . -- --fn=NAME   (then --run --fn=NAME)
+// Recognition:      go run . -- --recognize
 // First-time setup: go run . -- --setup
 package main
 
@@ -158,12 +160,15 @@ func printSolutionReflex(today drill, brief bool) {
 }
 
 func printToday(today drill, brief bool) {
+	log, now := currentLog(), time.Now()
 	if brief {
 		fmt.Printf("write: %s\n", today.file)
 		fmt.Printf("       specialty: %s\n", strings.Join(today.functions, ", "))
+		printReview(log, now, today.file, true)
 		printSkillQuestions(today.day)
 		return
 	}
+	printSessionGap(log, now)
 	fmt.Printf("WRITE %s | %s\n", today.day, today.file)
 	fmt.Printf("specialty: %s\n", strings.Join(today.functions, ", "))
 	fmt.Printf("path: drills/write/reflex/%s/\n", today.file)
@@ -172,9 +177,20 @@ func printToday(today drill, brief bool) {
 		fmt.Printf("\n  Warm-up ask: %s\n", today.understandWarmup)
 	}
 	printAskWarmup(today.day)
+	printReview(log, now, today.file, false)
 	printProblemMap(today.file)
 
-	fmt.Println("\nrun:    go run . -- --run reflex")
+	fmt.Println("\nrecognize: go run . -- --recognize   (5 unlabeled problems, name the pattern)")
+	fmt.Println("run:       go run . -- --run reflex")
+}
+
+// currentLog loads the drill log for the repo containing the working directory.
+func currentLog() drillLog {
+	wd, err := os.Getwd()
+	if err != nil {
+		return drillLog{Functions: map[string]fnRecord{}}
+	}
+	return loadLog(findRepoRoot(wd))
 }
 
 // hasFlag reports whether flag was passed on the command line. Retained for
@@ -219,6 +235,40 @@ func main() {
 
 	if opts.weak {
 		printWeakFunctions(repoRoot, 5)
+		return
+	}
+	if opts.hint != "" {
+		if err := printHints(opts.hint); err != nil {
+			fmt.Fprintf(os.Stderr, "%s: %v\n", playProg, err)
+			os.Exit(2)
+		}
+		return
+	}
+	if opts.recognize {
+		if err := recognize(repoRoot, os.Stdin, os.Stdout); err != nil {
+			fmt.Fprintf(os.Stderr, "%s: %v\n", playProg, err)
+			os.Exit(1)
+		}
+		return
+	}
+	if opts.fns != "" {
+		fns, err := parseFnList(opts.fns)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "%s: %v\n", playProg, err)
+			os.Exit(2)
+		}
+		if runMode != "" {
+			if !gradeAndLog(repoRoot, fns) {
+				os.Exit(1)
+			}
+			return
+		}
+		if err := blankFunctions(repoRoot, fns, time.Now()); err != nil {
+			fmt.Fprintf(os.Stderr, "%s: %v\n", playProg, err)
+			os.Exit(1)
+		}
+		fmt.Println("Name each pattern, write the skeleton, then the code — and run once:")
+		fmt.Printf("  go run . -- --run --fn=%s\n", strings.Join(fns, ","))
 		return
 	}
 	if opts.missed != "" || opts.got != "" {
@@ -280,6 +330,7 @@ func main() {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
+		stampStarted(repoRoot, today.functions, time.Now())
 		return
 	}
 
@@ -289,6 +340,12 @@ func main() {
 
 	switch runMode {
 	case "reflex", "all":
+		if hasTestFiles(drillPath) {
+			if !gradeAndLog(repoRoot, today.functions) {
+				os.Exit(1)
+			}
+			return
+		}
 		ok, output, _ := runDrillWithLog(drillPath)
 		fmt.Print(output)
 		if !ok {
