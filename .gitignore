@@ -24,3 +24,6 @@ drills/leetcode/cards.json
 .DS_Store
 .idea/
 .vscode/
+
+# Working copies of the write drills (regenerated from bin/study_play/_support/blanks via --reset / --setup)
+drills/write/reflex/*/main.go
