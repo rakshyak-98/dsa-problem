@@ -14,6 +14,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 )
@@ -141,12 +142,17 @@ func printCatalog() {
 
 func printReflexDrill(today drill, brief bool) {
 	if brief {
-		fmt.Printf("write: %s\n", today.file)
+		fmt.Printf("write: %s\n", reflexMainPath(today))
 		return
 	}
 	fmt.Printf("WRITE %s | %s\n", today.day, today.file)
 	fmt.Printf("specialty: %s\n", strings.Join(today.functions, ", "))
 	fmt.Printf("path: drills/write/reflex/%s/\n", today.file)
+}
+
+// reflexMainPath is today's blank drill file, relative to the repo root.
+func reflexMainPath(today drill) string {
+	return filepath.Join("drills", "write", "reflex", today.file, "main.go")
 }
 
 func printSolutionReflex(today drill, brief bool) {
@@ -162,7 +168,7 @@ func printSolutionReflex(today drill, brief bool) {
 func printToday(today drill, brief bool) {
 	log, now := currentLog(), time.Now()
 	if brief {
-		fmt.Printf("write: %s\n", today.file)
+		fmt.Printf("write: %s\n", reflexMainPath(today))
 		fmt.Printf("       specialty: %s\n", strings.Join(today.functions, ", "))
 		printReview(log, now, today.file, true)
 		printSkillQuestions(today.day)
